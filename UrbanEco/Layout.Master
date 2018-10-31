@@ -9,129 +9,56 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
 
     </asp:ContentPlaceHolder>
-    <link href="lib/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css"  />
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="lib/css/style.css">
 
 </head>
 <body>
+    
     <%--NAVBAR--%>
+<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Co-Eco</h3>
+            </div>
 
-    <%--<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="#">Top navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <ul class="list-unstyled components">
+                <%--<p>Dummy Heading</p>--%>
+                <li>
+                    <a href="#">Employés</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li>
+                    <a href="#">Projets</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                <li>
+                    <a href="#">Feuille de temps</a>
+                </li>
+                <li>
+                    <a href="#">Dépenses</a>
+                </li>
+                <li>
+                    <a href="#">Banque d'heures</a>
+                </li>
+                <li>
+                    <a href="#">Rapport par projet</a>
+                </li>
+                <li>
+                    <a href="#">Rapport par employé</a>
+                </li>
+                <li>
+                    <a href="#">Déconnection</a>
                 </li>
             </ul>
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>--%>
-
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
-          </div>
         </nav>
-          </div>
-        </div>
+    </div>
 
     <%--BODY--%>
     <div>
         <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
+
         </asp:ContentPlaceHolder>
     </div>
 
