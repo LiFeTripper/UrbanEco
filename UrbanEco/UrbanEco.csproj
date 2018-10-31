@@ -75,6 +75,8 @@
     <Content Include="lib\css\bootstrap-reboot.min.css" />
     <Content Include="lib\css\bootstrap.css" />
     <Content Include="lib\css\bootstrap.min.css" />
+    <Content Include="lib\css\simple-sidebar.css" />
+    <Content Include="lib\css\style.css" />
     <Content Include="lib\js\bootstrap.bundle.js" />
     <Content Include="lib\js\bootstrap.bundle.min.js" />
     <Content Include="lib\js\bootstrap.js" />
