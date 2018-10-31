@@ -165,3 +165,66 @@ INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
 VALUES (3, 8, 3) 
 INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
 VALUES (3, 9, 3) 
+
+
+USE [master]
+GO
+CREATE LOGIN [WEB_USER] WITH PASSWORD=N'1234', DEFAULT_DATABASE=[BD_Coeco], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+ALTER SERVER ROLE [bulkadmin] ADD MEMBER [WEB_USER]
+GO
+ALTER SERVER ROLE [dbcreator] ADD MEMBER [WEB_USER]
+GO
+ALTER SERVER ROLE [diskadmin] ADD MEMBER [WEB_USER]
+GO
+ALTER SERVER ROLE [processadmin] ADD MEMBER [WEB_USER]
+GO
+ALTER SERVER ROLE [securityadmin] ADD MEMBER [WEB_USER]
+GO
+ALTER SERVER ROLE [serveradmin] ADD MEMBER [WEB_USER]
+GO
+ALTER SERVER ROLE [setupadmin] ADD MEMBER [WEB_USER]
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+CREATE USER [WEB_USER] FOR LOGIN [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_accessadmin] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_backupoperator] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_ddladmin] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_denydatareader] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_denydatawriter] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [WEB_USER]
+GO
+USE [BD_Coeco]
+GO
+ALTER ROLE [db_securityadmin] ADD MEMBER [WEB_USER]
+GO
+
