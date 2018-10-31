@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace UrbanEco
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Home : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Btn_Signin_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/Home.aspx");
         }
     }
 }

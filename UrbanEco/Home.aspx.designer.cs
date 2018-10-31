@@ -10,15 +10,6 @@
 namespace UrbanEco {
     
     
-    public partial class Login {
-        
-        /// <summary>
-        /// Contrôle Btn_Signin.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Signin;
+    public partial class Home {
     }
 }
