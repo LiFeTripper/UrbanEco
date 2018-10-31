@@ -167,6 +167,32 @@ INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
 VALUES (3, 9, 3) 
 
 
+CREATE TABLE tbl_TypeHeure
+(
+	idTypeHeure INT IDENTITY(1,1) PRIMARY KEY,
+	nomTypeHeure VARCHAR(250) NOT NULL
+)
+
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Heure en banque');
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Jour férié');
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé personnel');
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Vacance');
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé maladie');
+
+
+CREATE TABLE tbl_BanqueHeure
+(
+	idBanqueHeure INT IDENTITY(1,1) PRIMARY KEY,
+	idEmploye INT NOT NULL,
+	idTypeHeure INT NOT NULL,
+	--FOREIGN KEY
+
+	CONSTRAINT FK_tbl_BanqueHeure_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
+	CONSTRAINT FK_tbl_BanqueHeure_idTypeHeure FOREIGN KEY (idTypeHeure) REFERENCES tbl_TypeHeure(idTypeHeure)
+)
+
+--Web User
+
 USE [master]
 GO
 CREATE LOGIN [WEB_USER] WITH PASSWORD=N'1234', DEFAULT_DATABASE=[BD_Coeco], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
