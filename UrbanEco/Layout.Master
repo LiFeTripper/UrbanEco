@@ -28,7 +28,7 @@
             <ul class="list-unstyled components">
                 <%--<p>Dummy Heading</p>--%>
                 <li>
-                    <a href="#">Employés</a>
+                    <a href="Employe.aspx">Employés</a>
                 </li>
                 <li>
                     <a href="#">Projets</a>
