@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BanqueHeure.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="lib\css\bootstrap-grid.css" />
     <Content Include="lib\css\bootstrap-grid.min.css" />
@@ -75,6 +76,8 @@
     <Content Include="lib\css\bootstrap-reboot.min.css" />
     <Content Include="lib\css\bootstrap.css" />
     <Content Include="lib\css\bootstrap.min.css" />
+    <Content Include="lib\css\simple-sidebar.css" />
+    <Content Include="lib\css\style.css" />
     <Content Include="lib\js\bootstrap.bundle.js" />
     <Content Include="lib\js\bootstrap.bundle.min.js" />
     <Content Include="lib\js\bootstrap.js" />
@@ -87,6 +90,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BanqueHeure.aspx.cs">
+      <DependentUpon>BanqueHeure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BanqueHeure.aspx.designer.cs">
+      <DependentUpon>BanqueHeure.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
