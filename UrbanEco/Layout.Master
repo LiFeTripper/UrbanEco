@@ -52,13 +52,14 @@
                     <a href="#">Déconnection</a>
                 </li>
             </ul>
+
+            
         </nav>
     </div>
 
     <%--BODY--%>
     <div>
         <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
-
         </asp:ContentPlaceHolder>
     </div>
 
