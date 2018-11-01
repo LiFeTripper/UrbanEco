@@ -11,57 +11,94 @@
     </asp:ContentPlaceHolder>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="lib/css/bootstrap.min.css"  />
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="lib/css/style.css">
+    <!-- Custom Left Side Menu CSS -->
+    <link rel="stylesheet" href="lib/css/menu.css">
+    <%--Font Awesome Icon CSS--%>
+    <link href="lib/css/fontawesome.css" rel="stylesheet" />
+    <link href="lib/css/solid.css" rel="stylesheet" />
 
 </head>
 <body>
     
     <%--NAVBAR--%>
-<div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Co-Eco</h3>
-            </div>
+<div class="nav-side-menu">
+    <div class="brand">CoEco</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="Employe.aspx">
+                  <i class="fa fa-user fa-lg"></i> Employés
+                  </a>
+                </li>
 
-            <ul class="list-unstyled components">
-                <%--<p>Dummy Heading</p>--%>
-                <li>
-                    <a href="Employe.aspx">Employés</a>
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-folder fa-lg"></i> Projets
+                  </a>
+                  </li>
+
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-clock fa-lg"></i> Feuille de temps
+                  </a>
                 </li>
+
                 <li>
-                    <a href="#">Projets</a>
+                  <a href="#">
+                  <i class="fa fa-car fa-lg"></i> Dépenses
+                  </a>
                 </li>
+
                 <li>
-                    <a href="#">Feuille de temps</a>
+                  <a href="#">
+                  <i class="fa fa-piggy-bank fa-lg"></i> Banque d'heures
+                  </a>
                 </li>
+
                 <li>
-                    <a href="#">Dépenses</a>
+                  <a href="#">
+                  <i class="fa fa-scroll fa-lg"></i> Rapport par projet 
+                  </a>
                 </li>
+
                 <li>
-                    <a href="#">Banque d'heures</a>
+                  <a href="#">
+                  <i class="fa fa-scroll fa-lg"></i> Rapport par employé
+                  </a>
                 </li>
+
+                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                  <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="new">
+                  <li>New New 1</li>
+                  <li>New New 2</li>
+                  <li>New New 3</li>
+                </ul>
+
                 <li>
-                    <a href="#">Rapport par projet</a>
+                  <a href="#">
+                  <i class="fa fa-sign-out-alt fa-lg"></i> Déconnection
+                  </a>
                 </li>
-                <li>
-                    <a href="#">Rapport par employé</a>
-                </li>
-                <li>
-                    <a href="#">Déconnection</a>
-                </li>
+
             </ul>
-
-            
-        </nav>
-    </div>
+     </div>
+</div>
 
     <%--BODY--%>
-    <div>
-        <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
+
+<div class="row justify-content-end">
+    <div class="col-10">
+      <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
+
         </asp:ContentPlaceHolder>
     </div>
+
+  </div>
 
     <%--FOOTER--%>
     <footer class="container">
