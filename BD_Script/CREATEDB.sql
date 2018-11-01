@@ -185,6 +185,7 @@ CREATE TABLE tbl_BanqueHeure
 	idBanqueHeure INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	idTypeHeure INT NOT NULL,
+	nbHeure FLOAT(24) DEFAULT 0,
 	
 	--FOREIGN KEY
 
@@ -207,7 +208,7 @@ CREATE TABLE tbl_Depense
 	idDepense INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	idTypeDepense INT NOT NULL,
-
+	montant FLOAT(24) DEFAULT 0,
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_Depenses_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),

@@ -1,10 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoecoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=BD_Coeco;Integrated Security=True;User ID=WEB_USER" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.tbl_TypeEmploye" Member="tbl_TypeEmploye">
-    <Type Name="tbl_TypeEmploye">
-      <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
+  <Table Name="dbo.tbl_TypeHeure" Member="tbl_TypeHeure">
+    <Type Name="tbl_TypeHeure">
+      <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nomTypeHeure" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_BanqueHeure" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
+    <Type Name="tbl_BanqueHeure">
+      <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nbHeure" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_TypeHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_TypeHeure" IsForeignKey="true" />
+      <Association Name="tbl_Employe_tbl_BanqueHeure" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Depense" Member="tbl_Depense">
+    <Type Name="tbl_Depense">
+      <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="montant" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
+      <Association Name="tbl_TypeDepense_tbl_Depense" Member="tbl_TypeDepense" ThisKey="idTypeDepense" OtherKey="idTypeDepense" Type="tbl_TypeDepense" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Employe" Member="tbl_Employe">
@@ -18,10 +38,11 @@
       <Column Name="username" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="inactif" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tbl_Employe_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_BanqueHeure" />
+      <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Depense" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Depense" />
       <Association Name="tbl_Employe_tbl_FeuilleTemps" Member="tbl_FeuilleTemps" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_FeuilleTemps" />
       <Association Name="tbl_Employe_tbl_Projet" Member="tbl_Projet" ThisKey="idEmploye" OtherKey="idEmployeResp" Type="tbl_Projet" />
       <Association Name="tbl_Employe_tbl_ProjetCatEmploye" Member="tbl_ProjetCatEmploye" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_ProjetCatEmploye" />
-      <Association Name="tbl_Employe_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_BanqueHeure" />
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_TypeEmploye" ThisKey="idTypeEmpl" OtherKey="idType" Type="tbl_TypeEmploye" IsForeignKey="true" />
     </Type>
   </Table>
@@ -89,20 +110,18 @@
       <Association Name="tbl_Status_tbl_Projet" Member="tbl_Projet" ThisKey="idStatus" OtherKey="idStatus" Type="tbl_Projet" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_TypeHeure" Member="tbl_TypeHeure">
-    <Type Name="tbl_TypeHeure">
-      <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nomTypeHeure" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_BanqueHeure" />
+  <Table Name="dbo.tbl_TypeDepense" Member="tbl_TypeDepense">
+    <Type Name="tbl_TypeDepense">
+      <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nomDepense" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="tbl_TypeDepense_tbl_Depense" Member="tbl_Depense" ThisKey="idTypeDepense" OtherKey="idTypeDepense" Type="tbl_Depense" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
-    <Type Name="tbl_BanqueHeure">
-      <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="tbl_Employe_tbl_BanqueHeure" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
-      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_TypeHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_TypeHeure" IsForeignKey="true" />
+  <Table Name="dbo.tbl_TypeEmploye" Member="tbl_TypeEmploye">
+    <Type Name="tbl_TypeEmploye">
+      <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
     </Type>
   </Table>
 </Database>

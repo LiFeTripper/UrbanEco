@@ -30,9 +30,15 @@ namespace UrbanEco
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnCreated();
-    partial void Inserttbl_TypeEmploye(tbl_TypeEmploye instance);
-    partial void Updatetbl_TypeEmploye(tbl_TypeEmploye instance);
-    partial void Deletetbl_TypeEmploye(tbl_TypeEmploye instance);
+    partial void Inserttbl_TypeHeure(tbl_TypeHeure instance);
+    partial void Updatetbl_TypeHeure(tbl_TypeHeure instance);
+    partial void Deletetbl_TypeHeure(tbl_TypeHeure instance);
+    partial void Inserttbl_BanqueHeure(tbl_BanqueHeure instance);
+    partial void Updatetbl_BanqueHeure(tbl_BanqueHeure instance);
+    partial void Deletetbl_BanqueHeure(tbl_BanqueHeure instance);
+    partial void Inserttbl_Depense(tbl_Depense instance);
+    partial void Updatetbl_Depense(tbl_Depense instance);
+    partial void Deletetbl_Depense(tbl_Depense instance);
     partial void Inserttbl_Employe(tbl_Employe instance);
     partial void Updatetbl_Employe(tbl_Employe instance);
     partial void Deletetbl_Employe(tbl_Employe instance);
@@ -51,12 +57,12 @@ namespace UrbanEco
     partial void Inserttbl_Status(tbl_Status instance);
     partial void Updatetbl_Status(tbl_Status instance);
     partial void Deletetbl_Status(tbl_Status instance);
-    partial void Inserttbl_TypeHeure(tbl_TypeHeure instance);
-    partial void Updatetbl_TypeHeure(tbl_TypeHeure instance);
-    partial void Deletetbl_TypeHeure(tbl_TypeHeure instance);
-    partial void Inserttbl_BanqueHeure(tbl_BanqueHeure instance);
-    partial void Updatetbl_BanqueHeure(tbl_BanqueHeure instance);
-    partial void Deletetbl_BanqueHeure(tbl_BanqueHeure instance);
+    partial void Inserttbl_TypeDepense(tbl_TypeDepense instance);
+    partial void Updatetbl_TypeDepense(tbl_TypeDepense instance);
+    partial void Deletetbl_TypeDepense(tbl_TypeDepense instance);
+    partial void Inserttbl_TypeEmploye(tbl_TypeEmploye instance);
+    partial void Updatetbl_TypeEmploye(tbl_TypeEmploye instance);
+    partial void Deletetbl_TypeEmploye(tbl_TypeEmploye instance);
     #endregion
 		
 		public CoecoDataContext() : 
@@ -89,11 +95,27 @@ namespace UrbanEco
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<tbl_TypeEmploye> tbl_TypeEmploye
+		public System.Data.Linq.Table<tbl_TypeHeure> tbl_TypeHeure
 		{
 			get
 			{
-				return this.GetTable<tbl_TypeEmploye>();
+				return this.GetTable<tbl_TypeHeure>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_BanqueHeure> tbl_BanqueHeure
+		{
+			get
+			{
+				return this.GetTable<tbl_BanqueHeure>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_Depense> tbl_Depense
+		{
+			get
+			{
+				return this.GetTable<tbl_Depense>();
 			}
 		}
 		
@@ -145,101 +167,101 @@ namespace UrbanEco
 			}
 		}
 		
-		public System.Data.Linq.Table<tbl_TypeHeure> tbl_TypeHeure
+		public System.Data.Linq.Table<tbl_TypeDepense> tbl_TypeDepense
 		{
 			get
 			{
-				return this.GetTable<tbl_TypeHeure>();
+				return this.GetTable<tbl_TypeDepense>();
 			}
 		}
 		
-		public System.Data.Linq.Table<tbl_BanqueHeure> tbl_BanqueHeure
+		public System.Data.Linq.Table<tbl_TypeEmploye> tbl_TypeEmploye
 		{
 			get
 			{
-				return this.GetTable<tbl_BanqueHeure>();
+				return this.GetTable<tbl_TypeEmploye>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_TypeEmploye")]
-	public partial class tbl_TypeEmploye : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_TypeHeure")]
+	public partial class tbl_TypeHeure : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _idType;
+		private int _idTypeHeure;
 		
-		private string _nomType;
+		private string _nomTypeHeure;
 		
-		private EntitySet<tbl_Employe> _tbl_Employe;
+		private EntitySet<tbl_BanqueHeure> _tbl_BanqueHeure;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnidTypeChanging(int value);
-    partial void OnidTypeChanged();
-    partial void OnnomTypeChanging(string value);
-    partial void OnnomTypeChanged();
+    partial void OnidTypeHeureChanging(int value);
+    partial void OnidTypeHeureChanged();
+    partial void OnnomTypeHeureChanging(string value);
+    partial void OnnomTypeHeureChanged();
     #endregion
 		
-		public tbl_TypeEmploye()
+		public tbl_TypeHeure()
 		{
-			this._tbl_Employe = new EntitySet<tbl_Employe>(new Action<tbl_Employe>(this.attach_tbl_Employe), new Action<tbl_Employe>(this.detach_tbl_Employe));
+			this._tbl_BanqueHeure = new EntitySet<tbl_BanqueHeure>(new Action<tbl_BanqueHeure>(this.attach_tbl_BanqueHeure), new Action<tbl_BanqueHeure>(this.detach_tbl_BanqueHeure));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idType", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idType
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeHeure", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idTypeHeure
 		{
 			get
 			{
-				return this._idType;
+				return this._idTypeHeure;
 			}
 			set
 			{
-				if ((this._idType != value))
+				if ((this._idTypeHeure != value))
 				{
-					this.OnidTypeChanging(value);
+					this.OnidTypeHeureChanging(value);
 					this.SendPropertyChanging();
-					this._idType = value;
-					this.SendPropertyChanged("idType");
-					this.OnidTypeChanged();
+					this._idTypeHeure = value;
+					this.SendPropertyChanged("idTypeHeure");
+					this.OnidTypeHeureChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomType", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string nomType
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomTypeHeure", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string nomTypeHeure
 		{
 			get
 			{
-				return this._nomType;
+				return this._nomTypeHeure;
 			}
 			set
 			{
-				if ((this._nomType != value))
+				if ((this._nomTypeHeure != value))
 				{
-					this.OnnomTypeChanging(value);
+					this.OnnomTypeHeureChanging(value);
 					this.SendPropertyChanging();
-					this._nomType = value;
-					this.SendPropertyChanged("nomType");
-					this.OnnomTypeChanged();
+					this._nomTypeHeure = value;
+					this.SendPropertyChanged("nomTypeHeure");
+					this.OnnomTypeHeureChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeEmploye_tbl_Employe", Storage="_tbl_Employe", ThisKey="idType", OtherKey="idTypeEmpl")]
-		public EntitySet<tbl_Employe> tbl_Employe
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeHeure_tbl_BanqueHeure", Storage="_tbl_BanqueHeure", ThisKey="idTypeHeure", OtherKey="idTypeHeure")]
+		public EntitySet<tbl_BanqueHeure> tbl_BanqueHeure
 		{
 			get
 			{
-				return this._tbl_Employe;
+				return this._tbl_BanqueHeure;
 			}
 			set
 			{
-				this._tbl_Employe.Assign(value);
+				this._tbl_BanqueHeure.Assign(value);
 			}
 		}
 		
@@ -263,16 +285,448 @@ namespace UrbanEco
 			}
 		}
 		
-		private void attach_tbl_Employe(tbl_Employe entity)
+		private void attach_tbl_BanqueHeure(tbl_BanqueHeure entity)
 		{
 			this.SendPropertyChanging();
-			entity.tbl_TypeEmploye = this;
+			entity.tbl_TypeHeure = this;
 		}
 		
-		private void detach_tbl_Employe(tbl_Employe entity)
+		private void detach_tbl_BanqueHeure(tbl_BanqueHeure entity)
 		{
 			this.SendPropertyChanging();
-			entity.tbl_TypeEmploye = null;
+			entity.tbl_TypeHeure = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_BanqueHeure")]
+	public partial class tbl_BanqueHeure : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idBanqueHeure;
+		
+		private int _idEmploye;
+		
+		private int _idTypeHeure;
+		
+		private System.Nullable<float> _nbHeure;
+		
+		private EntityRef<tbl_TypeHeure> _tbl_TypeHeure;
+		
+		private EntityRef<tbl_Employe> _tbl_Employe;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidBanqueHeureChanging(int value);
+    partial void OnidBanqueHeureChanged();
+    partial void OnidEmployeChanging(int value);
+    partial void OnidEmployeChanged();
+    partial void OnidTypeHeureChanging(int value);
+    partial void OnidTypeHeureChanged();
+    partial void OnnbHeureChanging(System.Nullable<float> value);
+    partial void OnnbHeureChanged();
+    #endregion
+		
+		public tbl_BanqueHeure()
+		{
+			this._tbl_TypeHeure = default(EntityRef<tbl_TypeHeure>);
+			this._tbl_Employe = default(EntityRef<tbl_Employe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idBanqueHeure", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idBanqueHeure
+		{
+			get
+			{
+				return this._idBanqueHeure;
+			}
+			set
+			{
+				if ((this._idBanqueHeure != value))
+				{
+					this.OnidBanqueHeureChanging(value);
+					this.SendPropertyChanging();
+					this._idBanqueHeure = value;
+					this.SendPropertyChanged("idBanqueHeure");
+					this.OnidBanqueHeureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", DbType="Int NOT NULL")]
+		public int idEmploye
+		{
+			get
+			{
+				return this._idEmploye;
+			}
+			set
+			{
+				if ((this._idEmploye != value))
+				{
+					if (this._tbl_Employe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidEmployeChanging(value);
+					this.SendPropertyChanging();
+					this._idEmploye = value;
+					this.SendPropertyChanged("idEmploye");
+					this.OnidEmployeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeHeure", DbType="Int NOT NULL")]
+		public int idTypeHeure
+		{
+			get
+			{
+				return this._idTypeHeure;
+			}
+			set
+			{
+				if ((this._idTypeHeure != value))
+				{
+					if (this._tbl_TypeHeure.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidTypeHeureChanging(value);
+					this.SendPropertyChanging();
+					this._idTypeHeure = value;
+					this.SendPropertyChanged("idTypeHeure");
+					this.OnidTypeHeureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nbHeure", DbType="Real")]
+		public System.Nullable<float> nbHeure
+		{
+			get
+			{
+				return this._nbHeure;
+			}
+			set
+			{
+				if ((this._nbHeure != value))
+				{
+					this.OnnbHeureChanging(value);
+					this.SendPropertyChanging();
+					this._nbHeure = value;
+					this.SendPropertyChanged("nbHeure");
+					this.OnnbHeureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeHeure_tbl_BanqueHeure", Storage="_tbl_TypeHeure", ThisKey="idTypeHeure", OtherKey="idTypeHeure", IsForeignKey=true)]
+		public tbl_TypeHeure tbl_TypeHeure
+		{
+			get
+			{
+				return this._tbl_TypeHeure.Entity;
+			}
+			set
+			{
+				tbl_TypeHeure previousValue = this._tbl_TypeHeure.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_TypeHeure.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_TypeHeure.Entity = null;
+						previousValue.tbl_BanqueHeure.Remove(this);
+					}
+					this._tbl_TypeHeure.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_BanqueHeure.Add(this);
+						this._idTypeHeure = value.idTypeHeure;
+					}
+					else
+					{
+						this._idTypeHeure = default(int);
+					}
+					this.SendPropertyChanged("tbl_TypeHeure");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_BanqueHeure", Storage="_tbl_Employe", ThisKey="idEmploye", OtherKey="idEmploye", IsForeignKey=true)]
+		public tbl_Employe tbl_Employe
+		{
+			get
+			{
+				return this._tbl_Employe.Entity;
+			}
+			set
+			{
+				tbl_Employe previousValue = this._tbl_Employe.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_Employe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_Employe.Entity = null;
+						previousValue.tbl_BanqueHeure.Remove(this);
+					}
+					this._tbl_Employe.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_BanqueHeure.Add(this);
+						this._idEmploye = value.idEmploye;
+					}
+					else
+					{
+						this._idEmploye = default(int);
+					}
+					this.SendPropertyChanged("tbl_Employe");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Depense")]
+	public partial class tbl_Depense : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idDepense;
+		
+		private int _idEmploye;
+		
+		private int _idTypeDepense;
+		
+		private System.Nullable<float> _montant;
+		
+		private EntityRef<tbl_Employe> _tbl_Employe;
+		
+		private EntityRef<tbl_TypeDepense> _tbl_TypeDepense;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidDepenseChanging(int value);
+    partial void OnidDepenseChanged();
+    partial void OnidEmployeChanging(int value);
+    partial void OnidEmployeChanged();
+    partial void OnidTypeDepenseChanging(int value);
+    partial void OnidTypeDepenseChanged();
+    partial void OnmontantChanging(System.Nullable<float> value);
+    partial void OnmontantChanged();
+    #endregion
+		
+		public tbl_Depense()
+		{
+			this._tbl_Employe = default(EntityRef<tbl_Employe>);
+			this._tbl_TypeDepense = default(EntityRef<tbl_TypeDepense>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idDepense
+		{
+			get
+			{
+				return this._idDepense;
+			}
+			set
+			{
+				if ((this._idDepense != value))
+				{
+					this.OnidDepenseChanging(value);
+					this.SendPropertyChanging();
+					this._idDepense = value;
+					this.SendPropertyChanged("idDepense");
+					this.OnidDepenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", DbType="Int NOT NULL")]
+		public int idEmploye
+		{
+			get
+			{
+				return this._idEmploye;
+			}
+			set
+			{
+				if ((this._idEmploye != value))
+				{
+					if (this._tbl_Employe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidEmployeChanging(value);
+					this.SendPropertyChanging();
+					this._idEmploye = value;
+					this.SendPropertyChanged("idEmploye");
+					this.OnidEmployeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeDepense", DbType="Int NOT NULL")]
+		public int idTypeDepense
+		{
+			get
+			{
+				return this._idTypeDepense;
+			}
+			set
+			{
+				if ((this._idTypeDepense != value))
+				{
+					if (this._tbl_TypeDepense.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidTypeDepenseChanging(value);
+					this.SendPropertyChanging();
+					this._idTypeDepense = value;
+					this.SendPropertyChanged("idTypeDepense");
+					this.OnidTypeDepenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_montant", DbType="Real")]
+		public System.Nullable<float> montant
+		{
+			get
+			{
+				return this._montant;
+			}
+			set
+			{
+				if ((this._montant != value))
+				{
+					this.OnmontantChanging(value);
+					this.SendPropertyChanging();
+					this._montant = value;
+					this.SendPropertyChanged("montant");
+					this.OnmontantChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_Depense", Storage="_tbl_Employe", ThisKey="idEmploye", OtherKey="idEmploye", IsForeignKey=true)]
+		public tbl_Employe tbl_Employe
+		{
+			get
+			{
+				return this._tbl_Employe.Entity;
+			}
+			set
+			{
+				tbl_Employe previousValue = this._tbl_Employe.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_Employe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_Employe.Entity = null;
+						previousValue.tbl_Depense.Remove(this);
+					}
+					this._tbl_Employe.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_Depense.Add(this);
+						this._idEmploye = value.idEmploye;
+					}
+					else
+					{
+						this._idEmploye = default(int);
+					}
+					this.SendPropertyChanged("tbl_Employe");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeDepense_tbl_Depense", Storage="_tbl_TypeDepense", ThisKey="idTypeDepense", OtherKey="idTypeDepense", IsForeignKey=true)]
+		public tbl_TypeDepense tbl_TypeDepense
+		{
+			get
+			{
+				return this._tbl_TypeDepense.Entity;
+			}
+			set
+			{
+				tbl_TypeDepense previousValue = this._tbl_TypeDepense.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_TypeDepense.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_TypeDepense.Entity = null;
+						previousValue.tbl_Depense.Remove(this);
+					}
+					this._tbl_TypeDepense.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_Depense.Add(this);
+						this._idTypeDepense = value.idTypeDepense;
+					}
+					else
+					{
+						this._idTypeDepense = default(int);
+					}
+					this.SendPropertyChanged("tbl_TypeDepense");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -300,13 +754,15 @@ namespace UrbanEco
 		
 		private System.Nullable<bool> _inactif;
 		
+		private EntitySet<tbl_BanqueHeure> _tbl_BanqueHeure;
+		
+		private EntitySet<tbl_Depense> _tbl_Depense;
+		
 		private EntitySet<tbl_FeuilleTemps> _tbl_FeuilleTemps;
 		
 		private EntitySet<tbl_Projet> _tbl_Projet;
 		
 		private EntitySet<tbl_ProjetCatEmploye> _tbl_ProjetCatEmploye;
-		
-		private EntitySet<tbl_BanqueHeure> _tbl_BanqueHeure;
 		
 		private EntityRef<tbl_TypeEmploye> _tbl_TypeEmploye;
 		
@@ -336,10 +792,11 @@ namespace UrbanEco
 		
 		public tbl_Employe()
 		{
+			this._tbl_BanqueHeure = new EntitySet<tbl_BanqueHeure>(new Action<tbl_BanqueHeure>(this.attach_tbl_BanqueHeure), new Action<tbl_BanqueHeure>(this.detach_tbl_BanqueHeure));
+			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
 			this._tbl_FeuilleTemps = new EntitySet<tbl_FeuilleTemps>(new Action<tbl_FeuilleTemps>(this.attach_tbl_FeuilleTemps), new Action<tbl_FeuilleTemps>(this.detach_tbl_FeuilleTemps));
 			this._tbl_Projet = new EntitySet<tbl_Projet>(new Action<tbl_Projet>(this.attach_tbl_Projet), new Action<tbl_Projet>(this.detach_tbl_Projet));
 			this._tbl_ProjetCatEmploye = new EntitySet<tbl_ProjetCatEmploye>(new Action<tbl_ProjetCatEmploye>(this.attach_tbl_ProjetCatEmploye), new Action<tbl_ProjetCatEmploye>(this.detach_tbl_ProjetCatEmploye));
-			this._tbl_BanqueHeure = new EntitySet<tbl_BanqueHeure>(new Action<tbl_BanqueHeure>(this.attach_tbl_BanqueHeure), new Action<tbl_BanqueHeure>(this.detach_tbl_BanqueHeure));
 			this._tbl_TypeEmploye = default(EntityRef<tbl_TypeEmploye>);
 			OnCreated();
 		}
@@ -528,6 +985,32 @@ namespace UrbanEco
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_BanqueHeure", Storage="_tbl_BanqueHeure", ThisKey="idEmploye", OtherKey="idEmploye")]
+		public EntitySet<tbl_BanqueHeure> tbl_BanqueHeure
+		{
+			get
+			{
+				return this._tbl_BanqueHeure;
+			}
+			set
+			{
+				this._tbl_BanqueHeure.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_Depense", Storage="_tbl_Depense", ThisKey="idEmploye", OtherKey="idEmploye")]
+		public EntitySet<tbl_Depense> tbl_Depense
+		{
+			get
+			{
+				return this._tbl_Depense;
+			}
+			set
+			{
+				this._tbl_Depense.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_FeuilleTemps", Storage="_tbl_FeuilleTemps", ThisKey="idEmploye", OtherKey="idEmploye")]
 		public EntitySet<tbl_FeuilleTemps> tbl_FeuilleTemps
 		{
@@ -564,19 +1047,6 @@ namespace UrbanEco
 			set
 			{
 				this._tbl_ProjetCatEmploye.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_BanqueHeure", Storage="_tbl_BanqueHeure", ThisKey="idEmploye", OtherKey="idEmploye")]
-		public EntitySet<tbl_BanqueHeure> tbl_BanqueHeure
-		{
-			get
-			{
-				return this._tbl_BanqueHeure;
-			}
-			set
-			{
-				this._tbl_BanqueHeure.Assign(value);
 			}
 		}
 		
@@ -634,6 +1104,30 @@ namespace UrbanEco
 			}
 		}
 		
+		private void attach_tbl_BanqueHeure(tbl_BanqueHeure entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = this;
+		}
+		
+		private void detach_tbl_BanqueHeure(tbl_BanqueHeure entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = null;
+		}
+		
+		private void attach_tbl_Depense(tbl_Depense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = this;
+		}
+		
+		private void detach_tbl_Depense(tbl_Depense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = null;
+		}
+		
 		private void attach_tbl_FeuilleTemps(tbl_FeuilleTemps entity)
 		{
 			this.SendPropertyChanging();
@@ -665,18 +1159,6 @@ namespace UrbanEco
 		}
 		
 		private void detach_tbl_ProjetCatEmploye(tbl_ProjetCatEmploye entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_Employe = null;
-		}
-		
-		private void attach_tbl_BanqueHeure(tbl_BanqueHeure entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_Employe = this;
-		}
-		
-		private void detach_tbl_BanqueHeure(tbl_BanqueHeure entity)
 		{
 			this.SendPropertyChanging();
 			entity.tbl_Employe = null;
@@ -2127,84 +2609,84 @@ namespace UrbanEco
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_TypeHeure")]
-	public partial class tbl_TypeHeure : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_TypeDepense")]
+	public partial class tbl_TypeDepense : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _idTypeHeure;
+		private int _idTypeDepense;
 		
-		private string _nomTypeHeure;
+		private string _nomDepense;
 		
-		private EntitySet<tbl_BanqueHeure> _tbl_BanqueHeure;
+		private EntitySet<tbl_Depense> _tbl_Depense;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnidTypeHeureChanging(int value);
-    partial void OnidTypeHeureChanged();
-    partial void OnnomTypeHeureChanging(string value);
-    partial void OnnomTypeHeureChanged();
+    partial void OnidTypeDepenseChanging(int value);
+    partial void OnidTypeDepenseChanged();
+    partial void OnnomDepenseChanging(string value);
+    partial void OnnomDepenseChanged();
     #endregion
 		
-		public tbl_TypeHeure()
+		public tbl_TypeDepense()
 		{
-			this._tbl_BanqueHeure = new EntitySet<tbl_BanqueHeure>(new Action<tbl_BanqueHeure>(this.attach_tbl_BanqueHeure), new Action<tbl_BanqueHeure>(this.detach_tbl_BanqueHeure));
+			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeHeure", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idTypeHeure
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idTypeDepense
 		{
 			get
 			{
-				return this._idTypeHeure;
+				return this._idTypeDepense;
 			}
 			set
 			{
-				if ((this._idTypeHeure != value))
+				if ((this._idTypeDepense != value))
 				{
-					this.OnidTypeHeureChanging(value);
+					this.OnidTypeDepenseChanging(value);
 					this.SendPropertyChanging();
-					this._idTypeHeure = value;
-					this.SendPropertyChanged("idTypeHeure");
-					this.OnidTypeHeureChanged();
+					this._idTypeDepense = value;
+					this.SendPropertyChanged("idTypeDepense");
+					this.OnidTypeDepenseChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomTypeHeure", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string nomTypeHeure
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomDepense", DbType="VarChar(250)")]
+		public string nomDepense
 		{
 			get
 			{
-				return this._nomTypeHeure;
+				return this._nomDepense;
 			}
 			set
 			{
-				if ((this._nomTypeHeure != value))
+				if ((this._nomDepense != value))
 				{
-					this.OnnomTypeHeureChanging(value);
+					this.OnnomDepenseChanging(value);
 					this.SendPropertyChanging();
-					this._nomTypeHeure = value;
-					this.SendPropertyChanged("nomTypeHeure");
-					this.OnnomTypeHeureChanged();
+					this._nomDepense = value;
+					this.SendPropertyChanged("nomDepense");
+					this.OnnomDepenseChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeHeure_tbl_BanqueHeure", Storage="_tbl_BanqueHeure", ThisKey="idTypeHeure", OtherKey="idTypeHeure")]
-		public EntitySet<tbl_BanqueHeure> tbl_BanqueHeure
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeDepense_tbl_Depense", Storage="_tbl_Depense", ThisKey="idTypeDepense", OtherKey="idTypeDepense")]
+		public EntitySet<tbl_Depense> tbl_Depense
 		{
 			get
 			{
-				return this._tbl_BanqueHeure;
+				return this._tbl_Depense;
 			}
 			set
 			{
-				this._tbl_BanqueHeure.Assign(value);
+				this._tbl_Depense.Assign(value);
 			}
 		}
 		
@@ -2228,187 +2710,97 @@ namespace UrbanEco
 			}
 		}
 		
-		private void attach_tbl_BanqueHeure(tbl_BanqueHeure entity)
+		private void attach_tbl_Depense(tbl_Depense entity)
 		{
 			this.SendPropertyChanging();
-			entity.tbl_TypeHeure = this;
+			entity.tbl_TypeDepense = this;
 		}
 		
-		private void detach_tbl_BanqueHeure(tbl_BanqueHeure entity)
+		private void detach_tbl_Depense(tbl_Depense entity)
 		{
 			this.SendPropertyChanging();
-			entity.tbl_TypeHeure = null;
+			entity.tbl_TypeDepense = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_BanqueHeure")]
-	public partial class tbl_BanqueHeure : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_TypeEmploye")]
+	public partial class tbl_TypeEmploye : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _idBanqueHeure;
+		private int _idType;
 		
-		private int _idEmploye;
+		private string _nomType;
 		
-		private int _idTypeHeure;
-		
-		private EntityRef<tbl_Employe> _tbl_Employe;
-		
-		private EntityRef<tbl_TypeHeure> _tbl_TypeHeure;
+		private EntitySet<tbl_Employe> _tbl_Employe;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnidBanqueHeureChanging(int value);
-    partial void OnidBanqueHeureChanged();
-    partial void OnidEmployeChanging(int value);
-    partial void OnidEmployeChanged();
-    partial void OnidTypeHeureChanging(int value);
-    partial void OnidTypeHeureChanged();
+    partial void OnidTypeChanging(int value);
+    partial void OnidTypeChanged();
+    partial void OnnomTypeChanging(string value);
+    partial void OnnomTypeChanged();
     #endregion
 		
-		public tbl_BanqueHeure()
+		public tbl_TypeEmploye()
 		{
-			this._tbl_Employe = default(EntityRef<tbl_Employe>);
-			this._tbl_TypeHeure = default(EntityRef<tbl_TypeHeure>);
+			this._tbl_Employe = new EntitySet<tbl_Employe>(new Action<tbl_Employe>(this.attach_tbl_Employe), new Action<tbl_Employe>(this.detach_tbl_Employe));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idBanqueHeure", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idBanqueHeure
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idType", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idType
 		{
 			get
 			{
-				return this._idBanqueHeure;
+				return this._idType;
 			}
 			set
 			{
-				if ((this._idBanqueHeure != value))
+				if ((this._idType != value))
 				{
-					this.OnidBanqueHeureChanging(value);
+					this.OnidTypeChanging(value);
 					this.SendPropertyChanging();
-					this._idBanqueHeure = value;
-					this.SendPropertyChanged("idBanqueHeure");
-					this.OnidBanqueHeureChanged();
+					this._idType = value;
+					this.SendPropertyChanged("idType");
+					this.OnidTypeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", DbType="Int NOT NULL")]
-		public int idEmploye
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomType", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string nomType
 		{
 			get
 			{
-				return this._idEmploye;
+				return this._nomType;
 			}
 			set
 			{
-				if ((this._idEmploye != value))
+				if ((this._nomType != value))
 				{
-					if (this._tbl_Employe.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidEmployeChanging(value);
+					this.OnnomTypeChanging(value);
 					this.SendPropertyChanging();
-					this._idEmploye = value;
-					this.SendPropertyChanged("idEmploye");
-					this.OnidEmployeChanged();
+					this._nomType = value;
+					this.SendPropertyChanged("nomType");
+					this.OnnomTypeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeHeure", DbType="Int NOT NULL")]
-		public int idTypeHeure
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeEmploye_tbl_Employe", Storage="_tbl_Employe", ThisKey="idType", OtherKey="idTypeEmpl")]
+		public EntitySet<tbl_Employe> tbl_Employe
 		{
 			get
 			{
-				return this._idTypeHeure;
+				return this._tbl_Employe;
 			}
 			set
 			{
-				if ((this._idTypeHeure != value))
-				{
-					if (this._tbl_TypeHeure.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidTypeHeureChanging(value);
-					this.SendPropertyChanging();
-					this._idTypeHeure = value;
-					this.SendPropertyChanged("idTypeHeure");
-					this.OnidTypeHeureChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_BanqueHeure", Storage="_tbl_Employe", ThisKey="idEmploye", OtherKey="idEmploye", IsForeignKey=true)]
-		public tbl_Employe tbl_Employe
-		{
-			get
-			{
-				return this._tbl_Employe.Entity;
-			}
-			set
-			{
-				tbl_Employe previousValue = this._tbl_Employe.Entity;
-				if (((previousValue != value) 
-							|| (this._tbl_Employe.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbl_Employe.Entity = null;
-						previousValue.tbl_BanqueHeure.Remove(this);
-					}
-					this._tbl_Employe.Entity = value;
-					if ((value != null))
-					{
-						value.tbl_BanqueHeure.Add(this);
-						this._idEmploye = value.idEmploye;
-					}
-					else
-					{
-						this._idEmploye = default(int);
-					}
-					this.SendPropertyChanged("tbl_Employe");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeHeure_tbl_BanqueHeure", Storage="_tbl_TypeHeure", ThisKey="idTypeHeure", OtherKey="idTypeHeure", IsForeignKey=true)]
-		public tbl_TypeHeure tbl_TypeHeure
-		{
-			get
-			{
-				return this._tbl_TypeHeure.Entity;
-			}
-			set
-			{
-				tbl_TypeHeure previousValue = this._tbl_TypeHeure.Entity;
-				if (((previousValue != value) 
-							|| (this._tbl_TypeHeure.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbl_TypeHeure.Entity = null;
-						previousValue.tbl_BanqueHeure.Remove(this);
-					}
-					this._tbl_TypeHeure.Entity = value;
-					if ((value != null))
-					{
-						value.tbl_BanqueHeure.Add(this);
-						this._idTypeHeure = value.idTypeHeure;
-					}
-					else
-					{
-						this._idTypeHeure = default(int);
-					}
-					this.SendPropertyChanged("tbl_TypeHeure");
-				}
+				this._tbl_Employe.Assign(value);
 			}
 		}
 		
@@ -2430,6 +2822,18 @@ namespace UrbanEco
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tbl_Employe(tbl_Employe entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_TypeEmploye = this;
+		}
+		
+		private void detach_tbl_Employe(tbl_Employe entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_TypeEmploye = null;
 		}
 	}
 }
