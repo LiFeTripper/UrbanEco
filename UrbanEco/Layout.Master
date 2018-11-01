@@ -20,6 +20,18 @@
 </head>
 <body>
     
+    <%--TITLE PLACEHOLDER--%>
+    <div class="row justify-content-end">
+        <div class="col-12">
+            <h1 style="text-align:center;">
+                <asp:ContentPlaceHolder ID="TitlePlaceholder" runat="server">
+                </asp:ContentPlaceHolder>
+            </h1>
+            <hr style="border:20px solid #23282e; width:2000px"/>
+        </div>
+
+    </div>
+
     <%--NAVBAR--%>
 <div class="nav-side-menu col-2">
     <div class="brand">CoEco</div>
@@ -47,7 +59,7 @@
                 </li>
 
                 <li>
-                  <a href="#">
+                  <a href="AjoutDepense.aspx">
                   <i class="fa fa-car fa-lg"></i> Dépenses
                   </a>
                 </li>
@@ -89,6 +101,8 @@
      </div>
 </div>
 
+
+
     <%--BODY--%>
 
 <div class="row justify-content-end">
@@ -98,7 +112,7 @@
         </asp:ContentPlaceHolder>
     </div>
 
-  </div>
+ </div>
 
     <%--FOOTER--%>
     <footer class="container">

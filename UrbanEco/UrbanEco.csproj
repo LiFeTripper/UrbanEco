@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AjoutDepense.aspx" />
     <Content Include="BanqueHeure.aspx" />
     <Content Include="Employe.aspx" />
     <Content Include="Home.aspx" />
@@ -98,6 +99,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjoutDepense.aspx.cs">
+      <DependentUpon>AjoutDepense.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjoutDepense.aspx.designer.cs">
+      <DependentUpon>AjoutDepense.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BanqueHeure.aspx.cs">
       <DependentUpon>BanqueHeure.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
