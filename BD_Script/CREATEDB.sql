@@ -185,10 +185,33 @@ CREATE TABLE tbl_BanqueHeure
 	idBanqueHeure INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	idTypeHeure INT NOT NULL,
+	
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_BanqueHeure_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
 	CONSTRAINT FK_tbl_BanqueHeure_idTypeHeure FOREIGN KEY (idTypeHeure) REFERENCES tbl_TypeHeure(idTypeHeure)
+)
+
+CREATE TABLE tbl_TypeDepense
+(
+	idTypeDepense INT IDENTITY(1,1) PRIMARY KEY,
+	nomDepense VARCHAR(250)
+)
+
+INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Déplacement (KM)');
+INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Restaurant');
+INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Autre');
+
+CREATE TABLE tbl_Depense
+(
+	idDepense INT IDENTITY(1,1) PRIMARY KEY,
+	idEmploye INT NOT NULL,
+	idTypeDepense INT NOT NULL,
+
+	--FOREIGN KEY
+
+	CONSTRAINT FK_tbl_Depenses_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
+	CONSTRAINT FK_tbl_Depenses_idTypeDepense FOREIGN KEY (idTypeDepense) REFERENCES tbl_TypeDepense(idTypeDepense)
 )
 
 --Web User
