@@ -10,33 +10,51 @@
 namespace UrbanEco {
     
     
-    public partial class Layout {
+    public partial class AjoutDepense {
         
         /// <summary>
-        /// Contrôle head.
+        /// Contrôle DropDownList1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
-        /// Contrôle TitlePlaceholder.
+        /// Contrôle LinqProjet.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitlePlaceholder;
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqProjet;
         
         /// <summary>
-        /// Contrôle BodyPlaceHolder.
+        /// Contrôle DropDownList2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyPlaceHolder;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        
+        /// <summary>
+        /// Contrôle LinqSouscatego.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqSouscatego;
+        
+        /// <summary>
+        /// Contrôle Calendar1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar Calendar1;
     }
 }
