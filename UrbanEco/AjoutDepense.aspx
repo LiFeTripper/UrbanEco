@@ -5,9 +5,6 @@
                 margin: auto;
                 width: 50%;
             }
-           .auto-style1 {
-               height: 36px;
-           }
        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
@@ -15,7 +12,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align:center;" class="center">
-        <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
+        <div>
             <table>
                 <tr>
                     <th>
@@ -58,7 +55,7 @@
                 </tr>
 
                 <tr>
-                    <th class="auto-style1">
+                    <th>
                         <h5 style="padding-right: 320px;">Date</h5>
                     </th>
                 </tr>
@@ -71,7 +68,7 @@
                 </tr>
             </table>
         </div>
-        <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
+        <div>
 
             <table>
                 <tr>
