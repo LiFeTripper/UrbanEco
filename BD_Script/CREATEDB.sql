@@ -51,6 +51,9 @@ VALUES ('Mathieu', 'Rioux', 2 , '123-456-7890', 'monemail@gmail.com', 'mathieu',
 INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
 VALUES ('David', 'Jalbert', 2 , '123-456-7890', 'monemail@gmail.com', 'david', 'pwd123', 1)
 
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
+VALUES ('Administrateur', '', 1 , '123-456-7890', 'monemail@gmail.com', 'admin', 'mobius', 0)
+
 CREATE TABLE tbl_Projet
 (
 	idProjet INT IDENTITY (1,1) PRIMARY KEY,
@@ -77,7 +80,7 @@ VALUES ('Mon troisième projet', 'Une tout autre belle description', 3, 3, 40, 1)
 
 CREATE TABLE tbl_ProjetCat
 (
-	idCat INT IDENTITY(1,1) PRIMARY KEY,
+	idProjetCat INT IDENTITY(1,1) PRIMARY KEY,
 	idProjet INT NOT NULL,
 	idCatMaitre INT,
 	titre VARCHAR(250) NOT NULL,
@@ -85,7 +88,7 @@ CREATE TABLE tbl_ProjetCat
 
 	--FOREIGN KEY
 	CONSTRAINT FK_tbl_ProjetCat_idProjet FOREIGN KEY (idProjet) REFERENCES tbl_Projet(idProjet),
-	CONSTRAINT FK_tbl_ProjetCat_idCatMaitre FOREIGN KEY (idCatMaitre) REFERENCES tbl_ProjetCat(idCat)
+	CONSTRAINT FK_tbl_ProjetCat_idCatMaitre FOREIGN KEY (idCatMaitre) REFERENCES tbl_ProjetCat(idProjetCat)
 )
 
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
@@ -121,7 +124,7 @@ CREATE TABLE tbl_FeuilleTemps
 
 	-- FOREIGN KEY
 	CONSTRAINT FK_tbl_FeuilleTemps_idProjet FOREIGN KEY (idProjet) REFERENCES tbl_Projet(idProjet),
-	CONSTRAINT FK_tbl_FeuilleTemps_idCat FOREIGN KEY (idCat) REFERENCES tbl_ProjetCat(idCat),
+	CONSTRAINT FK_tbl_FeuilleTemps_idCat FOREIGN KEY (idCat) REFERENCES tbl_ProjetCat(idProjetCat),
 	CONSTRAINT FK_tbl_FeuilleTemps_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye)
 )
 
@@ -141,7 +144,7 @@ CREATE TABLE tbl_ProjetCatEmploye
 	
 	-- FOREIGN KEY 
 	CONSTRAINT FK_tbl_ProjetCatEmploye_idProjet FOREIGN KEY (idProjet) REFERENCES tbl_Projet(idProjet),
-	CONSTRAINT FK_tbl_ProjetCatEmploye_idCat FOREIGN KEY (idCategorie) REFERENCES tbl_ProjetCat(idCat),
+	CONSTRAINT FK_tbl_ProjetCatEmploye_idCat FOREIGN KEY (idCategorie) REFERENCES tbl_ProjetCat(idProjetCat),
 	CONSTRAINT FK_tbl_ProjetCatEmploye_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye)
 )
 
@@ -208,11 +211,14 @@ CREATE TABLE tbl_Depense
 	idDepense INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	idTypeDepense INT NOT NULL,
+	idProjetCat INT NOT NULL,
+	dateDepense SMALLDATETIME DEFAULT GETDATE(),
 	montant FLOAT(24) DEFAULT 0,
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_Depenses_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
-	CONSTRAINT FK_tbl_Depenses_idTypeDepense FOREIGN KEY (idTypeDepense) REFERENCES tbl_TypeDepense(idTypeDepense)
+	CONSTRAINT FK_tbl_Depenses_idTypeDepense FOREIGN KEY (idTypeDepense) REFERENCES tbl_TypeDepense(idTypeDepense),
+	CONSTRAINT FK_tbl_Depenses_idProjetCat FOREIGN KEY (idProjetCat) REFERENCES tbl_ProjetCat(idProjetCat)
 )
 
 --Web User

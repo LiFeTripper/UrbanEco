@@ -44,7 +44,11 @@ namespace UrbanEco
             //             where tbl.idEmploye == id.Select<>;
             //             orderby cust.Name ascending
             //             select tbl.;
+<<<<<<< HEAD
             
+=======
+            //tb_nbHeureBanque.Text = 
+>>>>>>> 7d1366089e8402cb4b75a0e8e3736d7b5bc6fd85
         }
     }
 }
