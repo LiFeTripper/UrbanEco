@@ -85,15 +85,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.LinqDataSource LinqCategorie;
         
         /// <summary>
-        /// Contrôle LinqProjet.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqProjet;
-        
-        /// <summary>
         /// Contrôle CheckBox1.
         /// </summary>
         /// <remarks>
