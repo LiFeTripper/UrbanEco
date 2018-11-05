@@ -3,7 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server">
-        <asp:DropDownList ID="ddl_empBH" runat="server"></asp:DropDownList>
+        <asp:GridView runat="server" ID="Grid"></asp:GridView>
+        <asp:DropDownList ID="ddl_empBH" runat="server" OnTextChanged="ddl_empBH_TextChanged"></asp:DropDownList>
         <asp:table runat="server"  ID="tb_BH" Enabled="false">
             <asp:TableRow>
                 <asp:TableHeaderCell>Heure en banque</asp:TableHeaderCell>

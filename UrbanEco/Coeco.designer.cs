@@ -66,7 +66,7 @@ namespace UrbanEco
     #endregion
 		
 		public CoecoDataContext() : 
-				base(global::UrbanEco.Properties.Settings.Default.BD_CoecoConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["BD_CoecoConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

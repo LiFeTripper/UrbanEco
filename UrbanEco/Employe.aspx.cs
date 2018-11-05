@@ -12,8 +12,7 @@ namespace UrbanEco
         protected void Page_Load(object sender, EventArgs e)
         {
             CoecoDataContext context = new CoecoDataContext();
-
-
+            
             GridView1.DataSource = context.tbl_Employe;
             GridView1.DataBind();
 
