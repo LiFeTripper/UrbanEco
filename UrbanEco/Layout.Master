@@ -20,20 +20,10 @@
 </head>
 <body>
     
-    <%--TITLE PLACEHOLDER--%>
-    <div class="row justify-content-end">
-        <div class="col-12">
-            <h1 style="text-align:center;">
-                <asp:ContentPlaceHolder ID="TitlePlaceholder" runat="server">
-                </asp:ContentPlaceHolder>
-            </h1>
-            <hr style="border:20px solid #23282e; width:2000px"/>
-        </div>
 
-    </div>
 
     <%--NAVBAR--%>
-<div class="nav-side-menu col-2">
+<div class="nav-side-menu">
     <div class="brand">CoEco</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   
@@ -106,13 +96,22 @@
     <%--BODY--%>
 
 <div class="row justify-content-end">
-    <div class="col-10">
-      <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
 
-        </asp:ContentPlaceHolder>
+    <div class="col-10">
+        <%--TITLE PLACEHOLDER--%>
+        <div >
+            <!--<asp:ContentPlaceHolder ID="TitlePlaceholder" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />-->
+
+            <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
     </div>
 
- </div>
+    </div>
 
     <%--FOOTER--%>
     <footer class="container">
