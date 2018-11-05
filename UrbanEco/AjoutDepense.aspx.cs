@@ -24,6 +24,7 @@ namespace UrbanEco
             dep.idEmploye = empConnected.idEmploye;
             dep.idTypeDepense = idTypeDepense;
             dep.montant = float.Parse(tbx_montant.Text);
+            
           
         }
 
