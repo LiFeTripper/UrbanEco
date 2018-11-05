@@ -28,9 +28,7 @@
 
        </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    <h1 style="text-align:center;">Ajouter une dépense</h1>
-</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align:center;" class="container center col-12">
         <div>

@@ -6,107 +6,132 @@
             margin: auto;
             width: 50%;
         }
+
+        .input-box {
+            width: 100% !important;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .input-title {
+            text-align: left !important;
+        }
+
+        .table-custom {
+            width: 800px !important;
+        }
+
+            .table-custom > table {
+                width: 100% !important;
+            }
     </style>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    Ajouter un projet
-</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
-
-
-    <form runat="server" class="center" style="text-align: center;">
+    <form runat="server" style="text-align: center;" class="container center col-12">
         <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
-            <%--TITRE DESCRIPTION RESPONSABLE--%>
-            <table>
-                <%--TITRE--%>
-                <tr>
-                    <th>
-                        <h5 style="padding-right: 200px;">Titre</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="Tbx_Titre" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <%--DESCRIPTION--%>
-                <tr>
-                    <th>
-                        <h5 style="padding-right: 200px;">Description</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="Tbx_Description" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <%--RESPONSABLE--%>
-                <tr>
-                    <th>
-                        <h5 style="padding-right: 200px;">Responsable</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="nom" DataValueField="idEmploye"></asp:DropDownList>
-                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom, nom, idEmploye)" TableName="tbl_Employe"></asp:LinqDataSource>
-                    </td>
-                </tr>
 
-                <%--STATUS--%>
-                <tr>
-                    <th>
-                        <h5 style="padding-right: 200px;">Status</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:DropDownList ID="Ddl_Status" runat="server" DataSourceID="LinqStatus" DataTextField="nomStatus" DataValueField="idStatus"></asp:DropDownList>
-                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqStatus" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (nomStatus, idStatus)" TableName="tbl_Status" OrderBy="idStatus"></asp:LinqDataSource>
-                    </td>
-                </tr>
-            </table>
+            <div>
+                <h1>Ajouter un projet
+                </h1>
+                <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
+            </div>
 
-            <%--HEURES DEBUT ET FIN--%>
-            <table>
-                <%--HEURES ALLOUÉ--%>
-                <tr>
-                    <th>
-                        <h5 style="padding-right: 200px;">Heures Allouées</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="Tbx_HeuresAlloues" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <%--DATE DEBUT--%>
-                <tr>
-                    <th>
-                        <h5 style="padding-right: 200px;">Date de début</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Calendar ID="Dtp_DateDebut" runat="server"></asp:Calendar>
-                    </td>
-                </tr>
-                <%--DATE FIN--%>
-                <tr>
-                    <th>
-                        <h5 style="padding-right: 200px;">Date de fin</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Calendar ID="Dtp_DateFin" runat="server"></asp:Calendar>
-                    </td>
-                </tr>
-            </table>
+            <div class="row justify-content-md-center" style="margin-bottom: 100px;">
+                <div class="col-md-offset-3 col-6">
+                    <%--TITRE DESCRIPTION RESPONSABLE--%>
+                    <table style="width: 100% !important;">
+                        <%--TITRE--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Titre</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:TextBox ID="Tbx_Titre" runat="server" class="input-box"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <%--DESCRIPTION--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Description</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:TextBox ID="Tbx_Description" runat="server" class="input-box"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <%--RESPONSABLE--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Responsable</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="nom" DataValueField="idEmploye" class="input-box"></asp:DropDownList>
+                                <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom, nom, idEmploye)" TableName="tbl_Employe"></asp:LinqDataSource>
+                            </td>
+                        </tr>
+
+                        <%--STATUS--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Status</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:DropDownList ID="Ddl_Status" runat="server" DataSourceID="LinqStatus" DataTextField="nomStatus" DataValueField="idStatus" class="input-box"></asp:DropDownList>
+                                <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqStatus" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (nomStatus, idStatus)" TableName="tbl_Status" OrderBy="idStatus"></asp:LinqDataSource>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <%--HEURES DEBUT ET FIN--%>
+                    <table style="width: 100% !important;">
+                        <%--HEURES ALLOUÉ--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Heures Allouées</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" class="input-box"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <%--DATE DEBUT--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Date de début</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Calendar ID="Dtp_DateDebut" runat="server" Style="margin: auto;" class="input-box"></asp:Calendar>
+                            </td>
+                        </tr>
+                        <%--DATE FIN--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Date de fin</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Calendar ID="Dtp_DateFin" runat="server" class="input-box"></asp:Calendar>
+                            </td>
+                        </tr>
+                    </table>
 
 
-            <asp:Button ID="AddProject" runat="server" Text="Créer Projet" OnClick="AddProject_Click" />
+                    <asp:Button ID="AddProject" runat="server" Text="Créer Projet" OnClick="AddProject_Click" />
+                </div>
+            </div>
         </div>
     </form>
 </asp:Content>

@@ -100,10 +100,8 @@
     <div class="col-10">
         <%--TITLE PLACEHOLDER--%>
         <div >
-            <!--<asp:ContentPlaceHolder ID="TitlePlaceholder" runat="server">
-            </asp:ContentPlaceHolder>
-
-            <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />-->
+            <%--<asp:ContentPlaceHolder ID="TitlePlaceholder" runat="server">
+            </asp:ContentPlaceHolder>--%>
 
             <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
