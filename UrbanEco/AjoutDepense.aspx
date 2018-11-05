@@ -18,19 +18,13 @@
 
            .table-custom{
 
-                width:800px !important;
+                width:100% !important;
             
-           }
-
-           .table-custom > table{
-               width:100% !important;
            }
 
        </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    <h1 style="text-align:center;">Ajouter une dépense</h1>
-</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align:center;" class="container center col-12">
         <div>
@@ -44,7 +38,7 @@
         <div class="row justify-content-md-center" style="margin-bottom:100px;">
             <div class="col-md-offset-3 col-6">
 
-                <table style="width: 100% !important;">
+                <table class="table-custom">
                     <tr>
                         <th>
                             <h3>Projet associé</h3>
@@ -58,7 +52,7 @@
                     <tr>
                         <td>
 
-                            <asp:DropDownList class="input-box" name="idProjet" ID="DropDownList1" runat="server" DataSourceID="LinqProjet" DataTextField="titre" DataValueField="titre">
+                            <asp:DropDownList class="input-box" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataSourceID="LinqProjet" DataTextField="titre" DataValueField="titre">
                             </asp:DropDownList>
                             <asp:LinqDataSource ID="LinqProjet" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" Select="new (titre)" TableName="tbl_Projet">
                             </asp:LinqDataSource>
@@ -74,7 +68,7 @@
                     <tr>
                         <td>
 
-                            <asp:DropDownList class="input-box" ID="DropDownList2" runat="server" DataSourceID="LinqSouscatego" DataTextField="titre" DataValueField="titre">
+                            <asp:DropDownList class="input-box" ID="tbx_categorie" runat="server" DataSourceID="LinqSouscatego" DataTextField="titre" DataValueField="titre">
                             </asp:DropDownList>
                             <asp:LinqDataSource ID="LinqSouscatego" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" Select="new (titre)" TableName="tbl_ProjetCat" Where="idProjet == @idProjet">
                                 <WhereParameters>
@@ -105,7 +99,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-offset-3 col-6">
 
-                <table style="width: 100% !important;">
+                <table class="table-custom">
                     <tr>
                         <th>
                             <h3>Information sur la dépense</h3>
@@ -118,7 +112,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:DropDownList class="input-box" ID="DropDownList3" runat="server" DataSourceID="LinqTypeDepense" DataTextField="nomDepense" DataValueField="nomDepense"></asp:DropDownList>
+                            <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataSourceID="LinqTypeDepense" DataTextField="nomDepense" DataValueField="nomDepense"></asp:DropDownList>
                             <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" Select="new (nomDepense)" TableName="tbl_TypeDepense">
                             </asp:LinqDataSource>
                         </td>
@@ -142,6 +136,11 @@
                     <tr>
                         <td>
                             <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="5"></asp:TextBox>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td>
+                            <asp:Button ID="btn_envoyer" runat="server" Text="Confirmer l'ajout" OnClick="btn_envoyer_Click"/>
                         </td>
                     </tr>
                 </table>

@@ -51,6 +51,9 @@ VALUES ('Mathieu', 'Rioux', 2 , '123-456-7890', 'monemail@gmail.com', 'mathieu',
 INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
 VALUES ('David', 'Jalbert', 2 , '123-456-7890', 'monemail@gmail.com', 'david', 'pwd123', 1)
 
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
+VALUES ('Administrateur', '', 1 , '123-456-7890', 'monemail@gmail.com', 'admin', 'mobius', 0)
+
 CREATE TABLE tbl_Projet
 (
 	idProjet INT IDENTITY (1,1) PRIMARY KEY,

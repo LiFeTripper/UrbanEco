@@ -75,11 +75,11 @@
                 <li data-toggle="collapse" data-target="#new" class="collapsed">
                   <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
                 </li>
-                <ul class="sub-menu collapse" id="new">
+                <!--<ul class="sub-menu collapse" id="new">
                   <li>New New 1</li>
                   <li>New New 2</li>
                   <li>New New 3</li>
-                </ul>
+                </ul>-->
 
                 <li>
                   <a href="#">

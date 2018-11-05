@@ -13,13 +13,13 @@ namespace UrbanEco {
     public partial class AjoutDepense {
         
         /// <summary>
-        /// Contrôle DropDownList1.
+        /// Contrôle tbx_projet.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
         
         /// <summary>
         /// Contrôle LinqProjet.
@@ -31,13 +31,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.LinqDataSource LinqProjet;
         
         /// <summary>
-        /// Contrôle DropDownList2.
+        /// Contrôle tbx_categorie.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
         /// Contrôle LinqSouscatego.
@@ -58,13 +58,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
-        /// Contrôle DropDownList3.
+        /// Contrôle tbx_typeDepense.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        protected global::System.Web.UI.WebControls.DropDownList tbx_typeDepense;
         
         /// <summary>
         /// Contrôle LinqTypeDepense.
@@ -92,5 +92,14 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_note;
+        
+        /// <summary>
+        /// Contrôle btn_envoyer.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_envoyer;
     }
 }
