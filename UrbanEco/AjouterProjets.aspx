@@ -33,8 +33,9 @@
         <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
 
             <div>
-                <h1>Ajouter un projet
-                </h1>
+                <asp:Label ID="lbl_Top" runat="server" Text="Label"></asp:Label>
+                <%--<h1>Ajouter un projet
+                </h1>--%>
                 <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
             </div>
 

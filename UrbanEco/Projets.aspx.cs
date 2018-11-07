@@ -16,7 +16,7 @@ namespace UrbanEco
 
         protected void Btn_Ajout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AjouterProjets.aspx");
+            Response.Redirect("AjouterProjets.aspx?Prj=*");
         }
 
         protected void Btn_Modif_Click(object sender, EventArgs e)
@@ -25,12 +25,15 @@ namespace UrbanEco
             Button button = (sender as Button);
 
             //Get the Repeater Item reference
-            RepeaterItem item = button.NamingContainer as RepeaterItem;
+            //RepeaterItem item = button.NamingContainer as RepeaterItem;
 
             //Get the repeater item index
-            int index = item.ItemIndex;
+            //int index = item.ItemIndex;
 
-           
+            string commandArgument = button.CommandArgument;
+
+            Response.Redirect("AjoutDepense.aspx?Prj=" + commandArgument);
+
         }
     }
 }

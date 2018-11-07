@@ -11,7 +11,16 @@ namespace UrbanEco
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string s = Request.QueryString["Prj"];
 
+            if (s == "*")
+            {
+                lbl_Top.Text = "NEW PROJECT";
+            }
+            else
+            {
+                lbl_Top.Text = "OLD PROJECT";
+            }
         }
 
         protected void AddProject_Click(object sender, EventArgs e)
