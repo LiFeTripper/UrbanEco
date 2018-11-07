@@ -108,10 +108,6 @@ namespace UrbanEco
             tbx_categorie.DataBind();      
         }
 
-        void ClearInput()
-        {
-            
 
-        }
     }
 }

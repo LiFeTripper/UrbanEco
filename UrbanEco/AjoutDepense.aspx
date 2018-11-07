@@ -18,8 +18,12 @@
 
            .table-custom{
 
-                width:100% !important;
+                width:800px !important;
             
+           }
+
+           .table-custom > table{
+               width:100% !important;
            }
 
        </style>
@@ -38,7 +42,7 @@
         <div class="row justify-content-md-center" style="margin-bottom:100px;">
             <div class="col-md-offset-3 col-6">
 
-                <table class="table-custom">
+                <table style="width: 100% !important;">
                     <tr>
                         <th>
                             <h3>Projet associé</h3>
@@ -51,10 +55,7 @@
                     </tr>
                     <tr>
                         <td>
-
-                            <asp:DropDownList CssClass="input-box"  OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="titre" DataValueField="idProjet" AutoPostBack="true">
-                            </asp:DropDownList>
-
+                            <asp:DropDownList CssClass="input-box"  OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="titre" DataValueField="idProjet" AutoPostBack="true"></asp:DropDownList>
                         </td>
                     </tr>
 
@@ -65,11 +66,7 @@
                     </tr>
                     <tr>
                         <td>
-
-                            <asp:DropDownList CssClass="input-box" Enabled="false" ID="tbx_categorie" runat="server"  DataTextField="titre" DataValueField="idProjetCat" autopostback="true">
-                            </asp:DropDownList>
-
-
+                            <asp:DropDownList CssClass="input-box" Enabled="false" ID="tbx_categorie" runat="server"  DataTextField="titre" DataValueField="idProjetCat" autopostback="true"></asp:DropDownList>
                         </td>
                     </tr>
 
@@ -94,7 +91,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-offset-3 col-6">
 
-                <table class="table-custom">
+                <table style="width: 100% !important;">
                     <tr>
                         <th>
                             <h3>Information sur la dépense</h3>
@@ -108,8 +105,6 @@
                     <tr>
                         <td>
                             <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataSourceID="LinqTypeDepense" DataTextField="nomDepense" DataValueField="nomDepense"></asp:DropDownList>
-                            <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" Select="new (nomDepense)" TableName="tbl_TypeDepense">
-                            </asp:LinqDataSource>
                         </td>
                     </tr>
 

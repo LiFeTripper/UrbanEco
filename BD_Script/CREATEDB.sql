@@ -196,6 +196,24 @@ CREATE TABLE tbl_BanqueHeure
 	CONSTRAINT FK_tbl_BanqueHeure_idTypeHeure FOREIGN KEY (idTypeHeure) REFERENCES tbl_TypeHeure(idTypeHeure)
 )
 
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,1,'5');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,2,'10');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,3,'4');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,4,'3');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,5,'22');
+
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,1,'15');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,2,'110');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,3,'14');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,4,'13');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,5,'122');
+
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,1,'25');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,2,'210');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,3,'24');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,4,'23');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,5,'222');
+
 CREATE TABLE tbl_TypeDepense
 (
 	idTypeDepense INT IDENTITY(1,1) PRIMARY KEY,
