@@ -9,7 +9,7 @@ namespace UrbanEco
 {
     public partial class AjoutDepense : System.Web.UI.Page
     {
-        bool DepenseAjouter;
+        bool DepenseAjouter = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {

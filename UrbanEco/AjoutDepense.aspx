@@ -104,7 +104,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataSourceID="LinqTypeDepense" DataTextField="nomDepense" DataValueField="nomDepense"></asp:DropDownList>
+                            <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataTextField="nomDepense" DataValueField="idTypeDepense" DataSourceID="LinqTypeDepense"></asp:DropDownList>
+                            <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_TypeDepense">
+                            </asp:LinqDataSource>
                         </td>
                     </tr>
 

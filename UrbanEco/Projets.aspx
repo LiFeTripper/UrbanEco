@@ -21,9 +21,9 @@
             width: 800px !important;
         }
 
-            .table-custom > table {
-                width: 100% !important;
-            }
+        .table-custom > table {
+            width: 100% !important;
+        }
     </style>
 </asp:Content>
 
