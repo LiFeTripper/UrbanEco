@@ -50,6 +50,7 @@ namespace UrbanEco
                 }
                 else
                 {
+                    Update_BH();
                     tbl_BH.Enabled = false;
                     btn_modifBH.Text = "Activer la modification";
                 }
@@ -59,14 +60,7 @@ namespace UrbanEco
 
         protected void load_BHemp(string nomEmp)
         {
-            string[] nomEmpArray = nomEmp.Split(',');
-
-            var id = from tblEmp in cdc.tbl_Employe
-                     where tblEmp.nom == nomEmpArray[0]
-                     where tblEmp.prenom == nomEmpArray[1]
-                     select tblEmp.idEmploye;
-
-            int idInt = id.First();
+            int idInt = GetIDEmp(nomEmp);
 
             var BH = from tblBH in cdc.tbl_BanqueHeure
                      where tblBH.idEmploye == idInt
@@ -103,6 +97,70 @@ namespace UrbanEco
         protected void ddl_empBH_SelectedIndexChanged(object sender, EventArgs e)
         {
             load_BHemp(ddl_empBH.Text);
+        }
+
+        protected void Update_BH()
+        {
+            int idInt = GetIDEmp(ddl_empBH.Text);
+
+            var BH = from tblBH in cdc.tbl_BanqueHeure
+                     where tblBH.idEmploye == idInt
+                     select tblBH;
+
+            List<tbl_BanqueHeure> listHeure = new List<tbl_BanqueHeure>();
+
+            foreach (var heure in BH)
+            {
+                listHeure.Add(heure);
+            }
+
+
+            foreach (var heureBH in listHeure)
+            {
+
+                switch (heureBH.idTypeHeure)
+                {
+                    case 1:
+                        heureBH.nbHeure = float.Parse(tbx_nbHeureBanque.Text);
+                        break;
+                    case 2:
+                        heureBH.nbHeure = float.Parse(tbx_nbHeureJourFerie.Text);
+                        break;
+                    case 3:
+                        heureBH.nbHeure = float.Parse(tbx_nbHeureCongePerso.Text);
+                        break;
+                    case 4:
+                        heureBH.nbHeure = float.Parse(tbx_nbHeureVacance.Text);
+                        break;
+                    case 5:
+                        heureBH.nbHeure = float.Parse(tbx_nbHeureCongeMaladie.Text);
+                        break;
+                }
+
+
+            }
+
+            foreach (var heureBH in listHeure)
+            {
+                cdc.tbl_BanqueHeure.DeleteOnSubmit(heureBH);
+                cdc.tbl_BanqueHeure.InsertOnSubmit(heureBH);
+            }
+
+
+            cdc.SubmitChanges();
+
+        }
+
+        protected int GetIDEmp(string nomEmp)
+        {
+            string[] nomEmpArray = nomEmp.Split(',');
+
+            var id = from tblEmp in cdc.tbl_Employe
+                     where tblEmp.nom == nomEmpArray[0]
+                     where tblEmp.prenom == nomEmpArray[1]
+                     select tblEmp.idEmploye;
+
+            return id.First();
         }
     }
 }
