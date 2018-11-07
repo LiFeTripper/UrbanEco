@@ -7,32 +7,30 @@ using System.Web.UI.WebControls;
 
 namespace UrbanEco
 {
-    public partial class Projets : System.Web.UI.Page
+    public partial class Projets1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void AddProject_Click(object sender, EventArgs e)
+        protected void Btn_Ajout_Click(object sender, EventArgs e)
         {
-            //Objet de ma table Projet
-            tbl_Projet tableProjet = new tbl_Projet();
+            Response.Redirect("AjouterProjets.aspx");
+        }
 
-            //Remplissage des champs de la table avec les contrôles
-            tableProjet.titre = Tbx_Titre.Text;
-            tableProjet.description = Tbx_Description.Text;
-            tableProjet.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
-            tableProjet.idStatus = int.Parse(Ddl_Status.SelectedValue);
-            tableProjet.dateDebut = Dtp_DateDebut.SelectedDate;
-            tableProjet.dateFin = Dtp_DateFin.SelectedDate;
+        protected void Btn_Modif_Click(object sender, EventArgs e)
+        {
+            //Get the reference of the clicked button.
+            Button button = (sender as Button);
 
-            //Insertion dans la base de données
-            CoecoDataContext context = new CoecoDataContext();
-            context.tbl_Projet.InsertOnSubmit(tableProjet);
-            context.SubmitChanges();
+            //Get the Repeater Item reference
+            RepeaterItem item = button.NamingContainer as RepeaterItem;
 
-            
+            //Get the repeater item index
+            int index = item.ItemIndex;
+
+           
         }
     }
 }
