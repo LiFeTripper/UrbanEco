@@ -230,6 +230,7 @@ CREATE TABLE tbl_Depense
 	idEmploye INT NOT NULL,
 	idTypeDepense INT NOT NULL,
 	idProjetCat INT NOT NULL,
+	note VARCHAR(MAX),
 	dateDepense SMALLDATETIME DEFAULT GETDATE(),
 	montant FLOAT(24) DEFAULT 0,
 	--FOREIGN KEY
