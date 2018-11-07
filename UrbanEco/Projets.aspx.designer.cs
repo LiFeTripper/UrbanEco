@@ -13,102 +13,93 @@ namespace UrbanEco {
     public partial class Projets {
         
         /// <summary>
-        /// Contrôle TextBox1.
+        /// Contrôle Tbx_Titre.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox Tbx_Titre;
         
         /// <summary>
-        /// Contrôle TextBox2.
+        /// Contrôle Tbx_Description.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox Tbx_Description;
         
         /// <summary>
-        /// Contrôle TextBox3.
+        /// Contrôle Ddl_Responsable.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.DropDownList Ddl_Responsable;
         
         /// <summary>
-        /// Contrôle TextBox5.
+        /// Contrôle LinqEmployes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqEmployes;
         
         /// <summary>
-        /// Contrôle Calendar1.
+        /// Contrôle Ddl_Status.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::System.Web.UI.WebControls.DropDownList Ddl_Status;
         
         /// <summary>
-        /// Contrôle Calendar2.
+        /// Contrôle LinqStatus.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar2;
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqStatus;
         
         /// <summary>
-        /// Contrôle ListBox1.
+        /// Contrôle Tbx_HeuresAlloues.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        protected global::System.Web.UI.WebControls.TextBox Tbx_HeuresAlloues;
         
         /// <summary>
-        /// Contrôle LinqCategorie.
+        /// Contrôle Dtp_DateDebut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqCategorie;
+        protected global::System.Web.UI.WebControls.Calendar Dtp_DateDebut;
         
         /// <summary>
-        /// Contrôle CheckBox1.
+        /// Contrôle Dtp_DateFin.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.Calendar Dtp_DateFin;
         
         /// <summary>
-        /// Contrôle ListBox2.
+        /// Contrôle AddProject.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox2;
-        
-        /// <summary>
-        /// Contrôle LinqEmploye.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqEmploye;
+        protected global::System.Web.UI.WebControls.Button AddProject;
     }
 }

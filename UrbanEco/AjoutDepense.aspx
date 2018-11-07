@@ -28,11 +28,9 @@
 
        </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    <h1 style="text-align:center;">Ajouter une dépense</h1>
-</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-    <form runat="server" style="text-align:center;" class="center col-12">
+    <form runat="server" style="text-align:center;" class="container center col-12">
         <div>
             <h1>
                 Ajouter une dépense
@@ -40,104 +38,113 @@
             <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
         </div>
 
-        <div class="col-md-offset-3 col-6">
 
-            <table style="width:100% !important;">
-                <tr>
-                    <th>
-                        <h3>Projet associé</h3>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <h5 class="input-title">Nom du projet</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
+        <div class="row justify-content-md-center" style="margin-bottom:100px;">
+            <div class="col-md-offset-3 col-6">
 
-                        <asp:DropDownList class="input-box" name="idProjet" ID="DropDownList1" runat="server" DataSourceID="LinqProjet" DataTextField="titre" DataValueField="titre">
-                        </asp:DropDownList>
-                        <asp:LinqDataSource ID="LinqProjet" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" Select="new (titre)" TableName="tbl_Projet">
-                        </asp:LinqDataSource>
+                <table style="width: 100% !important;">
+                    <tr>
+                        <th>
+                            <h3>Projet associé</h3>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h5 class="input-title">Nom du projet</h5>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
 
-                    </td>
-                </tr>
+                            <asp:DropDownList class="input-box" name="idProjet" ID="DropDownList1" runat="server" DataSourceID="LinqProjet" DataTextField="titre" DataValueField="titre">
+                            </asp:DropDownList>
+                            <asp:LinqDataSource ID="LinqProjet" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" Select="new (titre)" TableName="tbl_Projet">
+                            </asp:LinqDataSource>
 
-                <tr>
-                    <th>
-                        <h5 class="input-title">Sous-Catégorie</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
+                        </td>
+                    </tr>
 
-                        <asp:DropDownList class="input-box" ID="DropDownList2" runat="server" DataSourceID="LinqSouscatego" DataTextField="titre" DataValueField="titre">
-                        </asp:DropDownList>
-                        <asp:LinqDataSource ID="LinqSouscatego" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" Select="new (titre)" TableName="tbl_ProjetCat" Where="idProjet == @idProjet">
-                            <WhereParameters>
-                                <asp:Parameter DefaultValue="1" Name="idProjet" Type="Int32" />
-                            </WhereParameters>
-                        </asp:LinqDataSource>
+                    <tr>
+                        <th>
+                            <h5 class="input-title">Sous-Catégorie</h5>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
 
-                    </td>
-                </tr>
+                            <asp:DropDownList class="input-box" ID="DropDownList2" runat="server" DataSourceID="LinqSouscatego" DataTextField="titre" DataValueField="titre">
+                            </asp:DropDownList>
+                            <asp:LinqDataSource ID="LinqSouscatego" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" Select="new (titre)" TableName="tbl_ProjetCat" Where="idProjet == @idProjet">
+                                <WhereParameters>
+                                    <asp:Parameter DefaultValue="1" Name="idProjet" Type="Int32" />
+                                </WhereParameters>
+                            </asp:LinqDataSource>
 
-                <tr>
-                    <th>
-                        <h5>Date</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Calendar ID="Calendar1" runat="server" Style="margin: auto;"></asp:Calendar>
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <h5>Date</h5>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Calendar ID="Calendar1" runat="server" Style="margin: auto;"></asp:Calendar>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
-        <br />
-        <div>
 
-            <table class="table-custom">
-                <tr>
-                    <th>
-                        <h3 >Information sur la dépense</h3>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <h5 class="input-title">Type de dépense</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:DropDownList class="input-box" ID="DropDownList3" runat="server" DataSourceID="LinqTypeDepense" DataTextField="nomDepense" DataValueField="nomDepense"></asp:DropDownList>
-                        <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" Select="new (nomDepense)" TableName="tbl_TypeDepense">
-                        </asp:LinqDataSource>
-                    </td>
-                </tr>
 
-                <tr>
-                    <th>
-                        <h5 class="input-title">Montant</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox class="input-box" ID="tbx_montant" runat="server"></asp:TextBox>
-                    </td>
-                </tr>    
-                <tr>
-                    <th>
-                        <h5 class="input-title">Note</h5>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="5"></asp:TextBox>
-                    </td>
-                </tr>
-            </table>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-offset-3 col-6">
+
+                <table style="width: 100% !important;">
+                    <tr>
+                        <th>
+                            <h3>Information sur la dépense</h3>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h5 class="input-title">Type de dépense</h5>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:DropDownList class="input-box" ID="DropDownList3" runat="server" DataSourceID="LinqTypeDepense" DataTextField="nomDepense" DataValueField="nomDepense"></asp:DropDownList>
+                            <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" Select="new (nomDepense)" TableName="tbl_TypeDepense">
+                            </asp:LinqDataSource>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <h5 class="input-title">Montant</h5>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:TextBox class="input-box" ID="tbx_montant" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h5 class="input-title">Note</h5>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="5"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     </form>
 </asp:Content>
