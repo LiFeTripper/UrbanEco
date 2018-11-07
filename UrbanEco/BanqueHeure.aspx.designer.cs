@@ -22,6 +22,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList ddl_empBH;
         
         /// <summary>
+        /// Contrôle LinqBH.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqBH;
+        
+        /// <summary>
         /// Contrôle tbl_BH.
         /// </summary>
         /// <remarks>

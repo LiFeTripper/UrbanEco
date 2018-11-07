@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs" Inherits="UrbanEco.BanqueHeure" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -33,7 +33,11 @@
             <div class="col-md-offset-3 col-6">
                 <table class="table-custom">
                     <tr>
-                        <th><asp:DropDownList ID="ddl_empBH" runat="server"  OnSelectedIndexChanged="ddl_empBH_SelectedIndexChanged" CssClass="input-box"></asp:DropDownList></th>
+                        <th><asp:DropDownList ID="ddl_empBH" runat="server"  OnSelectedIndexChanged="ddl_empBH_SelectedIndexChanged" CssClass="input-box" AutoPostBack="True">
+                            </asp:DropDownList>
+                            <asp:LinqDataSource ID="LinqBH" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="nom, prenom" Select="new (nom, prenom)" TableName="tbl_Employe">
+                            </asp:LinqDataSource>
+                        </th>
                     </tr>
                     <tr>
                         <td>
@@ -48,31 +52,17 @@
                                 <asp:TableHeaderCell CssClass="input-title">Jour ferié</asp:TableHeaderCell>
                                 <asp:TableCell>
                                     <asp:TextBox CssClass="input-box" runat="server" ID="tbx_nbHeureJourFerie" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableHeaderCell CssClass="input-title">Vacance</asp:TableHeaderCell>
-                                <asp:TableCell>
+                                </asp:TableCell></asp:TableRow><asp:TableRow>
+                                <asp:TableHeaderCell CssClass="input-title">Vacance</asp:TableHeaderCell><asp:TableCell>
                                     <asp:TextBox CssClass="input-box" runat="server" ID="tbx_nbHeureVacance" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableHeaderCell CssClass="input-title">Congé personnel</asp:TableHeaderCell>
-                                <asp:TableCell >
+                                </asp:TableCell></asp:TableRow><asp:TableRow>
+                                <asp:TableHeaderCell CssClass="input-title">Congé personnel</asp:TableHeaderCell><asp:TableCell >
                                     <asp:TextBox CssClass="input-box" runat="server" ID="tbx_nbHeureCongePerso" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableHeaderCell CssClass="input-title">Congé maladie</asp:TableHeaderCell>
-                                <asp:TableCell>
+                                </asp:TableCell></asp:TableRow><asp:TableRow>
+                                <asp:TableHeaderCell CssClass="input-title">Congé maladie</asp:TableHeaderCell><asp:TableCell>
                                     <asp:TextBox CssClass="input-box" runat="server" ID="tbx_nbHeureCongeMaladie" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                        </asp:Table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><asp:Button ID="btn_modifBH" runat="server" OnClick="btn_modifBH_Click" Text="Activer la modification" CssClass="btn btn-md btn-success" /></td>
+                                </asp:TableCell></asp:TableRow></asp:Table></td></tr><tr>
+                        <td><asp:Button ID="btn_modifBH" runat="server"  OnClick="btn_modifBH_Click" Text="Activer la modification"  CssClass="btn btn-md btn-success" /></td>
                     </tr>
                 </table>
 

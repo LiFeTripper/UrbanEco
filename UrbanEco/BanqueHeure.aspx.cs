@@ -12,21 +12,30 @@ namespace UrbanEco
         CoecoDataContext cdc = new CoecoDataContext();
         
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<string> listEmp = new List<string>();
-
-            var tblEmp = from tbl in cdc.tbl_Employe
-                         where tbl.username != "admin"
-                         select tbl;
-
-            foreach(var n in tblEmp)
+            if(!IsPostBack)
             {
-                listEmp.Add(n.nom + "," + n.prenom);
-            }
 
-            ddl_empBH.DataSource = listEmp;
-            ddl_empBH.DataBind();
+                tbl_BH.Enabled = true;
+                List<string> listEmp = new List<string>();
+
+                var tblEmp = from tbl in cdc.tbl_Employe
+                             where tbl.username != "admin"
+                             select tbl;
+
+                if (listEmp.Count == 0)
+                {
+                    foreach (var n in tblEmp)
+                    {
+                        listEmp.Add(n.nom + "," + n.prenom);
+                    }
+
+                    ddl_empBH.DataSource = listEmp;
+                    ddl_empBH.DataBind();
+                }
+            }
             
         }
 
@@ -34,7 +43,7 @@ namespace UrbanEco
         {
             if(ddl_empBH.Text != "")
             {
-                if(tbl_BH.Enabled == false)
+                if(btn_modifBH.Text == "Activer la modification" )
                 {
                     tbl_BH.Enabled = true;
                     btn_modifBH.Text = "Désactiver la modification";
@@ -63,9 +72,12 @@ namespace UrbanEco
                      where tblBH.idEmploye == idInt
                      select tblBH;
 
-            foreach(var heureBH in BH)
+            tbl_BH.Enabled = true;
+
+            foreach (var heureBH in BH)
             {
-                switch(heureBH.idTypeHeure)
+
+                switch (heureBH.idTypeHeure)
                 {
                     case 1: tbx_nbHeureBanque.Text = heureBH.nbHeure.ToString();
                         break;
@@ -82,7 +94,10 @@ namespace UrbanEco
                         tbx_nbHeureCongeMaladie.Text = heureBH.nbHeure.ToString();
                         break;
                 }
+
+               
             }
+            tbl_BH.Enabled = false;
         }
 
         protected void ddl_empBH_SelectedIndexChanged(object sender, EventArgs e)
