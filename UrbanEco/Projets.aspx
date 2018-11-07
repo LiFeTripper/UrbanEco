@@ -21,9 +21,9 @@
             width: 800px !important;
         }
 
-            .table-custom > table {
-                width: 100% !important;
-            }
+        .table-custom > table {
+            width: 100% !important;
+        }
     </style>
 </asp:Content>
 
@@ -80,7 +80,7 @@
                                     <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%#Eval("idEmployeResp") %>' Font-Bold="true"/>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary"  runat="server" Text="Modification" Onclick="Btn_Modif_Click" />
+                                    <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary"  runat="server" Text="Modification" Onclick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>'/>
                                 </td>
                             </tr>
                         
