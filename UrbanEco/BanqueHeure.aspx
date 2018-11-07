@@ -1,26 +1,7 @@
+<<<<<<< HEAD
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .table-custom {
-            width: 100% !important;
-        }
-
-        .center {
-            margin: auto;
-            width: 50%;
-        }
-
-        .input-box {
-            width: 100% !important;
-            font-size: 17px;
-            margin-bottom: 30px;
-        }
-
-        .input-title {
-            text-align: left !important;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align: center" class="container center col-12">
@@ -65,10 +46,7 @@
                         <td><asp:Button ID="btn_modifBH" runat="server"  OnClick="btn_modifBH_Click" Text="Activer la modification"  CssClass="btn btn-md btn-success" /></td>
                     </tr>
                 </table>
-
             </div>
         </div>
-
-    </form>
 </asp:Content>
 

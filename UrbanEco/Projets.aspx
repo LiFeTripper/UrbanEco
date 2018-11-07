@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="Projets.aspx.cs" Inherits="UrbanEco.Projets" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="Projets.aspx.cs" Inherits="UrbanEco.Projets1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -28,109 +28,68 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-
+    
     <form runat="server" style="text-align: center;" class="container center col-12">
         <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
 
             <div>
-                <h1>Ajouter un projet
+                <h1>Projets
                 </h1>
                 <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
             </div>
+        </div>
 
-            <div class="row justify-content-md-center" style="margin-bottom: 100px;">
-                <div class="col-md-offset-3 col-6">
-                    <%--TITRE DESCRIPTION RESPONSABLE--%>
-                    <table style="width: 100% !important;">
-                        <%--TITRE--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Titre</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:TextBox ID="Tbx_Titre" runat="server" class="input-box"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <%--DESCRIPTION--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Description</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:TextBox ID="Tbx_Description" runat="server" class="input-box"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <%--RESPONSABLE--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Responsable</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="nom" DataValueField="idEmploye" class="input-box"></asp:DropDownList>
-                                <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom, nom, idEmploye)" TableName="tbl_Employe"></asp:LinqDataSource>
-                            </td>
-                        </tr>
+        <%--<div class="row justify-content-md-center" style="margin-bottom: 100px;">--%>
+            <div>
+            <%--<div class="col-md-offset-3 col-6">--%>
+                <div>
+                <%--CODE REPEATER DE PROJETS--%>
+                <asp:Repeater ID="Rptr_Projets" runat="server" DataSourceID="LinqProjets">
+                    <HeaderTemplate>
 
-                        <%--STATUS--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Status</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:DropDownList ID="Ddl_Status" runat="server" DataSourceID="LinqStatus" DataTextField="nomStatus" DataValueField="idStatus" class="input-box"></asp:DropDownList>
-                                <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqStatus" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (nomStatus, idStatus)" TableName="tbl_Status" OrderBy="idStatus"></asp:LinqDataSource>
-                            </td>
-                        </tr>
-                    </table>
+                        <table style="width: 80% !important;">
+                            <%--TITRE--%>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th>idStatus</th>
+                                <th>idEmployeResp</th>
+                                <th>
+                                    <asp:Button ID="Btn_Ajout" runat="server" Text="Nouveau" Onclick="Btn_Ajout_Click"/>
+                                </th>
+                            </tr>
 
-                    <%--HEURES DEBUT ET FIN--%>
-                    <table style="width: 100% !important;">
-                        <%--HEURES ALLOUÉ--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Heures Allouées</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" class="input-box"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <%--DATE DEBUT--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Date de début</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Calendar ID="Dtp_DateDebut" runat="server" Style="margin: auto;" class="input-box"></asp:Calendar>
-                            </td>
-                        </tr>
-                        <%--DATE FIN--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Date de fin</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Calendar ID="Dtp_DateFin" runat="server" class="input-box"></asp:Calendar>
-                            </td>
-                        </tr>
-                    </table>
+                    </HeaderTemplate>
+                    <ItemTemplate>
 
-
-                    <asp:Button ID="AddProject" runat="server" Text="Créer Projet" OnClick="AddProject_Click" />
-                </div>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true"/>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true"/>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true"/>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_idStatus" runat="server" Text='<%#Eval("idStatus") %>' Font-Bold="true"/>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%#Eval("idEmployeResp") %>' Font-Bold="true"/>
+                                </td>
+                                <td>
+                                    <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary"  runat="server" Text="Modification" Onclick="Btn_Modif_Click" />
+                                </td>
+                            </tr>
+                        
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
+                    <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjets" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (titre, description, idStatus, idEmployeResp, idProjet)" TableName="tbl_Projet"></asp:LinqDataSource>
             </div>
         </div>
     </form>
