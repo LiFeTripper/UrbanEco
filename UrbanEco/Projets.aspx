@@ -30,13 +30,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <form runat="server" style="text-align: center;" class="container center col-12">
-        <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
-            <h1>Projets
-            </h1>
-            <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
-        </div>
 
-        <div>
+        <%--BORDURE VERTE--%>
+        <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
 
             <%--CODE REPEATER DE PROJETS--%>
             <asp:Repeater ID="Rptr_Projets" runat="server" DataSourceID="LinqProjets">
@@ -44,6 +40,11 @@
                 <%--HEADERTEMPLATE--%>
                 <HeaderTemplate>
                     <table style="width: 100% !important;">
+                        
+                        <%--EN TËTE A MARC--%>
+                        <h1>Projets</h1>
+                        <hr style="border-bottom: 20px solid #23282e; width: 100%;" />
+
                         <tr style="border-bottom: 5px solid #23282e">
                             <th>ID</th>
                             <th>Titre</th>

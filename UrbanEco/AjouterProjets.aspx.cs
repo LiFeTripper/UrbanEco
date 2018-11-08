@@ -12,7 +12,6 @@ namespace UrbanEco
     {
         bool insert;
         string argument;
-        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -114,6 +113,7 @@ namespace UrbanEco
             //Étape finale SUBMIT CHANGES
             context.SubmitChanges();
 
+            
             Response.Redirect("Projets.aspx");
 
         }
