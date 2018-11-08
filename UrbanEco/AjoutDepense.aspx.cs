@@ -41,11 +41,6 @@ namespace UrbanEco
             UpdateRecapitulatif();
         }
 
-        protected void date_changed(object sender, EventArgs e)
-        {
-            int i = 0;
-        }
-
         protected void btn_envoyer_Click(object sender, EventArgs e)
         {
             try
@@ -65,7 +60,17 @@ namespace UrbanEco
 
                 dep.idEmploye = empConnected.idEmploye;
                 dep.idTypeDepense = idTypeDepense;
-                dep.montant = float.Parse(tbx_montant.Text);
+
+                if (km_html.Visible)
+                {
+                    dep.montant = float.Parse(tbx_montant1.Text);
+                }
+                else
+                {
+                    dep.montant = float.Parse(tbx_montant2.Text);
+                }
+
+               
                 dep.idProjetCat = int.Parse(tbx_categorie.Items[tbx_categorie.SelectedIndex].Value);
                 dep.note = tbx_note.Text;
 
@@ -92,11 +97,6 @@ namespace UrbanEco
             if(!tbx_categorie.Enabled)
                 tbx_categorie.Enabled = true;
 
-            rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;
-            rep_date.InnerText = Calendar.Value.ToString();
-            rep_montant.InnerText = tbx_montant.Text;
-            rep_nomEmployer.InnerText = Layout.GetUserConnected().nom + ", " + Layout.GetUserConnected().prenom;
-            rep_projet.InnerText = tbx_projet.Items[tbx_projet.SelectedIndex].Text;
 
             tbx_categorie.DataSource = null;
             tbx_categorie.DataSourceID = null;
@@ -126,8 +126,17 @@ namespace UrbanEco
         {
             rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;
             rep_date.InnerText = Calendar.Value.ToString();
-            rep_montant.InnerText = tbx_montant.Text + "$";
-            if(Layout.GetUserConnected() != null)
+            if (km_html.Visible)
+            {
+                rep_montant.InnerText = (tbx_montant1.Text) + "$";
+            }
+            else
+            {
+                rep_montant.InnerText = (tbx_montant2.Text) + "$";
+            }
+
+
+            if (Layout.GetUserConnected() != null)
                 rep_nomEmployer.InnerText = Layout.GetUserConnected().nom + ", " + Layout.GetUserConnected().prenom;
             rep_projet.InnerText = tbx_projet.Items[tbx_projet.SelectedIndex].Text;
 
@@ -135,6 +144,21 @@ namespace UrbanEco
                 rep_typeDepense.InnerText = tbx_typeDepense.Items[tbx_typeDepense.SelectedIndex].Text;
         }
 
-
+        protected void tbx_typeDepense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbx_typeDepense.SelectedIndex == 0)
+            {
+                //KM
+                montant_html.Visible = false;
+                km_html.Visible = true;
+            }
+            else
+            {
+                //Montant
+                montant_html.Visible = true;
+                km_html.Visible = false;
+            }
+             
+        }
     }
 }

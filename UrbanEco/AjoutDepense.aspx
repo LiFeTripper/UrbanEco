@@ -78,7 +78,12 @@
                     <tr>
                         <td>
 <%--                            <asp: type="date" id="Calendar" style="margin:auto;" runat="server" autopostback="true"></asp:>--%>
-                            <input type="date" id="Calendar" style="margin:auto;" runat="server" />
+                            <input type="date" ID="Calendar" style="margin:auto;" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="center" style="margin:auto !important;" id="dateFormated" runat="server"></h5>
                         </td>
                     </tr>
                 </table>
@@ -86,10 +91,40 @@
 
         </div>
 
+        <%--On change for date--%>
         <script>
-            var input = document.getElementById("Calendar");
+            var input = document.getElementById('<%=Calendar.ClientID%>')
 
-            console.log(input);
+            UpdateDateFormated();
+
+            input.onchange = function () {
+                var dateRep = document.getElementById('<%=rep_date.ClientID%>')
+                var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
+
+                var date = input.value;
+
+                dateRep.innerText = date;
+
+                UpdateDateFormated();
+            }
+
+            function UpdateDateFormated() {
+
+                var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
+
+                var date = input.value;
+
+                var split = date.split('-');
+
+                var year = split[0];
+                var month = parseInt(split[1]);
+                var day = split[2];
+
+                var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+                dateFormated.innerText = day + " " + months[month - 1] + " " + year;
+
+            }
 
         </script>
 
@@ -109,22 +144,41 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataTextField="nomDepense" DataValueField="idTypeDepense" DataSourceID="LinqTypeDepense" autopostback="true"></asp:DropDownList>
+                            <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataTextField="nomDepense" DataValueField="idTypeDepense" DataSourceID="LinqTypeDepense" autopostback="true" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
                             <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_TypeDepense">
                             </asp:LinqDataSource>
                         </td>
                     </tr>
 
-                    <tr>
-                        <th>
-                            <h5 class="input-title">Montant</h5>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:TextBox class="input-box" ID="tbx_montant" runat="server" Rows="5" autopostback="true"></asp:TextBox>
-                        </td>
-                    </tr>
+                    <div id="km_html" runat="server" visible="true">
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Kilomètrage</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="width:60%; float:left;">
+                                <asp:TextBox class="input-box" ID="tbx_montant1" runat="server" autopostback="true"></asp:TextBox>                               
+                            </td>
+                            <td style="width:40%; float:left; text-align:left;">
+                                <h5 runat="server" id="montantTotalDepense" class="input-title"> * 0.47$ = </h5>                              
+                            </td>
+                        </tr>
+                    </div>
+
+                    <div id="montant_html" runat="server" visible="false">
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Montant</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:TextBox class="input-box" ID="tbx_montant2" runat="server" autopostback="true"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </div>
+
                     <tr>
                         <th>
                             <h5 class="input-title">Note</h5>
@@ -132,7 +186,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="5" autopostback="true"></asp:TextBox>
+                            <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="3" autopostback="true" TextMode="MultiLine"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
