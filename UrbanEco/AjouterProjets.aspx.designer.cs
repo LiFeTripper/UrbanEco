@@ -85,22 +85,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_HeuresAlloues;
         
         /// <summary>
-        /// Contrôle Dtp_DateDebut.
+        /// Contrôle Cal_DateDebut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Dtp_DateDebut;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Cal_DateDebut;
         
         /// <summary>
-        /// Contrôle Dtp_DateFin.
+        /// Contrôle Cal_DateFin.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Dtp_DateFin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Cal_DateFin;
         
         /// <summary>
         /// Contrôle AddProject.

@@ -4,10 +4,6 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    Bienvenue, [Employé] !
-</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
 </asp:Content>

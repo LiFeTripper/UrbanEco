@@ -16,23 +16,20 @@ namespace UrbanEco
 
         protected void Btn_Ajout_Click(object sender, EventArgs e)
         {
+            //Redirige l'adresse vers un nouveau projet avec l'argument étoile
             Response.Redirect("AjouterProjets.aspx?Prj=*");
         }
 
         protected void Btn_Modif_Click(object sender, EventArgs e)
         {
-            //Get the reference of the clicked button.
+            //Référence au bouton dans l'interface
             Button button = (sender as Button);
 
-            //Get the Repeater Item reference
-            //RepeaterItem item = button.NamingContainer as RepeaterItem;
-
-            //Get the repeater item index
-            //int index = item.ItemIndex;
-
+            //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
 
-            Response.Redirect("AjoutDepense.aspx?Prj=" + commandArgument);
+            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            Response.Redirect("AjouterProjets.aspx?Prj=" + commandArgument);
 
         }
     }

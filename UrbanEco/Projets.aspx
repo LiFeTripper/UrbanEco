@@ -39,16 +39,14 @@
             </div>
         </div>
 
-        <%--<div class="row justify-content-md-center" style="margin-bottom: 100px;">--%>
             <div>
-            <%--<div class="col-md-offset-3 col-6">--%>
                 <div>
                 <%--CODE REPEATER DE PROJETS--%>
                 <asp:Repeater ID="Rptr_Projets" runat="server" DataSourceID="LinqProjets">
                     <HeaderTemplate>
 
                         <table style="width: 80% !important;">
-                            <%--TITRE--%>
+                            
                             <tr>
                                 <th>ID</th>
                                 <th>Titre</th>
@@ -74,10 +72,10 @@
                                     <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true"/>
                                 </td>
                                 <td>
-                                    <asp:Label ID="lbl_idStatus" runat="server" Text='<%#Eval("idStatus") %>' Font-Bold="true"/>
+                                    <asp:Label ID="lbl_idStatus" runat="server" Text='<%#Eval("Tbl_Status.nomStatus") %>' Font-Bold="true"/>
                                 </td>
                                 <td>
-                                    <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%#Eval("idEmployeResp") %>' Font-Bold="true"/>
+                                    <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%#Eval("Tbl_Employe.nom") %>' Font-Bold="true"/>
                                 </td>
                                 <td>
                                     <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary"  runat="server" Text="Modification" Onclick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>'/>
@@ -89,8 +87,8 @@
                         </table>
                     </FooterTemplate>
                 </asp:Repeater>
-                    <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjets" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (titre, description, idStatus, idEmployeResp, idProjet)" TableName="tbl_Projet"></asp:LinqDataSource>
-            </div>
+                    <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjets" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Projet"></asp:LinqDataSource>
+                </div>
         </div>
     </form>
 </asp:Content>
