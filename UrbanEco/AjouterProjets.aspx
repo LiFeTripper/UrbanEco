@@ -114,7 +114,6 @@
                         <tr>
                             <td>
                                 <input type="date" style="margin: auto" runat="server" id="Cal_DateDebut" />
-                                <%--<asp:Calendar ID="Dtp_DateDebut" runat="server" Style="margin: auto;" class="input-box"></asp:Calendar>--%>
                             </td>
                         </tr>
                         <%--DATE FIN--%>
@@ -126,13 +125,38 @@
                         <tr>
                             <td>
                                 <input type="date" style="margin: auto" runat="server" id="Cal_DateFin" />
-                               <%-- <asp:Calendar ID="Dtp_DateFin" runat="server" class="input-box"></asp:Calendar>--%>
                             </td>
                         </tr>
                     </table>
 
+                    <%--LISTBOX CATÉGORIE ET EMPLOYÉS--%>
+                    <table style="width: 100% !important;">
+                        <%--CATÉGORIE--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Catégorie</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:ListBox ID="ListBox2" runat="server"></asp:ListBox>
+                            </td>
+                        </tr>
 
-                    <asp:Button ID="AddProject" runat="server" Text="Créer Projet" OnClick="AddProject_Click" />
+                        <%--EMPLOYÉS--%>
+                        <tr>
+                            <th>
+                                <h5 class="input-title">Employés</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer"  OnClick="Btn_Enregister_Click" />
                 </div>
             </div>
         </div>
