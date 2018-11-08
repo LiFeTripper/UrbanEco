@@ -40,13 +40,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
         
         /// <summary>
-        /// Contrôle Calendar1.
+        /// Contrôle dateFormated.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
         
         /// <summary>
         /// Contrôle tbx_typeDepense.
@@ -67,13 +67,49 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.LinqDataSource LinqTypeDepense;
         
         /// <summary>
-        /// Contrôle tbx_montant.
+        /// Contrôle km_html.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_montant;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
+        
+        /// <summary>
+        /// Contrôle tbx_montant1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_montant1;
+        
+        /// <summary>
+        /// Contrôle montantTotalDepense.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl montantTotalDepense;
+        
+        /// <summary>
+        /// Contrôle montant_html.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl montant_html;
+        
+        /// <summary>
+        /// Contrôle tbx_montant2.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_montant2;
         
         /// <summary>
         /// Contrôle tbx_note.
@@ -94,6 +130,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_nomEmployer;
         
         /// <summary>
+        /// Contrôle rep_date.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_date;
+        
+        /// <summary>
         /// Contrôle rep_projet.
         /// </summary>
         /// <remarks>
@@ -110,15 +155,6 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_categorie;
-        
-        /// <summary>
-        /// Contrôle rep_date.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_date;
         
         /// <summary>
         /// Contrôle rep_typeDepense.
