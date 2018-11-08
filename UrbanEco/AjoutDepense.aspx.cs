@@ -33,7 +33,7 @@ namespace UrbanEco
 
                 tbx_projet.Items.Insert(0,"Veuillez sélectionner le projet");
                 tbx_projet.SelectedIndex = 0;
-                Calendar.Value = DateTime.Today.ToShortDateString();
+                //Calendar.Value = DateTime.Today.ToShortDateString();
 
                 tbx_typeDepense.SelectedIndex = 0;
             }
@@ -63,10 +63,13 @@ namespace UrbanEco
 
                 if (km_html.Visible)
                 {
-                    dep.montant = float.Parse(tbx_montant1.Text);
+                    //KM
+                    dep.montant = float.Parse(tbx_montant1.Text) * 0.47f;
+
                 }
                 else
                 {
+                    //Montant autre
                     dep.montant = float.Parse(tbx_montant2.Text);
                 }
 
@@ -125,7 +128,7 @@ namespace UrbanEco
         void UpdateRecapitulatif()
         {
             rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;
-            rep_date.InnerText = Calendar.Value.ToString();
+            //rep_date.InnerText = Calendar.Value.ToString();
             if (km_html.Visible)
             {
                 rep_montant.InnerText = (tbx_montant1.Text) + "$";
@@ -159,6 +162,11 @@ namespace UrbanEco
                 km_html.Visible = false;
             }
              
+        }
+
+        protected void tbx_montant1_TextChanged(object sender, EventArgs e)
+        {
+            montantTotalDepense.InnerText = " * 0.47$ = " + (float.Parse(tbx_montant1.Text) * 0.47f) + "$";
         }
     }
 }

@@ -95,35 +95,47 @@
         <script>
             var input = document.getElementById('<%=Calendar.ClientID%>')
 
-            UpdateDateFormated();
+            UpdateDateFormat();
 
-            input.onchange = function () {
-                var dateRep = document.getElementById('<%=rep_date.ClientID%>')
-                var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
-
-                var date = input.value;
-
-                dateRep.innerText = date;
-
-                UpdateDateFormated();
+            input.onchange = function () {               
+                UpdateDateFormat();
+                UpdateDateRep();
             }
 
-            function UpdateDateFormated() {
+            function UpdateDateFormat() {
 
                 var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
-                var date = input.value;
+                if (input.value == "") {
+                    dateFormated.innerText = "Veuillez sélectionner la date";
+                    return;
+                }
 
-                var split = date.split('-');
+                var format = FormatYear(input.value);             
+                
+                dateFormated.innerText = format;
+            }
+
+            function UpdateDateRep() {
+                var dateRep = document.getElementById('<%=rep_date.ClientID%>')
+                var format = FormatYear(input.value);    
+                dateRep.innerText = format;
+            }
+
+            function FormatYear(yearString) {
+
+                var split = yearString.split('-');
+
+                if (split.length != 3)
+                    split = yearString.split('/');
 
                 var year = split[0];
                 var month = parseInt(split[1]);
-                var day = split[2];
+                var day = parseInt(split[2]);
 
                 var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-                dateFormated.innerText = day + " " + months[month - 1] + " " + year;
-
+                return day + " " + months[month - 1] + " " + year;;
             }
 
         </script>
@@ -158,7 +170,7 @@
                         </tr>
                         <tr>
                             <td style="width:60%; float:left;">
-                                <asp:TextBox class="input-box" ID="tbx_montant1" runat="server" autopostback="true"></asp:TextBox>                               
+                                <asp:TextBox class="input-box" ID="tbx_montant1" runat="server" autopostback="true" OnTextChanged="tbx_montant1_TextChanged"></asp:TextBox>                               
                             </td>
                             <td style="width:40%; float:left; text-align:left;">
                                 <h5 runat="server" id="montantTotalDepense" class="input-title"> * 0.47$ = </h5>                              
