@@ -77,8 +77,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="date" id="Calendar" style="margin:auto;" runat="server"/>
-                            <!--<asp:Calendar ID="Calendar1" runat="server" Style="margin: auto;"></asp:Calendar>-->
+<%--                            <asp: type="date" id="Calendar" style="margin:auto;" runat="server" autopostback="true"></asp:>--%>
+                            <input type="date" id="Calendar" style="margin:auto;" runat="server" />
                         </td>
                     </tr>
                 </table>
@@ -86,7 +86,12 @@
 
         </div>
 
+        <script>
+            var input = document.getElementById("Calendar");
 
+            console.log(input);
+
+        </script>
 
         <div class="row justify-content-md-center">
             <div class="col-md-offset-3 col-6">
@@ -104,7 +109,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataTextField="nomDepense" DataValueField="idTypeDepense" DataSourceID="LinqTypeDepense"></asp:DropDownList>
+                            <asp:DropDownList class="input-box" ID="tbx_typeDepense" runat="server" DataTextField="nomDepense" DataValueField="idTypeDepense" DataSourceID="LinqTypeDepense" autopostback="true"></asp:DropDownList>
                             <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_TypeDepense">
                             </asp:LinqDataSource>
                         </td>
@@ -117,7 +122,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox class="input-box" ID="tbx_montant" runat="server" Rows="5"></asp:TextBox>
+                            <asp:TextBox class="input-box" ID="tbx_montant" runat="server" Rows="5" autopostback="true"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -127,20 +132,24 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="5"></asp:TextBox>
+                            <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="5" autopostback="true"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <h5 class="input-title">Récapitulatif de votre dépense</h5>
-                            <table>
-                                <tr>
-                                    <td id="rep_nomEmployer" runat="server"></td>
-                                    <td id="rep_projet" runat="server"></td>
-                                    <td id="rep_categorie" runat="server"></td>
-                                    <td id="rep_date" runat="server"></td>
-                                    <td id="rep_typeDepense" runat="server"></td>
-                                    <td id="rep_montant" runat="server"></td>
+                            <table style="width:100%">
+                                <tr style="width:100%">
+                                    <td id="rep_nomEmployer" style="text-align:left;" runat="server"></td>
+                                    <td id="rep_date" style="text-align:right;" runat="server"></td>
+                                </tr>
+                                <tr style="width:100%">
+                                    <td id="rep_projet" style="text-align:left;" runat="server"></td>
+                                    <td id="rep_categorie" style="text-align:right;" runat="server"></td>
+                                </tr>
+                                <tr style="width:100%">
+                                    <td id="rep_typeDepense" style="text-align:left;" runat="server"></td>
+                                    <td id="rep_montant" style="text-align:right;" runat="server"></td>
                                 </tr>
                             </table>
 

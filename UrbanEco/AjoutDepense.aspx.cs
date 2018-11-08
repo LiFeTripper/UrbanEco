@@ -9,7 +9,7 @@ namespace UrbanEco
 {
     public partial class AjoutDepense : System.Web.UI.Page
     {
-        bool DepenseAjouter = true;
+       static bool DepenseAjouter = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,8 +34,16 @@ namespace UrbanEco
                 tbx_projet.Items.Insert(0,"Veuillez sélectionner le projet");
                 tbx_projet.SelectedIndex = 0;
                 Calendar.Value = DateTime.Today.ToShortDateString();
+
+                tbx_typeDepense.SelectedIndex = 0;
             }
-            
+
+            UpdateRecapitulatif();
+        }
+
+        protected void date_changed(object sender, EventArgs e)
+        {
+            int i = 0;
         }
 
         protected void btn_envoyer_Click(object sender, EventArgs e)
@@ -84,6 +92,12 @@ namespace UrbanEco
             if(!tbx_categorie.Enabled)
                 tbx_categorie.Enabled = true;
 
+            rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;
+            rep_date.InnerText = Calendar.Value.ToString();
+            rep_montant.InnerText = tbx_montant.Text;
+            rep_nomEmployer.InnerText = Layout.GetUserConnected().nom + ", " + Layout.GetUserConnected().prenom;
+            rep_projet.InnerText = tbx_projet.Items[tbx_projet.SelectedIndex].Text;
+
             tbx_categorie.DataSource = null;
             tbx_categorie.DataSourceID = null;
 
@@ -106,6 +120,19 @@ namespace UrbanEco
 
             tbx_categorie.DataSource = query;
             tbx_categorie.DataBind();      
+        }
+
+        void UpdateRecapitulatif()
+        {
+            rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;
+            rep_date.InnerText = Calendar.Value.ToString();
+            rep_montant.InnerText = tbx_montant.Text + "$";
+            if(Layout.GetUserConnected() != null)
+                rep_nomEmployer.InnerText = Layout.GetUserConnected().nom + ", " + Layout.GetUserConnected().prenom;
+            rep_projet.InnerText = tbx_projet.Items[tbx_projet.SelectedIndex].Text;
+
+            if(tbx_typeDepense.SelectedIndex != -1)
+                rep_typeDepense.InnerText = tbx_typeDepense.Items[tbx_typeDepense.SelectedIndex].Text;
         }
 
 

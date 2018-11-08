@@ -40,15 +40,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
         
         /// <summary>
-        /// Contrôle Calendar1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
-        
-        /// <summary>
         /// Contrôle tbx_typeDepense.
         /// </summary>
         /// <remarks>
@@ -94,6 +85,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_nomEmployer;
         
         /// <summary>
+        /// Contrôle rep_date.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_date;
+        
+        /// <summary>
         /// Contrôle rep_projet.
         /// </summary>
         /// <remarks>
@@ -110,15 +110,6 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_categorie;
-        
-        /// <summary>
-        /// Contrôle rep_date.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_date;
         
         /// <summary>
         /// Contrôle rep_typeDepense.
