@@ -13,6 +13,15 @@ namespace UrbanEco {
     public partial class Projets {
         
         /// <summary>
+        /// Contrôle lbl_Top.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Top;
+        
+        /// <summary>
         /// Contrôle Tbx_Titre.
         /// </summary>
         /// <remarks>
@@ -76,30 +85,48 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_HeuresAlloues;
         
         /// <summary>
-        /// Contrôle Dtp_DateDebut.
+        /// Contrôle Cal_DateDebut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Dtp_DateDebut;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Cal_DateDebut;
         
         /// <summary>
-        /// Contrôle Dtp_DateFin.
+        /// Contrôle Cal_DateFin.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Dtp_DateFin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Cal_DateFin;
         
         /// <summary>
-        /// Contrôle AddProject.
+        /// Contrôle ListBox2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddProject;
+        protected global::System.Web.UI.WebControls.ListBox ListBox2;
+        
+        /// <summary>
+        /// Contrôle ListBox1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        
+        /// <summary>
+        /// Contrôle Btn_Enregistrer.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Enregistrer;
     }
 }

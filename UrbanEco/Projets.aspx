@@ -28,69 +28,83 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-    
+
     <form runat="server" style="text-align: center;" class="container center col-12">
+
+        <%--BORDURE VERTE--%>
         <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
 
-            <div>
-                <h1>Projets
-                </h1>
-                <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
-            </div>
-        </div>
-
-        <%--<div class="row justify-content-md-center" style="margin-bottom: 100px;">--%>
-            <div>
-            <%--<div class="col-md-offset-3 col-6">--%>
-                <div>
-                <%--CODE REPEATER DE PROJETS--%>
-                <asp:Repeater ID="Rptr_Projets" runat="server" DataSourceID="LinqProjets">
-                    <HeaderTemplate>
-
-                        <table style="width: 80% !important;">
-                            <%--TITRE--%>
-                            <tr>
-                                <th>ID</th>
-                                <th>Titre</th>
-                                <th>Description</th>
-                                <th>idStatus</th>
-                                <th>idEmployeResp</th>
-                                <th>
-                                    <asp:Button ID="Btn_Ajout" runat="server" Text="Nouveau" Onclick="Btn_Ajout_Click"/>
-                                </th>
-                            </tr>
-
-                    </HeaderTemplate>
-                    <ItemTemplate>
-
-                            <tr>
-                                <td>
-                                    <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true"/>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true"/>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true"/>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_idStatus" runat="server" Text='<%#Eval("idStatus") %>' Font-Bold="true"/>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%#Eval("idEmployeResp") %>' Font-Bold="true"/>
-                                </td>
-                                <td>
-                                    <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary"  runat="server" Text="Modification" Onclick="Btn_Modif_Click" />
-                                </td>
-                            </tr>
+            <%--CODE REPEATER DE PROJETS--%>
+            <asp:Repeater ID="Rptr_Projets" runat="server" DataSourceID="LinqProjets">
+                
+                <%--HEADERTEMPLATE--%>
+                <HeaderTemplate>
+                    <table style="width: 100% !important;">
                         
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        </table>
-                    </FooterTemplate>
-                </asp:Repeater>
-                    <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjets" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (titre, description, idStatus, idEmployeResp, idProjet)" TableName="tbl_Projet"></asp:LinqDataSource>
-            </div>
+                        <%--EN TËTE A MARC--%>
+                        <h1>Projets</h1>
+                        <hr style="border-bottom: 20px solid #23282e; width: 100%;" />
+
+                        <tr style="border-bottom: 5px solid #23282e">
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Status du projet</th>
+                            <th>Employé Responsable</th>
+                            <th>Date de début</th>
+                            <th>
+                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                            </th>
+                        </tr>
+                </HeaderTemplate>
+                
+                <%--ITEMTEMPLATE--%>
+                <ItemTemplate>
+                    <tr style="border-bottom: 1px solid #23282e">
+                        <td>
+                            <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true" />
+                        </td>
+                        <td>
+                            <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
+                        </td>
+                        <td>
+                            <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true" />
+                        </td>
+                        <td>
+                            <asp:Label ID="lbl_idStatus" runat="server" Text='<%#Eval("Tbl_Status.nomStatus") %>' Font-Bold="true" />
+                        </td>
+                        <td>
+                            <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%# String.Format("{0} {1}", Eval("Tbl_Employe.prenom"), Eval("Tbl_Employe.nom")) %>' Font-Bold="true" />
+                        </td>
+                        <td>
+                            <asp:Label ID="lbl_dateDebut" runat="server" Text='<%#Eval("dateDebut") %>' Font-Bold="true" />
+                        </td>
+                        <td>
+                            <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>' />
+                        </td>
+                    </tr>
+                </ItemTemplate>
+
+                <%--FOOTERTEMPLATE--%>
+                <FooterTemplate>
+                    
+                    <tr style="border-top: 5px solid #23282e">
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Status du projet</th>
+                            <th>Employé Responsable</th>
+                            <th>Date de début</th>
+                            <th>
+                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                            </th>
+                        </tr>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+
+            <%--DATA SOURCE--%>
+            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjets" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Projet"></asp:LinqDataSource>
         </div>
     </form>
 </asp:Content>

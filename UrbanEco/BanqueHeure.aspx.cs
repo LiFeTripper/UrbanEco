@@ -17,8 +17,7 @@ namespace UrbanEco
         {
             if(!IsPostBack)
             {
-
-                tbl_BH.Enabled = true;
+               
                 List<string> listEmp = new List<string>();
 
                 var tblEmp = from tbl in cdc.tbl_Employe
