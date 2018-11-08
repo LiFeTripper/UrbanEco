@@ -1,6 +1,30 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs"  ResponseEncoding="utf-8" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server" >
+    <style>
+        .center {
+            margin: auto;
+            width: 50%;
+        }
+
+        .input-box {
+            width: 100% !important;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .input-title {
+            text-align: left !important;
+        }
+
+        .table-custom {
+            width: 800px !important;
+        }
+
+        .table-custom > table {
+            width: 100% !important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align: center" class="container center col-12">
@@ -13,15 +37,13 @@
             <div class="col-md-offset-3 col-6">
                 <table class="table-custom">
                     <tr>
-                        <th><asp:DropDownList ID="ddl_empBH" runat="server"  OnSelectedIndexChanged="ddl_empBH_SelectedIndexChanged" CssClass="input-box" AutoPostBack="True">
+                        <th><asp:DropDownList ID="ddl_empBH" runat="server" style="width:100%" OnSelectedIndexChanged="ddl_empBH_SelectedIndexChanged" CssClass="input-box" AutoPostBack="True">
                             </asp:DropDownList>
-                            <asp:LinqDataSource ID="LinqBH" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="nom, prenom" Select="new (nom, prenom)" TableName="tbl_Employe">
-                            </asp:LinqDataSource>
                         </th>
                     </tr>
                     <tr>
                         <td>
-                            <asp:Table runat="server" ID="tbl_BH" Enabled="false" Width="100%">
+                            <asp:Table runat="server" ID="tbl_BH" Enabled="false" style="width:100%">
                             <asp:TableRow>
                                 <asp:TableHeaderCell CssClass="input-title">Heure en banque</asp:TableHeaderCell>
                                 <asp:TableCell>
