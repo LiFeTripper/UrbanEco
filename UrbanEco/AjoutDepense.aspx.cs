@@ -15,18 +15,21 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Calendar.Value = DateTime.Today.ToShortDateString();
-
+            //Empecher la page de remonter a chaque action
             Page.MaintainScrollPositionOnPostBack = true;
 
             if (!IsPostBack)
             {
+                //La dépense n'est pas ajouté a la BD
                 DepenseAjouter = false;
 
+                //Ajouter les --- pour les sous-catégorie (pas de projet selectionner)
                 tbx_categorie.Items.Add("-----");
 
+                //Bd context
                 CoecoDataContext context = new CoecoDataContext();
 
+                //Query les projet
                 var queryProjet = from tbl in context.tbl_Projet
                             orderby tbl.titre
                             select tbl;
@@ -34,13 +37,13 @@ namespace UrbanEco
                 tbx_projet.DataSource = queryProjet;
                 tbx_projet.DataBind();
 
-
+                //Insérer un text pour sélectionne rle projet au début
                 tbx_projet.Items.Insert(0,"Veuillez sélectionner le projet");
                 tbx_projet.SelectedIndex = 0;
-                //Calendar.Value = DateTime.Today.ToShortDateString();
-
+ 
                 tbx_typeDepense.SelectedIndex = 0;
 
+                //Obtenir le prix du kilometrage
                 var queryKilo = from tbl in context.tbl_Kilometrage
                         select tbl;
 
@@ -48,33 +51,57 @@ namespace UrbanEco
                
             }
 
+            //Mettre a jour le recapitulatif de la dépense
             UpdateRecapitulatif();
         }
 
+        /// <summary>
+        /// Boutton envoyé la dépense
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_envoyer_Click(object sender, EventArgs e)
         {
             try
             {
+                //La dépense est déja ajouté a la BD
                 if (DepenseAjouter)
                 {
+                    if (alert_failed.Visible == true)
+                        return;
+
                     alert_success.Visible = false;
                     alert_warning.Visible = true;
                     return;
                 }
 
-
+                //Créer une dépense
                 tbl_Depense dep = new tbl_Depense();
+
+                //obtenir l'employé connecter
                 tbl_Employe empConnected = Layout.GetUserConnected();
 
+                //Peut etre améliorer
+                //obtenir le id du type de la dépense
                 int idTypeDepense = tbx_typeDepense.SelectedIndex + 1;
 
+                //Assigner les valeurs a la dépense
                 dep.idEmploye = empConnected.idEmploye;
                 dep.idTypeDepense = idTypeDepense;
+                dep.idProjetCat = int.Parse(tbx_categorie.Items[tbx_categorie.SelectedIndex].Value);
+                dep.note = tbx_note.Text;
 
+                //Date de dépense
+                DateTime date = DateTime.Parse(Calendar.Value);
+                dep.dateDepense = date;
+
+                //Si le type de dépense = KM
                 if (km_html.Visible)
                 {
                     //KM
                     dep.montant = float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage;
+
+                    //Stocker le prix du KM a cette date
                     dep.prixKilometrage = prixKilometrage.prixKilometrage;
                 }
                 else
@@ -84,30 +111,33 @@ namespace UrbanEco
                     dep.prixKilometrage = null;
                 }
 
-               
-                dep.idProjetCat = int.Parse(tbx_categorie.Items[tbx_categorie.SelectedIndex].Value);
-                dep.note = tbx_note.Text;
-
-                DateTime date = DateTime.Parse(Calendar.Value);
-                dep.dateDepense = date;
-
+                //Insérer la déepense
                 CoecoDataContext context = new CoecoDataContext();
                 context.tbl_Depense.InsertOnSubmit(dep);
                 context.SubmitChanges();
 
+                //La dépense est ajouté
                 alert_success.Visible = true;
                 DepenseAjouter = true;
             }
             catch (Exception ex)
             {
+                //erreur lors de l'ajout de la dépense
                 alert_failed.Visible = true;
                 DepenseAjouter = false;
             }
 
         }
 
+        /// <summary>
+        /// Le projet est changé
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void tbx_projet_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            //Reset les catégories
             if(!tbx_categorie.Enabled)
                 tbx_categorie.Enabled = true;
 
@@ -115,6 +145,7 @@ namespace UrbanEco
             tbx_categorie.DataSource = null;
             tbx_categorie.DataSourceID = null;
 
+            //Aucun projet choisi
             if (tbx_projet.SelectedIndex == 0)
             {
                 tbx_categorie.Enabled = false;
@@ -124,6 +155,7 @@ namespace UrbanEco
                 return;
             }
 
+            //Obtenir les catégorie
             CoecoDataContext context = new CoecoDataContext();
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
 
@@ -136,10 +168,14 @@ namespace UrbanEco
             tbx_categorie.DataBind();      
         }
 
+        /// <summary>
+        /// Mettre a jour le récapitulatif de la dépense
+        /// </summary>
         void UpdateRecapitulatif()
         {
-            rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;
-            //rep_date.InnerText = Calendar.Value.ToString();
+            rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;          
+
+            //Dépense KM
             if (km_html.Visible)
             {
                 float prix = -1;
@@ -155,9 +191,10 @@ namespace UrbanEco
                 rep_montant.InnerText = (tbx_montant2.Text) + "$";
             }
 
-
+            //Obtenir l'employé connecté
             if (Layout.GetUserConnected() != null)
                 rep_nomEmployer.InnerText = Layout.GetUserConnected().nom + ", " + Layout.GetUserConnected().prenom;
+
             rep_projet.InnerText = tbx_projet.Items[tbx_projet.SelectedIndex].Text;
 
             if(tbx_typeDepense.SelectedIndex != -1)
@@ -166,6 +203,7 @@ namespace UrbanEco
 
         protected void tbx_typeDepense_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Type de dépense KM
             if (tbx_typeDepense.SelectedIndex == 0)
             {
                 //KM
@@ -181,6 +219,11 @@ namespace UrbanEco
              
         }
 
+        /// <summary>
+        /// Montant KM
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void tbx_montant1_TextChanged(object sender, EventArgs e)
         {
             montantTotalDepense.InnerText = " * "+ prixKilometrage.prixKilometrage+"$ = " + (float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage) + "$";
