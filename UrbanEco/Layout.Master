@@ -11,11 +11,15 @@
     </asp:ContentPlaceHolder>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="lib/css/bootstrap.min.css"  />
+       
     <!-- Custom Left Side Menu CSS -->
     <link rel="stylesheet" href="lib/css/menu.css">
     <%--Font Awesome Icon CSS--%>
     <link href="lib/css/fontawesome.css" rel="stylesheet" />
     <link href="lib/css/solid.css" rel="stylesheet" />
+
+    <%--<script src="lib/js/bootbox.min.js" ></script>--%>
+    
 
 </head>
 <body>
@@ -111,6 +115,7 @@
     <script src="lib/js/jquery-3.3.1.min.js"></script>
     <script src="lib/js/popper.js"></script>
     <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/bootbox.min.js" ></script>
 </body>
 
 </html>
