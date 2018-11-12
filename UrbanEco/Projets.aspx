@@ -65,7 +65,7 @@
                             <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true" />
                         </td>
                         <td>
-                            <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
+                            <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true"/>
                         </td>
                         <td>
                             <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true" />
@@ -81,6 +81,7 @@
                         </td>
                         <td>
                             <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>' />
+                            <asp:Button ID="Btn_Cat" CssClass="btn btn-md btn-primary" runat="server" Text="Catégorie" OnClick="Btn_Cat_Click" CommandArgument='<%#Eval("idProjet") %>'/>
                         </td>
                     </tr>
                 </ItemTemplate>
