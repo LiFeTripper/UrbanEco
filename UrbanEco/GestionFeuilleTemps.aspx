@@ -61,7 +61,7 @@
                     <td><asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" /></td>
                 </tr>
                 <tr>
-                    <asp:Repeater ID="Rptr_FeuilleTemps" runat="server" DataSourceID="LinqDataSource1">
+                    <asp:Repeater ID="Rptr_FeuilleTemps" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load" >
                     <%--ITEMTEMPLATE--%>
                     <ItemTemplate>
                         <tr style="border-bottom: 1px solid #23282e">
@@ -89,6 +89,7 @@
                     </ItemTemplate>
                 </asp:Repeater>
                     </tr>
+                
             </ItemTemplate>
 
             <%--FOOTERTEMPLATE--%>
@@ -110,7 +111,7 @@
 
         <%--DATA SOURCE--%>
         <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjets" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Employe"></asp:LinqDataSource>
-        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqDataSource1" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_FeuilleTemps"></asp:LinqDataSource>
+       
         
     </form>
 </asp:Content>

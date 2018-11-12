@@ -26,11 +26,23 @@ namespace UrbanEco
             Button temp = (sender as Button);
             int idFeuille = int.Parse(temp.CommandArgument);
 
-            var BH = from tblFT in cdc.tbl_FeuilleTemps
+            var FT = from tblFT in cdc.tbl_FeuilleTemps
                      where tblFT.idFeuille == idFeuille
                      select tblFT;
 
-            
+            FT.First<tbl_FeuilleTemps>().approuver = true;
+            cdc.tbl_FeuilleTemps.DeleteOnSubmit(FT.First<tbl_FeuilleTemps>());
+            FT.First<tbl_FeuilleTemps>().approuver = true;
+            cdc.tbl_FeuilleTemps.InsertOnSubmit(FT.First<tbl_FeuilleTemps>());
+
+            cdc.SubmitChanges();
+
+
+        }
+
+        protected void Rptr_FeuilleTemps_Load(object sender, EventArgs e)
+        {
+          
         }
     }
 }

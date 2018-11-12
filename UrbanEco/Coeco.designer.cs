@@ -36,12 +36,18 @@ namespace UrbanEco
     partial void Inserttbl_TypeHeure(tbl_TypeHeure instance);
     partial void Updatetbl_TypeHeure(tbl_TypeHeure instance);
     partial void Deletetbl_TypeHeure(tbl_TypeHeure instance);
+    partial void Inserttbl_Depense(tbl_Depense instance);
+    partial void Updatetbl_Depense(tbl_Depense instance);
+    partial void Deletetbl_Depense(tbl_Depense instance);
     partial void Inserttbl_Employe(tbl_Employe instance);
     partial void Updatetbl_Employe(tbl_Employe instance);
     partial void Deletetbl_Employe(tbl_Employe instance);
     partial void Inserttbl_FeuilleTemps(tbl_FeuilleTemps instance);
     partial void Updatetbl_FeuilleTemps(tbl_FeuilleTemps instance);
     partial void Deletetbl_FeuilleTemps(tbl_FeuilleTemps instance);
+    partial void Inserttbl_Kilometrage(tbl_Kilometrage instance);
+    partial void Updatetbl_Kilometrage(tbl_Kilometrage instance);
+    partial void Deletetbl_Kilometrage(tbl_Kilometrage instance);
     partial void Inserttbl_Projet(tbl_Projet instance);
     partial void Updatetbl_Projet(tbl_Projet instance);
     partial void Deletetbl_Projet(tbl_Projet instance);
@@ -60,12 +66,6 @@ namespace UrbanEco
     partial void Inserttbl_TypeEmploye(tbl_TypeEmploye instance);
     partial void Updatetbl_TypeEmploye(tbl_TypeEmploye instance);
     partial void Deletetbl_TypeEmploye(tbl_TypeEmploye instance);
-    partial void Inserttbl_Kilometrage(tbl_Kilometrage instance);
-    partial void Updatetbl_Kilometrage(tbl_Kilometrage instance);
-    partial void Deletetbl_Kilometrage(tbl_Kilometrage instance);
-    partial void Inserttbl_Depense(tbl_Depense instance);
-    partial void Updatetbl_Depense(tbl_Depense instance);
-    partial void Deletetbl_Depense(tbl_Depense instance);
     #endregion
 		
 		public CoecoDataContext() : 
@@ -114,6 +114,14 @@ namespace UrbanEco
 			}
 		}
 		
+		public System.Data.Linq.Table<tbl_Depense> tbl_Depense
+		{
+			get
+			{
+				return this.GetTable<tbl_Depense>();
+			}
+		}
+		
 		public System.Data.Linq.Table<tbl_Employe> tbl_Employe
 		{
 			get
@@ -127,6 +135,14 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_FeuilleTemps>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_Kilometrage> tbl_Kilometrage
+		{
+			get
+			{
+				return this.GetTable<tbl_Kilometrage>();
 			}
 		}
 		
@@ -175,22 +191,6 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_TypeEmploye>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tbl_Kilometrage> tbl_Kilometrage
-		{
-			get
-			{
-				return this.GetTable<tbl_Kilometrage>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tbl_Depense> tbl_Depense
-		{
-			get
-			{
-				return this.GetTable<tbl_Depense>();
 			}
 		}
 	}
@@ -525,6 +525,359 @@ namespace UrbanEco
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Depense")]
+	public partial class tbl_Depense : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idDepense;
+		
+		private int _idEmploye;
+		
+		private int _idTypeDepense;
+		
+		private int _idProjetCat;
+		
+		private string _note;
+		
+		private System.Nullable<System.DateTime> _dateDepense;
+		
+		private System.Nullable<float> _montant;
+		
+		private System.Nullable<float> _prixKilometrage;
+		
+		private EntityRef<tbl_Employe> _tbl_Employe;
+		
+		private EntityRef<tbl_ProjetCat> _tbl_ProjetCat;
+		
+		private EntityRef<tbl_TypeDepense> _tbl_TypeDepense;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidDepenseChanging(int value);
+    partial void OnidDepenseChanged();
+    partial void OnidEmployeChanging(int value);
+    partial void OnidEmployeChanged();
+    partial void OnidTypeDepenseChanging(int value);
+    partial void OnidTypeDepenseChanged();
+    partial void OnidProjetCatChanging(int value);
+    partial void OnidProjetCatChanged();
+    partial void OnnoteChanging(string value);
+    partial void OnnoteChanged();
+    partial void OndateDepenseChanging(System.Nullable<System.DateTime> value);
+    partial void OndateDepenseChanged();
+    partial void OnmontantChanging(System.Nullable<float> value);
+    partial void OnmontantChanged();
+    partial void OnprixKilometrageChanging(System.Nullable<float> value);
+    partial void OnprixKilometrageChanged();
+    #endregion
+		
+		public tbl_Depense()
+		{
+			this._tbl_Employe = default(EntityRef<tbl_Employe>);
+			this._tbl_ProjetCat = default(EntityRef<tbl_ProjetCat>);
+			this._tbl_TypeDepense = default(EntityRef<tbl_TypeDepense>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idDepense
+		{
+			get
+			{
+				return this._idDepense;
+			}
+			set
+			{
+				if ((this._idDepense != value))
+				{
+					this.OnidDepenseChanging(value);
+					this.SendPropertyChanging();
+					this._idDepense = value;
+					this.SendPropertyChanged("idDepense");
+					this.OnidDepenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", DbType="Int NOT NULL")]
+		public int idEmploye
+		{
+			get
+			{
+				return this._idEmploye;
+			}
+			set
+			{
+				if ((this._idEmploye != value))
+				{
+					if (this._tbl_Employe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidEmployeChanging(value);
+					this.SendPropertyChanging();
+					this._idEmploye = value;
+					this.SendPropertyChanged("idEmploye");
+					this.OnidEmployeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeDepense", DbType="Int NOT NULL")]
+		public int idTypeDepense
+		{
+			get
+			{
+				return this._idTypeDepense;
+			}
+			set
+			{
+				if ((this._idTypeDepense != value))
+				{
+					if (this._tbl_TypeDepense.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidTypeDepenseChanging(value);
+					this.SendPropertyChanging();
+					this._idTypeDepense = value;
+					this.SendPropertyChanged("idTypeDepense");
+					this.OnidTypeDepenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjetCat", DbType="Int NOT NULL")]
+		public int idProjetCat
+		{
+			get
+			{
+				return this._idProjetCat;
+			}
+			set
+			{
+				if ((this._idProjetCat != value))
+				{
+					if (this._tbl_ProjetCat.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidProjetCatChanging(value);
+					this.SendPropertyChanging();
+					this._idProjetCat = value;
+					this.SendPropertyChanged("idProjetCat");
+					this.OnidProjetCatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="VarChar(MAX)")]
+		public string note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				if ((this._note != value))
+				{
+					this.OnnoteChanging(value);
+					this.SendPropertyChanging();
+					this._note = value;
+					this.SendPropertyChanged("note");
+					this.OnnoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateDepense", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> dateDepense
+		{
+			get
+			{
+				return this._dateDepense;
+			}
+			set
+			{
+				if ((this._dateDepense != value))
+				{
+					this.OndateDepenseChanging(value);
+					this.SendPropertyChanging();
+					this._dateDepense = value;
+					this.SendPropertyChanged("dateDepense");
+					this.OndateDepenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_montant", DbType="Real")]
+		public System.Nullable<float> montant
+		{
+			get
+			{
+				return this._montant;
+			}
+			set
+			{
+				if ((this._montant != value))
+				{
+					this.OnmontantChanging(value);
+					this.SendPropertyChanging();
+					this._montant = value;
+					this.SendPropertyChanged("montant");
+					this.OnmontantChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrage", DbType="Real")]
+		public System.Nullable<float> prixKilometrage
+		{
+			get
+			{
+				return this._prixKilometrage;
+			}
+			set
+			{
+				if ((this._prixKilometrage != value))
+				{
+					this.OnprixKilometrageChanging(value);
+					this.SendPropertyChanging();
+					this._prixKilometrage = value;
+					this.SendPropertyChanged("prixKilometrage");
+					this.OnprixKilometrageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_Depense", Storage="_tbl_Employe", ThisKey="idEmploye", OtherKey="idEmploye", IsForeignKey=true)]
+		public tbl_Employe tbl_Employe
+		{
+			get
+			{
+				return this._tbl_Employe.Entity;
+			}
+			set
+			{
+				tbl_Employe previousValue = this._tbl_Employe.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_Employe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_Employe.Entity = null;
+						previousValue.tbl_Depense.Remove(this);
+					}
+					this._tbl_Employe.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_Depense.Add(this);
+						this._idEmploye = value.idEmploye;
+					}
+					else
+					{
+						this._idEmploye = default(int);
+					}
+					this.SendPropertyChanged("tbl_Employe");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_Depense", Storage="_tbl_ProjetCat", ThisKey="idProjetCat", OtherKey="idProjetCat", IsForeignKey=true)]
+		public tbl_ProjetCat tbl_ProjetCat
+		{
+			get
+			{
+				return this._tbl_ProjetCat.Entity;
+			}
+			set
+			{
+				tbl_ProjetCat previousValue = this._tbl_ProjetCat.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_ProjetCat.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_ProjetCat.Entity = null;
+						previousValue.tbl_Depense.Remove(this);
+					}
+					this._tbl_ProjetCat.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_Depense.Add(this);
+						this._idProjetCat = value.idProjetCat;
+					}
+					else
+					{
+						this._idProjetCat = default(int);
+					}
+					this.SendPropertyChanged("tbl_ProjetCat");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeDepense_tbl_Depense", Storage="_tbl_TypeDepense", ThisKey="idTypeDepense", OtherKey="idTypeDepense", IsForeignKey=true)]
+		public tbl_TypeDepense tbl_TypeDepense
+		{
+			get
+			{
+				return this._tbl_TypeDepense.Entity;
+			}
+			set
+			{
+				tbl_TypeDepense previousValue = this._tbl_TypeDepense.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_TypeDepense.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_TypeDepense.Entity = null;
+						previousValue.tbl_Depense.Remove(this);
+					}
+					this._tbl_TypeDepense.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_Depense.Add(this);
+						this._idTypeDepense = value.idTypeDepense;
+					}
+					else
+					{
+						this._idTypeDepense = default(int);
+					}
+					this.SendPropertyChanged("tbl_TypeDepense");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Employe")]
 	public partial class tbl_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -551,13 +904,13 @@ namespace UrbanEco
 		
 		private EntitySet<tbl_BanqueHeure> _tbl_BanqueHeure;
 		
+		private EntitySet<tbl_Depense> _tbl_Depense;
+		
 		private EntitySet<tbl_FeuilleTemps> _tbl_FeuilleTemps;
 		
 		private EntitySet<tbl_Projet> _tbl_Projet;
 		
 		private EntitySet<tbl_ProjetCatEmploye> _tbl_ProjetCatEmploye;
-		
-		private EntitySet<tbl_Depense> _tbl_Depense;
 		
 		private EntityRef<tbl_TypeEmploye> _tbl_TypeEmploye;
 		
@@ -588,10 +941,10 @@ namespace UrbanEco
 		public tbl_Employe()
 		{
 			this._tbl_BanqueHeure = new EntitySet<tbl_BanqueHeure>(new Action<tbl_BanqueHeure>(this.attach_tbl_BanqueHeure), new Action<tbl_BanqueHeure>(this.detach_tbl_BanqueHeure));
+			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
 			this._tbl_FeuilleTemps = new EntitySet<tbl_FeuilleTemps>(new Action<tbl_FeuilleTemps>(this.attach_tbl_FeuilleTemps), new Action<tbl_FeuilleTemps>(this.detach_tbl_FeuilleTemps));
 			this._tbl_Projet = new EntitySet<tbl_Projet>(new Action<tbl_Projet>(this.attach_tbl_Projet), new Action<tbl_Projet>(this.detach_tbl_Projet));
 			this._tbl_ProjetCatEmploye = new EntitySet<tbl_ProjetCatEmploye>(new Action<tbl_ProjetCatEmploye>(this.attach_tbl_ProjetCatEmploye), new Action<tbl_ProjetCatEmploye>(this.detach_tbl_ProjetCatEmploye));
-			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
 			this._tbl_TypeEmploye = default(EntityRef<tbl_TypeEmploye>);
 			OnCreated();
 		}
@@ -793,6 +1146,19 @@ namespace UrbanEco
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_Depense", Storage="_tbl_Depense", ThisKey="idEmploye", OtherKey="idEmploye")]
+		public EntitySet<tbl_Depense> tbl_Depense
+		{
+			get
+			{
+				return this._tbl_Depense;
+			}
+			set
+			{
+				this._tbl_Depense.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_FeuilleTemps", Storage="_tbl_FeuilleTemps", ThisKey="idEmploye", OtherKey="idEmploye")]
 		public EntitySet<tbl_FeuilleTemps> tbl_FeuilleTemps
 		{
@@ -829,19 +1195,6 @@ namespace UrbanEco
 			set
 			{
 				this._tbl_ProjetCatEmploye.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_Depense", Storage="_tbl_Depense", ThisKey="idEmploye", OtherKey="idEmploye")]
-		public EntitySet<tbl_Depense> tbl_Depense
-		{
-			get
-			{
-				return this._tbl_Depense;
-			}
-			set
-			{
-				this._tbl_Depense.Assign(value);
 			}
 		}
 		
@@ -911,6 +1264,18 @@ namespace UrbanEco
 			entity.tbl_Employe = null;
 		}
 		
+		private void attach_tbl_Depense(tbl_Depense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = this;
+		}
+		
+		private void detach_tbl_Depense(tbl_Depense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = null;
+		}
+		
 		private void attach_tbl_FeuilleTemps(tbl_FeuilleTemps entity)
 		{
 			this.SendPropertyChanging();
@@ -946,18 +1311,6 @@ namespace UrbanEco
 			this.SendPropertyChanging();
 			entity.tbl_Employe = null;
 		}
-		
-		private void attach_tbl_Depense(tbl_Depense entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_Employe = this;
-		}
-		
-		private void detach_tbl_Depense(tbl_Depense entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_Employe = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_FeuilleTemps")]
@@ -979,6 +1332,8 @@ namespace UrbanEco
 		private string _commentaire;
 		
 		private System.Nullable<System.DateTime> _dateCreation;
+		
+		private System.Nullable<bool> _approuver;
 		
 		private EntityRef<tbl_Employe> _tbl_Employe;
 		
@@ -1004,6 +1359,8 @@ namespace UrbanEco
     partial void OncommentaireChanged();
     partial void OndateCreationChanging(System.Nullable<System.DateTime> value);
     partial void OndateCreationChanged();
+    partial void OnapprouverChanging(System.Nullable<bool> value);
+    partial void OnapprouverChanged();
     #endregion
 		
 		public tbl_FeuilleTemps()
@@ -1166,6 +1523,26 @@ namespace UrbanEco
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approuver", DbType="Bit")]
+		public System.Nullable<bool> approuver
+		{
+			get
+			{
+				return this._approuver;
+			}
+			set
+			{
+				if ((this._approuver != value))
+				{
+					this.OnapprouverChanging(value);
+					this.SendPropertyChanging();
+					this._approuver = value;
+					this.SendPropertyChanged("approuver");
+					this.OnapprouverChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_FeuilleTemps", Storage="_tbl_Employe", ThisKey="idEmploye", OtherKey="idEmploye", IsForeignKey=true)]
 		public tbl_Employe tbl_Employe
 		{
@@ -1264,6 +1641,92 @@ namespace UrbanEco
 						this._idCat = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tbl_ProjetCat");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Kilometrage")]
+	public partial class tbl_Kilometrage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idKilometrage;
+		
+		private float _prixKilometrage;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidKilometrageChanging(int value);
+    partial void OnidKilometrageChanged();
+    partial void OnprixKilometrageChanging(float value);
+    partial void OnprixKilometrageChanged();
+    #endregion
+		
+		public tbl_Kilometrage()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKilometrage", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idKilometrage
+		{
+			get
+			{
+				return this._idKilometrage;
+			}
+			set
+			{
+				if ((this._idKilometrage != value))
+				{
+					this.OnidKilometrageChanging(value);
+					this.SendPropertyChanging();
+					this._idKilometrage = value;
+					this.SendPropertyChanged("idKilometrage");
+					this.OnidKilometrageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrage", DbType="Real NOT NULL")]
+		public float prixKilometrage
+		{
+			get
+			{
+				return this._prixKilometrage;
+			}
+			set
+			{
+				if ((this._prixKilometrage != value))
+				{
+					this.OnprixKilometrageChanging(value);
+					this.SendPropertyChanging();
+					this._prixKilometrage = value;
+					this.SendPropertyChanged("prixKilometrage");
+					this.OnprixKilometrageChanged();
 				}
 			}
 		}
@@ -1725,13 +2188,13 @@ namespace UrbanEco
 		
 		private string _description;
 		
+		private EntitySet<tbl_Depense> _tbl_Depense;
+		
 		private EntitySet<tbl_FeuilleTemps> _tbl_FeuilleTemps;
 		
 		private EntitySet<tbl_ProjetCat> _tbl_ProjetCat2;
 		
 		private EntitySet<tbl_ProjetCatEmploye> _tbl_ProjetCatEmploye;
-		
-		private EntitySet<tbl_Depense> _tbl_Depense;
 		
 		private EntityRef<tbl_ProjetCat> _tbl_ProjetCat1;
 		
@@ -1755,10 +2218,10 @@ namespace UrbanEco
 		
 		public tbl_ProjetCat()
 		{
+			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
 			this._tbl_FeuilleTemps = new EntitySet<tbl_FeuilleTemps>(new Action<tbl_FeuilleTemps>(this.attach_tbl_FeuilleTemps), new Action<tbl_FeuilleTemps>(this.detach_tbl_FeuilleTemps));
 			this._tbl_ProjetCat2 = new EntitySet<tbl_ProjetCat>(new Action<tbl_ProjetCat>(this.attach_tbl_ProjetCat2), new Action<tbl_ProjetCat>(this.detach_tbl_ProjetCat2));
 			this._tbl_ProjetCatEmploye = new EntitySet<tbl_ProjetCatEmploye>(new Action<tbl_ProjetCatEmploye>(this.attach_tbl_ProjetCatEmploye), new Action<tbl_ProjetCatEmploye>(this.detach_tbl_ProjetCatEmploye));
-			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
 			this._tbl_ProjetCat1 = default(EntityRef<tbl_ProjetCat>);
 			this._tbl_Projet = default(EntityRef<tbl_Projet>);
 			OnCreated();
@@ -1872,6 +2335,19 @@ namespace UrbanEco
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_Depense", Storage="_tbl_Depense", ThisKey="idProjetCat", OtherKey="idProjetCat")]
+		public EntitySet<tbl_Depense> tbl_Depense
+		{
+			get
+			{
+				return this._tbl_Depense;
+			}
+			set
+			{
+				this._tbl_Depense.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_FeuilleTemps", Storage="_tbl_FeuilleTemps", ThisKey="idProjetCat", OtherKey="idCat")]
 		public EntitySet<tbl_FeuilleTemps> tbl_FeuilleTemps
 		{
@@ -1908,19 +2384,6 @@ namespace UrbanEco
 			set
 			{
 				this._tbl_ProjetCatEmploye.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_Depense", Storage="_tbl_Depense", ThisKey="idProjetCat", OtherKey="idProjetCat")]
-		public EntitySet<tbl_Depense> tbl_Depense
-		{
-			get
-			{
-				return this._tbl_Depense;
-			}
-			set
-			{
-				this._tbl_Depense.Assign(value);
 			}
 		}
 		
@@ -2012,6 +2475,18 @@ namespace UrbanEco
 			}
 		}
 		
+		private void attach_tbl_Depense(tbl_Depense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_ProjetCat = this;
+		}
+		
+		private void detach_tbl_Depense(tbl_Depense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_ProjetCat = null;
+		}
+		
 		private void attach_tbl_FeuilleTemps(tbl_FeuilleTemps entity)
 		{
 			this.SendPropertyChanging();
@@ -2043,18 +2518,6 @@ namespace UrbanEco
 		}
 		
 		private void detach_tbl_ProjetCatEmploye(tbl_ProjetCatEmploye entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_ProjetCat = null;
-		}
-		
-		private void attach_tbl_Depense(tbl_Depense entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_ProjetCat = this;
-		}
-		
-		private void detach_tbl_Depense(tbl_Depense entity)
 		{
 			this.SendPropertyChanging();
 			entity.tbl_ProjetCat = null;
@@ -2657,445 +3120,6 @@ namespace UrbanEco
 		{
 			this.SendPropertyChanging();
 			entity.tbl_TypeEmploye = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Kilometrage")]
-	public partial class tbl_Kilometrage : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idKilometrage;
-		
-		private float _prixKilometrage;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidKilometrageChanging(int value);
-    partial void OnidKilometrageChanged();
-    partial void OnprixKilometrageChanging(float value);
-    partial void OnprixKilometrageChanged();
-    #endregion
-		
-		public tbl_Kilometrage()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKilometrage", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idKilometrage
-		{
-			get
-			{
-				return this._idKilometrage;
-			}
-			set
-			{
-				if ((this._idKilometrage != value))
-				{
-					this.OnidKilometrageChanging(value);
-					this.SendPropertyChanging();
-					this._idKilometrage = value;
-					this.SendPropertyChanged("idKilometrage");
-					this.OnidKilometrageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrage", DbType="Real NOT NULL")]
-		public float prixKilometrage
-		{
-			get
-			{
-				return this._prixKilometrage;
-			}
-			set
-			{
-				if ((this._prixKilometrage != value))
-				{
-					this.OnprixKilometrageChanging(value);
-					this.SendPropertyChanging();
-					this._prixKilometrage = value;
-					this.SendPropertyChanged("prixKilometrage");
-					this.OnprixKilometrageChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Depense")]
-	public partial class tbl_Depense : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idDepense;
-		
-		private int _idEmploye;
-		
-		private int _idTypeDepense;
-		
-		private int _idProjetCat;
-		
-		private string _note;
-		
-		private System.Nullable<System.DateTime> _dateDepense;
-		
-		private System.Nullable<float> _montant;
-		
-		private System.Nullable<float> _prixKilometrage;
-		
-		private EntityRef<tbl_Employe> _tbl_Employe;
-		
-		private EntityRef<tbl_ProjetCat> _tbl_ProjetCat;
-		
-		private EntityRef<tbl_TypeDepense> _tbl_TypeDepense;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidDepenseChanging(int value);
-    partial void OnidDepenseChanged();
-    partial void OnidEmployeChanging(int value);
-    partial void OnidEmployeChanged();
-    partial void OnidTypeDepenseChanging(int value);
-    partial void OnidTypeDepenseChanged();
-    partial void OnidProjetCatChanging(int value);
-    partial void OnidProjetCatChanged();
-    partial void OnnoteChanging(string value);
-    partial void OnnoteChanged();
-    partial void OndateDepenseChanging(System.Nullable<System.DateTime> value);
-    partial void OndateDepenseChanged();
-    partial void OnmontantChanging(System.Nullable<float> value);
-    partial void OnmontantChanged();
-    partial void OnprixKilometrageChanging(System.Nullable<float> value);
-    partial void OnprixKilometrageChanged();
-    #endregion
-		
-		public tbl_Depense()
-		{
-			this._tbl_Employe = default(EntityRef<tbl_Employe>);
-			this._tbl_ProjetCat = default(EntityRef<tbl_ProjetCat>);
-			this._tbl_TypeDepense = default(EntityRef<tbl_TypeDepense>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idDepense
-		{
-			get
-			{
-				return this._idDepense;
-			}
-			set
-			{
-				if ((this._idDepense != value))
-				{
-					this.OnidDepenseChanging(value);
-					this.SendPropertyChanging();
-					this._idDepense = value;
-					this.SendPropertyChanged("idDepense");
-					this.OnidDepenseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", DbType="Int NOT NULL")]
-		public int idEmploye
-		{
-			get
-			{
-				return this._idEmploye;
-			}
-			set
-			{
-				if ((this._idEmploye != value))
-				{
-					if (this._tbl_Employe.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidEmployeChanging(value);
-					this.SendPropertyChanging();
-					this._idEmploye = value;
-					this.SendPropertyChanged("idEmploye");
-					this.OnidEmployeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeDepense", DbType="Int NOT NULL")]
-		public int idTypeDepense
-		{
-			get
-			{
-				return this._idTypeDepense;
-			}
-			set
-			{
-				if ((this._idTypeDepense != value))
-				{
-					if (this._tbl_TypeDepense.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidTypeDepenseChanging(value);
-					this.SendPropertyChanging();
-					this._idTypeDepense = value;
-					this.SendPropertyChanged("idTypeDepense");
-					this.OnidTypeDepenseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjetCat", DbType="Int NOT NULL")]
-		public int idProjetCat
-		{
-			get
-			{
-				return this._idProjetCat;
-			}
-			set
-			{
-				if ((this._idProjetCat != value))
-				{
-					if (this._tbl_ProjetCat.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidProjetCatChanging(value);
-					this.SendPropertyChanging();
-					this._idProjetCat = value;
-					this.SendPropertyChanged("idProjetCat");
-					this.OnidProjetCatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="VarChar(MAX)")]
-		public string note
-		{
-			get
-			{
-				return this._note;
-			}
-			set
-			{
-				if ((this._note != value))
-				{
-					this.OnnoteChanging(value);
-					this.SendPropertyChanging();
-					this._note = value;
-					this.SendPropertyChanged("note");
-					this.OnnoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateDepense", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> dateDepense
-		{
-			get
-			{
-				return this._dateDepense;
-			}
-			set
-			{
-				if ((this._dateDepense != value))
-				{
-					this.OndateDepenseChanging(value);
-					this.SendPropertyChanging();
-					this._dateDepense = value;
-					this.SendPropertyChanged("dateDepense");
-					this.OndateDepenseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_montant", DbType="Real")]
-		public System.Nullable<float> montant
-		{
-			get
-			{
-				return this._montant;
-			}
-			set
-			{
-				if ((this._montant != value))
-				{
-					this.OnmontantChanging(value);
-					this.SendPropertyChanging();
-					this._montant = value;
-					this.SendPropertyChanged("montant");
-					this.OnmontantChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrage", DbType="Real")]
-		public System.Nullable<float> prixKilometrage
-		{
-			get
-			{
-				return this._prixKilometrage;
-			}
-			set
-			{
-				if ((this._prixKilometrage != value))
-				{
-					this.OnprixKilometrageChanging(value);
-					this.SendPropertyChanging();
-					this._prixKilometrage = value;
-					this.SendPropertyChanged("prixKilometrage");
-					this.OnprixKilometrageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_Depense", Storage="_tbl_Employe", ThisKey="idEmploye", OtherKey="idEmploye", IsForeignKey=true)]
-		public tbl_Employe tbl_Employe
-		{
-			get
-			{
-				return this._tbl_Employe.Entity;
-			}
-			set
-			{
-				tbl_Employe previousValue = this._tbl_Employe.Entity;
-				if (((previousValue != value) 
-							|| (this._tbl_Employe.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbl_Employe.Entity = null;
-						previousValue.tbl_Depense.Remove(this);
-					}
-					this._tbl_Employe.Entity = value;
-					if ((value != null))
-					{
-						value.tbl_Depense.Add(this);
-						this._idEmploye = value.idEmploye;
-					}
-					else
-					{
-						this._idEmploye = default(int);
-					}
-					this.SendPropertyChanged("tbl_Employe");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_Depense", Storage="_tbl_ProjetCat", ThisKey="idProjetCat", OtherKey="idProjetCat", IsForeignKey=true)]
-		public tbl_ProjetCat tbl_ProjetCat
-		{
-			get
-			{
-				return this._tbl_ProjetCat.Entity;
-			}
-			set
-			{
-				tbl_ProjetCat previousValue = this._tbl_ProjetCat.Entity;
-				if (((previousValue != value) 
-							|| (this._tbl_ProjetCat.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbl_ProjetCat.Entity = null;
-						previousValue.tbl_Depense.Remove(this);
-					}
-					this._tbl_ProjetCat.Entity = value;
-					if ((value != null))
-					{
-						value.tbl_Depense.Add(this);
-						this._idProjetCat = value.idProjetCat;
-					}
-					else
-					{
-						this._idProjetCat = default(int);
-					}
-					this.SendPropertyChanged("tbl_ProjetCat");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeDepense_tbl_Depense", Storage="_tbl_TypeDepense", ThisKey="idTypeDepense", OtherKey="idTypeDepense", IsForeignKey=true)]
-		public tbl_TypeDepense tbl_TypeDepense
-		{
-			get
-			{
-				return this._tbl_TypeDepense.Entity;
-			}
-			set
-			{
-				tbl_TypeDepense previousValue = this._tbl_TypeDepense.Entity;
-				if (((previousValue != value) 
-							|| (this._tbl_TypeDepense.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbl_TypeDepense.Entity = null;
-						previousValue.tbl_Depense.Remove(this);
-					}
-					this._tbl_TypeDepense.Entity = value;
-					if ((value != null))
-					{
-						value.tbl_Depense.Add(this);
-						this._idTypeDepense = value.idTypeDepense;
-					}
-					else
-					{
-						this._idTypeDepense = default(int);
-					}
-					this.SendPropertyChanged("tbl_TypeDepense");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }
