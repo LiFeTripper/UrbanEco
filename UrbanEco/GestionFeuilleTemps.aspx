@@ -59,10 +59,9 @@
             <ItemTemplate>
                 <tr>
                     <td><asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" /></td>
-                     <td><asp:Label ID="lbl_idEmp" runat="server" Text='<%# Eval("idEmploye")%>' Font-Bold="true" /></td>
                 </tr>
                 <tr>
-                    <asp:Repeater ID="Rptr_FeuilleTemps" runat="server" DataSourceID="LinqDataSource1" OnLoad="Rptr_FeuilleTemps_Load">
+                    <asp:Repeater ID="Rptr_FeuilleTemps" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load" >
                     <%--ITEMTEMPLATE--%>
                     <ItemTemplate>
                         <tr style="border-bottom: 1px solid #23282e">
@@ -112,12 +111,7 @@
 
         <%--DATA SOURCE--%>
         <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjets" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Employe"></asp:LinqDataSource>
-        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqDataSource1" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_FeuilleTemps" Where="idEmploye == @idEmploye">
-
-            <WhereParameters>
-                <asp:ControlParameter ControlID="lbl_idEmp" PropertyName="Text" Name="idEmploye" Type="Int32"></asp:ControlParameter>
-            </WhereParameters>
-        </asp:LinqDataSource>
+       
         
     </form>
 </asp:Content>
