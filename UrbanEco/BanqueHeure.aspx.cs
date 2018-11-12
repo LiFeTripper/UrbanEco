@@ -23,6 +23,8 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Page.MaintainScrollPositionOnPostBack = true;
             //Vérification si admin ou non avec id du layout
             //Code
             //Fin vérification

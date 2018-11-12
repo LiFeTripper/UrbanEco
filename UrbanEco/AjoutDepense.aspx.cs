@@ -11,9 +11,13 @@ namespace UrbanEco
     {
        static bool DepenseAjouter = false;
 
+        static tbl_Kilometrage prixKilometrage;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //Calendar.Value = DateTime.Today.ToShortDateString();
+
+            Page.MaintainScrollPositionOnPostBack = true;
 
             if (!IsPostBack)
             {
@@ -23,11 +27,11 @@ namespace UrbanEco
 
                 CoecoDataContext context = new CoecoDataContext();
 
-                var query = from tbl in context.tbl_Projet
+                var queryProjet = from tbl in context.tbl_Projet
                             orderby tbl.titre
                             select tbl;
 
-                tbx_projet.DataSource = query;
+                tbx_projet.DataSource = queryProjet;
                 tbx_projet.DataBind();
 
 
@@ -36,6 +40,12 @@ namespace UrbanEco
                 //Calendar.Value = DateTime.Today.ToShortDateString();
 
                 tbx_typeDepense.SelectedIndex = 0;
+
+                var queryKilo = from tbl in context.tbl_Kilometrage
+                        select tbl;
+
+                prixKilometrage = queryKilo.First();
+               
             }
 
             UpdateRecapitulatif();
@@ -64,13 +74,14 @@ namespace UrbanEco
                 if (km_html.Visible)
                 {
                     //KM
-                    dep.montant = float.Parse(tbx_montant1.Text) * 0.47f;
-
+                    dep.montant = float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage;
+                    dep.prixKilometrage = prixKilometrage.prixKilometrage;
                 }
                 else
                 {
                     //Montant autre
                     dep.montant = float.Parse(tbx_montant2.Text);
+                    dep.prixKilometrage = null;
                 }
 
                
@@ -131,7 +142,13 @@ namespace UrbanEco
             //rep_date.InnerText = Calendar.Value.ToString();
             if (km_html.Visible)
             {
-                rep_montant.InnerText = (tbx_montant1.Text) + "$";
+                float prix = -1;
+                float.TryParse(tbx_montant1.Text, out prix);
+
+                if(prix != -1)
+                {
+                    rep_montant.InnerText = (prix * prixKilometrage.prixKilometrage) + "$";
+                }
             }
             else
             {
@@ -166,7 +183,7 @@ namespace UrbanEco
 
         protected void tbx_montant1_TextChanged(object sender, EventArgs e)
         {
-            montantTotalDepense.InnerText = " * 0.47$ = " + (float.Parse(tbx_montant1.Text) * 0.47f) + "$";
+            montantTotalDepense.InnerText = " * "+ prixKilometrage.prixKilometrage+"$ = " + (float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage) + "$";
         }
     }
 }
