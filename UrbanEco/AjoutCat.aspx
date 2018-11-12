@@ -53,6 +53,9 @@
                         <tr>
                             <td>
                                 <asp:ListBox ID="Lbx_Cat1" runat="server" OnSelectedIndexChanged="Lbx_Cat1_SelectedIndexChanged" AutoPostBack="true"></asp:ListBox>
+                                <asp:TextBox ID="Tbx_AjoutCat" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="Tbx_AjoutCatDesc" runat="server"></asp:TextBox>
+                                <asp:Button ID="Btn_AjoutCat" runat="server" Text="Ajouter" OnClick="Btn_AjoutCat_Click"/>
                             </td>
                         </tr>
                         <%--NIVEAU 2--%>
@@ -64,6 +67,9 @@
                         <tr>
                             <td>
                                 <asp:ListBox ID="Lbx_Cat2" runat="server"></asp:ListBox>
+                                <asp:TextBox ID="Tbx_AjoutSousCat" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="Tbx_AjoutSousCatDesc" runat="server"></asp:TextBox>
+                                <asp:Button ID="Btn_AjoutSousCat" runat="server" Text="Ajouter" />
                             </td>
                         </tr>
                         </table>

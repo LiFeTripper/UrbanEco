@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AjoutCat.aspx" />
     <Content Include="AjoutDepense.aspx" />
     <Content Include="AjoutProjets.aspx" />
     <Content Include="BanqueHeure.aspx" />
@@ -102,6 +103,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjoutCat.aspx.cs">
+      <DependentUpon>AjoutCat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjoutCat.aspx.designer.cs">
+      <DependentUpon>AjoutCat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AjoutDepense.aspx.cs">
       <DependentUpon>AjoutDepense.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
