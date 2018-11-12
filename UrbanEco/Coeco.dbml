@@ -115,6 +115,12 @@
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_Kilometrage" Member="tbl_Kilometrage">
+    <Type Name="tbl_Kilometrage">
+      <Column Name="idKilometrage" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="prixKilometrage" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.tbl_Depense" Member="tbl_Depense">
     <Type Name="tbl_Depense">
       <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -124,6 +130,7 @@
       <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="dateDepense" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
       <Column Name="montant" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="prixKilometrage" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
       <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_ProjetCat" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />
       <Association Name="tbl_TypeDepense_tbl_Depense" Member="tbl_TypeDepense" ThisKey="idTypeDepense" OtherKey="idTypeDepense" Type="tbl_TypeDepense" IsForeignKey="true" />

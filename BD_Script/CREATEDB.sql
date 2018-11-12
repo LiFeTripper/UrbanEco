@@ -233,12 +233,21 @@ CREATE TABLE tbl_Depense
 	note VARCHAR(MAX),
 	dateDepense SMALLDATETIME DEFAULT GETDATE(),
 	montant FLOAT(24) DEFAULT 0,
+	prixKilometrage FLOAT (24) DEFAULT NULL,
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_Depenses_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
 	CONSTRAINT FK_tbl_Depenses_idTypeDepense FOREIGN KEY (idTypeDepense) REFERENCES tbl_TypeDepense(idTypeDepense),
 	CONSTRAINT FK_tbl_Depenses_idProjetCat FOREIGN KEY (idProjetCat) REFERENCES tbl_ProjetCat(idProjetCat)
 )
+
+CREATE TABLE tbl_Kilometrage
+(
+	idKilometrage INT IDENTITY(1,1) PRIMARY KEY,
+	prixKilometrage FLOAT(24) NOT NULL
+)
+
+INSERT INTO tbl_Kilometrage(prixKilometrage) VALUES (0.47);
 
 --Web User
 

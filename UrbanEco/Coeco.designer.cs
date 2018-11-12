@@ -60,6 +60,9 @@ namespace UrbanEco
     partial void Inserttbl_TypeEmploye(tbl_TypeEmploye instance);
     partial void Updatetbl_TypeEmploye(tbl_TypeEmploye instance);
     partial void Deletetbl_TypeEmploye(tbl_TypeEmploye instance);
+    partial void Inserttbl_Kilometrage(tbl_Kilometrage instance);
+    partial void Updatetbl_Kilometrage(tbl_Kilometrage instance);
+    partial void Deletetbl_Kilometrage(tbl_Kilometrage instance);
     partial void Inserttbl_Depense(tbl_Depense instance);
     partial void Updatetbl_Depense(tbl_Depense instance);
     partial void Deletetbl_Depense(tbl_Depense instance);
@@ -172,6 +175,14 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_TypeEmploye>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_Kilometrage> tbl_Kilometrage
+		{
+			get
+			{
+				return this.GetTable<tbl_Kilometrage>();
 			}
 		}
 		
@@ -2649,6 +2660,92 @@ namespace UrbanEco
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Kilometrage")]
+	public partial class tbl_Kilometrage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idKilometrage;
+		
+		private float _prixKilometrage;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidKilometrageChanging(int value);
+    partial void OnidKilometrageChanged();
+    partial void OnprixKilometrageChanging(float value);
+    partial void OnprixKilometrageChanged();
+    #endregion
+		
+		public tbl_Kilometrage()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKilometrage", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idKilometrage
+		{
+			get
+			{
+				return this._idKilometrage;
+			}
+			set
+			{
+				if ((this._idKilometrage != value))
+				{
+					this.OnidKilometrageChanging(value);
+					this.SendPropertyChanging();
+					this._idKilometrage = value;
+					this.SendPropertyChanged("idKilometrage");
+					this.OnidKilometrageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrage", DbType="Real NOT NULL")]
+		public float prixKilometrage
+		{
+			get
+			{
+				return this._prixKilometrage;
+			}
+			set
+			{
+				if ((this._prixKilometrage != value))
+				{
+					this.OnprixKilometrageChanging(value);
+					this.SendPropertyChanging();
+					this._prixKilometrage = value;
+					this.SendPropertyChanged("prixKilometrage");
+					this.OnprixKilometrageChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Depense")]
 	public partial class tbl_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2668,6 +2765,8 @@ namespace UrbanEco
 		private System.Nullable<System.DateTime> _dateDepense;
 		
 		private System.Nullable<float> _montant;
+		
+		private System.Nullable<float> _prixKilometrage;
 		
 		private EntityRef<tbl_Employe> _tbl_Employe;
 		
@@ -2693,6 +2792,8 @@ namespace UrbanEco
     partial void OndateDepenseChanged();
     partial void OnmontantChanging(System.Nullable<float> value);
     partial void OnmontantChanged();
+    partial void OnprixKilometrageChanging(System.Nullable<float> value);
+    partial void OnprixKilometrageChanged();
     #endregion
 		
 		public tbl_Depense()
@@ -2851,6 +2952,26 @@ namespace UrbanEco
 					this._montant = value;
 					this.SendPropertyChanged("montant");
 					this.OnmontantChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrage", DbType="Real")]
+		public System.Nullable<float> prixKilometrage
+		{
+			get
+			{
+				return this._prixKilometrage;
+			}
+			set
+			{
+				if ((this._prixKilometrage != value))
+				{
+					this.OnprixKilometrageChanging(value);
+					this.SendPropertyChanging();
+					this._prixKilometrage = value;
+					this.SendPropertyChanged("prixKilometrage");
+					this.OnprixKilometrageChanged();
 				}
 			}
 		}

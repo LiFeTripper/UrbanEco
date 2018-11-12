@@ -39,7 +39,7 @@
         </div>
 
 
-        <div class="row justify-content-md-center" style="margin-bottom:100px;">
+        <div class="row justify-content-md-center" style="margin-bottom:20px;">
             <div class="col-md-offset-3 col-6">
 
                 <table style="width: 100% !important;">
@@ -77,7 +77,6 @@
                     </tr>
                     <tr>
                         <td>
-<%--                            <asp: type="date" id="Calendar" style="margin:auto;" runat="server" autopostback="true"></asp:>--%>
                             <input type="date" ID="Calendar" style="margin:auto;" runat="server" />
                         </td>
                     </tr>
