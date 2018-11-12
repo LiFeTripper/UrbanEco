@@ -69,7 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AjoutCat.aspx" />
     <Content Include="AjoutDepense.aspx" />
     <Content Include="BanqueHeure.aspx" />
     <Content Include="Employe.aspx" />
@@ -95,20 +94,13 @@
     <Content Include="lib\webfonts\fa-regular-400.svg" />
     <Content Include="lib\webfonts\fa-solid-900.svg" />
     <Content Include="Login.aspx" />
-    <Content Include="AjoutProjets.aspx" />
+    <Content Include="AjouterProjets.aspx" />
     <Content Include="Projets.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AjoutCat.aspx.cs">
-      <DependentUpon>AjoutCat.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AjoutCat.aspx.designer.cs">
-      <DependentUpon>AjoutCat.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AjoutDepense.aspx.cs">
       <DependentUpon>AjoutDepense.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -156,12 +148,11 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AjoutProjets.aspx.cs">
-      <DependentUpon>AjoutProjets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="AjouterProjets.aspx.cs">
+      <DependentUpon>AjouterProjets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AjoutProjets.aspx.designer.cs">
-      <DependentUpon>AjoutProjets.aspx</DependentUpon>
+    <Compile Include="AjouterProjets.aspx.designer.cs">
+      <DependentUpon>AjouterProjets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Projets.aspx.cs">
       <DependentUpon>Projets.aspx</DependentUpon>
