@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs"  ResponseEncoding="utf-8" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" %>
+<%@ Page Title="Gestion de la banque d'heures" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs"  ResponseEncoding="utf-8" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server" >
     <style>
@@ -29,12 +29,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align: center" class="container center col-12">
         <div>
-            <h1>Gestion de la Banque d'Heures
+            <h1 id="h1TitlePage" runat="server">Gestion de la Banque d'Heures
             </h1>
             <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-offset-3 col-6">
+                 <div runat="server" id="AlertDiv" visible="false" class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Attention!</strong> <br />Veuillez choisir un employé avant d'activer la modification !
+                 </div>
                 <table class="table-custom">
                     <tr>
                         <th><asp:DropDownList ID="ddl_empBH" runat="server" style="width:100%" OnSelectedIndexChanged="ddl_empBH_SelectedIndexChanged" CssClass="input-box" AutoPostBack="True">
@@ -63,9 +67,14 @@
                                 </asp:TableCell></asp:TableRow><asp:TableRow>
                                 <asp:TableHeaderCell CssClass="input-title">Congé maladie</asp:TableHeaderCell><asp:TableCell>
                                     <asp:TextBox CssClass="input-box" runat="server" ID="tbx_nbHeureCongeMaladie" />
-                                </asp:TableCell></asp:TableRow></asp:Table></td></tr><tr>
+                                </asp:TableCell></asp:TableRow></asp:Table></td>
+
+                    </tr>
+                    <tr>
+                        <td><asp:Button ID="btn_Admin" runat="server" OnClick="btn_Admin_Click" Text="Admin" CssClass="btn btn-md btn-success" AutoPostBack ="true"/></td>
                         <td><asp:Button ID="btn_modifBH" runat="server"  OnClick="btn_modifBH_Click" Text="Activer la modification"  CssClass="btn btn-md btn-success" /></td>
                     </tr>
+                    
                 </table>
             </div>
         </div>
