@@ -13,6 +13,24 @@ namespace UrbanEco {
     public partial class BanqueHeure {
         
         /// <summary>
+        /// Contrôle h1TitlePage.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h1TitlePage;
+        
+        /// <summary>
+        /// Contrôle AlertDiv.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AlertDiv;
+        
+        /// <summary>
         /// Contrôle ddl_empBH.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureCongeMaladie;
+        
+        /// <summary>
+        /// Contrôle btn_Admin.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Admin;
         
         /// <summary>
         /// Contrôle btn_modifBH.
