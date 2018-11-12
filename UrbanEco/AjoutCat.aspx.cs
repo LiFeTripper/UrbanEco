@@ -52,7 +52,7 @@ namespace UrbanEco
             {
                 ListItem maliste = new ListItem(souscat.titre, souscat.idProjetCat.ToString());
                 Lbx_Cat2.Items.Add(maliste);
-            }
+            } //allo
         }
     }
 }
