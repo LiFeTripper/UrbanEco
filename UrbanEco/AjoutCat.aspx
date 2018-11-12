@@ -56,6 +56,8 @@
                                 <asp:TextBox ID="Tbx_AjoutCat" runat="server"></asp:TextBox>
                                 <asp:TextBox ID="Tbx_AjoutCatDesc" runat="server"></asp:TextBox>
                                 <asp:Button ID="Btn_AjoutCat" runat="server" Text="Ajouter" OnClick="Btn_AjoutCat_Click"/>
+                            
+                                <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="Send(); return false;"/>
                             </td>
                         </tr>
                         <%--NIVEAU 2--%>
@@ -73,9 +75,37 @@
                             </td>
                         </tr>
                         </table>
-
+                    
                     </div>
                 </div>
             </div>
+
+        <script>
+            
+            function Send() {
+                bootbox.dialog({
+                    title: 'Nouvelle Catégorie pour ce projet',
+                    input: 'textarea',
+                    message: "<p>Veuillez entrez les informations de la nouvelle catégorie :</p><p><label for='Tbx_AjoutCat'>Nom de la catégorie :</label></p> <p><input type='text' name='Tbx_AjoutCat'></input></p>",
+
+                    buttons: {
+                        ok: {
+                            label: "Ajouter",
+                            className: 'btn-info',
+                            callback: function () {
+                                Example.show('Nouvelles catégorie ajoutée');
+                            },
+                        },
+                        cancel: {
+                            label: "Annuler",
+                            className: 'btn-danger',
+                            callback: function () {
+                                Example.show('Pas de nouvelle catégorie ajoutée');
+                            }
+                        },
+                    }
+                });
+            }
+        </script>
         </form>
 </asp:Content>
