@@ -53,6 +53,11 @@ namespace UrbanEco
                 ListItem maliste = new ListItem(souscat.titre, souscat.idProjetCat.ToString());
                 Lbx_Cat2.Items.Add(maliste);
             }
+
+            Lbx_Cat2.Visible = true;
+            Tbx_AjoutSousCat.Visible = true;
+            Tbx_AjoutSousCatDesc.Visible = true;
+            Btn_AjoutSousCat.Visible = true;
         }
 
         protected void Btn_AjoutCat_Click(object sender, EventArgs e)
@@ -72,6 +77,30 @@ namespace UrbanEco
 
             context.tbl_ProjetCat.InsertOnSubmit(tableCat);
             
+            context.SubmitChanges();
+        }
+
+        protected void Btn_AjoutSousCat_Click(object sender, EventArgs e)
+        {
+            //Recherche de l'argument dans l'adresse
+            argument = Request.QueryString["Prj"];
+
+            //Variable contenant la catégorie maître
+            int idCat1 = int.Parse(Lbx_Cat1.SelectedValue);
+
+            CoecoDataContext context = new CoecoDataContext();
+
+            //Objet de ma table Projet
+            tbl_ProjetCat tableCat = new tbl_ProjetCat();
+
+            //Remplissage des champs de la table temporaire avec les contrôles
+            tableCat.idProjet = int.Parse(argument);
+            tableCat.idCatMaitre = idCat1;
+            tableCat.titre = Tbx_AjoutCat.Text;
+            tableCat.description = Tbx_AjoutCatDesc.Text;
+
+            context.tbl_ProjetCat.InsertOnSubmit(tableCat);
+
             context.SubmitChanges();
         }
     }
