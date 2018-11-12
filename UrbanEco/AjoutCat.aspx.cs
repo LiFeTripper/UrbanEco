@@ -52,7 +52,27 @@ namespace UrbanEco
             {
                 ListItem maliste = new ListItem(souscat.titre, souscat.idProjetCat.ToString());
                 Lbx_Cat2.Items.Add(maliste);
-            } //allo
+            }
+        }
+
+        protected void Btn_AjoutCat_Click(object sender, EventArgs e)
+        {
+            //Recherche de l'argument dans l'adresse
+            argument = Request.QueryString["Prj"];
+
+            CoecoDataContext context = new CoecoDataContext();
+            
+                //Objet de ma table Projet
+                tbl_ProjetCat tableCat = new tbl_ProjetCat();
+
+            //Remplissage des champs de la table temporaire avec les contrôles
+            tableCat.idProjet = int.Parse(argument);
+            tableCat.titre = Tbx_AjoutCat.Text;
+            tableCat.description = Tbx_AjoutCatDesc.Text;
+
+            context.tbl_ProjetCat.InsertOnSubmit(tableCat);
+            
+            context.SubmitChanges();
         }
     }
 }
