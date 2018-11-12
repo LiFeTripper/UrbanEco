@@ -73,6 +73,7 @@
     <Content Include="AjoutProjets.aspx" />
     <Content Include="BanqueHeure.aspx" />
     <Content Include="Employe.aspx" />
+    <Content Include="GestionFeuilleTemps.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="lib\css\bootstrap-grid.css" />
     <Content Include="lib\css\bootstrap-grid.min.css" />
@@ -133,6 +134,13 @@
     </Compile>
     <Compile Include="Employe.aspx.designer.cs">
       <DependentUpon>Employe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionFeuilleTemps.aspx.cs">
+      <DependentUpon>GestionFeuilleTemps.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionFeuilleTemps.aspx.designer.cs">
+      <DependentUpon>GestionFeuilleTemps.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
