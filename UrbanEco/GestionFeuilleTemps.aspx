@@ -83,7 +83,7 @@
                             </td>
                             <td>
                                 <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" OnClick="Btn_Modif_Click" runat="server" Text="Modification"  /> 
-                                <asp:Button ID="Btn_Approve" CssClass="btn btn-md btn-primary" runat="server" Text="Approuver"  /> 
+                                <asp:Button ID="Btn_Approve" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_Approve_Click" Text="Approuver" CommandArgument='<%#Eval("idFeuille") %>'  /> 
                             </td>
                         </tr>
                     </ItemTemplate>

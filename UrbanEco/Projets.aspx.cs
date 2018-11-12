@@ -24,6 +24,7 @@ namespace UrbanEco
         {
             //Référence au bouton dans l'interface
             Button button = (sender as Button);
+            
 
             //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
