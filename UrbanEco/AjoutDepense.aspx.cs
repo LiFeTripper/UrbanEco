@@ -1,15 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UrbanEco
 {
     public partial class AjoutDepense : System.Web.UI.Page
     {
-       static bool DepenseAjouter = false;
+        /*
+            Fait par Marc-André
+            Terminé le 12 novembre 2018
+
+            TODO :
+            Gestion des erreurs (champs vide)
+            Permettre les modifications
+        */
+
+        static bool DepenseAjouter = false;
 
         static tbl_Kilometrage prixKilometrage;
 

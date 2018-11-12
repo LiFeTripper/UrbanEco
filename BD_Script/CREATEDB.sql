@@ -121,6 +121,7 @@ CREATE TABLE tbl_FeuilleTemps
 	nbHeure FLOAT(24) NOT NULL,
 	commentaire VARCHAR(MAX),
 	dateCreation SMALLDATETIME DEFAULT GETDATE(),
+	approuver BIT DEFAULT 0,
 
 	-- FOREIGN KEY
 	CONSTRAINT FK_tbl_FeuilleTemps_idProjet FOREIGN KEY (idProjet) REFERENCES tbl_Projet(idProjet),
