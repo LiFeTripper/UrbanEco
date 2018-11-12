@@ -34,11 +34,11 @@
 
 
         <%--CODE REPEATER DE PROJETS--%>
-        <asp:Repeater ID="Rptr_Employé" runat="server" DataSourceID="LinqProjets">
+        <asp:Repeater ID="Rptr_Emploe"  DataSourceID="LinqProjets" runat="server">
 
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
-                <table style="width: 100% !important;">
+                <table style="width: 100% !important; text-align:left !important;">
 
                     <%--EN TËTE A MARC--%>
                     <h1>Projets</h1>
@@ -52,7 +52,7 @@
                         <th>Catégorie</th>
                         <th>Note</th>
                         <th>
-                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />
+                            <%--<asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />--%>
                         </th>
                     </tr>
             </HeaderTemplate>
@@ -67,7 +67,7 @@
                         <tr style="border-bottom: 1px solid #23282e">
                             <td></td>
                             <td>
-                                <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true"  />
                             </td>
                             <td>
                                 <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
@@ -82,7 +82,8 @@
                                 <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
                             </td>
                             <td>
-                                <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification"  /> 
+                                <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" OnClick="Btn_Modif_Click" runat="server" Text="Modification"  /> 
+                                <asp:Button ID="Btn_Approve" CssClass="btn btn-md btn-primary" runat="server" Text="Approuver"  /> 
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -94,15 +95,14 @@
             <FooterTemplate>
 
                 <tr style="border-top: 5px solid #23282e">
-                    <th>ID</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Status du projet</th>
-                    <th>Employé Responsable</th>
-                    <th>Date de début</th>
-                    <th>
-                        <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />
-                    </th>
+                    <th>Employé</th>
+                        <th>Date</th>
+                        <th>Durée (h)</th>
+                        <th>Projet</th>
+                        <th>Catégorie</th>
+                        <th>Note</th>
+                        <th>
+                        </th>
                 </tr>
                 </table>
             </FooterTemplate>
