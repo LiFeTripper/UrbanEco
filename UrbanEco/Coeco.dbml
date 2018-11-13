@@ -17,21 +17,6 @@
       <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_BanqueHeure" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_Depense" Member="tbl_Depense">
-    <Type Name="tbl_Depense">
-      <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idProjetCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="dateDepense" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="montant" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="prixKilometrage" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
-      <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_ProjetCat" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />
-      <Association Name="tbl_TypeDepense_tbl_Depense" Member="tbl_TypeDepense" ThisKey="idTypeDepense" OtherKey="idTypeDepense" Type="tbl_TypeDepense" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tbl_Employe" Member="tbl_Employe">
     <Type Name="tbl_Employe">
       <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -44,10 +29,10 @@
       <Column Name="password" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="inactif" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="tbl_Employe_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_BanqueHeure" />
-      <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Depense" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Depense" />
       <Association Name="tbl_Employe_tbl_FeuilleTemps" Member="tbl_FeuilleTemps" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_FeuilleTemps" />
       <Association Name="tbl_Employe_tbl_Projet" Member="tbl_Projet" ThisKey="idEmploye" OtherKey="idEmployeResp" Type="tbl_Projet" />
       <Association Name="tbl_Employe_tbl_ProjetCatEmploye" Member="tbl_ProjetCatEmploye" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_ProjetCatEmploye" />
+      <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Depense" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Depense" />
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_TypeEmploye" ThisKey="idTypeEmpl" OtherKey="idType" Type="tbl_TypeEmploye" IsForeignKey="true" />
     </Type>
   </Table>
@@ -97,10 +82,10 @@
       <Column Name="idCatMaitre" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="titre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_Depense" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_Depense" />
       <Association Name="tbl_ProjetCat_tbl_FeuilleTemps" Member="tbl_FeuilleTemps" ThisKey="idProjetCat" OtherKey="idCat" Type="tbl_FeuilleTemps" />
       <Association Name="tbl_ProjetCat_tbl_ProjetCat" Member="tbl_ProjetCat2" ThisKey="idProjetCat" OtherKey="idCatMaitre" Type="tbl_ProjetCat" />
       <Association Name="tbl_ProjetCat_tbl_ProjetCatEmploye" Member="tbl_ProjetCatEmploye" ThisKey="idProjetCat" OtherKey="idCategorie" Type="tbl_ProjetCatEmploye" />
+      <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_Depense" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_Depense" />
       <Association Name="tbl_ProjetCat_tbl_ProjetCat" Member="tbl_ProjetCat1" ThisKey="idCatMaitre" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />
       <Association Name="tbl_Projet_tbl_ProjetCat" Member="tbl_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="tbl_Projet" IsForeignKey="true" />
     </Type>
@@ -135,6 +120,22 @@
       <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Depense" Member="tbl_Depense">
+    <Type Name="tbl_Depense">
+      <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idProjetCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="dateDepense" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="montant" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="prixKilometrage" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="approuver" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
+      <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_ProjetCat" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />
+      <Association Name="tbl_TypeDepense_tbl_Depense" Member="tbl_TypeDepense" ThisKey="idTypeDepense" OtherKey="idTypeDepense" Type="tbl_TypeDepense" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

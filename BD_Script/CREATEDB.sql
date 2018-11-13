@@ -235,6 +235,7 @@ CREATE TABLE tbl_Depense
 	dateDepense SMALLDATETIME DEFAULT GETDATE(),
 	montant FLOAT(24) DEFAULT 0,
 	prixKilometrage FLOAT (24) DEFAULT NULL,
+	approuver BIT DEFAULT 0 NOT NULL,
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_Depenses_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),

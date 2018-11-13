@@ -18,5 +18,15 @@ namespace UrbanEco
         {
 
         }
+
+        protected void Btn_Approve_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Btn_Modif_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
