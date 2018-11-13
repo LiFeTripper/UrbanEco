@@ -80,20 +80,21 @@
                 </div>
             </div>
 
+        <%--FONCTION JAVASCRIPT DU BOOTBOX--%>
         <script>
-            
             function Send() {
                 bootbox.dialog({
                     title: 'Nouvelle Catégorie pour ce projet',
                     input: 'textarea',
-                    message: "<p>Veuillez entrez les informations de la nouvelle catégorie :</p><p><label for='Tbx_AjoutCat'>Nom de la catégorie :</label></p> <p><input type='text' name='Tbx_AjoutCat'></input></p>",
+                    message: "<p>Veuillez entrez les informations de la nouvelle catégorie :</p><p><label for='Tbx_AjoutCat'>Nom de la catégorie :</label></p> <p><input type='text' name='Tbx_AjoutCat'></input></p><p><label for='Tbx_AjoutCatDesc'>Description de la catégorie :</label></p> <p><input type='text' name='Tbx_AjoutCatDesc'></input></p>",
 
                     buttons: {
                         ok: {
                             label: "Ajouter",
                             className: 'btn-info',
                             callback: function () {
-                                Example.show('Nouvelles catégorie ajoutée');
+                                var NomCat = document.getElementById('<%=Tbx_AjoutCat.ClientID%>');
+                                console.log(NomCat);
                             },
                         },
                         cancel: {
