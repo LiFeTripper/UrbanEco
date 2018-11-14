@@ -9,19 +9,20 @@ namespace UrbanEco
 {
     public partial class ApprobationDepense : System.Web.UI.Page
     {
+        List<tbl_Employe> employes = new List<tbl_Employe>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             CoecoDataContext context = new CoecoDataContext();
 
-            var query = from tblEmp in context.tbl_Employe
+            IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
                         join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-                        where tblDep.approuver == false
+                        
+                        where tblDep.approuver == false                      
                         select tblEmp;
 
-
-
             Rptr_Emploe.DataSourceID = null;
-            Rptr_Emploe.DataSource = query;
+            Rptr_Emploe.DataSource = query.Distinct();
             Rptr_Emploe.DataBind();
 
 
