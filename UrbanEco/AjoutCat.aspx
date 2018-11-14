@@ -85,17 +85,27 @@
             function Send() {
                 bootbox.dialog({
                     title: 'Nouvelle Catégorie pour ce projet',
-                    input: 'textarea',
-                    message: "<p>Veuillez entrez les informations de la nouvelle catégorie :</p><p><label for='Tbx_AjoutCat'>Nom de la catégorie :</label></p> <p><input type='text' name='Tbx_AjoutCat'></input></p><p><label for='Tbx_AjoutCatDesc'>Description de la catégorie :</label></p> <p><input type='text' name='Tbx_AjoutCatDesc'></input></p>",
+                    message:    "<p>Veuillez entrez les informations de la nouvelle catégorie :</p>" +
+
+                                "<p><label for='Tbx_AjoutCat1'>Nom de la catégorie :</label></p>" +
+                                "<p><input type='text' id='Tbx_AjoutCat1'/></p>" +
+                                "<p><label for='Tbx_AjoutCatDesc1'>Description de la catégorie :</label></p>" +
+                                "<p><input type='text' id='Tbx_AjoutCatDesc1'/></p>",
 
                     buttons: {
                         ok: {
                             label: "Ajouter",
                             className: 'btn-info',
                             callback: function () {
-                                var NomCat = document.getElementById('<%=Tbx_AjoutCat.ClientID%>');
-                                console.log(NomCat);
-                            },
+                                
+                                var cat = document.getElementById('Tbx_AjoutCat1');                            
+                                var desc = document.getElementById('Tbx_AjoutCatDesc1');    
+
+                                var categorie = cat.value;
+                                var description = desc.value;
+
+                                console.log(cat.value);
+                            }
                         },
                         cancel: {
                             label: "Annuler",

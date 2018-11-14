@@ -234,5 +234,10 @@ namespace UrbanEco
         {
             montantTotalDepense.InnerText = " * "+ prixKilometrage.prixKilometrage+"$ = " + (float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage) + "$";
         }
+
+        protected void btn_annuler_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GestionDepense.aspx");
+        }
     }
 }
