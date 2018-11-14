@@ -12,15 +12,20 @@ namespace UrbanEco
         protected void Page_Load(object sender, EventArgs e)
         {
             CoecoDataContext context = new CoecoDataContext();
-            
-            GridView1.DataSource = context.tbl_Employe;
-            GridView1.DataBind();
 
-            GridView2.DataSource = context.tbl_Projet;
-            GridView2.DataBind();
+        }
 
-            GridView3.DataSource = context.tbl_FeuilleTemps;
-            GridView3.DataBind();
+        protected void Btn_Modif_Click(object sender, EventArgs e)
+        {
+            //Référence au bouton dans l'interface
+            Button button = (sender as Button);
+
+
+            //Ramassage du CommandArgument du bouton
+            string commandArgument = button.CommandArgument;
+
+            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            Response.Redirect("AjoutEmp.aspx?Emp=" + commandArgument);
         }
     }
 }
