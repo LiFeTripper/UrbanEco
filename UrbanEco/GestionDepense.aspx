@@ -84,8 +84,8 @@
                                 </td>
                                 <td style="text-align: right !important;">
                                     <%--<button ID="Btn_Modif" CssClass="btn-sm btn btn-success" OnClick="Btn_Modif_Click" runat="server" Text="Modification" style="width:50px; height:50px;"><img src="Resources/Pencil.png" style="width:100% !important; height:100% !important;"/></button>--%>
-                                    <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/Pencil.png"  style="margin-right:10px;"/>
-                                    <asp:ImageButton CssClass="btn-option" ID="Btn_Approve" runat="server" src="Resources/checkmark.png" />
+                                    <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/Pencil.png"  style="margin-right:10px;" OnClick="Btn_Modif_Click1" CommandArgument='<%# Eval("idDepense")%>'/>
+                                    <asp:ImageButton CssClass="btn-option" ID="Btn_Approve" runat="server" src="Resources/checkmark.png" OnClick="Btn_Approve_Click1" CommandArgument='<%# Eval("idDepense")%>'/>
                                     <%--<asp:Button ID="Btn_Approve" CssClass="btn btn-sm btn-primary" runat="server" OnClick="Btn_Approve_Click" Text="Approuver" CommandArgument='<%#Eval("idDepense") %>' />--%>
                                 </td>
                             </tr>

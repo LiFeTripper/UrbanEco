@@ -28,5 +28,33 @@ namespace UrbanEco
         {
 
         }
+
+        protected void Btn_Modif_Click1(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void Btn_Approve_Click1(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btn = ((ImageButton)sender);
+
+            int idDepense = -1;
+
+            int.TryParse(btn.CommandArgument, out idDepense);
+
+            if (idDepense != -1)
+            {
+                CoecoDataContext context = new CoecoDataContext();
+
+                (from tbl in context.tbl_Depense
+                            where tbl.idDepense == idDepense
+                            select tbl).First().approuver = true;
+
+                context.SubmitChanges();
+            }
+
+
+
+        }
     }
 }
