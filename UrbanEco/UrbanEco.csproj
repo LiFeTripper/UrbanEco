@@ -71,6 +71,7 @@
   <ItemGroup>
     <Content Include="AjoutCat.aspx" />
     <Content Include="AjoutDepense.aspx" />
+    <Content Include="AjoutEmp.aspx" />
     <Content Include="AjoutProjets.aspx" />
     <Content Include="GestionDepense.aspx" />
     <Content Include="BanqueHeure.aspx" />
@@ -99,6 +100,8 @@
     <Content Include="lib\webfonts\fa-solid-900.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Projets.aspx" />
+    <Content Include="Resources\checkmark.png" />
+    <Content Include="Resources\pencil.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -117,6 +120,13 @@
     </Compile>
     <Compile Include="AjoutDepense.aspx.designer.cs">
       <DependentUpon>AjoutDepense.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AjoutEmp.aspx.cs">
+      <DependentUpon>AjoutEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjoutEmp.aspx.designer.cs">
+      <DependentUpon>AjoutEmp.aspx</DependentUpon>
     </Compile>
     <Compile Include="AjoutProjets.aspx.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
@@ -187,6 +197,11 @@
       <DependentUpon>Projets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -239,6 +254,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -56,6 +56,8 @@
                                 <asp:TextBox ID="Tbx_AjoutCat" runat="server"></asp:TextBox>
                                 <asp:TextBox ID="Tbx_AjoutCatDesc" runat="server"></asp:TextBox>
                                 <asp:Button ID="Btn_AjoutCat" runat="server" Text="Ajouter" OnClick="Btn_AjoutCat_Click"/>
+                            
+                                <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="Send(); return false;"/>
                             </td>
                         </tr>
                         <%--NIVEAU 2--%>
@@ -73,9 +75,48 @@
                             </td>
                         </tr>
                         </table>
-
+                    
                     </div>
                 </div>
             </div>
+
+        <%--FONCTION JAVASCRIPT DU BOOTBOX--%>
+        <script>
+            function Send() {
+                bootbox.dialog({
+                    title: 'Nouvelle Catégorie pour ce projet',
+                    message:    "<p>Veuillez entrez les informations de la nouvelle catégorie :</p>" +
+
+                                "<p><label for='Tbx_AjoutCat1'>Nom de la catégorie :</label></p>" +
+                                "<p><input type='text' id='Tbx_AjoutCat1'/></p>" +
+                                "<p><label for='Tbx_AjoutCatDesc1'>Description de la catégorie :</label></p>" +
+                                "<p><input type='text' id='Tbx_AjoutCatDesc1'/></p>",
+
+                    buttons: {
+                        ok: {
+                            label: "Ajouter",
+                            className: 'btn-info',
+                            callback: function () {
+                                
+                                var cat = document.getElementById('Tbx_AjoutCat1');                            
+                                var desc = document.getElementById('Tbx_AjoutCatDesc1');    
+
+                                var categorie = cat.value;
+                                var description = desc.value;
+
+                                console.log(cat.value);
+                            }
+                        },
+                        cancel: {
+                            label: "Annuler",
+                            className: 'btn-danger',
+                            callback: function () {
+                                Example.show('Pas de nouvelle catégorie ajoutée');
+                            }
+                        },
+                    }
+                });
+            }
+        </script>
         </form>
 </asp:Content>

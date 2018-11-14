@@ -38,7 +38,6 @@
             <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
         </div>
 
-
         <div class="row justify-content-md-center" style="margin-bottom:20px;">
             <div class="col-md-offset-3 col-6">
 
@@ -235,7 +234,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button CssClass="btn btn-lg btn-success input-box" ID="btn_envoyer" runat="server" Text="Confirmer l'ajout" OnClick="btn_envoyer_Click" />
+                            <asp:Button style="width:40% !important; float:left;" CssClass="btn btn-lg btn-danger input-box" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
+                            <asp:Button style="width:40% !important; float:right;" CssClass="btn btn-lg btn-success input-box" ID="btn_envoyer" runat="server" Text="Confirmer l'ajout" OnClick="btn_envoyer_Click" />
                         </td>
                     </tr>
                 </table>
