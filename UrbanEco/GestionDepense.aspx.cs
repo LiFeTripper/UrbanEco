@@ -11,6 +11,19 @@ namespace UrbanEco
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CoecoDataContext context = new CoecoDataContext();
+
+            var query = from tblEmp in context.tbl_Employe
+                        join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
+                        where tblDep.approuver == false
+                        select tblEmp;
+
+
+
+            Rptr_Emploe.DataSourceID = null;
+            Rptr_Emploe.DataSource = query;
+            Rptr_Emploe.DataBind();
+
 
         }
 
@@ -46,15 +59,53 @@ namespace UrbanEco
             {
                 CoecoDataContext context = new CoecoDataContext();
 
-                (from tbl in context.tbl_Depense
-                            where tbl.idDepense == idDepense
-                            select tbl).First().approuver = true;
+                var query = (from tbl in context.tbl_Depense
+                             where tbl.idDepense == idDepense
+                             select tbl);
+
+                if(query.First() != null)
+                {
+                    query.First().approuver = true;
+                }
 
                 context.SubmitChanges();
             }
 
 
 
+        }
+
+        protected void btn_ajouter_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("AjoutDepense.aspx");
+        }
+
+        protected void Rptr_Depense_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
+            Repeater rep = ((Repeater)sender);
+
+            var  item = e.Item;
+
+        }
+
+        protected void Rptr_Depense_Load(object sender, EventArgs e)
+        {
+            /*Repeater rep = ((Repeater)sender);
+
+            var par = rep.Parent;
+
+
+            CoecoDataContext cdc = new CoecoDataContext();
+
+            var query = from tbl in cdc.tbl_Depense
+                        where tbl.approuver == false
+                        select tbl;
+
+
+
+            rep.DataSource = query;
+            rep.DataBind();*/
         }
     }
 }
