@@ -124,6 +124,8 @@ namespace UrbanEco
 
                 //La dépense est ajouté
                 alert_success.Visible = true;
+                alert_failed.Visible = false;
+                alert_warning.Visible = false;
                 DepenseAjouter = true;
             }
             catch (Exception ex)

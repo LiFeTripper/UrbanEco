@@ -10,6 +10,7 @@ namespace UrbanEco
     public partial class ApprobationDepense : System.Web.UI.Page
     {
         List<tbl_Employe> employes = new List<tbl_Employe>();
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,8 +25,6 @@ namespace UrbanEco
             Rptr_Emploe.DataSourceID = null;
             Rptr_Emploe.DataSource = query.Distinct();
             Rptr_Emploe.DataBind();
-
-
         }
 
         protected void Rptr_FeuilleTemps_Load(object sender, EventArgs e)
@@ -70,6 +69,8 @@ namespace UrbanEco
                 }
 
                 context.SubmitChanges();
+
+                Response.Redirect(Request.RawUrl);
             }
 
 
