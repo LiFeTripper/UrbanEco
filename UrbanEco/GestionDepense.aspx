@@ -112,6 +112,7 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+        <asp:Button style="float:right !important; margin-top:5px;" ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-lg btn-success"/>
 
 
 

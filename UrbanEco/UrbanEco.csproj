@@ -100,6 +100,7 @@
     <Content Include="lib\webfonts\fa-solid-900.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Projets.aspx" />
+    <Content Include="RapportProjet.aspx" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\pencil.png" />
     <Content Include="Web.config">
@@ -206,6 +207,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RapportProjet.aspx.cs">
+      <DependentUpon>RapportProjet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RapportProjet.aspx.designer.cs">
+      <DependentUpon>RapportProjet.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

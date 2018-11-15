@@ -37,8 +37,9 @@ namespace UrbanEco
 
                 //Query les projet
                 var queryProjet = from tbl in context.tbl_Projet
-                            orderby tbl.titre
-                            select tbl;
+                                  where tbl.archiver == false
+                                  orderby tbl.titre
+                                  select tbl;
 
                 tbx_projet.DataSource = queryProjet;
                 tbx_projet.DataBind();
@@ -124,6 +125,8 @@ namespace UrbanEco
 
                 //La dépense est ajouté
                 alert_success.Visible = true;
+                alert_failed.Visible = false;
+                alert_warning.Visible = false;
                 DepenseAjouter = true;
             }
             catch (Exception ex)
