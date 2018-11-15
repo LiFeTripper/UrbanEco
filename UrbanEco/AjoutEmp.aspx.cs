@@ -82,6 +82,7 @@ namespace UrbanEco
                 tableEmp.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue + 1);
                 tableEmp.username = Tbx_username.Text;
                 tableEmp.password = Tbx_password.Text;
+                tableEmp.inactif = Chkbx_Inactif.Checked;
 
                 context.tbl_Employe.InsertOnSubmit(tableEmp);
             }
@@ -101,6 +102,7 @@ namespace UrbanEco
                 query.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
                 query.username = Tbx_username.Text;
                 query.password = Tbx_password.Text;
+                query.inactif = Chkbx_Inactif.Checked;
             }
 
             //Étape finale SUBMIT CHANGES

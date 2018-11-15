@@ -20,27 +20,6 @@ namespace UrbanEco
 
             Chkbx_Inactif.Checked = showInactive;
 
-            //if (CheckBox1.Checked == false)
-            //{
-
-            //    var query = (from tbl in context.tbl_Employe
-            //                 where tbl.inactif == false
-            //                 select tbl);
-
-            //    DataTable dt = new DataTable();
-            //    dt.Columns.Add("prenom");
-            //    DataRow dr = dt.NewRow();
-
-            //    foreach (var ligne in query)
-            //    {
-            //        dr["prenom"] = ligne.prenom;
-            //        dt.Rows.Add(dr);
-            //    }
-
-            //    Repeater r = ((Repeater)FindControl("Rptr_Employe"));
-            //    r.DataSource = dt; //Suppose dt is the data table to bind.
-            //    r.DataBind();
-            //}
         }
 
         protected void Btn_Modif_Click(object sender, EventArgs e)

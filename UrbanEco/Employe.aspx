@@ -33,16 +33,27 @@
 
         <%--BORDURE VERTE--%>
         <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
+            <%--EN TËTE A MARC--%>
             <table style="width: 100% !important;">
-                        <%--EN TËTE A MARC--%>
-                        <h1>Employés</h1>
-                        <hr style="border-bottom: 20px solid #23282e; width: 100%;" />
                 <tr>
-            <asp:Label runat="server" Text="INACTIF"></asp:Label>
-            <asp:CheckBox ID="Chkbx_Inactif" runat="server" OnCheckedChanged="Chkbx_Inactif_CheckedChanged" AutoPostBack="true"/>
+                    <td>
+                        <h1>Employés</h1>
+                    </td>
                 </tr>
-                    </table>
-            <%--CODE REPEATER DE PROJETS--%>
+                <tr>
+                    <td>
+                        <hr style="border-bottom: 20px solid #23282e; width: 100%;" />
+                    </td>
+                </tr>
+                <tr>
+
+                    <%--CHECKBOX INACTIF OU ACTIF--%>
+                    <asp:Label runat="server" Text="INACTIF"></asp:Label>
+                    <asp:CheckBox ID="Chkbx_Inactif" runat="server" OnCheckedChanged="Chkbx_Inactif_CheckedChanged" AutoPostBack="true" />
+                </tr>
+            </table>
+
+            <%--CODE REPEATER D'EMPLOYÉ--%>
             <asp:Repeater ID="Rptr_TypeEmploye" runat="server" DataSourceID="LinqEmploye">
 
                 <%--HEADERTEMPLATE--%>
