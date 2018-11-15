@@ -37,8 +37,9 @@ namespace UrbanEco
 
                 //Query les projet
                 var queryProjet = from tbl in context.tbl_Projet
-                            orderby tbl.titre
-                            select tbl;
+                                  where tbl.archiver == false
+                                  orderby tbl.titre
+                                  select tbl;
 
                 tbx_projet.DataSource = queryProjet;
                 tbx_projet.DataBind();
