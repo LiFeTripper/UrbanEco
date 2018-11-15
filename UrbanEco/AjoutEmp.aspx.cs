@@ -46,11 +46,16 @@ namespace UrbanEco
 
                             Tbx_Prenom.Text = query.prenom;
                             Tbx_Nom.Text = query.nom;
-                            Ddl_TypeEmp.SelectedIndex = (int)query.idTypeEmpl;
+                            Ddl_TypeEmp.SelectedIndex = (int)query.idTypeEmpl - 1;
                             Tbx_noTel.Text = query.noTel;
                             Tbx_email.Text = query.email;
                             Tbx_username.Text = query.username;
                             Tbx_password.Text = query.password;
+
+                            if (query.inactif == true)
+                                Chkbx_Inactif.Checked = true;
+                            else
+                                Chkbx_Inactif.Checked = false;
 
                             insert = false;
                         }
@@ -74,7 +79,7 @@ namespace UrbanEco
                 tableEmp.nom = Tbx_Nom.Text;
                 tableEmp.noTel = Tbx_noTel.Text;
                 tableEmp.email = Tbx_email.Text;
-                tableEmp.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
+                tableEmp.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue + 1);
                 tableEmp.username = Tbx_username.Text;
                 tableEmp.password = Tbx_password.Text;
 
@@ -101,7 +106,7 @@ namespace UrbanEco
             //Étape finale SUBMIT CHANGES
             context.SubmitChanges();
 
-
+            //Redirection vers la page employés
             Response.Redirect("Employe.aspx");
 
     }
