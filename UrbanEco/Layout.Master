@@ -7,115 +7,96 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>First Page</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
-
     </asp:ContentPlaceHolder>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css"  />
-       
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+
     <!-- Custom Left Side Menu CSS -->
-    <link rel="stylesheet" href="lib/css/menu.css">
+    <%--<link rel="stylesheet" href="lib/css/menu.css">--%>
+    <link href="lib/css/menuv2.css" rel="stylesheet" />
     <%--Font Awesome Icon CSS--%>
     <link href="lib/css/fontawesome.css" rel="stylesheet" />
     <link href="lib/css/solid.css" rel="stylesheet" />
 
     <%--<script src="lib/js/bootbox.min.js" ></script>--%>
-    
-
 </head>
 <body>
-    
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Co-Éco</h3>
+                <strong>CE</strong>
+            </div>
 
-
-    <%--NAVBAR--%>
-<div class="nav-side-menu">
-    <div class="brand">CoEco</div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-  
-        <div class="menu-list">
-  
-            <ul id="menu-content" class="menu-content collapse out">
+            <ul class="list-unstyled components">
                 <li>
-                  <a href="Employe.aspx">
-                  <i class="fa fa-user fa-lg"></i> Employés
-                  </a>
+                    <a href="#homeSubmenu">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
                 </li>
-
-                 <li>
-                  <a href="Projets.aspx">
-                  <i class="fa fa-folder fa-lg"></i> Projets
-                  </a>
-                  </li>
-
-                 <li>
-                  <a href="#">
-                  <i class="fa fa-clock fa-lg"></i> Feuille de temps
-                  </a>
-                </li>
-
                 <li>
-                  <a href="AjoutDepense.aspx">
-                  <i class="fa fa-car fa-lg"></i> Dépenses
-                  </a>
+                    <a href="#">
+                        <i class="fas fa-address-book"></i>
+                        Employés
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-book"></i>
+                        Projets
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-dollar-sign"></i>
+                        Dépenses
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-tasks"></i>
+                        Feuille de temps
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-piggy-bank"></i>
+                        Banque d'heures
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-clipboard"></i>
+                        Rapport Projets
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-clipboard"></i>
+                        Rapport Employés
+                    </a>
                 </li>
-
-                <li>
-                  <a href="#">
-                  <i class="fa fa-piggy-bank fa-lg"></i> Banque d'heures
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#">
-                  <i class="fa fa-scroll fa-lg"></i> Rapport par projet 
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#">
-                  <i class="fa fa-scroll fa-lg"></i> Rapport par employé
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#">
-                  <i class="fa fa-sign-out-alt fa-lg"></i> Déconnection
-                  </a>
-                </li>
-
             </ul>
-     </div>
-</div>
+        </nav>
 
+        <%--BODY--%>
 
+        <!-- Page Content  -->
+        <div id="content">
+            <!--TITRE DE LA PAGE-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <asp:ContentPlaceHolder ID="TitlePlaceholder" runat="server" />
+                </div>
+            </nav>
 
-    <%--BODY--%>
-
-<div class="row justify-content-end">
-
-    <div class="col-10">
-        <%--TITLE PLACEHOLDER--%>
-        <div >
-            <%--<asp:ContentPlaceHolder ID="TitlePlaceholder" runat="server">
-            </asp:ContentPlaceHolder>--%>
-
-            <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
-            </asp:ContentPlaceHolder>
-
+            <!--CONTENU DE LA PAGE-->
+            <div class="container-fluid">
+                <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server" />
+            </div>
         </div>
-    </div>
-
     </div>
 
     <%--FOOTER--%>
     <footer class="container">
-      <p>&copy; Company 2017-2018</p>
+        <%--<p>&copy; Company 2017-2018</p>--%>
     </footer>
 
     <%--SCRIPTS--%>
     <script src="lib/js/jquery-3.3.1.min.js"></script>
     <script src="lib/js/popper.js"></script>
     <script src="lib/js/bootstrap.min.js"></script>
-    <script src="lib/js/bootbox.min.js" ></script>
+    <script src="lib/js/bootbox.min.js"></script>
 </body>
 
 </html>

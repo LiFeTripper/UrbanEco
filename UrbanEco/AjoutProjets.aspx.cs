@@ -51,8 +51,8 @@ namespace UrbanEco
 
                             Tbx_Titre.Text = query.titre;
                             Tbx_Description.Text = query.description;
-                            Ddl_Responsable.SelectedIndex = (int)query.idEmployeResp;
-                            Ddl_Status.SelectedIndex = (int)query.idStatus;
+                            Ddl_Responsable.SelectedIndex = (int)query.idEmployeResp -1;
+                            Ddl_Status.SelectedIndex = (int)query.idStatus - 1;
                             Tbx_HeuresAlloues.Text = query.tempsAllouer.ToString();
                             Cal_DateDebut.Value = query.dateDebut.Value.ToShortDateString();
                             Cal_DateFin.Value = query.dateFin.Value.ToShortDateString();

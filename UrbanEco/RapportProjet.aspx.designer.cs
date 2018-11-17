@@ -10,16 +10,16 @@
 namespace UrbanEco {
     
     
-    public partial class AjoutDepense {
+    public partial class RapportProjet {
         
         /// <summary>
-        /// Contrôle tbx_projet.
+        /// Contrôle lst_projet.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
+        protected global::System.Web.UI.WebControls.DropDownList lst_projet;
         
         /// <summary>
         /// Contrôle tbx_categorie.
@@ -28,16 +28,52 @@ namespace UrbanEco {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
+        protected global::System.Web.UI.WebControls.ListBox tbx_categorie;
         
         /// <summary>
-        /// Contrôle Calendar.
+        /// Contrôle SelectCat.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
+        protected global::System.Web.UI.WebControls.Button SelectCat;
+        
+        /// <summary>
+        /// Contrôle DeSelectCat.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeSelectCat;
+        
+        /// <summary>
+        /// Contrôle tbx_categorie_selected.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox tbx_categorie_selected;
+        
+        /// <summary>
+        /// Contrôle date_debut.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl date_debut;
+        
+        /// <summary>
+        /// Contrôle date_fin.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl date_fin;
         
         /// <summary>
         /// Contrôle dateFormated.
@@ -49,24 +85,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
         
         /// <summary>
-        /// Contrôle tbx_typeDepense.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_typeDepense;
-        
-        /// <summary>
-        /// Contrôle LinqTypeDepense.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqTypeDepense;
-        
-        /// <summary>
         /// Contrôle km_html.
         /// </summary>
         /// <remarks>
@@ -74,15 +92,6 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
-        
-        /// <summary>
-        /// Contrôle tbx_montant1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_montant1;
         
         /// <summary>
         /// Contrôle montantTotalDepense.
@@ -110,15 +119,6 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_montant2;
-        
-        /// <summary>
-        /// Contrôle Div1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
         /// Contrôle tbx_note.
