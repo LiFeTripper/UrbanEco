@@ -40,5 +40,10 @@ namespace UrbanEco
             showInactive = !showInactive;
             Response.Redirect(Request.RawUrl);
         }
+
+        protected void Btn_Ajout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AjoutEmp.aspx");
+        }
     }
 }

@@ -76,6 +76,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_email;
         
         /// <summary>
+        /// Contrôle Chkbx_Inactif.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Chkbx_Inactif;
+        
+        /// <summary>
         /// Contrôle Tbx_username.
         /// </summary>
         /// <remarks>
@@ -92,15 +101,6 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Tbx_password;
-        
-        /// <summary>
-        /// Contrôle Chkbx_Inactif.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Chkbx_Inactif;
         
         /// <summary>
         /// Contrôle Btn_Enregistrer.

@@ -42,7 +42,7 @@ namespace UrbanEco
                                          where tbl.idEmploye == id
                                          select tbl).First();
 
-                            lbl_Top.Text = query.nom + " " + query.prenom;
+                            lbl_Top.Text = query.nom + ", " + query.prenom;
 
                             Tbx_Prenom.Text = query.prenom;
                             Tbx_Nom.Text = query.nom;
@@ -79,7 +79,7 @@ namespace UrbanEco
                 tableEmp.nom = Tbx_Nom.Text;
                 tableEmp.noTel = Tbx_noTel.Text;
                 tableEmp.email = Tbx_email.Text;
-                tableEmp.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue + 1);
+                tableEmp.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
                 tableEmp.username = Tbx_username.Text;
                 tableEmp.password = Tbx_password.Text;
                 tableEmp.inactif = Chkbx_Inactif.Checked;
