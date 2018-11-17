@@ -134,6 +134,7 @@ namespace UrbanEco
                 //erreur lors de l'ajout de la dépense
                 alert_failed.Visible = true;
                 DepenseAjouter = false;
+                Console.Write(ex);
             }
 
         }

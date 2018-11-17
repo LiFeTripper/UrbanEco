@@ -112,6 +112,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_montant2;
         
         /// <summary>
+        /// Contrôle Div1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        
+        /// <summary>
         /// Contrôle tbx_note.
         /// </summary>
         /// <remarks>

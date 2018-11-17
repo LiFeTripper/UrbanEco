@@ -1,30 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutEmp.aspx.cs" Inherits="UrbanEco.AjoutEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .center {
-            margin: auto;
-            width: 50%;
-        }
 
-        .input-box {
-            width: 100% !important;
-            font-size: 17px;
-            margin-bottom: 30px;
-        }
-
-        .input-title {
-            text-align: left !important;
-        }
-
-        .table-custom {
-            width: 800px !important;
-        }
-
-        .table-custom > table {
-            width: 100% !important;
-        }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -35,7 +12,56 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
-    <%--<form runat="server" style="text-align: center;" class="container center col-12">
+    <form runat="server">
+        <%--PRÉNOM--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Tbx_Prenom">Prénom</label>
+            <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <%--NOM--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Tbx_Nom">Nom</label>
+            <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <%--TYPE--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Ddl_TypeEmp">Type d'employé</label>
+            <asp:DropDownList ID="Ddl_TypeEmp" runat="server" DataSourceID="LinqTypeEmp" DataTextField="nomType" DataValueField="idType" class="form-control"></asp:DropDownList>
+            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqTypeEmp" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_TypeEmploye"></asp:LinqDataSource>
+        </div>
+        <%--NOTEL--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Tbx_noTel">Numéro de téléphone</label>
+            <asp:TextBox ID="Tbx_noTel" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <%--EMAIL--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Tbx_email">Adresse Courriel</label>
+            <asp:TextBox ID="Tbx_email" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <%--INACTIF--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Chkbx_Inactif">Inactif</label>
+            <asp:CheckBox ID="Chkbx_Inactif" runat="server" class="form-control" />
+        </div>
+        <%--USER--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Tbx_username">Nom d'utilisateur</label>
+            <asp:TextBox ID="Tbx_username" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <%--PASSWORD--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Tbx_password">Mot de passe</label>
+            <asp:TextBox ID="Tbx_password" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <%--BOUTON--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer" OnClick="Btn_Enregistrer_Click" />
+        </div>
+    </form>
+</asp:Content>
+
+ <%--<form runat="server" style="text-align: center;" class="container center col-12">
         <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
 
             <div>
@@ -152,53 +178,3 @@
             </div>
         </div>
     </form>--%>
-
-    <form runat="server">
-        <%--PRÉNOM--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Tbx_Prenom">Prénom</label>
-            <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control"></asp:TextBox>
-        </div>
-        <%--NOM--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Tbx_Nom">Nom</label>
-            <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
-        </div>
-        <%--TYPE--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Ddl_TypeEmp">Type d'employé</label>
-            <asp:DropDownList ID="Ddl_TypeEmp" runat="server" DataSourceID="LinqTypeEmp" DataTextField="nomType" DataValueField="idType" class="form-control"></asp:DropDownList>
-            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqTypeEmp" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_TypeEmploye"></asp:LinqDataSource>
-        </div>
-        <%--NOTEL--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Tbx_noTel">Numéro de téléphone</label>
-            <asp:TextBox ID="Tbx_noTel" runat="server" class="form-control"></asp:TextBox>
-        </div>
-        <%--EMAIL--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Tbx_email">Adresse Courriel</label>
-            <asp:TextBox ID="Tbx_email" runat="server" class="form-control"></asp:TextBox>
-        </div>
-        <%--INACTIF--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Chkbx_Inactif">Inactif</label>
-            <asp:CheckBox ID="Chkbx_Inactif" runat="server" class="form-control" />
-        </div>
-        <%--USER--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Tbx_username">Nom d'utilisateur</label>
-            <asp:TextBox ID="Tbx_username" runat="server" class="form-control"></asp:TextBox>
-        </div>
-        <%--PASSWORD--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Tbx_password">Mot de passe</label>
-            <asp:TextBox ID="Tbx_password" runat="server" class="form-control"></asp:TextBox>
-        </div>
-        <%--BOUTON--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer" OnClick="Btn_Enregistrer_Click" />
-
-        </div>
-    </form>
-</asp:Content>
