@@ -31,29 +31,29 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#homeSubmenu">
+                    <a href="Home.aspx">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="Employe.aspx">
                         <i class="fas fa-address-book"></i>
                         Employés
                     </a>
-                    <a href="#">
+                    <a href="Projets.aspx">
                         <i class="fas fa-book"></i>
                         Projets
                     </a>
-                    <a href="#">
+                    <a href="GestionDepense.aspx">
                         <i class="fas fa-dollar-sign"></i>
                         Dépenses
                     </a>
-                    <a href="#">
+                    <a href="GestionFeuilleTemps.aspx">
                         <i class="fas fa-tasks"></i>
                         Feuille de temps
                     </a>
-                    <a href="#">
+                    <a href="Banqueheure.aspx">
                         <i class="fas fa-piggy-bank"></i>
                         Banque d'heures
                     </a>
