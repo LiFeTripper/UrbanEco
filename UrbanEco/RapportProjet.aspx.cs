@@ -13,14 +13,60 @@ namespace UrbanEco
 
         static List<tbl_ProjetCat> SelectedCategories = new List<tbl_ProjetCat>();
 
+        static List<tbl_Employe> emp_bureau = new List<tbl_Employe>();
+        static List<tbl_Employe> emp_terrain = new List<tbl_Employe>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
-            {
+            {               
                 tbx_categorie.Items.Add("Sélectionner un projet pour avoir accès au sous-catégorie");
 
                 //Query pour les projet non-archiver
                 CoecoDataContext context = new CoecoDataContext();
+
+                var empBureau = from emp in context.tbl_Employe
+                                where emp.idTypeEmpl == 1
+                                orderby emp.nom, emp.prenom
+                                select emp;
+
+                var empTerrain = from emp in context.tbl_Employe
+                                where emp.idTypeEmpl == 2
+                                orderby emp.nom, emp.prenom
+                                select emp;
+
+                emp_bureau = empBureau.ToList<tbl_Employe>();
+                emp_terrain = empTerrain.ToList<tbl_Employe>();
+
+                MultiselectEmploye.Items.Clear();
+
+                ListItem headerBureau = new ListItem("Bureau", (-1).ToString());
+
+                MultiselectEmploye.Items.Add(headerBureau);
+
+                foreach (var emp in emp_bureau)
+                {
+                    string nomComplet = emp.nom + ", " + emp.prenom;
+                    ListItem item = new ListItem(nomComplet, emp.idEmploye.ToString());
+
+                    item.Attributes["OptionGroup"] = "Bureau";
+
+                    MultiselectEmploye.Items.Add(item);
+                }
+
+                ListItem headerTerrain = new ListItem("Terrain", (-2).ToString());
+
+                MultiselectEmploye.Items.Add(headerTerrain);
+
+                foreach (var emp in emp_terrain)
+                {
+                    string nomComplet = emp.nom + ", " + emp.prenom;
+                    ListItem item = new ListItem(nomComplet, emp.idEmploye.ToString());
+
+                    item.Attributes["OptionGroup"] = "Terrain";
+
+                    MultiselectEmploye.Items.Add(item);
+                }
 
                 var query = from tbl in context.tbl_Projet
                             //where tbl.archiver == false
