@@ -25,7 +25,7 @@
                                 <th scope="col">Sous-Catégorie</th>
                                 <th scope="col">Montant</th>
                                 <th scope="col">
-                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-lg btn-success" />
+                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-md btn-secondary" />
                                 </th>
                             </tr>
                         </thead>
@@ -89,7 +89,7 @@
                                 <th scope="col">Sous-Catégorie</th>
                                 <th scope="col">Montant</th>
                                 <th scope="col">
-                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-lg btn-success" />
+                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-md btn-secondary" />
                                 </th>
                             </tr>
                         </thead>
