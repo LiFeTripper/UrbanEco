@@ -1,30 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="Projets.aspx.cs" Inherits="UrbanEco.Projets1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .center {
-            margin: auto;
-            width: 50%;
-        }
 
-        .input-box {
-            width: 100% !important;
-            font-size: 17px;
-            margin-bottom: 30px;
-        }
-
-        .input-title {
-            text-align: left !important;
-        }
-
-        .table-custom {
-            width: 800px !important;
-        }
-
-            .table-custom > table {
-                width: 100% !important;
-            }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -121,18 +98,22 @@
 
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
-                <table style="width: 100% !important;">
-                    <tr style="border-bottom: 5px solid #23282e" visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
-                        <th>ID</th>
-                        <th>Titre</th>
-                        <th>Description</th>
-                        <th>Status du projet</th>
-                        <th>Employé Responsable</th>
-                        <th>Date de début</th>
-                        <th>
-                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
-                        </th>
-                    </tr>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr style="border-bottom: 5px solid #23282e" visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
+                                <th scope="col">ID</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Status du projet</th>
+                                <th scope="col">Employé Responsable</th>
+                                <th scope="col">Date de début</th>
+                                <th scope="col">
+                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
             </HeaderTemplate>
 
             <%--ITEMTEMPLATE--%>
@@ -165,19 +146,22 @@
 
             <%--FOOTERTEMPLATE--%>
             <FooterTemplate>
-
-                <tr style="border-top: 5px solid #23282e" visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
-                    <th>ID</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Status du projet</th>
-                    <th>Employé Responsable</th>
-                    <th>Date de début</th>
-                    <th>
-                        <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
-                    </th>
-                </tr>
-                </table>
+                </tbody>
+                <thead class="thead-dark">
+                    <tr style="border-top: 5px solid #23282e" Visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
+                            <th scope="col">ID</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Status du projet</th>
+                            <th scope="col">Employé Responsable</th>
+                            <th scope="col">Date de début</th>
+                            <th scope="col">
+                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                            </th>
+                        </tr>
+                    </thead>
+                    </table>
+                    </div>
             </FooterTemplate>
         </asp:Repeater>
 
