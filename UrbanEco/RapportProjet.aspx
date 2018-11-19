@@ -173,15 +173,37 @@
                     <tr>
                         <td>
                             <!--MULTISELECT-->
-                            <div class="input-group mb-3 col-6 mx-auto">
-                                <select id='MultiselectEmploye' multiple='true' runat="server">
-
+                            <div class="justify-content-lg-center input-group mb-3 col-12">
+                                <select id="Multiselection" multiple="multiple">
+                                    <optgroup label='Bureau'>
+                                        <asp:Repeater runat="server" ID="RepBureau" >
+                                                <ItemTemplate>
+                                                    <option value='<%#Eval("idEmploye") %>' <%# IsSelected(Eval("idEmploye"), this) %> ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                                </ItemTemplate>
+                                        </asp:Repeater>
+                                    </optgroup>
+                                    <optgroup label='Terrain'>
+                                        <asp:Repeater runat="server" ID="RepTerrain" >
+                                                <ItemTemplate>
+                                                    <option value='<%#Eval("idEmploye") %>' <%# IsSelected(Eval("idEmploye"), this) %>  ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                                </ItemTemplate>
+                                        </asp:Repeater>
+                                    </optgroup>
                                 </select>
                             </div>
+
+                            <input type="text" runat="server" id="array" />
+                            <asp:Button ID="test" runat="server" Text="Show Array" OnClick="test_Click"/>
+
                             <!--Multiselect javascript-->
                             <script>
                                 //Callback for fuck sake
-                                var selected = [];
+                                var selected = document.getElementById('<%=array.ClientID%>').value.split(',');
+
+                                var test = selected;
+
+
+
                                 //ID du crisse de multi + class du css
                                 $('#Multiselection').multiSelect({
                                     //EVENT inscrit nul part guess Onchange, onSelected pis onclick avec function return click
@@ -189,9 +211,42 @@
                                         //Parce que D'amours
                                         selected.push(values);
                                         console.log(selected);
+
+
+                                        var htmlStorage = document.getElementById('<%=array.ClientID%>');
+                                        //htmlStorage.attr("data-assessments", JSON.stringify(selected));
+                                        htmlStorage.value = selected;
+
+                                        console.log(htmlStorage);
                                     },
+
+                                    afterDeselect: function (values) {
+                                        var copy = [];
+
+                                        for (var idx in selected) {
+                                            if (selected[idx][0] != values[0]) {
+                                                copy.push(selected[idx])
+                                            }
+                                        }
+
+                                        selected = copy;
+
+                                        console.log(selected);
+                                        var htmlStorage = document.getElementById('<%=array.ClientID%>');
+                                        //htmlStorage.attr("data-assessments", JSON.stringify(selected));
+                                        htmlStorage.value = selected;
+                                    },
+
+                                    selectableOptgroup: true,
+                                    keepOrder: true,
+                                    selected: test,
                                 });
-                            //RÉUSSI
+
+                                function IsSelected(idEmploye) {
+
+                                }
+
+                                //RÉUSSI
                             </script>
                         </td>
                     </tr>

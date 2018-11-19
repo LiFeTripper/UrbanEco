@@ -85,13 +85,40 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
         
         /// <summary>
-        /// Contrôle MultiselectEmploye.
+        /// Contrôle RepBureau.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect MultiselectEmploye;
+        protected global::System.Web.UI.WebControls.Repeater RepBureau;
+        
+        /// <summary>
+        /// Contrôle RepTerrain.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepTerrain;
+        
+        /// <summary>
+        /// Contrôle array.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText array;
+        
+        /// <summary>
+        /// Contrôle test.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button test;
         
         /// <summary>
         /// Contrôle km_html.

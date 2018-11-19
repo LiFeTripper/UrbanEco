@@ -16,57 +16,46 @@ namespace UrbanEco
         static List<tbl_Employe> emp_bureau = new List<tbl_Employe>();
         static List<tbl_Employe> emp_terrain = new List<tbl_Employe>();
 
+        static List<int> EmployerSelected = new List<int>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {               
+
+            RepBureau.DataSource = emp_bureau;
+            RepBureau.DataBind();
+
+            RepTerrain.DataSource = emp_terrain;
+            RepTerrain.DataBind();
+
+
+            if (!IsPostBack)
+            {    
+                
+
                 tbx_categorie.Items.Add("Sélectionner un projet pour avoir accès au sous-catégorie");
 
                 //Query pour les projet non-archiver
                 CoecoDataContext context = new CoecoDataContext();
 
                 var empBureau = from emp in context.tbl_Employe
-                                where emp.idTypeEmpl == 1
+                                where emp.idTypeEmpl == 1 && emp.idEmploye != 4
                                 orderby emp.nom, emp.prenom
                                 select emp;
 
                 var empTerrain = from emp in context.tbl_Employe
-                                where emp.idTypeEmpl == 2
-                                orderby emp.nom, emp.prenom
+                                where emp.idTypeEmpl == 2 && emp.idEmploye != 4
+                                 orderby emp.nom, emp.prenom
                                 select emp;
 
-                emp_bureau = empBureau.ToList<tbl_Employe>();
-                emp_terrain = empTerrain.ToList<tbl_Employe>();
 
-                MultiselectEmploye.Items.Clear();
+                emp_bureau = empBureau.ToList();
+                emp_terrain = empTerrain.ToList();
 
-                ListItem headerBureau = new ListItem("Bureau", (-1).ToString());
+                RepBureau.DataSource = emp_bureau;
+                RepBureau.DataBind();
 
-                MultiselectEmploye.Items.Add(headerBureau);
-
-                foreach (var emp in emp_bureau)
-                {
-                    string nomComplet = emp.nom + ", " + emp.prenom;
-                    ListItem item = new ListItem(nomComplet, emp.idEmploye.ToString());
-
-                    item.Attributes["OptionGroup"] = "Bureau";
-
-                    MultiselectEmploye.Items.Add(item);
-                }
-
-                ListItem headerTerrain = new ListItem("Terrain", (-2).ToString());
-
-                MultiselectEmploye.Items.Add(headerTerrain);
-
-                foreach (var emp in emp_terrain)
-                {
-                    string nomComplet = emp.nom + ", " + emp.prenom;
-                    ListItem item = new ListItem(nomComplet, emp.idEmploye.ToString());
-
-                    item.Attributes["OptionGroup"] = "Terrain";
-
-                    MultiselectEmploye.Items.Add(item);
-                }
+                RepTerrain.DataSource = emp_terrain;
+                RepTerrain.DataBind();
 
                 var query = from tbl in context.tbl_Projet
                             //where tbl.archiver == false
@@ -283,6 +272,42 @@ namespace UrbanEco
                 tbx_categorie_selected.Items.Remove(item);
             }
 
+        }
+
+        protected void test_Click(object sender, EventArgs e)
+        {
+            List<int> listEmp = new List<int>();
+
+            foreach (var idEmpl in array.Value.Split(','))
+            {
+                int id = -1;
+
+                if (string.IsNullOrWhiteSpace(idEmpl))
+                    continue;
+
+                id = ConvertValueToInt(idEmpl);
+
+                if (id <= -1)
+                    continue;
+
+                listEmp.Add(id);
+            }
+
+            EmployerSelected = listEmp;
+
+        }
+
+        protected string IsSelected(object id, object attr)
+        {
+            int idEmploye = (int) id;
+
+            foreach (var item in EmployerSelected)
+            {
+                if (item == idEmploye)
+                    return "selected";
+            }
+
+            return "";
         }
     }
 }
