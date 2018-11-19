@@ -24,6 +24,10 @@
             .table-custom > table {
                 width: 100% !important;
             }
+            .btn-option {
+            height:30px !important;
+            width: 30px !important;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -61,16 +65,23 @@
                                 <th style="width:12%">Date</th>
                                 <th style="width:8%">Durée (h)</th>
                                 <th style="width:15%">Projet</th>
-                                <th style="width:16%">Catégorie</th>
-                                <th style="width:17%">Note</th>
-                                <th style="width:15%">
+                                <th style="width:20%">Catégorie</th>
+                                <th style="width:20%">Note</th>
+                                <th style="width:5%">
                                 </th>
                             </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
+                            <td> <asp:Button ID="btnCloseOpen" runat="server" Text="Close/Open" OnClick="btnCloseOpen_Click" ViewStateMode="Inherit" />
+                            </td>
                             <td>
                                 <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td><asp:Button ID="Btn_ApproveEmp" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye") %>' /></td>
                         </tr>
                         <tr>
@@ -79,6 +90,7 @@
                                 
                                 <ItemTemplate>
                                     <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# !Boolean.Parse(Eval("approuver").ToString())%>'>
+                                        <td></td>
                                         <td></td>
                                         <td>
                                             <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
@@ -96,8 +108,8 @@
                                             <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
                                         </td>
                                         <td>
-                                            <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" OnClick="Btn_Modif_Click" runat="server" Text="Modification" />
-                                            <asp:Button ID="Btn_Approve" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_Approve_Click" Text="Approuver" CommandArgument='<%#Eval("idFeuille") %>' />
+                                            <asp:ImageButton ID="Btn_Modif" CssClass=" btn-option" OnClick="Btn_Modif_Click" runat="server" Text="Modification" src="Resources/pencil.png" />
+                                            <asp:ImageButton ID="Btn_Approve" CssClass="btn-option" runat="server" OnClick="Btn_Approve_Click"  src="Resources/checkmark.png" Text="Approuver" CommandArgument='<%#Eval("idFeuille") %>' />
                                         </td>
                                     </tr>
                                     

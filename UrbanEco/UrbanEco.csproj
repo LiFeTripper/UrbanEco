@@ -72,6 +72,7 @@
     <Content Include="AjoutCat.aspx" />
     <Content Include="AjoutDepense.aspx" />
     <Content Include="AjoutEmp.aspx" />
+    <Content Include="AjoutFT.aspx" />
     <Content Include="AjoutProjets.aspx" />
     <Content Include="GestionDepense.aspx" />
     <Content Include="BanqueHeure.aspx" />
@@ -130,6 +131,13 @@
     </Compile>
     <Compile Include="AjoutEmp.aspx.designer.cs">
       <DependentUpon>AjoutEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AjoutFT.aspx.cs">
+      <DependentUpon>AjoutFT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjoutFT.aspx.designer.cs">
+      <DependentUpon>AjoutFT.aspx</DependentUpon>
     </Compile>
     <Compile Include="AjoutProjets.aspx.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>

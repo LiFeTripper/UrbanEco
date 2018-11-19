@@ -197,5 +197,26 @@ namespace UrbanEco
 
             Response.Redirect(Request.RawUrl);
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCloseOpen_Click(object sender, EventArgs e)
+        {
+            //En pause bouton pour ouvrir
+            
+        }
+
+        protected void btnOpen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnOpenTest_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
