@@ -120,7 +120,7 @@ namespace UrbanEco
 
         protected void Btn_Approve_Click(object sender, EventArgs e)
         {
-            Button temp = (sender as Button);
+            ImageButton temp = (sender as ImageButton);
             int idFeuille = int.Parse(temp.CommandArgument);
 
             var FT = from tblFT in cdc.tbl_FeuilleTemps
@@ -217,6 +217,13 @@ namespace UrbanEco
         protected void btnOpenTest_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Btn_Modif_Click1(object sender, ImageClickEventArgs e)
+        {
+            ImageButton ib = (ImageButton)sender;
+
+            Response.Redirect("AjoutFT.aspx?FT=" + ib.CommandArgument);
         }
     }
 }

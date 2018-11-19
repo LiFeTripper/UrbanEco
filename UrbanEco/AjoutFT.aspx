@@ -101,12 +101,16 @@
                         <tr>
                             <td>
                                 <input type="date" id="Calendar" style="margin: auto;" runat="server" />
+                                
+
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <h5 class="center" style="margin: auto !important;" id="dateFormated" runat="server"></h5>
+                                 
                             </td>
+                            
                         </tr>
                         <tr>
                             <td>
@@ -118,47 +122,47 @@
                 </div>
             </div>
             <%--On change for date--%>
-            <script>
-                var input = document.getElementById('<%=Calendar.ClientID%>')
+           <script>
+               var input = document.getElementById('<%=Calendar.ClientID%>')
 
-                UpdateDateFormat();
+               UpdateDateFormat();
 
-                input.onchange = function () {
-                    UpdateDateFormat();
-                }
+               input.onchange = function () {
+                   UpdateDateFormat();
+                   UpdateDateRep();
+               }
 
-                function UpdateDateFormat() {
+               function UpdateDateFormat() {
 
-                    var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
+                   var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
-                    if (input.value == "") {
-                        dateFormated.innerText = "Veuillez sélectionner la date";
-                        return;
-                    }
+                   if (input.value == "") {
+                       dateFormated.innerText = "Veuillez sélectionner la date";
+                       return;
+                   }
 
-                    var format = FormatYear(input.value);
+                   var format = FormatYear(input.value);
 
-                    dateFormated.innerText = format;
-                }
+                   dateFormated.innerText = format;
+               }
+               
 
+               function FormatYear(yearString) {
 
-                function FormatYear(yearString) {
+                   var split = yearString.split('-');
 
-                    var split = yearString.split('-');
+                   if (split.length != 3)
+                       split = yearString.split('/');
 
-                    if (split.length != 3)
-                        split = yearString.split('/');
+                   var year = split[0];
+                   var month = parseInt(split[1]);
+                   var day = parseInt(split[2]);
 
-                    var year = split[0];
-                    var month = parseInt(split[1]);
-                    var day = parseInt(split[2]);
+                   var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-                    var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-
-                    return day + " " + months[month - 1] + " " + year;;
-                }
-
-            </script>
+                   return day + " " + months[month - 1] + " " + year;;
+               }
+        </script>
         </div>
     </form>
 </asp:Content>
