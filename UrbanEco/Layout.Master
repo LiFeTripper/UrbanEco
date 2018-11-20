@@ -18,11 +18,19 @@
     <%--Multiselect CSS--%>
     <link href="lib/css/multi-select.css" rel="stylesheet" />
 
+<<<<<<< HEAD
     <%--SCRIPTS--%>
     <script src="lib/js/jquery-3.3.1.min.js"></script>
     <script src="lib/js/popper.js"></script>
     <script src="lib/js/bootstrap.min.js"></script>
     <script src="lib/js/bootbox.min.js"></script>
+=======
+    <%--Bootbox Javascript--%>
+    <script src="lib/js/bootbox.min.js" ></script>
+
+    <%--Multiselect Javascript--%>
+    <script src="lib/js/jquery-3.3.1.min.js"></script>
+>>>>>>> 3f9d6a7cf213358c902921bf21f1efcb5c0ea13a
     <script src="lib/js/jquery.multi-select.js"></script>
 
 </head>
@@ -59,7 +67,10 @@
                         <i class="fas fa-tasks"></i>
                         Feuille de temps
                     </a>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3f9d6a7cf213358c902921bf21f1efcb5c0ea13a
                     <a href="Banqueheure.aspx">
                         <i class="fas fa-piggy-bank"></i>
                         Banque d'heures

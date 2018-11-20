@@ -34,12 +34,35 @@
 
 
     <form runat="server" style="text-align: center;" class="container center col-12">
-                
+                <table style="width: 100% !important;">
+                        <tr>
+                            <th>
+                                <h5>Date</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="date" id="Calendar1" style="margin: auto;" runat="server" />
+                                
+
+                            </td>
+                            <td><input type="date" id="Calendar2" style="margin: auto;" runat="server" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="center" style="margin: auto !important;" id="dateFormated2" runat="server"></h5>
+                                 
+                            </td>
+                            <td><h5 class="center" style="margin: auto !important;" id="dateFormated1" runat="server"></h5></td>
+                        </tr>
+                    </table>
                 <%--CODE REPEATER DE PROJETS--%>
                 <asp:Repeater ID="Rptr_EmployeNonApprouver" runat="server">
 
                     <%--HEADERTEMPLATE--%>
                     <HeaderTemplate>
+                        <%--USERNAME ET PASSWORD--%>
+                    
                         <table style="width: 100% !important; text-align: left !important;">
 
                             <%--EN TËTE A MARC--%>
@@ -82,7 +105,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><asp:Button ID="Btn_ApproveEmp" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye") %>' /></td>
+                            <td><asp:Button ID="Btn_ApproveEmp" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye")%>' /></td>
                         </tr>
                         <tr>
                             <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1" >
@@ -108,8 +131,8 @@
                                             <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
                                         </td>
                                         <td>
-                                            <asp:ImageButton ID="Btn_Modif" CssClass=" btn-option" OnClick="Btn_Modif_Click" runat="server" Text="Modification" src="Resources/pencil.png" />
-                                            <asp:ImageButton ID="Btn_Approve" CssClass="btn-option" runat="server" OnClick="Btn_Approve_Click"  src="Resources/checkmark.png" Text="Approuver" CommandArgument='<%#Eval("idFeuille") %>' />
+                                            <asp:ImageButton ID="Btn_Modif" CssClass=" btn-option" OnClick="Btn_Modif_Click1" runat="server" Text="Modification" src="Resources/pencil.png" CommandArgument='<%#Eval("idFeuille")%>' />
+                                            <asp:ImageButton ID="Btn_Approve" CssClass="btn-option" runat="server" OnClick="Btn_Approve_Click"  src="Resources/checkmark.png" Text="Approuver" CommandArgument='<%#Eval("idFeuille")%>' />
                                         </td>
                                     </tr>
                                     
@@ -207,6 +230,70 @@
                         </table>
                     </FooterTemplate>
                 </asp:Repeater>
+        <script>
 
+            var input1 = document.getElementById('<%=Calendar1.ClientID%>')
+            var input2 = document.getElementById('<%=Calendar2.ClientID%>')
+
+            UpdateDateFormat(1);
+            UpdateDateFormat(2);
+
+            input1.onchange = function () {
+                UpdateDateFormat(1);
+            }
+
+            input2.onchange = function () {
+                UpdateDateFormat(2);
+            }
+
+            function UpdateDateFormat(int) {
+                if (int == 1) {
+
+                    var dateFormated = document.getElementById('<%=dateFormated2.ClientID%>')
+                        if (input1.value == "") {
+                            dateFormated.innerText = "Veuillez sélectionner la date";
+                            return;
+                        }
+
+                        var format = FormatYear(input1.value);
+
+                        dateFormated.innerText = format;
+                    }
+
+                    else {
+                        var dateFormated = document.getElementById('<%=dateFormated1.ClientID%>')
+                        if (input2.value == "") {
+                            dateFormated.innerText = "Veuillez sélectionner la date";
+                            return;
+                        }
+
+                        var format = FormatYear(input2.value);
+
+                        dateFormated.innerText = format;
+                    }
+
+
+
+                }
+
+
+                function FormatYear(yearString) {
+
+                    var split = yearString.split('-');
+
+                    if (split.length != 3)
+                        split = yearString.split('/');
+
+                    var year = split[0];
+                    var month = parseInt(split[1]);
+                    var day = parseInt(split[2]);
+
+                    var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+                    return day + " " + months[month - 1] + " " + year;;
+                }
+
+            </script>
     </form>
+     
 </asp:Content>
