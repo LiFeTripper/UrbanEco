@@ -47,7 +47,8 @@ namespace UrbanEco
             string commandArgument = button.CommandArgument;
 
             //Redirige l'adresse vers l'ajout de projet avec le id en argument
-            Response.Redirect("AjoutCat.aspx?Prj=" + commandArgument);
+            Response.Redirect("AjoutCategorie.aspx?Prj=" + commandArgument);
+            //Response.Redirect("AjoutCategorie.aspx");
         }
 
         protected void Chkbx_Inactif_CheckedChanged(object sender, EventArgs e)

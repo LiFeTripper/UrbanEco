@@ -18,9 +18,11 @@
     <%--Multiselect CSS--%>
     <link href="lib/css/multi-select.css" rel="stylesheet" />
 
-    <%--Bootbox Javascript--%>
-    <script src="lib/js/bootbox.min.js" ></script>
-    <%--Multiselect Javascript--%>
+    <%--SCRIPTS--%>
+    <script src="lib/js/jquery-3.3.1.min.js"></script>
+    <script src="lib/js/popper.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/bootbox.min.js"></script>
     <script src="lib/js/jquery.multi-select.js"></script>
 
 </head>
@@ -57,11 +59,8 @@
                         <i class="fas fa-tasks"></i>
                         Feuille de temps
                     </a>
-<<<<<<< HEAD
-                    <a href="BanqueHeure.aspx">
-=======
+
                     <a href="Banqueheure.aspx">
->>>>>>> 63fde98907212a01f3a855ebda49daaa12004054
                         <i class="fas fa-piggy-bank"></i>
                         Banque d'heures
                     </a>
@@ -100,11 +99,7 @@
         <%--<p>&copy; Company 2017-2018</p>--%>
     </footer>
 
-    <%--SCRIPTS--%>
-    <script src="lib/js/jquery-3.3.1.min.js"></script>
-    <script src="lib/js/popper.js"></script>
-    <script src="lib/js/bootstrap.min.js"></script>
-    <script src="lib/js/bootbox.min.js"></script>
+    
 </body>
 
 </html>
