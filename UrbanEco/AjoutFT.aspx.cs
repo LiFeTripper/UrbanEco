@@ -13,7 +13,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 //Query les projet
                 var queryProjet = from tbl in context.tbl_Projet
@@ -28,12 +28,12 @@ namespace UrbanEco
                 tbx_projet.SelectedIndex = 0;
 
 
-                if (Request.QueryString["FT"] != "")
+                if (Request.QueryString["FT"] != "New")
                 {
                     LoadFT();
                 }
             }
-            
+
         }
 
         protected void tbx_projet_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,35 +72,87 @@ namespace UrbanEco
 
         protected void Btn_Enreg_Click(object sender, EventArgs e)
         {
-            tbl_FeuilleTemps tbFT = new tbl_FeuilleTemps();
-            //tbFT.idEmploye = Layout.GetUserConnected().idEmploye;
-            tbFT.idEmploye = 1;
-            tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
-            tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
-            tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
-            tbFT.dateCreation = DateTime.Parse(Calendar.Value);
-            tbFT.commentaire = txa_comments.Value;
-            tbFT.approuver = false;
+            if (Request.QueryString["FT"] == "New")
+            {
+                tbl_FeuilleTemps tbFT = new tbl_FeuilleTemps();
+                //tbFT.idEmploye = Layout.GetUserConnected().idEmploye;
+                tbFT.idEmploye = 1;     //Temporaire
+                tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
+                tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
+                tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
+                tbFT.dateCreation = DateTime.Parse(Calendar1.Value);
+                tbFT.commentaire = txa_comments.Value;
+                tbFT.approuver = false;
 
-            context.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
-            context.SubmitChanges();
+                context.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
+                context.SubmitChanges();
 
-            Response.Redirect("GestionFeuilleTemps.aspx");
+                Response.Redirect("GestionFeuilleTemps.aspx");
+            }
+            else
+            {
+                int value = int.Parse(Request.QueryString["FT"]);
+
+                var query1 = from tbl in context.tbl_FeuilleTemps
+                             where tbl.idFeuille == value
+                             select tbl;
+
+                tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
+
+                temp.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
+                temp.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
+                temp.nbHeure = int.Parse(tbx_nbHeure.Text);
+                if (Calendar1.Value == "")
+                    temp.dateCreation = DateTime.Parse(dateFormated.InnerText);
+                else
+                    temp.dateCreation = DateTime.Parse(Calendar1.Value);
+
+                temp.commentaire = txa_comments.Value;
+
+                context.tbl_FeuilleTemps.DeleteOnSubmit(temp);
+                context.tbl_FeuilleTemps.InsertOnSubmit(temp);
+                context.SubmitChanges();
+
+
+                Response.Redirect("GestionFeuilleTemps.aspx");
+            }
+
         }
 
         protected void LoadFT()
         {
             int value = int.Parse(Request.QueryString["FT"]);
 
-            var query = from tbl in context.tbl_FeuilleTemps
-                        where tbl.idFeuille == value
-                        select tbl;
+            var query1 = from tbl in context.tbl_FeuilleTemps
+                         where tbl.idFeuille == value
+                         select tbl;
 
-            tbl_FeuilleTemps temp = query.First<tbl_FeuilleTemps>();
+            tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
 
             tbx_projet.SelectedValue = temp.idProjet.ToString();
             tbx_categorie.Enabled = true;
+            int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
+
+            var query2 = from tbl in context.tbl_ProjetCat
+                         where tbl.idProjet == projectID
+                         select tbl;
+
+            tbx_categorie.DataSource = query2;
+            tbx_categorie.DataBind();
             tbx_categorie.SelectedValue = temp.idCat.ToString();
+
+            DateTime dt = (DateTime)temp.dateCreation;
+
+            tbx_nbHeure.Text = temp.nbHeure.ToString();
+            Calendar1.Value = temp.dateCreation.ToString(); //Marche pas
+            dateFormated.InnerText = temp.dateCreation.ToString().Split(' ')[0];
+            txa_comments.Value = temp.commentaire;
         }
+
+        protected void ChangeDate()
+        {
+            dateFormated.InnerText = Calendar1.Value;
+        }
+
     }
 }

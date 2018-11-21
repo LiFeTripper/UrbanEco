@@ -100,7 +100,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="date" id="Calendar" style="margin: auto;" runat="server" />
+                                <input type="date" id="Calendar1" style="margin: auto;" runat="server" oninput="ChangeDate" />
                                 
 
                             </td>
@@ -108,7 +108,6 @@
                         <tr>
                             <td>
                                 <h5 class="center" style="margin: auto !important;" id="dateFormated" runat="server"></h5>
-                                 
                             </td>
                             
                         </tr>
@@ -122,8 +121,8 @@
                 </div>
             </div>
             <%--On change for date--%>
-           <script>
-               var input = document.getElementById('<%=Calendar.ClientID%>')
+           <%--<script>
+               var input = document.getElementById('<%=Calendar1.ClientID%>')
 
                UpdateDateFormat();
 
@@ -136,14 +135,16 @@
 
                    var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
-                   if (input.value == "") {
-                       dateFormated.innerText = "Veuillez sélectionner la date";
-                       return;
+                       if (input.value == "") {
+                           dateFormated.innerText = "Veuillez sélectionner la date";
+                           return;
+                       }
+
+                       var format = FormatYear(input.value);
+
+                       dateFormated.innerText = format;
                    }
 
-                   var format = FormatYear(input.value);
-
-                   dateFormated.innerText = format;
                }
                
 
@@ -162,7 +163,7 @@
 
                    return day + " " + months[month - 1] + " " + year;;
                }
-        </script>
+        </script>--%>
         </div>
     </form>
 </asp:Content>

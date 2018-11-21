@@ -37,7 +37,10 @@
                 <table style="width: 100% !important;">
                         <tr>
                             <th>
-                                <h5>Date</h5>
+                                <h5>Date minimale</h5>
+                            </th>
+                            <th>
+                                <h5>Date maximale</h5>
                             </th>
                         </tr>
                         <tr>
@@ -47,6 +50,7 @@
 
                             </td>
                             <td><input type="date" id="Calendar2" style="margin: auto;" runat="server" /></td>
+                            <td><asp:Button ID="btn_Filtrer" CssClass="btn btn-md btn-primary" runat="server" OnClick="btn_Filtrer_Click" Text="Filtrer Selon Dates"  /></td>
                         </tr>
                         <tr>
                             <td>
@@ -67,14 +71,12 @@
 
                             <%--EN TËTE A MARC--%>
                             <h1>Projets</h1>
-                            <%--<tr style="width:100%;text-align:center !important;">
-                                <td style="margin:auto;"> 
-                                <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" style="float:right; position:relative;" runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout"  /></td>
-                            </tr>--%>
-                            <tr style="width:100%;">
+                            <tr style="width:100%;text-align:center !important;">
                                 <td>
-                                    <h2 style="margin-bottom:10px; margin-left:50% !important;">Non approuvé</h2>
+                                    <h2>Non approuvé</h2>
                                 </td>
+                                <td style="margin:auto;"> 
+                                <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout"  /></td>
                             </tr>
 
                             <hr style="border-bottom: 20px solid #23282e; width: 100%;" />

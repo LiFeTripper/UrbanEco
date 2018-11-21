@@ -14,47 +14,54 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
 
-            if (!IsPostBack) { 
+                Page.MaintainScrollPositionOnPostBack = true;
 
-            Page.MaintainScrollPositionOnPostBack = true;
-        
                 List<tbl_Employe> listTable = new List<tbl_Employe>();
+
+                Calendar1.Value = "1/1/1754";
+                Calendar2.Value = "1/1/3000";
 
                 var querry = from tblE in cdc.tbl_Employe
                              join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
                              where tblFT.approuver.Equals(false)
+                             & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                             & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                             orderby tblFT.dateCreation descending
+                             
                              select tblE;
-                
 
-                foreach(var tbl in querry)
+
+                foreach (var tbl in querry)
                 {
                     bool ajouterTbl = true;
                     var tblTemp = tbl;
                     int idtbl = tbl.idEmploye;
 
-                    foreach(var tblVerif in querry)
+                    foreach (var tblVerif in querry)
                     {
-                        if(tblVerif.idEmploye != idtbl)
+                        if (tblVerif.idEmploye != idtbl)
                         {
-                            if(tblTemp == tblVerif)
+                            if (tblTemp == tblVerif)
                             {
                                 ajouterTbl = false;
                             }
                         }
                     }
 
-                    foreach(tbl_Employe tb in listTable)
+                    foreach (tbl_Employe tb in listTable)
                     {
-                        if(tblTemp == tb)
+                        if (tblTemp == tb)
                         {
                             ajouterTbl = false;
                         }
                     }
 
-                    if(ajouterTbl)
+                    if (ajouterTbl)
                     {
-                        
+
                         listTable.Add(tblTemp);
                     }
                 }
@@ -63,7 +70,7 @@ namespace UrbanEco
                 Rptr_EmployeNonApprouver.DataSourceID = null;
 
                 Rptr_EmployeNonApprouver.DataBind();
-                Rptr_EmployeNonApprouver.DataSource = listTable;
+                Rptr_EmployeNonApprouver.DataSource = querry.Distinct();
                 Rptr_EmployeNonApprouver.DataBind();
 
                 List<tbl_Employe> listTableA = new List<tbl_Employe>();
@@ -71,6 +78,9 @@ namespace UrbanEco
                 querry = from tblE in cdc.tbl_Employe
                          join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
                          where tblFT.approuver == true
+                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                         & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                         orderby tblFT.dateCreation descending
                          select tblE;
 
                 foreach (var tbl in querry)
@@ -107,10 +117,10 @@ namespace UrbanEco
                 rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;
                 rptr_EmployeApprouver.DataBind();
-                rptr_EmployeApprouver.DataSource = listTableA;
+                rptr_EmployeApprouver.DataSource = querry.Distinct();
                 rptr_EmployeApprouver.DataBind();
-            }
 
+            }
         }
 
         protected void Btn_Modif_Click(object sender, EventArgs e)
@@ -224,6 +234,183 @@ namespace UrbanEco
             ImageButton ib = (ImageButton)sender;
 
             Response.Redirect("AjoutFT.aspx?FT=" + ib.CommandArgument);
+        }
+
+        protected void Btn_ApproveTout_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_Filtrer_Click(object sender, EventArgs e)
+        {
+            List<tbl_Employe> listTable = new List<tbl_Employe>();
+
+            var querry = from tblE in cdc.tbl_Employe
+                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                         where tblFT.approuver.Equals(false)
+                         select tblE;
+
+            if (Calendar1.Value == "")
+            {
+                if (Calendar2.Value == "")
+                {
+                    querry = from tblE in cdc.tbl_Employe
+                                 join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                 where tblFT.approuver.Equals(false)
+                                 select tblE;
+                }
+                else
+                {
+                    querry = from tblE in cdc.tbl_Employe
+                                 join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                 where tblFT.approuver.Equals(false)
+                                 & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                                 select tblE;
+                }
+            }
+            else if(Calendar2.Value == "")
+            {
+
+                querry = from tblE in cdc.tbl_Employe
+                             join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                             where tblFT.approuver.Equals(false)
+                             & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                             select tblE;
+            }
+            else
+            {
+                querry = from tblE in cdc.tbl_Employe
+                             join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                             where tblFT.approuver.Equals(false)
+                             & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                             & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                             select tblE;
+            }
+
+
+            foreach (var tbl in querry)
+            {
+                bool ajouterTbl = true;
+                var tblTemp = tbl;
+                int idtbl = tbl.idEmploye;
+
+                foreach (var tblVerif in querry)
+                {
+                    if (tblVerif.idEmploye != idtbl)
+                    {
+                        if (tblTemp == tblVerif)
+                        {
+                            ajouterTbl = false;
+                        }
+                    }
+                }
+
+                foreach (tbl_Employe tb in listTable)
+                {
+                    if (tblTemp == tb)
+                    {
+                        ajouterTbl = false;
+                    }
+                }
+
+                if (ajouterTbl)
+                {
+
+                    listTable.Add(tblTemp);
+                }
+            }
+
+            Rptr_EmployeNonApprouver.DataSource = null;
+            Rptr_EmployeNonApprouver.DataSourceID = null;
+
+            Rptr_EmployeNonApprouver.DataBind();
+            Rptr_EmployeNonApprouver.DataSource = querry.Distinct();
+            Rptr_EmployeNonApprouver.DataBind();
+
+            List<tbl_Employe> listTableA = new List<tbl_Employe>();
+
+            querry = from tblE in cdc.tbl_Employe
+                     join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                     where tblFT.approuver == true
+                     orderby tblFT.dateCreation descending
+                     select tblE;
+
+            if (Calendar1.Value == "")
+            {
+                if (Calendar2.Value == "")
+                {
+                    querry = from tblE in cdc.tbl_Employe
+                             join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                             where tblFT.approuver.Equals(true)
+                             & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                             & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                             select tblE;
+                }
+                else
+                {
+                    querry = from tblE in cdc.tbl_Employe
+                             join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                             where tblFT.approuver.Equals(true)
+                             & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                             select tblE;
+                }
+            }
+            else if (Calendar2.Value == "")
+            {
+
+                querry = from tblE in cdc.tbl_Employe
+                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                         where tblFT.approuver.Equals(true)
+                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                         select tblE;
+            }
+            else
+            {
+                querry = from tblE in cdc.tbl_Employe
+                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                         where tblFT.approuver.Equals(true)
+                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                         & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                         select tblE;
+            }
+
+
+            foreach (var tbl in querry)
+            {
+                bool ajouterTbl = true;
+                var tblTemp = tbl;
+                int idtbl = tbl.idEmploye;
+
+                foreach (var tblVerif in querry)
+                {
+                    if (tblVerif.idEmploye != idtbl)
+                    {
+                        if (tblTemp == tblVerif)
+                        {
+                            ajouterTbl = false;
+                        }
+                    }
+                }
+
+                foreach (tbl_Employe tb in listTableA)
+                {
+                    if (tblTemp == tb)
+                    {
+                        ajouterTbl = false;
+                    }
+                }
+
+                if (ajouterTbl)
+                {
+                    listTableA.Add(tblTemp);
+                }
+            }
+
+            rptr_EmployeApprouver.DataSource = null;
+            rptr_EmployeApprouver.DataSourceID = null;
+            rptr_EmployeApprouver.DataBind();
+            rptr_EmployeApprouver.DataSource = querry.Distinct();
+            rptr_EmployeApprouver.DataBind();
         }
     }
 }
