@@ -16,70 +16,160 @@ namespace UrbanEco
         static List<tbl_Employe> emp_bureau = new List<tbl_Employe>();
         static List<tbl_Employe> emp_terrain = new List<tbl_Employe>();
 
+        static List<int> EmployerSelected = new List<int>();
+
+        public static int idTest = -1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {               
-                tbx_categorie.Items.Add("Sélectionner un projet pour avoir accès au sous-catégorie");
 
-                //Query pour les projet non-archiver
+            RepBureau.DataSource = emp_bureau;
+            RepBureau.DataBind();
+
+            RepTerrain.DataSource = emp_terrain;
+            RepTerrain.DataBind();
+
+
+            if (!IsPostBack)
+            {    
+                
+
+                //tbx_categorie.Items.Add("Sélectionner un projet pour avoir accès au sous-catégorie");
+
+                //Query pour les projet
                 CoecoDataContext context = new CoecoDataContext();
 
                 var empBureau = from emp in context.tbl_Employe
-                                where emp.idTypeEmpl == 1
+                                where emp.idTypeEmpl == 1 && emp.idEmploye != 4
                                 orderby emp.nom, emp.prenom
                                 select emp;
 
                 var empTerrain = from emp in context.tbl_Employe
-                                where emp.idTypeEmpl == 2
-                                orderby emp.nom, emp.prenom
+                                where emp.idTypeEmpl == 2 && emp.idEmploye != 4
+                                 orderby emp.nom, emp.prenom
                                 select emp;
 
-                emp_bureau = empBureau.ToList<tbl_Employe>();
-                emp_terrain = empTerrain.ToList<tbl_Employe>();
 
-                MultiselectEmploye.Items.Clear();
+                emp_bureau = empBureau.ToList();
+                emp_terrain = empTerrain.ToList();
 
-                ListItem headerBureau = new ListItem("Bureau", (-1).ToString());
+                RepBureau.DataSource = emp_bureau;
+                RepBureau.DataBind();
 
-                MultiselectEmploye.Items.Add(headerBureau);
+                RepTerrain.DataSource = emp_terrain;
+                RepTerrain.DataBind();
 
-                foreach (var emp in emp_bureau)
-                {
-                    string nomComplet = emp.nom + ", " + emp.prenom;
-                    ListItem item = new ListItem(nomComplet, emp.idEmploye.ToString());
-
-                    item.Attributes["OptionGroup"] = "Bureau";
-
-                    MultiselectEmploye.Items.Add(item);
-                }
-
-                ListItem headerTerrain = new ListItem("Terrain", (-2).ToString());
-
-                MultiselectEmploye.Items.Add(headerTerrain);
-
-                foreach (var emp in emp_terrain)
-                {
-                    string nomComplet = emp.nom + ", " + emp.prenom;
-                    ListItem item = new ListItem(nomComplet, emp.idEmploye.ToString());
-
-                    item.Attributes["OptionGroup"] = "Terrain";
-
-                    MultiselectEmploye.Items.Add(item);
-                }
-
-                var query = from tbl in context.tbl_Projet
+                var queryProjet = from tbl in context.tbl_Projet
                             //where tbl.archiver == false
                             orderby tbl.titre
                             select tbl;
 
-                lst_projet.DataSource = query;
+                lst_projet.DataSource = queryProjet;
                 lst_projet.DataBind();
 
                 lst_projet.Items.Insert(0, "Veuillez sélectionner le projet");
                 lst_projet.SelectedIndex = 0;
 
+
+
+                RequeryCategorie();
             }
+        }
+
+        void RequeryCategorie()
+        {
+            CoecoDataContext context = new CoecoDataContext();
+            int idProjet = -1;
+
+            idProjet = ConvertValueToInt(lst_projet.Items[lst_projet.SelectedIndex].Value);
+
+            //No project selected
+            if (idProjet <= -1)
+                return;
+
+            var queryCatMaster = from tbl in context.tbl_ProjetCat
+                                 join tbl2 in context.tbl_ProjetCat on tbl.idProjetCat equals tbl2.idCatMaitre
+                                 where tbl.idCatMaitre == null && tbl.idProjet == idProjet
+                                 orderby tbl.titre
+                                 select tbl;
+
+
+
+
+            var queryCatChildren = from tbl in context.tbl_ProjetCat
+                                   where tbl.idCatMaitre != null && tbl.idProjet == idProjet
+                                   orderby tbl.titre
+                                   select tbl;
+
+
+            int idParent = -1;
+
+            IQueryable<tbl_ProjetCat> megaQuery = null;
+
+            foreach (var parent in queryCatMaster.Distinct().ToList())
+            {
+                idParent = parent.idProjetCat;
+
+               /* if(megaQuery == null)
+                {
+                    megaQuery = from tbl in context.tbl_ProjetCat
+                                where tbl.idProjet == idProjet && tbl.idCatMaitre == idParent
+                                orderby tbl.idCatMaitre ascending, tbl.titre
+                                select tbl;
+                }
+                else
+                {
+                    var parentCat = from tbl in context.tbl_ProjetCat
+                                 where tbl.idProjet == idProjet && tbl.idCatMaitre == idParent
+                                 orderby tbl.idCatMaitre ascending, tbl.titre
+                                 select tbl;
+
+                    megaQuery.Concat(parentCat);
+                }*/
+
+                var q = from tbl in context.tbl_ProjetCat
+                                       where tbl.idProjet == idProjet && tbl.idCatMaitre == idParent || tbl.idProjetCat == idParent
+                                       orderby tbl.idCatMaitre ascending,tbl.titre
+                                       select tbl;
+                if (megaQuery == null)
+                    megaQuery = q;
+                else
+                    megaQuery = megaQuery.Concat(q.Distinct());
+            }
+            //            SELECT* FROM tbl_ProjetCat
+            //WHERE idProjetCat = 1 OR idCatMaitre = 1
+            //ORDER BY idCatMaitre ASC, titre
+
+            /*List<tbl_ProjetCat> result = new List<tbl_ProjetCat>();
+            int idParent = -1;
+            foreach (var parent in queryCatMaster.Distinct().ToList())
+            {
+                idParent = parent.idProjetCat;
+
+                result.Add(parent);
+
+                foreach (var child in queryCatChildren.Distinct().ToList())
+                {
+                    if (child.idCatMaitre != idParent)
+                        continue;
+
+                    result.Add(child);
+                }
+            }
+
+            var t = queryCatMaster.ToList();
+            */
+
+
+            if (megaQuery != null)
+            {
+                var t = megaQuery.ToList();
+            }
+            repParentCat.DataSource = megaQuery;
+            repParentCat.DataBind();
+
+            
+            
         }
 
         protected void btn_annuler_Click(object sender, EventArgs e)
@@ -95,7 +185,7 @@ namespace UrbanEco
         protected void lst_projet_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Reset les catégories
-            if (!tbx_categorie.Enabled)
+            /*if (!tbx_categorie.Enabled)
                 tbx_categorie.Enabled = true;
 
 
@@ -110,7 +200,7 @@ namespace UrbanEco
                 tbx_categorie.Items.Add("Sélectionner un projet pour avoir accès au sous-catégorie");
 
                 return;
-            }
+            }*/
 
             //Obtenir les catégorie
             CoecoDataContext context = new CoecoDataContext();
@@ -133,14 +223,15 @@ namespace UrbanEco
 
             sortedCats = TrierList(allCats, masterCats);
 
+            RequeryCategorie();
 
-            tbx_categorie.SelectionMode = ListSelectionMode.Multiple;
+            /*tbx_categorie.SelectionMode = ListSelectionMode.Multiple;
             tbx_categorie_selected.SelectionMode = ListSelectionMode.Multiple;
             
             tbx_categorie.DataSource = ProjetCatToListItem(masterCats);
             tbx_categorie.DataBind();
 
-            tbx_categorie.Items.Insert(0, "Toutes les sous-catégories");
+            tbx_categorie.Items.Insert(0, "Toutes les sous-catégories");*/
         }
 
         private List<ListItem> ProjetCatToListItem (List<tbl_ProjetCat> lst)
@@ -193,7 +284,7 @@ namespace UrbanEco
 
         protected void SelectCat_Click(object sender, EventArgs e)
         {
-            List<ListItem> selectedCat = new List<ListItem>();
+           /* List<ListItem> selectedCat = new List<ListItem>();
 
             bool SelectAll = false;
 
@@ -234,7 +325,7 @@ namespace UrbanEco
                 tbx_categorie_selected.Items.Add(item);
 
                 tbx_categorie.Items.Remove(item);
-            }
+            }*/
 
         }
 
@@ -260,7 +351,7 @@ namespace UrbanEco
 
         protected void DeSelectCat_Click(object sender, EventArgs e)
         {
-            List<ListItem> selectedCat = new List<ListItem>();
+           /* List<ListItem> selectedCat = new List<ListItem>();
 
             foreach (ListItem item in tbx_categorie_selected.Items)
             {
@@ -282,7 +373,56 @@ namespace UrbanEco
 
                 tbx_categorie_selected.Items.Remove(item);
             }
+            */
+        }
 
+        protected void test_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        protected string IsSelected(object id, object attr)
+        {
+            int idEmploye = (int) id;
+
+            //Permet de lire la liste des employé dans le textbox hidden
+            UpdateSelectedEmployeList();
+
+            foreach (var item in EmployerSelected)
+            {
+                if (item == idEmploye)
+                    return "selected";
+            }
+
+            return "";
+        }
+
+        protected void BtnTesting_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedEmployeList();
+        }
+
+        void UpdateSelectedEmployeList()
+        {
+            List<int> listEmp = new List<int>();
+
+            foreach (var idEmpl in hiddenFieldEmploye.Value.Split(','))
+            {
+                int id = -1;
+
+                if (string.IsNullOrWhiteSpace(idEmpl))
+                    continue;
+
+                id = ConvertValueToInt(idEmpl);
+
+                if (id <= -1)
+                    continue;
+
+                listEmp.Add(id);
+            }
+
+            EmployerSelected = listEmp;
         }
     }
 }
