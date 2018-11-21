@@ -11,18 +11,19 @@
 
     <form runat="server" style="text-align: center;" class="container center col-12">
 
-        <asp:Label runat="server" Visible="true" ID="lbl_noProjet"></asp:Label>
+        <asp:Label runat="server" Visible="false" ID="lbl_noProjet"></asp:Label>
         <%--CODE REPEATER DE PROJETS ACTIF--%>
         <asp:Repeater ID="Rptr_Categorie" runat="server">
 
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e" runat="server">
                                 <th scope="col">ID</th>
-                                <th scope="col">Titre</th>
+                                <th scope="col">Titre Catégorie</th>
+                                <th scope="col">Titre Sous-CatégorieDescription</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">
                                     <asp:Button ID="Btn_AjoutCat" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />
@@ -34,7 +35,7 @@
 
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
-                <tr style="border-bottom: 1px solid #23282e" runat="server">
+                <tr style="border-bottom: 1px solid #23282e" runat="server" class="table-secondary">
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjetCat") %>' Font-Bold="true" />
                     </td>
@@ -42,15 +43,34 @@
                         <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
                     </td>
                     <td>
+                        <%--TD VIDE CAR PAS UNE SOUS-CATÉGORIE--%>
+                    </td>
+                    <td>
                         <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true" />
                     </td>
                     <%--BOUTON AJOUT SOUS-CAT POUR CETTE CATEGORIE--%>
                     <td>
                         <asp:Button ID="Btn_AjoutSousCat" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" CommandArgument='<%#Eval("idProjetCat") %>' OnClientClick="Send(); return false;" />
-                        <asp:HiddenField ID="HiddenField_Titre" runat="server" />
-                        <asp:HiddenField ID="HiddenField_Desc" runat="server" />
                     </td>
                 </tr>
+                <asp:Repeater ID="Rptr_SousCat" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
+                    <ItemTemplate>
+                        <tr style="border-bottom: 1px solid #23282e" runat="server">
+                            <td>
+                                <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjetCat") %>' Font-Bold="true" />
+                            </td>
+                            <td>
+                                <%--TD VIDE CAR PAS UNE CATÉGORIE--%>
+                            </td>
+                            <td>
+                                <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
+                            </td>
+                            <td>
+                                <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true" />
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </ItemTemplate>
 
             <%--FOOTERTEMPLATE--%>
@@ -59,10 +79,11 @@
                 <thead class="thead-dark">
                     <tr style="border-bottom: 5px solid #23282e" runat="server">
                         <th scope="col">ID</th>
-                        <th scope="col">Titre</th>
+                        <th scope="col">Titre Catégorie</th>
+                        <th scope="col">Titre Sous-CatégorieDescription</th>
                         <th scope="col">Description</th>
                         <th scope="col">
-                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />
+                            <asp:Button ID="Btn_AjoutCat" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />
                         </th>
                     </tr>
                 </thead>

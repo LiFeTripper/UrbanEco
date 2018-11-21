@@ -27,12 +27,15 @@ namespace UrbanEco
                 //CODE POUR BIND LE REPEATER DE CATÉGORIE
 
                 var query = from tblCat in context.tbl_ProjetCat
-                             join tblP in context.tbl_Projet on tblCat.idProjet equals tblP.idProjet
-                             where tblP.idProjet.Equals(argument) && tblCat.idCatMaitre.Equals(null)
-                             select tblCat;
+                            join tblP in context.tbl_Projet on tblCat.idProjet equals tblP.idProjet
+                            where tblP.idProjet.Equals(argument) && tblCat.idCatMaitre.Equals(null)
+                            select tblCat;
 
                 Rptr_Categorie.DataSource = null;
                 Rptr_Categorie.DataSourceID = null;
+
+                //TEST
+                var t = query.Distinct().ToList();
 
                 Rptr_Categorie.DataBind();
                 Rptr_Categorie.DataSource = query.Distinct();
