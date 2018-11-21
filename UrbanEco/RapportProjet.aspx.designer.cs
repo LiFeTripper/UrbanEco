@@ -22,40 +22,31 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList lst_projet;
         
         /// <summary>
-        /// Contrôle tbx_categorie.
+        /// Contrôle repParentCat.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox tbx_categorie;
+        protected global::System.Web.UI.WebControls.Repeater repParentCat;
         
         /// <summary>
-        /// Contrôle SelectCat.
+        /// Contrôle hiddenFieldCat.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SelectCat;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldCat;
         
         /// <summary>
-        /// Contrôle DeSelectCat.
+        /// Contrôle LinqCategorie.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeSelectCat;
-        
-        /// <summary>
-        /// Contrôle tbx_categorie_selected.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox tbx_categorie_selected;
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqCategorie;
         
         /// <summary>
         /// Contrôle date_debut.
@@ -103,22 +94,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Repeater RepTerrain;
         
         /// <summary>
-        /// Contrôle array.
+        /// Contrôle hiddenFieldEmploye.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText array;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldEmploye;
         
         /// <summary>
-        /// Contrôle test.
+        /// Contrôle BtnTesting.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button test;
+        protected global::System.Web.UI.WebControls.Button BtnTesting;
         
         /// <summary>
         /// Contrôle km_html.
