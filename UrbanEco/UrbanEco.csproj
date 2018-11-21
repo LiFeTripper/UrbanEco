@@ -79,7 +79,6 @@
     <Content Include="Employe.aspx" />
     <Content Include="GestionFeuilleTemps.aspx" />
     <Content Include="Home.aspx" />
-    <Content Include="lib\js\jquery.multi-select.js" />
     <Content Include="lib\css\bootstrap-grid.css" />
     <Content Include="lib\css\bootstrap-grid.min.css" />
     <Content Include="lib\css\bootstrap-reboot.css" />
@@ -89,7 +88,6 @@
     <Content Include="lib\css\fontawesome.css" />
     <Content Include="lib\css\menu.css" />
     <Content Include="lib\css\menuv2.css" />
-    <Content Include="lib\css\multi-select.css" />
     <Content Include="lib\css\signin.css" />
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
@@ -99,13 +97,11 @@
     <Content Include="lib\js\bootstrap.js" />
     <Content Include="lib\js\bootstrap.min.js" />
     <Content Include="lib\js\jquery-3.3.1.min.js" />
-    <Content Include="lib\js\jquery.multi-select.js" />
     <Content Include="lib\js\popper.js" />
     <Content Include="lib\webfonts\fa-brands-400.svg" />
     <Content Include="lib\webfonts\fa-regular-400.svg" />
     <Content Include="lib\webfonts\fa-solid-900.svg" />
     <Content Include="Login.aspx" />
-    <Content Include="lib\css\multi-select.css" />
     <Content Include="Projets.aspx" />
     <Content Include="RapportProjet.aspx" />
     <Content Include="Resources\checkmark.png" />

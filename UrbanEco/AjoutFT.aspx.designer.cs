@@ -58,13 +58,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txa_comments;
         
         /// <summary>
-        /// Contrôle Calendar.
+        /// Contrôle Calendar1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar1;
         
         /// <summary>
         /// Contrôle dateFormated.
