@@ -34,9 +34,6 @@ namespace UrbanEco
                 Rptr_Categorie.DataSource = null;
                 Rptr_Categorie.DataSourceID = null;
 
-                //TEST
-                var t = query.Distinct().ToList();
-
                 Rptr_Categorie.DataBind();
                 Rptr_Categorie.DataSource = query.Distinct();
                 Rptr_Categorie.DataBind();
@@ -58,6 +55,11 @@ namespace UrbanEco
             //Remplissage des champs de la table temporaire avec les contrôles
             
             
+        }
+
+        protected void Btn_AjoutCat_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
