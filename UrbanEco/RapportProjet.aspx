@@ -21,9 +21,18 @@
             width: 800px !important;
         }
 
-            .table-custom > table {
-                width: 100% !important;
-            }
+        .table-custom > table {
+            width: 100% !important;
+        }
+
+        .font-repeater-level-1{
+            font-size:20px !important;
+        }
+
+        .font-repeater-level-2{
+            font-size:15px !important;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -57,52 +66,27 @@
                     <tr>
                         <th>
                             <h5 style="float: left; width: 49% !important;" class="input-title">Sous-Catégorie</h5>
-                            <h5 style="float: right; width: 49% !important;" class="input-title">Sélectionné(s)</h5>
+                            <h5 style="float: right; width: 49% !important;" class="input-title">Inclus dans le rapport</h5>
                         </th>
                     </tr>
                     <tr>
                         <td>
-                            <%--<asp:DropDownList CssClass="input-box" Enabled="false" ID="tbx_categorie" runat="server"  DataTextField="titre" DataValueField="idProjetCat" autopostback="true"></asp:DropDownList>--%>
-                            <%--<asp:ListBox Style="float: left; width: 45% !important;" CssClass="input-box" Enabled="false" DataTextField="text" DataValueField="value" ID="tbx_categorie" runat="server"></asp:ListBox>
-                            <table style="width: 7% !important; float: left;">
-                                <tr>
-                                    <td>
-                                        <asp:Button ID="SelectCat" runat="server" Text=">" CssClass="btn btn-sm btn-primary" OnClick="SelectCat_Click" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="height: 30px;"></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Button ID="DeSelectCat" runat="server" Text="<" CssClass="btn btn-sm btn-primary" OnClick="DeSelectCat_Click" />
-                                    </td>
-                                </tr>
-                            </table>
-                            <asp:ListBox Style="float: left; width: 45% !important;" CssClass="input-box" Enabled="false" DataTextField="text" DataValueField="value" ID="tbx_categorie_selected" runat="server"></asp:ListBox>
-                            --%>
-                            <%--<asp:CheckBoxList style="text-align:left; float:left;" CssClass="input-box" Enabled="false"  DataTextField="titre" DataValueField="idProjetCat" ID="tbx_categorie" runat="server"></asp:CheckBoxList>--%>
                             <div class="justify-content-lg-center input-group mb-3 col-12">
                                 <select id="SelectCat" multiple="multiple">
+
                                     <asp:Repeater ID="repParentCat" runat="server">
                                         <ItemTemplate>
-                                            
-                                            <optgroup label='<%# ((Eval("titre").Equals(null))? "" : Eval("titre"))  %>' 
-                                                oninit='<%#int.TryParse(Eval("idProjetCat").ToString(), out idTest) %>' 
-                                                visible='<%#Eval("idCatMaitre").Equals(null)%>' 
-                                                runat="server">
 
+                                            <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-1"><%#Eval("titre")%> </option>
 
-                                                <option runat="server" visible='<%# (idTest.Equals(Eval("idProjetCat"))) %>'><%#Eval("titre") %></option>
+                                            <asp:Repeater ID="repTest" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
+                                                <ItemTemplate>
 
-                                                <%--<asp:Repeater ID="repChildCat" runat="server" DataSource="LinqCategorie">
-                                                    <ItemTemplate>
-                                                        <option visible='<%# ((RepeaterItem)Container.Parent.Parent).DataItem == Eval("idProjetCat") %>' value='<%#Eval("idProjetCat") %>' ><%# String.Format("{0}", Eval("titre")) %></option>
-                                                    </ItemTemplate>
-                                                </asp:Repeater>--%>
-                                                
-                                                <%--<%# IsSelected(Eval("idEmploye"), this) %>--%>
-                                            </optgroup>
+                                                    <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-2">&nbsp;&nbsp;<%#Eval("titre") %></option>
+
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </select>
@@ -161,12 +145,6 @@
                 dateFormated.innerText = format;
             }
 
-            function UpdateDateRep() {
-                var dateRep = document.getElementById('<%=rep_date.ClientID%>')
-                var format = FormatYear(input.value);
-                dateRep.innerText = format;
-            }
-
             function FormatYear(yearString) {
 
                 var split = yearString.split('-');
@@ -196,7 +174,8 @@
                     </tr>--%>
                     <tr>
                         <th>
-                            <h5 class="input-title">Employés</h5>
+                            <h5 style="float: left; width: 49% !important;" class="input-title">Employés</h5>
+                            <h5 style="float: right; width: 49% !important;" class="input-title">Inclus dans le rapport</h5>
                         </th>
                     </tr>
                     <tr>
@@ -207,14 +186,14 @@
                                     <optgroup label='Bureau'>
                                         <asp:Repeater runat="server" ID="RepBureau" >
                                                 <ItemTemplate>
-                                                    <option value='<%#Eval("idEmploye") %>' <%# IsSelected(Eval("idEmploye"), this) %> ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                                    <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %> ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
                                                 </ItemTemplate>
                                         </asp:Repeater>
                                     </optgroup>
                                     <optgroup label='Terrain'>
                                         <asp:Repeater runat="server" ID="RepTerrain" >
                                                 <ItemTemplate>
-                                                    <option value='<%#Eval("idEmploye") %>' <%# IsSelected(Eval("idEmploye"), this) %>  ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                                    <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>  ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
                                                 </ItemTemplate>
                                         </asp:Repeater>
                                     </optgroup>
@@ -228,9 +207,7 @@
                                 //Callback for fuck sake
                                 var selected = document.getElementById('<%=hiddenFieldEmploye.ClientID%>').value.split(',');
 
-                                var test = selected;
-
-                                var catSelected = [];
+                                var catSelected = document.getElementById('<%=hiddenFieldCat.ClientID%>').value.split(',');
 
                                 //ID du crisse de multi + class du css
                                 $('#Multiselection').multiSelect({
@@ -266,8 +243,7 @@
                                     },
 
                                     selectableOptgroup: true,
-                                    keepOrder: true,
-                                    selected: test,
+                                    keepOrder: true
                                 });
 
                                 //ID du crisse de multi + class du css
@@ -276,7 +252,7 @@
                                     afterSelect: function (values) {
                                         //Parce que D'amours
                                         catSelected.push(values);
-                                        console.log(catSelected);
+                                        console.log("Caegories : " + catSelected);
 
 
                                         var htmlhiddenFieldCat = document.getElementById('<%=hiddenFieldCat.ClientID%>');
@@ -304,71 +280,11 @@
                                     },
 
                                     selectableOptgroup: true,
-                                    keepOrder: true,
+                                    keepOrder: true
                                 });
 
                                 //RÉUSSI
                             </script>
-                        </td>
-                    </tr>
-
-                    <div id="km_html" runat="server" visible="true">
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Kilomètrage</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td style="width: 60%; float: left;">
-                                <%--<asp:TextBox class="input-box" ID="tbx_montant1" runat="server" autopostback="true" OnTextChanged="tbx_montant1_TextChanged"></asp:TextBox>--%>                               
-                            </td>
-                            <td style="width: 40%; float: left; text-align: left;">
-                                <h5 runat="server" id="montantTotalDepense" class="input-title">* 0.47$ = </h5>
-                            </td>
-                        </tr>
-                    </div>
-
-                    <div id="montant_html" runat="server" visible="false">
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Montant</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:TextBox class="input-box" ID="tbx_montant2" runat="server" AutoPostBack="true"></asp:TextBox>
-                            </td>
-                        </tr>
-                    </div>
-
-                    <tr>
-                        <th>
-                            <h5 class="input-title">Note</h5>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:TextBox class="input-box" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5 class="input-title">Récapitulatif de votre dépense</h5>
-                            <table style="width: 100%">
-                                <tr style="width: 100%">
-                                    <td id="rep_nomEmployer" style="text-align: left;" runat="server"></td>
-                                    <td id="rep_date" style="text-align: right;" runat="server"></td>
-                                </tr>
-                                <tr style="width: 100%">
-                                    <td id="rep_projet" style="text-align: left;" runat="server"></td>
-                                    <td id="rep_categorie" style="text-align: right;" runat="server"></td>
-                                </tr>
-                                <tr style="width: 100%">
-                                    <td id="rep_typeDepense" style="text-align: left;" runat="server"></td>
-                                    <td id="rep_montant" style="text-align: right;" runat="server"></td>
-                                </tr>
-                            </table>
-
                         </td>
                     </tr>
                     <tr>
@@ -386,8 +302,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
-                            <asp:Button Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-success input-box" ID="btn_envoyer" runat="server" Text="Confirmer l'ajout" OnClick="btn_envoyer_Click" />
+                            <asp:Button Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" ID="btn_retour" runat="server" Text="Retour" OnClick="btn_retour_Click" />
+                            <asp:Button Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-success input-box" ID="btn_generer" runat="server" Text="Généré le rapport" OnClick="btn_generer_Click" />
                         </td>
                     </tr>
                 </table>
