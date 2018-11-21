@@ -99,6 +99,7 @@ namespace UrbanEco
             tbl_FeuilleTemps temp = query.First<tbl_FeuilleTemps>();
 
             tbx_projet.SelectedValue = temp.idProjet.ToString();
+            tbx_categorie.Enabled = true;
             tbx_categorie.SelectedValue = temp.idCat.ToString();
         }
     }
