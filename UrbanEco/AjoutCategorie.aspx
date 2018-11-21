@@ -50,9 +50,35 @@
                     </td>
                     <%--BOUTON AJOUT SOUS-CAT POUR CETTE CATEGORIE--%>
                     <td>
-                        <asp:Button ID="Btn_AjoutSousCat" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" CommandArgument='<%#Eval("idProjetCat") %>' OnClientClick="Send(); return false;" />
+                        <%--<asp:Button ID="Btn_AjoutSousCat" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" CommandArgument='<%#Eval("idProjetCat") %>' OnClientClick="Send(); return false;" />--%>
+                        <Button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjout" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</Button>
                     </td>
                 </tr>
+                <tr class="collapse" id="collapseAjout">
+                    <form>
+                    <td><%--PREMIERE COLONE VIDE--%></td>
+                    <td>
+                            <div class="form-group col-12 mx-auto">
+                                <label for="Tbx_Titre">Titre</label>
+                                <input type="text" class="form-control" id="Tbx_Titre" placeholder="Titre">
+                            </div>
+                        </td>
+                    <td><%--TROISIEME COLONE VIDE--%></td>
+                    <td>
+                            <div class="form-group mb-4 col-12 mx-auto">
+                                <label for="Tbx_Description">Description</label>
+                                <input type="text" class="form-control" id="Tbx_Description" placeholder="Description">
+                            </div>
+                        </td>
+                    <td>
+                            <div class="form-group mb-4 col-12 mx-auto">
+                                <asp:Button class="btn btn-primary" ID="Btn_AjoutCat" runat="server" Text="Ajouter" Onclick="Btn_AjoutCat_Click"/>
+                                <Button class="btn btn-primary" ID="Btn_Annuler" data-toggle="collapse" data-target="#collapseAjout">Annuler</Button>
+                            </div>
+                    </td>
+                    </form>
+                </tr>
+
                 <asp:Repeater ID="Rptr_SousCat" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
                     <ItemTemplate>
                         <tr style="border-bottom: 1px solid #23282e" runat="server">
