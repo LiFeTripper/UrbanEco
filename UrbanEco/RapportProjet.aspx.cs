@@ -273,6 +273,9 @@ namespace UrbanEco
             List<tbl_Employe> employes = new List<tbl_Employe>();
             List<tbl_ProjetCat> categories = new List<tbl_ProjetCat>();
 
+            DateTime dateDebut;
+            DateTime dateFin;
+
             int idProjet = ConvertValueToInt(lst_projet.Items[lst_projet.SelectedIndex].Value);
 
             if(idProjet <= -1)
@@ -283,7 +286,10 @@ namespace UrbanEco
 
             CoecoDataContext ctx = new CoecoDataContext();
 
-            projet = ctx.tbl_Projet.Where(p => projet.idProjet == idProjet).First();
+            dateDebut = DateTime.Parse(date_debut.Value);
+            dateFin = DateTime.Parse(date_fin.Value);
+
+            projet = ctx.tbl_Projet.Where(p => p.idProjet == idProjet).First();
 
             employes = ctx.tbl_Employe.Where(emp => SelectedEmployes.Contains(emp.idEmploye)).Distinct().ToList();
 
