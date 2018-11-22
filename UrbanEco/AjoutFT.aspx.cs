@@ -168,15 +168,28 @@ namespace UrbanEco
             DateTime dt = (DateTime)temp.dateCreation;
 
             tbx_nbHeure.Text = temp.nbHeure.ToString();
-            
-            dateFormated.InnerText = temp.dateCreation.ToString().Split(' ')[0];
-            Calendar1.Value = dateFormated.InnerText;
+
+            dateFormated.InnerText = DatePauvre(DateTime.Parse(temp.dateCreation.ToString()));
+            Calendar1.Value = DatePauvre(DateTime.Parse(temp.dateCreation.ToString()));
             txa_comments.Value = temp.commentaire;
         }
 
         protected void ChangeDate()
         {
             dateFormated.InnerText = Calendar1.Value;
+        }
+
+        string DatePauvre (DateTime datePauvre)
+        {
+            string result = "";
+
+            result += datePauvre.Day;
+            result += "-";
+            result += datePauvre.Month;
+            result += "-";
+            result += datePauvre.Year;
+
+            return result;
         }
 
     }
