@@ -66,5 +66,10 @@
             <label for="Cal_DateFin">Date de fin</label>
             <input type="date" style="margin: auto" runat="server" id="Cal_DateFin" class="form-control" />
         </div>
+        <div class="form-group mb-4 mt-4 col-6 mx-auto">
+            <asp:Button ID="Btn_Annuler" runat="server" Text="Annuler" Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" OnClick="Btn_Annuler_Click"/>
+            <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer" Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-success input-box" OnClick="Btn_Enregister_Click"/>
+            
+        </div>
     </form>
 </asp:Content>

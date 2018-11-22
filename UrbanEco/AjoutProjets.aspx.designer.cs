@@ -101,5 +101,23 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Cal_DateFin;
+        
+        /// <summary>
+        /// Contrôle Btn_Annuler.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Annuler;
+        
+        /// <summary>
+        /// Contrôle Btn_Enregistrer.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Enregistrer;
     }
 }

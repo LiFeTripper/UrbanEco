@@ -117,5 +117,10 @@ namespace UrbanEco
             Response.Redirect("Projets.aspx");
 
         }
+
+        protected void Btn_Annuler_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Projets.aspx");
+        }
     }
 }

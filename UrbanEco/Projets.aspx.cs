@@ -59,12 +59,14 @@ namespace UrbanEco
             {
                 Rptr_ProjetsInactif.Visible = true;
                 Rptr_ProjetsActif.Visible = false;
+                Lbl_Titre.Text = "Projets Inactif";
             }
                 
             else
             {
                 Rptr_ProjetsActif.Visible = true;
                 Rptr_ProjetsInactif.Visible = false;
+                Lbl_Titre.Text = "Projets Actif";
             }
                 
                 

@@ -13,6 +13,15 @@ namespace UrbanEco {
     public partial class Projets1 {
         
         /// <summary>
+        /// Contrôle Lbl_Titre.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Titre;
+        
+        /// <summary>
         /// Contrôle Chkbx_Inactif.
         /// </summary>
         /// <remarks>

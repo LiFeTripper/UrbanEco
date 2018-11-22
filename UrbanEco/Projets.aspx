@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="Projets.aspx.cs" Inherits="UrbanEco.Projets1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Projets</h1>
+    <h1>
+        <asp:Label ID="Lbl_Titre" runat="server" Text="Projets"></asp:Label>
+    </h1>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -46,7 +47,7 @@
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
 
-                <tr style="border-bottom: 1px solid #23282e" visible='<%# (!Boolean.Parse(Eval("archiver").ToString()) && !Chkbx_Inactif.Checked) %>' runat="server">
+                <tr style="border-bottom: 1px solid #23282e" visible='<%# (!Boolean.Parse(Eval("archiver").ToString()) && !Chkbx_Inactif.Checked) %>' runat="server" class="align-middle">
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true" />
                     </td>
@@ -76,19 +77,19 @@
             <FooterTemplate>
                 </tbody>
                 <thead class="thead-dark">
-                    <tr style="border-top: 5px solid #23282e" Visible='<%# (!Chkbx_Inactif.Checked) %>' runat="server">
-                            <th scope="col">ID</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Status du projet</th>
-                            <th scope="col">Employé Responsable</th>
-                            <th scope="col">Date de début</th>
-                            <th scope="col">
-                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
-                            </th>
-                        </tr>
-                    </thead>
-                    </table>
+                    <tr style="border-top: 5px solid #23282e" visible='<%# (!Chkbx_Inactif.Checked) %>' runat="server">
+                        <th scope="col">ID</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status du projet</th>
+                        <th scope="col">Employé Responsable</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">
+                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                        </th>
+                    </tr>
+                </thead>
+                </table>
                     </div>
             </FooterTemplate>
         </asp:Repeater>
@@ -119,7 +120,7 @@
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
                 <tr style="border-bottom: 1px solid #23282e" visible='<%# (Boolean.Parse(Eval("archiver").ToString()) && Chkbx_Inactif.Checked) %>' runat="server">
-                    <td>
+                    <td class="align-middle">
                         <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true" />
                     </td>
                     <td>
@@ -148,19 +149,19 @@
             <FooterTemplate>
                 </tbody>
                 <thead class="thead-dark">
-                    <tr style="border-top: 5px solid #23282e" Visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
-                            <th scope="col">ID</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Status du projet</th>
-                            <th scope="col">Employé Responsable</th>
-                            <th scope="col">Date de début</th>
-                            <th scope="col">
-                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
-                            </th>
-                        </tr>
-                    </thead>
-                    </table>
+                    <tr style="border-top: 5px solid #23282e" visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
+                        <th scope="col">ID</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status du projet</th>
+                        <th scope="col">Employé Responsable</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">
+                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                        </th>
+                    </tr>
+                </thead>
+                </table>
                     </div>
             </FooterTemplate>
         </asp:Repeater>
