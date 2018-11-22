@@ -82,10 +82,10 @@
                             <tr style="border-bottom: 5px solid #23282e">
                                 <th style="width: 4%" scope="col"></th>
                                 <th style="width: 13%" scope="col">Employé</th>
-                                <th style="width: 12%" scope="col">Date</th>
+                                <th style="width: 8%" scope="col">Date</th>
                                 <th style="width: 8%" scope="col">Durée (h)</th>
                                 <th style="width: 15%" scope="col">Projet</th>
-                                <th style="width: 20%" scope="col">Catégorie</th>
+                                <th style="width: 22%" scope="col">Catégorie</th>
                                 <th style="width: 20%" scope="col">Note</th>
                                 <th style="width: 5%" scope="col">
                                     <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout" />
@@ -125,7 +125,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
+                                    <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />
                                 </td>
                                 <td>
                                     <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
@@ -175,20 +175,20 @@
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <h2 style="margin-bottom: 10px;">Approuvé</h2>
-                            <tr style="border-bottom: 5px solid #23282e">
-                                <th style="width: 13%" scope="col">Employé</th>
-                                <th style="width: 12%" scope="col">Date</th>
-                                <th style="width: 10%" scope="col">Durée (h)</th>
-                                <th style="width: 15%" scope="col">Projet</th>
-                                <th style="width: 18%" scope="col">Catégorie</th>
-                                <th style="width: 17%" scope="col">Note</th>
-                                <th style="width: 15%" scope="col">
-                                    <%--<asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />--%>
-                                </th>
-                            </tr>
+                <table class="table">
+                    <thead class="thead-dark">
+                    <h2 style="margin-bottom: 10px;">Approuvé</h2>
+                    <tr style="border-bottom: 5px solid #23282e">
+                        <th style="width: 13%" scope="col">Employé</th>
+                        <th style="width: 8%" scope="col">Date</th>
+                        <th style="width: 10%" scope="col">Durée (h)</th>
+                        <th style="width: 15%" scope="col">Projet</th>
+                        <th style="width: 20%" scope="col">Catégorie</th>
+                        <th style="width: 17%" scope="col">Note</th>
+                        <th style="width: 15%" scope="col">
+                            <%--<asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />--%>
+                        </th>
+                    </tr>
                         </thead>
                         <tbody>
             </HeaderTemplate>
@@ -198,33 +198,32 @@
                 <tr>
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" /></td>
-                </tr>
-
-                <%--SECOND REPEATER DE FEUILLE DE TEMPS--%>
-                <asp:Repeater ID="Rptr_FeuilleTempsApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load">
-                    <%--ITEMTEMPLATE--%>
-                    <ItemTemplate>
-                        <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# Boolean.Parse(Eval("approuver").ToString())%>'>
-                            <td></td>
-                            <td>
-                                <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
-                            </td>
-                            <td>
-                                <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
-                            </td>
-                            <td>
-                                <asp:Label ID="lbl_Projet" runat="server" Text='<%#Eval("tbl_Projet.titre") %>' Font-Bold="true" />
-                            </td>
-                            <td>
-                                <asp:Label ID="lbl_Categorie" runat="server" Text='<%#Eval("tbl_ProjetCat.titre") %>' Font-Bold="true" />
-                            </td>
-                            <td>
-                                <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
-                            </td>
-                            <td></td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
+                </tr>    
+                    <%--SECOND REPEATER DE FEUILLE DE TEMPS--%>
+                    <asp:Repeater ID="Rptr_FeuilleTempsApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load">
+                        <%--ITEMTEMPLATE--%>
+                        <ItemTemplate>
+                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# Boolean.Parse(Eval("approuver").ToString())%>'>
+                                <td></td>
+                                <td>
+                                    <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Projet" runat="server" Text='<%#Eval("tbl_Projet.titre") %>' Font-Bold="true" />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Categorie" runat="server" Text='<%#Eval("tbl_ProjetCat.titre") %>' Font-Bold="true" />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
             </ItemTemplate>
 
             <%--FOOTERTEMPLATE--%>
