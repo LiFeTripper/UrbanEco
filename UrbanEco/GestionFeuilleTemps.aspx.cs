@@ -418,5 +418,10 @@ namespace UrbanEco
             rptr_EmployeApprouver.DataSource = querry.Distinct();
             rptr_EmployeApprouver.DataBind();
         }
+
+        protected void btn_ajouterFT_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AjoutFT.aspx?FT=New");
+        }
     }
 }

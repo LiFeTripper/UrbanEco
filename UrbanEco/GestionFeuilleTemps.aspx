@@ -56,7 +56,9 @@
                 <td>
                     <input type="date" id="Calendar2" style="margin: auto;" runat="server" /></td>
                 <td>
-                    <asp:Button ID="btn_Filtrer" CssClass="btn btn-md btn-primary" runat="server" OnClick="btn_Filtrer_Click" Text="Filtrer Selon Dates" /></td>
+                    <asp:Button style="float:right;" ID="btn_Filtrer" CssClass="btn btn-md btn-primary" runat="server" OnClick="btn_Filtrer_Click" Text="Filtrer Selon Dates" />
+
+                </td>
             </tr>
             <tr>
                 <td>
@@ -66,7 +68,15 @@
                     <h5 class="center" style="margin: auto !important;" id="dateFormated1" runat="server"></h5>
                 </td>
             </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    <asp:Button style="float:right;" ID="btn_ajouterFT" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
+                </td>
+            </tr>
         </table>
+
 
         <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
         <asp:Repeater ID="Rptr_EmployeNonApprouver" runat="server">
@@ -169,8 +179,10 @@
             </FooterTemplate>
         </asp:Repeater>
 
+        <div style="margin-top:15px;margin-bottom:15px;">&nbsp;</div>
+
         <%--CODE REPEATER DE FEUILLES DE TEMPS APPROUVÉES--%>
-        <asp:Repeater ID="rptr_EmployeApprouver" runat="server">
+        <asp:Repeater ID="rptr_EmployeApprouver" runat="server" >
 
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>

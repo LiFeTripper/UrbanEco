@@ -116,7 +116,7 @@
                         <tr>
                             <td>
                                 
-                                <asp:Button ID="Btn_Enreg" style="margin-top:20px" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click"/>
+                                <asp:Button ID="Btn_Enreg" CssClass="btn btn-lg btn-success" style="margin-top:20px" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click"/>
                             </td>
                         </tr>
                     </table>

@@ -85,6 +85,7 @@
     <Content Include="lib\css\bootstrap-reboot.min.css" />
     <Content Include="lib\css\bootstrap.css" />
     <Content Include="lib\css\bootstrap.min.css" />
+    <Content Include="lib\css\fancy-switch.css" />
     <Content Include="lib\css\fontawesome.css" />
     <Content Include="lib\css\menu.css" />
     <Content Include="lib\css\menuv2.css" />
