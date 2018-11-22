@@ -121,7 +121,21 @@ namespace UrbanEco
 
         protected void LoadFT()
         {
-            int value = int.Parse(Request.QueryString["FT"]);
+
+            int value = -1;
+            try
+            {
+                
+                int.TryParse(Request.QueryString["FT"],out value);
+
+                if (value <= 0)
+                    throw new Exception();
+            }
+            catch(Exception n)
+            {
+                alert_failed.Visible = true;
+                return;
+            }
 
             var query1 = from tbl in context.tbl_FeuilleTemps
                          where tbl.idFeuille == value
@@ -144,8 +158,9 @@ namespace UrbanEco
             DateTime dt = (DateTime)temp.dateCreation;
 
             tbx_nbHeure.Text = temp.nbHeure.ToString();
-            Calendar1.Value = temp.dateCreation.ToString(); //Marche pas
+            
             dateFormated.InnerText = temp.dateCreation.ToString().Split(' ')[0];
+            Calendar1.Value = temp.dateCreation.ToString().Split(' ')[0];
             txa_comments.Value = temp.commentaire;
         }
 
