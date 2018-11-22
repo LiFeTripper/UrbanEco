@@ -56,7 +56,7 @@
         </div>
         <%--BOUTON--%>
         <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer" OnClick="Btn_Enregistrer_Click" />
+            <asp:Button CssClass="btn btn-lg btn-success" ID="Btn_Enregistrer" runat="server" Text="Enregistrer" OnClick="Btn_Enregistrer_Click" />
         </div>
     </form>
 </asp:Content>

@@ -26,5 +26,15 @@ namespace UrbanEco
         {
             return userConnected;
         }
+
+        public static string GetUserName()
+        {
+            tbl_Employe emp = GetUserConnected();
+
+            if (emp == null)
+                return "";
+
+            return emp.prenom + " " + emp.nom;
+        }
     }
 }

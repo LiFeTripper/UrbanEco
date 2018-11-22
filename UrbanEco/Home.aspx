@@ -9,5 +9,5 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-    
+    <h2 id="lbl_bienvenue" runat="server">Bonjour, Marc-André Fortin</h2>
 </asp:Content>

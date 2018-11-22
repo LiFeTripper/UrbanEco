@@ -183,6 +183,9 @@ namespace UrbanEco
         /// </summary>
         void UpdateRecapitulatif()
         {
+            if (tbx_categorie.SelectedIndex == -1)
+                    return;
+
             rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;          
 
             //Dépense KM

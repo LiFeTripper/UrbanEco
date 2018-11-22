@@ -13,7 +13,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+            if(Layout.GetUserConnected() != null)
+            {               
+                lbl_bienvenue.InnerText = "Bonjour, " + Layout.GetUserName();
+            }
             
         }
     }

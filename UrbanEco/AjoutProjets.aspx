@@ -66,5 +66,8 @@
             <label for="Cal_DateFin">Date de fin</label>
             <input type="date" style="margin: auto" runat="server" id="Cal_DateFin" class="form-control" />
         </div>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <asp:Button ID="btn_enregistrer" CssClass="btn btn-lg btn-success" runat="server" Text="Enregistrer" OnClick="Btn_Enregister_Click"/>
+        </div>
     </form>
 </asp:Content>

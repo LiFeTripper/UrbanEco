@@ -102,6 +102,7 @@ namespace UrbanEco
                 tableProjet.dateFin = date2;
 
                 tableProjet.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
+                tableProjet.archiver = false;
 
                 context.tbl_Projet.InsertOnSubmit(tableProjet);
             }
