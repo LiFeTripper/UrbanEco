@@ -68,8 +68,7 @@
             </tr>
         </table>
 
-
-        <%--CODE REPEATER DE FEUILLES DE TEMPS--%>
+        <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
         <asp:Repeater ID="Rptr_EmployeNonApprouver" runat="server">
 
             <%--HEADERTEMPLATE--%>
@@ -78,7 +77,7 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <h2 style="margin-bottom: 10px;" class="mt-4">Non Approuvé</h2>
-                            </thead>
+                        </thead>
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e">
                                 <th style="width: 4%" scope="col"></th>
@@ -100,7 +99,8 @@
             <ItemTemplate>
                 <tr class="table-secondary">
                     <td>
-                        <asp:Button ID="btnCloseOpen" runat="server" Text="Close/Open" OnClick="btnCloseOpen_Click" ViewStateMode="Inherit" />
+                        <asp:Button runat="server" CssClass="btn btn-sm btn-secondary" Text="Plus/Moins" ID="btn_trash" enabled="false"/>
+                        <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjout" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
                     </td>
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" />
@@ -116,7 +116,7 @@
                         <asp:Button ID="Btn_ApproveEmp" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye")%>' />
                     </td>
                 </tr>
-                <tr>
+                <tr class="collapse" id="collapseAjout">
                     <%--SECOND REPEATER DES FEUILLES DE TEMPS--%>
                     <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
                         <%--ITEMTEMPLATE--%>
@@ -175,72 +175,72 @@
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
                 <div class="table-responsive">
-                <table class="table">
-                    <thead class="thead-dark">
-                    <h2 style="margin-bottom: 10px;">Approuvé</h2>
-                    <tr style="border-bottom: 5px solid #23282e">
-                        <th style="width: 13%" scope="col">Employé</th>
-                        <th style="width: 12%" scope="col">Date</th>
-                        <th style="width: 10%" scope="col">Durée (h)</th>
-                        <th style="width: 15%" scope="col">Projet</th>
-                        <th style="width: 18%" scope="col">Catégorie</th>
-                        <th style="width: 17%" scope="col">Note</th>
-                        <th style="width: 15%" scope="col">
-                            <%--<asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />--%>
-                        </th>
-                    </tr>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <h2 style="margin-bottom: 10px;">Approuvé</h2>
+                            <tr style="border-bottom: 5px solid #23282e">
+                                <th style="width: 13%" scope="col">Employé</th>
+                                <th style="width: 12%" scope="col">Date</th>
+                                <th style="width: 10%" scope="col">Durée (h)</th>
+                                <th style="width: 15%" scope="col">Projet</th>
+                                <th style="width: 18%" scope="col">Catégorie</th>
+                                <th style="width: 17%" scope="col">Note</th>
+                                <th style="width: 15%" scope="col">
+                                    <%--<asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />--%>
+                                </th>
+                            </tr>
                         </thead>
-                    <tbody>
+                        <tbody>
             </HeaderTemplate>
-            
+
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
                 <tr>
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" /></td>
                 </tr>
-                
-                    <%--SECOND REPEATER DE FEUILLE DE TEMPS--%>
-                    <asp:Repeater ID="Rptr_FeuilleTempsApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load">
-                        <%--ITEMTEMPLATE--%>
-                        <ItemTemplate>
-                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# Boolean.Parse(Eval("approuver").ToString())%>'>
-                                <td></td>
-                                <td>
-                                    <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_Projet" runat="server" Text='<%#Eval("tbl_Projet.titre") %>' Font-Bold="true" />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_Categorie" runat="server" Text='<%#Eval("tbl_ProjetCat.titre") %>' Font-Bold="true" />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
-                                </td>
-                                <td></td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
+
+                <%--SECOND REPEATER DE FEUILLE DE TEMPS--%>
+                <asp:Repeater ID="Rptr_FeuilleTempsApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load">
+                    <%--ITEMTEMPLATE--%>
+                    <ItemTemplate>
+                        <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# Boolean.Parse(Eval("approuver").ToString())%>'>
+                            <td></td>
+                            <td>
+                                <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
+                            </td>
+                            <td>
+                                <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
+                            </td>
+                            <td>
+                                <asp:Label ID="lbl_Projet" runat="server" Text='<%#Eval("tbl_Projet.titre") %>' Font-Bold="true" />
+                            </td>
+                            <td>
+                                <asp:Label ID="lbl_Categorie" runat="server" Text='<%#Eval("tbl_ProjetCat.titre") %>' Font-Bold="true" />
+                            </td>
+                            <td>
+                                <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </ItemTemplate>
 
             <%--FOOTERTEMPLATE--%>
             <FooterTemplate>
                 </tbody>
                 <thead class="thead-dark">
-                <tr style="border-top: 5px solid #23282e">
-                    <th>Employé</th>
-                    <th>Date</th>
-                    <th>Durée (h)</th>
-                    <th>Projet</th>
-                    <th>Catégorie</th>
-                    <th>Note</th>
-                    <th></th>
-                </tr>
-                    </thead>
+                    <tr style="border-top: 5px solid #23282e">
+                        <th>Employé</th>
+                        <th>Date</th>
+                        <th>Durée (h)</th>
+                        <th>Projet</th>
+                        <th>Catégorie</th>
+                        <th>Note</th>
+                        <th></th>
+                    </tr>
+                </thead>
                 </table>
                 </div>
             </FooterTemplate>
