@@ -10,7 +10,13 @@ namespace UrbanEco
     public partial class GestionFeuilleTemps : System.Web.UI.Page
     {
         CoecoDataContext cdc = new CoecoDataContext();
-        
+
+        protected string formatRemoveHour(object date)
+        {
+            DateTime dt = (DateTime)date;
+            return dt.ToString().Split(' ')[0];
+                
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {

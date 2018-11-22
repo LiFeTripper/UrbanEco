@@ -83,10 +83,10 @@
                             <tr style="border-bottom: 5px solid #23282e">
                                 <th style="width: 4%" scope="col"></th>
                                 <th style="width: 13%" scope="col">Employé</th>
-                                <th style="width: 12%" scope="col">Date</th>
+                                <th style="width: 8%" scope="col">Date</th>
                                 <th style="width: 8%" scope="col">Durée (h)</th>
                                 <th style="width: 15%" scope="col">Projet</th>
-                                <th style="width: 20%" scope="col">Catégorie</th>
+                                <th style="width: 22%" scope="col">Catégorie</th>
                                 <th style="width: 20%" scope="col">Note</th>
                                 <th style="width: 5%" scope="col">
                                     <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout" />
@@ -125,7 +125,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
+                                    <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />
                                 </td>
                                 <td>
                                     <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
@@ -180,10 +180,10 @@
                     <h2 style="margin-bottom: 10px;">Approuvé</h2>
                     <tr style="border-bottom: 5px solid #23282e">
                         <th style="width: 13%" scope="col">Employé</th>
-                        <th style="width: 12%" scope="col">Date</th>
+                        <th style="width: 8%" scope="col">Date</th>
                         <th style="width: 10%" scope="col">Durée (h)</th>
                         <th style="width: 15%" scope="col">Projet</th>
-                        <th style="width: 18%" scope="col">Catégorie</th>
+                        <th style="width: 20%" scope="col">Catégorie</th>
                         <th style="width: 17%" scope="col">Note</th>
                         <th style="width: 15%" scope="col">
                             <%--<asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />--%>
@@ -207,7 +207,7 @@
                             <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# Boolean.Parse(Eval("approuver").ToString())%>'>
                                 <td></td>
                                 <td>
-                                    <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("dateCreation") %>' Font-Bold="true" />
+                                    <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />
                                 </td>
                                 <td>
                                     <asp:Label ID="lbl_Duree" runat="server" Text='<%#Eval("nbHeure") %>' Font-Bold="true" />
