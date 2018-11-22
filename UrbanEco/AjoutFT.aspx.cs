@@ -77,6 +77,11 @@ namespace UrbanEco
                 tbl_FeuilleTemps tbFT = new tbl_FeuilleTemps();
                 //tbFT.idEmploye = Layout.GetUserConnected().idEmploye;
                 tbFT.idEmploye = 1;     //Temporaire
+                var queryEmp = from tbl in context.tbl_Employe
+                               where tbl.idEmploye == tbFT.idEmploye
+                               select tbl;
+                
+                lbl_Top.Text = "Nouvelle Feuille de Temps de " + queryEmp.First<tbl_Employe>().prenom + " " + queryEmp.First<tbl_Employe>().nom;
                 tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
@@ -102,10 +107,7 @@ namespace UrbanEco
                 temp.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
                 temp.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 temp.nbHeure = int.Parse(tbx_nbHeure.Text);
-                if (Calendar1.Value == "")
-                    temp.dateCreation = DateTime.Parse(dateFormated.InnerText);
-                else
-                    temp.dateCreation = DateTime.Parse(Calendar1.Value);
+                temp.dateCreation = DateTime.Parse(Calendar1.Value);
 
                 temp.commentaire = txa_comments.Value;
 
@@ -143,6 +145,14 @@ namespace UrbanEco
 
             tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
 
+            var queryEmp = from tbl in context.tbl_Employe
+                           where tbl.idEmploye == temp.idEmploye
+                           select tbl;
+
+
+
+            lbl_Top.Text = "Feuille de temps de " + queryEmp.First<tbl_Employe>().prenom + " " + queryEmp.First<tbl_Employe>().nom 
+                + " (" + temp.dateCreation.ToString().Split(' ')[0] + ")";
             tbx_projet.SelectedValue = temp.idProjet.ToString();
             tbx_categorie.Enabled = true;
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
@@ -160,7 +170,7 @@ namespace UrbanEco
             tbx_nbHeure.Text = temp.nbHeure.ToString();
             
             dateFormated.InnerText = temp.dateCreation.ToString().Split(' ')[0];
-            Calendar1.Value = temp.dateCreation.ToString().Split(' ')[0];
+            Calendar1.Value = dateFormated.InnerText;
             txa_comments.Value = temp.commentaire;
         }
 
