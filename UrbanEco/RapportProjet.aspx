@@ -201,7 +201,7 @@
                             </div>
 
                             <input hidden="hidden" type="text" runat="server" id="hiddenFieldEmploye" />
-                            <asp:Button ID="BtnTesting" runat="server" Text="Button" OnClick="BtnTesting_Click"/>
+<%--                            <asp:Button ID="BtnTesting" runat="server" Text="Button" OnClick="BtnTesting_Click"/>--%>
                             <!--Multiselect javascript-->
                             <script>
                                 //Callback for fuck sake
