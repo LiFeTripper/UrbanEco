@@ -4,6 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
     <h1>Gestion des dépenses</h1>
+    <style>
+        .btn-option {
+            height: 30px !important;
+            width: 30px !important;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -65,12 +71,9 @@
                                 <asp:Label ID="lbl_montant" runat="server" Text='<%#Eval("montant","{0:#.00 $}") %>' Font-Bold="true"></asp:Label>
                             </td>
                             <td>
-                                <button id="Btn_Modif" cssclass="btn-sm btn btn-success" onclick="Btn_Modif_Click" runat="server" text="Modification" style="width: 50px; height: 50px;">
-                                    <img src="Resources/Pencil.png" style="width: 100% !important; height: 100% !important;" />
-                                </button>
-                                <%--<asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click1" CommandArgument='<%# Eval("idDepense")%>' />--%>
-                                <%--<asp:ImageButton CssClass="btn-option" ID="Btn_Approve" runat="server" src="Resources/checkmark.png" OnClick="Btn_Approve_Click1" CommandArgument='<%# Eval("idDepense")%>' />--%>
-                                <asp:Button ID="Btn_Approve" CssClass="btn btn-sm btn-primary" runat="server" OnClick="Btn_Approve_Click" Text="Approuver" CommandArgument='<%#Eval("idDepense") %>' />
+
+                                <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%# Eval("idDepense")%>' />
+                                <asp:ImageButton CssClass="btn-option" ID="Btn_Approve" runat="server" src="Resources/checkmark.png" OnClick="Btn_Approve_Click" CommandArgument='<%# Eval("idDepense")%>' />
                             </td>
                         </tr>
                     </ItemTemplate>

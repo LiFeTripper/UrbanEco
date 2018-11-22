@@ -58,6 +58,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated1;
         
         /// <summary>
+        /// Contrôle btn_ajouterFT.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ajouterFT;
+        
+        /// <summary>
         /// Contrôle Rptr_EmployeNonApprouver.
         /// </summary>
         /// <remarks>

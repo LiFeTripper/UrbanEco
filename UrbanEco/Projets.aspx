@@ -13,11 +13,18 @@
 
     <form runat="server" style="text-align: center;" class="container center col-12">
         <%--EN TËTE A MARC--%>
-        <table style="width: 100% !important;">
+        <table style="width: 100% !important;">              
             <tr>
-                <%--CHECKBOX INACTIF OU ACTIF--%>
-                <asp:Label runat="server" Text="INACTIF"></asp:Label>
-                <asp:CheckBox ID="Chkbx_Inactif" runat="server" OnCheckedChanged="Chkbx_Inactif_CheckedChanged" AutoPostBack="true" />
+                 <%--CHECKBOX INACTIF OU ACTIF--%>
+                <td style="width: 50%;">
+                    <label class="switch" style="float: right;">
+                        <asp:CheckBox ID="Chkbx_Inactif" runat="server" OnCheckedChanged="Chkbx_Inactif_CheckedChanged" AutoPostBack="true" />
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+                <td>
+                    <h4 style="float: left;">Inactif</h4>
+                </td>
             </tr>
         </table>
 

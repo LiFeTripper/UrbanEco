@@ -32,11 +32,6 @@ namespace UrbanEco
 
         }
 
-        protected void Btn_Approve_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void Btn_Modif_Click(object sender, EventArgs e)
         {
 
@@ -47,7 +42,7 @@ namespace UrbanEco
 
         }
 
-        protected void Btn_Approve_Click1(object sender, ImageClickEventArgs e)
+        protected void Btn_Approve_Click(object sender, ImageClickEventArgs e)
         {
             ImageButton btn = ((ImageButton)sender);
 

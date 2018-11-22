@@ -17,6 +17,7 @@
     <link href="lib/css/solid.css" rel="stylesheet" />
     <%--Multiselect CSS--%>
     <link href="lib/css/multi-select.css" rel="stylesheet" />
+    <link href="lib/css/fancy-switch.css" rel="stylesheet" />
 
     <%--SCRIPTS--%>
     <script src="lib/js/jquery-3.3.1.min.js"></script>
@@ -41,7 +42,7 @@
                 <li>
                     <a href="Home.aspx">
                         <i class="fas fa-home"></i>
-                        Home
+                        Accueil
                     </a>
                 </li>
                 <li>
@@ -65,7 +66,7 @@
                         <i class="fas fa-piggy-bank"></i>
                         Banque d'heures
                     </a>
-                    <a href="#">
+                    <a href="RapportProjet.aspx">
                         <i class="fas fa-clipboard"></i>
                         Rapport Projets
                     </a>

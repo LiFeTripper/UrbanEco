@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="Employe.aspx.cs" Inherits="UrbanEco.Employe" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -16,8 +15,15 @@
         <table style="width: 100% !important;">
             <tr>
                 <%--CHECKBOX INACTIF OU ACTIF--%>
-                <asp:Label runat="server" Text="INACTIF"></asp:Label>
-                <asp:CheckBox ID="Chkbx_Inactif" runat="server" OnCheckedChanged="Chkbx_Inactif_CheckedChanged" AutoPostBack="true" />
+                <td style="width:50%;">
+                    <label class="switch" style="float:right;">
+                        <asp:CheckBox runat="server" id="Chkbx_Inactif" OnCheckedChanged="Chkbx_Inactif_CheckedChanged" AutoPostBack="true"/>
+                        <span class="slider round"></span>
+                    </label>              
+                </td>
+                <td >
+                    <h4 style="float:left;">Inactif</h4>
+                </td>
             </tr>
         </table>
 

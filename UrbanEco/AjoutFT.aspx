@@ -38,10 +38,11 @@
                 <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
             </div>
 
+            <div runat="server" id="alert_failed" visible="false" class="alert alert-danger" style="width:100%;">Une erreur est survenue !</div>
+
             <div class="row justify-content-md-center" style="margin-bottom: 100px;">
                 <div class="col-md-offset-3 col-6">
                     <table style="width: 100% !important;">
-
                         <tr>
                             <th>
                                 <h5 class="input-title">Projet</h5>
@@ -100,7 +101,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="date" id="Calendar1" style="margin: auto;" runat="server" oninput="ChangeDate" />
+                                <input type="date" id="Calendar1" style="margin: auto;" runat="server" />
                                 
 
                             </td>
@@ -114,36 +115,36 @@
                         <tr>
                             <td>
                                 
-                                <asp:Button ID="Btn_Enreg" style="margin-top:20px" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click"/>
+                                <asp:Button ID="Btn_Enreg" CssClass="btn btn-lg btn-success" style="margin-top:20px" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click"/>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
             <%--On change for date--%>
-           <%--<script>
+           <script>
                var input = document.getElementById('<%=Calendar1.ClientID%>')
-
+               console.log(input);
                UpdateDateFormat();
 
                input.onchange = function () {
                    UpdateDateFormat();
-                   UpdateDateRep();
+                   //UpdateDateRep();
                }
 
                function UpdateDateFormat() {
 
                    var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
-                       if (input.value == "") {
-                           dateFormated.innerText = "Veuillez sélectionner la date";
-                           return;
-                       }
+                    if (input.value == "") {
+                        dateFormated.innerText = "Veuillez sélectionner la date";
+                        return;
+                    }
 
-                       var format = FormatYear(input.value);
+                    var format = FormatYear(input.value);
 
-                       dateFormated.innerText = format;
-                   }
+                    dateFormated.innerText = format;
+                   
 
                }
                
@@ -163,7 +164,7 @@
 
                    return day + " " + months[month - 1] + " " + year;;
                }
-        </script>--%>
+        </script>
         </div>
     </form>
 </asp:Content>
