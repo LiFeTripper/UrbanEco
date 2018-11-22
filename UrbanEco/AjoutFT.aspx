@@ -43,7 +43,6 @@
             <div class="row justify-content-md-center" style="margin-bottom: 100px;">
                 <div class="col-md-offset-3 col-6">
                     <table style="width: 100% !important;">
-
                         <tr>
                             <th>
                                 <h5 class="input-title">Projet</h5>
