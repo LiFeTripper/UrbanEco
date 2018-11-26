@@ -86,7 +86,7 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-dark">
-                            <h2 style="margin-bottom: 10px;" class="mt-4">Non Approuvé</h2>
+                            <h2 style="margin-bottom: 10px;" class="mt-4">En attente</h2>
                         </thead>
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e">

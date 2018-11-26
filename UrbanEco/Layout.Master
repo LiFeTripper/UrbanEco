@@ -45,8 +45,8 @@
                         Accueil
                     </a>
                 </li>
-                <li>
-                    <a href="Employe.aspx">
+                <li runat="server" id="liAdmin">
+                    <a href="Employe.aspx" runat="server">
                         <i class="fas fa-address-book"></i>
                         Employés
                     </a>
@@ -73,6 +73,30 @@
                     <a href="#">
                         <i class="fas fa-clipboard"></i>
                         Rapport Employés
+                    </a>
+                </li>
+                <li runat="server" id="liEmpTerrain">
+                    <a href="GestionDepense.aspx">
+                        <i class="fas fa-dollar-sign"></i>
+                        Dépenses
+                    </a>
+                    <a href="GestionFeuilleTemps.aspx">
+                        <i class="fas fa-tasks"></i>
+                        Feuille de temps
+                    </a>
+                </li>
+                <li runat="server" id="liEmpBureau">
+                    <a href="GestionDepense.aspx">
+                        <i class="fas fa-dollar-sign"></i>
+                        Dépenses
+                    </a>
+                    <a href="GestionFeuilleTemps.aspx">
+                        <i class="fas fa-tasks"></i>
+                        Feuille de temps
+                    </a>
+                    <a href="Banqueheure.aspx">
+                        <i class="fas fa-piggy-bank"></i>
+                        Banque d'heures
                     </a>
                 </li>
             </ul>

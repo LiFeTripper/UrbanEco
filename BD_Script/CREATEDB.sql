@@ -194,19 +194,24 @@ INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé personnel');
 INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Vacance');
 INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé maladie');
 
+DROP TABLE tbl_BanqueHeure
 
 CREATE TABLE tbl_BanqueHeure
 (
 	idBanqueHeure INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	idTypeHeure INT NOT NULL,
-	nbHeure FLOAT(24) DEFAULT 0,
+	nbHeureInitial FLOAT(24),
+	nbHeure FLOAT(24)
+	
 	
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_BanqueHeure_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
 	CONSTRAINT FK_tbl_BanqueHeure_idTypeHeure FOREIGN KEY (idTypeHeure) REFERENCES tbl_TypeHeure(idTypeHeure)
+
 )
+
 
 INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,1,'5');
 INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,2,'10');
@@ -235,6 +240,8 @@ CREATE TABLE tbl_TypeDepense
 INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Déplacement (KM)');
 INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Restaurant');
 INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Autre');
+
+DROP TABLE tbl_Depense
 
 CREATE TABLE tbl_Depense
 (

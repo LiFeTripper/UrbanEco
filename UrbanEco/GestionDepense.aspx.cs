@@ -67,9 +67,6 @@ namespace UrbanEco
 
                 Response.Redirect(Request.RawUrl);
             }
-
-
-
         }
 
         protected void btn_ajouter_Click1(object sender, EventArgs e)
