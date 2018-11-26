@@ -32,8 +32,8 @@
                 <%--HEURES EN BANQUES--%>
                 <asp:TableRow>   
                     <asp:TableCell></asp:TableCell>
-                    <asp:TableHeaderCell>Heures initiales</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Heures actuelles</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Heures initiales</asp:TableHeaderCell>
                 </asp:TableRow>
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">Heure en banque</asp:TableHeaderCell>

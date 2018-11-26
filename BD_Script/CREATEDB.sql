@@ -203,7 +203,7 @@ CREATE TABLE tbl_BanqueHeure
 	idTypeHeure INT NOT NULL,
 	nbHeureInitial FLOAT(24),
 	nbHeure FLOAT(24)
-	
+	--Cancer
 	
 	--FOREIGN KEY
 
@@ -213,7 +213,7 @@ CREATE TABLE tbl_BanqueHeure
 )
 
 
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,1,'5');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,1,'5');
 INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,2,'10');
 INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,3,'4');
 INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,4,'3');
