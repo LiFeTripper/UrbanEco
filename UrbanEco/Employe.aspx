@@ -15,7 +15,7 @@
         <table style="width: 100% !important;">
             <tr>
                 <%--CHECKBOX INACTIF OU ACTIF--%>
-                <td style="width:50%;">
+                <td style="width:50%;" class="mb-3">
                     <label class="switch" style="float:right;">
                         <asp:CheckBox runat="server" id="Chkbx_Inactif" OnCheckedChanged="Chkbx_Inactif_CheckedChanged" AutoPostBack="true"/>
                         <span class="slider round"></span>
