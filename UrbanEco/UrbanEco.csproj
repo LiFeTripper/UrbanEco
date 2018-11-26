@@ -103,6 +103,7 @@
     <Content Include="lib\webfonts\fa-regular-400.svg" />
     <Content Include="lib\webfonts\fa-solid-900.svg" />
     <Content Include="Login.aspx" />
+    <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
     <Content Include="RapportProjet.aspx" />
     <Content Include="Resources\checkmark.png" />
@@ -200,6 +201,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ParametreAdmin.aspx.cs">
+      <DependentUpon>ParametreAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParametreAdmin.aspx.designer.cs">
+      <DependentUpon>ParametreAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Projets.aspx.cs">
       <DependentUpon>Projets.aspx</DependentUpon>
