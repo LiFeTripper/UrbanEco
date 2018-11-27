@@ -59,7 +59,7 @@
                         <tr style="border-bottom: 1px solid #23282e" visible='<%# !Boolean.Parse(Eval("approuver").ToString())%>' runat="server">
                             <td></td>
                             <td>
-                                <asp:Label ID="lbl_nomDep" runat="server" Text='<%#Eval("tbl_TypeDepense.nomDepense") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_nomDep" runat="server" Text='<%#Eval("typeDepense") %>' Font-Bold="true" />
                             </td>
                             <td>
                                 <asp:Label ID="lbl_titre" runat="server" Text='<%#Eval("tbl_ProjetCat.tbl_Projet.titre") %>' Font-Bold="true" />

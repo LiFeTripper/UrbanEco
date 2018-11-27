@@ -23,7 +23,7 @@
       <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="typeDepense" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="idProjetCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idProjetCat" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="dateDepense" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
       <Column Name="montant" Type="System.Single" DbType="Real" CanBeNull="true" />
@@ -72,6 +72,12 @@
       <Column Name="idKilometrage" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="prixKilometrageVoiture" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="prixKilometrageCamion" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_PremierDimanche" Member="tbl_PremierDimanche">
+    <Type Name="tbl_PremierDimanche">
+      <Column Name="idPremierDimanche" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dateDimanche" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Projet" Member="tbl_Projet">
@@ -127,7 +133,7 @@
   </Table>
   <Table Name="dbo.tbl_TypeDepense" Member="tbl_TypeDepense">
     <Type Name="tbl_TypeDepense">
-      <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="nomDepense" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="idTypeEmploye" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeEmploye" ThisKey="idTypeEmploye" OtherKey="idType" Type="tbl_TypeEmploye" IsForeignKey="true" />

@@ -15,24 +15,54 @@
         <div class="form-group mb-4 col-6 mx-auto">
             <h3>Projet associé</h3>
         </div>
-        <%--NOM--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="tbx_projet">Nom du projet</label>
-            <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="titre" DataValueField="idProjet" AutoPostBack="true"></asp:DropDownList>
+
+        <%--Projet--%>
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:table runat="server" style="width: 100% !important;">
+                <asp:TableRow>    
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Nom du projet
+                    </asp:TableHeaderCell>    
+                    <asp:TableCell>
+                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="titre" DataValueField="idProjet" AutoPostBack="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:table>
         </div>
+
         <%--SOUS-CATÉGORIE--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Tbx_Nom">Sous-catégorie</label>
-            <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="titre" DataValueField="idProjetCat" AutoPostBack="true"></asp:DropDownList>
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="SProjet" visible="false">
+            <asp:table runat="server" style="width: 100% !important;">
+                <asp:TableRow>    
+                    <asp:TableHeaderCell CssClass="form-control" style="width:100%;">
+                        Sous-catégorie
+                    </asp:TableHeaderCell>    
+                    <asp:TableCell>
+                        <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:table>
         </div>
+
         <%--DATE--%>
+<%--        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Ddl_TypeEmp">Date</label>
+            <input type="date" id="Calendar" style="margin: auto; width:50%; float:left;" class="form-control" runat="server" />
+        </div>--%>
+
         <div class="form-group mb-4 col-6 mx-auto">
             <label for="Ddl_TypeEmp">Date</label>
-            <input type="date" id="Calendar" style="margin: auto;" class="form-control" runat="server" />
-            <%--DATE FORMATÉ--%>
-        </div>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <h5 id="dateFormated" runat="server"></h5>
+            <asp:table runat="server" id="Ddl_TypeEmp" style="width: 100% !important;">
+                <%--DATE--%>
+                <asp:TableRow>    
+                    <asp:TableCell>
+                        <input type="date" id="Calendar" style="width:100%;" class="form-control" runat="server" />
+                    </asp:TableCell>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        <div id="dateFormated" runat="server" style="width:100%; font-size:15px;"></div>
+                    </asp:TableHeaderCell>
+                </asp:TableRow>
+            </asp:table>
         </div>
 
         <%--On change for date--%>
@@ -61,7 +91,7 @@
             }
 
             function UpdateDateRep() {
-                var dateRep = document.getElementById('<%=rep_date.ClientID%>')
+<%--                var dateRep = document.getElementById('<%=rep_date.ClientID%>')--%>
                 var format = FormatYear(input.value);
                 dateRep.innerText = format;
             }
@@ -83,39 +113,83 @@
             }
         </script>
 
+        <div class="form-group mb-4 col-6 mx-auto">
+            <hr style="width:100%; border:2px solid black;"/>
+        </div>
+
         <%--EN-TËTE--%>
         <div class="form-group mb-4 col-6 mx-auto">
             <h3>Information sur la dépense</h3>
         </div>
-        <%--TYPE DE DÉPENSE--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <label for="tbx_typeDepense">Type de dépense</label>
-            <asp:DropDownList class="form-control" ID="tbx_typeDepense" runat="server" DataTextField="nomDepense" DataValueField="idTypeDepense" DataSourceID="LinqTypeDepense" AutoPostBack="true" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
-            <asp:LinqDataSource ID="LinqTypeDepense" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_TypeDepense" />
+
+        <%--Type de dépense--%>
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:table runat="server" style="width: 100% !important;">
+                <asp:TableRow>    
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Type de dépense
+                    </asp:TableHeaderCell>    
+                    <asp:TableCell>
+                        <asp:DropDownList class="form-control" ID="tbx_typeDepense" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:table>
         </div>
+
         <%--KILO--%>
-        <div class="form-group mb-4 col-6 mx-auto" id="km_html" runat="server" visible="true">
+<%--        <div class="form-group mb-4 col-6 mx-auto" id="km_html" runat="server" visible="true">
             <label for="tbx_montant1">Kilomètrage</label>
             <asp:TextBox class="form-control" ID="tbx_montant1" runat="server" AutoPostBack="true" OnTextChanged="tbx_montant1_TextChanged"></asp:TextBox>
             <h5 runat="server" id="montantTotalDepense" class="input-title" style="width: 40%; float: left; text-align: left;">* 0.47$ = </h5>
+        </div>--%>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="km_html">
+            <label for="tbl_kilo">Kilomètrage</label>
+            <asp:table runat="server" id="tbl_kilo" style="width: 100% !important;">
+                <asp:TableRow>    
+                    <asp:TableCell>
+                        <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"></asp:TextBox>
+                    </asp:TableCell>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        <div runat="server" id="prixKm" style=" float:left; text-align:left;"></div>
+                        <div runat="server" id="prixTotalKm" style=" float:right; text-align:left;"></div>
+                    </asp:TableHeaderCell>    
+                </asp:TableRow>
+            </asp:table>
         </div>
+
         <%--MONTANT--%>
-        <div class="form-group mb-4 col-6 mx-auto" id="montant_html" runat="server" visible="false">
+<%--        <div class="form-group mb-4 col-6 mx-auto" id="montant_htm1l" runat="server" visible="false">
             <label for="tbx_montant2">Montant</label>
             <asp:TextBox class="form-control" ID="tbx_montant2" runat="server" AutoPostBack="true"></asp:TextBox>
+        </div>--%>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="montant_html">
+            <label for="tbl_montant">Montant</label>
+            <asp:table runat="server" id="tbl_montant" style="width: 100% !important;">
+                <asp:TableRow>    
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Montant
+                    </asp:TableHeaderCell>  
+                    <asp:TableCell>
+                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:table>
         </div>
+
         <%--NOTES--%>
-        <div class="form-group mb-4 col-6 mx-auto" id="Div1" runat="server" visible="false">
+        <div class="form-group mb-4 col-6 mx-auto" id="Div1" runat="server">
             <label for="tbx_note">Note</label>
             <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
         </div>
 
         <%--EN-TËTE--%>
-        <div class="form-group mb-4 col-6 mx-auto">
+<%--        <div class="form-group mb-4 col-6 mx-auto">
             <h3>Récapitulatif de la dépense</h3>
-        </div>
+        </div>--%>
         <%--RÉCAPITULATIF--%>
-        <div class="form-group mb-4 col-6 mx-auto">
+<%--        <div class="form-group mb-4 col-6 mx-auto">
             <table style="width: 100%">
                 <tr style="width: 100%">
                     <td id="rep_nomEmployer" style="text-align: left;" runat="server"></td>
@@ -130,7 +204,7 @@
                     <td id="rep_montant" style="text-align: right;" runat="server"></td>
                 </tr>
             </table>
-        </div>
+        </div>--%>
         <%--MESSAGES--%>
         <div class="form-group mb-4 col-6 mx-auto">
             <div class="alert alert-success" runat="server" id="alert_success" visible="false">

@@ -74,6 +74,10 @@
                         <i class="fas fa-clipboard"></i>
                         Rapport Employés
                     </a>
+                    <a href="ParametreAdmin.aspx">
+                        <i class="fas fa-gamepad"></i>
+                        Paramètre Administrateur
+                    </a>
                 </li>
                 <li runat="server" id="liEmpTerrain">
                     <a href="GestionDepense.aspx">

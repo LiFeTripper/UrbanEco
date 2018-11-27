@@ -9,19 +9,6 @@ namespace UrbanEco
 {
     public partial class ParametreAdmin : System.Web.UI.Page
     {
-        /*protected static tbl_Kilometrage PrixInitial;
-
-        protected static List<ListItem> newDepBureau = new List<ListItem>();
-        protected static List<ListItem> newDepTerrain = new List<ListItem>();
-
-        protected static List<tbl_TypeDepense> TypeDepenseBureauInitial = new List<tbl_TypeDepense>();
-        protected static List<tbl_TypeDepense> TypeDepenseTerrainInitial = new List<tbl_TypeDepense>();
-                  
-        protected static List<ListItem> TypeDepenseBureauCurrent= new List<ListItem>();
-        protected static List<ListItem> TypeDepenseTerrainCurrent = new List<ListItem>();
-
-        protected static int indexDepBureauSelected = int.MinValue;
-        protected static int indexDepTerrainSelected = int.MinValue;*/
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -76,22 +63,7 @@ namespace UrbanEco
             }
             else
             {
-
-                /*lbx_depBureau.Items.Clear();
-
-                foreach (var item in TypeDepenseBureauCurrent)
-                {
-                    lbx_depBureau.Items.Add(item);
-                }
-
-                lbx_depTerrain.Items.Clear();
-
-                foreach (var item in TypeDepenseTerrainCurrent)
-                {
-                    lbx_depTerrain.Items.Add(item);
-                }
-                */
-
+                //Appliquer le style dans les listbox
                 foreach (ListItem item in lbx_depBureau.Items)
                 {
                     if (item.Value == (-1).ToString())
@@ -104,6 +76,7 @@ namespace UrbanEco
                     }
                 }
 
+                //Appliquer le style dans les listbox
                 foreach (ListItem item in lbx_depTerrain.Items)
                 {
                     if (item.Value == (-1).ToString())
@@ -262,14 +235,21 @@ namespace UrbanEco
             int idTypeEmployeBureau = 1;
             int idTypeEmployeTerrain = 2;
 
+            //Get le id le plus haut pour faire un identity manuellement (celui de sql ne fonctionnera pas ici)
+            int indexTypeDep = ((from tbl in ctx.tbl_TypeDepense
+                                select tbl).Count() + 1);
+
             //Insert les type de dépense du listbox
             foreach (ListItem item in lbx_depBureau.Items)
             {
                 tbl_TypeDepense newDepBureau = new tbl_TypeDepense();
                 newDepBureau.nomDepense = item.Text;
                 newDepBureau.idTypeEmploye = idTypeEmployeBureau;
+                newDepBureau.idTypeDepense = indexTypeDep;
 
                 ctx.tbl_TypeDepense.InsertOnSubmit(newDepBureau);
+
+                indexTypeDep++;
             }
 
             foreach (ListItem item in lbx_depTerrain.Items)
@@ -277,8 +257,10 @@ namespace UrbanEco
                 tbl_TypeDepense newDepTerrain = new tbl_TypeDepense();
                 newDepTerrain.nomDepense = item.Text;
                 newDepTerrain.idTypeEmploye = idTypeEmployeTerrain;
+                newDepTerrain.idTypeDepense = indexTypeDep;
 
                 ctx.tbl_TypeDepense.InsertOnSubmit(newDepTerrain);
+                indexTypeDep++;
             }
 
 

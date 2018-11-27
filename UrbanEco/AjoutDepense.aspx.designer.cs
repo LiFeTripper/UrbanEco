@@ -22,6 +22,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
         
         /// <summary>
+        /// Contrôle SProjet.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SProjet;
+        
+        /// <summary>
         /// Contrôle tbx_categorie.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
+        
+        /// <summary>
+        /// Contrôle Ddl_TypeEmp.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table Ddl_TypeEmp;
         
         /// <summary>
         /// Contrôle Calendar.
@@ -58,15 +76,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_typeDepense;
         
         /// <summary>
-        /// Contrôle LinqTypeDepense.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqTypeDepense;
-        
-        /// <summary>
         /// Contrôle km_html.
         /// </summary>
         /// <remarks>
@@ -76,22 +85,40 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
         
         /// <summary>
-        /// Contrôle tbx_montant1.
+        /// Contrôle tbl_kilo.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_montant1;
+        protected global::System.Web.UI.WebControls.Table tbl_kilo;
         
         /// <summary>
-        /// Contrôle montantTotalDepense.
+        /// Contrôle tbx_nbKm.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl montantTotalDepense;
+        protected global::System.Web.UI.WebControls.TextBox tbx_nbKm;
+        
+        /// <summary>
+        /// Contrôle prixKm.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl prixKm;
+        
+        /// <summary>
+        /// Contrôle prixTotalKm.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl prixTotalKm;
         
         /// <summary>
         /// Contrôle montant_html.
@@ -103,13 +130,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl montant_html;
         
         /// <summary>
-        /// Contrôle tbx_montant2.
+        /// Contrôle tbl_montant.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_montant2;
+        protected global::System.Web.UI.WebControls.Table tbl_montant;
+        
+        /// <summary>
+        /// Contrôle tbx_montantNormal.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_montantNormal;
         
         /// <summary>
         /// Contrôle Div1.
@@ -128,60 +164,6 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_note;
-        
-        /// <summary>
-        /// Contrôle rep_nomEmployer.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_nomEmployer;
-        
-        /// <summary>
-        /// Contrôle rep_date.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_date;
-        
-        /// <summary>
-        /// Contrôle rep_projet.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_projet;
-        
-        /// <summary>
-        /// Contrôle rep_categorie.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_categorie;
-        
-        /// <summary>
-        /// Contrôle rep_typeDepense.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_typeDepense;
-        
-        /// <summary>
-        /// Contrôle rep_montant.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell rep_montant;
         
         /// <summary>
         /// Contrôle alert_success.
