@@ -67,6 +67,24 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_depBureau;
         
         /// <summary>
+        /// Contrôle lbx_depBureau.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbx_depBureau;
+        
+        /// <summary>
+        /// Contrôle btn_deleteDepBureau.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_deleteDepBureau;
+        
+        /// <summary>
         /// Contrôle tbl_depTerrain.
         /// </summary>
         /// <remarks>
@@ -94,67 +112,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_depTerrain;
         
         /// <summary>
-        /// Contrôle Calendar.
+        /// Contrôle lbx_depTerrain.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
+        protected global::System.Web.UI.WebControls.ListBox lbx_depTerrain;
         
         /// <summary>
-        /// Contrôle dateFormated.
+        /// Contrôle btn_deleteDepTerrain.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
-        
-        /// <summary>
-        /// Contrôle km_html.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
-        
-        /// <summary>
-        /// Contrôle montantTotalDepense.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl montantTotalDepense;
-        
-        /// <summary>
-        /// Contrôle alert_success.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_success;
-        
-        /// <summary>
-        /// Contrôle alert_failed.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_failed;
-        
-        /// <summary>
-        /// Contrôle alert_warning.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_warning;
+        protected global::System.Web.UI.WebControls.Button btn_deleteDepTerrain;
         
         /// <summary>
         /// Contrôle btn_annuler.

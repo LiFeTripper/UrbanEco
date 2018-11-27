@@ -22,7 +22,7 @@
     <Type Name="tbl_Depense">
       <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="typeDepense" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="idProjetCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="dateDepense" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
@@ -31,7 +31,6 @@
       <Column Name="approuver" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
       <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_ProjetCat" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />
-      <Association Name="tbl_TypeDepense_tbl_Depense" Member="tbl_TypeDepense" ThisKey="idTypeDepense" OtherKey="idTypeDepense" Type="tbl_TypeDepense" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Employe" Member="tbl_Employe">
@@ -71,7 +70,8 @@
   <Table Name="dbo.tbl_Kilometrage" Member="tbl_Kilometrage">
     <Type Name="tbl_Kilometrage">
       <Column Name="idKilometrage" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="prixKilometrage" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="prixKilometrageVoiture" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="prixKilometrageCamion" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Projet" Member="tbl_Projet">
@@ -129,7 +129,8 @@
     <Type Name="tbl_TypeDepense">
       <Column Name="idTypeDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nomDepense" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Association Name="tbl_TypeDepense_tbl_Depense" Member="tbl_Depense" ThisKey="idTypeDepense" OtherKey="idTypeDepense" Type="tbl_Depense" />
+      <Column Name="idTypeEmploye" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeEmploye" ThisKey="idTypeEmploye" OtherKey="idType" Type="tbl_TypeEmploye" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_TypeEmploye" Member="tbl_TypeEmploye">
@@ -137,6 +138,7 @@
       <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
+      <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeDepense" ThisKey="idType" OtherKey="idTypeEmploye" Type="tbl_TypeDepense" />
     </Type>
   </Table>
 </Database>

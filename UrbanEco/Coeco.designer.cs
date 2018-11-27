@@ -559,7 +559,7 @@ namespace UrbanEco
 		
 		private int _idEmploye;
 		
-		private int _idTypeDepense;
+		private string _typeDepense;
 		
 		private int _idProjetCat;
 		
@@ -577,8 +577,6 @@ namespace UrbanEco
 		
 		private EntityRef<tbl_ProjetCat> _tbl_ProjetCat;
 		
-		private EntityRef<tbl_TypeDepense> _tbl_TypeDepense;
-		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -587,8 +585,8 @@ namespace UrbanEco
     partial void OnidDepenseChanged();
     partial void OnidEmployeChanging(int value);
     partial void OnidEmployeChanged();
-    partial void OnidTypeDepenseChanging(int value);
-    partial void OnidTypeDepenseChanged();
+    partial void OntypeDepenseChanging(string value);
+    partial void OntypeDepenseChanged();
     partial void OnidProjetCatChanging(int value);
     partial void OnidProjetCatChanged();
     partial void OnnoteChanging(string value);
@@ -607,7 +605,6 @@ namespace UrbanEco
 		{
 			this._tbl_Employe = default(EntityRef<tbl_Employe>);
 			this._tbl_ProjetCat = default(EntityRef<tbl_ProjetCat>);
-			this._tbl_TypeDepense = default(EntityRef<tbl_TypeDepense>);
 			OnCreated();
 		}
 		
@@ -655,26 +652,22 @@ namespace UrbanEco
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeDepense", DbType="Int NOT NULL")]
-		public int idTypeDepense
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeDepense", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string typeDepense
 		{
 			get
 			{
-				return this._idTypeDepense;
+				return this._typeDepense;
 			}
 			set
 			{
-				if ((this._idTypeDepense != value))
+				if ((this._typeDepense != value))
 				{
-					if (this._tbl_TypeDepense.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidTypeDepenseChanging(value);
+					this.OntypeDepenseChanging(value);
 					this.SendPropertyChanging();
-					this._idTypeDepense = value;
-					this.SendPropertyChanged("idTypeDepense");
-					this.OnidTypeDepenseChanged();
+					this._typeDepense = value;
+					this.SendPropertyChanged("typeDepense");
+					this.OntypeDepenseChanged();
 				}
 			}
 		}
@@ -867,40 +860,6 @@ namespace UrbanEco
 						this._idProjetCat = default(int);
 					}
 					this.SendPropertyChanged("tbl_ProjetCat");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeDepense_tbl_Depense", Storage="_tbl_TypeDepense", ThisKey="idTypeDepense", OtherKey="idTypeDepense", IsForeignKey=true)]
-		public tbl_TypeDepense tbl_TypeDepense
-		{
-			get
-			{
-				return this._tbl_TypeDepense.Entity;
-			}
-			set
-			{
-				tbl_TypeDepense previousValue = this._tbl_TypeDepense.Entity;
-				if (((previousValue != value) 
-							|| (this._tbl_TypeDepense.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbl_TypeDepense.Entity = null;
-						previousValue.tbl_Depense.Remove(this);
-					}
-					this._tbl_TypeDepense.Entity = value;
-					if ((value != null))
-					{
-						value.tbl_Depense.Add(this);
-						this._idTypeDepense = value.idTypeDepense;
-					}
-					else
-					{
-						this._idTypeDepense = default(int);
-					}
-					this.SendPropertyChanged("tbl_TypeDepense");
 				}
 			}
 		}
@@ -1722,7 +1681,9 @@ namespace UrbanEco
 		
 		private int _idKilometrage;
 		
-		private float _prixKilometrage;
+		private float _prixKilometrageVoiture;
+		
+		private float _prixKilometrageCamion;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
@@ -1730,8 +1691,10 @@ namespace UrbanEco
     partial void OnCreated();
     partial void OnidKilometrageChanging(int value);
     partial void OnidKilometrageChanged();
-    partial void OnprixKilometrageChanging(float value);
-    partial void OnprixKilometrageChanged();
+    partial void OnprixKilometrageVoitureChanging(float value);
+    partial void OnprixKilometrageVoitureChanged();
+    partial void OnprixKilometrageCamionChanging(float value);
+    partial void OnprixKilometrageCamionChanged();
     #endregion
 		
 		public tbl_Kilometrage()
@@ -1759,22 +1722,42 @@ namespace UrbanEco
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrage", DbType="Real NOT NULL")]
-		public float prixKilometrage
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrageVoiture", DbType="Real NOT NULL")]
+		public float prixKilometrageVoiture
 		{
 			get
 			{
-				return this._prixKilometrage;
+				return this._prixKilometrageVoiture;
 			}
 			set
 			{
-				if ((this._prixKilometrage != value))
+				if ((this._prixKilometrageVoiture != value))
 				{
-					this.OnprixKilometrageChanging(value);
+					this.OnprixKilometrageVoitureChanging(value);
 					this.SendPropertyChanging();
-					this._prixKilometrage = value;
-					this.SendPropertyChanged("prixKilometrage");
-					this.OnprixKilometrageChanged();
+					this._prixKilometrageVoiture = value;
+					this.SendPropertyChanged("prixKilometrageVoiture");
+					this.OnprixKilometrageVoitureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prixKilometrageCamion", DbType="Real NOT NULL")]
+		public float prixKilometrageCamion
+		{
+			get
+			{
+				return this._prixKilometrageCamion;
+			}
+			set
+			{
+				if ((this._prixKilometrageCamion != value))
+				{
+					this.OnprixKilometrageCamionChanging(value);
+					this.SendPropertyChanging();
+					this._prixKilometrageCamion = value;
+					this.SendPropertyChanged("prixKilometrageCamion");
+					this.OnprixKilometrageCamionChanged();
 				}
 			}
 		}
@@ -2953,7 +2936,9 @@ namespace UrbanEco
 		
 		private string _nomDepense;
 		
-		private EntitySet<tbl_Depense> _tbl_Depense;
+		private System.Nullable<int> _idTypeEmploye;
+		
+		private EntityRef<tbl_TypeEmploye> _tbl_TypeEmploye;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
@@ -2963,11 +2948,13 @@ namespace UrbanEco
     partial void OnidTypeDepenseChanged();
     partial void OnnomDepenseChanging(string value);
     partial void OnnomDepenseChanged();
+    partial void OnidTypeEmployeChanging(System.Nullable<int> value);
+    partial void OnidTypeEmployeChanged();
     #endregion
 		
 		public tbl_TypeDepense()
 		{
-			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
+			this._tbl_TypeEmploye = default(EntityRef<tbl_TypeEmploye>);
 			OnCreated();
 		}
 		
@@ -3011,16 +2998,61 @@ namespace UrbanEco
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeDepense_tbl_Depense", Storage="_tbl_Depense", ThisKey="idTypeDepense", OtherKey="idTypeDepense")]
-		public EntitySet<tbl_Depense> tbl_Depense
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeEmploye", DbType="Int")]
+		public System.Nullable<int> idTypeEmploye
 		{
 			get
 			{
-				return this._tbl_Depense;
+				return this._idTypeEmploye;
 			}
 			set
 			{
-				this._tbl_Depense.Assign(value);
+				if ((this._idTypeEmploye != value))
+				{
+					if (this._tbl_TypeEmploye.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidTypeEmployeChanging(value);
+					this.SendPropertyChanging();
+					this._idTypeEmploye = value;
+					this.SendPropertyChanged("idTypeEmploye");
+					this.OnidTypeEmployeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeEmploye_tbl_TypeDepense", Storage="_tbl_TypeEmploye", ThisKey="idTypeEmploye", OtherKey="idType", IsForeignKey=true)]
+		public tbl_TypeEmploye tbl_TypeEmploye
+		{
+			get
+			{
+				return this._tbl_TypeEmploye.Entity;
+			}
+			set
+			{
+				tbl_TypeEmploye previousValue = this._tbl_TypeEmploye.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_TypeEmploye.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_TypeEmploye.Entity = null;
+						previousValue.tbl_TypeDepense.Remove(this);
+					}
+					this._tbl_TypeEmploye.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_TypeDepense.Add(this);
+						this._idTypeEmploye = value.idType;
+					}
+					else
+					{
+						this._idTypeEmploye = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbl_TypeEmploye");
+				}
 			}
 		}
 		
@@ -3043,18 +3075,6 @@ namespace UrbanEco
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_tbl_Depense(tbl_Depense entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_TypeDepense = this;
-		}
-		
-		private void detach_tbl_Depense(tbl_Depense entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_TypeDepense = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_TypeEmploye")]
@@ -3069,6 +3089,8 @@ namespace UrbanEco
 		
 		private EntitySet<tbl_Employe> _tbl_Employe;
 		
+		private EntitySet<tbl_TypeDepense> _tbl_TypeDepense;
+		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3082,6 +3104,7 @@ namespace UrbanEco
 		public tbl_TypeEmploye()
 		{
 			this._tbl_Employe = new EntitySet<tbl_Employe>(new Action<tbl_Employe>(this.attach_tbl_Employe), new Action<tbl_Employe>(this.detach_tbl_Employe));
+			this._tbl_TypeDepense = new EntitySet<tbl_TypeDepense>(new Action<tbl_TypeDepense>(this.attach_tbl_TypeDepense), new Action<tbl_TypeDepense>(this.detach_tbl_TypeDepense));
 			OnCreated();
 		}
 		
@@ -3138,6 +3161,19 @@ namespace UrbanEco
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeEmploye_tbl_TypeDepense", Storage="_tbl_TypeDepense", ThisKey="idType", OtherKey="idTypeEmploye")]
+		public EntitySet<tbl_TypeDepense> tbl_TypeDepense
+		{
+			get
+			{
+				return this._tbl_TypeDepense;
+			}
+			set
+			{
+				this._tbl_TypeDepense.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3165,6 +3201,18 @@ namespace UrbanEco
 		}
 		
 		private void detach_tbl_Employe(tbl_Employe entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_TypeEmploye = null;
+		}
+		
+		private void attach_tbl_TypeDepense(tbl_TypeDepense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_TypeEmploye = this;
+		}
+		
+		private void detach_tbl_TypeDepense(tbl_TypeDepense entity)
 		{
 			this.SendPropertyChanging();
 			entity.tbl_TypeEmploye = null;

@@ -13,6 +13,7 @@ namespace UrbanEco
             TODO :
             Gestion des erreurs (champs vide)
             Permettre les modifications
+            Adapter pour prix voiture et camion
         */
 
         static bool DepenseAjouter = false;
@@ -94,7 +95,7 @@ namespace UrbanEco
 
                 //Assigner les valeurs a la dépense
                 dep.idEmploye = empConnected.idEmploye;
-                dep.idTypeDepense = idTypeDepense;
+                //dep.idTypeDepense = idTypeDepense;
                 dep.idProjetCat = int.Parse(tbx_categorie.Items[tbx_categorie.SelectedIndex].Value);
                 dep.note = tbx_note.Text;
 
@@ -106,10 +107,10 @@ namespace UrbanEco
                 if (km_html.Visible)
                 {
                     //KM
-                    dep.montant = float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage;
+                    //dep.montant = float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage;
 
                     //Stocker le prix du KM a cette date
-                    dep.prixKilometrage = prixKilometrage.prixKilometrage;
+                    //dep.prixKilometrage = prixKilometrage.prixKilometrage;
                 }
                 else
                 {
@@ -193,7 +194,7 @@ namespace UrbanEco
 
                 if(prix != -1)
                 {
-                    rep_montant.InnerText = (prix * prixKilometrage.prixKilometrage) + "$";
+                    rep_montant.InnerText = (prix * prixKilometrage.prixKilometrageVoiture) + "$";
                 }
             }
             else
@@ -236,7 +237,7 @@ namespace UrbanEco
         /// <param name="e"></param>
         protected void tbx_montant1_TextChanged(object sender, EventArgs e)
         {
-            montantTotalDepense.InnerText = " * "+ prixKilometrage.prixKilometrage+"$ = " + (float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage) + "$";
+            //montantTotalDepense.InnerText = " * "+ prixKilometrage.prixKilometrage+"$ = " + (float.Parse(tbx_montant1.Text) * prixKilometrage.prixKilometrage) + "$";
         }
 
         protected void btn_annuler_Click(object sender, EventArgs e)
