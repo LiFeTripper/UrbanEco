@@ -42,7 +42,21 @@
 
             <div class="row justify-content-md-center" style="margin-bottom: 100px;">
                 <div class="col-md-offset-3 col-6">
+                     <table style="width: 100% !important;" runat="server" id="tblEmploye" visible="false">
+                         <tr>
+                            <th>
+                                <h5 class="input-title">Employés</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:DropDownList CssClass="input-box" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true"></asp:DropDownList>
+                            </td>
+                        </tr>
+                         </table>
                     <table style="width: 100% !important;">
+                        
+                        
                         <tr>
                             <th>
                                 <h5 class="input-title">Projet</h5>
@@ -50,7 +64,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:DropDownList CssClass="input-box" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="titre" DataValueField="idProjet" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList CssClass="input-box" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
                             </td>
                         </tr>
 
@@ -61,7 +75,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:DropDownList CssClass="input-box" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="titre" DataValueField="idProjetCat" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList CssClass="input-box" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
                             </td>
                         </tr>
                     </table>

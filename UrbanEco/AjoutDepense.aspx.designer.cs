@@ -49,15 +49,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Table Ddl_TypeEmp;
         
         /// <summary>
-        /// Contrôle Calendar.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
-        
-        /// <summary>
         /// Contrôle dateFormated.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,15 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
+        
+        /// <summary>
+        /// Contrôle Calendar.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
         
         /// <summary>
         /// Contrôle tbx_typeDepense.

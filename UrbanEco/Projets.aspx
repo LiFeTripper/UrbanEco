@@ -13,6 +13,7 @@
 
     <form runat="server" style="text-align: center;" class="container center col-12">
         <%--EN TËTE A MARC--%>
+
         <table style="width: 100% !important;">              
             <tr class="mb-3">
                  <%--CHECKBOX INACTIF OU ACTIF--%>

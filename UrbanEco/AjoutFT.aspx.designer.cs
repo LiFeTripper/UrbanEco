@@ -31,6 +31,24 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_failed;
         
         /// <summary>
+        /// Contrôle tblEmploye.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tblEmploye;
+        
+        /// <summary>
+        /// Contrôle ddl_employe.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_employe;
+        
+        /// <summary>
         /// Contrôle tbx_projet.
         /// </summary>
         /// <remarks>
