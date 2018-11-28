@@ -48,6 +48,15 @@ namespace UrbanEco
                 if (btn_modifBH.Text == "Activer la modification")
                 {
                     tbl_BH.Enabled = true;
+                    tbx_nbHeureBanqueI.Enabled = false;
+                    tbx_nbHeureCongeMaladieI.Enabled = false;
+                    tbx_nbHeureCongePersoI.Enabled = false;
+                    tbx_nbHeureJourFerieI.Enabled = false;
+                    tbx_nbHeureVacanceI.Enabled = false;
+                    btn_modifBHI.Visible = true;
+                    btn_Sauvegarder.Visible = true;
+                    btn_Annuler.Visible = true;
+                    btn_modifBH.Visible = false;
                     btn_modifBH.Text = "Désactiver la modification";
                 }
                 //Lorsque les modifications désactivées, on enregistre les changements fait dans la table d'heures de l'employé sélectionner
@@ -55,6 +64,8 @@ namespace UrbanEco
                 {
                     Update_BH();
                     tbl_BH.Enabled = false;
+                    btn_modifBHI.Visible = false;
+                    btn_modifBH.Visible = true;
                     btn_modifBH.Text = "Activer la modification";
                 }
             }
@@ -191,6 +202,15 @@ namespace UrbanEco
                 tbx_nbHeureVacance.Text = "";
 
                 tbx_nbHeureCongeMaladie.Text = "";
+                tbx_nbHeureBanqueI.Text = "";
+
+                tbx_nbHeureJourFerieI.Text = "";
+
+                tbx_nbHeureCongePersoI.Text = "";
+
+                tbx_nbHeureVacanceI.Text = "";
+
+                tbx_nbHeureCongeMaladieI.Text = "";
             }
             else
             {
@@ -313,6 +333,80 @@ namespace UrbanEco
             ddl_empBH.DataBind();
 
             ddl_empBH.Items.Insert(0, "Veuillez choisir un employé");
+        }
+
+        protected void btn_modifBHI_Click(object sender, EventArgs e)
+        {
+                if (btn_modifBHI.Text == "Activer la modification des heures initiales")
+                {
+                tbx_nbHeureBanqueI.Enabled = true;
+                tbx_nbHeureCongeMaladieI.Enabled = true;
+                tbx_nbHeureCongePersoI.Enabled = true;
+                tbx_nbHeureJourFerieI.Enabled = true;
+                tbx_nbHeureVacanceI.Enabled = true;
+                btn_modifBHI.Visible = true;
+                    btn_modifBHI.Text = "Désactiver la modification des heures initiales";
+                }
+                //Lorsque les modifications désactivées, on enregistre les changements fait dans la table d'heures de l'employé sélectionner
+                else
+                {   
+                    tbx_nbHeureCongeMaladieI.Enabled = false;
+                    tbx_nbHeureCongePersoI.Enabled = false;
+                    tbx_nbHeureJourFerieI.Enabled = false;
+                    tbx_nbHeureVacanceI.Enabled = false;
+                    btn_modifBHI.Visible = false;
+                    btn_modifBHI.Text = "Activer la modification des heures initiales";
+                }
+
+        }
+
+        protected void btn_Annuler_Click(object sender, EventArgs e)
+        {
+            tbl_BH.Enabled = false;
+            btn_modifBHI.Visible = false;
+
+            btn_Sauvegarder.Visible = false;
+            btn_Annuler.Visible = false;
+
+            //On vide les textBox si aucun employé n'est sélectionner
+            if (ddl_empBH.Text == "Veuillez choisir un employé")
+            {
+                tbx_nbHeureBanque.Text = "";
+
+                tbx_nbHeureJourFerie.Text = "";
+
+                tbx_nbHeureCongePerso.Text = "";
+
+                tbx_nbHeureVacance.Text = "";
+
+                tbx_nbHeureCongeMaladie.Text = "";
+                tbx_nbHeureBanqueI.Text = "";
+
+                tbx_nbHeureJourFerieI.Text = "";
+
+                tbx_nbHeureCongePersoI.Text = "";
+
+                tbx_nbHeureVacanceI.Text = "";
+
+                tbx_nbHeureCongeMaladieI.Text = "";
+            }
+            else
+            {
+                load_BHemp(ddl_empBH.Text);
+                AlertDiv.Visible = false;   //On cache l'alerte de choix d'employé
+            }
+
+            btn_modifBH.Visible = true;
+        }
+
+        protected void btn_Sauvegarder_Click(object sender, EventArgs e)
+        {
+            Update_BH();
+            tbl_BH.Enabled = false;
+            btn_modifBHI.Visible = false;
+            btn_modifBH.Visible = true;
+            btn_Sauvegarder.Visible = false;
+            btn_Annuler.Visible = false;
         }
     }
 
