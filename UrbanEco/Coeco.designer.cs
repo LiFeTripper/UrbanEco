@@ -48,6 +48,9 @@ namespace UrbanEco
     partial void Inserttbl_Kilometrage(tbl_Kilometrage instance);
     partial void Updatetbl_Kilometrage(tbl_Kilometrage instance);
     partial void Deletetbl_Kilometrage(tbl_Kilometrage instance);
+    partial void Inserttbl_PremierDimanche(tbl_PremierDimanche instance);
+    partial void Updatetbl_PremierDimanche(tbl_PremierDimanche instance);
+    partial void Deletetbl_PremierDimanche(tbl_PremierDimanche instance);
     partial void Inserttbl_Projet(tbl_Projet instance);
     partial void Updatetbl_Projet(tbl_Projet instance);
     partial void Deletetbl_Projet(tbl_Projet instance);
@@ -143,6 +146,14 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_Kilometrage>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_PremierDimanche> tbl_PremierDimanche
+		{
+			get
+			{
+				return this.GetTable<tbl_PremierDimanche>();
 			}
 		}
 		
@@ -561,7 +572,7 @@ namespace UrbanEco
 		
 		private string _typeDepense;
 		
-		private int _idProjetCat;
+		private System.Nullable<int> _idProjetCat;
 		
 		private string _note;
 		
@@ -587,7 +598,7 @@ namespace UrbanEco
     partial void OnidEmployeChanged();
     partial void OntypeDepenseChanging(string value);
     partial void OntypeDepenseChanged();
-    partial void OnidProjetCatChanging(int value);
+    partial void OnidProjetCatChanging(System.Nullable<int> value);
     partial void OnidProjetCatChanged();
     partial void OnnoteChanging(string value);
     partial void OnnoteChanged();
@@ -672,8 +683,8 @@ namespace UrbanEco
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjetCat", DbType="Int NOT NULL")]
-		public int idProjetCat
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjetCat", DbType="Int")]
+		public System.Nullable<int> idProjetCat
 		{
 			get
 			{
@@ -857,7 +868,7 @@ namespace UrbanEco
 					}
 					else
 					{
-						this._idProjetCat = default(int);
+						this._idProjetCat = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tbl_ProjetCat");
 				}
@@ -1758,6 +1769,92 @@ namespace UrbanEco
 					this._prixKilometrageCamion = value;
 					this.SendPropertyChanged("prixKilometrageCamion");
 					this.OnprixKilometrageCamionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_PremierDimanche")]
+	public partial class tbl_PremierDimanche : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idPremierDimanche;
+		
+		private System.DateTime _dateDimanche;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidPremierDimancheChanging(int value);
+    partial void OnidPremierDimancheChanged();
+    partial void OndateDimancheChanging(System.DateTime value);
+    partial void OndateDimancheChanged();
+    #endregion
+		
+		public tbl_PremierDimanche()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPremierDimanche", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idPremierDimanche
+		{
+			get
+			{
+				return this._idPremierDimanche;
+			}
+			set
+			{
+				if ((this._idPremierDimanche != value))
+				{
+					this.OnidPremierDimancheChanging(value);
+					this.SendPropertyChanging();
+					this._idPremierDimanche = value;
+					this.SendPropertyChanged("idPremierDimanche");
+					this.OnidPremierDimancheChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateDimanche", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime dateDimanche
+		{
+			get
+			{
+				return this._dateDimanche;
+			}
+			set
+			{
+				if ((this._dateDimanche != value))
+				{
+					this.OndateDimancheChanging(value);
+					this.SendPropertyChanging();
+					this._dateDimanche = value;
+					this.SendPropertyChanged("dateDimanche");
+					this.OndateDimancheChanged();
 				}
 			}
 		}
@@ -2958,7 +3055,7 @@ namespace UrbanEco
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeDepense", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int idTypeDepense
 		{
 			get

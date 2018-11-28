@@ -15,6 +15,12 @@ namespace UrbanEco
         {
             CoecoDataContext context = new CoecoDataContext();
 
+            //User not connected, redirect to login page
+            if (Request.Cookies["userinfo"] == null)
+            {
+                return;
+             //   Response.Redirect("Login.aspx");
+            }
             string cookie = Request.Cookies["userInfo"].Value;
 
             var query = from tbl in context.tbl_Employe

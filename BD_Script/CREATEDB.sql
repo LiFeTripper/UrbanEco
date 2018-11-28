@@ -231,7 +231,7 @@ INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUE
 
 CREATE TABLE tbl_TypeDepense
 (
-	idTypeDepense INT IDENTITY(1,1) PRIMARY KEY,
+	idTypeDepense INT PRIMARY KEY,
 	nomDepense VARCHAR(250),
 	idTypeEmploye INT,
 
@@ -239,19 +239,20 @@ CREATE TABLE tbl_TypeDepense
 
 )
 
-INSERT INTO tbl_TypeDepense (nomDepense, idTypeEmploye) VALUES ('Déplacement (Voiture)', NULL);
-INSERT INTO tbl_TypeDepense (nomDepense, idTypeEmploye) VALUES ('Déplacement (Camion)', NULL);
-INSERT INTO tbl_TypeDepense (nomDepense, idTypeEmploye) VALUES ('Restaurant',1);
-INSERT INTO tbl_TypeDepense (nomDepense, idTypeEmploye) VALUES ('Restaurant',2);
-INSERT INTO tbl_TypeDepense (nomDepense, idTypeEmploye) VALUES ('Autre (Bureau)',1);
-INSERT INTO tbl_TypeDepense (nomDepense, idTypeEmploye) VALUES ('Autre (Terrain)',2);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (1, 'Déplacement (Voiture)', NULL);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (2, 'Déplacement (Camion)', NULL);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (3, 'Restaurant',1);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (4, 'Restaurant',2);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (5, 'Autre (Bureau)',1);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (6, 'Autre (Terrain)',2);
 
 CREATE TABLE tbl_Depense
 (
 	idDepense INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	typeDepense VARCHAR(250) NOT NULL,
-	idProjetCat INT NOT NULL,
+
+	idProjetCat INT DEFAULT NULL,
 	note VARCHAR(MAX),
 	dateDepense SMALLDATETIME DEFAULT GETDATE(),
 	montant FLOAT(24) DEFAULT 0,
@@ -272,6 +273,13 @@ CREATE TABLE tbl_Kilometrage
 )
 
 INSERT INTO tbl_Kilometrage(prixKilometrageVoiture,prixKilometrageCamion) VALUES (0.47,0.67);
+
+
+CREATE TABLE tbl_PremierDimanche
+(
+	idPremierDimanche INT IDENTITY(1,1) PRIMARY KEY,
+	dateDimanche SMALLDATETIME NOT NULL
+)
 
 --Web User
 

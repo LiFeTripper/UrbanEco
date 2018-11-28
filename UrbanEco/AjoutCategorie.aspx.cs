@@ -41,7 +41,13 @@ namespace UrbanEco
             }
         }
 
-        protected void Btn_AjoutSousCat_Click(object sender, EventArgs e)
+
+        protected void Btn_AjoutSousProjet_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModifCategorie.aspx?Prj=" + argument);
+        }
+
+        protected void Btn_ModifSousProjet_Click(object sender, EventArgs e)
         {
             //Référence au bouton dans l'interface
             Button button = (sender as Button);
@@ -49,17 +55,20 @@ namespace UrbanEco
             //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
 
-            //Objet de ma table Projet
-            tbl_ProjetCat tableCat = new tbl_ProjetCat();
-
-            //Remplissage des champs de la table temporaire avec les contrôles
-            
-            
+            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Cat=" + commandArgument + "&Mode=M");
         }
 
-        protected void Btn_AjoutCat_Click(object sender, EventArgs e)
+        protected void Btn_AjoutSSProjet_Click(object sender, EventArgs e)
         {
+            //Référence au bouton dans l'interface
+            Button button = (sender as Button);
 
+            //Ramassage du CommandArgument du bouton
+            string commandArgument = button.CommandArgument;
+
+            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Cat=" + commandArgument);
         }
+
+        
     }
 }

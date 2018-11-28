@@ -81,6 +81,7 @@ namespace UrbanEco
                 tableProjet.description = Tbx_Description.Text;
                 tableProjet.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
                 tableProjet.idStatus = int.Parse(Ddl_Status.SelectedValue);
+                tableProjet.archiver = ChkBx_Archivé.Checked;
 
                 DateTime date1 = DateTime.Parse(Cal_DateDebut.Value);
                 tableProjet.dateDebut = date1;
@@ -108,6 +109,7 @@ namespace UrbanEco
                 query.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
                 query.dateDebut = DateTime.Parse(Cal_DateDebut.Value);
                 query.dateFin = DateTime.Parse(Cal_DateFin.Value);
+                query.archiver = ChkBx_Archivé.Checked;
             }
 
             //Étape finale SUBMIT CHANGES
