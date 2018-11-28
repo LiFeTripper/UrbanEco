@@ -9,12 +9,12 @@ namespace UrbanEco
 {
     public partial class ModifCategorie : System.Web.UI.Page
     {
-        string argument;
-        string argument2;
-        string mode;
+        static string argument;
+        static string argument2;
+        static string mode;
 
-        bool SousCat;
-        bool modif;
+        static bool SousCat;
+        static bool modif;
 
         CoecoDataContext context = new CoecoDataContext();
 
