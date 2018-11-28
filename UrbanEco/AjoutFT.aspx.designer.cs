@@ -13,31 +13,13 @@ namespace UrbanEco {
     public partial class AjoutFT {
         
         /// <summary>
-        /// Contrôle lbl_Top.
+        /// Contrôle tbl_employe.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Top;
-        
-        /// <summary>
-        /// Contrôle alert_failed.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_failed;
-        
-        /// <summary>
-        /// Contrôle tblEmploye.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblEmploye;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbl_employe;
         
         /// <summary>
         /// Contrôle ddl_employe.
@@ -85,6 +67,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txa_comments;
         
         /// <summary>
+        /// Contrôle dateFormated.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
+        
+        /// <summary>
         /// Contrôle Calendar1.
         /// </summary>
         /// <remarks>
@@ -94,13 +85,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar1;
         
         /// <summary>
-        /// Contrôle dateFormated.
+        /// Contrôle btn_annuler.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
+        protected global::System.Web.UI.WebControls.Button btn_annuler;
         
         /// <summary>
         /// Contrôle Btn_Enreg.
