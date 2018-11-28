@@ -266,7 +266,59 @@ namespace UrbanEco
 
             ctx.SubmitChanges();
 
+            if(!string.IsNullOrWhiteSpace(tbx_firstDimanche.Value))
+            {
+                DateTime dateDimanche = DateTime.Parse(tbx_firstDimanche.Value);
+
+                //Get le premier dimanche de la table
+                var queryDimanche = (from tbl in ctx.tbl_PremierDimanche
+                                     orderby tbl.idPremierDimanche
+                                     select tbl);
+
+                if(queryDimanche.Count() > 0)
+                {
+                    //C'est le meme dimanche, on recalcule pas
+                    if(RemoveHours(queryDimanche.First().dateDimanche) == RemoveHours(dateDimanche))
+                    {
+                        Response.Redirect(Request.RawUrl);
+                        return;
+                    }
+
+                    //Delete all
+                    foreach (var item in queryDimanche)
+                    {
+                        ctx.tbl_PremierDimanche.DeleteOnSubmit(item);
+                    }
+
+                }
+
+                int index = 1;
+                int nbSemaine = 53;
+
+                DateTime newDate = dateDimanche;
+
+                while(index <= nbSemaine)
+                {
+                    tbl_PremierDimanche insert = new tbl_PremierDimanche();
+                    insert.idPremierDimanche = index;
+                    insert.dateDimanche = RemoveHours(newDate); 
+
+                    ctx.tbl_PremierDimanche.InsertOnSubmit(insert);
+                    index++;
+                    newDate = newDate.AddDays(7);
+                }
+
+                ctx.SubmitChanges();
+            }
+
+
             Response.Redirect(Request.RawUrl);
+
+        }
+
+        protected DateTime RemoveHours(DateTime time)
+        {
+            return new DateTime(time.Year, time.Month, time.Day);
         }
 
         protected void btn_annuler_Click(object sender, EventArgs e)

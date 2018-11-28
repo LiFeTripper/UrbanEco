@@ -291,7 +291,7 @@ INSERT INTO tbl_Kilometrage(prixKilometrageVoiture,prixKilometrageCamion) VALUES
 
 CREATE TABLE tbl_PremierDimanche
 (
-	idPremierDimanche INT IDENTITY(1,1) PRIMARY KEY,
+	idPremierDimanche INT DEFAULT 1 PRIMARY KEY,
 	dateDimanche SMALLDATETIME NOT NULL
 )
 
