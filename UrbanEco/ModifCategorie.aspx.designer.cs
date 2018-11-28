@@ -13,15 +13,6 @@ namespace UrbanEco {
     public partial class ModifCategorie {
         
         /// <summary>
-        /// Contrôle Label1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// Contrôle Tbx_Titre.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button Btn_Enregistrer;
         
         /// <summary>
+        /// Contrôle Div_Multiselect.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Multiselect;
+        
+        /// <summary>
         /// Contrôle RepBureau.
         /// </summary>
         /// <remarks>
@@ -76,6 +76,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Repeater RepTerrain;
         
         /// <summary>
+        /// Contrôle hiddenFieldEmployeDeselect.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldEmployeDeselect;
+        
+        /// <summary>
         /// Contrôle hiddenFieldEmploye.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,14 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldEmploye;
+        
+        /// <summary>
+        /// Contrôle hiddenFieldTotal.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldTotal;
     }
 }
