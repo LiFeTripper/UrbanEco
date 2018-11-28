@@ -108,8 +108,36 @@
 
             </asp:Table>
         </div>
-                          <%-- <asp:Button style="float:right;" ID="btn_ajouterFT" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
---%>
+
+        <p style="height:20px;"></p>
+        <div style="margin-top:15px;">
+
+            <asp:Table runat="server" CssClass="col-md-12" Style="margin-top:150px !important;">
+                <asp:TableRow>
+                    <asp:TableCell Style="float: left; width: 50%;" CssClass="thead-dark">
+                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_attente" visible="true">En attente</h2>
+                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_approved" visible="false">Approuvées</h2>
+                    </asp:TableCell>
+                    <asp:TableCell Style="float: left; width: 50%;">
+                        <table style="width: 100% !important; float: left;">
+                            <tr>
+                                <%--CHECKBOX INACTIF OU ACTIF--%>
+                                <td style="width: 30%;" class="mb-3">
+                                    <label class="switch" style="float: right;">
+                                        <asp:CheckBox runat="server" ID="chbx_approved" OnCheckedChanged="chbx_approved_CheckedChanged" AutoPostBack="true" />
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <h4 style="float: left;">Afficher les feuilles de temps approuvées</h4>
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+
+        </div>
 
         <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
         <asp:Repeater ID="Rptr_EmployeNonApprouver" runat="server">
@@ -119,11 +147,8 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-dark">
-                            <h2 style="margin-bottom: 10px;" class="mt-4">En attente</h2>
-                        </thead>
-                        <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e">
-                                <th style="width: 4%" scope="col"></th>
+                                <%--<th style="width: 4%" scope="col"></th>--%>
                                 <th style="width: 13%" scope="col">Employé</th>
                                 <th style="width: 8%" scope="col">Date</th>
                                 <th style="width: 8%" scope="col">Durée (h)</th>
@@ -141,10 +166,9 @@
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
                 <tr class="table-secondary">
-                    <td>
+<%--                    <td>
                         <asp:Button runat="server" CssClass="btn btn-sm btn-secondary" Text="Plus/Moins" ID="btn_trash" enabled="false"/>
-                        <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjout" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
-                    </td>
+                    </td>--%>
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" />
                     </td>
@@ -166,8 +190,8 @@
                     <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
                         <%--ITEMTEMPLATE--%>
                         <ItemTemplate>
-                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Eval("approuver"),Eval("dateCreation")) %>'>
-                                <td></td>
+                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Eval("approuver"),Eval("dateCreation"), "Attente") %>'>
+                                <%--<td></td>--%>
                                 <td></td>
                                 <td>
                                     <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />
@@ -199,7 +223,7 @@
                 </tbody>
                 <thead class="thead-dark">
                     <tr style="border-bottom: 5px solid #23282e">
-                        <th style="width: 4%" scope="col"></th>
+                        <%--<th style="width: 4%" scope="col"></th>--%>
                         <th style="width: 13%" scope="col">Employé</th>
                         <th style="width: 12%" scope="col">Date</th>
                         <th style="width: 8%" scope="col">Durée (h)</th>
@@ -214,17 +238,14 @@
             </FooterTemplate>
         </asp:Repeater>
 
-        <div style="margin-top:15px;margin-bottom:15px;">&nbsp;</div>
-
         <%--CODE REPEATER DE FEUILLES DE TEMPS APPROUVÉES--%>
-        <asp:Repeater ID="rptr_EmployeApprouver" runat="server" >
+        <asp:Repeater ID="rptr_EmployeApprouver" runat="server" visible="false">
 
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
                 <div class="table-responsive">
                 <table class="table">
                     <thead class="thead-dark">
-                    <h2 style="margin-bottom: 10px;">Approuvé</h2>
                     <tr style="border-bottom: 5px solid #23282e">
                         <th style="width: 13%" scope="col">Employé</th>
                         <th style="width: 8%" scope="col">Date</th>
@@ -250,7 +271,7 @@
                     <asp:Repeater ID="Rptr_FeuilleTempsApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load">
                         <%--ITEMTEMPLATE--%>
                         <ItemTemplate>
-                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# Boolean.Parse(Eval("approuver").ToString())%>'>
+                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Eval("approuver"),Eval("dateCreation"), "Approuver") %>'>
                                 <td></td>
                                 <td>
                                     <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />

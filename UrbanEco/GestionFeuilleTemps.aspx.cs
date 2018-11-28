@@ -32,7 +32,7 @@ namespace UrbanEco
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
 
-                var querry = from tblE in cdc.tbl_Employe
+                var queryFTAttente = from tblE in cdc.tbl_Employe
                              join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
                              where tblFT.approuver.Equals(false)
                              & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
@@ -42,48 +42,16 @@ namespace UrbanEco
                              select tblE;
 
 
-                foreach (var tbl in querry)
-                {
-                    bool ajouterTbl = true;
-                    var tblTemp = tbl;
-                    int idtbl = tbl.idEmploye;
-
-                    foreach (var tblVerif in querry)
-                    {
-                        if (tblVerif.idEmploye != idtbl)
-                        {
-                            if (tblTemp == tblVerif)
-                            {
-                                ajouterTbl = false;
-                            }
-                        }
-                    }
-
-                    foreach (tbl_Employe tb in listTable)
-                    {
-                        if (tblTemp == tb)
-                        {
-                            ajouterTbl = false;
-                        }
-                    }
-
-                    if (ajouterTbl)
-                    {
-
-                        listTable.Add(tblTemp);
-                    }
-                }
-
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
-
                 Rptr_EmployeNonApprouver.DataBind();
-                Rptr_EmployeNonApprouver.DataSource = querry.Distinct();
+
+                Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
                 Rptr_EmployeNonApprouver.DataBind();
 
                 List<tbl_Employe> listTableA = new List<tbl_Employe>();
 
-                querry = from tblE in cdc.tbl_Employe
+                var queryFTApprouver = from tblE in cdc.tbl_Employe
                          join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
                          where tblFT.approuver == true
                          & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
@@ -91,41 +59,11 @@ namespace UrbanEco
                          orderby tblFT.dateCreation descending
                          select tblE;
 
-                foreach (var tbl in querry)
-                {
-                    bool ajouterTbl = true;
-                    var tblTemp = tbl;
-                    int idtbl = tbl.idEmploye;
-
-                    foreach (var tblVerif in querry)
-                    {
-                        if (tblVerif.idEmploye != idtbl)
-                        {
-                            if (tblTemp == tblVerif)
-                            {
-                                ajouterTbl = false;
-                            }
-                        }
-                    }
-
-                    foreach (tbl_Employe tb in listTableA)
-                    {
-                        if (tblTemp == tb)
-                        {
-                            ajouterTbl = false;
-                        }
-                    }
-
-                    if (ajouterTbl)
-                    {
-                        listTableA.Add(tblTemp);
-                    }
-                }
-
                 rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;
                 rptr_EmployeApprouver.DataBind();
-                rptr_EmployeApprouver.DataSource = querry.Distinct();
+
+                rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
                 rptr_EmployeApprouver.DataBind();
 
             }
@@ -326,7 +264,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            var queryEmployer = (from tblE in cdc.tbl_Employe
+            var queryFTAttente = (from tblE in cdc.tbl_Employe
                                  join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
                                  where tblFT.approuver.Equals(false)
                                  & (tblFT.dateCreation >= dateMin)
@@ -334,13 +272,26 @@ namespace UrbanEco
                                  orderby tblFT.dateCreation descending
                                  select tblE).Distinct();
 
-            var t = queryEmployer.ToList();
-
             Rptr_EmployeNonApprouver.DataSource = null;
             Rptr_EmployeNonApprouver.DataBind();
 
-            Rptr_EmployeNonApprouver.DataSource = queryEmployer;
+            Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
             Rptr_EmployeNonApprouver.DataBind();
+
+
+            var queryFTApprouver = (from tblE in cdc.tbl_Employe
+                                 join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                 where tblFT.approuver.Equals(true)
+                                 & (tblFT.dateCreation >= dateMin)
+                                 & (tblFT.dateCreation <= dateMax)
+                                 orderby tblFT.dateCreation descending
+                                 select tblE).Distinct();
+
+            rptr_EmployeApprouver.DataSource = null;
+            rptr_EmployeApprouver.DataBind();
+
+            rptr_EmployeApprouver.DataSource = queryFTApprouver;
+            rptr_EmployeApprouver.DataBind();
         }
 
         protected string CalculerTotalHeureEmploye(object tblFT)
@@ -355,7 +306,7 @@ namespace UrbanEco
                 if (item == null)
                     continue;
 
-                if (ShowFT(item.approuver, item.dateCreation))
+                if (ShowFT(item.approuver, item.dateCreation, "Attente"))
                 {
                     totalHeure += item.nbHeure;
                 }
@@ -365,11 +316,20 @@ namespace UrbanEco
             return totalHeure + "h";
         }
 
-        protected bool ShowFT(object approuver, object date)
+        protected bool ShowFT(object approuver, object date, string type)
         {
             //Pas approuver, on le met pas
-            if ((bool)approuver == true)
-                return false;
+            if(string.Compare(type, "Attente") == 0)
+            {
+                if ((bool)approuver)
+                    return false;
+            }
+            else if (string.Compare(type, "Approuver") == 0)
+            {
+                if (!(bool)approuver)
+                    return false;
+            }
+
 
             string dateMinimal, dateMaximal;
 
@@ -411,6 +371,18 @@ namespace UrbanEco
             Calendar2.Value = "1/1/3000";
 
             RequeryFT(DateTime.Parse(Calendar1.Value), DateTime.Parse(Calendar2.Value));
+        }
+
+        protected void chbx_approved_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ch = ((CheckBox)sender);
+
+            rptr_EmployeApprouver.Visible = ch.Checked;
+            lbl_approved.Visible = ch.Checked;
+
+            Rptr_EmployeNonApprouver.Visible = !ch.Checked;
+            lbl_attente.Visible = !ch.Checked;
+
         }
     }
 }
