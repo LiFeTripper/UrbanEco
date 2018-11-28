@@ -9,10 +9,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align: center" class="container center col-12">
+        
         <div class="form-group mb-4 col-6 mx-auto">
             <h1 id="h1TitlePage" runat="server">Gestion de la Banque d'Heures</h1>
         </div>
-
+        
         <%--ALERTE--%>
         <div class="form-group mb-4 col-6 mx-auto">
             <div runat="server" id="AlertDiv" visible="false" class="alert alert-danger alert-dismissable">
@@ -89,6 +90,12 @@
         <div class="form-group mb-4 col-6 mx-auto">
             <%--<asp:Button ID="btn_Admin" runat="server" OnClick="btn_Admin_Click" Text="Admin" CssClass="btn btn-md btn-success" AutoPostBack="true" />--%>
             <asp:Button ID="btn_modifBH" runat="server" OnClick="btn_modifBH_Click" Text="Activer la modification" CssClass="btn btn-md btn-success" />
+            
+            <asp:Button ID="btn_Annuler" runat="server" OnClick="btn_Annuler_Click" Text="Annuler" CssClass="btn btn-md btn-danger" Visible="false"/>
+            <asp:Button ID="btn_Sauvegarder" runat="server" OnClick="btn_Sauvegarder_Click" Text="Sauvegarder" CssClass="btn btn-md btn-success" Visible="false" />
+        </div>
+        <div>
+            <asp:Button ID="btn_modifBHI" runat="server" OnClick="btn_modifBHI_Click" Text="Activer la modification des heures initiales" CssClass="btn btn-md btn-warning" Visible ="false" />
         </div>
     </form>
 </asp:Content>
