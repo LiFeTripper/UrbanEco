@@ -104,6 +104,8 @@ namespace UrbanEco
 
                 km_html.Visible = false;
                 montant_html.Visible = false;
+
+                Calendar.Value = Layout.ToCalendarDate(DateTime.Today);
             }
 
             //Mettre a jour le recapitulatif de la dépense

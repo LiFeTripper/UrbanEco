@@ -68,5 +68,10 @@ namespace UrbanEco
 
             return emp.prenom + " " + emp.nom;
         }
+
+        public static string ToCalendarDate(DateTime date)
+        {
+            return date.ToString("yyyy-MM-dd");
+        }
     }
 }

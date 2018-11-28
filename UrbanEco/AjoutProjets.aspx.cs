@@ -28,8 +28,8 @@ namespace UrbanEco
                         lbl_Top.Text = "Nouveau Projet";
 
                         //Par défault, la date d'aujourd'hui
-                        Cal_DateDebut.Value = DateTime.Today.ToShortDateString();
-                        Cal_DateFin.Value = DateTime.Today.ToShortDateString();
+                        Cal_DateDebut.Value = Layout.ToCalendarDate(DateTime.Today);
+                        Cal_DateFin.Value = Layout.ToCalendarDate(DateTime.Today);
 
                         insert = true;
                         break;
@@ -54,8 +54,8 @@ namespace UrbanEco
                             Ddl_Responsable.SelectedIndex = (int)query.idEmployeResp -1;
                             Ddl_Status.SelectedIndex = (int)query.idStatus - 1;
                             Tbx_HeuresAlloues.Text = query.tempsAllouer.ToString();
-                            Cal_DateDebut.Value = query.dateDebut.Value.ToShortDateString();
-                            Cal_DateFin.Value = query.dateFin.Value.ToShortDateString();
+                            Cal_DateDebut.Value =  Layout.ToCalendarDate(query.dateDebut.Value);
+                            Cal_DateFin.Value = Layout.ToCalendarDate(query.dateFin.Value);
 
                             insert = false;
                         }

@@ -31,8 +31,10 @@ namespace UrbanEco
                 var queryDimanche = from tbl in cdc.tbl_PremierDimanche
                                     select tbl;
 
-                if(queryDimanche.Count() > 0)
-                    dimanches = queryDimanche.ToList();
+                if (queryDimanche.Count() > 0)
+                {
+                    dimanches = queryDimanche.ToList();                   
+                }
 
                 List < tbl_Employe > listTable = new List<tbl_Employe>();
 

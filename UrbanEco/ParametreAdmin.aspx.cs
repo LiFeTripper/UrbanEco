@@ -60,6 +60,17 @@ namespace UrbanEco
 
                 tbx_camion.Text = prixKm.prixKilometrageCamion.ToString();// + "$";
                 tbx_voiture.Text = prixKm.prixKilometrageVoiture.ToString();// + "$";
+
+
+                //Premier dimanche
+                var queryDimanche = from tbl in ctx.tbl_PremierDimanche
+                                    select tbl;
+
+                if(queryDimanche.Count() != 0)
+                {
+                    DateTime date = queryDimanche.First().dateDimanche;
+                    tbx_firstDimanche.Value = Layout.ToCalendarDate(date);
+                }
             }
             else
             {

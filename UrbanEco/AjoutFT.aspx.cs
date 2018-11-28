@@ -16,7 +16,7 @@ namespace UrbanEco
             if (!IsPostBack)
             {
                 
-
+                Calendar1.Value = Layout.ToCalendarDate(DateTime.Today);
 
                 if (Request.QueryString["FT"] != "New")
                 {

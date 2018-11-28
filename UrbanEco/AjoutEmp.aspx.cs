@@ -190,5 +190,10 @@ namespace UrbanEco
             Response.Redirect("Employe.aspx");
 
     }
+
+        protected void btn_annuler_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Employe.aspx");
+        }
     }
 }
