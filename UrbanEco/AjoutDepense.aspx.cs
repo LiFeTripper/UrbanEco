@@ -25,7 +25,6 @@ namespace UrbanEco
         static tbl_TypeEmploye typeEmpl;
         static tbl_Employe empConnected;
 
-
         static bool DepenseAjouter = false;
 
         static tbl_Kilometrage prixKilometrage;
@@ -49,9 +48,7 @@ namespace UrbanEco
                 //Bd context
                 CoecoDataContext context = new CoecoDataContext();
 
-                empConnected = (from tbl in context.tbl_Employe
-                            where tbl.idEmploye == 1
-                            select tbl).First();
+                empConnected = Layout.GetUserConnected();
 
                 typeEmpl = empConnected.tbl_TypeEmploye;
 
@@ -65,7 +62,7 @@ namespace UrbanEco
                 tbx_projet.DataSource = queryProjet.Distinct();
                 tbx_projet.DataBind();
 
-                //Insérer un text pour sélectionne rle projet au début
+                //Insérer un text pour sélectionner le projet au début
                 tbx_projet.Items.Insert(0,"Veuillez sélectionner le projet");
                 tbx_projet.SelectedIndex = 0;
  
@@ -75,9 +72,7 @@ namespace UrbanEco
                 var queryKilo = from tbl in context.tbl_Kilometrage
                         select tbl;
 
-                prixKilometrage = queryKilo.First();
-
-               
+                prixKilometrage = queryKilo.First();             
 
                 var queryKilometreDepense = from tbl in context.tbl_TypeDepense
                                    where tbl.idTypeEmploye.Equals(null) == true

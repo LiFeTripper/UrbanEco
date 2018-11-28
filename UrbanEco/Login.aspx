@@ -9,6 +9,7 @@
 
     <link href="lib/css/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/css/signin.css" rel="stylesheet" />
+    <link href="lib/css/fancy-switch.css" rel="stylesheet" />
 </head>
 
 <body class="text-center">
@@ -32,13 +33,29 @@
         <asp:TextBox ID="Tbx_InputUsername" runat="server" name="Tbx_InputUsername" placeholder="Utilisateur" class="form-control" required="autofocus">admin</asp:TextBox>
 
         <%--PASSWORD--%>
-        <asp:TextBox class="form-control" ID="Tbx_InputPassword" name="Tbx_InputPassword" placeholder="Mot de passe" runat="server" required="true">mobius</asp:TextBox>
+        <asp:TextBox class="form-control" ID="Tbx_InputPassword" name="Tbx_InputPassword" placeholder="Mot de passe" runat="server" >mobius</asp:TextBox>
 
         <%--CHECKBOX--%>
-        <div class="checkbox mb-3">
+<%--        <div class="checkbox mb-3">
             <label for="Persist">Se souvenir de moi :</label>
             <asp:CheckBox ID="Persist" runat="server"></asp:CheckBox>
-        </div>
+        </div>--%>
+
+        <%--Checkbox--%>
+        <table style="width: 100% !important; margin-top:10px; margin-bottom:10px;">
+            <tr>
+                <td>
+                    <h4 style="float:left;">Se souvenir de moi</h4>
+                </td>
+                <%--CHECKBOX INACTIF OU ACTIF--%>
+                <td style="width:20%;" class="mb-3">
+                    <label class="switch" style="float:right;">
+                        <asp:CheckBox runat="server" id="Persist" />
+                        <span class="slider round"></span>
+                    </label>              
+                </td>
+            </tr>
+        </table>
 
         <%--BOUTON D'IDENTIFICATION--%>
         <asp:Button ID="Btn_Signin" runat="server" Text="S'identifier" class="btn btn-lg btn-primary btn-block" type="submit" OnClick="Btn_Signin_Click" />
