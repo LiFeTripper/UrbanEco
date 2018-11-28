@@ -94,11 +94,7 @@
                 var htmlHiddenFieldEmploye = document.getElementById('<%=hiddenFieldEmploye.ClientID%>');
                 htmlHiddenFieldEmploye.value = selected;
 
-                for (var idx in deselected) {
-                    if (deselected[idx][0] = values[0]) {
-                        deselected.push(values[0])
-                    }
-                }
+                
                 //Ajustement de la liste de deselected pour un update
                 var htmlStorageDeselect = document.getElementById('<%=hiddenFieldEmployeDeselect.ClientID%>');
                 htmlStorageDeselect.value = deselected;
