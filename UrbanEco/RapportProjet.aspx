@@ -35,13 +35,16 @@
 
     </style>
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+      <h1>Rapport par projet</h1> 
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align: center;" class="container center col-12">
-        <div>
+<%--        <div>
             <h1>Rapport par projet
             </h1>
             <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
-        </div>
+        </div>--%>
 
         <div class="row justify-content-md-center" style="margin-bottom: 20px;">
             <div class="col-md-offset-3 col-6">

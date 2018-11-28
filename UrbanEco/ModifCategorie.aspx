@@ -10,7 +10,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <form runat="server">
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <%--DIV DES TITRE--%>
         <div>
             <div class="form-group mb-4 col-6 mx-auto">
@@ -28,7 +27,8 @@
         </div>
 
         <%--DIV DES EMPLOYÉS--%>
-        <div>
+        <div class="form-group mb-4 mt-3 col-6 mx-auto" runat="server" visible="false" id="Div_Multiselect">
+            <h1 class="align-content-center">Sélection des employés</h1>
             <!--MULTISELECT-->
             <div class="justify-content-lg-center input-group mb-3 col-12">
                 <select id="Multiselection" multiple="multiple">
@@ -48,38 +48,39 @@
                     </optgroup>
                 </select>
             </div>
-            <input hidden="hidden" type="text" runat="server" id="hiddenFieldEmploye" />
+            <input type="text" runat="server" id="hiddenFieldEmployeDeselect" />
+            <input type="text" runat="server" id="hiddenFieldEmploye" />
+            <input type="text" runat="server" id="hiddenFieldTotal" />
         </div>
     </form>
 
     <script>
         //Callback for fuck sake
         var selected = document.getElementById('<%=hiddenFieldEmploye.ClientID%>').value.split(',');
+        var deselected = document.getElementById('<%=hiddenFieldEmployeDeselect.ClientID%>').value.split(',');;
 
-        //var numberArray = new Array;
-        //for (var i in selected) {
-        //    numberArray.push(parseInt(i))
-        //}
-        //console.log(numberArray)
-        
         //ID du crisse de multi + class du css
-            $('#Multiselection').multiSelect({
+        $('#Multiselection').multiSelect({
 
-            //EVENT inscrit nul part guess Onchange, onSelected pis onclick avec function return click
+            //EVENT sur le select
             afterSelect: function (values) {
-                //Parce que D'amours
-                selected.push(values);
-                console.log(selected);
+                var copy = [];
 
+                for (var idx in selected) {
+                    if (selected[idx][0] != values[0]) {
+                        copy.push(selected[idx])
+                    }
+                }
+                copy.push(values)
+                selected = copy;
 
                 var htmlStorage = document.getElementById('<%=hiddenFieldEmploye.ClientID%>');
-                //htmlStorage.attr("data-assessments", JSON.stringify(selected));
                 htmlStorage.value = selected;
-
-                console.log(htmlStorage);
             },
 
+            //EVENT sur le déselect
             afterDeselect: function (values) {
+                //Ajustement de la liste en cas d'ajout
                 var copy = [];
 
                 for (var idx in selected) {
@@ -90,16 +91,20 @@
 
                 selected = copy;
 
-                console.log(selected);
                 var htmlHiddenFieldEmploye = document.getElementById('<%=hiddenFieldEmploye.ClientID%>');
-
                 htmlHiddenFieldEmploye.value = selected;
+
+                
+                //Ajustement de la liste de deselected pour un update
+                var htmlStorageDeselect = document.getElementById('<%=hiddenFieldEmployeDeselect.ClientID%>');
+                htmlStorageDeselect.value = deselected;
             },
 
             selectableOptgroup: true,
-            keepOrder: true
+            keepOrder: true,
+            selectableHeader: "<div class='custom-header'>Disponible</div>",
+            selectionHeader: "<div class='custom-header'>Sélectionné</div>",
         });
-
         //RÉUSSI
     </script>
 </asp:Content>

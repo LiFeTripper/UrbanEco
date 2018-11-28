@@ -21,58 +21,77 @@ namespace UrbanEco
         static List<tbl_Employe> emp_bureau = new List<tbl_Employe>();
         static List<tbl_Employe> emp_terrain = new List<tbl_Employe>();
 
+        static List<int> AllEmployes = new List<int>();
+        static List<int> UnselectedEmployes = new List<int>();
         static List<int> SelectedEmployes = new List<int>();
         static List<string> SelectedEmployesString = new List<string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+            //Réassigne les datasources des repeater
+            RepBureau.DataSource = emp_bureau;
+            RepBureau.DataBind();
+
+            RepTerrain.DataSource = emp_terrain;
+            RepTerrain.DataBind();
+
+           
+
             if (!IsPostBack)
             {
+                //Reset du hiddenfield
+                hiddenFieldEmploye.Value = String.Empty;
+                //Reset du hiddenfield
+                hiddenFieldTotal.Value = String.Empty;
+
+                AllEmployees();
+
+
                 //Recherche de l'argument dans l'adresse
                 argument = Request.QueryString["Prj"];
 
                 argument2 = Request.QueryString["Cat"];
 
-
-                //On remplie le côté gauche du multiselect avec la liste complète des employés
-                var empBureau = from emp in context.tbl_Employe
-                                where emp.idTypeEmpl == 1 && emp.idEmploye != 4
-                                orderby emp.nom, emp.prenom
-                                select emp;
-
-                var empTerrain = from emp in context.tbl_Employe
-                                 where emp.idTypeEmpl == 2 && emp.idEmploye != 4
-                                 orderby emp.nom, emp.prenom
-                                 select emp;
-                
-                //On transforme en liste le résultat de la query et on envoi dans un objet liste
-                emp_bureau = empBureau.ToList();
-                emp_terrain = empTerrain.ToList();
-
-                //Permet de recréer les repeater asp pour vérifier les valeurs selected pour les employés et les catégories
-                RepBureau.DataSource = emp_bureau;
-                RepBureau.DataBind();
-
-                RepTerrain.DataSource = emp_terrain;
-                RepTerrain.DataBind();
-
                 //On trouve les employé qui ont été associé a cette catégorie
                 List<int> listEmp = new List<int>();
                 int prj = int.Parse(argument);
-                int cat = int.Parse(argument2);
 
-                var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                where emp.idProjet == prj && emp.idCategorie == cat
-                                orderby emp.idEmploye
-                                select emp.idEmploye;
-
-                //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
-                foreach (int emp in empSelect)
+                if (argument2 != null)
                 {
-                    listEmp.Add(emp);
+                    int cat = int.Parse(argument2);
+
+                    var empSelect = from emp in context.tbl_ProjetCatEmploye
+                                    where emp.idProjet == prj && emp.idCategorie == cat
+                                    orderby emp.idEmploye
+                                    select emp.idEmploye;
+
+                    //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
+                    foreach (int emp in empSelect)
+                    {
+                        listEmp.Add(emp);
+                    }
+                }
+                else
+                {
+                    var empSelect = from emp in context.tbl_ProjetCatEmploye
+                                    where emp.idProjet == prj
+                                    orderby emp.idEmploye
+                                    select emp.idEmploye;
+
+                    //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
+                    foreach (int emp in empSelect)
+                    {
+                        listEmp.Add(emp);
+                    }
+
                 }
 
+                //Ajoute la liste a Selected Employes
                 SelectedEmployes = listEmp;
+
+                SelectedEmployesString.Clear();
 
                 //On transforme cette liste de int ID en liste de string
                 foreach (int id in SelectedEmployes)
@@ -81,36 +100,67 @@ namespace UrbanEco
                 }
 
                 //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
-                var result = String.Join(", ", SelectedEmployesString.ToArray());
+                var result = String.Join(",", SelectedEmployesString.ToArray());
                 hiddenFieldEmploye.Value = result;
-                Label1.Text = result;
 
-                
+                //Call méthode qui recherche les employé
+                RequeryEmployes();
+            }
 
-                mode = Request.QueryString["Mode"];
 
-                if (argument2 != null)
-                    SousCat = true;
-                else
-                    SousCat = false;
+            //Recherche du mode dans l'adresse
+            mode = Request.QueryString["Mode"];
 
-                if (mode != null)
+            if (argument2 != null)
+                SousCat = true;
+            else
+                SousCat = false;
+
+            if (mode != null)
+            {
+                modif = true;
+                Div_Multiselect.Visible = true;
+
+                if (!IsPostBack)
                 {
-                    modif = true;
+                    int id = int.Parse(argument2);
 
-                    if (!IsPostBack)
-                    {
-                        int id = int.Parse(argument2);
+                    var query = (from tbl in context.tbl_ProjetCat
+                                 where tbl.idProjetCat == id
+                                 select tbl).First();
 
-                        var query = (from tbl in context.tbl_ProjetCat
-                                     where tbl.idProjetCat == id
-                                     select tbl).First();
-
-                        Tbx_Titre.Text = query.titre;
-                        Tbx_Description.Text = query.description;
-                    }
+                    Tbx_Titre.Text = query.titre;
+                    Tbx_Description.Text = query.description;
                 }
             }
+        }
+
+        void RequeryEmployes()
+        {
+            CoecoDataContext context = new CoecoDataContext();
+
+            //On remplie le côté gauche du multiselect avec la liste complète des employés
+            var empBureau = from emp in context.tbl_Employe
+                            where emp.idTypeEmpl == 1 && emp.idEmploye != 4
+                            orderby emp.nom, emp.prenom
+                            select emp;
+
+            var empTerrain = from emp in context.tbl_Employe
+                             where emp.idTypeEmpl == 2 && emp.idEmploye != 4
+                             orderby emp.nom, emp.prenom
+                             select emp;
+
+            //On transforme en liste le résultat de la query et on envoi dans un objet liste
+            emp_bureau = empBureau.ToList();
+            emp_terrain = empTerrain.ToList();
+
+            //Permet de recréer les repeater asp pour vérifier les valeurs selected pour les employés et les catégories
+            RepBureau.DataSource = emp_bureau;
+            RepBureau.DataBind();
+
+            RepTerrain.DataSource = emp_terrain;
+            RepTerrain.DataBind();
+
         }
 
         protected void Btn_Enregistrer_Click(object sender, EventArgs e)
@@ -146,6 +196,8 @@ namespace UrbanEco
             }
             else if (modif)
             {
+                argument = Request.QueryString["Prj"];
+                argument2 = Request.QueryString["Cat"];
                 int id = int.Parse(argument2);
 
                 var query = (from tbl in context.tbl_ProjetCat
@@ -154,6 +206,9 @@ namespace UrbanEco
 
                 query.titre = Tbx_Titre.Text;
                 query.description = Tbx_Description.Text;
+
+                //Méthode de traitement des employés
+                AjoutSuppressionTableCatEmp();
 
             }
 
@@ -166,6 +221,84 @@ namespace UrbanEco
         protected void Btn_Annuler_Click(object sender, EventArgs e)
         {
             Response.Redirect("AjoutCategorie.aspx?Prj=" + argument);
+        }
+
+        public void AjoutSuppressionTableCatEmp()
+        {
+            UpdateSelectedEmployeList();
+
+            argument = Request.QueryString["Prj"];
+            int projet = int.Parse(argument);
+            argument2 = Request.QueryString["Cat"];
+            int cat = int.Parse(argument2);
+
+            //DELETE 
+            //Liste d'employé non sélectionné
+            UnselectedEmployes = AllEmployes.Except(SelectedEmployes).ToList();
+
+            tbl_ProjetCatEmploye TableCatEmp = new tbl_ProjetCatEmploye();
+
+            foreach (var emp in UnselectedEmployes)
+            {
+                var query = from tbl in context.tbl_ProjetCatEmploye
+                            where tbl.idCategorie == cat && tbl.idEmploye == emp
+                            select tbl;
+
+                if (query.Count() == 1)
+                    context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
+            }
+
+            //ADD
+            foreach (var emp in SelectedEmployes)
+            {
+                var query = from tbl in context.tbl_ProjetCatEmploye
+                            where tbl.idCategorie == cat && tbl.idEmploye == emp
+                            select tbl;
+
+                if (query.Count() == 1)
+                    context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
+
+                tbl_ProjetCatEmploye tableCatEmp = new tbl_ProjetCatEmploye();
+
+                tableCatEmp.idCategorie = cat;
+                tableCatEmp.idEmploye = emp;
+                tableCatEmp.idProjet = projet;
+
+                context.tbl_ProjetCatEmploye.InsertOnSubmit(tableCatEmp);
+            }
+        }
+
+        public void AllEmployees()
+        {
+            List<int> listAllEmp = new List<int>();
+            List<string> AllEmployesString = new List<string>();
+
+            var empSelect = from emp in context.tbl_Employe
+                            where emp.idEmploye != 4
+                            orderby emp.idEmploye
+                            select emp.idEmploye;
+
+            //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
+            foreach (int emp in empSelect)
+            {
+                listAllEmp.Add(emp);
+            }
+
+            //Ajoute la liste a Selected Employes
+            AllEmployes = listAllEmp;
+
+            AllEmployesString.Clear();
+
+            //On transforme cette liste de int ID en liste de string
+            foreach (int id in AllEmployes)
+            {
+                AllEmployesString.Add(id.ToString());
+            }
+
+            //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
+            hiddenFieldTotal.Value = string.Empty;
+            var result = String.Join(",", AllEmployesString.ToArray());
+            hiddenFieldTotal.Value = result;
         }
 
         protected string EmployeSelected(object id)
