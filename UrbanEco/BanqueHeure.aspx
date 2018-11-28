@@ -30,10 +30,18 @@
         <div class="form-group mb-4 col-6 mx-auto">
             <asp:Table runat="server" ID="tbl_BH" Enabled="false" Style="width: 100%">
                 <%--HEURES EN BANQUES--%>
+                <asp:TableRow>   
+                    <asp:TableCell></asp:TableCell>
+                    <asp:TableHeaderCell>Heures actuelles</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Heures initiales</asp:TableHeaderCell>
+                </asp:TableRow>
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">Heure en banque</asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureBanque"></asp:TextBox>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureBanqueI"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <%--JOUR FÉRIÉ--%>
@@ -42,17 +50,28 @@
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureJourFerie" />
                     </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureJourFerieI" />
+                    </asp:TableCell>
                 </asp:TableRow>
                 <%--VACANCES--%>
                 <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">Vacance</asp:TableHeaderCell><asp:TableCell>
+                    <asp:TableHeaderCell CssClass="form-control">Vacance</asp:TableHeaderCell>
+                    <asp:TableCell>
                         <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureVacance" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureVacanceI" />
                     </asp:TableCell>
                 </asp:TableRow>
                 <%--CONGÉ PERSONNEL--%>
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">Congé personnel</asp:TableHeaderCell><asp:TableCell>
                         <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongePerso" />
+
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongePersoI" />
                     </asp:TableCell>
                 </asp:TableRow>
                 <%--CONGÉ MALADIE--%>
@@ -60,12 +79,15 @@
                     <asp:TableHeaderCell CssClass="form-control">Congé maladie</asp:TableHeaderCell><asp:TableCell>
                         <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongeMaladie" />
                     </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongeMaladieI" />
+                    </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
         </div>
         <%--BOUTON--%>
         <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Button ID="btn_Admin" runat="server" OnClick="btn_Admin_Click" Text="Admin" CssClass="btn btn-md btn-success" AutoPostBack="true" />
+            <%--<asp:Button ID="btn_Admin" runat="server" OnClick="btn_Admin_Click" Text="Admin" CssClass="btn btn-md btn-success" AutoPostBack="true" />--%>
             <asp:Button ID="btn_modifBH" runat="server" OnClick="btn_modifBH_Click" Text="Activer la modification" CssClass="btn btn-md btn-success" />
         </div>
     </form>

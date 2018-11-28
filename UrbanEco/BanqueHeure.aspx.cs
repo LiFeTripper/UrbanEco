@@ -21,17 +21,12 @@ namespace UrbanEco
 
         List<string> listEmp = new List<string>();
 
-       
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
             Page.MaintainScrollPositionOnPostBack = true;
-            //Vérification si admin ou non avec id du layout
-            //Code
-            //Fin vérification
+            tbl_Employe emp = Layout.GetUserConnected();
 
-            if (admin)
+            if (emp.username == "admin")
             {
                 if (!IsPostBack)
                 {
@@ -119,18 +114,23 @@ namespace UrbanEco
                     {
                         case 1:
                             tbx_nbHeureBanque.Text = heureBH.nbHeure.ToString();
+                            tbx_nbHeureBanqueI.Text = heureBH.nbHeureInitial.ToString();
                             break;
                         case 2:
                             tbx_nbHeureJourFerie.Text = heureBH.nbHeure.ToString();
+                            tbx_nbHeureJourFerieI.Text = heureBH.nbHeureInitial.ToString();
                             break;
                         case 3:
                             tbx_nbHeureCongePerso.Text = heureBH.nbHeure.ToString();
+                            tbx_nbHeureCongePersoI.Text = heureBH.nbHeureInitial.ToString();
                             break;
                         case 4:
                             tbx_nbHeureVacance.Text = heureBH.nbHeure.ToString();
+                            tbx_nbHeureVacanceI.Text = heureBH.nbHeureInitial.ToString();
                             break;
                         case 5:
                             tbx_nbHeureCongeMaladie.Text = heureBH.nbHeure.ToString();
+                            tbx_nbHeureCongeMaladieI.Text = heureBH.nbHeureInitial.ToString();
                             break;
                     }
                 }
@@ -153,18 +153,23 @@ namespace UrbanEco
                 {
                     case 1:
                         tbx_nbHeureBanque.Text = heureBH.nbHeure.ToString();
+                        tbx_nbHeureBanqueI.Text = heureBH.nbHeureInitial.ToString();
                         break;
                     case 2:
                         tbx_nbHeureJourFerie.Text = heureBH.nbHeure.ToString();
+                        tbx_nbHeureJourFerieI.Text = heureBH.nbHeureInitial.ToString();
                         break;
                     case 3:
                         tbx_nbHeureCongePerso.Text = heureBH.nbHeure.ToString();
+                        tbx_nbHeureCongePersoI.Text = heureBH.nbHeureInitial.ToString();
                         break;
                     case 4:
                         tbx_nbHeureVacance.Text = heureBH.nbHeure.ToString();
+                        tbx_nbHeureVacanceI.Text = heureBH.nbHeureInitial.ToString();
                         break;
                     case 5:
                         tbx_nbHeureCongeMaladie.Text = heureBH.nbHeure.ToString();
+                        tbx_nbHeureCongeMaladieI.Text = heureBH.nbHeureInitial.ToString();
                         break;
                 }
             }
@@ -217,18 +222,23 @@ namespace UrbanEco
                 {
                     case 1:
                         heureBH.nbHeure = float.Parse(tbx_nbHeureBanque.Text);
+                        heureBH.nbHeureInitial = float.Parse(tbx_nbHeureBanqueI.Text);
                         break;
                     case 2:
                         heureBH.nbHeure = float.Parse(tbx_nbHeureJourFerie.Text);
+                        heureBH.nbHeureInitial = float.Parse(tbx_nbHeureJourFerieI.Text);
                         break;
                     case 3:
                         heureBH.nbHeure = float.Parse(tbx_nbHeureCongePerso.Text);
+                        heureBH.nbHeureInitial = float.Parse(tbx_nbHeureCongePersoI.Text);
                         break;
                     case 4:
                         heureBH.nbHeure = float.Parse(tbx_nbHeureVacance.Text);
+                        heureBH.nbHeureInitial = float.Parse(tbx_nbHeureVacanceI.Text);
                         break;
                     case 5:
                         heureBH.nbHeure = float.Parse(tbx_nbHeureCongeMaladie.Text);
+                        heureBH.nbHeureInitial = float.Parse(tbx_nbHeureCongeMaladieI.Text);
                         break;
                 }
             }

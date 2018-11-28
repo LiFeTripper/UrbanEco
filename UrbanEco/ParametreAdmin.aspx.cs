@@ -1,0 +1,277 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace UrbanEco
+{
+    public partial class ParametreAdmin : System.Web.UI.Page
+    {
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            Page.MaintainScrollPositionOnPostBack = true;
+
+            if (!IsPostBack)
+            {
+                CoecoDataContext ctx = new CoecoDataContext();
+
+                var queryTypeDepBureau = from tbl in ctx.tbl_TypeDepense
+                                         where tbl.idTypeEmploye == 1
+                                         select tbl;
+
+                var queryTypeDepTerrain = from tbl in ctx.tbl_TypeDepense
+                                          where tbl.idTypeEmploye == 2
+                                          select tbl;
+
+                var queryTypeDepGeneral = from tbl in ctx.tbl_TypeDepense
+                                          where tbl.idTypeEmploye == null
+                                          select tbl;
+
+                //Déplacement KM Hard Code
+                /*foreach (var item in queryTypeDepGeneral)
+                {
+                    ListItem ls = new ListItem(item.nomDepense, (-1).ToString(), true);
+                    ls.Attributes.CssStyle.Value = "color : #C0C0C0;";
+                    lbx_depBureau.Items.Add(ls);
+                    lbx_depTerrain.Items.Add(ls);
+
+                    TypeDepenseTerrainCurrent.Add(ls);
+                    TypeDepenseBureauCurrent.Add(ls);
+                }*/
+
+
+                foreach (var item in queryTypeDepBureau.ToList())
+                {
+                    ListItem ls = new ListItem(item.nomDepense, item.idTypeDepense.ToString(), true);
+                    lbx_depBureau.Items.Add(ls);
+                }
+
+                foreach (var item in queryTypeDepTerrain.ToList())
+                {
+                    ListItem ls = new ListItem(item.nomDepense, item.idTypeDepense.ToString(), true);
+                    lbx_depTerrain.Items.Add(ls);
+                }
+
+                tbl_Kilometrage prixKm = GetPrixKm();
+
+                tbx_camion.Text = prixKm.prixKilometrageCamion.ToString();// + "$";
+                tbx_voiture.Text = prixKm.prixKilometrageVoiture.ToString();// + "$";
+            }
+            else
+            {
+                //Appliquer le style dans les listbox
+                foreach (ListItem item in lbx_depBureau.Items)
+                {
+                    if (item.Value == (-1).ToString())
+                    {
+                        item.Attributes.CssStyle.Value = "color : #C0C0C0;";
+                    }
+                    else if (item.Value == (-100).ToString())
+                    {
+                        item.Attributes.CssStyle.Value = "color : #00BFFF;";
+                    }
+                }
+
+                //Appliquer le style dans les listbox
+                foreach (ListItem item in lbx_depTerrain.Items)
+                {
+                    if (item.Value == (-1).ToString())
+                    {
+                        item.Attributes.CssStyle.Value = "color : #C0C0C0;";
+                    }
+                    else if (item.Value == (-100).ToString())
+                    {
+                        item.Attributes.CssStyle.Value = "color : #00BFFF;";
+                    }
+                }
+            }
+        }
+
+        
+
+        protected tbl_Kilometrage GetPrixKm()
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            var queryPrixKm = from tbl in ctx.tbl_Kilometrage
+                               select tbl;
+
+            return queryPrixKm.First();
+        }
+
+        protected void lbx_depTerrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox list = ((ListBox)sender);
+
+            if (list.SelectedIndex == -1)
+                return;
+
+            var itemSelected = list.Items[list.SelectedIndex];
+
+            if(itemSelected.Value == (-1).ToString())
+            {
+                list.SelectedIndex = -1;
+                return;
+            }
+
+            lbx_depBureau.SelectedIndex = -1;
+        }
+
+        protected void lbx_depBureau_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox list = ((ListBox)sender);
+
+            if (list.SelectedIndex == -1)
+                return;
+
+            var itemSelected = list.Items[list.SelectedIndex];
+
+            if (itemSelected.Value == (-1).ToString())
+            {
+                list.SelectedIndex = -1;
+                return;
+            }
+
+            lbx_depTerrain.SelectedIndex = -1;
+
+        }
+
+        protected void btn_deleteDepBureau_Click(object sender, EventArgs e)
+        {
+            lbx_depBureau.Items.RemoveAt(lbx_depBureau.SelectedIndex);
+            lbx_depBureau.SelectedIndex = -1;
+        }
+
+        protected void btn_deleteDepTerrain_Click(object sender, EventArgs e)
+        {
+            lbx_depTerrain.Items.RemoveAt(lbx_depTerrain.SelectedIndex);
+            lbx_depTerrain.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// Ajouter depense bureau
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_depBureau_Click(object sender, EventArgs e)
+        {
+            string dep = tbx_depBureau.Text;
+
+            if (string.IsNullOrWhiteSpace(dep))
+                return;
+
+            //Value = -100, nouvelle entré dans la BD
+            ListItem ls = new ListItem(dep, (-100).ToString());
+            ls.Attributes.CssStyle.Value = "color:#00BFFF;";
+
+            lbx_depBureau.Items.Add(ls);
+
+            tbx_depBureau.Text = "";
+        }
+
+        /// <summary>
+        /// Ajouter depense terrain
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_depTerrain_Click(object sender, EventArgs e)
+        {
+            string dep = tbx_depTerrain.Text;
+
+            if (string.IsNullOrWhiteSpace(dep))
+                return;          
+
+            //Value = -100, nouvelle entré dans la BD
+            ListItem ls = new ListItem(dep, (-100).ToString());
+            ls.Attributes.CssStyle.Value = "color:#00BFFF;";
+
+            lbx_depTerrain.Items.Add(ls);
+
+            tbx_depTerrain.Text = "";
+        }
+
+        protected void btn_envoyer_Click(object sender, EventArgs e)
+        {
+            float prixKmCamion = -1;
+            float prixKmVoiture = -1;
+
+            float.TryParse(tbx_camion.Text, out prixKmCamion);
+            float.TryParse(tbx_voiture.Text, out prixKmVoiture);
+
+            
+            if(prixKmVoiture == -1 || prixKmCamion == -1)
+            {
+                //Erreur lors du float.parse
+                return;
+            }
+
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            //Update prix KM
+            var queryKM = (from tbl in ctx.tbl_Kilometrage
+                         select tbl).First();
+
+            queryKM.prixKilometrageCamion = prixKmCamion;
+            queryKM.prixKilometrageVoiture = prixKmVoiture;
+
+            ctx.SubmitChanges();
+
+            //Delete everything sauf les 2 premieres dépense (KM HARDCODE)
+            var queryTypeDepenseToDelete = from tbl in ctx.tbl_TypeDepense
+                                 where tbl.idTypeDepense.Equals(null) == false && (tbl.idTypeDepense != 1 && tbl.idTypeDepense != 2)
+                                 select tbl;
+
+            foreach (var typeDepenseBureau in queryTypeDepenseToDelete)
+            {
+                ctx.tbl_TypeDepense.DeleteOnSubmit(typeDepenseBureau);
+            }
+
+            ctx.SubmitChanges();
+
+            int idTypeEmployeBureau = 1;
+            int idTypeEmployeTerrain = 2;
+
+            //Get le id le plus haut pour faire un identity manuellement (celui de sql ne fonctionnera pas ici)
+            int indexTypeDep = ((from tbl in ctx.tbl_TypeDepense
+                                select tbl).Count() + 1);
+
+            //Insert les type de dépense du listbox
+            foreach (ListItem item in lbx_depBureau.Items)
+            {
+                tbl_TypeDepense newDepBureau = new tbl_TypeDepense();
+                newDepBureau.nomDepense = item.Text;
+                newDepBureau.idTypeEmploye = idTypeEmployeBureau;
+                newDepBureau.idTypeDepense = indexTypeDep;
+
+                ctx.tbl_TypeDepense.InsertOnSubmit(newDepBureau);
+
+                indexTypeDep++;
+            }
+
+            foreach (ListItem item in lbx_depTerrain.Items)
+            {
+                tbl_TypeDepense newDepTerrain = new tbl_TypeDepense();
+                newDepTerrain.nomDepense = item.Text;
+                newDepTerrain.idTypeEmploye = idTypeEmployeTerrain;
+                newDepTerrain.idTypeDepense = indexTypeDep;
+
+                ctx.tbl_TypeDepense.InsertOnSubmit(newDepTerrain);
+                indexTypeDep++;
+            }
+
+
+            ctx.SubmitChanges();
+
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void btn_annuler_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
+        }
+    }
+}

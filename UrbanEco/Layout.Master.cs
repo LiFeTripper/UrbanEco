@@ -15,11 +15,43 @@ namespace UrbanEco
         {
             CoecoDataContext context = new CoecoDataContext();
 
+            //User not connected, redirect to login page
+            if (Request.Cookies["userinfo"] == null)
+            {
+                return;
+             //   Response.Redirect("Login.aspx");
+            }
+            string cookie = Request.Cookies["userInfo"].Value;
+
             var query = from tbl in context.tbl_Employe
-                        where tbl.idEmploye == 1
+                        where tbl.username == cookie
                         select tbl;
+            var t = query.ToList();
 
             userConnected = query.First();
+
+            if(Request.Cookies["userInfo"].Value == "admin")
+            {
+                liAdmin.Visible = true;
+                liEmpBureau.Visible = false;
+                liEmpTerrain.Visible = false;
+            }
+            else if(userConnected.idTypeEmpl == 1)
+            {
+                liAdmin.Visible = false;
+                liEmpBureau.Visible = true;
+                liEmpTerrain.Visible = false;
+            }
+            else if (userConnected.idTypeEmpl == 2)
+            {
+                liAdmin.Visible = false;
+                liEmpBureau.Visible = false;
+                liEmpTerrain.Visible = true;
+            }
+
+
+
+
         }
 
         public static tbl_Employe GetUserConnected()

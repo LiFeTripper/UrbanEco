@@ -40,7 +40,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prénom</th>
-                                <th scope="col">Numéro Téléphone</th>
+                                <th scope="col">Adresse Courriel</th>
                                 <th scope="col">
                                     <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" Onclick="Btn_Ajout_Click" />
                                 </th>
@@ -79,7 +79,7 @@
                                 <asp:Label ID="lbl_Prenom" runat="server" Text='<%#Eval("prenom") %>' Font-Bold="true" />
                             </td>
                             <td>
-                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("noTel") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>' Font-Bold="true" />
                             </td>
                             <td>
                                 <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>' />
@@ -102,7 +102,7 @@
                                 <asp:Label ID="lbl_Prenom" runat="server" Text='<%#Eval("prenom") %>' Font-Bold="true" />
                             </td>
                             <td>
-                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("noTel") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>' Font-Bold="true" />
                             </td>
                             <td>
                                 <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>' />
@@ -121,7 +121,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
-                            <th scope="col">Numéro Téléphone</th>
+                            <th scope="col">Adresse courriel</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>

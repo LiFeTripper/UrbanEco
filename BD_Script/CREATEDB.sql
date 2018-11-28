@@ -194,54 +194,64 @@ INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé personnel');
 INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Vacance');
 INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé maladie');
 
-
 CREATE TABLE tbl_BanqueHeure
 (
 	idBanqueHeure INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	idTypeHeure INT NOT NULL,
-	nbHeure FLOAT(24) DEFAULT 0,
+	nbHeureInitial FLOAT(24),
+	nbHeure FLOAT(24)
+	--Cancer
 	
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_BanqueHeure_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
 	CONSTRAINT FK_tbl_BanqueHeure_idTypeHeure FOREIGN KEY (idTypeHeure) REFERENCES tbl_TypeHeure(idTypeHeure)
+
 )
 
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,1,'5');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,2,'10');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,3,'4');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,4,'3');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (1,5,'22');
 
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,1,'15');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,2,'110');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,3,'14');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,4,'13');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (2,5,'122');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,1,5,5);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,2,10,10);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,3,4,4);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,4,3,3);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,5,22,2);
 
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,1,'25');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,2,'210');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,3,'24');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,4,'23');
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure) VALUES (3,5,'222');
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,1,15,15);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,2,10,10);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,3,14,14);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,4,13,13);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,5,12,12);
+
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,1,25,25);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,2,21,21);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,3,24,24);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,4,23,23);
+INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,5,22,22);
 
 CREATE TABLE tbl_TypeDepense
 (
-	idTypeDepense INT IDENTITY(1,1) PRIMARY KEY,
-	nomDepense VARCHAR(250)
+	idTypeDepense INT PRIMARY KEY,
+	nomDepense VARCHAR(250),
+	idTypeEmploye INT,
+
+	CONSTRAINT FK_tbl_TypeDepense_idTypeEmploye FOREIGN KEY (idTypeEmploye) REFERENCES tbl_TypeEmploye(idType)
+
 )
 
-INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Déplacement (KM)');
-INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Restaurant');
-INSERT INTO tbl_TypeDepense (nomDepense) VALUES ('Autre');
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (1, 'Déplacement (Voiture)', NULL);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (2, 'Déplacement (Camion)', NULL);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (3, 'Restaurant',1);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (4, 'Restaurant',2);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (5, 'Autre (Bureau)',1);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (6, 'Autre (Terrain)',2);
 
 CREATE TABLE tbl_Depense
 (
 	idDepense INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
-	idTypeDepense INT NOT NULL,
-	idProjetCat INT NOT NULL,
+	typeDepense VARCHAR(250) NOT NULL,
+	idProjetCat INT DEFAULT NULL,
 	note VARCHAR(MAX),
 	dateDepense SMALLDATETIME DEFAULT GETDATE(),
 	montant FLOAT(24) DEFAULT 0,
@@ -250,17 +260,24 @@ CREATE TABLE tbl_Depense
 	--FOREIGN KEY
 
 	CONSTRAINT FK_tbl_Depenses_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye),
-	CONSTRAINT FK_tbl_Depenses_idTypeDepense FOREIGN KEY (idTypeDepense) REFERENCES tbl_TypeDepense(idTypeDepense),
+	--CONSTRAINT FK_tbl_Depenses_idTypeDepense FOREIGN KEY (idTypeDepense) REFERENCES tbl_TypeDepense(idTypeDepense)
 	CONSTRAINT FK_tbl_Depenses_idProjetCat FOREIGN KEY (idProjetCat) REFERENCES tbl_ProjetCat(idProjetCat)
 )
 
 CREATE TABLE tbl_Kilometrage
 (
 	idKilometrage INT IDENTITY(1,1) PRIMARY KEY,
-	prixKilometrage FLOAT(24) NOT NULL
+	prixKilometrageVoiture FLOAT(24) NOT NULL,
+	prixKilometrageCamion FLOAT(24) NOT NULL
 )
 
-INSERT INTO tbl_Kilometrage(prixKilometrage) VALUES (0.47);
+INSERT INTO tbl_Kilometrage(prixKilometrageVoiture,prixKilometrageCamion) VALUES (0.47,0.67);
+
+CREATE TABLE tbl_PremierDimanche
+(
+	idPremierDimanche INT IDENTITY(1,1) PRIMARY KEY,
+	dateDimanche SMALLDATETIME NOT NULL
+)
 
 --Web User
 

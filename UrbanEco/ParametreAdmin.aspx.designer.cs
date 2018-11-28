@@ -10,187 +10,124 @@
 namespace UrbanEco {
     
     
-    public partial class AjoutDepense {
+    public partial class ParametreAdmin {
         
         /// <summary>
-        /// Contrôle tbx_projet.
+        /// Contrôle tbl_taux.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
+        protected global::System.Web.UI.WebControls.Table tbl_taux;
         
         /// <summary>
-        /// Contrôle SProjet.
+        /// Contrôle tbx_voiture.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SProjet;
+        protected global::System.Web.UI.WebControls.TextBox tbx_voiture;
         
         /// <summary>
-        /// Contrôle tbx_categorie.
+        /// Contrôle tbx_camion.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
+        protected global::System.Web.UI.WebControls.TextBox tbx_camion;
         
         /// <summary>
-        /// Contrôle Ddl_TypeEmp.
+        /// Contrôle tbl_depBureau.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Ddl_TypeEmp;
+        protected global::System.Web.UI.WebControls.Table tbl_depBureau;
         
         /// <summary>
-        /// Contrôle Calendar.
+        /// Contrôle tbx_depBureau.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
+        protected global::System.Web.UI.WebControls.TextBox tbx_depBureau;
         
         /// <summary>
-        /// Contrôle dateFormated.
+        /// Contrôle btn_depBureau.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
+        protected global::System.Web.UI.WebControls.Button btn_depBureau;
         
         /// <summary>
-        /// Contrôle tbx_typeDepense.
+        /// Contrôle lbx_depBureau.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_typeDepense;
+        protected global::System.Web.UI.WebControls.ListBox lbx_depBureau;
         
         /// <summary>
-        /// Contrôle km_html.
+        /// Contrôle btn_deleteDepBureau.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
+        protected global::System.Web.UI.WebControls.Button btn_deleteDepBureau;
         
         /// <summary>
-        /// Contrôle tbl_kilo.
+        /// Contrôle tbl_depTerrain.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_kilo;
+        protected global::System.Web.UI.WebControls.Table tbl_depTerrain;
         
         /// <summary>
-        /// Contrôle tbx_nbKm.
+        /// Contrôle tbx_depTerrain.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_nbKm;
+        protected global::System.Web.UI.WebControls.TextBox tbx_depTerrain;
         
         /// <summary>
-        /// Contrôle prixKm.
+        /// Contrôle btn_depTerrain.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl prixKm;
+        protected global::System.Web.UI.WebControls.Button btn_depTerrain;
         
         /// <summary>
-        /// Contrôle prixTotalKm.
+        /// Contrôle lbx_depTerrain.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl prixTotalKm;
+        protected global::System.Web.UI.WebControls.ListBox lbx_depTerrain;
         
         /// <summary>
-        /// Contrôle montant_html.
+        /// Contrôle btn_deleteDepTerrain.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl montant_html;
-        
-        /// <summary>
-        /// Contrôle tbl_montant.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_montant;
-        
-        /// <summary>
-        /// Contrôle tbx_montantNormal.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_montantNormal;
-        
-        /// <summary>
-        /// Contrôle Div1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
-        
-        /// <summary>
-        /// Contrôle tbx_note.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_note;
-        
-        /// <summary>
-        /// Contrôle alert_success.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_success;
-        
-        /// <summary>
-        /// Contrôle alert_failed.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_failed;
-        
-        /// <summary>
-        /// Contrôle alert_warning.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_warning;
+        protected global::System.Web.UI.WebControls.Button btn_deleteDepTerrain;
         
         /// <summary>
         /// Contrôle btn_annuler.
