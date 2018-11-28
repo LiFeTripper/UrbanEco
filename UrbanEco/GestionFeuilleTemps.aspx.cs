@@ -144,6 +144,8 @@ namespace UrbanEco
                      select tblFT;
 
             FT.First<tbl_FeuilleTemps>().approuver = true;
+            SwitchTypeBHCongés(FT.First());
+
             cdc.tbl_FeuilleTemps.DeleteOnSubmit(FT.First<tbl_FeuilleTemps>());
             cdc.tbl_FeuilleTemps.InsertOnSubmit(FT.First<tbl_FeuilleTemps>());
 
@@ -170,7 +172,10 @@ namespace UrbanEco
             foreach(var FTemp in FT)
             {
                 FTemp.approuver = true;
-            }
+                SwitchTypeBHCongés(FTemp);
+
+
+                }
 
             cdc.tbl_FeuilleTemps.DeleteAllOnSubmit(FT);
             cdc.tbl_FeuilleTemps.InsertAllOnSubmit(FT);
@@ -178,6 +183,42 @@ namespace UrbanEco
             cdc.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void SwitchTypeBHCongés(tbl_FeuilleTemps FT)
+        {
+            var SC = from tblSC in cdc.tbl_ProjetCat
+                     where tblSC.idProjetCat == FT.idCat
+                     select tblSC;
+            switch (SC.First().titre)
+            {
+                case "Congé fériés":
+                    EnleverHeuresBH(2, FT);
+                    break;
+                case "Congé vacances":
+                    EnleverHeuresBH(4, FT);
+                    break;
+                case "Temps supplémentaires":
+                    EnleverHeuresBH(1, FT);
+                    break;
+                case "Congés maladies":
+                    EnleverHeuresBH(5, FT);
+                    break;
+                case "Congé personnelle":
+                    EnleverHeuresBH(3, FT);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void EnleverHeuresBH(int idTypeHeure, tbl_FeuilleTemps FT)
+        {
+            var BH = from tblBH in cdc.tbl_BanqueHeure
+                     where tblBH.idEmploye == FT.idEmploye
+                     & tblBH.idTypeHeure == idTypeHeure
+                     select tblBH;
+            BH.First().nbHeure -= FT.nbHeure;
         }
 
         protected void Rptr_FeuilleTempsNonApprouver_Load(object sender, EventArgs e)
@@ -204,6 +245,7 @@ namespace UrbanEco
             foreach (var FTemp in FT)
             {
                 FTemp.approuver = true;
+                SwitchTypeBHCongés(FTemp);
             }
 
             cdc.tbl_FeuilleTemps.DeleteAllOnSubmit(FT);
