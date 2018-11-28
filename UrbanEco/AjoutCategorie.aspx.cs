@@ -53,12 +53,26 @@ namespace UrbanEco
             tbl_ProjetCat tableCat = new tbl_ProjetCat();
 
             //Remplissage des champs de la table temporaire avec les contrôles
+            tableCat.idProjet = int.Parse(commandArgument);
             
-            
+
+
+
+
+            context.tbl_ProjetCat.InsertOnSubmit(tableCat);
+
+            //Étape finale SUBMIT CHANGES
+            context.SubmitChanges();
         }
 
         protected void Btn_AjoutCat_Click(object sender, EventArgs e)
         {
+            //Référence au bouton dans l'interface
+            Button button = (sender as Button);
+
+            //Ramassage du CommandArgument du bouton
+            string commandArgument = button.CommandArgument;
+
 
         }
     }
