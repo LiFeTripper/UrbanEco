@@ -21,6 +21,8 @@ namespace UrbanEco
         static List<tbl_Employe> emp_bureau = new List<tbl_Employe>();
         static List<tbl_Employe> emp_terrain = new List<tbl_Employe>();
 
+        static List<int> AllEmployes = new List<int>();
+        static List<int> UnselectedEmployes = new List<int>();
         static List<int> SelectedEmployes = new List<int>();
         static List<string> SelectedEmployesString = new List<string>();
 
@@ -205,18 +207,8 @@ namespace UrbanEco
                 query.titre = Tbx_Titre.Text;
                 query.description = Tbx_Description.Text;
 
-                //Objet de ma table Projet
-                tbl_ProjetCatEmploye tableCatEmp = new tbl_ProjetCatEmploye();
-
-                foreach (var emp in SelectedEmployes)
-                {
-                    tableCatEmp.idProjet = int.Parse(argument);
-                    tableCatEmp.idCategorie = int.Parse(argument2);
-                    tableCatEmp.idEmploye = emp;
-                }
-
-                //AJOUT en cas de nouveauté
-                context.tbl_ProjetCatEmploye.InsertOnSubmit(tableCatEmp);
+                //Méthode de traitement des employés
+                AjoutSuppressionTableCatEmp();
 
             }
 
@@ -231,10 +223,54 @@ namespace UrbanEco
             Response.Redirect("AjoutCategorie.aspx?Prj=" + argument);
         }
 
+        public void AjoutSuppressionTableCatEmp()
+        {
+            UpdateSelectedEmployeList();
+
+            argument = Request.QueryString["Prj"];
+            int projet = int.Parse(argument);
+            argument2 = Request.QueryString["Cat"];
+            int cat = int.Parse(argument2);
+
+            //DELETE 
+            //Liste d'employé non sélectionné
+            UnselectedEmployes = AllEmployes.Except(SelectedEmployes).ToList();
+
+            tbl_ProjetCatEmploye TableCatEmp = new tbl_ProjetCatEmploye();
+
+            foreach (var emp in UnselectedEmployes)
+            {
+                var query = from tbl in context.tbl_ProjetCatEmploye
+                            where tbl.idCategorie == cat && tbl.idEmploye == emp
+                            select tbl;
+
+                if (query.Count() == 1)
+                    context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
+            }
+
+            //ADD
+            foreach (var emp in SelectedEmployes)
+            {
+                var query = from tbl in context.tbl_ProjetCatEmploye
+                            where tbl.idCategorie == cat && tbl.idEmploye == emp
+                            select tbl;
+
+                if (query.Count() == 1)
+                    context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
+
+                tbl_ProjetCatEmploye tableCatEmp = new tbl_ProjetCatEmploye();
+
+                tableCatEmp.idCategorie = cat;
+                tableCatEmp.idEmploye = emp;
+                tableCatEmp.idProjet = projet;
+
+                context.tbl_ProjetCatEmploye.InsertOnSubmit(tableCatEmp);
+            }
+        }
+
         public void AllEmployees()
         {
             List<int> listAllEmp = new List<int>();
-            List<int> AllEmployes = new List<int>();
             List<string> AllEmployesString = new List<string>();
 
             var empSelect = from emp in context.tbl_Employe
@@ -264,7 +300,6 @@ namespace UrbanEco
             var result = String.Join(",", AllEmployesString.ToArray());
             hiddenFieldTotal.Value = result;
         }
-
 
         protected string EmployeSelected(object id)
         {
