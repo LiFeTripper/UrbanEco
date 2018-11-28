@@ -77,6 +77,8 @@ INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer
 VALUES ('Mon deuxième projet', 'Une autre belle description', 2, 2, 12, 0)
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
 VALUES ('Mon troisième projet', 'Une tout autre belle description', 3, 3, 40, 1)
+INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
+VALUES ('Vacances et congés', 'Congé, vacances et temps supplémentaires', 1, 1, 40, 0)
 
 CREATE TABLE tbl_ProjetCat
 (
@@ -112,11 +114,24 @@ VALUES (3, 7, 'Sous-Sous-Categorie 1 Projet 3', 'Une description 2');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
 VALUES (3, 7, 'Sous-Sous-Categorie 2 Projet 3', 'Une description 2');
 
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (4, NULL, 'Congés fériés', 'Utilise les heures de congés fériés de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (4, NULL, 'Congés vacances', 'Utilise les heures de congés vacances de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (4, NULL, 'Temps supplémentaires', 'Utilise les heures supplémentaires de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (4, NULL, 'Congés maladies', 'Utilise les heures de congés maladies de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (4, NULL, 'Congé personnelle', 'Utilise les heures de congés personnelles de la banque dheures');
+
+DROP TABLE tbl_FeuilleTemps
+
 CREATE TABLE tbl_FeuilleTemps
 (
 	idFeuille INT IDENTITY(1, 1) PRIMARY KEY,
 	idProjet INT NOT NULL,
-	idCat INT,
+	idCat INT DEFAULT NULL,
 	idEmploye INT NOT NULL,
 	nbHeure FLOAT(24) NOT NULL,
 	commentaire VARCHAR(MAX),
