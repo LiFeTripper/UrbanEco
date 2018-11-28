@@ -21,62 +21,95 @@
             width: 800px !important;
         }
 
-            .table-custom > table {
-                width: 100% !important;
-            }
+        .table-custom > table {
+            width: 100% !important;
+        }
 
         .btn-option {
             height: 30px !important;
             width: 30px !important;
         }
+
+        .asp-table {
+            table-layout:fixed;
+        }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Gestion des feuilles de temps</h1>
+      <h1>Gestion des feuilles de temps</h1> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <form runat="server" style="text-align: center;" class="container center col-12">
 
-        <%--OVERHEAD DES DATES--%>
-        <table style="width: 100% !important;">
-            <tr>
-                <th>
-                    <h5>Date minimale</h5>
-                </th>
-                <th>
-                    <h5>Date maximale</h5>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <input type="date" id="Calendar1" style="margin: auto;" runat="server" />
-                </td>
-                <td>
-                    <input type="date" id="Calendar2" style="margin: auto;" runat="server" /></td>
-                <td>
-                    <asp:Button style="float:right;" ID="btn_Filtrer" CssClass="btn btn-md btn-primary" runat="server" OnClick="btn_Filtrer_Click" Text="Filtrer Selon Dates" />
+        <%--Filtre--%>
+        
+        <div class="form-group mb-4 col-12 mx-auto">
+            <asp:Table runat="server" CssClass="col-md-8 asp-table" style="float:left;" ID="filtre">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Filtrer par date
+                    </asp:TableHeaderCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Table CssClass="col-md-6 asp-table" style="float:left;" runat="server">
+                            <asp:TableRow>
+                                <asp:TableHeaderCell CssClass="form-control">
+                        Date minimale
+                                </asp:TableHeaderCell>
+                                <asp:TableCell>
+                                    <input class="form-control" type="date" id="Calendar1" style="margin: auto;" runat="server" />
+                                </asp:TableCell>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h5 class="center" style="margin: auto !important;" id="dateFormated2" runat="server"></h5>
-                </td>
-                <td>
-                    <h5 class="center" style="margin: auto !important;" id="dateFormated1" runat="server"></h5>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>
-                    <asp:Button style="float:right;" ID="btn_ajouterFT" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
-                </td>
-            </tr>
-        </table>
+                            </asp:TableRow>
+                        </asp:Table>
+                        <asp:Table CssClass="col-md-6 asp-table" style="float:left;" runat="server">
+                            <asp:TableRow>
+                                <asp:TableHeaderCell CssClass="form-control">
+                        Date minimale
+                                </asp:TableHeaderCell>
+                                <asp:TableCell>
+                                    <input class="form-control" type="date" id="Calendar2" style="margin: auto;" runat="server" />
+                                </asp:TableCell>
+                            </asp:TableRow>
+                        </asp:Table>
+                    </asp:TableCell>
+                </asp:TableRow>  
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <h5 class="col-md-4" style="float:left; text-align:center;" id="dateFormated2" runat="server"></h5>                    
+                        <h5 class="col-md-4" style="float:left; text-align:center;" runat="server">&nbsp;au&nbsp;</h5>                    
+                        <h5 class="col-md-4" style="float:left; text-align:center;" id="dateFormated1" runat="server"></h5>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Button style="float:left;" ID="btn_removefilter" CssClass="btn btn-md btn-danger form-control col-md-4" runat="server" OnClick="btn_removefilter_Click" Text="Supprimer le filtre" />
+                        <div style="float:left;" class="col-md-4">&nbsp;</div>
+                        <asp:Button style="float:left;" ID="btn_Filtrer" CssClass="btn btn-md btn-primary form-control col-md-4" runat="server" OnClick="btn_Filtrer_Click" Text="Appliquer le filtre" />
+                    </asp:TableCell>
+                </asp:TableRow>  
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <div runat="server" visible="false" id="alert_dateOrder" class="alert alert-danger" style="width:100%"><b>Attention !</b> La date maximal est plus petite que la date minimale.</div>
+                        <div runat="server" visible="false" id="alert_missingDate" class="alert alert-danger" style="width:100%"><b>Attention !</b> Les deux dates sont requises pour le filtre.</div>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
 
+            <asp:Table runat="server" CssClass="col-md-4  mx-auto" style="float:left; width:100%;">
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Button ID="btn_ajouterFT" CssClass="btn btn-lg btn-success  mx-auto" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+
+            </asp:Table>
+        </div>
+                          <%-- <asp:Button style="float:right;" ID="btn_ajouterFT" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
+--%>
 
         <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
         <asp:Repeater ID="Rptr_EmployeNonApprouver" runat="server">
@@ -114,11 +147,13 @@
                     </td>
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" />
-
                     </td>
                     <%--TD VIDE POUR LA COLORATION DES COLONES--%>
                     <td></td>
-                    <td></td>
+                    <%--TOTAL DURÉE--%>
+                    <td>
+                        <asp:Label ID="Label1" runat="server" Text='<%# CalculerTotalHeureEmploye(Eval("tbl_FeuilleTemps")) %>' Font-Bold="true" />
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -131,7 +166,7 @@
                     <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
                         <%--ITEMTEMPLATE--%>
                         <ItemTemplate>
-                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# !Boolean.Parse(Eval("approuver").ToString())%>'>
+                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Eval("approuver"),Eval("dateCreation")) %>'>
                                 <td></td>
                                 <td></td>
                                 <td>
