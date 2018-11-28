@@ -46,6 +46,12 @@ namespace UrbanEco
             if (ddl_empBH.Text != "Veuillez choisir un employé")
             {
                 tbl_BH.Enabled = true;
+
+                tbx_nbHeureBanque.Enabled = true;
+                tbx_nbHeureCongeMaladie.Enabled = true;
+                tbx_nbHeureCongePerso.Enabled = true;
+                tbx_nbHeureJourFerie.Enabled = true;
+                tbx_nbHeureVacance.Enabled = true;
                 tbx_nbHeureBanqueI.Enabled = false;
                 tbx_nbHeureCongeMaladieI.Enabled = false;
                 tbx_nbHeureCongePersoI.Enabled = false;
@@ -202,6 +208,24 @@ namespace UrbanEco
             }
             else
             {
+                tbx_nbHeureBanque.Text = "";
+
+                tbx_nbHeureJourFerie.Text = "";
+
+                tbx_nbHeureCongePerso.Text = "";
+
+                tbx_nbHeureVacance.Text = "";
+
+                tbx_nbHeureCongeMaladie.Text = "";
+                tbx_nbHeureBanqueI.Text = "";
+
+                tbx_nbHeureJourFerieI.Text = "";
+
+                tbx_nbHeureCongePersoI.Text = "";
+
+                tbx_nbHeureVacanceI.Text = "";
+
+                tbx_nbHeureCongeMaladieI.Text = "";
                 load_BHemp(ddl_empBH.Text);
                 AlertDiv.Visible = false;   //On cache l'alerte de choix d'employé
             }
@@ -352,12 +376,17 @@ namespace UrbanEco
                 tbx_nbHeureCongePersoI.Enabled = true;
                 tbx_nbHeureJourFerieI.Enabled = true;
                 tbx_nbHeureVacanceI.Enabled = true;
-                btn_modifBHI.Visible = true;
-                    btn_modifBHI.Text = "Désactiver la modification des heures initiales";
+                tbx_nbHeureBanque.Enabled = false;
+                tbx_nbHeureCongeMaladie.Enabled = false;
+                tbx_nbHeureCongePerso.Enabled = false;
+                tbx_nbHeureJourFerie.Enabled = false;
+                tbx_nbHeureVacance.Enabled = false;
+                btn_modifBHI.Visible = false;
                 }
                 //Lorsque les modifications désactivées, on enregistre les changements fait dans la table d'heures de l'employé sélectionner
                 else
-                {   
+                {
+                    tbx_nbHeureBanqueI.Enabled = false;
                     tbx_nbHeureCongeMaladieI.Enabled = false;
                     tbx_nbHeureCongePersoI.Enabled = false;
                     tbx_nbHeureJourFerieI.Enabled = false;
@@ -407,6 +436,7 @@ namespace UrbanEco
             btn_modifBH.Visible = true;
             btn_modifBHI.Text = "Activer la modification des heures initiales";
             ddl_empBH.Enabled = true;
+
         }
 
         protected void btn_Sauvegarder_Click(object sender, EventArgs e)
