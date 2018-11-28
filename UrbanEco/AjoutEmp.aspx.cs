@@ -85,6 +85,16 @@ namespace UrbanEco
                 tableEmp.inactif = Chkbx_Inactif.Checked;
 
                 context.tbl_Employe.InsertOnSubmit(tableEmp);
+                context.SubmitChanges();
+
+                for (int i = 0; i < 5;i++)
+                {
+                    tbl_BanqueHeure bh = new tbl_BanqueHeure();
+                    bh.idEmploye = tableEmp.idEmploye;
+                    bh.idTypeHeure = i + 1;
+                    bh.nbHeure = bh.nbHeureInitial = 0;
+                    context.tbl_BanqueHeure.InsertOnSubmit(bh);
+                }
             }
             //Modification dans la base de données
             else
@@ -133,7 +143,7 @@ namespace UrbanEco
             //Étape finale SUBMIT CHANGES
             context.SubmitChanges();
 
-            if(insert == true)
+            if (insert == true)
             {
                 int indexCat = 10;
 
