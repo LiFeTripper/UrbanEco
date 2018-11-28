@@ -296,6 +296,16 @@ CREATE TABLE tbl_PremierDimanche
 	dateDimanche SMALLDATETIME NOT NULL
 )
 
+CREATE TABLE tbl_TempsSupp
+(
+	idTempsSupp INT IDENTITY(1,1) PRIMARY KEY,
+	idEmploye INT NOT NULL,
+	noSemaine INT NOT NULL,
+	tempsSupp FLOAT(24) DEFAULT 0,
+
+	CONSTRAINT FK_tbl_TempsSupp_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye)
+)
+
 --Web User
 
 USE [master]
