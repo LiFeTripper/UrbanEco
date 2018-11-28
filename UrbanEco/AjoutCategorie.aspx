@@ -11,10 +11,6 @@
 
     <form runat="server" style="text-align: center;" class="container center col-12">
 
-        <%--LABEL INVISIBLE CONTENANT TITRE ET DESC DE CAT A AJOUTÉ--%>
-        <label visible="true" id="lbl_titreA"></label>
-        <label visible="true" id="lbl_descA"></label>
-
         <asp:Label runat="server" Visible="false" ID="lbl_noProjet"></asp:Label>
         <%--CODE REPEATER DE PROJETS ACTIF--%>
         <asp:Repeater ID="Rptr_Categorie" runat="server">
@@ -30,7 +26,8 @@
                                 <th scope="col">Titre Sous-CatégorieDescription</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">
-                                    <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjoutCat" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>
+                                    <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjoutCat" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
+                                    <asp:Button class="btn btn-primary" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout" OnClick="Btn_AjoutSousProjet_Click" />
                                 </th>
                             </tr>
                         </thead>
@@ -40,17 +37,18 @@
 
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
-                <%--MENU COLLAPSE DE CATÉGORIE--%>
+
+                <%--MENU COLLAPSE DE CATÉGORIE
                 <tr class="collapse" id="collapseAjoutCat">
                     <form>
-                        <td><%--PREMIERE COLONE VIDE--%></td>
+                        <td>PREMIERE COLONE VIDE</td>
                         <td>
                             <div class="form-group col-12 mx-auto">
                                 <label for="Tbx_Titre">Titre</label>
                                 <input type="text" class="form-control" id="Text1" placeholder="Titre" runat="server">
                             </div>
                         </td>
-                        <td><%--TROISIEME COLONE VIDE--%></td>
+                        <td>TROISIEME COLONE VIDE</td>
                         <td>
                             <div class="form-group mb-4 col-12 mx-auto">
                                 <label for="Tbx_Description">Description</label>
@@ -64,7 +62,7 @@
                             </div>
                         </td>
                     </form>
-                </tr>
+                </tr>--%>
 
                 <%--LIGNE DU REPEATER--%>
                 <tr style="border-bottom: 1px solid #23282e" runat="server" class="table-secondary">
@@ -82,20 +80,23 @@
                     </td>
                     <%--BOUTON AJOUT SOUS-CAT POUR CETTE CATEGORIE--%>
                     <td>
-                        <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjout" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>
+                        <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjout" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
+                        <asp:Button class="btn btn-primary" ID="Btn_AjoutSSProjet" runat="server" Text="Ajout" OnClick="Btn_AjoutSSProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>' />
+                        <asp:Button class="btn btn-primary" ID="Btn_ModifSousProjet" runat="server" Text="Modification" OnClick="Btn_ModifSousProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>' />
                     </td>
                 </tr>
-                <%--MENU COLLAPSE DE SOUS-CATÉGORIE--%>
+
+                <%--MENU COLLAPSE DE SOUS-CATÉGORIE
                 <tr class="collapse" id="collapseAjout">
                     <form>
-                        <td><%--PREMIERE COLONE VIDE--%></td>
+                        <td>PREMIERE COLONE VIDE</td>
                         <td>
                             <div class="form-group col-12 mx-auto">
                                 <label for="Tbx_Titre">Titre</label>
                                 <input type="text" class="form-control" id="Tbx_Titre" placeholder="Titre" runat="server">
                             </div>
                         </td>
-                        <td><%--TROISIEME COLONE VIDE--%></td>
+                        <td>TROISIEME COLONE VIDE</td>
                         <td>
                             <div class="form-group mb-4 col-12 mx-auto">
                                 <label for="Tbx_Description">Description</label>
@@ -109,7 +110,7 @@
                             </div>
                         </td>
                     </form>
-                </tr>
+                </tr>--%>
 
 
                 <asp:Repeater ID="Rptr_SousCat" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
@@ -129,13 +130,15 @@
                             </td>
                             <%--BOUTON AJOUT D'EMPLOYÉ DANS SOUS-CATÉGORIE--%>
                             <td>
-                                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Employés</button>
+                                <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Employés</button>--%>
+                                <asp:Button class="btn btn-primary" ID="Btn_ModifSSProjet" runat="server" Text="Modification" OnClick="Btn_ModifSousProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>' />
                             </td>
                         </tr>
-                        <%--MENU COLLAPSE D'AJOUT D'EMPT--%>
+
+                        <%--MENU COLLAPSE D'AJOUT D'EMPT
                 <tr class="collapse" id="collapseEmp">
                     <form>
-                        <!--MULTISELECT-->
+                        MULTISELECT
                             <div class="justify-content-lg-center input-group mb-3 col-12">
                                 <select id="Multiselection" multiple="multiple">
                                     <optgroup label='Bureau'>
@@ -148,7 +151,7 @@
                             </div>
 
                     </form>
-                </tr>
+                </tr>--%>
                     </ItemTemplate>
                 </asp:Repeater>
             </ItemTemplate>
@@ -163,7 +166,7 @@
                         <th scope="col">Titre Sous-CatégorieDescription</th>
                         <th scope="col">Description</th>
                         <th scope="col">
-                            <asp:Button ID="Btn_AjoutCat" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />
+                            <asp:Button class="btn btn-primary" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout" OnClick="Btn_AjoutSousProjet_Click" />
                         </th>
                     </tr>
                 </thead>
