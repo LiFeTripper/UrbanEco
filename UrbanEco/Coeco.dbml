@@ -66,6 +66,7 @@
       <Column Name="approuver" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="tbl_Employe_tbl_FeuilleTemps" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
       <Association Name="tbl_Projet_tbl_FeuilleTemps" Member="tbl_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="tbl_Projet" IsForeignKey="true" />
+      <Association Name="tbl_ProjetCat_tbl_FeuilleTemps" Member="tbl_ProjetCat" ThisKey="idCat" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Kilometrage" Member="tbl_Kilometrage">
@@ -107,6 +108,7 @@
       <Column Name="titre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_Depense" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_Depense" />
+      <Association Name="tbl_ProjetCat_tbl_FeuilleTemps" Member="tbl_FeuilleTemps" ThisKey="idProjetCat" OtherKey="idCat" Type="tbl_FeuilleTemps" />
       <Association Name="tbl_ProjetCat_tbl_ProjetCat" Member="tbl_ProjetCat2" ThisKey="idProjetCat" OtherKey="idCatMaitre" Type="tbl_ProjetCat" />
       <Association Name="tbl_ProjetCat_tbl_ProjetCatEmploye" Member="tbl_ProjetCatEmploye" ThisKey="idProjetCat" OtherKey="idCategorie" Type="tbl_ProjetCatEmploye" />
       <Association Name="tbl_ProjetCat_tbl_ProjetCat" Member="tbl_ProjetCat1" ThisKey="idCatMaitre" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />

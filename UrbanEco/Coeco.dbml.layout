@@ -2,200 +2,207 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 17, 15.25" name="Coeco">
   <DataContextMoniker Name="/CoecoDataContext" />
   <nestedChildShapes>
-    <classShape Id="dd4729b9-b343-4eeb-9472-53115071ce10" absoluteBounds="6.25, 6.875, 2, 1.7708968098958335">
+    <classShape Id="03c1e1b8-201f-4ac9-b203-f600f1541446" absoluteBounds="6.25, 6.875, 2, 1.7708968098958335">
       <DataClassMoniker Name="/CoecoDataContext/tbl_BanqueHeure" />
       <nestedChildShapes>
-        <elementListCompartment Id="fd86c8cc-7f2c-40d1-8320-e2b32c4d0658" absoluteBounds="6.265, 7.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8d134274-8f91-4db9-a276-f9007cc8597c" absoluteBounds="6.265, 7.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c423d66e-48ef-4945-88bd-f5c3c2ef9aab" absoluteBounds="3.5, 5.125, 2, 1.1939925130208344">
+    <classShape Id="13598b42-5c4f-42fd-b46e-3c1a23e800cd" absoluteBounds="3.5, 5.125, 2, 1.1939925130208344">
       <DataClassMoniker Name="/CoecoDataContext/tbl_TypeHeure" />
       <nestedChildShapes>
-        <elementListCompartment Id="2d54cf32-0d66-4586-892b-d78065d24e32" absoluteBounds="3.515, 5.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="697266d9-8c64-4c6d-b250-4e2ab7964c8a" absoluteBounds="3.515, 5.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b17e4c9d-1c91-40d4-8d19-e462546b9b4b" absoluteBounds="6.25, 12.5, 2, 2.5401025390624987">
+    <classShape Id="682fb2f4-21bf-4dab-9e34-618b99b67c9b" absoluteBounds="6.25, 12.5, 2, 2.5401025390624987">
       <DataClassMoniker Name="/CoecoDataContext/tbl_Depense" />
       <nestedChildShapes>
-        <elementListCompartment Id="20eddba5-d554-4591-b543-a46d33debe8a" absoluteBounds="6.265, 12.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="191c9c2a-623d-4fe2-a4cd-ea39ed7f5d70" absoluteBounds="6.265, 12.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ee96f8e5-345a-4293-a065-630f246501d0" absoluteBounds="3.5, 9.5, 2, 2.5401025390624987">
+    <classShape Id="8321ca46-e849-4549-abc2-11a4cd758cc5" absoluteBounds="3.5, 9.5, 2, 2.5401025390624987">
       <DataClassMoniker Name="/CoecoDataContext/tbl_Employe" />
       <nestedChildShapes>
-        <elementListCompartment Id="5850de19-020d-469f-8563-d6faf6d58e99" absoluteBounds="3.515, 9.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="dc6c5e7b-4496-439e-8b7d-5955da7b37f8" absoluteBounds="3.515, 9.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a3346f2b-905f-434d-a037-b76c4142cdc6" absoluteBounds="9.25, 9.5, 2, 2.5401025390624987">
+    <classShape Id="877a3a52-8c7b-41a4-a13e-5ac383febf5e" absoluteBounds="9.25, 9.5, 2, 2.5401025390624987">
       <DataClassMoniker Name="/CoecoDataContext/tbl_FeuilleTemps" />
       <nestedChildShapes>
-        <elementListCompartment Id="033c8229-829a-4492-bb12-4a3086985f0f" absoluteBounds="9.265, 9.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="803bf6ae-4dd1-444d-a918-842d5e0f37b2" absoluteBounds="9.265, 9.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="9dd0449f-4a76-49e0-ae7a-52f447014d14" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
+    <classShape Id="c6f7757c-d534-4ab5-bf59-4712f51fcc72" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
       <DataClassMoniker Name="/CoecoDataContext/tbl_Kilometrage" />
       <nestedChildShapes>
-        <elementListCompartment Id="134c8eaa-405c-43a6-90fd-07ed88e3103b" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d9af4649-8185-47b2-bb50-855b2d2f064f" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2e6b56b4-4015-4d8d-8ab2-691403b240c2" absoluteBounds="3.75, 0.75, 2, 1.1939925130208335">
+    <classShape Id="8777b698-e9d4-4cbd-817f-a8e8e2c72841" absoluteBounds="3.75, 0.75, 2, 1.1939925130208335">
       <DataClassMoniker Name="/CoecoDataContext/tbl_PremierDimanche" />
       <nestedChildShapes>
-        <elementListCompartment Id="52059c47-003f-496f-9d02-5f03abefd1ec" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e637e445-6158-42bc-bcfb-e8cddabbfa5f" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1f8d69bb-d66b-4dbe-9f24-cd8e420f0e41" absoluteBounds="9.25, 5.5, 2, 2.5401025390624996">
+    <classShape Id="789fa2e8-9859-489c-99b1-d9e641653165" absoluteBounds="9.25, 5.5, 2, 2.5401025390624996">
       <DataClassMoniker Name="/CoecoDataContext/tbl_Projet" />
       <nestedChildShapes>
-        <elementListCompartment Id="ca54879a-3178-41be-97cd-f09dd7995534" absoluteBounds="9.265, 5.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d717c871-b0fc-4287-9dfb-c5790788aff9" absoluteBounds="9.265, 5.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="45d6f37c-6b95-44d8-b359-3b8673c9d5d4" absoluteBounds="12, 5.875, 2, 1.7708968098958327">
+    <classShape Id="bcb1b6e9-5738-4bba-ae6e-09effe6accde" absoluteBounds="12, 5.875, 2, 1.7708968098958327">
       <DataClassMoniker Name="/CoecoDataContext/tbl_ProjetCat" />
       <nestedChildShapes>
-        <elementListCompartment Id="71965c01-34a6-4f41-896a-1886677b584d" absoluteBounds="12.015, 6.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f53de9c8-73e9-4fe9-bb45-5550e9c3770e" absoluteBounds="12.015, 6.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="96264c88-c613-4e8b-87c7-ae62356a3138" absoluteBounds="14.75, 8, 2, 1.5785953776041666">
+    <classShape Id="b34c9ad6-d238-418f-a321-fe35fb6af8e8" absoluteBounds="14.75, 8, 2, 1.5785953776041666">
       <DataClassMoniker Name="/CoecoDataContext/tbl_ProjetCatEmploye" />
       <nestedChildShapes>
-        <elementListCompartment Id="d4c4d3fc-4a76-483b-a9c9-6760dc6144d9" absoluteBounds="14.765, 8.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="45d33f8f-8d22-4681-9ef3-471f616d4281" absoluteBounds="14.765, 8.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="250064a5-b103-40ab-89fd-92360e256824" absoluteBounds="6.5, 4.125, 2, 1.1939925130208344">
+    <classShape Id="04a5308d-2c86-492f-9bc9-c5eb47834db3" absoluteBounds="6.5, 4.125, 2, 1.1939925130208344">
       <DataClassMoniker Name="/CoecoDataContext/tbl_Status" />
       <nestedChildShapes>
-        <elementListCompartment Id="2439f25b-5290-4a35-8854-50516beb245b" absoluteBounds="6.515, 4.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="67becbfa-5042-418c-ad1d-818eb07f62d8" absoluteBounds="6.515, 4.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a6ae5d23-0042-45bb-a153-873e46cee336" absoluteBounds="6.25, 10, 2, 1.5785953776041666">
+    <classShape Id="c7a5a66d-156e-42a0-989c-655cc177c5d7" absoluteBounds="6.25, 10, 2, 1.5785953776041666">
       <DataClassMoniker Name="/CoecoDataContext/tbl_TempsSupp" />
       <nestedChildShapes>
-        <elementListCompartment Id="0715259b-de78-4596-af9a-b87effb69fce" absoluteBounds="6.265, 10.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="da680c82-9c39-4e4c-b6f4-437c4ab56bcc" absoluteBounds="6.265, 10.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7adc22be-08f0-4f4e-8f9e-fcc0b6c436f6" absoluteBounds="3.5, 7.375, 2, 1.3862939453124996">
+    <classShape Id="ab3e1a3a-b6fa-4d08-ad56-a0b00084f567" absoluteBounds="3.5, 7.375, 2, 1.3862939453124996">
       <DataClassMoniker Name="/CoecoDataContext/tbl_TypeDepense" />
       <nestedChildShapes>
-        <elementListCompartment Id="5d0f8383-45f7-4d01-aab3-a79db90893f4" absoluteBounds="3.515, 7.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="091e1817-6bc4-45f4-a0db-17937613245d" absoluteBounds="3.515, 7.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2b3fbe20-1755-4573-9aa2-0ad1c2cccd5c" absoluteBounds="0.75, 9.125, 2, 1.1939925130208344">
+    <classShape Id="56eaef56-3d71-4b1d-a90a-8a1d5884d738" absoluteBounds="0.75, 9.125, 2, 1.1939925130208344">
       <DataClassMoniker Name="/CoecoDataContext/tbl_TypeEmploye" />
       <nestedChildShapes>
-        <elementListCompartment Id="b3420897-831f-4e8a-8929-ff756b259dbf" absoluteBounds="0.765, 9.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ec4305ae-3faa-4698-86ae-2e9b6f0ea143" absoluteBounds="0.765, 9.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(5.5 : 5.85024251302083); (6.34375 : 5.85024251302083); (6.34375 : 6.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_TypeHeure/tbl_TypeHeure_tbl_BanqueHeure" />
       <nodes>
-        <classShapeMoniker Id="c423d66e-48ef-4945-88bd-f5c3c2ef9aab" />
-        <classShapeMoniker Id="dd4729b9-b343-4eeb-9472-53115071ce10" />
+        <classShapeMoniker Id="13598b42-5c4f-42fd-b46e-3c1a23e800cd" />
+        <classShapeMoniker Id="03c1e1b8-201f-4ac9-b203-f600f1541446" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.46769230769231 : 9.5); (5.875 : 9.09269230769231); (5.875 : 7.76044840494792); (6.25 : 7.76044840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Employe/tbl_Employe_tbl_BanqueHeure" />
       <nodes>
-        <classShapeMoniker Id="ee96f8e5-345a-4293-a065-630f246501d0" />
-        <classShapeMoniker Id="dd4729b9-b343-4eeb-9472-53115071ce10" />
+        <classShapeMoniker Id="8321ca46-e849-4549-abc2-11a4cd758cc5" />
+        <classShapeMoniker Id="03c1e1b8-201f-4ac9-b203-f600f1541446" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(4.5 : 12.0401025390625); (4.5 : 13.7700512695312); (6.25 : 13.7700512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Employe/tbl_Employe_tbl_Depense" />
       <nodes>
-        <classShapeMoniker Id="ee96f8e5-345a-4293-a065-630f246501d0" />
-        <classShapeMoniker Id="b17e4c9d-1c91-40d4-8d19-e462546b9b4b" />
+        <classShapeMoniker Id="8321ca46-e849-4549-abc2-11a4cd758cc5" />
+        <classShapeMoniker Id="682fb2f4-21bf-4dab-9e34-618b99b67c9b" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 11.8405989583333); (9.25 : 11.8405989583333)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Employe/tbl_Employe_tbl_FeuilleTemps" />
       <nodes>
-        <classShapeMoniker Id="ee96f8e5-345a-4293-a065-630f246501d0" />
-        <classShapeMoniker Id="a3346f2b-905f-434d-a037-b76c4142cdc6" />
+        <classShapeMoniker Id="8321ca46-e849-4549-abc2-11a4cd758cc5" />
+        <classShapeMoniker Id="877a3a52-8c7b-41a4-a13e-5ac383febf5e" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(10.25 : 8.0401025390625); (10.25 : 9.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Projet/tbl_Projet_tbl_FeuilleTemps" />
       <nodes>
-        <classShapeMoniker Id="1f8d69bb-d66b-4dbe-9f24-cd8e420f0e41" />
-        <classShapeMoniker Id="a3346f2b-905f-434d-a037-b76c4142cdc6" />
+        <classShapeMoniker Id="789fa2e8-9859-489c-99b1-d9e641653165" />
+        <classShapeMoniker Id="877a3a52-8c7b-41a4-a13e-5ac383febf5e" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 9.53384515384615); (5.90884515384615 : 9.125); (9.718748 : 9.125); (9.718748 : 8.0401025390625)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Employe/tbl_Employe_tbl_Projet" />
       <nodes>
-        <classShapeMoniker Id="ee96f8e5-345a-4293-a065-630f246501d0" />
-        <classShapeMoniker Id="1f8d69bb-d66b-4dbe-9f24-cd8e420f0e41" />
+        <classShapeMoniker Id="8321ca46-e849-4549-abc2-11a4cd758cc5" />
+        <classShapeMoniker Id="789fa2e8-9859-489c-99b1-d9e641653165" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(13 : 7.64589680989583); (13 : 13.7700512695312); (8.25 : 13.7700512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_ProjetCat/tbl_ProjetCat_tbl_Depense" />
       <nodes>
-        <classShapeMoniker Id="45d6f37c-6b95-44d8-b359-3b8673c9d5d4" />
-        <classShapeMoniker Id="b17e4c9d-1c91-40d4-8d19-e462546b9b4b" />
+        <classShapeMoniker Id="bcb1b6e9-5738-4bba-ae6e-09effe6accde" />
+        <classShapeMoniker Id="682fb2f4-21bf-4dab-9e34-618b99b67c9b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.4687475 : 7.64589680989583); (12.4687475 : 10.7700512695312); (11.25 : 10.7700512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CoecoDataContext/tbl_ProjetCat/tbl_ProjetCat_tbl_FeuilleTemps" />
+      <nodes>
+        <classShapeMoniker Id="bcb1b6e9-5738-4bba-ae6e-09effe6accde" />
+        <classShapeMoniker Id="877a3a52-8c7b-41a4-a13e-5ac383febf5e" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(12.7055298715445 : 5.875); (12.7055298715445 : 5.625); (13.3084925155248 : 5.625); (13.3084925155248 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CoecoDataContext/tbl_ProjetCat/tbl_ProjetCat_tbl_ProjetCat" />
       <nodes>
-        <classShapeMoniker Id="45d6f37c-6b95-44d8-b359-3b8673c9d5d4" />
-        <classShapeMoniker Id="45d6f37c-6b95-44d8-b359-3b8673c9d5d4" />
+        <classShapeMoniker Id="bcb1b6e9-5738-4bba-ae6e-09effe6accde" />
+        <classShapeMoniker Id="bcb1b6e9-5738-4bba-ae6e-09effe6accde" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(11.25 : 6.76044840494792); (12 : 6.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Projet/tbl_Projet_tbl_ProjetCat" />
       <nodes>
-        <classShapeMoniker Id="1f8d69bb-d66b-4dbe-9f24-cd8e420f0e41" />
-        <classShapeMoniker Id="45d6f37c-6b95-44d8-b359-3b8673c9d5d4" />
+        <classShapeMoniker Id="789fa2e8-9859-489c-99b1-d9e641653165" />
+        <classShapeMoniker Id="bcb1b6e9-5738-4bba-ae6e-09effe6accde" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(14 : 6.76044840494792); (15.1354141666667 : 6.76044840494792 : JumpStart); (15.3020808333333 : 6.76044840494792 : JumpEnd); (15.75 : 6.76044840494792); (15.75 : 8)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_ProjetCat/tbl_ProjetCat_tbl_ProjetCatEmploye" />
       <nodes>
-        <classShapeMoniker Id="45d6f37c-6b95-44d8-b359-3b8673c9d5d4" />
-        <classShapeMoniker Id="96264c88-c613-4e8b-87c7-ae62356a3138" />
+        <classShapeMoniker Id="bcb1b6e9-5738-4bba-ae6e-09effe6accde" />
+        <classShapeMoniker Id="b34c9ad6-d238-418f-a321-fe35fb6af8e8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.45259415384615 : 9.5); (4.45259415384615 : 8.89589680989583); (5.79166666666667 : 8.89589680989583 : JumpStart); (5.95833333333333 : 8.89589680989583 : JumpEnd); (9.63541466666667 : 8.89589680989583 : JumpStart); (9.80208133333333 : 8.89589680989583 : JumpEnd); (10.1666666666667 : 8.89589680989583 : JumpStart); (10.3333333333333 : 8.89589680989583 : JumpEnd); (12.9166666666667 : 8.89589680989583 : JumpStart); (13.0833333333333 : 8.89589680989583 : JumpEnd); (14.375 : 8.89589680989583); (14.375 : 8.78929768880208); (14.75 : 8.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.45259415384615 : 9.5); (4.45259415384615 : 8.89589680989583); (5.79166666666667 : 8.89589680989583 : JumpStart); (5.95833333333333 : 8.89589680989583 : JumpEnd); (9.63541466666667 : 8.89589680989583 : JumpStart); (9.80208133333333 : 8.89589680989583 : JumpEnd); (10.1666666666667 : 8.89589680989583 : JumpStart); (10.3333333333333 : 8.89589680989583 : JumpEnd); (12.3854141666667 : 8.89589680989583 : JumpStart); (12.5520808333333 : 8.89589680989583 : JumpEnd); (12.9166666666667 : 8.89589680989583 : JumpStart); (13.0833333333333 : 8.89589680989583 : JumpEnd); (14.375 : 8.89589680989583); (14.375 : 8.78929768880208); (14.75 : 8.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Employe/tbl_Employe_tbl_ProjetCatEmploye" />
       <nodes>
-        <classShapeMoniker Id="ee96f8e5-345a-4293-a065-630f246501d0" />
-        <classShapeMoniker Id="96264c88-c613-4e8b-87c7-ae62356a3138" />
+        <classShapeMoniker Id="8321ca46-e849-4549-abc2-11a4cd758cc5" />
+        <classShapeMoniker Id="b34c9ad6-d238-418f-a321-fe35fb6af8e8" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(11.25 : 5.71875); (12.6221965382111 : 5.71875 : JumpStart); (12.7888632048778 : 5.71875 : JumpEnd); (13.2251591821915 : 5.71875 : JumpStart); (13.3918258488582 : 5.71875 : JumpEnd); (15.2187475 : 5.71875); (15.2187475 : 8)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Projet/tbl_Projet_tbl_ProjetCatEmploye" />
       <nodes>
-        <classShapeMoniker Id="1f8d69bb-d66b-4dbe-9f24-cd8e420f0e41" />
-        <classShapeMoniker Id="96264c88-c613-4e8b-87c7-ae62356a3138" />
+        <classShapeMoniker Id="789fa2e8-9859-489c-99b1-d9e641653165" />
+        <classShapeMoniker Id="b34c9ad6-d238-418f-a321-fe35fb6af8e8" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.5 : 4.72199625651042); (10.25 : 4.72199625651042); (10.25 : 5.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Status/tbl_Status_tbl_Projet" />
       <nodes>
-        <classShapeMoniker Id="250064a5-b103-40ab-89fd-92360e256824" />
-        <classShapeMoniker Id="1f8d69bb-d66b-4dbe-9f24-cd8e420f0e41" />
+        <classShapeMoniker Id="04a5308d-2c86-492f-9bc9-c5eb47834db3" />
+        <classShapeMoniker Id="789fa2e8-9859-489c-99b1-d9e641653165" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 10.7892976888021); (6.25 : 10.7892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Employe/tbl_Employe_tbl_TempsSupp" />
       <nodes>
-        <classShapeMoniker Id="ee96f8e5-345a-4293-a065-630f246501d0" />
-        <classShapeMoniker Id="a6ae5d23-0042-45bb-a153-873e46cee336" />
+        <classShapeMoniker Id="8321ca46-e849-4549-abc2-11a4cd758cc5" />
+        <classShapeMoniker Id="c7a5a66d-156e-42a0-989c-655cc177c5d7" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 9.90949625651042); (3.5 : 9.90949625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_TypeEmploye/tbl_TypeEmploye_tbl_Employe" />
       <nodes>
-        <classShapeMoniker Id="2b3fbe20-1755-4573-9aa2-0ad1c2cccd5c" />
-        <classShapeMoniker Id="ee96f8e5-345a-4293-a065-630f246501d0" />
+        <classShapeMoniker Id="56eaef56-3d71-4b1d-a90a-8a1d5884d738" />
+        <classShapeMoniker Id="8321ca46-e849-4549-abc2-11a4cd758cc5" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(1.75 : 9.125); (1.75 : 8.06814697265625); (3.5 : 8.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CoecoDataContext/tbl_TypeEmploye/tbl_TypeEmploye_tbl_TypeDepense" />
       <nodes>
-        <classShapeMoniker Id="2b3fbe20-1755-4573-9aa2-0ad1c2cccd5c" />
-        <classShapeMoniker Id="7adc22be-08f0-4f4e-8f9e-fcc0b6c436f6" />
+        <classShapeMoniker Id="56eaef56-3d71-4b1d-a90a-8a1d5884d738" />
+        <classShapeMoniker Id="ab3e1a3a-b6fa-4d08-ad56-a0b00084f567" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

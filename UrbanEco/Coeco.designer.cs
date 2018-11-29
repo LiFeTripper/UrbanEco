@@ -1398,6 +1398,8 @@ namespace UrbanEco
 		
 		private EntityRef<tbl_Projet> _tbl_Projet;
 		
+		private EntityRef<tbl_ProjetCat> _tbl_ProjetCat;
+		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1426,6 +1428,7 @@ namespace UrbanEco
 		{
 			this._tbl_Employe = default(EntityRef<tbl_Employe>);
 			this._tbl_Projet = default(EntityRef<tbl_Projet>);
+			this._tbl_ProjetCat = default(EntityRef<tbl_ProjetCat>);
 			OnCreated();
 		}
 		
@@ -1484,6 +1487,10 @@ namespace UrbanEco
 			{
 				if ((this._idCat != value))
 				{
+					if (this._tbl_ProjetCat.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnidCatChanging(value);
 					this.SendPropertyChanging();
 					this._idCat = value;
@@ -1681,6 +1688,40 @@ namespace UrbanEco
 						this._idProjet = default(int);
 					}
 					this.SendPropertyChanged("tbl_Projet");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_FeuilleTemps", Storage="_tbl_ProjetCat", ThisKey="idCat", OtherKey="idProjetCat", IsForeignKey=true)]
+		public tbl_ProjetCat tbl_ProjetCat
+		{
+			get
+			{
+				return this._tbl_ProjetCat.Entity;
+			}
+			set
+			{
+				tbl_ProjetCat previousValue = this._tbl_ProjetCat.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_ProjetCat.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_ProjetCat.Entity = null;
+						previousValue.tbl_FeuilleTemps.Remove(this);
+					}
+					this._tbl_ProjetCat.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_FeuilleTemps.Add(this);
+						this._idCat = value.idProjetCat;
+					}
+					else
+					{
+						this._idCat = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbl_ProjetCat");
 				}
 			}
 		}
@@ -2340,6 +2381,8 @@ namespace UrbanEco
 		
 		private EntitySet<tbl_Depense> _tbl_Depense;
 		
+		private EntitySet<tbl_FeuilleTemps> _tbl_FeuilleTemps;
+		
 		private EntitySet<tbl_ProjetCat> _tbl_ProjetCat2;
 		
 		private EntitySet<tbl_ProjetCatEmploye> _tbl_ProjetCatEmploye;
@@ -2367,6 +2410,7 @@ namespace UrbanEco
 		public tbl_ProjetCat()
 		{
 			this._tbl_Depense = new EntitySet<tbl_Depense>(new Action<tbl_Depense>(this.attach_tbl_Depense), new Action<tbl_Depense>(this.detach_tbl_Depense));
+			this._tbl_FeuilleTemps = new EntitySet<tbl_FeuilleTemps>(new Action<tbl_FeuilleTemps>(this.attach_tbl_FeuilleTemps), new Action<tbl_FeuilleTemps>(this.detach_tbl_FeuilleTemps));
 			this._tbl_ProjetCat2 = new EntitySet<tbl_ProjetCat>(new Action<tbl_ProjetCat>(this.attach_tbl_ProjetCat2), new Action<tbl_ProjetCat>(this.detach_tbl_ProjetCat2));
 			this._tbl_ProjetCatEmploye = new EntitySet<tbl_ProjetCatEmploye>(new Action<tbl_ProjetCatEmploye>(this.attach_tbl_ProjetCatEmploye), new Action<tbl_ProjetCatEmploye>(this.detach_tbl_ProjetCatEmploye));
 			this._tbl_ProjetCat1 = default(EntityRef<tbl_ProjetCat>);
@@ -2495,6 +2539,19 @@ namespace UrbanEco
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_FeuilleTemps", Storage="_tbl_FeuilleTemps", ThisKey="idProjetCat", OtherKey="idCat")]
+		public EntitySet<tbl_FeuilleTemps> tbl_FeuilleTemps
+		{
+			get
+			{
+				return this._tbl_FeuilleTemps;
+			}
+			set
+			{
+				this._tbl_FeuilleTemps.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_ProjetCat_tbl_ProjetCat", Storage="_tbl_ProjetCat2", ThisKey="idProjetCat", OtherKey="idCatMaitre")]
 		public EntitySet<tbl_ProjetCat> tbl_ProjetCat2
 		{
@@ -2616,6 +2673,18 @@ namespace UrbanEco
 		}
 		
 		private void detach_tbl_Depense(tbl_Depense entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_ProjetCat = null;
+		}
+		
+		private void attach_tbl_FeuilleTemps(tbl_FeuilleTemps entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_ProjetCat = this;
+		}
+		
+		private void detach_tbl_FeuilleTemps(tbl_FeuilleTemps entity)
 		{
 			this.SendPropertyChanging();
 			entity.tbl_ProjetCat = null;
