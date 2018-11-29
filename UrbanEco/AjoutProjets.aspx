@@ -108,7 +108,7 @@
                         Heures Allouées
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" class="form-control" placeholder="0"></asp:TextBox>     
+                        <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" class="form-control" placeholder="0" TextMode="Number"></asp:TextBox>     
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
