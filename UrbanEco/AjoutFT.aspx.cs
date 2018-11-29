@@ -11,11 +11,21 @@ namespace UrbanEco
     {
         CoecoDataContext context = new CoecoDataContext();
 
+        static List<tbl_PremierDimanche> dimanches = new List<tbl_PremierDimanche>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                
+                //Premier dimanche
+                var queryDimanche = from tbl in context.tbl_PremierDimanche
+                                    select tbl;
+
+                if (queryDimanche.Count() > 0)
+                {
+                    dimanches = queryDimanche.ToList();
+                }
+
                 Calendar1.Value = Layout.ToCalendarDate(DateTime.Today);
 
                 if (Request.QueryString["FT"] != "New")
@@ -202,6 +212,7 @@ namespace UrbanEco
                 tbFT.dateCreation = DateTime.Parse(Calendar1.Value);
                 tbFT.commentaire = txa_comments.Value;
                 tbFT.approuver = false;
+                tbFT.noSemaine = GetWeekToYear(DateTime.Parse(Calendar1.Value));
 
                 context.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
                 context.SubmitChanges();
@@ -222,6 +233,7 @@ namespace UrbanEco
                 temp.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 temp.nbHeure = int.Parse(tbx_nbHeure.Text);
                 temp.dateCreation = DateTime.Parse(Calendar1.Value);
+                temp.noSemaine = GetWeekToYear(DateTime.Parse(Calendar1.Value));
 
                 temp.commentaire = txa_comments.Value;
 
@@ -351,6 +363,23 @@ namespace UrbanEco
         protected void btn_annuler_Click(object sender, EventArgs e)
         {
             Response.Redirect("Home.aspx");
+        }
+
+        protected int GetWeekToYear(DateTime date)
+        {
+            if (dimanches.Count == 0)
+                return -100;
+
+            for (int i = 1; i < dimanches.Count; i++)
+            {
+                //Si la date voulu vien avant la date du dimanche, l'index est le numéro de semaine
+                if (date < dimanches[i].dateDimanche)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
         }
     }
 }
