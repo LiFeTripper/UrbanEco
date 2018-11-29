@@ -33,6 +33,10 @@
             font-size:15px !important;
         }
 
+        .asp-table {
+            table-layout: fixed;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -46,26 +50,26 @@
             <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
         </div>--%>
 
+        <%--Projet--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Nom du projet
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                            <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="lst_projet_SelectedIndexChanged" DataTextField="titre" DataValueField="idProjet" ID="lst_projet" runat="server" AutoPostBack="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
         <div class="row justify-content-md-center" style="margin-bottom: 20px;">
             <div class="col-md-offset-3 col-6">
 
-                <table style="width: 100% !important;">
-                    <tr>
-                        <th>
-                            <%--<h3>Projet associé</h3>--%>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h5 class="input-title">Nom du projet</h5>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:DropDownList CssClass="input-box" OnSelectedIndexChanged="lst_projet_SelectedIndexChanged" DataTextField="titre" DataValueField="idProjet" ID="lst_projet" runat="server" AutoPostBack="true"></asp:DropDownList>
-                        </td>
-                    </tr>
 
+
+                <table style="width: 100% !important;">
                     <tr>
                         <th>
                             <h5 style="float: left; width: 49% !important;" class="input-title">Sous-Catégorie</h5>
@@ -109,8 +113,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <input style="float: left; width: 49% !important; margin: auto" type="date" id="date_debut" runat="server" />
-                            <input style="float: right; width: 49% !important; margin: auto" type="date" id="date_fin" runat="server" />
+                            <input class="form-control" style="float: left; width: 49% !important; margin: auto" type="date" id="date_debut" runat="server" />
+                            <input class="form-control" style="float: right; width: 49% !important; margin: auto" type="date" id="date_fin" runat="server" />
                         </td>
                     </tr>
                     <tr>
