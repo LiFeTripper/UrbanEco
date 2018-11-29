@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="Employe.aspx.cs" Inherits="UrbanEco.Employe" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .btn-option {
+            height: 30px !important;
+            width: 30px !important;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -37,12 +43,12 @@
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e">
                                 <th scope="col">Type Employé</th>
-                                <th scope="col">ID</th>
+                                <%--<th scope="col">ID</th>--%>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prénom</th>
                                 <th scope="col">Adresse Courriel</th>
                                 <th scope="col">
-                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" Onclick="Btn_Ajout_Click" />
+                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
                                 </th>
                             </tr>
                         </thead>
@@ -60,7 +66,7 @@
                     <td />
                     <td />
                     <td />
-                    <td />
+                    <%--<td />--%>
                 </tr>
 
                 <%--SECOND REPEATER AVEC LES USERS--%>
@@ -69,9 +75,9 @@
                     <ItemTemplate>
                         <tr visible='<%# (!Boolean.Parse(Eval("inactif").ToString()) && !Chkbx_Inactif.Checked) %>' runat="server">
                             <td></td>
-                            <td>
+<%--                            <td>
                                 <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />
-                            </td>
+                            </td>--%>
                             <td>
                                 <asp:Label ID="lbl_Nom" runat="server" Text='<%#Eval("nom") %>' Font-Bold="true" />
                             </td>
@@ -82,7 +88,8 @@
                                 <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>' Font-Bold="true" />
                             </td>
                             <td>
-                                <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>' />
+                                <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>'/>
+                                <%--<asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>' />--%>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -92,9 +99,9 @@
                     <ItemTemplate>
                         <tr visible='<%# (Boolean.Parse(Eval("inactif").ToString()) && Chkbx_Inactif.Checked) %>' runat="server">
                             <td></td>
-                            <td>
+<%--                            <td>
                                 <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />
-                            </td>
+                            </td>--%>
                             <td>
                                 <asp:Label ID="lbl_Nom" runat="server" Text='<%#Eval("nom") %>' Font-Bold="true" />
                             </td>
@@ -105,7 +112,7 @@
                                 <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>' Font-Bold="true" />
                             </td>
                             <td>
-                                <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>' />
+                                <asp:ImageButton CssClass="btn-option" ToolTip="Modifier cet employé" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>'/>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -118,11 +125,13 @@
                     <thead class="thead-dark">
                         <tr style="border-bottom: 5px solid #23282e">
                             <th scope="col">Type Employé</th>
-                            <th scope="col">ID</th>
+                            <%--<th scope="col">ID</th>--%>
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
                             <th scope="col">Adresse courriel</th>
-                            <th scope="col"></th>
+                            <th scope="col">
+                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
+                            </th>
                         </tr>
                     </thead>
                 </table>
