@@ -16,15 +16,33 @@ namespace UrbanEco
         {
             CoecoDataContext context = new CoecoDataContext();
 
-            IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
-                        join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-                        
-                        where tblDep.approuver == false                      
-                        select tblEmp;
+            if (Layout.GetUserConnected().username == "admin")
+            {
+                IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
+                                                join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
 
-            Rptr_Emploe.DataSourceID = null;
-            Rptr_Emploe.DataSource = query.Distinct();
-            Rptr_Emploe.DataBind();
+                                                where tblDep.approuver == false
+                                                select tblEmp;
+
+                Rptr_Emploe.DataSourceID = null;
+                Rptr_Emploe.DataSource = query.Distinct();
+                Rptr_Emploe.DataBind();
+            }
+            else
+            {
+                IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
+                                                join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
+                                                where tblDep.approuver == false
+                                                & tblEmp.idEmploye == Layout.GetUserConnected().idEmploye
+                                                select tblEmp;
+
+                Rptr_Emploe.DataSourceID = null;
+                Rptr_Emploe.DataSource = query.Distinct();
+                Rptr_Emploe.DataBind();
+            }
+
+
+            
         }
 
         protected void Rptr_FeuilleTemps_Load(object sender, EventArgs e)
