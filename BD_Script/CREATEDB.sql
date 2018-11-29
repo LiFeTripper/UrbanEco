@@ -134,6 +134,8 @@ VALUES (4, NULL, 'Congés maladies', 'Utilise les heures de congés maladies de la
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
 VALUES (4, NULL, 'Congé personnelle', 'Utilise les heures de congés personnelles de la banque dheures');
 
+
+
 CREATE TABLE tbl_FeuilleTemps
 (
 	idFeuille INT IDENTITY(1, 1) PRIMARY KEY,

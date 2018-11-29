@@ -22,7 +22,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Prénom
+                        Prénom <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control"></asp:TextBox>
@@ -36,7 +36,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Nom
+                        Nom <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
@@ -50,7 +50,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Type d'employé
+                        Type d'employé <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:DropDownList ID="Ddl_TypeEmp" runat="server" DataSourceID="LinqTypeEmp" DataTextField="nomType" DataValueField="idType" class="form-control"></asp:DropDownList>
@@ -94,7 +94,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Nom d'utilisateur
+                        Nom d'utilisateur <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox ID="Tbx_username" runat="server" class="form-control"></asp:TextBox>

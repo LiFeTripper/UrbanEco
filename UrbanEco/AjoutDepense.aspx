@@ -20,12 +20,14 @@
             <h3>Projet associé</h3>
         </div>
 
+        
+
         <%--Projet--%>
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        Nom du projet
+                        Nom du projet <b style="color:red">*</b>
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
                         <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="titre" DataValueField="idProjet" AutoPostBack="true"></asp:DropDownList>
@@ -49,7 +51,7 @@
         </div>
 
         <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Ddl_TypeEmp">Date</label>
+            <label for="Ddl_TypeEmp">Date  <b style="color:red">*</b></label>
             <asp:table CssClass="asp-table" runat="server" id="Ddl_TypeEmp" style="width: 100% !important;">
                 <%--DATE--%>
                 <asp:TableRow>    
@@ -125,7 +127,7 @@
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        Type de dépense
+                        Type de dépense <b style="color:red">*</b>
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
                         <asp:DropDownList class="form-control" ID="tbx_typeDepense" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
@@ -136,7 +138,7 @@
 
 
         <div class="form-group mb-4 col-6 mx-auto" runat="server" id="km_html">
-            <label for="tbl_kilo">Kilomètrage</label>
+            <label for="tbl_kilo">Kilomètrage <b style="color:red">*</b></label>
             <asp:table CssClass="asp-table" runat="server" id="tbl_kilo" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableCell>
@@ -152,11 +154,11 @@
 
 
         <div class="form-group mb-4 col-6 mx-auto" runat="server" id="montant_html">
-            <label for="tbl_montant">Montant</label>
+            <%--<label for="tbl_montant">Montant</label>--%>
             <asp:table CssClass="asp-table" runat="server" id="tbl_montant" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        Montant
+                        Montant <b style="color:red">*</b>
                     </asp:TableHeaderCell>  
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"></asp:TextBox>

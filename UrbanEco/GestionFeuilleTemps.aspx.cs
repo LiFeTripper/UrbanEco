@@ -40,40 +40,87 @@ namespace UrbanEco
 
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
+                
 
-                var queryFTAttente = from tblE in cdc.tbl_Employe
-                             join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                             where tblFT.approuver.Equals(false)
-                             & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
-                             & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                             orderby tblFT.dateCreation descending
-                             
-                             select tblE;
+                if (Layout.GetUserConnected().username == "admin")
+                {
+
+                    var queryFTAttente = from tblE in cdc.tbl_Employe
+                                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                         where tblFT.approuver.Equals(false)
+                                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                                         & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                                         orderby tblFT.dateCreation descending
+
+                                         select tblE;
+
+                    var queryFTApprouver = from tblE in cdc.tbl_Employe
+                                           join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                           where tblFT.approuver == true
+                                           & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                                           & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                                           orderby tblFT.dateCreation descending
+                                           select tblE;
+
+                    Rptr_EmployeNonApprouver.DataSource = null;
+                    Rptr_EmployeNonApprouver.DataSourceID = null;
+                    Rptr_EmployeNonApprouver.DataBind();
+
+                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                    Rptr_EmployeNonApprouver.DataBind();
+
+                    List<tbl_Employe> listTableA = new List<tbl_Employe>();
 
 
-                Rptr_EmployeNonApprouver.DataSource = null;
-                Rptr_EmployeNonApprouver.DataSourceID = null;
-                Rptr_EmployeNonApprouver.DataBind();
 
-                Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
-                Rptr_EmployeNonApprouver.DataBind();
+                    rptr_EmployeApprouver.DataSource = null;
+                    rptr_EmployeApprouver.DataSourceID = null;
+                    rptr_EmployeApprouver.DataBind();
 
-                List<tbl_Employe> listTableA = new List<tbl_Employe>();
+                    rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
+                    rptr_EmployeApprouver.DataBind();
+                }
+                else
+                {
+                    var queryFTAttente = from tblE in cdc.tbl_Employe
+                                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                         where tblFT.approuver.Equals(false)
+                                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                                         & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                                         & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                         orderby tblFT.dateCreation descending
 
-                var queryFTApprouver = from tblE in cdc.tbl_Employe
-                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                         where tblFT.approuver == true
-                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
-                         & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                         orderby tblFT.dateCreation descending
-                         select tblE;
+                                         select tblE;
 
-                rptr_EmployeApprouver.DataSource = null;
-                rptr_EmployeApprouver.DataSourceID = null;
-                rptr_EmployeApprouver.DataBind();
+                    var queryFTApprouver = from tblE in cdc.tbl_Employe
+                                           join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                           where tblFT.approuver == true
+                                           & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
+                                           & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
+                                           & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                           orderby tblFT.dateCreation descending
+                                           select tblE;
 
-                rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
-                rptr_EmployeApprouver.DataBind();
+                    Rptr_EmployeNonApprouver.DataSource = null;
+                    Rptr_EmployeNonApprouver.DataSourceID = null;
+                    Rptr_EmployeNonApprouver.DataBind();
+
+                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                    Rptr_EmployeNonApprouver.DataBind();
+
+                    List<tbl_Employe> listTableA = new List<tbl_Employe>();
+
+
+
+                    rptr_EmployeApprouver.DataSource = null;
+                    rptr_EmployeApprouver.DataSourceID = null;
+                    rptr_EmployeApprouver.DataBind();
+
+                    rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
+                    rptr_EmployeApprouver.DataBind();
+                }
+
+
 
             }
         }
@@ -91,6 +138,8 @@ namespace UrbanEco
             var FT = from tblFT in cdc.tbl_FeuilleTemps
                      where tblFT.idFeuille == idFeuille
                      select tblFT;
+
+            CheckTempsSupp(FT.First().idEmploye);
 
             FT.First<tbl_FeuilleTemps>().approuver = true;
             SwitchTypeBHCongés(FT.First());
@@ -120,6 +169,7 @@ namespace UrbanEco
 
             foreach(var FTemp in FT)
             {
+                CheckTempsSupp(FTemp.idEmploye);
                 FTemp.approuver = true;
                 SwitchTypeBHCongés(FTemp);
 
@@ -193,6 +243,7 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
+                CheckTempsSupp(FTemp.idEmploye);
                 FTemp.approuver = true;
                 SwitchTypeBHCongés(FTemp);
             }
@@ -271,36 +322,81 @@ namespace UrbanEco
 
         void RequeryFT(DateTime dateMin, DateTime dateMax)
         {
-            CoecoDataContext ctx = new CoecoDataContext();
+            if (Layout.GetUserConnected().username == "admin")
+            {
 
-            var queryFTAttente = (from tblE in cdc.tbl_Employe
-                                 join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                 where tblFT.approuver.Equals(false)
-                                 & (tblFT.dateCreation >= dateMin)
+                var queryFTAttente = from tblE in cdc.tbl_Employe
+                                     join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                     where tblFT.approuver.Equals(false)
+                                     & (tblFT.dateCreation >= dateMin)
+                                     & (tblFT.dateCreation <= dateMax)
+                                     orderby tblFT.dateCreation descending
+
+                                     select tblE;
+
+                var queryFTApprouver = from tblE in cdc.tbl_Employe
+                                       join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                       where tblFT.approuver == true
+                                       & (tblFT.dateCreation >= dateMin)
                                  & (tblFT.dateCreation <= dateMax)
-                                 orderby tblFT.dateCreation descending
-                                 select tblE).Distinct();
+                                       orderby tblFT.dateCreation descending
+                                       select tblE;
 
-            Rptr_EmployeNonApprouver.DataSource = null;
-            Rptr_EmployeNonApprouver.DataBind();
+                Rptr_EmployeNonApprouver.DataSource = null;
+                Rptr_EmployeNonApprouver.DataSourceID = null;
+                Rptr_EmployeNonApprouver.DataBind();
 
-            Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
-            Rptr_EmployeNonApprouver.DataBind();
+                Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                Rptr_EmployeNonApprouver.DataBind();
+
+                List<tbl_Employe> listTableA = new List<tbl_Employe>();
 
 
-            var queryFTApprouver = (from tblE in cdc.tbl_Employe
-                                 join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                 where tblFT.approuver.Equals(true)
-                                 & (tblFT.dateCreation >= dateMin)
+
+                rptr_EmployeApprouver.DataSource = null;
+                rptr_EmployeApprouver.DataSourceID = null;
+                rptr_EmployeApprouver.DataBind();
+
+                rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
+                rptr_EmployeApprouver.DataBind();
+            }
+            else
+            {
+                var queryFTAttente = from tblE in cdc.tbl_Employe
+                                     join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                     where tblFT.approuver.Equals(false)
+                                     & (tblFT.dateCreation >= dateMin)
                                  & (tblFT.dateCreation <= dateMax)
-                                 orderby tblFT.dateCreation descending
-                                 select tblE).Distinct();
+                                     & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                     orderby tblFT.dateCreation descending
 
-            rptr_EmployeApprouver.DataSource = null;
-            rptr_EmployeApprouver.DataBind();
+                                     select tblE;
 
-            rptr_EmployeApprouver.DataSource = queryFTApprouver;
-            rptr_EmployeApprouver.DataBind();
+                var queryFTApprouver = from tblE in cdc.tbl_Employe
+                                       join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                       where tblFT.approuver == true
+                                       & (tblFT.dateCreation >= dateMin)
+                                 & (tblFT.dateCreation <= dateMax)
+                                       & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                       orderby tblFT.dateCreation descending
+                                       select tblE;
+
+                Rptr_EmployeNonApprouver.DataSource = null;
+                Rptr_EmployeNonApprouver.DataSourceID = null;
+                Rptr_EmployeNonApprouver.DataBind();
+
+                Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                Rptr_EmployeNonApprouver.DataBind();
+
+
+
+                rptr_EmployeApprouver.DataSource = null;
+                rptr_EmployeApprouver.DataSourceID = null;
+                rptr_EmployeApprouver.DataBind();
+
+                rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
+                rptr_EmployeApprouver.DataBind();
+            }
         }
 
         protected string CalculerTotalHeureEmploye(object tblFT)
@@ -440,6 +536,115 @@ namespace UrbanEco
 
 
             return null;
+        }
+
+
+        protected void CheckTempsSupp(int idEmp)
+        {
+            int noSemaine = GetWeekToYear(DateTime.Now);
+
+            var querrySemainePrecedente = (from tbl in cdc.tbl_FeuilleTemps
+                          where tbl.idEmploye == idEmp
+                          & tbl.noSemaine == (noSemaine - 1)
+                          select tbl);
+
+            var querrySemaineActuelle = (from tbl in cdc.tbl_FeuilleTemps
+                                           where tbl.idEmploye == idEmp
+                                           & tbl.noSemaine == noSemaine
+                                           select tbl);
+
+
+            float nbHeureSemainePrecedente = 0;
+            float nbHeureSemaineActuelle = 0;
+
+            foreach (tbl_FeuilleTemps tbl in querrySemainePrecedente)
+            {
+                nbHeureSemainePrecedente += tbl.nbHeure;
+            }
+
+            foreach (tbl_FeuilleTemps tbl in querrySemaineActuelle)
+            {
+                nbHeureSemaineActuelle += tbl.nbHeure;
+            }
+
+            if (nbHeureSemainePrecedente > 35)
+            {
+                var querry = from tbl in cdc.tbl_TempsSupp
+                             where tbl.idEmploye == idEmp
+                             & tbl.noSemaine == (noSemaine - 1)
+                             select tbl;
+
+                float nbHeureBH;
+
+                var querryBH = from tbl in cdc.tbl_BanqueHeure
+                               where tbl.idTypeHeure == 1
+                               & tbl.idEmploye == idEmp
+                               select tbl;
+
+                if (querry.Count() > 0)
+                {
+                    nbHeureBH = (float)querry.First().tempsSupp;
+                    if (nbHeureBH < nbHeureSemainePrecedente)
+                    {
+                        querryBH.First().nbHeure += nbHeureSemainePrecedente - nbHeureBH;
+                    }
+
+                    cdc.tbl_TempsSupp.DeleteOnSubmit(querry.First());
+                }
+                else
+                {
+                    querryBH.First().nbHeure += nbHeureSemainePrecedente - 35;
+                }
+
+                tbl_TempsSupp tblTemp = new tbl_TempsSupp();
+                tblTemp.idEmploye = idEmp;
+                tblTemp.noSemaine = noSemaine - 1;
+                tblTemp.tempsSupp = nbHeureSemainePrecedente;
+
+                cdc.tbl_TempsSupp.InsertOnSubmit(tblTemp);
+
+                cdc.SubmitChanges();
+            }
+
+            if (nbHeureSemaineActuelle > 35)
+            {
+                var querry = from tbl in cdc.tbl_TempsSupp
+                             where tbl.idEmploye == idEmp
+                             & tbl.noSemaine == noSemaine
+                             select tbl;
+
+                float nbHeureBH;
+
+                var querryBH = from tbl in cdc.tbl_BanqueHeure
+                               where tbl.idTypeHeure == 1
+                               & tbl.idEmploye == idEmp
+                               select tbl;
+
+                if (querry.Count() > 0)
+                {
+                    nbHeureBH = (float)querry.First().tempsSupp;
+                    if (nbHeureBH < nbHeureSemaineActuelle)
+                    {
+                        querryBH.First().nbHeure += nbHeureSemaineActuelle - nbHeureBH;
+                    }
+
+                    cdc.tbl_TempsSupp.DeleteOnSubmit(querry.First());
+                }
+                else
+                {
+                    querryBH.First().nbHeure += nbHeureSemaineActuelle - 35;
+                }
+
+                tbl_TempsSupp tblTemp = new tbl_TempsSupp();
+                tblTemp.idEmploye = idEmp;
+                tblTemp.noSemaine = noSemaine;
+                tblTemp.tempsSupp = nbHeureSemaineActuelle;
+
+                cdc.tbl_TempsSupp.InsertOnSubmit(tblTemp);
+
+                cdc.SubmitChanges();
+            }
+
         }
 
 
