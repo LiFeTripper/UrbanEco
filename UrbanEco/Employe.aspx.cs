@@ -22,19 +22,6 @@ namespace UrbanEco
 
         }
 
-        protected void Btn_Modif_Click(object sender, EventArgs e)
-        {
-            //Référence au bouton dans l'interface
-            Button button = (sender as Button);
-
-
-            //Ramassage du CommandArgument du bouton
-            string commandArgument = button.CommandArgument;
-
-            //Redirige l'adresse vers l'ajout de projet avec le id en argument
-            Response.Redirect("AjoutEmp.aspx?Emp=" + commandArgument);
-        }
-
         protected void Chkbx_Inactif_CheckedChanged(object sender, EventArgs e)
         {
             showInactive = !showInactive;
@@ -44,6 +31,19 @@ namespace UrbanEco
         protected void Btn_Ajout_Click(object sender, EventArgs e)
         {
             Response.Redirect("AjoutEmp.aspx");
+        }
+
+        protected void Btn_Modif_Click(object sender, ImageClickEventArgs e)
+        {
+            //Référence au bouton dans l'interface
+            ImageButton button = (sender as ImageButton);
+
+
+            //Ramassage du CommandArgument du bouton
+            string commandArgument = button.CommandArgument;
+
+            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            Response.Redirect("AjoutEmp.aspx?Emp=" + commandArgument);
         }
     }
 }

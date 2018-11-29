@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="Projets.aspx.cs" Inherits="UrbanEco.Projets1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .btn-option {
+            height: 30px !important;
+            width: 30px !important;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -38,14 +44,14 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e" visible='<%# (!Chkbx_Inactif.Checked) %>' runat="server">
-                                <th scope="col">ID</th>
+                                <%--<th scope="col">ID</th>--%>
                                 <th scope="col">Titre</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Status du projet</th>
                                 <th scope="col">Employé Responsable</th>
                                 <th scope="col">Date de début</th>
                                 <th scope="col">
-                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau Projet" OnClick="Btn_Ajout_Click" />
                                 </th>
                             </tr>
                         </thead>
@@ -56,9 +62,9 @@
             <ItemTemplate>
 
                 <tr style="border-bottom: 1px solid #23282e" visible='<%# (!Boolean.Parse(Eval("archiver").ToString()) && !Chkbx_Inactif.Checked) %>' runat="server" class="align-middle">
-                    <td>
+<%--                    <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true" />
-                    </td>
+                    </td>--%>
                     <td>
                         <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
                     </td>
@@ -75,8 +81,8 @@
                         <asp:Label ID="lbl_dateDebut" runat="server" Text='<%#Eval("dateDebut") %>' Font-Bold="true" />
                     </td>
                     <td>
-                        <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>' />
-                        <asp:Button ID="Btn_Cat" CssClass="btn btn-md btn-primary" runat="server" Text="Catégorie" OnClick="Btn_Cat_Click" CommandArgument='<%#Eval("idProjet") %>' />
+                        <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>'/>
+                        <asp:ImageButton CssClass="btn-option" ID="Btn_Cat" runat="server" src="Resources/folder_open.png" Style="margin-right: 10px;" OnClick="Btn_Cat_Click" CommandArgument='<%#Eval("idProjet") %>'/>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -86,14 +92,14 @@
                 </tbody>
                 <thead class="thead-dark">
                     <tr style="border-top: 5px solid #23282e" visible='<%# (!Chkbx_Inactif.Checked) %>' runat="server">
-                        <th scope="col">ID</th>
+                        <%--<th scope="col">ID</th>--%>
                         <th scope="col">Titre</th>
                         <th scope="col">Description</th>
                         <th scope="col">Status du projet</th>
                         <th scope="col">Employé Responsable</th>
                         <th scope="col">Date de début</th>
                         <th scope="col">
-                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau Projet" OnClick="Btn_Ajout_Click" />
                         </th>
                     </tr>
                 </thead>
@@ -118,7 +124,7 @@
                                 <th scope="col">Employé Responsable</th>
                                 <th scope="col">Date de début</th>
                                 <th scope="col">
-                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
                                 </th>
                             </tr>
                         </thead>
@@ -147,8 +153,9 @@
                         <asp:Label ID="lbl_dateDebut" runat="server" Text='<%#Eval("dateDebut") %>' Font-Bold="true" />
                     </td>
                     <td>
-                        <asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modification" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>' />
-                        <asp:Button ID="Btn_Cat" CssClass="btn btn-md btn-primary" runat="server" Text="Catégorie" OnClick="Btn_Cat_Click" CommandArgument='<%#Eval("idProjet") %>' />
+                        <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>'/>
+                        <%--<asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modifier" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>' />--%>
+                        <%--<asp:Button ID="Btn_Cat" CssClass="btn btn-md btn-primary" runat="server" Text="Ajouter des catégories" OnClick="Btn_Cat_Click" CommandArgument='<%#Eval("idProjet") %>' />--%>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -165,7 +172,7 @@
                         <th scope="col">Employé Responsable</th>
                         <th scope="col">Date de début</th>
                         <th scope="col">
-                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
                         </th>
                     </tr>
                 </thead>
