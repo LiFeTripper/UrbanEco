@@ -14,7 +14,7 @@
         <div>
             <div class="form-group mb-4 col-6 mx-auto">
                 <label for="Tbx_Titre">Titre</label>
-                <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control"></asp:TextBox>
+                <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control" required="true"></asp:TextBox>
             </div>
             <div class="form-group mb-4 col-6 mx-auto">
                 <label for="Tbx_Description">Description</label>

@@ -25,7 +25,7 @@
                         Prénom <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control" required="true"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -39,7 +39,7 @@
                         Nom <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control" required="true"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -97,7 +97,7 @@
                         Nom d'utilisateur <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_username" runat="server" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="Tbx_username" runat="server" class="form-control" required="true"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -111,7 +111,7 @@
                         Mot de passe
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_password" runat="server" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="Tbx_password" runat="server" class="form-control" required="true"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
