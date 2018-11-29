@@ -206,7 +206,14 @@ namespace UrbanEco
                     tbFT.idEmploye = Layout.GetUserConnected().idEmploye;
                 }
                 
-                tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
+                if(tbx_categorie.SelectedItem.Text == "Aucune")
+                {
+                    tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
+                }
+                else
+                {
+                    tbFT.idCat = null;
+                }
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
                 tbFT.dateCreation = DateTime.Parse(Calendar1.Value);
@@ -229,7 +236,14 @@ namespace UrbanEco
 
                 tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
 
-                temp.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
+                if (tbx_categorie.SelectedItem.Text == "Aucune")
+                {
+                    temp.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
+                }
+                else
+                {
+                    temp.idCat = null;
+                }
                 temp.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 temp.nbHeure = int.Parse(tbx_nbHeure.Text);
                 temp.dateCreation = DateTime.Parse(Calendar1.Value);
