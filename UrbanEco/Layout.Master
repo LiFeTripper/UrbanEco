@@ -26,7 +26,7 @@
     <script src="lib/js/bootbox.min.js"></script>
     <script src="lib/js/jquery.multi-select.js"></script>
 
-    
+
 
 </head>
 <body>
@@ -77,11 +77,9 @@
                         Rapport Employés
                     </a>
                     <a href="ParametreAdmin.aspx">
-                        <i class="fas fa-gamepad"></i>
+                        <i class="fas fa-wrench"></i>
                         Paramètre Administrateur
                     </a>
-                    <input id="butDelete" runat="server" class="form-control btn-danger mx-auto" type="button" value="Déconnection" onclick="Btn_Deconnect_Click" />
-                    <%--<asp:Button ID="Btn_DeconnectAdmin" runat="server" Text="Déconnexion" OnClick="Btn_Deconnect_Click" CssClass="form-control btn-danger mx-auto" UseSubmitBehavior="false"/>--%>
                 </li>
 
                 <%--MENU UTILISATEUR NORMAL--%>
@@ -94,6 +92,7 @@
                         <i class="fas fa-tasks"></i>
                         Feuille de temps
                     </a>
+
                 </li>
                 <li runat="server" id="liEmpBureau">
                     <a href="GestionDepense.aspx">
@@ -108,9 +107,13 @@
                         <i class="fas fa-piggy-bank"></i>
                         Banque d'heures
                     </a>
-                    <%--<asp:Button ID="Btn_DeconnectUser" runat="server" Text="Déconnexion" OnClick="Btn_Deconnect_Click" CssClass="form-control btn-danger mx-auto" UseSubmitBehavior="false"/>--%>
                 </li>
             </ul>
+
+            <div class="mx-2 ">
+                <label id="Lbl_HelloUser1" runat="server" class="form-control mt-4 mb-3 mx-auto"></label>
+                <button id="Btn_DelogAdmin" runat="server" class="form-control btn-danger mx-auto ml-2 mr-2" onserverclick="Btn_Deconnect_Click">Déconnection</button>
+            </div>
         </nav>
 
         <%--BODY--%>
@@ -136,7 +139,7 @@
         <%--<p>&copy; Company 2017-2018</p>--%>
     </footer>
 
-    
+
 </body>
 
 </html>
