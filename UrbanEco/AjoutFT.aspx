@@ -85,7 +85,7 @@
                         Durée (hrs) <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control" required="true"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

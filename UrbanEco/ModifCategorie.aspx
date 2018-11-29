@@ -26,7 +26,7 @@
                          Titre <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control" required="true"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -43,6 +43,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
+
         </div>
 
         <%--DIV DES EMPLOYÉS--%>
