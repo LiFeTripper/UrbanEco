@@ -13,7 +13,7 @@
         <%--DIV DES TITRE--%>
         <div>
             <div class="form-group mb-4 col-6 mx-auto">
-                <label for="Tbx_Titre">Titre</label>
+                <label for="Tbx_Titre">Titre <b style="color:red">*</b></label>
                 <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control"></asp:TextBox>
             </div>
             <div class="form-group mb-4 col-6 mx-auto">

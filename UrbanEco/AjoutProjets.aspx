@@ -47,7 +47,7 @@
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        Titre du projet
+                        Titre du projet <b style="color:red">*</b>
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
                         <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control"></asp:TextBox>                    
@@ -90,7 +90,7 @@
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        Status
+                        Status <b style="color:red">*</b>
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
                          <asp:DropDownList ID="Ddl_Status" runat="server" DataSourceID="LinqStatus" DataTextField="nomStatus" DataValueField="idStatus" class="form-control"></asp:DropDownList>

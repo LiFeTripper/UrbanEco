@@ -43,7 +43,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Employés
+                        Employés <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true"></asp:DropDownList>
@@ -56,7 +56,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Projets
+                        Projets <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
@@ -82,7 +82,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Durée (hrs)
+                        Durée (hrs) <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
@@ -109,7 +109,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow CssClass="col-md-12">
                     <asp:TableHeaderCell CssClass="form-control">
-                        <h5 style="margin: auto !important;" id="dateFormated" runat="server"></h5>
+                        <b style="color:red; float:right;">*</b><h5  id="dateFormated" runat="server"></h5>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <input type="date" id="Calendar1" style="margin: auto;" runat="server" class="form-control" />
