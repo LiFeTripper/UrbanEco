@@ -13,8 +13,13 @@
         <%--DIV DES TITRE--%>
         <div>
             <div class="form-group mb-4 col-6 mx-auto">
+<<<<<<< HEAD
                 <label for="Tbx_Titre">Titre</label>
                 <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control" required="true"></asp:TextBox>
+=======
+                <label for="Tbx_Titre">Titre <b style="color:red">*</b></label>
+                <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control"></asp:TextBox>
+>>>>>>> 613a8b3faf6485cf966673244079a8ec3354c986
             </div>
             <div class="form-group mb-4 col-6 mx-auto">
                 <label for="Tbx_Description">Description</label>
