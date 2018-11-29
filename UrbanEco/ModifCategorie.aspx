@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="ModifCategorie.aspx.cs" Inherits="UrbanEco.ModifCategorie" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .asp-table {
+            table-layout: fixed;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
@@ -10,53 +15,91 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <form runat="server">
-        <%--DIV DES TITRE--%>
-        <div>
-            <div class="form-group mb-4 col-6 mx-auto">
-<<<<<<< HEAD
-                <label for="Tbx_Titre">Titre</label>
-                <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control" required="true"></asp:TextBox>
-=======
-                <label for="Tbx_Titre">Titre <b style="color:red">*</b></label>
-                <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control"></asp:TextBox>
->>>>>>> 613a8b3faf6485cf966673244079a8ec3354c986
-            </div>
-            <div class="form-group mb-4 col-6 mx-auto">
-                <label for="Tbx_Description">Description</label>
-                <asp:TextBox ID="Tbx_Description" runat="server" class="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group mb-4 mt-4 col-6 mx-auto">
-                <asp:Button ID="Btn_Annuler" runat="server" Text="Annuler" Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" OnClick="Btn_Annuler_Click" />
-                <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer" Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-success input-box" OnClick="Btn_Enregistrer_Click" />
-            </div>
+
+
+
+        <%--SOUS-CATÉGORIE--%>
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control" Style="width: 100%;">
+                         Titre <b style="color:red">*</b>
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control" required="true"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control" Style="width: 100%;">
+                        Description
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="Tbx_Description" runat="server" class="form-control"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+
         </div>
 
         <%--DIV DES EMPLOYÉS--%>
-        <div class="form-group mb-4 mt-3 col-6 mx-auto" runat="server" id="Div_Multiselect">
-            <h1 class="align-content-center">Sélection des employés</h1>
-            <!--MULTISELECT-->
-            <div class="justify-content-lg-center input-group mb-3 col-12">
-                <select id="Multiselection" multiple="multiple">
-                    <optgroup label='Bureau'>
-                        <asp:Repeater runat="server" ID="RepBureau">
-                            <ItemTemplate>
-                                <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </optgroup>
-                    <optgroup label='Terrain'>
-                        <asp:Repeater runat="server" ID="RepTerrain">
-                            <ItemTemplate>
-                                <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </optgroup>
-                </select>
-            </div>
-            <input type="text" runat="server" id="hiddenFieldEmployeDeselect" />
-            <input type="text" runat="server" id="hiddenFieldEmploye" />
-            <input type="text" runat="server" id="hiddenFieldTotal" />
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table mx-auto" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control col-lg-12" style="text-align:center;">
+                        Assignation des employés
+                    </asp:TableHeaderCell>
+                </asp:TableRow>
+                <asp:TableRow CssClass="align-content-center mx-auto">
+                    <asp:TableCell CssClass="align-content-center mx-auto">
+                        <div class="justify-content-lg-center input-group mb-3 col-12">
+                            <select id="Multiselection" multiple="multiple" style="height:500px !important;">
+                                <optgroup label='Bureau'>
+                                    <asp:Repeater runat="server" ID="RepBureau">
+                                        <ItemTemplate>
+                                            <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </optgroup>
+                                <optgroup label='Terrain'>
+                                    <asp:Repeater runat="server" ID="RepTerrain">
+                                        <ItemTemplate>
+                                            <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
         </div>
+
+            <input type="text" runat="server" id="hiddenFieldEmployeDeselect" hidden />
+            <input type="text" runat="server" id="hiddenFieldEmploye" hidden />
+            <input type="text" runat="server" id="hiddenFieldTotal" hidden />
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableCell CssClass="col-md-4">
+                        <asp:Button ID="Btn_Annuler" runat="server" Text="Annuler" Style="width: 100% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" OnClick="Btn_Annuler_Click" />
+                    </asp:TableCell>
+                    <asp:TableCell CssClass="col-md-4">
+                        &nbsp;            
+                    </asp:TableCell>
+                    <asp:TableCell CssClass="col-md-4">
+                        <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer" Style="width: 100% !important; float: right;" CssClass="btn btn-lg btn-success input-box" OnClick="Btn_Enregistrer_Click" />
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
+
     </form>
 
     <script>
@@ -99,7 +142,7 @@
                 var htmlHiddenFieldEmploye = document.getElementById('<%=hiddenFieldEmploye.ClientID%>');
                 htmlHiddenFieldEmploye.value = selected;
 
-                
+
                 //Ajustement de la liste de deselected pour un update
                 var htmlStorageDeselect = document.getElementById('<%=hiddenFieldEmployeDeselect.ClientID%>');
                 htmlStorageDeselect.value = deselected;
@@ -107,8 +150,8 @@
 
             selectableOptgroup: true,
             keepOrder: true,
-            selectableHeader: "<div class='custom-header'>Disponible</div>",
-            selectionHeader: "<div class='custom-header'>Sélectionné</div>",
+            selectableHeader: "<div class='form-control'>Disponible</div>",
+            selectionHeader: "<div class='form-control'>Sélectionné</div>",
         });
         //RÉUSSI
     </script>

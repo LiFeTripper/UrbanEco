@@ -31,33 +31,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_Description;
         
         /// <summary>
-        /// Contrôle Btn_Annuler.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Annuler;
-        
-        /// <summary>
-        /// Contrôle Btn_Enregistrer.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Enregistrer;
-        
-        /// <summary>
-        /// Contrôle Div_Multiselect.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Multiselect;
-        
-        /// <summary>
         /// Contrôle RepBureau.
         /// </summary>
         /// <remarks>
@@ -101,5 +74,23 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldTotal;
+        
+        /// <summary>
+        /// Contrôle Btn_Annuler.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Annuler;
+        
+        /// <summary>
+        /// Contrôle Btn_Enregistrer.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Enregistrer;
     }
 }
