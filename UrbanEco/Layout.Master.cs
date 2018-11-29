@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace UrbanEco
 {
@@ -72,6 +73,12 @@ namespace UrbanEco
         public static string ToCalendarDate(DateTime date)
         {
             return date.ToString("yyyy-MM-dd");
+        }
+
+        protected void Btn_Deconnect_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect(FormsAuthentication.LoginUrl);
         }
     }
 }

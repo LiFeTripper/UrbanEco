@@ -9,15 +9,9 @@ namespace UrbanEco
 {
     public partial class ModifCategorie : System.Web.UI.Page
     {
-<<<<<<< HEAD
         string projet;
         string categorie;
         string mode;
-=======
-        static string argument;
-        static string argument2;
-        static string mode;
->>>>>>> 1bbacb34ea2efa6ae11b7434046c82b29653667a
 
         static bool SousCat;
         static bool modif;
