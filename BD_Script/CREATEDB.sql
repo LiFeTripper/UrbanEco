@@ -133,6 +133,7 @@ CREATE TABLE tbl_FeuilleTemps
 	idEmploye INT NOT NULL,
 	nbHeure FLOAT(24) NOT NULL,
 	commentaire VARCHAR(MAX),
+	noSemaine INT DEFAULT 0,
 	dateCreation SMALLDATETIME DEFAULT GETDATE(),
 	approuver BIT DEFAULT 0,
 

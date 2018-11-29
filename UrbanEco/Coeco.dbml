@@ -61,6 +61,7 @@
       <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nbHeure" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="commentaire" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="noSemaine" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dateCreation" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
       <Column Name="approuver" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="tbl_Employe_tbl_FeuilleTemps" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
@@ -73,6 +74,12 @@
       <Column Name="idKilometrage" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="prixKilometrageVoiture" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="prixKilometrageCamion" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_PremierDimanche" Member="tbl_PremierDimanche">
+    <Type Name="tbl_PremierDimanche">
+      <Column Name="idPremierDimanche" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="dateDimanche" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Projet" Member="tbl_Projet">
@@ -149,12 +156,6 @@
       <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
       <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeDepense" ThisKey="idType" OtherKey="idTypeEmploye" Type="tbl_TypeDepense" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_PremierDimanche" Member="tbl_PremierDimanche">
-    <Type Name="tbl_PremierDimanche">
-      <Column Name="idPremierDimanche" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="dateDimanche" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
