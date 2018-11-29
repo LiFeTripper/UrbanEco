@@ -20,7 +20,7 @@ namespace UrbanEco
 
         protected void Btn_Ajout_Click(object sender, EventArgs e)
         {
-            //Redirige l'adresse vers un nouveau projet avec l'argument étoile
+            //Redirige l'adresse vers un nouveau projet avec l'projet étoile
             Response.Redirect("AjoutProjets.aspx?Prj=*");
         }
 
