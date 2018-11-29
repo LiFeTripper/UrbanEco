@@ -15,7 +15,7 @@ namespace UrbanEco
         protected void Page_Load(object sender, EventArgs e)
         {
             insert = false;
-            //Recherche de l'argument dans l'adresse
+            //Recherche de l'projet dans l'adresse
             argument = Request.QueryString["Emp"];
 
             //Choix entre un projet ou un nouveau projet

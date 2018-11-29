@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="True" CodeBehind="AjoutCategorie.aspx.cs" Inherits="UrbanEco.AjoutCategorie" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+    .btn-option {
+        height: 30px !important;
+        width: 30px !important;
+    }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -80,9 +86,8 @@
                     </td>
                     <%--BOUTON AJOUT SOUS-CAT POUR CETTE CATEGORIE--%>
                     <td>
-                        <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjout" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
-                        <asp:Button class="btn btn-primary" ID="Btn_AjoutSSProjet" runat="server" Text="Ajout" OnClick="Btn_AjoutSSProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>' />
-                        <asp:Button class="btn btn-primary" ID="Btn_ModifSousProjet" runat="server" Text="Modification" OnClick="Btn_ModifSousProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>' />
+                        <asp:ImageButton CssClass="btn-option" ID="Btn_ModifSousProjet" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_ModifSousProjet_Click" CommandArgument='<%# Eval("idProjetCat")%>' />
+                        <asp:ImageButton CssClass="btn-option" ID="Btn_AjoutSSProjet" runat="server" src="Resources/folder_open.png" Style="margin-right: 10px;" OnClick="Btn_AjoutSSProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>'/>
                     </td>
                 </tr>
 
@@ -131,7 +136,7 @@
                             <%--BOUTON AJOUT D'EMPLOYÉ DANS SOUS-CATÉGORIE--%>
                             <td>
                                 <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Employés</button>--%>
-                                <asp:Button class="btn btn-primary" ID="Btn_ModifSSProjet" runat="server" Text="Modification" OnClick="Btn_ModifSousProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>' />
+                                <asp:ImageButton CssClass="btn-option" ID="Btn_ModifSousProjet" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_ModifSousProjet_Click" CommandArgument='<%# Eval("idProjetCat")%>' />
                             </td>
                         </tr>
 

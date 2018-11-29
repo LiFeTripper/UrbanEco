@@ -119,26 +119,20 @@
 
         <%--inactif--%>
         <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <table style="width: 100% !important; float: left;">
-                            <tr>
-                                <%--CHECKBOX INACTIF OU ACTIF--%>
-                                <td style="width: 1%;" class="mb-3">
-                                    <label class="switch" style="float: left;">
-                                        <asp:CheckBox runat="server" ID="Chkbx_Inactif" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <h4 style="float: left;">Inactif</h4>
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+            <table style="width: 100% !important;">
+                <tr class="mb-3">
+                    <%--CHECKBOX INACTIF OU ACTIF--%>
+                    <td style="width: 50%;">
+                        <label class="switch" style="float: right;">
+                            <asp:CheckBox ID="Chkbx_Inactif" runat="server" />
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <h4 style="float: left;">Inactif</h4>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <%--btn--%>

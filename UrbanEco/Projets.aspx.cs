@@ -20,35 +20,8 @@ namespace UrbanEco
 
         protected void Btn_Ajout_Click(object sender, EventArgs e)
         {
-            //Redirige l'adresse vers un nouveau projet avec l'argument étoile
+            //Redirige l'adresse vers un nouveau projet avec l'projet étoile
             Response.Redirect("AjoutProjets.aspx?Prj=*");
-        }
-
-        protected void Btn_Modif_Click(object sender, EventArgs e)
-        {
-            //Référence au bouton dans l'interface
-            Button button = (sender as Button);
-            
-
-            //Ramassage du CommandArgument du bouton
-            string commandArgument = button.CommandArgument;
-
-            //Redirige l'adresse vers l'ajout de projet avec le id en argument
-            Response.Redirect("AjoutProjets.aspx?Prj=" + commandArgument);
-
-        }
-
-        protected void Btn_Cat_Click(object sender, EventArgs e)
-        {
-            //Référence au bouton dans l'interface
-            Button button = (sender as Button);
-
-            //Ramassage du CommandArgument du bouton
-            string commandArgument = button.CommandArgument;
-
-            //Redirige l'adresse vers l'ajout de projet avec le id en argument
-            Response.Redirect("AjoutCategorie.aspx?Prj=" + commandArgument);
-            //Response.Redirect("AjoutCategorie.aspx");
         }
 
         protected void Chkbx_Inactif_CheckedChanged(object sender, EventArgs e)
@@ -71,6 +44,32 @@ namespace UrbanEco
                 
                 
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void Btn_Modif_Click(object sender, ImageClickEventArgs e)
+        {
+            //Référence au bouton dans l'interface
+            ImageButton button = (sender as ImageButton);
+
+
+            //Ramassage du CommandArgument du bouton
+            string commandArgument = button.CommandArgument;
+
+            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            Response.Redirect("AjoutProjets.aspx?Prj=" + commandArgument);
+        }
+
+        protected void Btn_Cat_Click(object sender, ImageClickEventArgs e)
+        {
+            //Référence au bouton dans l'interface
+            ImageButton button = (sender as ImageButton);
+
+            //Ramassage du CommandArgument du bouton
+            string commandArgument = button.CommandArgument;
+
+            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            Response.Redirect("AjoutCategorie.aspx?Prj=" + commandArgument);
+            //Response.Redirect("AjoutCategorie.aspx");
         }
     }
 }

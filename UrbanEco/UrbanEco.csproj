@@ -108,6 +108,7 @@
     <Content Include="Projets.aspx" />
     <Content Include="RapportProjet.aspx" />
     <Content Include="Resources\checkmark.png" />
+    <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

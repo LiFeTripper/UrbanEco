@@ -47,7 +47,16 @@ CREATE TABLE tbl_Employe
 INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
 VALUES ('Marc-André', 'Fortin', 1 , '123-456-7890', 'monemail@gmail.com', 'marc', 'pwd123', 0)
 INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
+VALUES ('Mike', 'Ward', 1 , '123-456-7890', 'monemail@gmail.com', 'mike', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
 VALUES ('Mathieu', 'Rioux', 2 , '123-456-7890', 'monemail@gmail.com', 'mathieu', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
+VALUES ('Serge', 'Postigo', 2 , '123-456-7890', 'monemail@gmail.com', 'serge', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
+VALUES ('Denis', 'Drolet', 2 , '123-456-7890', 'monemail@gmail.com', 'denis', 'pwd123', 0)
+
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
+VALUES ('Stéphane', 'Pelletier', 1 , '123-456-7890', 'monemail@gmail.com', 'stéphane', 'pwd123', 1)
 INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
 VALUES ('David', 'Jalbert', 2 , '123-456-7890', 'monemail@gmail.com', 'david', 'pwd123', 1)
 
@@ -72,11 +81,11 @@ CREATE TABLE tbl_Projet
 )
 
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Mon premier projet', 'Une belle description', 1, 1, 24, 0)
+VALUES ('Collecte qui carbure!	', 'Une belle description', 1, 1, 24, 0)
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Mon deuxième projet', 'Une autre belle description', 2, 2, 12, 0)
+VALUES ('Écocentres', 'Une autre belle description', 2, 2, 12, 0)
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Mon troisième projet', 'Une tout autre belle description', 3, 3, 40, 1)
+VALUES ('Peinture Boomerang', 'Une tout autre belle description', 3, 3, 40, 1)
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
 VALUES ('Vacances et congés', 'Congé, vacances et temps supplémentaires', 1, 1, 40, 0)
 
@@ -94,25 +103,25 @@ CREATE TABLE tbl_ProjetCat
 )
 
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, NULL, 'Sous-Categorie Projet 1', 'Une description');
+VALUES (1, NULL, 'Général', 'Projet 1');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, 1, 'Sous-Sous-Categorie 1 Projet 1', 'Une description 2');
+VALUES (1, 1, 'Affiche', 'Projet 1 Sous-projet 1');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, 1, 'Sous-Sous-Categorie 2 Projet 1', 'Une description 2');
+VALUES (1, 1, 'Capsule Vidéo', 'Projet 1 Sous-projet 1');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, NULL, 'MRC de Kamouraska', 'Projet 1');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, 1, 'Kiosques', 'Projet 1 Sous-projet 2');
 
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (2, NULL, 'Sous-Categorie Projet 2', 'Une description');
+VALUES (2, NULL, 'Éco-Centre La Pocatière', 'Projet 2');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (2, 4, 'Sous-Sous-Categorie 1 Projet 2', 'Une description 2');
+VALUES (2, 4, 'Accueil et gestion quotidienne', 'Projet 2 Sous-Projet 1');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (2, 4, 'Sous-Sous-Categorie 2 Projet 2', 'Une description 2');
+VALUES (2, 4, 'Gestion administrative', 'Projet 2 Sous-Projet 1');
 
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (3, NULL, 'Sous-Categorie Projet 3', 'Une description');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (3, 7, 'Sous-Sous-Categorie 1 Projet 3', 'Une description 2');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (3, 7, 'Sous-Sous-Categorie 2 Projet 3', 'Une description 2');
+VALUES (3, NULL, 'Vente de peinture et administration', 'Projet 3');
 
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
 VALUES (4, NULL, 'Congés fériés', 'Utilise les heures de congés fériés de la banque dheures');
@@ -144,17 +153,17 @@ CREATE TABLE tbl_FeuilleTemps
 )
 
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE());
+VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE()-10);
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE());
+VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE()-10);
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (3, 5, 3, 15, 'Ce fut une excellente journée', GETDATE());
+VALUES (3, 5, 3, 15, 'Ce fut une excellente journée', GETDATE()-10);
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE());
+VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE()-5);
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE());
+VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE()-5);
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (3, 5, 3, 15, 'Ce fut une excellente journée', GETDATE());
+VALUES (3, 5, 3, 15, 'Ce fut une excellente journée', GETDATE()-5);
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
 VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE());
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
