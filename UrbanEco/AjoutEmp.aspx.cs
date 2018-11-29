@@ -85,6 +85,16 @@ namespace UrbanEco
                 tableEmp.inactif = Chkbx_Inactif.Checked;
 
                 context.tbl_Employe.InsertOnSubmit(tableEmp);
+                context.SubmitChanges();
+
+                for (int i = 0; i < 5;i++)
+                {
+                    tbl_BanqueHeure bh = new tbl_BanqueHeure();
+                    bh.idEmploye = tableEmp.idEmploye;
+                    bh.idTypeHeure = i + 1;
+                    bh.nbHeure = bh.nbHeureInitial = 0;
+                    context.tbl_BanqueHeure.InsertOnSubmit(bh);
+                }
             }
             //Modification dans la base de données
             else
@@ -103,14 +113,97 @@ namespace UrbanEco
                 query.username = Tbx_username.Text;
                 query.password = Tbx_password.Text;
                 query.inactif = Chkbx_Inactif.Checked;
+
+                var queryVerifTypeEmp = (from tbl in context.tbl_ProjetCatEmploye
+                                        where tbl.idEmploye == id
+                                        & tbl.idCategorie == 12
+                                        select tbl);
+                
+                if(query.idTypeEmpl == 2)
+                {
+                    if(queryVerifTypeEmp.Count() != 0)
+                    {
+                        context.tbl_ProjetCatEmploye.DeleteOnSubmit(queryVerifTypeEmp.First());
+                    }
+                }
+                else if(query.idTypeEmpl == 1)
+                {
+                    if(queryVerifTypeEmp.Count() == 0)
+                    {
+                        tbl_ProjetCatEmploye pceTemp = new tbl_ProjetCatEmploye();
+
+                        pceTemp.idProjet = 4;
+                        pceTemp.idEmploye = query.idEmploye;
+                        pceTemp.idCategorie = 12;
+                        context.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp);
+                    }
+                }
             }
 
             //Étape finale SUBMIT CHANGES
             context.SubmitChanges();
 
+            if (insert == true)
+            {
+                int indexCat = 10;
+
+                if ((from tbl in context.tbl_Employe
+                     orderby tbl.idEmploye descending
+                     select tbl).First().idTypeEmpl == 1)
+                {
+                    tbl_ProjetCatEmploye[] pceTemp = new tbl_ProjetCatEmploye[5];
+                    for (int i = 0; i < 5; i++)
+                    {
+                        pceTemp[i] = new tbl_ProjetCatEmploye();
+
+                        pceTemp[i].idProjet = 4;
+                        pceTemp[i].idEmploye = (from tbl in context.tbl_Employe
+                                                orderby tbl.idEmploye descending
+                                                select tbl).First().idEmploye;
+                        pceTemp[i].idCategorie = indexCat;
+
+                        indexCat++;
+
+                        context.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
+                        context.SubmitChanges();
+                    }
+                }
+                else
+                {
+                    tbl_ProjetCatEmploye[] pceTemp = new tbl_ProjetCatEmploye[4];
+                    for (int i = 0; i < 4; i++)
+                    {
+                        pceTemp[i] = new tbl_ProjetCatEmploye();
+
+                        pceTemp[i].idProjet = 4;
+                        pceTemp[i].idEmploye = (from tbl in context.tbl_Employe
+                                                orderby tbl.idEmploye descending
+                                                select tbl).First().idEmploye;
+                        pceTemp[i].idCategorie = indexCat;
+
+                        indexCat++;
+
+                        //Pour skip la catégorie Temps Supplémentaires
+                        if (indexCat == 12)
+                            indexCat++;
+
+                        context.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
+                        context.SubmitChanges();
+                    }
+                }
+            }
+
+
+
+
             //Redirection vers la page employés
             Response.Redirect("Employe.aspx");
 
     }
+
+        protected void btn_annuler_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Employe.aspx");
+        }
     }
 }

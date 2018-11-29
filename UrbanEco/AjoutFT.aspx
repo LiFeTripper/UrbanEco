@@ -24,161 +24,162 @@
             .table-custom > table {
                 width: 100% !important;
             }
+
+        .asp-table {
+            table-layout: fixed;
+        }
     </style>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    <h1>Ajout de Feuille de Temps</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
+
+
     <form runat="server" style="text-align: center;" class="container center col-12">
-        <div style="border: 3px solid green; padding: 5px 5px 5px 5px;">
 
-            <div>
-                <h1>
-                    <asp:Label ID="lbl_Top" runat="server" Text="Ajout de Feuille de Temps"></asp:Label>
-                </h1>
-                <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
-            </div>
-
-            <div runat="server" id="alert_failed" visible="false" class="alert alert-danger" style="width:100%;">Une erreur est survenue !</div>
-
-            <div class="row justify-content-md-center" style="margin-bottom: 100px;">
-                <div class="col-md-offset-3 col-6">
-                     <table style="width: 100% !important;" runat="server" id="tblEmploye" visible="false">
-                         <tr>
-                            <th>
-                                <h5 class="input-title">Employés</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:DropDownList CssClass="input-box" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true"></asp:DropDownList>
-                            </td>
-                        </tr>
-                         </table>
-                    <table style="width: 100% !important;">
-                        
-                        
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Projet</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:DropDownList CssClass="input-box" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Sous-Catégorie</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:DropDownList CssClass="input-box" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <%--NO TEL ET EMAIL--%>
-                    <table style="width: 100% !important;">
-                        <%--NO TEL--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Durée (hrs)</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:TextBox ID="tbx_nbHeure" runat="server" class="input-box"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <%--EMAIL--%>
-                        <tr>
-                            <th>
-                                <h5 class="input-title">Commentaire</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <textarea id="txa_comments" cols="50" rows="4" runat="server" style="width: 100%;"></textarea>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <%--USERNAME ET PASSWORD--%>
-                    <table style="width: 100% !important;">
-                        <tr>
-                            <th>
-                                <h5>Date</h5>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="date" id="Calendar1" style="margin: auto;" runat="server" />
-                                
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5 class="center" style="margin: auto !important;" id="dateFormated" runat="server"></h5>
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>
-                                
-                                <asp:Button ID="Btn_Enreg" CssClass="btn btn-lg btn-success" style="margin-top:20px" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click"/>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <%--On change for date--%>
-           <script>
-               var input = document.getElementById('<%=Calendar1.ClientID%>')
-               console.log(input);
-               UpdateDateFormat();
-
-               input.onchange = function () {
-                   UpdateDateFormat();
-                   //UpdateDateRep();
-               }
-
-               function UpdateDateFormat() {
-
-                   var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
-
-                    if (input.value == "") {
-                        dateFormated.innerText = "Veuillez sélectionner la date";
-                        return;
-                    }
-
-                    var format = FormatYear(input.value);
-
-                    dateFormated.innerText = format;
-                   
-
-               }
-               
-
-               function FormatYear(yearString) {
-
-                   var split = yearString.split('-');
-
-                   if (split.length != 3)
-                       split = yearString.split('/');
-
-                   var year = split[0];
-                   var month = parseInt(split[1]);
-                   var day = parseInt(split[2]);
-
-                   var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-
-                   return day + " " + months[month - 1] + " " + year;;
-               }
-        </script>
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="tbl_employe" visible="false">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Employés
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
         </div>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" >
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Projets
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Sous-Catégorie
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Durée (hrs)
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Commentaire
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <textarea id="txa_comments" cols="50" rows="4" runat="server" style="width: 100%;" class="form-control"></textarea>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" style="margin-bottom: 0px;">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow CssClass="col-md-12">
+                    <asp:TableHeaderCell CssClass="form-control">
+                        <h5 style="margin: auto !important;" id="dateFormated" runat="server"></h5>
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="date" id="Calendar1" style="margin: auto;" runat="server" class="form-control" />
+                    </asp:TableCell>
+                </asp:TableRow>
+
+            </asp:Table>
+        </div>
+
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" style="margin-bottom: 0px;">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow CssClass="col-md-12">
+                    <asp:TableCell CssClass="col-md-4">
+                        <asp:Button ID="btn_annuler" CssClass="btn btn-lg btn-danger col-md-12" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
+                    </asp:TableCell>
+                    <asp:TableCell CssClass="col-md-4">
+                        &nbsp;
+                    </asp:TableCell>
+                    <asp:TableCell CssClass="col-md-4">
+                        <asp:Button ID="Btn_Enreg" CssClass="btn btn-lg btn-success col-md-12" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click" />
+                    </asp:TableCell>
+                </asp:TableRow>
+
+            </asp:Table>
+        </div>
+
+        <%--On change for date--%>
+        <script>
+            var input = document.getElementById('<%=Calendar1.ClientID%>')
+            console.log(input);
+            UpdateDateFormat();
+
+            input.onchange = function () {
+                UpdateDateFormat();
+                //UpdateDateRep();
+            }
+
+            function UpdateDateFormat() {
+
+                var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
+
+                if (input.value == "") {
+                    dateFormated.innerText = "Veuillez sélectionner la date";
+                    return;
+                }
+
+                var format = FormatYear(input.value);
+
+                dateFormated.innerText = format;
+
+
+            }
+
+
+            function FormatYear(yearString) {
+
+                var split = yearString.split('-');
+
+                if (split.length != 3)
+                    split = yearString.split('/');
+
+                var year = split[0];
+                var month = parseInt(split[1]);
+                var day = parseInt(split[2]);
+
+                var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+                return day + " " + months[month - 1] + " " + year;;
+            }
+        </script>
+        
     </form>
 </asp:Content>

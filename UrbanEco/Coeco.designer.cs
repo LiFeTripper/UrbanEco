@@ -63,6 +63,9 @@ namespace UrbanEco
     partial void Inserttbl_Status(tbl_Status instance);
     partial void Updatetbl_Status(tbl_Status instance);
     partial void Deletetbl_Status(tbl_Status instance);
+    partial void Inserttbl_TempsSupp(tbl_TempsSupp instance);
+    partial void Updatetbl_TempsSupp(tbl_TempsSupp instance);
+    partial void Deletetbl_TempsSupp(tbl_TempsSupp instance);
     partial void Inserttbl_TypeDepense(tbl_TypeDepense instance);
     partial void Updatetbl_TypeDepense(tbl_TypeDepense instance);
     partial void Deletetbl_TypeDepense(tbl_TypeDepense instance);
@@ -186,6 +189,14 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_Status>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_TempsSupp> tbl_TempsSupp
+		{
+			get
+			{
+				return this.GetTable<tbl_TempsSupp>();
 			}
 		}
 		
@@ -930,6 +941,8 @@ namespace UrbanEco
 		
 		private EntitySet<tbl_ProjetCatEmploye> _tbl_ProjetCatEmploye;
 		
+		private EntitySet<tbl_TempsSupp> _tbl_TempsSupp;
+		
 		private EntityRef<tbl_TypeEmploye> _tbl_TypeEmploye;
 		
     #region Définitions de méthodes d'extensibilité
@@ -963,6 +976,7 @@ namespace UrbanEco
 			this._tbl_FeuilleTemps = new EntitySet<tbl_FeuilleTemps>(new Action<tbl_FeuilleTemps>(this.attach_tbl_FeuilleTemps), new Action<tbl_FeuilleTemps>(this.detach_tbl_FeuilleTemps));
 			this._tbl_Projet = new EntitySet<tbl_Projet>(new Action<tbl_Projet>(this.attach_tbl_Projet), new Action<tbl_Projet>(this.detach_tbl_Projet));
 			this._tbl_ProjetCatEmploye = new EntitySet<tbl_ProjetCatEmploye>(new Action<tbl_ProjetCatEmploye>(this.attach_tbl_ProjetCatEmploye), new Action<tbl_ProjetCatEmploye>(this.detach_tbl_ProjetCatEmploye));
+			this._tbl_TempsSupp = new EntitySet<tbl_TempsSupp>(new Action<tbl_TempsSupp>(this.attach_tbl_TempsSupp), new Action<tbl_TempsSupp>(this.detach_tbl_TempsSupp));
 			this._tbl_TypeEmploye = default(EntityRef<tbl_TypeEmploye>);
 			OnCreated();
 		}
@@ -1216,6 +1230,19 @@ namespace UrbanEco
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_TempsSupp", Storage="_tbl_TempsSupp", ThisKey="idEmploye", OtherKey="idEmploye")]
+		public EntitySet<tbl_TempsSupp> tbl_TempsSupp
+		{
+			get
+			{
+				return this._tbl_TempsSupp;
+			}
+			set
+			{
+				this._tbl_TempsSupp.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_TypeEmploye_tbl_Employe", Storage="_tbl_TypeEmploye", ThisKey="idTypeEmpl", OtherKey="idType", IsForeignKey=true)]
 		public tbl_TypeEmploye tbl_TypeEmploye
 		{
@@ -1329,6 +1356,18 @@ namespace UrbanEco
 			this.SendPropertyChanging();
 			entity.tbl_Employe = null;
 		}
+		
+		private void attach_tbl_TempsSupp(tbl_TempsSupp entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = this;
+		}
+		
+		private void detach_tbl_TempsSupp(tbl_TempsSupp entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_Employe = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_FeuilleTemps")]
@@ -1348,6 +1387,8 @@ namespace UrbanEco
 		private float _nbHeure;
 		
 		private string _commentaire;
+		
+		private System.Nullable<int> _noSemaine;
 		
 		private System.Nullable<System.DateTime> _dateCreation;
 		
@@ -1375,6 +1416,8 @@ namespace UrbanEco
     partial void OnnbHeureChanged();
     partial void OncommentaireChanging(string value);
     partial void OncommentaireChanged();
+    partial void OnnoSemaineChanging(System.Nullable<int> value);
+    partial void OnnoSemaineChanged();
     partial void OndateCreationChanging(System.Nullable<System.DateTime> value);
     partial void OndateCreationChanged();
     partial void OnapprouverChanging(System.Nullable<bool> value);
@@ -1517,6 +1560,26 @@ namespace UrbanEco
 					this._commentaire = value;
 					this.SendPropertyChanged("commentaire");
 					this.OncommentaireChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noSemaine", DbType="Int")]
+		public System.Nullable<int> noSemaine
+		{
+			get
+			{
+				return this._noSemaine;
+			}
+			set
+			{
+				if ((this._noSemaine != value))
+				{
+					this.OnnoSemaineChanging(value);
+					this.SendPropertyChanging();
+					this._noSemaine = value;
+					this.SendPropertyChanged("noSemaine");
+					this.OnnoSemaineChanged();
 				}
 			}
 		}
@@ -1819,7 +1882,7 @@ namespace UrbanEco
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPremierDimanche", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPremierDimanche", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int idPremierDimanche
 		{
 			get
@@ -3020,6 +3083,181 @@ namespace UrbanEco
 		{
 			this.SendPropertyChanging();
 			entity.tbl_Status = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_TempsSupp")]
+	public partial class tbl_TempsSupp : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idTempsSupp;
+		
+		private int _idEmploye;
+		
+		private int _noSemaine;
+		
+		private System.Nullable<float> _tempsSupp;
+		
+		private EntityRef<tbl_Employe> _tbl_Employe;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidTempsSuppChanging(int value);
+    partial void OnidTempsSuppChanged();
+    partial void OnidEmployeChanging(int value);
+    partial void OnidEmployeChanged();
+    partial void OnnoSemaineChanging(int value);
+    partial void OnnoSemaineChanged();
+    partial void OntempsSuppChanging(System.Nullable<float> value);
+    partial void OntempsSuppChanged();
+    #endregion
+		
+		public tbl_TempsSupp()
+		{
+			this._tbl_Employe = default(EntityRef<tbl_Employe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTempsSupp", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idTempsSupp
+		{
+			get
+			{
+				return this._idTempsSupp;
+			}
+			set
+			{
+				if ((this._idTempsSupp != value))
+				{
+					this.OnidTempsSuppChanging(value);
+					this.SendPropertyChanging();
+					this._idTempsSupp = value;
+					this.SendPropertyChanged("idTempsSupp");
+					this.OnidTempsSuppChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", DbType="Int NOT NULL")]
+		public int idEmploye
+		{
+			get
+			{
+				return this._idEmploye;
+			}
+			set
+			{
+				if ((this._idEmploye != value))
+				{
+					if (this._tbl_Employe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidEmployeChanging(value);
+					this.SendPropertyChanging();
+					this._idEmploye = value;
+					this.SendPropertyChanged("idEmploye");
+					this.OnidEmployeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noSemaine", DbType="Int NOT NULL")]
+		public int noSemaine
+		{
+			get
+			{
+				return this._noSemaine;
+			}
+			set
+			{
+				if ((this._noSemaine != value))
+				{
+					this.OnnoSemaineChanging(value);
+					this.SendPropertyChanging();
+					this._noSemaine = value;
+					this.SendPropertyChanged("noSemaine");
+					this.OnnoSemaineChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tempsSupp", DbType="Real")]
+		public System.Nullable<float> tempsSupp
+		{
+			get
+			{
+				return this._tempsSupp;
+			}
+			set
+			{
+				if ((this._tempsSupp != value))
+				{
+					this.OntempsSuppChanging(value);
+					this.SendPropertyChanging();
+					this._tempsSupp = value;
+					this.SendPropertyChanged("tempsSupp");
+					this.OntempsSuppChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Employe_tbl_TempsSupp", Storage="_tbl_Employe", ThisKey="idEmploye", OtherKey="idEmploye", IsForeignKey=true)]
+		public tbl_Employe tbl_Employe
+		{
+			get
+			{
+				return this._tbl_Employe.Entity;
+			}
+			set
+			{
+				tbl_Employe previousValue = this._tbl_Employe.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_Employe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_Employe.Entity = null;
+						previousValue.tbl_TempsSupp.Remove(this);
+					}
+					this._tbl_Employe.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_TempsSupp.Add(this);
+						this._idEmploye = value.idEmploye;
+					}
+					else
+					{
+						this._idEmploye = default(int);
+					}
+					this.SendPropertyChanged("tbl_Employe");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

@@ -130,6 +130,24 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_deleteDepTerrain;
         
         /// <summary>
+        /// Contrôle Table1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table Table1;
+        
+        /// <summary>
+        /// Contrôle tbx_firstDimanche.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tbx_firstDimanche;
+        
+        /// <summary>
         /// Contrôle btn_annuler.
         /// </summary>
         /// <remarks>

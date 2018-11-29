@@ -49,6 +49,7 @@
       <Association Name="tbl_Employe_tbl_FeuilleTemps" Member="tbl_FeuilleTemps" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_FeuilleTemps" />
       <Association Name="tbl_Employe_tbl_Projet" Member="tbl_Projet" ThisKey="idEmploye" OtherKey="idEmployeResp" Type="tbl_Projet" />
       <Association Name="tbl_Employe_tbl_ProjetCatEmploye" Member="tbl_ProjetCatEmploye" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_ProjetCatEmploye" />
+      <Association Name="tbl_Employe_tbl_TempsSupp" Member="tbl_TempsSupp" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_TempsSupp" />
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_TypeEmploye" ThisKey="idTypeEmpl" OtherKey="idType" Type="tbl_TypeEmploye" IsForeignKey="true" />
     </Type>
   </Table>
@@ -60,6 +61,7 @@
       <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nbHeure" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="commentaire" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="noSemaine" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dateCreation" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
       <Column Name="approuver" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="tbl_Employe_tbl_FeuilleTemps" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
@@ -76,7 +78,7 @@
   </Table>
   <Table Name="dbo.tbl_PremierDimanche" Member="tbl_PremierDimanche">
     <Type Name="tbl_PremierDimanche">
-      <Column Name="idPremierDimanche" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idPremierDimanche" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="dateDimanche" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
@@ -129,6 +131,15 @@
       <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nomStatus" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Association Name="tbl_Status_tbl_Projet" Member="tbl_Projet" ThisKey="idStatus" OtherKey="idStatus" Type="tbl_Projet" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_TempsSupp" Member="tbl_TempsSupp">
+    <Type Name="tbl_TempsSupp">
+      <Column Name="idTempsSupp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="noSemaine" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tempsSupp" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Association Name="tbl_Employe_tbl_TempsSupp" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_TypeDepense" Member="tbl_TypeDepense">

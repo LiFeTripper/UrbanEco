@@ -125,8 +125,6 @@ VALUES (4, NULL, 'Congés maladies', 'Utilise les heures de congés maladies de la
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
 VALUES (4, NULL, 'Congé personnelle', 'Utilise les heures de congés personnelles de la banque dheures');
 
-DROP TABLE tbl_FeuilleTemps
-
 CREATE TABLE tbl_FeuilleTemps
 (
 	idFeuille INT IDENTITY(1, 1) PRIMARY KEY,
@@ -135,6 +133,7 @@ CREATE TABLE tbl_FeuilleTemps
 	idEmploye INT NOT NULL,
 	nbHeure FLOAT(24) NOT NULL,
 	commentaire VARCHAR(MAX),
+	noSemaine INT DEFAULT 0,
 	dateCreation SMALLDATETIME DEFAULT GETDATE(),
 	approuver BIT DEFAULT 0,
 
@@ -149,7 +148,8 @@ VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE());
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
 VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE());
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (3, 5, 3, 15, 'Ce fut une excellente journée', GETDATE());INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
+VALUES (3, 5, 3, 15, 'Ce fut une excellente journée', GETDATE());
+INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
 VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE());
 INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
 VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE());
@@ -292,7 +292,7 @@ INSERT INTO tbl_Kilometrage(prixKilometrageVoiture,prixKilometrageCamion) VALUES
 
 CREATE TABLE tbl_PremierDimanche
 (
-	idPremierDimanche INT IDENTITY(1,1) PRIMARY KEY,
+	idPremierDimanche INT DEFAULT 1 PRIMARY KEY,
 	dateDimanche SMALLDATETIME NOT NULL
 )
 

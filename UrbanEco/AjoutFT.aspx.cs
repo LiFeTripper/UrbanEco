@@ -16,7 +16,7 @@ namespace UrbanEco
             if (!IsPostBack)
             {
                 
-
+                Calendar1.Value = Layout.ToCalendarDate(DateTime.Today);
 
                 if (Request.QueryString["FT"] != "New")
                 {
@@ -24,8 +24,7 @@ namespace UrbanEco
                 }
                 else if(Layout.GetUserConnected().username == "admin")
                 {
-                    tbx_projet.Visible = true;
-                    tblEmploye.Visible = true;
+                    tbl_employe.Visible = true;
                     LoadListEmploye();
                 }
                 else
@@ -250,7 +249,7 @@ namespace UrbanEco
             }
             catch(Exception n)
             {
-                alert_failed.Visible = true;
+                //alert_failed.Visible = true;
                 return;
             }
 
@@ -266,8 +265,8 @@ namespace UrbanEco
 
 
 
-            lbl_Top.Text = "Feuille de temps de " + queryEmp.First<tbl_Employe>().prenom + " " + queryEmp.First<tbl_Employe>().nom 
-                + " (" + temp.dateCreation.ToString().Split(' ')[0] + ")";
+            //lbl_Top.Text = "Feuille de temps de " + queryEmp.First<tbl_Employe>().prenom + " " + queryEmp.First<tbl_Employe>().nom 
+                //+ " (" + temp.dateCreation.ToString().Split(' ')[0] + ")";
             tbx_projet.SelectedValue = temp.idProjet.ToString();
             tbx_categorie.Enabled = true;
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
@@ -347,6 +346,11 @@ namespace UrbanEco
                 tbx_projet.DataSource = listeProjet.Distinct();
                 tbx_projet.DataBind();
             }
+        }
+
+        protected void btn_annuler_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
         }
     }
 }

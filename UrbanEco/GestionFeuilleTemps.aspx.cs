@@ -11,7 +11,7 @@ namespace UrbanEco
     {
         CoecoDataContext cdc = new CoecoDataContext();
 
-        
+        static List<tbl_PremierDimanche> dimanches = new List<tbl_PremierDimanche>();
 
         protected string formatRemoveHour(object date)
         {
@@ -27,7 +27,16 @@ namespace UrbanEco
 
                 Page.MaintainScrollPositionOnPostBack = true;
 
-                List<tbl_Employe> listTable = new List<tbl_Employe>();
+                //Premier dimanche
+                var queryDimanche = from tbl in cdc.tbl_PremierDimanche
+                                    select tbl;
+
+                if (queryDimanche.Count() > 0)
+                {
+                    dimanches = queryDimanche.ToList();                   
+                }
+
+                List < tbl_Employe > listTable = new List<tbl_Employe>();
 
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
@@ -382,7 +391,58 @@ namespace UrbanEco
 
             Rptr_EmployeNonApprouver.Visible = !ch.Checked;
             lbl_attente.Visible = !ch.Checked;
-
         }
+
+        protected int GetWeekToYear(DateTime date)
+        {
+            if (dimanches.Count == 0)
+                return -100;
+
+            for (int i = 1; i < dimanches.Count; i++)
+            {
+                //Si la date voulu vien avant la date du dimanche, l'index est le numéro de semaine
+                if(date < dimanches[i].dateDimanche)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
+        protected List<DateTime> IntervalDateFromWeekNumber(int weekNumber)
+        {
+            //on commence a 1, pas zéro
+            if(weekNumber == 0)
+            {
+                return null;
+            }
+
+            //En dehors de l'array des semainez
+            if(weekNumber > dimanches.Count || dimanches.Count == 0)
+            {
+                return null;
+            }
+
+            int indexInList = weekNumber - 1;
+
+            DateTime dateDebutSemaine;
+            DateTime dateFinSemaine;
+
+            if(dimanches[indexInList] != null)
+            {
+                dateDebutSemaine = dimanches[indexInList].dateDimanche;
+
+                dateFinSemaine = dateDebutSemaine.AddDays(6);
+
+                return new List<DateTime>() { dateDebutSemaine, dateFinSemaine };
+            }
+
+
+            return null;
+        }
+
+
+        
     }
 }

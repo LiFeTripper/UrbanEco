@@ -100,6 +100,22 @@
             <hr style="width:100%; border:2px solid black;"/>
         </div>
 
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="tbl_taux" style="font-size: 20px;">Date du premier dimanche de l'année</label>
+            <asp:Table runat="server" ID="Table1" Style="width: 100%; table-layout:fixed;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">Premier dimanche de l'année</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="date" id="tbx_firstDimanche" style="width:100%;" class="form-control" runat="server" />
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+
+        <div class="form-group mb-4 col-6 mx-auto">
+            <hr style="width:100%; border:2px solid black;"/>
+        </div>
+
         
         <%--BOUTON--%>
         <div class="form-group mb-4 col-6 mx-auto">
