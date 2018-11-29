@@ -9,12 +9,12 @@ namespace UrbanEco
 {
     public partial class ModifCategorie : System.Web.UI.Page
     {
-        string argument;
-        string argument2;
+        string projet;
+        string categorie;
         string mode;
 
-        bool SousCat;
-        bool modif;
+        static bool SousCat;
+        static bool modif;
 
         CoecoDataContext context = new CoecoDataContext();
 
@@ -28,8 +28,6 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
             //Réassigne les datasources des repeater
             RepBureau.DataSource = emp_bureau;
             RepBureau.DataBind();
@@ -37,7 +35,13 @@ namespace UrbanEco
             RepTerrain.DataSource = emp_terrain;
             RepTerrain.DataBind();
 
-           
+            //Recherche de l'projet dans l'adresse
+            projet = Request.QueryString["Prj"];
+
+            categorie = Request.QueryString["Cat"];
+
+            //Recherche du mode dans l'adresse
+            mode = Request.QueryString["Mode"];
 
             if (!IsPostBack)
             {
@@ -48,91 +52,135 @@ namespace UrbanEco
 
                 AllEmployees();
 
-
-                //Recherche de l'argument dans l'adresse
-                argument = Request.QueryString["Prj"];
-
-                argument2 = Request.QueryString["Cat"];
+                int prj = int.Parse(projet);
 
                 //On trouve les employé qui ont été associé a cette catégorie
                 List<int> listEmp = new List<int>();
-                int prj = int.Parse(argument);
 
-                if (argument2 != null)
+                //Mode nouvelle catégorie 
+                if (string.Compare(mode, "*") == 0)
                 {
-                    int cat = int.Parse(argument2);
-
-                    var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                    where emp.idProjet == prj && emp.idCategorie == cat
-                                    orderby emp.idEmploye
-                                    select emp.idEmploye;
-
-                    //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
-                    foreach (int emp in empSelect)
+                    //Categorie principale
+                    if (categorie == null)
                     {
-                        listEmp.Add(emp);
+                        SousCat = false;
+
+
+                        RequeryEmployes();
+                    }
+                    //Sous-Catégorie
+                    else
+                    {
+                        SousCat = true;
+
+
+                        RequeryEmployes();
                     }
                 }
+                //Mode de modification
                 else
                 {
-                    var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                    where emp.idProjet == prj
-                                    orderby emp.idEmploye
-                                    select emp.idEmploye;
-
-                    //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
-                    foreach (int emp in empSelect)
+                    //Categorie principale
+                    if (categorie == null)
                     {
-                        listEmp.Add(emp);
+                        SousCat = false;
+
+                        var empSelect = from emp in context.tbl_ProjetCatEmploye
+                                        where emp.idProjet == prj
+                                        orderby emp.idEmploye
+                                        select emp.idEmploye;
+
+                        //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
+                        foreach (int emp in empSelect)
+                        {
+                            listEmp.Add(emp);
+                        }
+
+                            modif = true;
+
+                        if (!IsPostBack)
+                        {
+                            int id = int.Parse(categorie);
+
+                            var query = (from tbl in context.tbl_ProjetCat
+                                         where tbl.idProjetCat == id
+                                         select tbl).First();
+
+                            Tbx_Titre.Text = query.titre;
+                            Tbx_Description.Text = query.description;
+                        }
+
+                        //Ajoute la liste a Selected Employes
+                        SelectedEmployes = listEmp;
+
+                        SelectedEmployesString.Clear();
+
+                        //On transforme cette liste de int ID en liste de string
+                        foreach (int id in SelectedEmployes)
+                        {
+                            SelectedEmployesString.Add(id.ToString());
+                        }
+
+                        //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
+                        var result = String.Join(",", SelectedEmployesString.ToArray());
+                        hiddenFieldEmploye.Value = result;
+
+                        //Call méthode qui recherche les employé
+                        RequeryEmployes();
                     }
+                    //Sous-Catégorie
+                    else
+                    {
+                        SousCat = true;
 
+                        int cat = int.Parse(categorie);
+
+                        var empSelect = from emp in context.tbl_ProjetCatEmploye
+                                        where emp.idProjet == prj && emp.idCategorie == cat
+                                        orderby emp.idEmploye
+                                        select emp.idEmploye;
+
+                        //On les ajoute a la liste que Marc utilise pour voyager les infos et les garder
+                        foreach (int emp in empSelect)
+                        {
+                            listEmp.Add(emp);
+                        }
+
+                            modif = true;
+
+                        if (!IsPostBack)
+                        {
+                            int id = int.Parse(categorie);
+
+                            var query = (from tbl in context.tbl_ProjetCat
+                                         where tbl.idProjetCat == id
+                                         select tbl).First();
+
+                            Tbx_Titre.Text = query.titre;
+                            Tbx_Description.Text = query.description;
+                        }
+
+                        //Ajoute la liste a Selected Employes
+                        SelectedEmployes = listEmp;
+
+                        SelectedEmployesString.Clear();
+
+                        //On transforme cette liste de int ID en liste de string
+                        foreach (int id in SelectedEmployes)
+                        {
+                            SelectedEmployesString.Add(id.ToString());
+                        }
+
+                        //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
+                        var result = String.Join(",", SelectedEmployesString.ToArray());
+                        hiddenFieldEmploye.Value = result;
+
+                        //Call méthode qui recherche les employé
+                        RequeryEmployes();
+                    }
                 }
-
-                //Ajoute la liste a Selected Employes
-                SelectedEmployes = listEmp;
-
-                SelectedEmployesString.Clear();
-
-                //On transforme cette liste de int ID en liste de string
-                foreach (int id in SelectedEmployes)
-                {
-                    SelectedEmployesString.Add(id.ToString());
-                }
-
-                //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
-                var result = String.Join(",", SelectedEmployesString.ToArray());
-                hiddenFieldEmploye.Value = result;
-
-                //Call méthode qui recherche les employé
-                RequeryEmployes();
             }
 
-
-            //Recherche du mode dans l'adresse
-            mode = Request.QueryString["Mode"];
-
-            if (argument2 != null)
-                SousCat = true;
-            else
-                SousCat = false;
-
-            if (mode != null)
-            {
-                modif = true;
-                Div_Multiselect.Visible = true;
-
-                if (!IsPostBack)
-                {
-                    int id = int.Parse(argument2);
-
-                    var query = (from tbl in context.tbl_ProjetCat
-                                 where tbl.idProjetCat == id
-                                 select tbl).First();
-
-                    Tbx_Titre.Text = query.titre;
-                    Tbx_Description.Text = query.description;
-                }
-            }
         }
 
         void RequeryEmployes()
@@ -177,8 +225,17 @@ namespace UrbanEco
                             //Remplissage des champs de la table temporaire avec les contrôles
                             tableCat.titre = Tbx_Titre.Text;
                             tableCat.description = Tbx_Description.Text;
-                            tableCat.idProjet = int.Parse(argument);
-                            tableCat.idCatMaitre = int.Parse(argument2);
+                            tableCat.idProjet = int.Parse(projet);
+                            tableCat.idCatMaitre = int.Parse(categorie);
+
+                            //AJOUT en cas de nouveauté
+                            context.tbl_ProjetCat.InsertOnSubmit(tableCat);
+
+                            //Étape finale SUBMIT CHANGES
+                            context.SubmitChanges();
+
+                            //Méthode de traitement des employés
+                            AjoutSuppressionTableCatEmp();
                             break;
                         }
                     case false:
@@ -186,19 +243,27 @@ namespace UrbanEco
                             //Remplissage des champs de la table temporaire avec les contrôles
                             tableCat.titre = Tbx_Titre.Text;
                             tableCat.description = Tbx_Description.Text;
-                            tableCat.idProjet = int.Parse(argument);
+                            tableCat.idProjet = int.Parse(projet);
+
+                            //AJOUT en cas de nouveauté
+                            context.tbl_ProjetCat.InsertOnSubmit(tableCat);
+
+                            //Étape finale SUBMIT CHANGES
+                            context.SubmitChanges();
+
+                            //Méthode de traitement des employés
+                            AjoutSuppressionTableCatEmp();
                             break;
                         }
                 }
 
-                //AJOUT en cas de nouveauté
-                context.tbl_ProjetCat.InsertOnSubmit(tableCat);
+                
             }
             else if (modif)
             {
-                argument = Request.QueryString["Prj"];
-                argument2 = Request.QueryString["Cat"];
-                int id = int.Parse(argument2);
+                projet = Request.QueryString["Prj"];
+                categorie = Request.QueryString["Cat"];
+                int id = int.Parse(categorie);
 
                 var query = (from tbl in context.tbl_ProjetCat
                              where tbl.idProjetCat == id
@@ -210,27 +275,42 @@ namespace UrbanEco
                 //Méthode de traitement des employés
                 AjoutSuppressionTableCatEmp();
 
+
             }
 
             //Étape finale SUBMIT CHANGES
             context.SubmitChanges();
 
-            Response.Redirect("AjoutCategorie.aspx?Prj=" + argument);
+            Response.Redirect("AjoutCategorie.aspx?Prj=" + projet);
         }
 
         protected void Btn_Annuler_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AjoutCategorie.aspx?Prj=" + argument);
+            Response.Redirect("AjoutCategorie.aspx?Prj=" + projet);
         }
 
         public void AjoutSuppressionTableCatEmp()
         {
             UpdateSelectedEmployeList();
 
-            argument = Request.QueryString["Prj"];
-            int projet = int.Parse(argument);
-            argument2 = Request.QueryString["Cat"];
-            int cat = int.Parse(argument2);
+            int cat = 0;
+
+            this.projet = Request.QueryString["Prj"];
+            int projet = int.Parse(this.projet);
+
+            if (mode == "M")
+            {
+                categorie = Request.QueryString["Cat"];
+                cat = int.Parse(categorie);
+            }
+            else if (mode == "*")
+            {
+                var query = (from tbl in context.tbl_ProjetCat
+                             orderby tbl.idProjetCat descending
+                             select tbl.idProjetCat).First();
+                cat = query;
+            }
+            
 
             //DELETE 
             //Liste d'employé non sélectionné

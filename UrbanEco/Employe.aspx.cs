@@ -31,7 +31,7 @@ namespace UrbanEco
             //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
 
-            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            //Redirige l'adresse vers l'ajout de projet avec le id en projet
             Response.Redirect("AjoutEmp.aspx?Emp=" + commandArgument);
         }
 

@@ -27,7 +27,7 @@
         </div>
 
         <%--DIV DES EMPLOYÉS--%>
-        <div class="form-group mb-4 mt-3 col-6 mx-auto" runat="server" visible="false" id="Div_Multiselect">
+        <div class="form-group mb-4 mt-3 col-6 mx-auto" runat="server" id="Div_Multiselect">
             <h1 class="align-content-center">Sélection des employés</h1>
             <!--MULTISELECT-->
             <div class="justify-content-lg-center input-group mb-3 col-12">

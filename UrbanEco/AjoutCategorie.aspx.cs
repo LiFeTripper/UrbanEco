@@ -15,7 +15,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Recherche de l'argument dans l'adresse
+            //Recherche de l'projet dans l'adresse
             argument = Request.QueryString["Prj"];
 
             lbl_noProjet.Text = argument;
@@ -44,7 +44,7 @@ namespace UrbanEco
 
         protected void Btn_AjoutSousProjet_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ModifCategorie.aspx?Prj=" + argument);
+            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Mode=*");
         }
 
         protected void Btn_ModifSousProjet_Click(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace UrbanEco
             //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
 
-            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Cat=" + commandArgument);
+            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Cat=" + commandArgument + "&Mode=*");
         }
 
         

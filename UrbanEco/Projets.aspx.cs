@@ -20,7 +20,7 @@ namespace UrbanEco
 
         protected void Btn_Ajout_Click(object sender, EventArgs e)
         {
-            //Redirige l'adresse vers un nouveau projet avec l'argument étoile
+            //Redirige l'adresse vers un nouveau projet avec l'projet étoile
             Response.Redirect("AjoutProjets.aspx?Prj=*");
         }
 
@@ -33,7 +33,7 @@ namespace UrbanEco
             //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
 
-            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            //Redirige l'adresse vers l'ajout de projet avec le id en projet
             Response.Redirect("AjoutProjets.aspx?Prj=" + commandArgument);
 
         }
@@ -46,7 +46,7 @@ namespace UrbanEco
             //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
 
-            //Redirige l'adresse vers l'ajout de projet avec le id en argument
+            //Redirige l'adresse vers l'ajout de projet avec le id en projet
             Response.Redirect("AjoutCategorie.aspx?Prj=" + commandArgument);
             //Response.Redirect("AjoutCategorie.aspx");
         }
