@@ -50,9 +50,9 @@ namespace UrbanEco
                 liEmpTerrain.Visible = true;
             }
 
-
-
-
+            Lbl_HelloUser1.InnerText = "Bonjour " + GetUserName();
+            //Lbl_HelloUser2.InnerText = "Bonjour " + GetUserName();
+            //Lbl_HelloUser3.InnerText = "Bonjour " + GetUserName();
         }
 
         public static tbl_Employe GetUserConnected()
@@ -78,7 +78,13 @@ namespace UrbanEco
         protected void Btn_Deconnect_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
-            Response.Redirect(FormsAuthentication.LoginUrl);
+
+            if (Request.Cookies["userInfo"] != null)
+            {
+                Response.Cookies["userInfo"].Expires = DateTime.Now.AddDays(-1);
+            }
+
+            Response.Redirect("Login.aspx");
         }
     }
 }
