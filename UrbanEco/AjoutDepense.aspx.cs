@@ -369,9 +369,44 @@ namespace UrbanEco
                                  where tbl.idDepense == int.Parse(Request.QueryString["Dep"])
                                  select tbl;
 
-                    context.tbl_Depense.DeleteOnSubmit(querry.First());
+                    tbl_Depense tblDep = querry.First();
 
-                   
+                    tblDep.dateDepense = DateTime.Parse(Calendar.Value);
+                    tblDep.typeDepense = tbx_typeDepense.SelectedItem.Text;
+                    tblDep.idProjetCat = int.Parse(tbx_categorie.Items[tbx_categorie.SelectedIndex].Value);
+
+                    tblDep.note = tbx_note.Text;
+
+                    if (km_html.Visible && typeKm != TypeKm.Nothing)
+                    {
+                        switch (typeKm)
+                        {
+                            case TypeKm.Voiture:
+                                tblDep.montant = float.Parse(tbx_nbKm.Text) * prixKilometrage.prixKilometrageVoiture;
+                                tblDep.prixKilometrage = prixKilometrage.prixKilometrageVoiture;
+                                break;
+                            case TypeKm.Camion:
+                                tblDep.montant = float.Parse(tbx_nbKm.Text) * prixKilometrage.prixKilometrageCamion;
+                                tblDep.prixKilometrage = prixKilometrage.prixKilometrageCamion;
+                                break;
+                        }
+
+                    }
+                    else
+                    {
+                        //Montant autre
+                        tblDep.montant = float.Parse(tbx_montantNormal.Text);
+                        tblDep.prixKilometrage = null;
+                    }
+
+                    context.tbl_Depense.DeleteOnSubmit(querry.First());
+                    context.tbl_Depense.InsertOnSubmit(tblDep);
+                    context.SubmitChanges();
+
+                    Response.Redirect("GestionDepense.aspx");
+
+
+
 
                 }
             }
