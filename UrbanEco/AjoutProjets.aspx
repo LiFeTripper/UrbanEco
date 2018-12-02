@@ -47,10 +47,10 @@
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        Titre du projet
+                        Titre du projet <b style="color:red">*</b>
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control"></asp:TextBox>                    
+                        <asp:TextBox ID="Tbx_Titre" runat="server" class="form-control" required="true"></asp:TextBox>                    
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
@@ -90,7 +90,7 @@
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        Status
+                        Status <b style="color:red">*</b>
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
                          <asp:DropDownList ID="Ddl_Status" runat="server" DataSourceID="LinqStatus" DataTextField="nomStatus" DataValueField="idStatus" class="form-control"></asp:DropDownList>
@@ -100,7 +100,7 @@
             </asp:table>
         </div>
 
-        <%--Status--%>
+        <%--Heures Allouées--%>
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
                 <asp:TableRow>    
@@ -108,7 +108,7 @@
                         Heures Allouées
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" class="form-control"></asp:TextBox>     
+                        <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" class="form-control" placeholder="0" TextMode="Number"></asp:TextBox>     
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>

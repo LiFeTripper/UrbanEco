@@ -51,12 +51,12 @@
         </div>
 
         <div class="form-group mb-4 col-6 mx-auto">
-            <label for="Ddl_TypeEmp">Date  <b style="color:red">*</b></label>
+            <%--<label for="Ddl_TypeEmp">Date </label>--%>
             <asp:table CssClass="asp-table" runat="server" id="Ddl_TypeEmp" style="width: 100% !important;">
                 <%--DATE--%>
                 <asp:TableRow>    
                     <asp:TableHeaderCell CssClass="form-control">
-                        <div id="dateFormated" runat="server" style="width:100%; font-size:15px;"></div>
+                        <b style="color:red; float:right;">*</b><div id="dateFormated" runat="server" style="width:100%; font-size:15px;"></div>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <input type="date" id="Calendar" style="width:100%;" class="form-control" runat="server" />
@@ -142,7 +142,7 @@
             <asp:table CssClass="asp-table" runat="server" id="tbl_kilo" style="width: 100% !important;">
                 <asp:TableRow>    
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true" TextMode="Number"></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableHeaderCell CssClass="form-control">
                         <div runat="server" id="prixKm" style=" float:left; text-align:left;"></div>
@@ -161,7 +161,7 @@
                         Montant <b style="color:red">*</b>
                     </asp:TableHeaderCell>  
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true" required="true" TextMode="Number"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
