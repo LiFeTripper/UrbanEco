@@ -52,7 +52,10 @@ namespace UrbanEco
 
         protected void Btn_Modif_Click(object sender, EventArgs e)
         {
+            ImageButton ib = (ImageButton)sender;
+            int idDepense = int.Parse(ib.CommandArgument);
 
+            Response.Redirect("AjoutDepense.aspx?Dep=" + idDepense.ToString());
         }
 
         protected void Btn_Modif_Click1(object sender, ImageClickEventArgs e)
@@ -89,7 +92,7 @@ namespace UrbanEco
 
         protected void btn_ajouter_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("AjoutDepense.aspx");
+            Response.Redirect("AjoutDepense.aspx?Dep=New");
         }
 
         protected void Rptr_Depense_ItemDataBound(object sender, RepeaterItemEventArgs e)
