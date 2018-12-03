@@ -10,7 +10,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Catégorie</h1>
+    <h1>Sous-Projets</h1>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -33,7 +33,7 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">
                                     <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjoutCat" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
-                                    <asp:Button class="btn btn-primary" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout" OnClick="Btn_AjoutSousProjet_Click" />
+                                    <asp:Button class="btn btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />
                                 </th>
                             </tr>
                         </thead>
@@ -171,7 +171,7 @@
                         <th scope="col">Titre Sous-CatégorieDescription</th>
                         <th scope="col">Description</th>
                         <th scope="col">
-                            <asp:Button class="btn btn-primary" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout" OnClick="Btn_AjoutSousProjet_Click" />
+                            <asp:Button class="btn btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />
                         </th>
                     </tr>
                 </thead>
