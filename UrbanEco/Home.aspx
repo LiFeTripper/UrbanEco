@@ -10,10 +10,17 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server">
+        <div class="col-md-12">
+            <span runat="server" class="alert alert-warning" style="width: 100%;" id="alert_warning_sunday" visible="false"><b>L'année se termine bientôt !</b> N'oublier pas d'aller changer la date du premier dimanche dans l'onglet "Paramètre Administrateur".</span>
+            <span runat="server" class="alert alert-danger" style="width: 100%;" id="alert_danger_sunday" visible="false"><b>Le premier dimanche de l'année est expiré !</b> Veuillez aller la mettre à jour dans l'onglet "Paramètre Administrateur".</span>
+        </div>
 
-        <div class="col-md-6" style="float: left;">
+        <div class="col-md-8" style="float: left;" runat="server" id="tbl_resume">
             <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
+
+            <label for="rpt_employe" runat="server" id="lbl_resume" style="font-size: 25px;">Résumé de la semaine du </label>
             <asp:Repeater ID="rpt_employe" runat="server">
+
 
                 <%--HEADERTEMPLATE--%>
                 <HeaderTemplate>

@@ -30,10 +30,10 @@
         <h1 class="h3 mb-3 font-weight-normal">Entrez votre nom d'utilisateur</h1>
 
         <%--USERNAME--%>
-        <asp:TextBox ID="Tbx_InputUsername" runat="server" name="Tbx_InputUsername" placeholder="Utilisateur" class="form-control" required="autofocus">admin</asp:TextBox>
+        <asp:TextBox ID="Tbx_InputUsername" runat="server" name="Tbx_InputUsername" placeholder="Utilisateur" class="form-control" required="autofocus"></asp:TextBox>
 
         <%--PASSWORD--%>
-        <asp:TextBox class="form-control" ID="Tbx_InputPassword" name="Tbx_InputPassword" placeholder="Mot de passe" runat="server" >mobius</asp:TextBox>
+        <asp:TextBox class="form-control" ID="Tbx_InputPassword" name="Tbx_InputPassword" placeholder="Mot de passe" runat="server"></asp:TextBox>
 
         <%--CHECKBOX--%>
 <%--        <div class="checkbox mb-3">

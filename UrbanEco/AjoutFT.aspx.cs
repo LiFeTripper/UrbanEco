@@ -28,55 +28,99 @@ namespace UrbanEco
 
                 Calendar1.Value = Layout.ToCalendarDate(DateTime.Today);
 
+
+                /* else
+                 {
+                 //    tbx_projetEmp.Visible = true;
+                 //    //Query les projet
+                 //    var queryProjet = from tbl in context.tbl_Projet
+                 //                      orderby tbl.titre
+                 //                      select tbl;
+
+                 //    tbx_projetEmp.DataSource = queryProjet;
+                 //    tbx_projetEmp.DataBind();
+
+                 //    //Insérer un text pour sélectionne rle projet au début
+                 //    tbx_projetEmp.Items.Insert(0, "Veuillez sélectionner le projet");
+                 //    tbx_projetEmp.SelectedIndex = 0;
+
+
+
+
+
+                 }*/
+
+                //Query les projet accessible par l'employé
+                var queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
+                                   join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
+                                   where tblProjetCat.idEmploye == Layout.GetUserConnected().idEmploye
+                                   orderby tblProjet.titre
+                                   select tblProjet);
+
+
+                if (Layout.GetUserConnected().username == "admin")
+                {
+                    int value = -1;
+                    try
+                    {
+
+                        int.TryParse(Request.QueryString["FT"], out value);
+
+                        var query1 = from tbl in context.tbl_FeuilleTemps
+                                     where tbl.idFeuille == value
+                                     select tbl;
+
+                        tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
+
+                        queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
+                                       join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
+                                       where tblProjetCat.idEmploye == temp.idEmploye
+                                       orderby tblProjet.titre
+                                       select tblProjet);
+
+                        if (value <= 0)
+                            throw new Exception();
+                    }
+                    catch (Exception n)
+                    {
+                        //alert_failed.Visible = true;
+                        queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
+                                       join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
+                                       //where tblProjetCat.idEmploye == temp.idEmploye
+                                       orderby tblProjet.titre
+                                       select tblProjet);
+                        return;
+                    }
+
+
+
+
+                }
+
+                List<ListItem> listeProjet = new List<ListItem>();
+                listeProjet.Add(new ListItem("Aucune", (-1).ToString()));
+
+                foreach (tbl_Projet item in queryProjet.ToList())
+                {
+
+                    ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
+                    listeProjet.Add(projet);
+                }
+
+                tbx_projet.DataSource = listeProjet.Distinct();
+                tbx_projet.DataBind();
+
                 if (Request.QueryString["FT"] != "New")
                 {
                     LoadFT();
                 }
-                else if(Layout.GetUserConnected().username == "admin")
+                else if (Layout.GetUserConnected().username == "admin")
                 {
                     tbl_employe.Visible = true;
                     LoadListEmploye();
+
+
                 }
-                else
-                {
-                //    tbx_projetEmp.Visible = true;
-                //    //Query les projet
-                //    var queryProjet = from tbl in context.tbl_Projet
-                //                      orderby tbl.titre
-                //                      select tbl;
-
-                //    tbx_projetEmp.DataSource = queryProjet;
-                //    tbx_projetEmp.DataBind();
-
-                //    //Insérer un text pour sélectionne rle projet au début
-                //    tbx_projetEmp.Items.Insert(0, "Veuillez sélectionner le projet");
-                //    tbx_projetEmp.SelectedIndex = 0;
-
-
-
-
-                    //Query les projet accessible par l'employé
-                    var queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
-                                       join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                       where tblProjetCat.idEmploye == Layout.GetUserConnected().idEmploye
-                                       orderby tblProjet.titre
-                                       select tblProjet);
-
-                    List<ListItem> listeProjet = new List<ListItem>();
-                    listeProjet.Add(new ListItem("Aucune", (-1).ToString()));
-
-                    foreach (tbl_Projet item in queryProjet.ToList())
-                    {
-
-                        ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
-                        listeProjet.Add(projet);
-                    }
-
-                    tbx_projet.DataSource = listeProjet.Distinct();
-                    tbx_projet.DataBind();
-                }
-
-
 
             }
 
@@ -301,9 +345,28 @@ namespace UrbanEco
                          where tbl.idProjet == projectID
                          select tbl;
 
-            tbx_categorie.DataSource = query2;
+            List<ListItem> catList = new List<ListItem>();
+            catList.Add(new ListItem("Sélectionner une catégorie", (-1).ToString()));
+
+            foreach (var item in query2.ToList())
+            {
+                catList.Add(new ListItem(item.titre, item.idProjetCat.ToString()));
+            }
+
+            tbx_categorie.DataSource = catList;
             tbx_categorie.DataBind();
-            tbx_categorie.SelectedValue = temp.idCat.ToString();
+
+            if (temp.idCat == null)
+                tbx_categorie.SelectedIndex = 0;
+            else
+                for (int i = 0; i < tbx_categorie.Items.Count; i++)
+                {
+                    if(tbx_categorie.Items[i].Value == temp.idCat.ToString())
+                    {
+                        tbx_categorie.SelectedIndex = i;
+                    }
+                }
+            
 
             DateTime dt = (DateTime)temp.dateCreation;
 

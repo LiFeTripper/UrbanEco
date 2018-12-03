@@ -86,5 +86,14 @@ namespace UrbanEco
 
             Response.Redirect("Login.aspx");
         }
+
+        public static string GetDateFormated(DateTime time)
+        {
+            string[] months = new string[12] {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+
+
+
+            return time.Day + " " + months[time.Month - 1] + " " + time.Year;
+        }
     }
 }
