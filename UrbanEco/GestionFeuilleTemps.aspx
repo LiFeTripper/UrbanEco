@@ -156,7 +156,7 @@
                                 <th style="width: 22%" scope="col">Catégorie</th>
                                 <th style="width: 20%" scope="col">Note</th>
                                 <th style="width: 5%" scope="col">
-                                    <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout" />
+                                    <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" Visible=<%# isVisible() %> runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout" />
                                 </th>
                             </tr>
                         </thead>
@@ -182,7 +182,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <asp:Button ID="Btn_ApproveEmp" CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye")%>' />
+                        <asp:Button ID="Btn_ApproveEmp" Visible=<%# isVisible() %> CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye")%>' />
                     </td>
                 </tr>
                 <tr class="collapse" id="collapseAjout">
@@ -210,7 +210,7 @@
                                 </td>
                                 <td>
                                     <asp:ImageButton ID="Btn_Modif" CssClass=" btn-option" OnClick="Btn_Modif_Click1" runat="server" Text="Modification" src="Resources/pencil.png" CommandArgument='<%#Eval("idFeuille")%>' />
-                                    <asp:ImageButton ID="Btn_Approve" CssClass="btn-option" runat="server" OnClick="Btn_Approve_Click" src="Resources/checkmark.png" Text="Approuver" CommandArgument='<%#Eval("idFeuille")%>' />
+                                    <asp:ImageButton ID="Btn_Approve" Visible=<%# isVisible() %> CssClass="btn-option" runat="server" OnClick="Btn_Approve_Click" src="Resources/checkmark.png" Text="Approuver" CommandArgument='<%#Eval("idFeuille")%>' />
                                 </td>
                             </tr>
                         </ItemTemplate>

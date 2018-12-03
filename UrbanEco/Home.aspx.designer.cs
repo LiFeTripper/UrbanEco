@@ -22,6 +22,42 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Lbl_HelloUser;
         
         /// <summary>
+        /// Contrôle alert_warning_sunday.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_warning_sunday;
+        
+        /// <summary>
+        /// Contrôle alert_danger_sunday.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_danger_sunday;
+        
+        /// <summary>
+        /// Contrôle tbl_resume.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbl_resume;
+        
+        /// <summary>
+        /// Contrôle lbl_resume.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_resume;
+        
+        /// <summary>
         /// Contrôle rpt_employe.
         /// </summary>
         /// <remarks>

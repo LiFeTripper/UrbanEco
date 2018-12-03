@@ -13,6 +13,10 @@ namespace UrbanEco
 
         static List<tbl_Employe> tbl_Employes = new List<tbl_Employe>();
 
+        static List<tbl_PremierDimanche> dimanches = new List<tbl_PremierDimanche>();
+        static List<DateTime> weekInterval = new List<DateTime>();
+
+
         public struct Distinct
         {
             public int idProjet;
@@ -34,6 +38,16 @@ namespace UrbanEco
 
                 CoecoDataContext ctx = new CoecoDataContext();
 
+                //Premier dimanche
+                var queryDimanche = from tbl in ctx.tbl_PremierDimanche
+                                    select tbl;
+
+                if (queryDimanche.Count() > 0)
+                {
+                    dimanches = queryDimanche.ToList();
+                }
+
+
                 var emp = (from tbl in ctx.tbl_Employe
                            where tbl.username.Equals(username)
                            select tbl).First();
@@ -52,43 +66,54 @@ namespace UrbanEco
                 if (queryProjetResponsable.Count() == 0)
                 {
                     rpt_employe.Visible = false;
+                    lbl_resume.Visible = false;
+                    tbl_resume.Visible = false;
                     return;
                 }
 
-                List<int> idProjetsResp = new List<int>();
-
-                foreach (var item in queryProjetResponsable.ToList())
-                {
-                    idProjetsResp.Add(item.idProjet);
-                }
-
-                //Feuille de temps en attente et contenu dans la liste de l'employé responsable
-                var queryFT = from tbl in ctx.tbl_FeuilleTemps
-                              where tbl.approuver.Equals(false) && idProjetsResp.Contains(tbl.idProjet)
-                              select tbl;
-
-                List<int> idEmpFt = new List<int>();
-
-                foreach (var item in queryFT.ToList())
-                {
-                    if(!idEmpFt.Contains(item.idEmploye))
-                    {
-                        idEmpFt.Add(item.idEmploye);
-                    }                  
-                }
-
-                var queryEmp = (from tbl in ctx.tbl_Employe
-                                where idEmpFt.Contains(tbl.idEmploye)
-                                select tbl).Distinct();
-
-
-               
-
                 rpt_employe.DataSource = queryProjetResponsable;
                 rpt_employe.DataBind();
+
+
+                DateTime today = DateTime.Today;
+
+                int weekNB = GetWeekToYear(today);
+
+                if (weekNB != -100)
+                {
+                    if (weekNB > 0)
+                        weekNB--;
+
+                    weekInterval = IntervalDateFromWeekNumber(weekNB);
+
+                    lbl_resume.InnerText = "Résumé de la semaine du " + Layout.GetDateFormated(weekInterval[0]) + " au " + Layout.GetDateFormated(today);
+                }
+                else
+                {
+                    lbl_resume.InnerText = "Résumé de la semaine";
+
+                    //Admin connecté
+                    if (emp.username.Equals("admin"))
+                        {
+                        if (dimanches.Count == 0)
+                        {
+                            alert_danger_sunday.Visible = true;
+                        }
+                        else if (today >= dimanches[dimanches.Count - 1].dateDimanche)
+                        {
+                            alert_danger_sunday.Visible = true;
+                        }
+                        //Décembre ou Janvier
+                        else if (today.Month == 12 || today.Month == 1)
+                        {
+                            alert_warning_sunday.Visible = true;
+                        }
+                    }
+                }
             }
            
         }
+
 
         protected string CalculerTotalHeureEmploye(object tblFT)
         {
@@ -102,7 +127,7 @@ namespace UrbanEco
                 if (item == null)
                     continue;
 
-                //if (ShowFT(item.approuver, item.dateCreation, "Attente"))
+               // if ()
                 {
                     totalHeure += item.nbHeure;
                 }
@@ -156,8 +181,32 @@ namespace UrbanEco
             {
                 if (item == null)
                     continue;
+
+
+                if(weekInterval.Count == 0)
+                {
+                    DateTime today = DateTime.Today;
+
+                    int weekNB = GetWeekToYear(today);
+
+                    if (weekNB != -100)
+                    {
+                        if (weekNB > 0)
+                            weekNB--;
+
+                        weekInterval = IntervalDateFromWeekNumber(weekNB);
+
+                        lbl_resume.InnerText = "Résumé de la semaine du " +  Layout.GetDateFormated(weekInterval[0]) + " au " + Layout.GetDateFormated(today);
+                    }
+                }
+                if(weekInterval.Count == 0)
+                {
                     totalHeure += item.nbHeure;
-                
+                }
+                else if (item.dateCreation > weekInterval[0])
+                {
+                    totalHeure += item.nbHeure;
+                }
             }
 
 
@@ -193,6 +242,56 @@ namespace UrbanEco
             DateTime dt = (DateTime)date;
             return dt.ToString().Split(' ')[0];
 
+        }
+
+        protected int GetWeekToYear(DateTime date)
+        {
+            if (dimanches.Count == 0)
+                return -100;
+
+            for (int i = 1; i < dimanches.Count; i++)
+            {
+                //Si la date voulu vien avant la date du dimanche, l'index est le numéro de semaine
+                if (date < dimanches[i].dateDimanche)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
+
+        protected List<DateTime> IntervalDateFromWeekNumber(int weekNumber)
+        {
+            //on commence a 1, pas zéro
+            if (weekNumber == 0)
+            {
+                return null;
+            }
+
+            //En dehors de l'array des semainez
+            if (weekNumber > dimanches.Count || dimanches.Count == 0)
+            {
+                return null;
+            }
+
+            int indexInList = weekNumber - 1;
+
+            DateTime dateDebutSemaine;
+            DateTime dateFinSemaine;
+
+            if (dimanches[indexInList] != null)
+            {
+                dateDebutSemaine = dimanches[indexInList].dateDimanche;
+
+                dateFinSemaine = dateDebutSemaine.AddDays(6);
+
+                return new List<DateTime>() { dateDebutSemaine, dateFinSemaine };
+            }
+
+
+            return null;
         }
     }
 }
