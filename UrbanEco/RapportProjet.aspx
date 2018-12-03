@@ -37,6 +37,10 @@
             table-layout: fixed;
         }
 
+        .ms-container .ms-list{
+            height: 250px !important;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
