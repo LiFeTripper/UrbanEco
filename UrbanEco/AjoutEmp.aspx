@@ -140,7 +140,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableCell CssClass="col-md-4">
-                        <asp:Button CssClass="btn btn-lg btn-danger" Style="width: 100%;" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
+                        <%--<asp:Button CssClass="btn btn-lg btn-danger" Style="width: 100%;" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />--%>
                     </asp:TableCell>
                     <asp:TableCell CssClass="col-md-4">
                             &nbsp;

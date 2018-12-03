@@ -87,7 +87,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableCell CssClass="col-md-4">
-                        <asp:Button ID="Btn_Annuler" runat="server" Text="Annuler" Style="width: 100% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" OnClick="Btn_Annuler_Click" />
+                        <%--<asp:Button ID="Btn_Annuler" runat="server" Text="Annuler" Style="width: 100% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" OnClick="Btn_Annuler_Click" />--%>
                     </asp:TableCell>
                     <asp:TableCell CssClass="col-md-4">
                         &nbsp;            
