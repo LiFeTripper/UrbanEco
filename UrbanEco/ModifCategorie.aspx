@@ -9,7 +9,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    <h1>Modifier cette catégorie</h1>
+    <h1>Sous-Projet</h1>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
