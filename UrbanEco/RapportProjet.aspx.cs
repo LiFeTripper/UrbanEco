@@ -79,6 +79,9 @@ namespace UrbanEco
 
                 RequeryCategorie();
                 RequeryEmployes();
+
+                date_debut.Value = Layout.ToCalendarDate(DateTime.Today);
+                date_fin.Value = Layout.ToCalendarDate(DateTime.Today);
             }
         }
 
