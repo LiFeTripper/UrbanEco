@@ -250,7 +250,7 @@ namespace UrbanEco
                     tbFT.idEmploye = Layout.GetUserConnected().idEmploye;
                 }
                 
-                if(tbx_categorie.SelectedItem.Text == "Aucune")
+                if(tbx_categorie.SelectedItem.Text != "Aucune")
                 {
                     tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
                 }

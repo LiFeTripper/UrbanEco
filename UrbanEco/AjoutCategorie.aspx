@@ -28,8 +28,8 @@
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e" runat="server">
                                 <th scope="col">ID</th>
-                                <th scope="col">Titre Catégorie</th>
-                                <th scope="col">Titre Sous-CatégorieDescription</th>
+                                <th scope="col">Sous-Projet Niveau 1</th>
+                                <th scope="col">Sous-Projet Niveau 2</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">
                                     <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjoutCat" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
@@ -167,8 +167,8 @@
                 <thead class="thead-dark">
                     <tr style="border-bottom: 5px solid #23282e" runat="server">
                         <th scope="col">ID</th>
-                        <th scope="col">Titre Catégorie</th>
-                        <th scope="col">Titre Sous-CatégorieDescription</th>
+                        <th scope="col">Sous-Projet Niveau 1</th>
+                        <th scope="col">Sous-Projet Niveau 2</th>
                         <th scope="col">Description</th>
                         <th scope="col">
                             <asp:Button class="btn btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />

@@ -50,9 +50,6 @@ namespace UrbanEco
                 liEmpTerrain.Visible = true;
             }
 
-            Lbl_HelloUser1.InnerText = "Bonjour " + GetUserName();
-            //Lbl_HelloUser2.InnerText = "Bonjour " + GetUserName();
-            //Lbl_HelloUser3.InnerText = "Bonjour " + GetUserName();
         }
 
         public static tbl_Employe GetUserConnected()
