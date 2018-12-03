@@ -293,5 +293,13 @@ namespace UrbanEco
 
             return null;
         }
+
+        protected void btn_download_Click(object sender, EventArgs e)
+        {
+            Response.ContentType = "application/pdf";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=Documents_Formation_Utilisateur.pdf");
+            Response.TransmitFile(Server.MapPath("~/Resources/Documents_Formation_Utilisateur.pdf"));
+            Response.End();
+        }
     }
 }
