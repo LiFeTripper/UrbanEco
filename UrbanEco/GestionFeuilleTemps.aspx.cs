@@ -45,6 +45,7 @@ namespace UrbanEco
                 if (Layout.GetUserConnected().username == "admin")
                 {
 
+
                     var queryFTAttente = from tblE in cdc.tbl_Employe
                                          join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
                                          where tblFT.approuver.Equals(false)
@@ -118,11 +119,27 @@ namespace UrbanEco
 
                     rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
                     rptr_EmployeApprouver.DataBind();
+
+                    
+
+                    
+                    
+
                 }
 
-
-
+                
+                
             }
+        }
+
+        public bool isVisible()
+        {
+            if(Layout.GetUserConnected().username == "admin")
+            {
+                return true;
+            }
+
+            return false;
         }
 
         protected void Btn_Modif_Click(object sender, EventArgs e)

@@ -295,6 +295,7 @@ namespace UrbanEco
                 //+ " (" + temp.dateCreation.ToString().Split(' ')[0] + ")";
             tbx_projet.SelectedValue = temp.idProjet.ToString();
             tbx_categorie.Enabled = true;
+
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
 
             var query2 = from tbl in context.tbl_ProjetCat
