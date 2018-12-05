@@ -10,7 +10,7 @@ namespace UrbanEco
 {
     public partial class Layout : System.Web.UI.MasterPage
     {
-        private static tbl_Employe userConnected;
+        //private static tbl_Employe userConnected;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,9 +27,8 @@ namespace UrbanEco
             var query = from tbl in context.tbl_Employe
                         where tbl.username == cookie
                         select tbl;
-            var t = query.ToList();
 
-            userConnected = query.First();
+            tbl_Employe userConnected = query.First();
 
             if(Request.Cookies["userInfo"].Value == "admin")
             {
@@ -52,12 +51,35 @@ namespace UrbanEco
 
         }
 
-        public static tbl_Employe GetUserConnected()
+        public tbl_Employe GetUserConnected()
         {
-            return userConnected;
+            //return userConnected;
+            //User not connected, redirect to login page
+            if (Request.Cookies["userinfo"] == null || Request.Cookies["userinfo"].Value == null)
+            {
+                Response.Redirect("Login.aspx",true);
+                return null;
+            }
+
+            CoecoDataContext context = new CoecoDataContext();
+
+            string cookie = Request.Cookies["userInfo"].Value;
+
+            var query = from tbl in context.tbl_Employe
+                        where tbl.username == cookie
+                        select tbl;
+
+            if(query != null)
+            {
+                Request.Cookies["userinfo"].Value = null;
+                Response.Redirect("Login.aspx",true);
+                return null;
+            }
+
+            return query.First();
         }
 
-        public static string GetUserName()
+        public string GetUserName()
         {
             tbl_Employe emp = GetUserConnected();
 

@@ -29,7 +29,7 @@
                             <thead class="thead-dark">
                                 <tr style="border-bottom: 5px solid #23282e">
                                     <%--<th style="width: 4%" scope="col"></th>--%>
-                                    <th style="width: 13%" scope="col">Projet</th>
+                                    <th style="width: 13%" scope="col">Projet en charge</th>
                                     <th style="width: 8%" scope="col">Employé</th>
                                     <th style="width: 8%" scope="col">Durée (h)</th>
 
@@ -89,7 +89,7 @@
                     </tbody>
                 <thead class="thead-dark">
                     <tr style="border-bottom: 5px solid #23282e">
-                        <th style="width: 13%" scope="col">Projet</th>
+                        <th style="width: 13%" scope="col">Projet en charge</th>
                         <th style="width: 8%" scope="col">Employé</th>
                         <th style="width: 8%" scope="col">Durée (h)</th>
                         <th style="width: 5%" scope="col"></th>

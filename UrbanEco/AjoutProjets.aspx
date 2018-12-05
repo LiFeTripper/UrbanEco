@@ -78,8 +78,8 @@
                         Responsable
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
-                        <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="nom" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
-                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom, nom, idEmploye)" TableName="tbl_Employe"></asp:LinqDataSource>
+                        <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="prenom" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
+                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom, nom, idEmploye)" TableName="tbl_Employe" OrderBy="prenom"></asp:LinqDataSource>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
@@ -162,7 +162,7 @@
 
 
         <div class="form-group mb-4 mt-4 col-6 mx-auto">
-            <asp:Button ID="Btn_Annuler" runat="server" Text="Annuler" Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" OnClick="Btn_Annuler_Click"/>
+            <%--<asp:Button ID="Btn_Annuler" CausesValidation="false" runat="server" Text="Annuler" Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" OnClick="Btn_Annuler_Click"/>--%>
             <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer" Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-success input-box" OnClick="Btn_Enregister_Click"/>
         </div>
     </form>

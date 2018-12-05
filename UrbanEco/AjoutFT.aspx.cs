@@ -89,7 +89,7 @@ namespace UrbanEco
                                        //where tblProjetCat.idEmploye == temp.idEmploye
                                        orderby tblProjet.titre
                                        select tblProjet);
-                        return;
+                       // return;
                     }
 
 

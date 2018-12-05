@@ -122,7 +122,10 @@ namespace UrbanEco
 
         protected void Btn_Annuler_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Projets.aspx");
+
+            ((Button)sender).CausesValidation = false;
+            Response.Redirect("Projets.aspx",false);
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
         }
     }
 }

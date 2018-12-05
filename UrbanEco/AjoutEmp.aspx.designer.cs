@@ -103,15 +103,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.CheckBox Chkbx_Inactif;
         
         /// <summary>
-        /// Contrôle btn_annuler.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_annuler;
-        
-        /// <summary>
         /// Contrôle Btn_Enregistrer.
         /// </summary>
         /// <remarks>
