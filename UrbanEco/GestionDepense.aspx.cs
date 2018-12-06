@@ -16,7 +16,9 @@ namespace UrbanEco
         {
             CoecoDataContext context = new CoecoDataContext();
 
-            if (Layout.GetUserConnected().username == "admin")
+            tbl_Employe empconnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+
+            if (empconnected.username == "admin")
             {
                 IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
                                                 join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
@@ -33,7 +35,7 @@ namespace UrbanEco
                 IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
                                                 join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
                                                 where tblDep.approuver == false
-                                                & tblEmp.idEmploye == Layout.GetUserConnected().idEmploye
+                                                & tblEmp.idEmploye == empconnected.idEmploye
                                                 select tblEmp;
 
                 Rptr_Emploe.DataSourceID = null;

@@ -26,126 +26,71 @@ namespace UrbanEco
                     dimanches = queryDimanche.ToList();
                 }
 
-                Calendar1.Value = Layout.ToCalendarDate(DateTime.Today);
+                DateCreation.Value = Layout.ToCalendarDate(DateTime.Today);
 
 
-                /* else
-                 {
-                 //    tbx_projetEmp.Visible = true;
-                 //    //Query les projet
-                 //    var queryProjet = from tbl in context.tbl_Projet
-                 //                      orderby tbl.titre
-                 //                      select tbl;
+                tbl_Employe userConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
-                 //    tbx_projetEmp.DataSource = queryProjet;
-                 //    tbx_projetEmp.DataBind();
-
-                 //    //Insérer un text pour sélectionne rle projet au début
-                 //    tbx_projetEmp.Items.Insert(0, "Veuillez sélectionner le projet");
-                 //    tbx_projetEmp.SelectedIndex = 0;
+                List<tbl_Projet> listProjets = new List<tbl_Projet>();
 
 
-
-
-
-                 }*/
-
-                //Query les projet accessible par l'employé
-                var queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
-                                   join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                   where tblProjetCat.idEmploye == Layout.GetUserConnected().idEmploye
-                                   orderby tblProjet.titre
-                                   select tblProjet);
-
-
-                if (Layout.GetUserConnected().username == "admin")
-                {
-                    int value = -1;
-                    try
-                    {
-
-                        int.TryParse(Request.QueryString["FT"], out value);
-
-                        var query1 = from tbl in context.tbl_FeuilleTemps
-                                     where tbl.idFeuille == value
-                                     select tbl;
-
-                        tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
-
-                        queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
-                                       join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                       where tblProjetCat.idEmploye == temp.idEmploye
-                                       orderby tblProjet.titre
-                                       select tblProjet);
-
-                        if (value <= 0)
-                            throw new Exception();
-                    }
-                    catch (Exception n)
-                    {
-                        //alert_failed.Visible = true;
-                        queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
-                                       join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                       //where tblProjetCat.idEmploye == temp.idEmploye
-                                       orderby tblProjet.titre
-                                       select tblProjet);
-                       // return;
-                    }
-
-
-
-
+                int idFeuilleTemps = -1;
+                if(Request.QueryString["FT"] != "New")
+                {                    
+                    int.TryParse(Request.QueryString["FT"], out idFeuilleTemps);
                 }
 
-                List<ListItem> listeProjet = new List<ListItem>();
-                listeProjet.Add(new ListItem("Aucune", (-1).ToString()));
-
-                foreach (tbl_Projet item in queryProjet.ToList())
+                if (userConnected.username == "admin")
                 {
-
-                    ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
-                    listeProjet.Add(projet);
-                }
-
-                tbx_projet.DataSource = listeProjet.Distinct();
-                tbx_projet.DataBind();
-
-                if (Request.QueryString["FT"] != "New")
-                {
-                    LoadFT();
-                }
-                else if (Layout.GetUserConnected().username == "admin")
-                {
+                    listProjets = BD.GetAllProjets();
                     tbl_employe.Visible = true;
                     LoadListEmploye();
-
-
+                    tbx_projet.Enabled = false;
+                }
+                else
+                {
+                    listProjets = BD.GetEmployeProject(userConnected);
                 }
 
-            }
+                List<ListItem> listItemProjets = new List<ListItem>();
+                listItemProjets.Add(new ListItem("Aucune", (-1).ToString()));
 
+                foreach (tbl_Projet item in listProjets)
+                {
+                    ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
+                    listItemProjets.Add(projet);
+                }
+
+                tbx_projet.DataSource = listItemProjets.Distinct();
+                tbx_projet.DataBind();
+
+                //Mode Modif
+                if (idFeuilleTemps != -1)
+                {
+
+                    tbl_FeuilleTemps ft = BD.GetFeuilleTemps(idFeuilleTemps);
+
+                    LoadFT(ft);
+                }
+            }
         }
 
         //On obient la liste des employées et on la link au DropDownList
         protected void LoadListEmploye()
         {
             //Remplissage du dropdownlist d'employé
+            List<ListItem> listItemEmployes = new List<ListItem>();
 
-            List<string> listEmp = new List<string>();
+            var allEmployes = BD.GetAllEmployes();
 
-            var tblEmp = from tbl in context.tbl_Employe
-                         where tbl.username != "admin"
-                         & tbl.inactif == false
-                         select tbl;
-
-            foreach (var n in tblEmp)
+            foreach (var employes in allEmployes)
             {
-                listEmp.Add(n.nom + "," + n.prenom);
+                listItemEmployes.Add(new ListItem(employes.nom + "," + employes.prenom, employes.idEmploye.ToString()));
             }
 
             ddl_employe.DataSource = null;
             ddl_employe.DataBind();
-            ddl_employe.DataSource = listEmp;
+            ddl_employe.DataSource = listItemEmployes;
             ddl_employe.DataBind();
 
             ddl_employe.Items.Insert(0, "Veuillez choisir un employé");
@@ -177,62 +122,33 @@ namespace UrbanEco
                 return;
             }
 
-            if (Layout.GetUserConnected().username != "admin")
+            tbl_Employe userConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
+            int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
+
+            List<tbl_ProjetCatEmploye> query_Employe_categorie = new List<tbl_ProjetCatEmploye>();
+
+            if (userConnected.username == "admin")
             {
-                int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
-
-                //var query = from tbl in context.tbl_ProjetCat
-                //            where tbl.idProjet == projectID
-
-                //            select tbl;
-
-                var query = from tbl in context.tbl_ProjetCatEmploye
-                            where tbl.idProjet == projectID && tbl.idEmploye == Layout.GetUserConnected().idEmploye
-                            select tbl;
-
-                List<ListItem> listeCategorieEmploye = new List<ListItem>();
-                listeCategorieEmploye.Add(new ListItem("Aucune", (-1).ToString()));
-
-                foreach (tbl_ProjetCatEmploye item in query.ToList())
-                {
-
-                    ListItem categorie = new ListItem(item.tbl_ProjetCat.titre, item.idCategorie.ToString());
-                    listeCategorieEmploye.Add(categorie);
-                }
-
-                tbx_categorie.DataSource = listeCategorieEmploye.Distinct();
-                tbx_categorie.DataBind();
+                query_Employe_categorie = BD.GetProjetLinkedCategorieEmploye(projectID, int.Parse(ddl_employe.SelectedItem.Value));
             }
             else
             {
-                int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
-
-                //var query = from tbl in context.tbl_ProjetCat
-                //            where tbl.idProjet == projectID
-
-                //            select tbl;
-
-                var query = from tbl in context.tbl_ProjetCatEmploye
-                            where tbl.idProjet == projectID && tbl.idEmploye == GetIDEmp(ddl_employe.SelectedItem.Text)
-                            select tbl;
-
-                List<ListItem> listeCategorieEmploye = new List<ListItem>();
-                listeCategorieEmploye.Add(new ListItem("Aucune", (-1).ToString()));
-
-                foreach (tbl_ProjetCatEmploye item in query.ToList())
-                {
-
-                    ListItem categorie = new ListItem(item.tbl_ProjetCat.titre, item.idCategorie.ToString());
-                    listeCategorieEmploye.Add(categorie);
-                }
-
-                tbx_categorie.DataSource = listeCategorieEmploye.Distinct();
-                tbx_categorie.DataBind();
+                query_Employe_categorie = BD.GetProjetLinkedCategorieEmploye(projectID, userConnected.idEmploye);
             }
-            
 
-            
+
+            List<ListItem> listItemEmployeCategorie = new List<ListItem>();
+            listItemEmployeCategorie.Add(new ListItem("Aucune", (-1).ToString()));
+
+            foreach (tbl_ProjetCatEmploye item in query_Employe_categorie)
+            {
+                ListItem categorie = new ListItem(item.tbl_ProjetCat.titre, item.idCategorie.ToString());
+                listItemEmployeCategorie.Add(categorie);
+            }
+
+            tbx_categorie.DataSource = listItemEmployeCategorie.Distinct();
+            tbx_categorie.DataBind();
 
         }
 
@@ -241,29 +157,34 @@ namespace UrbanEco
             if (Request.QueryString["FT"] == "New")
             {
                 tbl_FeuilleTemps tbFT = new tbl_FeuilleTemps();
+                
+                //admin
                 if(ddl_employe.Visible == true)
                 { 
-                    tbFT.idEmploye = GetIDEmp(ddl_employe.SelectedItem.Text);
+                    tbFT.idEmploye = int.Parse(ddl_employe.SelectedItem.Value);
                 }
-                else
+                else //User
                 {
-                    tbFT.idEmploye = Layout.GetUserConnected().idEmploye;
+                    tbFT.idEmploye = BD.GetUserConnected(Request.Cookies["userInfo"]).idEmploye;
                 }
                 
+                //S-Catégorie selected
                 if(tbx_categorie.SelectedItem.Text != "Aucune")
                 {
                     tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
                 }
-                else
+                else //aucune catgorie
                 {
                     tbFT.idCat = null;
                 }
+
+
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
-                tbFT.dateCreation = DateTime.Parse(Calendar1.Value);
+                tbFT.dateCreation = DateTime.Parse(DateCreation.Value);
                 tbFT.commentaire = txa_comments.Value;
                 tbFT.approuver = false;
-                tbFT.noSemaine = GetWeekToYear(DateTime.Parse(Calendar1.Value));
+                tbFT.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
 
                 context.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
                 context.SubmitChanges();
@@ -272,84 +193,50 @@ namespace UrbanEco
             }
             else
             {
-                int value = int.Parse(Request.QueryString["FT"]);
+                int idFeuilleTemps = int.Parse(Request.QueryString["FT"]);
 
-                var query1 = from tbl in context.tbl_FeuilleTemps
-                             where tbl.idFeuille == value
-                             select tbl;
+                tbl_FeuilleTemps feuilleTemps = BD.GetFeuilleTemps(idFeuilleTemps);
 
-                tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
-
-                if (tbx_categorie.SelectedItem.Text == "Aucune")
+                //S-cat selected
+                if (tbx_categorie.SelectedItem.Text != "Aucune")
                 {
-                    temp.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
+                    feuilleTemps.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
                 }
-                else
+                else //S-cat null
                 {
-                    temp.idCat = null;
+                    feuilleTemps.idCat = null;
                 }
-                temp.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
-                temp.nbHeure = int.Parse(tbx_nbHeure.Text);
-                temp.dateCreation = DateTime.Parse(Calendar1.Value);
-                temp.noSemaine = GetWeekToYear(DateTime.Parse(Calendar1.Value));
-
-                temp.commentaire = txa_comments.Value;
-
-                context.tbl_FeuilleTemps.DeleteOnSubmit(temp);
-                context.tbl_FeuilleTemps.InsertOnSubmit(temp);
-                context.SubmitChanges();
 
 
-                Response.Redirect("GestionFeuilleTemps.aspx");
+                feuilleTemps.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
+                feuilleTemps.nbHeure = int.Parse(tbx_nbHeure.Text);
+                feuilleTemps.dateCreation = DateTime.Parse(DateCreation.Value);
+                feuilleTemps.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
+
+                feuilleTemps.commentaire = txa_comments.Value;
+
+                context.tbl_FeuilleTemps.DeleteOnSubmit(feuilleTemps);
+                context.tbl_FeuilleTemps.InsertOnSubmit(feuilleTemps);
             }
 
+            context.SubmitChanges();
+            Response.Redirect("GestionFeuilleTemps.aspx");
         }
 
-        protected void LoadFT()
+        protected void LoadFT(tbl_FeuilleTemps ft)
         {
 
-            int value = -1;
-            try
-            {
-                
-                int.TryParse(Request.QueryString["FT"],out value);
+            tbl_Employe emp = ft.tbl_Employe;
 
-                if (value <= 0)
-                    throw new Exception();
-            }
-            catch(Exception n)
-            {
-                //alert_failed.Visible = true;
-                return;
-            }
-
-            var query1 = from tbl in context.tbl_FeuilleTemps
-                         where tbl.idFeuille == value
-                         select tbl;
-
-            tbl_FeuilleTemps temp = query1.First<tbl_FeuilleTemps>();
-
-            var queryEmp = from tbl in context.tbl_Employe
-                           where tbl.idEmploye == temp.idEmploye
-                           select tbl;
-
-
-
-            //lbl_Top.Text = "Feuille de temps de " + queryEmp.First<tbl_Employe>().prenom + " " + queryEmp.First<tbl_Employe>().nom 
-                //+ " (" + temp.dateCreation.ToString().Split(' ')[0] + ")";
-            tbx_projet.SelectedValue = temp.idProjet.ToString();
+            tbx_projet.SelectedValue = ft.idProjet.ToString();
             tbx_categorie.Enabled = true;
 
-            int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
-
-            var query2 = from tbl in context.tbl_ProjetCat
-                         where tbl.idProjet == projectID
-                         select tbl;
+            List<tbl_ProjetCat> projetCategorie = BD.GetProjetCategorieEmploye(ft.idProjet, emp.idEmploye);
 
             List<ListItem> catList = new List<ListItem>();
             catList.Add(new ListItem("Sélectionner une catégorie", (-1).ToString()));
 
-            foreach (var item in query2.ToList())
+            foreach (var item in projetCategorie)
             {
                 catList.Add(new ListItem(item.titre, item.idProjetCat.ToString()));
             }
@@ -357,30 +244,28 @@ namespace UrbanEco
             tbx_categorie.DataSource = catList;
             tbx_categorie.DataBind();
 
-            if (temp.idCat == null)
+            if (ft.idCat == null)
                 tbx_categorie.SelectedIndex = 0;
             else
                 for (int i = 0; i < tbx_categorie.Items.Count; i++)
                 {
-                    if(tbx_categorie.Items[i].Value == temp.idCat.ToString())
+                    if(tbx_categorie.Items[i].Value == ft.idCat.ToString())
                     {
                         tbx_categorie.SelectedIndex = i;
                     }
                 }
-            
 
-            DateTime dt = (DateTime)temp.dateCreation;
 
-            tbx_nbHeure.Text = temp.nbHeure.ToString();
+            tbx_nbHeure.Text = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
 
-            dateFormated.InnerText = DatePauvre(DateTime.Parse(temp.dateCreation.ToString()));
-            Calendar1.Value = DatePauvre(DateTime.Parse(temp.dateCreation.ToString()));
-            txa_comments.Value = temp.commentaire;
+            dateFormated.InnerText = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
+            DateCreation.Value = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
+            txa_comments.Value = ft.commentaire;
         }
 
         protected void ChangeDate()
         {
-            dateFormated.InnerText = Calendar1.Value;
+            dateFormated.InnerText = DateCreation.Value;
         }
 
         string DatePauvre (DateTime datePauvre)
@@ -412,29 +297,36 @@ namespace UrbanEco
         protected void ddl_employe_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (ddl_employe.Text != "Veuillez choisir un employé")
+            if (ddl_employe.SelectedIndex != 0)
             {
-
-
                 //Query les projet accessible par l'employé
-                var queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
-                                   join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                   where tblProjetCat.idEmploye == GetIDEmp(ddl_employe.SelectedItem.Text)
-                                   orderby tblProjet.titre
-                                   select tblProjet);
+
+                tbl_Employe emp = BD.GetEmploye(int.Parse(ddl_employe.SelectedItem.Value));
+
+                var queryProjet = BD.GetEmployeProject(emp);
 
                 List<ListItem> listeProjet = new List<ListItem>();
                 listeProjet.Add(new ListItem("Aucune", (-1).ToString()));
 
-                foreach (tbl_Projet item in queryProjet.ToList())
+                if (queryProjet != null)
                 {
 
-                    ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
-                    listeProjet.Add(projet);
+                    foreach (tbl_Projet item in queryProjet.ToList())
+                    {
+
+                        ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
+                        listeProjet.Add(projet);
+                    }
                 }
+
+                tbx_projet.Enabled = true;
 
                 tbx_projet.DataSource = listeProjet.Distinct();
                 tbx_projet.DataBind();
+            }
+            else
+            {
+                tbx_projet.Enabled = false;
             }
         }
 
@@ -459,5 +351,6 @@ namespace UrbanEco
 
             return 0;
         }
+
     }
 }

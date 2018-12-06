@@ -40,9 +40,10 @@ namespace UrbanEco
 
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
-                
 
-                if (Layout.GetUserConnected().username == "admin")
+                tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+
+                if (empConnected.username == "admin")
                 {
 
 
@@ -88,7 +89,7 @@ namespace UrbanEco
                                          where tblFT.approuver.Equals(false)
                                          & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
                                          & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                                         & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                         & tblE.idEmploye == empConnected.idEmploye
                                          orderby tblFT.dateCreation descending
 
                                          select tblE;
@@ -98,7 +99,7 @@ namespace UrbanEco
                                            where tblFT.approuver == true
                                            & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
                                            & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                                           & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                           & tblE.idEmploye == empConnected.idEmploye
                                            orderby tblFT.dateCreation descending
                                            select tblE;
 
@@ -134,7 +135,7 @@ namespace UrbanEco
 
         public bool isVisible()
         {
-            if(Layout.GetUserConnected().username == "admin")
+            if(BD.GetUserConnected(Request.Cookies["userInfo"]).username == "admin")
             {
                 return true;
             }
@@ -339,7 +340,9 @@ namespace UrbanEco
 
         void RequeryFT(DateTime dateMin, DateTime dateMax)
         {
-            if (Layout.GetUserConnected().username == "admin")
+            tbl_Employe empconnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+
+            if (empconnected.username == "admin")
             {
 
                 var queryFTAttente = from tblE in cdc.tbl_Employe
@@ -384,7 +387,7 @@ namespace UrbanEco
                                      where tblFT.approuver.Equals(false)
                                      & (tblFT.dateCreation >= dateMin)
                                  & (tblFT.dateCreation <= dateMax)
-                                     & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                     & tblE.idEmploye == empconnected.idEmploye
                                      orderby tblFT.dateCreation descending
 
                                      select tblE;
@@ -394,7 +397,7 @@ namespace UrbanEco
                                        where tblFT.approuver == true
                                        & (tblFT.dateCreation >= dateMin)
                                  & (tblFT.dateCreation <= dateMax)
-                                       & tblE.idEmploye == Layout.GetUserConnected().idEmploye
+                                       & tblE.idEmploye == empconnected.idEmploye
                                        orderby tblFT.dateCreation descending
                                        select tblE;
 
