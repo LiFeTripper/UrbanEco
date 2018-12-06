@@ -24,7 +24,7 @@ namespace UrbanEco
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.MaintainScrollPositionOnPostBack = true;
-            tbl_Employe emp = Layout.GetUserConnected();
+            tbl_Employe emp = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
             if (emp.username == "admin")
             {
@@ -337,12 +337,12 @@ namespace UrbanEco
         protected void LoadUser()
         {
             this.Page.Title = "Ma banque d'heures";
-            h1TitlePage.InnerText = "Ma Banque d'Heures";
+            h1TitlePage.InnerText = "Ma banque d'heure";
 
             ddl_empBH.Visible = false;
             btn_modifBH.Visible = false;
 
-            load_BHemp(Layout.GetUserConnected().idEmploye);
+            load_BHemp(BD.GetUserConnected(Request.Cookies["userInfo"]).idEmploye);
         }
 
         //On obient la liste des employées et on la link au DropDownList

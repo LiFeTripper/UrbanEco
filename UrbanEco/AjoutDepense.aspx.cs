@@ -15,8 +15,6 @@ namespace UrbanEco
 
             TODO :
             Gestion des erreurs (champs vide)
-            Permettre les modifications
-            Adapter pour prix voiture et camion
         */
 
 
@@ -24,13 +22,7 @@ namespace UrbanEco
         protected enum TypeKm { Voiture, Camion, Nothing}
         protected static TypeKm typeKm = TypeKm.Voiture;
 
-        static tbl_TypeEmploye typeEmpl;
-        static tbl_Employe empConnected;
-        
-
-        static bool DepenseAjouter = false;
-
-        static tbl_Kilometrage prixKilometrage;
+        private static tbl_Kilometrage prixKilometrage;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,36 +32,39 @@ namespace UrbanEco
             if (!IsPostBack)
             {
 
-
+                CoecoDataContext context = new CoecoDataContext();
 
                 List<ListItem> ListTypeDepense = new List<ListItem>();
 
+                tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+                tbl_TypeEmploye typeEmpl = empConnected.tbl_TypeEmploye;
+
+
+                //Obtenir le prix du kilometrage
+                var query_Prix_Kilometrage = from tbl in context.tbl_Kilometrage
+                                             select tbl;
+
+                prixKilometrage = query_Prix_Kilometrage.First();
+
+
+                //Nouvelle dépense
                 if (Request.QueryString["Dep"] == "New")
                 {
 
-                    CoecoDataContext context = new CoecoDataContext();
                     typeKm = TypeKm.Voiture;
-
-                    //La dépense n'est pas ajouté a la BD
-                    DepenseAjouter = false;
 
                     //Ajouter les --- pour les sous-catégorie (pas de projet selectionner)
                     tbx_categorie.Items.Add("-----");
 
-                    //Bd context
-
-                    empConnected = Layout.GetUserConnected();
-
-                    typeEmpl = empConnected.tbl_TypeEmploye;
 
                     //Query les projet accessible par l'employé
-                    var queryProjet1 = (from tblProjetCat in context.tbl_ProjetCatEmploye
+                    var query_Projets_Employes = (from tblProjetCat in context.tbl_ProjetCatEmploye
                                         join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                        where tblProjetCat.idEmploye == Layout.GetUserConnected().idEmploye
+                                        where tblProjetCat.idEmploye == empConnected.idEmploye
                                         orderby tblProjet.titre
                                         select tblProjet);
 
-                    tbx_projet.DataSource = queryProjet1.Distinct();
+                    tbx_projet.DataSource = query_Projets_Employes.Distinct();
                     tbx_projet.DataBind();
 
                     //Insérer un text pour sélectionner le projet au début
@@ -78,30 +73,26 @@ namespace UrbanEco
 
                     tbx_typeDepense.SelectedIndex = 0;
 
-                    //Obtenir le prix du kilometrage
-                    var queryKilo1 = from tbl in context.tbl_Kilometrage
-                                     select tbl;
 
-                    prixKilometrage = queryKilo1.First();
 
-                    var queryKilometreDepense1 = from tbl in context.tbl_TypeDepense
+                    var query_Dépense_Kilometrage = from tbl in context.tbl_TypeDepense
                                                  where tbl.idTypeEmploye.Equals(null) == true
                                                  select tbl;
 
-                    var queryTypeDepense1 = from tbl in context.tbl_TypeDepense
+                    var query_Type_Depense_UserType = from tbl in context.tbl_TypeDepense
                                             where tbl.idTypeEmploye == typeEmpl.idType
                                             select tbl;
 
 
                     ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
 
-                    foreach (var item in queryKilometreDepense1.ToList())
+                    foreach (var item in query_Dépense_Kilometrage.ToList())
                     {
                         ListItem l = new ListItem(item.nomDepense, item.idTypeDepense.ToString());
                         ListTypeDepense.Add(l);
                     }
 
-                    foreach (var item in queryTypeDepense1.ToList())
+                    foreach (var item in query_Type_Depense_UserType.ToList())
                     {
                         ListItem l = new ListItem(item.nomDepense, item.idTypeDepense.ToString());
                         ListTypeDepense.Add(l);
@@ -116,55 +107,42 @@ namespace UrbanEco
 
                     Calendar.Value = Layout.ToCalendarDate(DateTime.Today);
                 }
-                else
+                else //Modification dépense
                 {
 
-                    CoecoDataContext context = new CoecoDataContext();
-
-                    var querry = from tbl in context.tbl_Depense
+                    var querry_Depense_Modifier = from tbl in context.tbl_Depense
                                  where tbl.idDepense == int.Parse(Request.QueryString["Dep"])
                                  select tbl;
 
-                    tbl_Depense tblDep = querry.First();
-
-                    
-
-                    //La dépense n'est pas ajouté a la BD
-                    DepenseAjouter = false;
+                    tbl_Depense depenseToModify = querry_Depense_Modifier.First();
 
                     //Ajouter les --- pour les sous-catégorie (pas de projet selectionner)
                     tbx_categorie.Items.Add("-----");
 
-                    if(Layout.GetUserConnected().username == "admin")
+                    tbl_Employe employe_Associer_depense = null;
+
+                    //Si c'est l'admin, on obtient l'employe associer à cette dépense
+                    if(empConnected.username == "admin")
                     {
-                        var querry3 = from tbl in context.tbl_Employe
-                                      where tbl.idEmploye == tblDep.idEmploye
+                        var querry_Employe_Depense = from tbl in context.tbl_Employe
+                                      where tbl.idEmploye == depenseToModify.idEmploye
                                       select tbl;
 
-                        empConnected = querry3.First();
-                    }
-                    else
-                    {
-                        empConnected = Layout.GetUserConnected();
+                        employe_Associer_depense = querry_Employe_Depense.First();
                     }
 
-                    typeEmpl = empConnected.tbl_TypeEmploye;
+                    typeEmpl = employe_Associer_depense.tbl_TypeEmploye;
 
                     //Query les projet accessible par l'employé
                     var queryProjet = (from tblProjetCat in context.tbl_ProjetCatEmploye
                                        join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                       where tblProjetCat.idEmploye == empConnected.idEmploye
+                                       where tblProjetCat.idEmploye == employe_Associer_depense.idEmploye
                                        orderby tblProjet.titre
                                        select tblProjet);
 
                     tbx_projet.DataSource = queryProjet.Distinct();
                     tbx_projet.DataBind();
                     
-                    //Obtenir le prix du kilometrage
-                    var queryKilo = from tbl in context.tbl_Kilometrage
-                                    select tbl;
-
-                    prixKilometrage = queryKilo.First();
 
                     var queryKilometreDepense = from tbl in context.tbl_TypeDepense
                                                 where tbl.idTypeEmploye.Equals(null) == true
@@ -198,7 +176,7 @@ namespace UrbanEco
                     Calendar.Value = Layout.ToCalendarDate(DateTime.Today);
 
                     var querryCat = from tbl in context.tbl_ProjetCat
-                                    where tbl.idProjetCat == tblDep.idProjetCat
+                                    where tbl.idProjetCat == depenseToModify.idProjetCat
                                     select tbl;
 
                     tbx_projet.SelectedValue = querryCat.First().idProjet.ToString();
@@ -224,7 +202,7 @@ namespace UrbanEco
                     //            select tbl;
 
                     var query = from tbl in context.tbl_ProjetCatEmploye
-                                where tbl.idProjet == projectID && tbl.idEmploye == empConnected.idEmploye
+                                where tbl.idProjet == projectID && tbl.idEmploye == employe_Associer_depense.idEmploye
                                 select tbl;
 
                     List<ListItem> listeCategorieEmploye = new List<ListItem>();
@@ -240,37 +218,37 @@ namespace UrbanEco
                     tbx_categorie.DataBind();
 
                     var TypeDepense = from tbl in context.tbl_TypeDepense
-                                      where tbl.nomDepense == tblDep.typeDepense
+                                      where tbl.nomDepense == depenseToModify.typeDepense
                                       select tbl;
 
 
-                    tbx_categorie.SelectedValue = tblDep.idProjetCat.ToString();
+                    tbx_categorie.SelectedValue = depenseToModify.idProjetCat.ToString();
                     tbx_typeDepense.SelectedValue = TypeDepense.First().idTypeDepense.ToString();
 
-                    Calendar.Value = Layout.ToCalendarDate((DateTime)tblDep.dateDepense);
+                    Calendar.Value = Layout.ToCalendarDate((DateTime)depenseToModify.dateDepense);
 
-                    if (tblDep.typeDepense == "Déplacement (Voiture)")
+                    if (depenseToModify.typeDepense == "Déplacement (Voiture)")
                     {
                         km_html.Visible = true;
                         typeKm = TypeKm.Voiture;
-                        prixTotalKm.InnerText = tblDep.montant.ToString();
-                        tbx_nbKm.Text = (tblDep.montant / prixKilometrage.prixKilometrageVoiture).ToString();
+                        prixTotalKm.InnerText = depenseToModify.montant.ToString();
+                        tbx_nbKm.Text = (depenseToModify.montant / prixKilometrage.prixKilometrageVoiture).ToString();
                     }
-                    else if (tblDep.typeDepense == "Déplacement (Camion)")
+                    else if (depenseToModify.typeDepense == "Déplacement (Camion)")
                     {
                         km_html.Visible = true;
                         typeKm = TypeKm.Camion;
-                        prixTotalKm.InnerText = tblDep.montant.ToString();
-                        tbx_nbKm.Text = (tblDep.montant / prixKilometrage.prixKilometrageCamion).ToString();
+                        prixTotalKm.InnerText = depenseToModify.montant.ToString();
+                        tbx_nbKm.Text = (depenseToModify.montant / prixKilometrage.prixKilometrageCamion).ToString();
                     }
                     else
                     {
                         montant_html.Visible = true;
-                        tbx_montantNormal.Text = tblDep.montant.ToString();
+                        tbx_montantNormal.Text = depenseToModify.montant.ToString();
                     }
 
 
-                    tbx_note.Text = tblDep.note.ToString();
+                    tbx_note.Text = depenseToModify.note.ToString();
 
                 }
             }
@@ -290,22 +268,12 @@ namespace UrbanEco
             {
                 if (Request.QueryString["Dep"] == "New")
                 {
-                    //La dépense est déja ajouté a la BD
-                    if (DepenseAjouter)
-                    {
-                        if (alert_failed.Visible == true)
-                            return;
-
-                        alert_success.Visible = false;
-                        alert_warning.Visible = true;
-                        return;
-                    }
 
                     //Créer une dépense
                     tbl_Depense dep = new tbl_Depense();
 
                     //obtenir l'employé connecter
-                    tbl_Employe empConnected = Layout.GetUserConnected();
+                    tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
                     //Peut etre améliorer
                     //obtenir le id du type de la dépense
@@ -355,11 +323,7 @@ namespace UrbanEco
                     context.tbl_Depense.InsertOnSubmit(dep);
                     context.SubmitChanges();
 
-                    //La dépense est ajouté
-                    alert_success.Visible = true;
-                    alert_failed.Visible = false;
-                    alert_warning.Visible = false;
-                    DepenseAjouter = true;
+                    Response.Redirect("GestionDepense.aspx");
                 }
                 else
                 {
@@ -414,8 +378,7 @@ namespace UrbanEco
             {
                 //erreur lors de l'ajout de la dépense
                 alert_failed.Visible = true;
-                DepenseAjouter = false;
-                Console.Write(ex);
+                //Console.Write(ex);
             }
         }
 
@@ -458,10 +421,7 @@ namespace UrbanEco
             CoecoDataContext context = new CoecoDataContext();
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
 
-            //var query = from tbl in context.tbl_ProjetCat
-            //            where tbl.idProjet == projectID
-
-            //            select tbl;
+            tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
             var query = from tbl in context.tbl_ProjetCatEmploye
                         where tbl.idProjet == projectID && tbl.idEmploye == empConnected.idEmploye
@@ -483,51 +443,6 @@ namespace UrbanEco
 
             tbx_categorie.SelectedIndex = 0;
         }
-
-        /// <summary>
-        /// Mettre a jour le récapitulatif de la dépense
-        /// </summary>
-        /*void UpdateRecapitulatif()
-        {
-            rep_categorie.InnerText = tbx_categorie.Items[tbx_categorie.SelectedIndex].Text;          
-
-            //Dépense KM
-            if (km_html.Visible && typeKm != TypeKm.Nothing)
-            {
-                float prix = -1;
-                float.TryParse(tbx_nbKm.Text, out prix);
-
-                if(prix != -1)
-                {
-                    string prixtotal = "";
-
-                    switch (typeKm)
-                    {
-                        case TypeKm.Voiture:
-                            prixtotal = (prix * prixKilometrage.prixKilometrageVoiture) + "$";
-                            break;
-                        case TypeKm.Camion:
-                            prixtotal = (prix * prixKilometrage.prixKilometrageCamion) + "$";
-                            break;
-                    }
-                    rep_montant.InnerText = prixtotal;
-                    prixTotalKm.InnerText = prixtotal;
-                }
-            }
-            else
-            {
-                rep_montant.InnerText = (tbx_montantNormal.Text) + "$";
-            }
-
-            //Obtenir l'employé connecté
-            if (Layout.GetUserConnected() != null)
-                rep_nomEmployer.InnerText = Layout.GetUserConnected().nom + ", " + Layout.GetUserConnected().prenom;
-
-            rep_projet.InnerText = tbx_projet.Items[tbx_projet.SelectedIndex].Text;
-
-            if(tbx_typeDepense.SelectedIndex != -1)
-                rep_typeDepense.InnerText = tbx_typeDepense.Items[tbx_typeDepense.SelectedIndex].Text;
-        }*/
 
         protected void tbx_typeDepense_SelectedIndexChanged(object sender, EventArgs e)
         {

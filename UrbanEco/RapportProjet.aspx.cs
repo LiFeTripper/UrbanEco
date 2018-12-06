@@ -38,9 +38,6 @@ namespace UrbanEco
             if (!IsPostBack)
             {    
                 
-
-                //tbx_categorie.Items.Add("Sélectionner un projet pour avoir accès au sous-catégorie");
-
                 //Query pour les projet
                 CoecoDataContext context = new CoecoDataContext();
 

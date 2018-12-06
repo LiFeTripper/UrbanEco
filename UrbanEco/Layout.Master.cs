@@ -51,42 +51,22 @@ namespace UrbanEco
 
         }
 
-        public tbl_Employe GetUserConnected()
+        public static tbl_Projet GetProjectFromEmploye(tbl_Employe employe)
         {
-            //return userConnected;
-            //User not connected, redirect to login page
-            if (Request.Cookies["userinfo"] == null || Request.Cookies["userinfo"].Value == null)
-            {
-                Response.Redirect("Login.aspx",true);
-                return null;
-            }
-
             CoecoDataContext context = new CoecoDataContext();
 
-            string cookie = Request.Cookies["userInfo"].Value;
-
-            var query = from tbl in context.tbl_Employe
-                        where tbl.username == cookie
-                        select tbl;
+            var query = (from tblProjetCat in context.tbl_ProjetCatEmploye
+             join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
+             where tblProjetCat.idEmploye == employe.idEmploye
+             orderby tblProjet.titre
+             select tblProjet);
 
             if(query != null)
             {
-                Request.Cookies["userinfo"].Value = null;
-                Response.Redirect("Login.aspx",true);
-                return null;
+                return query.First();
             }
 
-            return query.First();
-        }
-
-        public string GetUserName()
-        {
-            tbl_Employe emp = GetUserConnected();
-
-            if (emp == null)
-                return "";
-
-            return emp.prenom + " " + emp.nom;
+            return null;
         }
 
         public static string ToCalendarDate(DateTime date)

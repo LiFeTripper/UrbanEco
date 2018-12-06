@@ -46,7 +46,7 @@
                         Employés <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -112,7 +112,7 @@
                         <b style="color:red; float:right;">*</b><h5  id="dateFormated" runat="server"></h5>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <input type="date" id="Calendar1" style="margin: auto;" runat="server" class="form-control" />
+                        <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" />
                     </asp:TableCell>
                 </asp:TableRow>
 
@@ -138,7 +138,7 @@
 
         <%--On change for date--%>
         <script>
-            var input = document.getElementById('<%=Calendar1.ClientID%>')
+            var input = document.getElementById('<%=DateCreation.ClientID%>')
             console.log(input);
             UpdateDateFormat();
 

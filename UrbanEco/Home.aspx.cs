@@ -34,8 +34,6 @@ namespace UrbanEco
 
             if(!IsPostBack)
             {
-                string username = Request.Cookies["userinfo"].Value;
-
                 CoecoDataContext ctx = new CoecoDataContext();
 
                 //Premier dimanche
@@ -48,19 +46,17 @@ namespace UrbanEco
                 }
 
 
-                var emp = (from tbl in ctx.tbl_Employe
-                           where tbl.username.Equals(username)
-                           select tbl).First();
+                tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
 
-                Lbl_HelloUser.InnerText = "Bonjour " + emp.nom + " " + emp.prenom;
+                Lbl_HelloUser.InnerText = "Bonjour " + empConnected.nom + " " + empConnected.prenom;
 
                 tbl_Employes = (from tbl in ctx.tbl_Employe
                                     select tbl).ToList();
 
 
                 var queryProjetResponsable = from tbl in ctx.tbl_Projet
-                                             where tbl.idEmployeResp == emp.idEmploye || (emp.username.Equals("admin"))
+                                             where tbl.idEmployeResp == empConnected.idEmploye || (empConnected.username.Equals("admin"))
                                              select tbl;
 
                 if (queryProjetResponsable.Count() == 0)
@@ -93,7 +89,7 @@ namespace UrbanEco
                     lbl_resume.InnerText = "Résumé de la semaine";
 
                     //Admin connecté
-                    if (emp.username.Equals("admin"))
+                    if (empConnected.username.Equals("admin"))
                         {
                         if (dimanches.Count == 0)
                         {
