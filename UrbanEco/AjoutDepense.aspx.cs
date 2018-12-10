@@ -32,15 +32,15 @@ namespace UrbanEco
             if (!IsPostBack)
             {
 
-                CoecoDataContext context = new CoecoDataContext();
+                CoecoDataContext ctx = new CoecoDataContext();
 
                 List<ListItem> ListTypeDepense = new List<ListItem>();
 
-                tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+                tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
                 tbl_TypeEmploye typeEmpl = empConnected.tbl_TypeEmploye;
 
 
-                prixKilometrage = BD.GetDeplacementPrice();
+                prixKilometrage = BD.GetDeplacementPrice(ctx);
 
 
                 //Nouvelle dépense
@@ -54,7 +54,7 @@ namespace UrbanEco
 
 
                     //Query les projet accessible par l'employé
-                    var query_Projets_Employes = BD.GetEmployeProjet(empConnected);
+                    var query_Projets_Employes = BD.GetEmployeProjet(ctx,empConnected);
 
                     tbx_projet.DataSource = query_Projets_Employes;
                     tbx_projet.DataBind();
@@ -67,9 +67,9 @@ namespace UrbanEco
 
 
 
-                    var query_Dépense_Kilometrage = BD.GetDepenseDeplacement();
+                    var query_Dépense_Kilometrage = BD.GetDepenseDeplacement(ctx);
 
-                    var query_Type_Depense_UserType = BD.GetTypeDepense(empConnected.idTypeEmpl);
+                    var query_Type_Depense_UserType = BD.GetTypeDepense(ctx,empConnected.idTypeEmpl);
 
 
                     ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
@@ -97,7 +97,7 @@ namespace UrbanEco
                 }
                 else //Modification dépense
                 {                 
-                    tbl_Depense depenseToModify = BD.GetDepense(int.Parse(Request.QueryString["Dep"]));
+                    tbl_Depense depenseToModify = BD.GetDepense(ctx,int.Parse(Request.QueryString["Dep"]));
 
                     //Ajouter les --- pour les sous-catégorie (pas de projet selectionner)
                     tbx_categorie.Items.Add("-----");
@@ -105,21 +105,21 @@ namespace UrbanEco
                     tbl_Employe employe_Associer_depense = null;
 
 
-                    employe_Associer_depense = BD.GetEmploye(depenseToModify.idEmploye);
+                    employe_Associer_depense = BD.GetEmploye(ctx,depenseToModify.idEmploye);
                     
 
                     typeEmpl = employe_Associer_depense.tbl_TypeEmploye;
 
-                    var queryProjet = BD.GetEmployeProjet(employe_Associer_depense);
+                    var queryProjet = BD.GetEmployeProjet(ctx,employe_Associer_depense);
 
 
                     tbx_projet.DataSource = queryProjet;
                     tbx_projet.DataBind();
 
 
-                    var queryKilometreDepense = BD.GetDepenseDeplacement();
+                    var queryKilometreDepense = BD.GetDepenseDeplacement(ctx);
 
-                    var queryTypeDepense = BD.GetTypeDepense(empConnected.idTypeEmpl);
+                    var queryTypeDepense = BD.GetTypeDepense(ctx,empConnected.idTypeEmpl);
 
                     ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
 
@@ -144,7 +144,7 @@ namespace UrbanEco
 
                     Calendar.Value = Layout.ToCalendarDate(DateTime.Today);
 
-                    var querryCat = from tbl in context.tbl_ProjetCat
+                    var querryCat = from tbl in ctx.tbl_ProjetCat
                                     where tbl.idProjetCat == depenseToModify.idProjetCat
                                     select tbl;
 
@@ -161,7 +161,7 @@ namespace UrbanEco
 
                     int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
 
-                    var query = BD.GetProjetLinkedCategorieEmploye(projectID, employe_Associer_depense.idEmploye);
+                    var query = BD.GetProjetLinkedCategorieEmploye(ctx,projectID, employe_Associer_depense.idEmploye);
 
                     List<ListItem> listeCategorieEmploye = new List<ListItem>();
 
@@ -175,7 +175,7 @@ namespace UrbanEco
                     tbx_categorie.DataSource = listeCategorieEmploye;
                     tbx_categorie.DataBind();
 
-                    var TypeDepense = from tbl in context.tbl_TypeDepense
+                    var TypeDepense = from tbl in ctx.tbl_TypeDepense
                                       where tbl.nomDepense == depenseToModify.typeDepense
                                       select tbl;
 
@@ -222,6 +222,8 @@ namespace UrbanEco
         /// <param name="e"></param>
         protected void btn_envoyer_Click(object sender, EventArgs e)
         {
+            CoecoDataContext ctx = new CoecoDataContext();
+
             try
             {
                 if (Request.QueryString["Dep"] == "New")
@@ -231,7 +233,7 @@ namespace UrbanEco
                     tbl_Depense dep = new tbl_Depense();
 
                     //obtenir l'employé connecter
-                    tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+                    tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
                     //Peut etre améliorer
                     //obtenir le id du type de la dépense
@@ -353,9 +355,9 @@ namespace UrbanEco
         /// <param name="e"></param>
         protected void tbx_projet_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            CoecoDataContext ctx = new CoecoDataContext();
             //Reset les catégories
-            if(!tbx_categorie.Enabled)
+            if (!tbx_categorie.Enabled)
                 tbx_categorie.Enabled = true;
 
 
@@ -380,9 +382,9 @@ namespace UrbanEco
             CoecoDataContext context = new CoecoDataContext();
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
 
-            tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+            tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
-            var query = BD.GetProjetLinkedCategorieEmploye(projectID, empConnected.idEmploye);
+            var query = BD.GetProjetLinkedCategorieEmploye(ctx,projectID, empConnected.idEmploye);
 
             List<ListItem> listeCategorieEmploye = new List<ListItem>();
             listeCategorieEmploye.Add(new ListItem("Aucune", (-1).ToString()));

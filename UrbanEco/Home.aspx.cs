@@ -46,7 +46,7 @@ namespace UrbanEco
                 }
 
 
-                tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+                tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
 
                 Lbl_HelloUser.InnerText = "Bonjour " + empConnected.nom + " " + empConnected.prenom;

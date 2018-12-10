@@ -11,8 +11,6 @@ namespace UrbanEco
     {
         string argument;
 
-        CoecoDataContext context = new CoecoDataContext();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //Recherche de l'projet dans l'adresse
@@ -20,12 +18,14 @@ namespace UrbanEco
 
             lbl_noProjet.Text = argument;
 
+            CoecoDataContext ctx = new CoecoDataContext();
+
             if (!IsPostBack)
             {
                 Page.MaintainScrollPositionOnPostBack = true;
 
                 //CODE POUR BIND LE REPEATER DE CATÉGORIE
-                var queryMasterProjetCat = BD.GetMasterCategorieProjet(int.Parse(argument));
+                var queryMasterProjetCat = BD.GetMasterCategorieProjet(ctx,int.Parse(argument));
 
                 Rptr_Categorie.DataSource = null;
                 Rptr_Categorie.DataSourceID = null;

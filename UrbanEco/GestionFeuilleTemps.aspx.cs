@@ -24,7 +24,7 @@ namespace UrbanEco
         {
             if(!IsPostBack)
             {
-
+                CoecoDataContext ctx = new CoecoDataContext();
                 Page.MaintainScrollPositionOnPostBack = true;
 
                 //Premier dimanche
@@ -41,16 +41,16 @@ namespace UrbanEco
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
 
-                tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+                tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
                 DateTime dateMin = DateTime.Parse(Calendar1.Value);
                 DateTime dateMax = DateTime.Parse(Calendar2.Value);
 
                 if (empConnected.username == "admin")
                 {
-                    var queryFTAttente = BD.GetAllEmployeFtFiltered(dateMin, dateMax, false);
+                    var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, false);
                                                                   
-                    var queryFTApprouver = BD.GetAllEmployeFtFiltered(dateMin, dateMax, true);
+                    var queryFTApprouver = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, true);
 
                     Rptr_EmployeNonApprouver.DataSource = null;
                     Rptr_EmployeNonApprouver.DataSourceID = null;
@@ -69,9 +69,9 @@ namespace UrbanEco
                 }
                 else
                 {
-                    var queryFTAttente = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, false);
+                    var queryFTAttente = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, false);
 
-                    var queryFTApprouver = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, true);
+                    var queryFTApprouver = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, true);
 
                     Rptr_EmployeNonApprouver.DataSource = null;
                     Rptr_EmployeNonApprouver.DataSourceID = null;
@@ -93,7 +93,8 @@ namespace UrbanEco
 
         public bool isVisible()
         {
-            if(BD.GetUserConnected(Request.Cookies["userInfo"]).username == "admin")
+            CoecoDataContext ctx = new CoecoDataContext();
+            if (BD.GetUserConnected(ctx, Request.Cookies["userInfo"]).username == "admin")
             {
                 return true;
             }
@@ -108,10 +109,12 @@ namespace UrbanEco
 
         protected void Btn_Approve_Click(object sender, EventArgs e)
         {
+            CoecoDataContext ctx = new CoecoDataContext();
+
             ImageButton temp = (sender as ImageButton);
             int idFeuille = int.Parse(temp.CommandArgument);
 
-            tbl_FeuilleTemps FT = BD.GetFeuilleTemps(idFeuille);
+            tbl_FeuilleTemps FT = BD.GetFeuilleTemps(ctx,idFeuille);
 
             CheckTempsSupp(FT.idEmploye);
 
@@ -292,14 +295,16 @@ namespace UrbanEco
 
         void RequeryFT(DateTime dateMin, DateTime dateMax)
         {
-            tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
             if (empConnected.username == "admin")
             {
 
-                var queryFTAttente = BD.GetAllEmployeFtFiltered(dateMin, dateMax, false);
+                var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx,dateMin, dateMax, false);
 
-                var queryFTApprouver = BD.GetAllEmployeFtFiltered(dateMin, dateMax, true);
+                var queryFTApprouver = BD.GetAllEmployeFtFiltered(ctx,dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
@@ -317,9 +322,9 @@ namespace UrbanEco
             }
             else
             {
-                var queryFTAttente = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, false);
+                var queryFTAttente = BD.GetEmployeFtFiltered(ctx,empConnected.idEmploye, dateMin, dateMax, false);
 
-                var queryFTApprouver = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, true);
+                var queryFTApprouver = BD.GetEmployeFtFiltered(ctx,empConnected.idEmploye, dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;

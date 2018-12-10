@@ -14,13 +14,13 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+            tbl_Employe empconnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
             if (empconnected.username == "admin")
             {
-                List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpFTWaiting();
+                List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpFTWaiting(ctx);
 
                 Rptr_Emploe.DataSourceID = null;
                 Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
@@ -28,7 +28,7 @@ namespace UrbanEco
             }
             else
             {
-                List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpFTWaiting(empconnected.idEmploye);
+                List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpFTWaiting(ctx,empconnected.idEmploye);
 
                 Rptr_Emploe.DataSourceID = null;
                 Rptr_Emploe.DataSource = queryEmpFtWaiting;
@@ -61,6 +61,8 @@ namespace UrbanEco
         {
             ImageButton btn = ((ImageButton)sender);
 
+            CoecoDataContext ctx = new CoecoDataContext();
+
             int idDepense = -1;
 
             int.TryParse(btn.CommandArgument, out idDepense);
@@ -69,7 +71,7 @@ namespace UrbanEco
             {
                 CoecoDataContext context = new CoecoDataContext();
 
-                tbl_Depense depense = BD.GetDepense(idDepense);
+                tbl_Depense depense = BD.GetDepense(ctx,idDepense);
 
                 if(depense != null)
                 {

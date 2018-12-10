@@ -14,7 +14,7 @@ namespace UrbanEco
         /// </summary>
         /// <param name="myCookie"></param>
         /// <returns></returns>
-        public static tbl_Employe GetUserConnected(HttpCookie myCookie)
+        public static tbl_Employe GetUserConnected(CoecoDataContext ctx, HttpCookie myCookie)
         {
             //return userConnected;
             //User not connected, un peu intule avec le webconfig, mais on sais jamais
@@ -24,7 +24,7 @@ namespace UrbanEco
                 return null;
             }
 
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             string cookieValue = myCookie.Value;
 
@@ -46,9 +46,9 @@ namespace UrbanEco
         /// </summary>
         /// <param name="userConnected"></param>
         /// <returns></returns>
-        public static List<tbl_Projet> GetEmployeProjet(tbl_Employe userConnected)
+        public static List<tbl_Projet> GetEmployeProjet(CoecoDataContext ctx, tbl_Employe userConnected)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query_projets = (from tblProjetCat in context.tbl_ProjetCatEmploye
                                  join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
@@ -64,9 +64,9 @@ namespace UrbanEco
             return query_projets.Distinct().ToList();
         }
 
-        public static List<tbl_BanqueHeure> GetBanqueHeure(int idEmploye)
+        public static List<tbl_BanqueHeure> GetBanqueHeure(CoecoDataContext ctx, int idEmploye)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryBanqueHeure = from tblBH in context.tbl_BanqueHeure
                     where tblBH.idEmploye == idEmploye
@@ -82,9 +82,9 @@ namespace UrbanEco
         /// Retourne tous les employés avec des FT non-approuver
         /// </summary>
         /// <returns></returns>
-        public static List<tbl_Employe> GetAllEmpFTWaiting(bool approuver = false)
+        public static List<tbl_Employe> GetAllEmpFTWaiting(CoecoDataContext ctx, bool approuver = false)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query = from tblEmp in context.tbl_Employe
                         join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
@@ -102,9 +102,9 @@ namespace UrbanEco
         /// Retourne l'employés employés avec des FT non-approuver
         /// </summary>
         /// <returns></returns>
-        public static List<tbl_Employe> GetEmpFTWaiting(int idEmploye, bool approuver = false)
+        public static List<tbl_Employe> GetEmpFTWaiting(CoecoDataContext ctx, int idEmploye, bool approuver = false)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query = from tblEmp in context.tbl_Employe
                         join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
@@ -118,10 +118,10 @@ namespace UrbanEco
             return query.Distinct().ToList();
         }
 
-        public static List<tbl_Employe> GetAllEmployeFtFiltered(DateTime dateMin, DateTime dateMax, bool approuver)
+        public static List<tbl_Employe> GetAllEmployeFtFiltered(CoecoDataContext ctx, DateTime dateMin, DateTime dateMax, bool approuver)
         {
 
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query = from tblE in context.tbl_Employe
                         join tblFT in context.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
@@ -138,10 +138,10 @@ namespace UrbanEco
 
         }
 
-        public static List<tbl_Employe> GetEmployeFtFiltered(int idEmploye, DateTime dateMin, DateTime dateMax, bool approuver)
+        public static List<tbl_Employe> GetEmployeFtFiltered(CoecoDataContext ctx, int idEmploye, DateTime dateMin, DateTime dateMax, bool approuver)
         {
 
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryEmployes = from tblE in context.tbl_Employe
                         join tblFT in context.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
@@ -159,9 +159,23 @@ namespace UrbanEco
 
         }
 
-        public static tbl_Employe GetEmployeByName(string name)
+        /// <summary>
+        /// Retourne l'employé par son nom
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static tbl_Employe GetEmployeByName(CoecoDataContext ctx, string nom, string prenom)
         {
-            return null;
+            CoecoDataContext context = ctx;
+
+            var query = from tbl in context.tbl_Employe
+                        where tbl.prenom.Equals(prenom) && tbl.nom.Equals(nom)
+                        select tbl;
+
+            if (query.Count() == 0)
+                return null;
+
+            return query.First();
         }
 
         /// <summary>
@@ -169,9 +183,9 @@ namespace UrbanEco
         /// </summary>
         /// <param name="idProjet"></param>
         /// <returns></returns>
-        public static tbl_Projet GetProjet(int idProjet)
+        public static tbl_Projet GetProjet(CoecoDataContext ctx, int idProjet)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryProjet = (from tbl in context.tbl_Projet
                                where tbl.idProjet == idProjet
@@ -184,7 +198,7 @@ namespace UrbanEco
 
         }
 
-        public static tbl_Depense GetDepense(int idDepense)
+        public static tbl_Depense GetDepense(CoecoDataContext ctx, int idDepense)
         {
             CoecoDataContext context = new CoecoDataContext();
 
@@ -203,9 +217,9 @@ namespace UrbanEco
         /// </summary>
         /// <param name="idFeuilleTemps"></param>
         /// <returns></returns>
-        public static tbl_FeuilleTemps GetFeuilleTemps(int idFeuilleTemps)
+        public static tbl_FeuilleTemps GetFeuilleTemps(CoecoDataContext ctx,int idFeuilleTemps)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryFT = from tbl in context.tbl_FeuilleTemps
                           where tbl.idFeuille == idFeuilleTemps
@@ -220,9 +234,9 @@ namespace UrbanEco
 
         }
 
-        public static tbl_Kilometrage GetDeplacementPrice()
+        public static tbl_Kilometrage GetDeplacementPrice(CoecoDataContext ctx)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query = from tbl in context.tbl_Kilometrage
                         select tbl;
@@ -230,9 +244,9 @@ namespace UrbanEco
             return query.First();
         }
 
-        public static List<tbl_TypeDepense> GetDepenseDeplacement()
+        public static List<tbl_TypeDepense> GetDepenseDeplacement(CoecoDataContext ctx)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryKm = from tbl in context.tbl_TypeDepense
                     where tbl.idTypeEmploye.Equals(null) == true
@@ -247,9 +261,9 @@ namespace UrbanEco
         /// </summary>
         /// <param name="idTypeEmpl"></param>
         /// <returns></returns>
-        public static List<tbl_TypeDepense> GetTypeDepense(int idTypeEmpl)
+        public static List<tbl_TypeDepense> GetTypeDepense(CoecoDataContext ctx, int idTypeEmpl)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryTypeDepense = from tbl in context.tbl_TypeDepense
                                    where tbl.idTypeEmploye == idTypeEmpl
@@ -266,9 +280,9 @@ namespace UrbanEco
         /// </summary>
         /// <param name="idprojet"></param>
         /// <returns></returns>
-        public static List<tbl_ProjetCat> GetMasterCategorieProjet(int idprojet)
+        public static List<tbl_ProjetCat> GetMasterCategorieProjet(CoecoDataContext ctx, int idprojet)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query = from tblCat in context.tbl_ProjetCat
                         join tblP in context.tbl_Projet on tblCat.idProjet equals tblP.idProjet
@@ -285,9 +299,9 @@ namespace UrbanEco
         /// Retourne tous les projets
         /// </summary>
         /// <returns></returns>
-        public static List<tbl_Projet> GetAllProjets()
+        public static List<tbl_Projet> GetAllProjets(CoecoDataContext ctx)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
 
             var query_Projets = (from tblProjetCat in context.tbl_ProjetCatEmploye
@@ -306,9 +320,9 @@ namespace UrbanEco
         /// Retourne tous les employés SAUF l'admin
         /// </summary>
         /// <returns></returns>
-        public static List<tbl_Employe> GetAllEmployes(bool inactif = false)
+        public static List<tbl_Employe> GetAllEmployes(CoecoDataContext ctx, bool inactif = false)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var allEmployes = from tbl in context.tbl_Employe
                          where tbl.username != "admin"
@@ -324,9 +338,9 @@ namespace UrbanEco
         /// <param name="idProjet"></param>
         /// <param name="idEmploye"></param>
         /// <returns></returns>
-        public static List<tbl_ProjetCatEmploye> GetProjetLinkedCategorieEmploye(int idProjet, int idEmploye)
+        public static List<tbl_ProjetCatEmploye> GetProjetLinkedCategorieEmploye(CoecoDataContext ctx, int idProjet, int idEmploye)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query_projet_categories = from tbl in context.tbl_ProjetCatEmploye
                         where tbl.idProjet == idProjet && tbl.idEmploye == idEmploye
@@ -344,9 +358,9 @@ namespace UrbanEco
         /// <param name="idProjet"></param>
         /// <param name="idEmploye"></param>
         /// <returns></returns>
-        public static List<tbl_ProjetCat> GetProjetCategorieEmploye(int idProjet, int idEmploye)
+        public static List<tbl_ProjetCat> GetProjetCategorieEmploye(CoecoDataContext ctx, int idProjet, int idEmploye)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query_projet_categories = from tbl in context.tbl_ProjetCat
                                           join tblEmpC in context.tbl_ProjetCatEmploye on idProjet equals tblEmpC.idProjet
@@ -359,9 +373,9 @@ namespace UrbanEco
             return query_projet_categories.ToList();
         }
 
-        public static tbl_Employe GetEmploye(int idEmploye)
+        public static tbl_Employe GetEmploye(CoecoDataContext ctx, int idEmploye)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryEmp = from tbl in context.tbl_Employe
                            where tbl.idEmploye == idEmploye
@@ -373,9 +387,9 @@ namespace UrbanEco
             return queryEmp.First();
         }
 
-        public static tbl_ProjetCat GetProjetCategorie(int idProjet)
+        public static tbl_ProjetCat GetProjetCategorie(CoecoDataContext ctx, int idProjet)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var queryProjet = from tbl in context.tbl_ProjetCat
                          where tbl.idProjet == idProjet

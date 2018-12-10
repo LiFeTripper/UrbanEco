@@ -39,11 +39,11 @@ namespace UrbanEco
                     {
                         if (!IsPostBack)
                         {
-                            CoecoDataContext context = new CoecoDataContext();
+                            CoecoDataContext ctx = new CoecoDataContext();
 
                             int idProjet = int.Parse(argument);
 
-                            tbl_Projet Projet = BD.GetProjet(idProjet);
+                            tbl_Projet Projet = BD.GetProjet(ctx, idProjet);
 
                             lbl_Top.Text = Projet.titre;
 
@@ -66,7 +66,7 @@ namespace UrbanEco
         protected void Btn_Enregister_Click(object sender, EventArgs e)
         {
 
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext ctx = new CoecoDataContext();
 
             //Insertion dans la base de données
             if (insert == true)
@@ -93,14 +93,14 @@ namespace UrbanEco
 
                 tableProjet.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
 
-                context.tbl_Projet.InsertOnSubmit(tableProjet);
+                ctx.tbl_Projet.InsertOnSubmit(tableProjet);
             }
             //Modification dans la base de données
             else
             {
                 int idProjet = int.Parse(argument);
 
-                tbl_Projet ProjetToModif = BD.GetProjet(idProjet);
+                tbl_Projet ProjetToModif = BD.GetProjet(ctx,idProjet);
 
                 ProjetToModif.titre = Tbx_Titre.Text;
                 ProjetToModif.description = Tbx_Description.Text;
@@ -113,7 +113,7 @@ namespace UrbanEco
             }
 
             //Étape finale SUBMIT CHANGES
-            context.SubmitChanges();
+            ctx.SubmitChanges();
 
             
             Response.Redirect("Projets.aspx");
