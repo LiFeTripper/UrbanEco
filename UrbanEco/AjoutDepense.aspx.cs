@@ -296,6 +296,7 @@ namespace UrbanEco
                     tblDep.dateDepense = DateTime.Parse(Calendar.Value);
                     tblDep.typeDepense = tbx_typeDepense.SelectedItem.Text;
                     tblDep.idProjetCat = int.Parse(tbx_categorie.Items[tbx_categorie.SelectedIndex].Value);
+                    
 
                     tblDep.note = tbx_note.Text;
 

@@ -85,7 +85,7 @@
                         Durée (hrs) <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control" required="true" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -123,7 +123,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow CssClass="col-md-12">
                     <asp:TableCell CssClass="col-md-4">
-                        <%--<asp:Button ID="btn_annuler" CssClass="btn btn-lg btn-danger col-md-12" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />--%>
+                        <asp:Button ID="btn_annuler" CssClass="btn btn-lg btn-danger col-md-12" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
                     </asp:TableCell>
                     <asp:TableCell CssClass="col-md-4">
                         &nbsp;

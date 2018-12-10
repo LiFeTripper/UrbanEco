@@ -77,6 +77,10 @@ namespace UrbanEco
                 //Remplissage des champs de la table temporaire avec les contrôles
                 tableProjet.titre = Tbx_Titre.Text;
                 tableProjet.description = Tbx_Description.Text;
+
+                if (string.IsNullOrWhiteSpace(Tbx_HeuresAlloues.Text))
+                    Tbx_HeuresAlloues.Text = "0";
+
                 tableProjet.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
                 tableProjet.idStatus = int.Parse(Ddl_Status.SelectedValue);
                 tableProjet.archiver = ChkBx_Archivé.Checked;

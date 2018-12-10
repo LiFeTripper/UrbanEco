@@ -161,7 +161,7 @@
                         Montant <b style="color:red">*</b>
                     </asp:TableHeaderCell>  
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true" required="true" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"  TextMode="Number"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
@@ -187,7 +187,7 @@
         </div>
         <%--BOUTON--%>
         <div class="form-group mb-4 col-6 mx-auto">
-            <%--<asp:Button Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />--%>
+            <asp:Button Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
             <asp:Button Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-success input-box" ID="btn_envoyer" runat="server" Text="Confirmer" OnClick="btn_envoyer_Click" />
         </div>
     </form>
