@@ -301,15 +301,6 @@ namespace UrbanEco
                 }
             }
 
-            //On enregistre chaque entré de la table en supprimant l'ancienne entrée
-            foreach (var heureBH in listHeure)
-            {
-                //cdc.tbl_BanqueHeure.DeleteOnSubmit(heureBH);
-                //cdc.tbl_BanqueHeure.InsertOnSubmit(heureBH);                    
-
-                //ctx.tbl_BanqueHeure.InsertOnSubmit(heureBH);
-            }
-
             ctx.SubmitChanges();
 
         }
