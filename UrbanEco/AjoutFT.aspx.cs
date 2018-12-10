@@ -275,18 +275,6 @@ namespace UrbanEco
             dateFormated.InnerText = DateCreation.Value;
         }
 
-        string DatePauvre (DateTime datePauvre)
-        {
-            string result = "";
-
-            result += datePauvre.Year;
-            result += "-";
-            result += datePauvre.Month;
-            result += "-";
-            result += datePauvre.Day;
-
-            return result;
-        }
 
         //Obtient l'id de l'empolòyé à l'aide de son nom et prénom séparé par une virgule
         protected int GetIDEmp(string nomEmp)

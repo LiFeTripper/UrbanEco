@@ -56,7 +56,7 @@ namespace UrbanEco
 
 
                 var queryProjetResponsable = from tbl in ctx.tbl_Projet
-                                             where tbl.idEmployeResp == empConnected.idEmploye || (empConnected.username.Equals("admin"))
+                                             where (tbl.idEmployeResp == empConnected.idEmploye && tbl.idProjet != 4) || (empConnected.username.Equals("admin"))
                                              select tbl;
 
                 if (queryProjetResponsable.Count() == 0)
