@@ -99,5 +99,34 @@ namespace UrbanEco
         protected void Rptr_Depense_Load(object sender, EventArgs e)
         {
         }
+
+        protected void btn_approverEmploye_Click(object sender, EventArgs e)
+        {
+            Button btn = ((Button)sender);
+
+            int idEmp = -1;
+
+            int.TryParse(btn.CommandArgument,out idEmp);
+
+            if(idEmp != -1)
+            {
+                CoecoDataContext ctx = new CoecoDataContext();
+                var query = from tbl in ctx.tbl_Depense
+                            where tbl.idEmploye == idEmp && tbl.approuver == false
+                            select tbl;
+
+                if (query.Count() == 0)
+                    return;
+
+                foreach (var depense in query.ToList())
+                {
+                    depense.approuver = true;
+                }
+
+                ctx.SubmitChanges();
+            }
+
+            Response.Redirect(Request.RawUrl);
+        }
     }
 }
