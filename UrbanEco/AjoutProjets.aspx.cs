@@ -41,21 +41,19 @@ namespace UrbanEco
                         {
                             CoecoDataContext context = new CoecoDataContext();
 
-                            int id = int.Parse(argument);
+                            int idProjet = int.Parse(argument);
 
-                            var query = (from tbl in context.tbl_Projet
-                                         where tbl.idProjet == id
-                                         select tbl).First();
+                            tbl_Projet Projet = BD.GetProjet(idProjet);
 
-                            lbl_Top.Text = query.titre;
+                            lbl_Top.Text = Projet.titre;
 
-                            Tbx_Titre.Text = query.titre;
-                            Tbx_Description.Text = query.description;
-                            Ddl_Responsable.SelectedIndex = (int)query.idEmployeResp -1;
-                            Ddl_Status.SelectedIndex = (int)query.idStatus - 1;
-                            Tbx_HeuresAlloues.Text = query.tempsAllouer.ToString();
-                            Cal_DateDebut.Value =  Layout.ToCalendarDate(query.dateDebut.Value);
-                            Cal_DateFin.Value = Layout.ToCalendarDate(query.dateFin.Value);
+                            Tbx_Titre.Text = Projet.titre;
+                            Tbx_Description.Text = Projet.description;
+                            Ddl_Responsable.SelectedIndex = (int)Projet.idEmployeResp -1;
+                            Ddl_Status.SelectedIndex = (int)Projet.idStatus - 1;
+                            Tbx_HeuresAlloues.Text = Projet.tempsAllouer.ToString();
+                            Cal_DateDebut.Value =  Layout.ToCalendarDate(Projet.dateDebut.Value);
+                            Cal_DateFin.Value = Layout.ToCalendarDate(Projet.dateFin.Value);
 
                             insert = false;
                         }
@@ -96,20 +94,18 @@ namespace UrbanEco
             //Modification dans la base de données
             else
             {
-                int id = int.Parse(argument);
+                int idProjet = int.Parse(argument);
 
-                var query = (from tbl in context.tbl_Projet
-                             where tbl.idProjet == id
-                             select tbl).First();
+                tbl_Projet ProjetToModif = BD.GetProjet(idProjet);
 
-                query.titre = Tbx_Titre.Text;
-                query.description = Tbx_Description.Text;
-                query.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
-                query.idStatus = int.Parse(Ddl_Status.SelectedValue);
-                query.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
-                query.dateDebut = DateTime.Parse(Cal_DateDebut.Value);
-                query.dateFin = DateTime.Parse(Cal_DateFin.Value);
-                query.archiver = ChkBx_Archivé.Checked;
+                ProjetToModif.titre = Tbx_Titre.Text;
+                ProjetToModif.description = Tbx_Description.Text;
+                ProjetToModif.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
+                ProjetToModif.idStatus = int.Parse(Ddl_Status.SelectedValue);
+                ProjetToModif.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
+                ProjetToModif.dateDebut = DateTime.Parse(Cal_DateDebut.Value);
+                ProjetToModif.dateFin = DateTime.Parse(Cal_DateFin.Value);
+                ProjetToModif.archiver = ChkBx_Archivé.Checked;
             }
 
             //Étape finale SUBMIT CHANGES

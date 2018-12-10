@@ -43,93 +43,51 @@ namespace UrbanEco
 
                 tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
+                DateTime dateMin = DateTime.Parse(Calendar1.Value);
+                DateTime dateMax = DateTime.Parse(Calendar2.Value);
+
                 if (empConnected.username == "admin")
                 {
-
-
-                    var queryFTAttente = from tblE in cdc.tbl_Employe
-                                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                         where tblFT.approuver.Equals(false)
-                                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
-                                         & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                                         orderby tblFT.dateCreation descending
-
-                                         select tblE;
-
-                    var queryFTApprouver = from tblE in cdc.tbl_Employe
-                                           join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                           where tblFT.approuver == true
-                                           & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
-                                           & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                                           orderby tblFT.dateCreation descending
-                                           select tblE;
+                    var queryFTAttente = BD.GetAllEmployeFtFiltered(dateMin, dateMax, false);
+                                                                  
+                    var queryFTApprouver = BD.GetAllEmployeFtFiltered(dateMin, dateMax, true);
 
                     Rptr_EmployeNonApprouver.DataSource = null;
                     Rptr_EmployeNonApprouver.DataSourceID = null;
                     Rptr_EmployeNonApprouver.DataBind();
 
-                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
                     Rptr_EmployeNonApprouver.DataBind();
-
-                    List<tbl_Employe> listTableA = new List<tbl_Employe>();
-
 
 
                     rptr_EmployeApprouver.DataSource = null;
                     rptr_EmployeApprouver.DataSourceID = null;
                     rptr_EmployeApprouver.DataBind();
 
-                    rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
+                    rptr_EmployeApprouver.DataSource = queryFTApprouver;
                     rptr_EmployeApprouver.DataBind();
                 }
                 else
                 {
-                    var queryFTAttente = from tblE in cdc.tbl_Employe
-                                         join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                         where tblFT.approuver.Equals(false)
-                                         & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
-                                         & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                                         & tblE.idEmploye == empConnected.idEmploye
-                                         orderby tblFT.dateCreation descending
+                    var queryFTAttente = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, false);
 
-                                         select tblE;
-
-                    var queryFTApprouver = from tblE in cdc.tbl_Employe
-                                           join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                           where tblFT.approuver == true
-                                           & (tblFT.dateCreation > DateTime.Parse(Calendar1.Value))
-                                           & (tblFT.dateCreation < DateTime.Parse(Calendar2.Value))
-                                           & tblE.idEmploye == empConnected.idEmploye
-                                           orderby tblFT.dateCreation descending
-                                           select tblE;
+                    var queryFTApprouver = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, true);
 
                     Rptr_EmployeNonApprouver.DataSource = null;
                     Rptr_EmployeNonApprouver.DataSourceID = null;
                     Rptr_EmployeNonApprouver.DataBind();
 
-                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
                     Rptr_EmployeNonApprouver.DataBind();
-
-                    List<tbl_Employe> listTableA = new List<tbl_Employe>();
-
-
 
                     rptr_EmployeApprouver.DataSource = null;
                     rptr_EmployeApprouver.DataSourceID = null;
                     rptr_EmployeApprouver.DataBind();
 
-                    rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
+                    rptr_EmployeApprouver.DataSource = queryFTApprouver;
                     rptr_EmployeApprouver.DataBind();
 
-                    
-
-                    
-                    
-
                 }
-
-                
-                
             }
         }
 
@@ -153,22 +111,16 @@ namespace UrbanEco
             ImageButton temp = (sender as ImageButton);
             int idFeuille = int.Parse(temp.CommandArgument);
 
-            var FT = from tblFT in cdc.tbl_FeuilleTemps
-                     where tblFT.idFeuille == idFeuille
-                     select tblFT;
+            tbl_FeuilleTemps FT = BD.GetFeuilleTemps(idFeuille);
 
-            CheckTempsSupp(FT.First().idEmploye);
+            CheckTempsSupp(FT.idEmploye);
 
-            FT.First<tbl_FeuilleTemps>().approuver = true;
-            SwitchTypeBHCongés(FT.First());
-
-            cdc.tbl_FeuilleTemps.DeleteOnSubmit(FT.First<tbl_FeuilleTemps>());
-            cdc.tbl_FeuilleTemps.InsertOnSubmit(FT.First<tbl_FeuilleTemps>());
+            FT.approuver = true;
+            SwitchTypeBHCongés(FT);
 
             cdc.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
-
         }
 
         protected void Rptr_FeuilleTemps_Load(object sender, EventArgs e)
@@ -266,8 +218,8 @@ namespace UrbanEco
                 SwitchTypeBHCongés(FTemp);
             }
 
-            cdc.tbl_FeuilleTemps.DeleteAllOnSubmit(FT);
-            cdc.tbl_FeuilleTemps.InsertAllOnSubmit(FT);
+           /* cdc.tbl_FeuilleTemps.DeleteAllOnSubmit(FT);
+            cdc.tbl_FeuilleTemps.InsertAllOnSubmit(FT);*/
 
             cdc.SubmitChanges();
 
@@ -340,27 +292,14 @@ namespace UrbanEco
 
         void RequeryFT(DateTime dateMin, DateTime dateMax)
         {
-            tbl_Employe empconnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+            tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
 
-            if (empconnected.username == "admin")
+            if (empConnected.username == "admin")
             {
 
-                var queryFTAttente = from tblE in cdc.tbl_Employe
-                                     join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                     where tblFT.approuver.Equals(false)
-                                     & (tblFT.dateCreation >= dateMin)
-                                     & (tblFT.dateCreation <= dateMax)
-                                     orderby tblFT.dateCreation descending
+                var queryFTAttente = BD.GetAllEmployeFtFiltered(dateMin, dateMax, false);
 
-                                     select tblE;
-
-                var queryFTApprouver = from tblE in cdc.tbl_Employe
-                                       join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                       where tblFT.approuver == true
-                                       & (tblFT.dateCreation >= dateMin)
-                                 & (tblFT.dateCreation <= dateMax)
-                                       orderby tblFT.dateCreation descending
-                                       select tblE;
+                var queryFTApprouver = BD.GetAllEmployeFtFiltered(dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
@@ -368,10 +307,6 @@ namespace UrbanEco
 
                 Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
                 Rptr_EmployeNonApprouver.DataBind();
-
-                List<tbl_Employe> listTableA = new List<tbl_Employe>();
-
-
 
                 rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;
@@ -382,24 +317,9 @@ namespace UrbanEco
             }
             else
             {
-                var queryFTAttente = from tblE in cdc.tbl_Employe
-                                     join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                     where tblFT.approuver.Equals(false)
-                                     & (tblFT.dateCreation >= dateMin)
-                                 & (tblFT.dateCreation <= dateMax)
-                                     & tblE.idEmploye == empconnected.idEmploye
-                                     orderby tblFT.dateCreation descending
+                var queryFTAttente = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, false);
 
-                                     select tblE;
-
-                var queryFTApprouver = from tblE in cdc.tbl_Employe
-                                       join tblFT in cdc.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
-                                       where tblFT.approuver == true
-                                       & (tblFT.dateCreation >= dateMin)
-                                 & (tblFT.dateCreation <= dateMax)
-                                       & tblE.idEmploye == empconnected.idEmploye
-                                       orderby tblFT.dateCreation descending
-                                       select tblE;
+                var queryFTApprouver = BD.GetEmployeFtFiltered(empConnected.idEmploye, dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
@@ -407,8 +327,6 @@ namespace UrbanEco
 
                 Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
                 Rptr_EmployeNonApprouver.DataBind();
-
-
 
                 rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;

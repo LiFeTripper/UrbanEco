@@ -12,6 +12,11 @@ namespace UrbanEco
         bool insert;
         string argument;
 
+        /*
+         Contient du hardcode pour les catégorie de congé
+
+        */
+
         protected void Page_Load(object sender, EventArgs e)
         {
             insert = false;
@@ -36,11 +41,9 @@ namespace UrbanEco
                         {
                             CoecoDataContext context = new CoecoDataContext();
 
-                            int id = int.Parse(argument);
+                            int idemploye = int.Parse(argument);
 
-                            var query = (from tbl in context.tbl_Employe
-                                         where tbl.idEmploye == id
-                                         select tbl).First();
+                            var query = BD.GetEmploye(idemploye);
 
                             lbl_Top.Text = query.nom + ", " + query.prenom;
 
@@ -99,11 +102,9 @@ namespace UrbanEco
             //Modification dans la base de données
             else
             {
-                int id = int.Parse(argument);
+                int idEmploye = int.Parse(argument);
 
-                var query = (from tbl in context.tbl_Employe
-                             where tbl.idEmploye == id
-                             select tbl).First();
+                var query = BD.GetEmploye(idEmploye);
 
                 query.prenom = Tbx_Prenom.Text;
                 query.nom = Tbx_Nom.Text;
@@ -115,7 +116,7 @@ namespace UrbanEco
                 query.inactif = Chkbx_Inactif.Checked;
 
                 var queryVerifTypeEmp = (from tbl in context.tbl_ProjetCatEmploye
-                                        where tbl.idEmploye == id
+                                        where tbl.idEmploye == idEmploye
                                         & tbl.idCategorie == 12
                                         select tbl);
                 

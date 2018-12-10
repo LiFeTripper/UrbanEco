@@ -25,17 +25,13 @@ namespace UrbanEco
                 Page.MaintainScrollPositionOnPostBack = true;
 
                 //CODE POUR BIND LE REPEATER DE CATÉGORIE
-
-                var query = from tblCat in context.tbl_ProjetCat
-                            join tblP in context.tbl_Projet on tblCat.idProjet equals tblP.idProjet
-                            where tblP.idProjet.Equals(argument) && tblCat.idCatMaitre.Equals(null)
-                            select tblCat;
+                var queryMasterProjetCat = BD.GetMasterCategorieProjet(int.Parse(argument));
 
                 Rptr_Categorie.DataSource = null;
                 Rptr_Categorie.DataSourceID = null;
 
                 Rptr_Categorie.DataBind();
-                Rptr_Categorie.DataSource = query.Distinct();
+                Rptr_Categorie.DataSource = queryMasterProjetCat.Distinct();
                 Rptr_Categorie.DataBind();
 
             }

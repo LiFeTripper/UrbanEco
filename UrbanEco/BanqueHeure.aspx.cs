@@ -19,8 +19,6 @@ namespace UrbanEco
 
         static bool admin = true;   //Bool pour savoir si c'est l'admin qui se connecte
 
-        List<string> listEmp = new List<string>();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.MaintainScrollPositionOnPostBack = true;
@@ -144,11 +142,9 @@ namespace UrbanEco
         }
 
         //Load_BHEmp pour un id au lieu du nom employé
-        protected void load_BHemp(int idInt)
+        protected void load_BHemp(int idEmploye)
         {
-            var BH = from tblBH in cdc.tbl_BanqueHeure
-                     where tblBH.idEmploye == idInt
-                     select tblBH;
+            var BH = BD.GetBanqueHeure(idEmploye);
 
             tbl_BH.Enabled = true;
 
@@ -185,60 +181,48 @@ namespace UrbanEco
         protected void ddl_empBH_SelectedIndexChanged(object sender, EventArgs e)
         {
             //On vide les textBox si aucun employé n'est sélectionner
-            if (ddl_empBH.Text == "Veuillez choisir un employé")
+            tbx_nbHeureBanque.Text = "";
+
+            tbx_nbHeureJourFerie.Text = "";
+
+            tbx_nbHeureCongePerso.Text = "";
+
+            tbx_nbHeureVacance.Text = "";
+
+            tbx_nbHeureCongeMaladie.Text = "";
+            tbx_nbHeureBanqueI.Text = "";
+
+            tbx_nbHeureJourFerieI.Text = "";
+
+            tbx_nbHeureCongePersoI.Text = "";
+
+            tbx_nbHeureVacanceI.Text = "";
+
+            tbx_nbHeureCongeMaladieI.Text = "";
+
+            //"Veuillez choisir un employé"
+            if (ddl_empBH.SelectedIndex != 0)
             {
-                tbx_nbHeureBanque.Text = "";
+                
 
-                tbx_nbHeureJourFerie.Text = "";
-
-                tbx_nbHeureCongePerso.Text = "";
-
-                tbx_nbHeureVacance.Text = "";
-
-                tbx_nbHeureCongeMaladie.Text = "";
-                tbx_nbHeureBanqueI.Text = "";
-
-                tbx_nbHeureJourFerieI.Text = "";
-
-                tbx_nbHeureCongePersoI.Text = "";
-
-                tbx_nbHeureVacanceI.Text = "";
-
-                tbx_nbHeureCongeMaladieI.Text = "";
-            }
-            else
-            {
-                tbx_nbHeureBanque.Text = "";
-
-                tbx_nbHeureJourFerie.Text = "";
-
-                tbx_nbHeureCongePerso.Text = "";
-
-                tbx_nbHeureVacance.Text = "";
-
-                tbx_nbHeureCongeMaladie.Text = "";
-                tbx_nbHeureBanqueI.Text = "";
-
-                tbx_nbHeureJourFerieI.Text = "";
-
-                tbx_nbHeureCongePersoI.Text = "";
-
-                tbx_nbHeureVacanceI.Text = "";
-
-                tbx_nbHeureCongeMaladieI.Text = "";
-                load_BHemp(ddl_empBH.Text);
-                AlertDiv.Visible = false;   //On cache l'alerte de choix d'employé
+                //On cache l'alerte de choix d'employé
+                load_BHemp(ddl_empBH.SelectedItem.Value);
+                AlertDiv.Visible = false;
             }
         }
 
         //Sauvegarde des données de l'empoyé afficher
         protected void Update_BH()
         {
-            int idInt = GetIDEmp(ddl_empBH.Text);
+            
+            if(ddl_empBH.SelectedIndex == 0)
+            {
+                return;
+            }
 
-            var BH = from tblBH in cdc.tbl_BanqueHeure
-                     where tblBH.idEmploye == idInt
-                     select tblBH;
+            int idEmp = int.Parse(ddl_empBH.SelectedItem.Value);
+
+            var BH = BD.GetBanqueHeure(idEmp);
 
             //On obtient les heures actuelles de l'employé
             List<tbl_BanqueHeure> listHeure = new List<tbl_BanqueHeure>();
@@ -350,13 +334,13 @@ namespace UrbanEco
         {
             //Remplissage du dropdownlist d'employé
 
-            var tblEmp = from tbl in cdc.tbl_Employe
-                         where tbl.username != "admin"
-                         select tbl;
+            var tblEmp = BD.GetAllEmployes();
 
-            foreach (var n in tblEmp)
+            List<ListItem> listEmp = new List<ListItem>();
+
+            foreach (var emp in tblEmp)
             {
-                listEmp.Add(n.nom + "," + n.prenom);
+                listEmp.Add(new ListItem(emp.nom + "," + emp.prenom, emp.idEmploye.ToString()));
             }
 
             ddl_empBH.DataSource = null;
@@ -364,7 +348,7 @@ namespace UrbanEco
             ddl_empBH.DataSource = listEmp;
             ddl_empBH.DataBind();
 
-            ddl_empBH.Items.Insert(0, "Veuillez choisir un employé");
+            //ddl_empBH.Items.Insert(0, new ListItem("Veuillez choisir un employé",(-1).ToString()));
         }
 
         protected void btn_modifBHI_Click(object sender, EventArgs e)

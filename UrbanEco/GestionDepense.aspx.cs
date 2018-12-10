@@ -20,26 +20,18 @@ namespace UrbanEco
 
             if (empconnected.username == "admin")
             {
-                IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
-                                                join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-
-                                                where tblDep.approuver == false
-                                                select tblEmp;
+                List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpFTWaiting();
 
                 Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = query.Distinct();
+                Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
                 Rptr_Emploe.DataBind();
             }
             else
             {
-                IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
-                                                join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-                                                where tblDep.approuver == false
-                                                & tblEmp.idEmploye == empconnected.idEmploye
-                                                select tblEmp;
+                List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpFTWaiting(empconnected.idEmploye);
 
                 Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = query.Distinct();
+                Rptr_Emploe.DataSource = queryEmpFtWaiting;
                 Rptr_Emploe.DataBind();
             }
 
@@ -77,13 +69,11 @@ namespace UrbanEco
             {
                 CoecoDataContext context = new CoecoDataContext();
 
-                var query = (from tbl in context.tbl_Depense
-                             where tbl.idDepense == idDepense
-                             select tbl);
+                tbl_Depense depense = BD.GetDepense(idDepense);
 
-                if(query.First() != null)
+                if(depense != null)
                 {
-                    query.First().approuver = true;
+                    depense.approuver = true;
                 }
 
                 context.SubmitChanges();
@@ -108,21 +98,6 @@ namespace UrbanEco
 
         protected void Rptr_Depense_Load(object sender, EventArgs e)
         {
-            /*Repeater rep = ((Repeater)sender);
-
-            var par = rep.Parent;
-
-
-            CoecoDataContext cdc = new CoecoDataContext();
-
-            var query = from tbl in cdc.tbl_Depense
-                        where tbl.approuver == false
-                        select tbl;
-
-
-
-            rep.DataSource = query;
-            rep.DataBind();*/
         }
     }
 }

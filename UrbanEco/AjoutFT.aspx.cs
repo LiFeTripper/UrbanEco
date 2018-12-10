@@ -49,7 +49,7 @@ namespace UrbanEco
                 }
                 else
                 {
-                    listProjets = BD.GetEmployeProject(userConnected);
+                    listProjets = BD.GetEmployeProjet(userConnected);
                 }
 
                 List<ListItem> listItemProjets = new List<ListItem>();
@@ -178,9 +178,16 @@ namespace UrbanEco
                     tbFT.idCat = null;
                 }
 
+                if(string.IsNullOrWhiteSpace(tbx_nbHeure.Text))
+                {
+                    tbFT.nbHeure = 0;
+                }
+                else
+                {
+                    tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
+                }
 
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
-                tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
                 tbFT.dateCreation = DateTime.Parse(DateCreation.Value);
                 tbFT.commentaire = txa_comments.Value;
                 tbFT.approuver = false;
@@ -303,7 +310,7 @@ namespace UrbanEco
 
                 tbl_Employe emp = BD.GetEmploye(int.Parse(ddl_employe.SelectedItem.Value));
 
-                var queryProjet = BD.GetEmployeProject(emp);
+                var queryProjet = BD.GetEmployeProjet(emp);
 
                 List<ListItem> listeProjet = new List<ListItem>();
                 listeProjet.Add(new ListItem("Aucune", (-1).ToString()));
