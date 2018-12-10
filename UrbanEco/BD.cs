@@ -275,8 +275,8 @@ namespace UrbanEco
                         where tblP.idProjet.Equals(idprojet) && tblCat.idCatMaitre.Equals(null)
                         select tblCat;
 
-            if (query.Count() == 0)
-                return null;
+            //if (query.Count() == 0)
+            //    return null;
 
             return query.Distinct().ToList();
         }
