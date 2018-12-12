@@ -27,7 +27,7 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e" runat="server">
-                                <th scope="col">ID</th>
+                                <%--<th scope="col">ID</th>--%>
                                 <th scope="col">Sous-Projet Niveau 1</th>
                                 <th scope="col">Sous-Projet Niveau 2</th>
                                 <th scope="col">Description</th>
@@ -72,9 +72,9 @@
 
                 <%--LIGNE DU REPEATER--%>
                 <tr style="border-bottom: 1px solid #23282e" runat="server" class="table-secondary">
-                    <td>
+<%--                    <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjetCat") %>' Font-Bold="true" />
-                    </td>
+                    </td>--%>
                     <td>
                         <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
                     </td>
@@ -121,9 +121,9 @@
                 <asp:Repeater ID="Rptr_SousCat" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
                     <ItemTemplate>
                         <tr style="border-bottom: 1px solid #23282e" runat="server">
-                            <td>
+<%--                            <td>
                                 <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjetCat") %>' Font-Bold="true" />
-                            </td>
+                            </td>--%>
                             <td>
                                 <%--TD VIDE CAR PAS UNE CATÉGORIE--%>
                             </td>
@@ -166,7 +166,7 @@
                 </tbody>
                 <thead class="thead-dark">
                     <tr style="border-bottom: 5px solid #23282e" runat="server">
-                        <th scope="col">ID</th>
+                        <%--<th scope="col">ID</th>--%>
                         <th scope="col">Sous-Projet Niveau 1</th>
                         <th scope="col">Sous-Projet Niveau 2</th>
                         <th scope="col">Description</th>

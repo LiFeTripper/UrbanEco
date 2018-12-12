@@ -80,6 +80,8 @@ namespace UrbanEco
 
                         RequeryEmployes();
                     }
+
+                    modif = false;
                 }
                 //Mode de modification
                 else

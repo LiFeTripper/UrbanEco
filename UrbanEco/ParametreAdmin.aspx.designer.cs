@@ -148,6 +148,24 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tbx_firstDimanche;
         
         /// <summary>
+        /// Contrôle tbl_mdpAdmin.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tbl_mdpAdmin;
+        
+        /// <summary>
+        /// Contrôle tbx_adminMdp.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword tbx_adminMdp;
+        
+        /// <summary>
         /// Contrôle btn_annuler.
         /// </summary>
         /// <remarks>

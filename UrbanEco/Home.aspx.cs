@@ -46,7 +46,7 @@ namespace UrbanEco
                 }
 
 
-                tbl_Employe empConnected = BD.GetUserConnected(Request.Cookies["userInfo"]);
+                tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
 
                 Lbl_HelloUser.InnerText = "Bonjour " + empConnected.nom + " " + empConnected.prenom;
@@ -56,7 +56,7 @@ namespace UrbanEco
 
 
                 var queryProjetResponsable = from tbl in ctx.tbl_Projet
-                                             where tbl.idEmployeResp == empConnected.idEmploye || (empConnected.username.Equals("admin"))
+                                             where (tbl.idEmployeResp == empConnected.idEmploye && tbl.idProjet != 4) || (empConnected.username.Equals("admin"))
                                              select tbl;
 
                 if (queryProjetResponsable.Count() == 0)

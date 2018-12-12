@@ -25,7 +25,7 @@
                         Prénom <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control" required="true"></asp:TextBox>
+                        <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control" ></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -97,7 +97,7 @@
                         Nom d'utilisateur <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Tbx_username" runat="server" class="form-control" required="true"></asp:TextBox>
+                        <asp:TextBox ID="Tbx_username" runat="server" class="form-control" ></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -140,7 +140,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableCell CssClass="col-md-4">
-                        <%--<asp:Button CssClass="btn btn-lg btn-danger" Style="width: 100%;" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />--%>
+                        <asp:Button CssClass="btn btn-lg btn-danger" Style="width: 100%;" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
                     </asp:TableCell>
                     <asp:TableCell CssClass="col-md-4">
                             &nbsp;
