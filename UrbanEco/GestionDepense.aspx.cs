@@ -20,7 +20,7 @@ namespace UrbanEco
 
             if (empconnected.username == "admin")
             {
-                List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpFTWaiting(ctx);
+                List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpDepWaiting(ctx);
 
                 Rptr_Emploe.DataSourceID = null;
                 Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
@@ -28,7 +28,7 @@ namespace UrbanEco
             }
             else
             {
-                List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpFTWaiting(ctx,empconnected.idEmploye);
+                List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpDepWaiting(ctx,empconnected.idEmploye);
 
                 Rptr_Emploe.DataSourceID = null;
                 Rptr_Emploe.DataSource = queryEmpFtWaiting;
