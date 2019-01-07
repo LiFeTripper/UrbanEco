@@ -86,7 +86,7 @@ namespace UrbanEco
 
                     weekInterval = IntervalDateFromWeekNumber(weekNB);
 
-                    lbl_resume.InnerText = "Résumé de la semaine du " + Layout.GetDateFormated(weekInterval[0]) + " au " + Layout.GetDateFormated(today);
+                    //lbl_resume.InnerText = "Résumé de la semaine du " + Layout.GetDateFormated(weekInterval[0]) + " au " + Layout.GetDateFormated(today);
                 }
                 else
                 {
@@ -183,8 +183,9 @@ namespace UrbanEco
                     continue;
 
 
-                if(weekInterval.Count == 0)
+                if(weekInterval != null && weekInterval.Count == 0)
                 {
+
                     DateTime today = DateTime.Today;
 
                     int weekNB = GetWeekToYear(today);
@@ -196,14 +197,17 @@ namespace UrbanEco
 
                         weekInterval = IntervalDateFromWeekNumber(weekNB);
 
+                        if (weekInterval == null)
+                            return null;
+
                         lbl_resume.InnerText = "Résumé de la semaine du " +  Layout.GetDateFormated(weekInterval[0]) + " au " + Layout.GetDateFormated(today);
                     }
                 }
-                if(weekInterval.Count == 0)
+                if(weekInterval != null && weekInterval.Count == 0)
                 {
                     totalHeure += item.nbHeure;
                 }
-                else if (item.dateCreation > weekInterval[0])
+                else if (weekInterval != null && item.dateCreation > weekInterval[0])
                 {
                     totalHeure += item.nbHeure;
                 }

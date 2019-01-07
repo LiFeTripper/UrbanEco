@@ -921,8 +921,6 @@ namespace UrbanEco
 		
 		private int _idTypeEmpl;
 		
-		private string _noTel;
-		
 		private string _email;
 		
 		private string _username;
@@ -957,8 +955,6 @@ namespace UrbanEco
     partial void OnnomChanged();
     partial void OnidTypeEmplChanging(int value);
     partial void OnidTypeEmplChanged();
-    partial void OnnoTelChanging(string value);
-    partial void OnnoTelChanged();
     partial void OnemailChanging(string value);
     partial void OnemailChanged();
     partial void OnusernameChanging(string value);
@@ -1061,26 +1057,6 @@ namespace UrbanEco
 					this._idTypeEmpl = value;
 					this.SendPropertyChanged("idTypeEmpl");
 					this.OnidTypeEmplChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noTel", DbType="VarChar(50)")]
-		public string noTel
-		{
-			get
-			{
-				return this._noTel;
-			}
-			set
-			{
-				if ((this._noTel != value))
-				{
-					this.OnnoTelChanging(value);
-					this.SendPropertyChanging();
-					this._noTel = value;
-					this.SendPropertyChanged("noTel");
-					this.OnnoTelChanged();
 				}
 			}
 		}

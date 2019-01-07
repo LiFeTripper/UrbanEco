@@ -47,7 +47,7 @@ namespace UrbanEco
                             Tbx_Prenom.Text = query.prenom;
                             Tbx_Nom.Text = query.nom;
                             Ddl_TypeEmp.SelectedIndex = (int)query.idTypeEmpl - 1;
-                            Tbx_noTel.Text = query.noTel;
+                            //Tbx_noTel.Text = query.noTel;
                             Tbx_email.Text = query.email;
                             Tbx_username.Text = query.username;
                             Tbx_password.Text = query.password;
@@ -77,7 +77,7 @@ namespace UrbanEco
                 //Remplissage des champs de la table temporaire avec les contrôles
                 tableEmp.prenom = Tbx_Prenom.Text;
                 tableEmp.nom = Tbx_Nom.Text;
-                tableEmp.noTel = Tbx_noTel.Text;
+                //tableEmp.noTel = Tbx_noTel.Text;
                 tableEmp.email = Tbx_email.Text;
                 tableEmp.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
                 tableEmp.username = Tbx_username.Text;
@@ -107,7 +107,7 @@ namespace UrbanEco
 
                 query.prenom = Tbx_Prenom.Text;
                 query.nom = Tbx_Nom.Text;
-                query.noTel = Tbx_noTel.Text;
+                //query.noTel = Tbx_noTel.Text;
                 query.email = Tbx_email.Text;
                 query.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
                 query.username = Tbx_username.Text;
