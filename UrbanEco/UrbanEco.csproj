@@ -152,6 +152,11 @@
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
     <Compile Include="BD.cs" />
+    <Compile Include="Coeco.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Coeco.dbml</DependentUpon>
+    </Compile>
     <Compile Include="GestionDepense.aspx.cs">
       <DependentUpon>GestionDepense.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,11 +170,6 @@
     </Compile>
     <Compile Include="BanqueHeure.aspx.designer.cs">
       <DependentUpon>BanqueHeure.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Coeco.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Coeco.dbml</DependentUpon>
     </Compile>
     <Compile Include="Employe.aspx.cs">
       <DependentUpon>Employe.aspx</DependentUpon>
@@ -258,14 +258,6 @@
     <Content Include="lib\js\bootstrap.bundle.min.js.map" />
     <Content Include="lib\js\bootstrap.js.map" />
     <Content Include="lib\js\bootstrap.min.js.map" />
-    <Content Include="Coeco.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Coeco.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="Coeco.dbml.layout">
-      <DependentUpon>Coeco.dbml</DependentUpon>
-    </None>
     <Content Include="lib\webfonts\fa-brands-400.eot" />
     <Content Include="lib\webfonts\fa-brands-400.ttf" />
     <Content Include="lib\webfonts\fa-brands-400.woff" />
@@ -278,6 +270,14 @@
     <Content Include="lib\webfonts\fa-solid-900.ttf" />
     <Content Include="lib\webfonts\fa-solid-900.woff" />
     <Content Include="lib\webfonts\fa-solid-900.woff2" />
+    <Content Include="Coeco.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Coeco.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Coeco.dbml.layout">
+      <DependentUpon>Coeco.dbml</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

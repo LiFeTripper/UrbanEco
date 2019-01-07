@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoecoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Integrated Security=True" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.tbl_PremierDimanche" Member="tbl_PremierDimanche">
-    <Type Name="tbl_PremierDimanche">
-      <Column Name="idPremierDimanche" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="dateDimanche" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
     <Type Name="tbl_BanqueHeure">
       <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -82,8 +76,8 @@
       <Column Name="prixKilometrageCamion" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_PremierDimanche" Member="tbl_PremierDimanche1">
-    <Type Name="tbl_PremierDimanche1">
+  <Table Name="dbo.tbl_PremierDimanche" Member="tbl_PremierDimanche">
+    <Type Name="tbl_PremierDimanche">
       <Column Name="idPremierDimanche" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="dateDimanche" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
     </Type>

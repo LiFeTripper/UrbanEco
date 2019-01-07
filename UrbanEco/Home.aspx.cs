@@ -182,6 +182,7 @@ namespace UrbanEco
 
                 if(weekInterval != null && weekInterval.Count == 0)
                 {
+
                     DateTime today = DateTime.Today;
 
                     int weekNB = GetWeekToYear(today);
@@ -194,6 +195,7 @@ namespace UrbanEco
                         weekInterval = IntervalDateFromWeekNumber(weekNB);
                         if (weekInterval == null)
                             return null;
+
                         lbl_resume.InnerText = "Résumé de la semaine du " +  Layout.GetDateFormated(weekInterval[0]) + " au " + Layout.GetDateFormated(today);
                     }
                 }
