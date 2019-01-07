@@ -30,7 +30,7 @@ namespace UrbanEco
 
             //Insertion dans des variables des données entrées par l'utilisateur
             string user = Tbx_InputUsername.Text;
-            string password = Tbx_InputPassword.Text;
+            string password = Tbx_InputPassword.Value;
 
             try
             {
@@ -40,7 +40,7 @@ namespace UrbanEco
                              select tbl).First();
 
                 //Vérification du mot de passe entré avec celui de l'utilisateur trouvé dans la BD
-                if (query.password == Tbx_InputPassword.Text)
+                if (query.password == Tbx_InputPassword.Value)
                 {
                     //Si le mot de passe est trouvé, le user est authentifié
                     //Persist crée un cookie persistant 

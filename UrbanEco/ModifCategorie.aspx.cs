@@ -39,6 +39,10 @@ namespace UrbanEco
             projet = Request.QueryString["Prj"];
 
             categorie = Request.QueryString["Cat"];
+            //if(categorie == null)
+            //{
+            //    modif = false;
+            //}
 
             //Recherche du mode dans l'adresse
             mode = Request.QueryString["Mode"];
@@ -76,6 +80,8 @@ namespace UrbanEco
 
                         RequeryEmployes();
                     }
+
+                    modif = false;
                 }
                 //Mode de modification
                 else
@@ -218,6 +224,7 @@ namespace UrbanEco
 
             if (!modif)
             {
+
                 switch (SousCat)
                 {
                     case true:
@@ -263,6 +270,7 @@ namespace UrbanEco
             {
                 projet = Request.QueryString["Prj"];
                 categorie = Request.QueryString["Cat"];
+                //Need fix 
                 int id = int.Parse(categorie);
 
                 var query = (from tbl in context.tbl_ProjetCat

@@ -10,7 +10,7 @@ namespace UrbanEco
 {
     public partial class Layout : System.Web.UI.MasterPage
     {
-        private static tbl_Employe userConnected;
+        //private static tbl_Employe userConnected;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,9 +27,8 @@ namespace UrbanEco
             var query = from tbl in context.tbl_Employe
                         where tbl.username == cookie
                         select tbl;
-            var t = query.ToList();
 
-            userConnected = query.First();
+            tbl_Employe userConnected = query.First();
 
             if(Request.Cookies["userInfo"].Value == "admin")
             {
@@ -52,19 +51,22 @@ namespace UrbanEco
 
         }
 
-        public static tbl_Employe GetUserConnected()
+        public static tbl_Projet GetProjectFromEmploye(tbl_Employe employe)
         {
-            return userConnected;
-        }
+            CoecoDataContext context = new CoecoDataContext();
 
-        public static string GetUserName()
-        {
-            tbl_Employe emp = GetUserConnected();
+            var query = (from tblProjetCat in context.tbl_ProjetCatEmploye
+             join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
+             where tblProjetCat.idEmploye == employe.idEmploye
+             orderby tblProjet.titre
+             select tblProjet);
 
-            if (emp == null)
-                return "";
+            if(query != null)
+            {
+                return query.First();
+            }
 
-            return emp.prenom + " " + emp.nom;
+            return null;
         }
 
         public static string ToCalendarDate(DateTime date)

@@ -14,30 +14,24 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext ctx = new CoecoDataContext();
 
-            if (Layout.GetUserConnected().username == "admin")
+            tbl_Employe empconnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+
+            if (empconnected.username == "admin")
             {
-                IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
-                                                join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-
-                                                where tblDep.approuver == false
-                                                select tblEmp;
+                List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpDepWaiting(ctx);
 
                 Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = query.Distinct();
+                Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
                 Rptr_Emploe.DataBind();
             }
             else
             {
-                IQueryable<tbl_Employe> query = from tblEmp in context.tbl_Employe
-                                                join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-                                                where tblDep.approuver == false
-                                                & tblEmp.idEmploye == Layout.GetUserConnected().idEmploye
-                                                select tblEmp;
+                List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpDepWaiting(ctx,empconnected.idEmploye);
 
                 Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = query.Distinct();
+                Rptr_Emploe.DataSource = queryEmpFtWaiting;
                 Rptr_Emploe.DataBind();
             }
 
@@ -67,6 +61,8 @@ namespace UrbanEco
         {
             ImageButton btn = ((ImageButton)sender);
 
+            CoecoDataContext ctx = new CoecoDataContext();
+
             int idDepense = -1;
 
             int.TryParse(btn.CommandArgument, out idDepense);
@@ -75,13 +71,11 @@ namespace UrbanEco
             {
                 CoecoDataContext context = new CoecoDataContext();
 
-                var query = (from tbl in context.tbl_Depense
-                             where tbl.idDepense == idDepense
-                             select tbl);
+                tbl_Depense depense = BD.GetDepense(ctx,idDepense);
 
-                if(query.First() != null)
+                if(depense != null)
                 {
-                    query.First().approuver = true;
+                    depense.approuver = true;
                 }
 
                 context.SubmitChanges();
@@ -106,21 +100,35 @@ namespace UrbanEco
 
         protected void Rptr_Depense_Load(object sender, EventArgs e)
         {
-            /*Repeater rep = ((Repeater)sender);
+        }
 
-            var par = rep.Parent;
+        protected void btn_approverEmploye_Click(object sender, EventArgs e)
+        {
+            Button btn = ((Button)sender);
 
+            int idEmp = -1;
 
-            CoecoDataContext cdc = new CoecoDataContext();
+            int.TryParse(btn.CommandArgument,out idEmp);
 
-            var query = from tbl in cdc.tbl_Depense
-                        where tbl.approuver == false
-                        select tbl;
+            if(idEmp != -1)
+            {
+                CoecoDataContext ctx = new CoecoDataContext();
+                var query = from tbl in ctx.tbl_Depense
+                            where tbl.idEmploye == idEmp && tbl.approuver == false
+                            select tbl;
 
+                if (query.Count() == 0)
+                    return;
 
+                foreach (var depense in query.ToList())
+                {
+                    depense.approuver = true;
+                }
 
-            rep.DataSource = query;
-            rep.DataBind();*/
+                ctx.SubmitChanges();
+            }
+
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

@@ -12,12 +12,17 @@ namespace UrbanEco
         bool insert;
         string argument;
 
+        /*
+         Contient du hardcode pour les catégorie de congé
+
+        */
+
         protected void Page_Load(object sender, EventArgs e)
         {
             insert = false;
             //Recherche de l'projet dans l'adresse
             argument = Request.QueryString["Emp"];
-
+            CoecoDataContext ctx = new CoecoDataContext();
             //Choix entre un projet ou un nouveau projet
             switch (argument)
             {
@@ -34,13 +39,9 @@ namespace UrbanEco
                     {
                         if (!IsPostBack)
                         {
-                            CoecoDataContext context = new CoecoDataContext();
+                            int idemploye = int.Parse(argument);
 
-                            int id = int.Parse(argument);
-
-                            var query = (from tbl in context.tbl_Employe
-                                         where tbl.idEmploye == id
-                                         select tbl).First();
+                            var query = BD.GetEmploye(ctx,idemploye);
 
                             lbl_Top.Text = query.nom + ", " + query.prenom;
 
@@ -66,7 +67,7 @@ namespace UrbanEco
 
         protected void Btn_Enregistrer_Click(object sender, EventArgs e)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext ctx = new CoecoDataContext();
 
             //Insertion dans la base de données
             if (insert == true)
@@ -84,8 +85,8 @@ namespace UrbanEco
                 tableEmp.password = Tbx_password.Text;
                 tableEmp.inactif = Chkbx_Inactif.Checked;
 
-                context.tbl_Employe.InsertOnSubmit(tableEmp);
-                context.SubmitChanges();
+                ctx.tbl_Employe.InsertOnSubmit(tableEmp);
+                ctx.SubmitChanges();
 
                 for (int i = 0; i < 5;i++)
                 {
@@ -93,17 +94,15 @@ namespace UrbanEco
                     bh.idEmploye = tableEmp.idEmploye;
                     bh.idTypeHeure = i + 1;
                     bh.nbHeure = bh.nbHeureInitial = 0;
-                    context.tbl_BanqueHeure.InsertOnSubmit(bh);
+                    ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
                 }
             }
             //Modification dans la base de données
             else
             {
-                int id = int.Parse(argument);
+                int idEmploye = int.Parse(argument);
 
-                var query = (from tbl in context.tbl_Employe
-                             where tbl.idEmploye == id
-                             select tbl).First();
+                var query = BD.GetEmploye(ctx, idEmploye);
 
                 query.prenom = Tbx_Prenom.Text;
                 query.nom = Tbx_Nom.Text;
@@ -114,8 +113,8 @@ namespace UrbanEco
                 query.password = Tbx_password.Text;
                 query.inactif = Chkbx_Inactif.Checked;
 
-                var queryVerifTypeEmp = (from tbl in context.tbl_ProjetCatEmploye
-                                        where tbl.idEmploye == id
+                var queryVerifTypeEmp = (from tbl in ctx.tbl_ProjetCatEmploye
+                                        where tbl.idEmploye == idEmploye
                                         & tbl.idCategorie == 12
                                         select tbl);
                 
@@ -123,7 +122,7 @@ namespace UrbanEco
                 {
                     if(queryVerifTypeEmp.Count() != 0)
                     {
-                        context.tbl_ProjetCatEmploye.DeleteOnSubmit(queryVerifTypeEmp.First());
+                        ctx.tbl_ProjetCatEmploye.DeleteOnSubmit(queryVerifTypeEmp.First());
                     }
                 }
                 else if(query.idTypeEmpl == 1)
@@ -135,19 +134,19 @@ namespace UrbanEco
                         pceTemp.idProjet = 4;
                         pceTemp.idEmploye = query.idEmploye;
                         pceTemp.idCategorie = 12;
-                        context.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp);
+                        ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp);
                     }
                 }
             }
 
             //Étape finale SUBMIT CHANGES
-            context.SubmitChanges();
+            ctx.SubmitChanges();
 
             if (insert == true)
             {
                 int indexCat = 10;
 
-                if ((from tbl in context.tbl_Employe
+                if ((from tbl in ctx.tbl_Employe
                      orderby tbl.idEmploye descending
                      select tbl).First().idTypeEmpl == 1)
                 {
@@ -157,15 +156,15 @@ namespace UrbanEco
                         pceTemp[i] = new tbl_ProjetCatEmploye();
 
                         pceTemp[i].idProjet = 4;
-                        pceTemp[i].idEmploye = (from tbl in context.tbl_Employe
+                        pceTemp[i].idEmploye = (from tbl in ctx.tbl_Employe
                                                 orderby tbl.idEmploye descending
                                                 select tbl).First().idEmploye;
                         pceTemp[i].idCategorie = indexCat;
 
                         indexCat++;
 
-                        context.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
-                        context.SubmitChanges();
+                        ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
+                        ctx.SubmitChanges();
                     }
                 }
                 else
@@ -176,7 +175,7 @@ namespace UrbanEco
                         pceTemp[i] = new tbl_ProjetCatEmploye();
 
                         pceTemp[i].idProjet = 4;
-                        pceTemp[i].idEmploye = (from tbl in context.tbl_Employe
+                        pceTemp[i].idEmploye = (from tbl in ctx.tbl_Employe
                                                 orderby tbl.idEmploye descending
                                                 select tbl).First().idEmploye;
                         pceTemp[i].idCategorie = indexCat;
@@ -187,8 +186,8 @@ namespace UrbanEco
                         if (indexCat == 12)
                             indexCat++;
 
-                        context.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
-                        context.SubmitChanges();
+                        ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
+                        ctx.SubmitChanges();
                     }
                 }
             }

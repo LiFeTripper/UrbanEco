@@ -31,7 +31,7 @@
                                 <th scope="col">Sous-Catégorie</th>
                                 <th scope="col">Montant</th>
                                 <th scope="col">
-                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-md btn-secondary" />
+                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-md btn-success" />
                                 </th>
                             </tr>
                         </thead>
@@ -49,7 +49,9 @@
                     <td />
                     <td />
                     <td />
-                    <td />
+                    <td>
+                        <asp:Button ID="btn_approverEmploye" CssClass="btn btn-md btn-primary" runat="server" Text="Approuver l'employé" OnClick="btn_approverEmploye_Click" CommandArgument='<%#Eval("idEmploye") %>'/>
+                    </td>
                 </tr>
 
                 <%--CODE SECOND REPEATER DE DÉPENSE--%>
@@ -92,7 +94,7 @@
                                 <th scope="col">Sous-Catégorie</th>
                                 <th scope="col">Montant</th>
                                 <th scope="col">
-                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-md btn-secondary" />
+                                    <asp:Button ID="btn_ajouter" runat="server" OnClick="btn_ajouter_Click1" Text="Ajouter une dépense" CssClass="btn btn-md btn-success" />
                                 </th>
                             </tr>
                         </thead>

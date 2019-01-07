@@ -46,7 +46,7 @@
                         Employés <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -85,7 +85,7 @@
                         Durée (hrs) <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control" required="true" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -112,7 +112,7 @@
                         <b style="color:red; float:right;">*</b><h5  id="dateFormated" runat="server"></h5>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <input type="date" id="Calendar1" style="margin: auto;" runat="server" class="form-control" />
+                        <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" />
                     </asp:TableCell>
                 </asp:TableRow>
 
@@ -123,7 +123,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow CssClass="col-md-12">
                     <asp:TableCell CssClass="col-md-4">
-                        <%--<asp:Button ID="btn_annuler" CssClass="btn btn-lg btn-danger col-md-12" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />--%>
+                        <asp:Button ID="btn_annuler" CssClass="btn btn-lg btn-danger col-md-12" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
                     </asp:TableCell>
                     <asp:TableCell CssClass="col-md-4">
                         &nbsp;
@@ -138,7 +138,7 @@
 
         <%--On change for date--%>
         <script>
-            var input = document.getElementById('<%=Calendar1.ClientID%>')
+            var input = document.getElementById('<%=DateCreation.ClientID%>')
             console.log(input);
             UpdateDateFormat();
 

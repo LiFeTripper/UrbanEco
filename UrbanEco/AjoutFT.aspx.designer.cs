@@ -76,13 +76,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
         
         /// <summary>
-        /// Contrôle Calendar1.
+        /// Contrôle DateCreation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl DateCreation;
+        
+        /// <summary>
+        /// Contrôle btn_annuler.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_annuler;
         
         /// <summary>
         /// Contrôle Btn_Enreg.

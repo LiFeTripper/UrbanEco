@@ -15,16 +15,13 @@ namespace UrbanEco
 
     public partial class BanqueHeure : System.Web.UI.Page
     {
-        CoecoDataContext cdc = new CoecoDataContext();
-
         static bool admin = true;   //Bool pour savoir si c'est l'admin qui se connecte
-
-        List<string> listEmp = new List<string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            CoecoDataContext ctx = new CoecoDataContext();
             Page.MaintainScrollPositionOnPostBack = true;
-            tbl_Employe emp = Layout.GetUserConnected();
+            tbl_Employe emp = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
             if (emp.username == "admin")
             {
@@ -101,12 +98,13 @@ namespace UrbanEco
         //Methode pour faire afficher la banque d'heure de l'employé connecté ou de l'employé sélectionné
         protected void load_BHemp(string nomEmp)
         {
+            CoecoDataContext ctx = new CoecoDataContext();
             //Si un employé est sélectionner
             if (nomEmp != "Veuillez choisir un employé")
             {
                 int idInt = GetIDEmp(nomEmp);
 
-                var BH = from tblBH in cdc.tbl_BanqueHeure
+                var BH = from tblBH in ctx.tbl_BanqueHeure
                          where tblBH.idEmploye == idInt
                          select tblBH;
 
@@ -144,11 +142,10 @@ namespace UrbanEco
         }
 
         //Load_BHEmp pour un id au lieu du nom employé
-        protected void load_BHemp(int idInt)
+        protected void load_BHemp(int idEmploye)
         {
-            var BH = from tblBH in cdc.tbl_BanqueHeure
-                     where tblBH.idEmploye == idInt
-                     select tblBH;
+            CoecoDataContext ctx = new CoecoDataContext();
+            var BH = BD.GetBanqueHeure(ctx,idEmploye);
 
             tbl_BH.Enabled = true;
 
@@ -185,60 +182,69 @@ namespace UrbanEco
         protected void ddl_empBH_SelectedIndexChanged(object sender, EventArgs e)
         {
             //On vide les textBox si aucun employé n'est sélectionner
-            if (ddl_empBH.Text == "Veuillez choisir un employé")
+            tbx_nbHeureBanque.Text = "";
+
+            tbx_nbHeureJourFerie.Text = "";
+
+            tbx_nbHeureCongePerso.Text = "";
+
+            tbx_nbHeureVacance.Text = "";
+
+            tbx_nbHeureCongeMaladie.Text = "";
+            tbx_nbHeureBanqueI.Text = "";
+
+            tbx_nbHeureJourFerieI.Text = "";
+
+            tbx_nbHeureCongePersoI.Text = "";
+
+            tbx_nbHeureVacanceI.Text = "";
+
+            tbx_nbHeureCongeMaladieI.Text = "";
+
+            //"Veuillez choisir un employé"
+            if (ddl_empBH.SelectedIndex != 0)
             {
-                tbx_nbHeureBanque.Text = "";
+                
 
-                tbx_nbHeureJourFerie.Text = "";
-
-                tbx_nbHeureCongePerso.Text = "";
-
-                tbx_nbHeureVacance.Text = "";
-
-                tbx_nbHeureCongeMaladie.Text = "";
-                tbx_nbHeureBanqueI.Text = "";
-
-                tbx_nbHeureJourFerieI.Text = "";
-
-                tbx_nbHeureCongePersoI.Text = "";
-
-                tbx_nbHeureVacanceI.Text = "";
-
-                tbx_nbHeureCongeMaladieI.Text = "";
-            }
-            else
-            {
-                tbx_nbHeureBanque.Text = "";
-
-                tbx_nbHeureJourFerie.Text = "";
-
-                tbx_nbHeureCongePerso.Text = "";
-
-                tbx_nbHeureVacance.Text = "";
-
-                tbx_nbHeureCongeMaladie.Text = "";
-                tbx_nbHeureBanqueI.Text = "";
-
-                tbx_nbHeureJourFerieI.Text = "";
-
-                tbx_nbHeureCongePersoI.Text = "";
-
-                tbx_nbHeureVacanceI.Text = "";
-
-                tbx_nbHeureCongeMaladieI.Text = "";
-                load_BHemp(ddl_empBH.Text);
-                AlertDiv.Visible = false;   //On cache l'alerte de choix d'employé
+                //On cache l'alerte de choix d'employé
+                load_BHemp(ddl_empBH.SelectedItem.Value);
+                AlertDiv.Visible = false;
             }
         }
 
         //Sauvegarde des données de l'empoyé afficher
         protected void Update_BH()
         {
-            int idInt = GetIDEmp(ddl_empBH.Text);
+            CoecoDataContext ctx = new CoecoDataContext();
+            if (ddl_empBH.SelectedIndex == 0)
+            {
+                return;
+            }
 
-            var BH = from tblBH in cdc.tbl_BanqueHeure
-                     where tblBH.idEmploye == idInt
-                     select tblBH;
+            string[] splitname = ddl_empBH.SelectedItem.Value.Split(',');
+
+            int idEmp = -1;
+
+            if (splitname.Length == 2)
+            {
+                idEmp = BD.GetEmployeByName(ctx,splitname[0].Trim(), splitname[1].Trim()).idEmploye;
+            }
+            else
+            {
+                try
+                {
+                    int.TryParse(ddl_empBH.SelectedItem.Value, out idEmp);
+                    if (idEmp == -1)
+                        throw new Exception();
+                }
+                catch(Exception ex)
+                {
+
+                    return;
+                }
+            }
+
+            var BH = BD.GetBanqueHeure(ctx,idEmp);
 
             //On obtient les heures actuelles de l'employé
             List<tbl_BanqueHeure> listHeure = new List<tbl_BanqueHeure>();
@@ -295,23 +301,17 @@ namespace UrbanEco
                 }
             }
 
-            //On enregistre chaque entré de la table en supprimant l'ancienne entrée
-            foreach (var heureBH in listHeure)
-            {
-                cdc.tbl_BanqueHeure.DeleteOnSubmit(heureBH);
-                cdc.tbl_BanqueHeure.InsertOnSubmit(heureBH);
-            }
-
-            cdc.SubmitChanges();
+            ctx.SubmitChanges();
 
         }
 
         //Obtient l'id de l'empolòyé à l'aide de son nom et prénom séparé par une virgule
         protected int GetIDEmp(string nomEmp)
         {
+            CoecoDataContext ctx = new CoecoDataContext();
             string[] nomEmpArray = nomEmp.Split(',');
 
-            var id = from tblEmp in cdc.tbl_Employe
+            var id = from tblEmp in ctx.tbl_Employe
                      where tblEmp.nom == nomEmpArray[0]
                      where tblEmp.prenom == nomEmpArray[1]
                      select tblEmp.idEmploye;
@@ -336,27 +336,31 @@ namespace UrbanEco
         //On obtient l'utilisateur connecté et on affiche ses heures
         protected void LoadUser()
         {
+            CoecoDataContext ctx = new CoecoDataContext();
+
             this.Page.Title = "Ma banque d'heures";
-            h1TitlePage.InnerText = "Ma Banque d'Heures";
+            h1TitlePage.InnerText = "Ma banque d'heure";
 
             ddl_empBH.Visible = false;
             btn_modifBH.Visible = false;
 
-            load_BHemp(Layout.GetUserConnected().idEmploye);
+            load_BHemp(BD.GetUserConnected(ctx,Request.Cookies["userInfo"]).idEmploye);
         }
 
         //On obient la liste des employées et on la link au DropDownList
         protected void LoadListEmploye()
         {
+
+            CoecoDataContext ctx = new CoecoDataContext();
             //Remplissage du dropdownlist d'employé
 
-            var tblEmp = from tbl in cdc.tbl_Employe
-                         where tbl.username != "admin"
-                         select tbl;
+            var tblEmp = BD.GetAllEmployes(ctx);
 
-            foreach (var n in tblEmp)
+            List<ListItem> listEmp = new List<ListItem>();
+
+            foreach (var emp in tblEmp)
             {
-                listEmp.Add(n.nom + "," + n.prenom);
+                listEmp.Add(new ListItem(emp.nom + "," + emp.prenom, emp.idEmploye.ToString()));
             }
 
             ddl_empBH.DataSource = null;
@@ -364,7 +368,7 @@ namespace UrbanEco
             ddl_empBH.DataSource = listEmp;
             ddl_empBH.DataBind();
 
-            ddl_empBH.Items.Insert(0, "Veuillez choisir un employé");
+            //ddl_empBH.Items.Insert(0, new ListItem("Veuillez choisir un employé",(-1).ToString()));
         }
 
         protected void btn_modifBHI_Click(object sender, EventArgs e)
