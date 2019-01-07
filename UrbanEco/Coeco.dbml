@@ -7,15 +7,16 @@
       <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nbHeureInitial" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="nbHeure" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_TypeHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_TypeHeure" IsForeignKey="true" />
       <Association Name="tbl_Employe_tbl_BanqueHeure" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
+      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_TypeHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_TypeHeure" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_TypeHeure" Member="tbl_TypeHeure">
-    <Type Name="tbl_TypeHeure">
-      <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nomTypeHeure" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_BanqueHeure" />
+  <Table Name="dbo.tbl_TypeEmploye" Member="tbl_TypeEmploye">
+    <Type Name="tbl_TypeEmploye">
+      <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
+      <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeDepense" ThisKey="idType" OtherKey="idTypeEmploye" Type="tbl_TypeDepense" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Depense" Member="tbl_Depense">
@@ -39,7 +40,6 @@
       <Column Name="prenom" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="nom" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="idTypeEmpl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="noTel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="email" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="username" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
@@ -150,12 +150,11 @@
       <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeEmploye" ThisKey="idTypeEmploye" OtherKey="idType" Type="tbl_TypeEmploye" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_TypeEmploye" Member="tbl_TypeEmploye">
-    <Type Name="tbl_TypeEmploye">
-      <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
-      <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeDepense" ThisKey="idType" OtherKey="idTypeEmploye" Type="tbl_TypeDepense" />
+  <Table Name="dbo.tbl_TypeHeure" Member="tbl_TypeHeure">
+    <Type Name="tbl_TypeHeure">
+      <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nomTypeHeure" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_BanqueHeure" />
     </Type>
   </Table>
 </Database>
