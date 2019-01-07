@@ -61,7 +61,7 @@
         </div>
 
         <%--no tel--%>
-        <div class="form-group mb-4 col-6 mx-auto">
+        <%--<div class="form-group mb-4 col-6 mx-auto">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
@@ -72,7 +72,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-        </div>
+        </div>--%>
 
         <%--email--%>
         <div class="form-group mb-4 col-6 mx-auto">

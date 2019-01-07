@@ -34,7 +34,6 @@ CREATE TABLE tbl_Employe
 	prenom VARCHAR(250) NOT NULL,
 	nom VARCHAR(250) NOT NULL,
 	idTypeEmpl INT NOT NULL,
-	noTel VARCHAR(50),
 	email VARCHAR(250),
 	username VARCHAR(250) NOT NULL,
 	password VARCHAR(250),
@@ -44,24 +43,24 @@ CREATE TABLE tbl_Employe
 	CONSTRAINT FK_tbl_Employe_idTypeEmpl FOREIGN KEY (idTypeEmpl) REFERENCES tbl_TypeEmploye(idType)
 )
 
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('Marc-André', 'Fortin', 1 , '123-456-7890', 'monemail@gmail.com', 'marc', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('Mike', 'Ward', 1 , '123-456-7890', 'monemail@gmail.com', 'mike', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('Mathieu', 'Rioux', 2 , '123-456-7890', 'monemail@gmail.com', 'mathieu', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('Serge', 'Postigo', 2 , '123-456-7890', 'monemail@gmail.com', 'serge', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('Denis', 'Drolet', 2 , '123-456-7890', 'monemail@gmail.com', 'denis', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('Marc-André', 'Fortin', 1 , 'monemail@gmail.com', 'marc', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('Mike', 'Ward', 1 , 'monemail@gmail.com', 'mike', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('Mathieu', 'Rioux', 2 , 'monemail@gmail.com', 'mathieu', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('Serge', 'Postigo', 2 , 'monemail@gmail.com', 'serge', 'pwd123', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('Denis', 'Drolet', 2 , 'monemail@gmail.com', 'denis', 'pwd123', 0)
 
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('Stéphane', 'Pelletier', 1 , '123-456-7890', 'monemail@gmail.com', 'stéphane', 'pwd123', 1)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('David', 'Jalbert', 2 , '123-456-7890', 'monemail@gmail.com', 'david', 'pwd123', 1)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('Stéphane', 'Pelletier', 1 , 'monemail@gmail.com', 'stéphane', 'pwd123', 1)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('David', 'Jalbert', 2 , 'monemail@gmail.com', 'david', 'pwd123', 1)
 
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, noTel, email, username, password, inactif) 
-VALUES ('Administrateur', '', 1 , '123-456-7890', 'monemail@gmail.com', 'admin', 'mobius', 0)
+INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
+VALUES ('Administrateur', '', 1 , 'monemail@gmail.com', 'admin', 'mobius', 0)
 
 CREATE TABLE tbl_Projet
 (
