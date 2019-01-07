@@ -30,6 +30,9 @@ namespace UrbanEco
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnCreated();
+    partial void Inserttbl_PremierDimanche(tbl_PremierDimanche instance);
+    partial void Updatetbl_PremierDimanche(tbl_PremierDimanche instance);
+    partial void Deletetbl_PremierDimanche(tbl_PremierDimanche instance);
     partial void Inserttbl_BanqueHeure(tbl_BanqueHeure instance);
     partial void Updatetbl_BanqueHeure(tbl_BanqueHeure instance);
     partial void Deletetbl_BanqueHeure(tbl_BanqueHeure instance);
@@ -48,9 +51,9 @@ namespace UrbanEco
     partial void Inserttbl_Kilometrage(tbl_Kilometrage instance);
     partial void Updatetbl_Kilometrage(tbl_Kilometrage instance);
     partial void Deletetbl_Kilometrage(tbl_Kilometrage instance);
-    partial void Inserttbl_PremierDimanche(tbl_PremierDimanche instance);
-    partial void Updatetbl_PremierDimanche(tbl_PremierDimanche instance);
-    partial void Deletetbl_PremierDimanche(tbl_PremierDimanche instance);
+    partial void Inserttbl_PremierDimanche1(tbl_PremierDimanche1 instance);
+    partial void Updatetbl_PremierDimanche1(tbl_PremierDimanche1 instance);
+    partial void Deletetbl_PremierDimanche1(tbl_PremierDimanche1 instance);
     partial void Inserttbl_Projet(tbl_Projet instance);
     partial void Updatetbl_Projet(tbl_Projet instance);
     partial void Deletetbl_Projet(tbl_Projet instance);
@@ -75,7 +78,7 @@ namespace UrbanEco
     #endregion
 		
 		public CoecoDataContext() : 
-				base(global::UrbanEco.Properties.Settings.Default.BD_CoecoConnectionString, mappingSource)
+				base(global::UrbanEco.Properties.Settings.Default.BD_CoecoConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -102,6 +105,14 @@ namespace UrbanEco
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<tbl_PremierDimanche> tbl_PremierDimanche
+		{
+			get
+			{
+				return this.GetTable<tbl_PremierDimanche>();
+			}
 		}
 		
 		public System.Data.Linq.Table<tbl_BanqueHeure> tbl_BanqueHeure
@@ -152,11 +163,11 @@ namespace UrbanEco
 			}
 		}
 		
-		public System.Data.Linq.Table<tbl_PremierDimanche> tbl_PremierDimanche
+		public System.Data.Linq.Table<tbl_PremierDimanche1> tbl_PremierDimanche1
 		{
 			get
 			{
-				return this.GetTable<tbl_PremierDimanche>();
+				return this.GetTable<tbl_PremierDimanche1>();
 			}
 		}
 		
@@ -213,6 +224,92 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_TypeEmploye>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_PremierDimanche")]
+	public partial class tbl_PremierDimanche : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idPremierDimanche;
+		
+		private System.DateTime _dateDimanche;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidPremierDimancheChanging(int value);
+    partial void OnidPremierDimancheChanged();
+    partial void OndateDimancheChanging(System.DateTime value);
+    partial void OndateDimancheChanged();
+    #endregion
+		
+		public tbl_PremierDimanche()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPremierDimanche", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idPremierDimanche
+		{
+			get
+			{
+				return this._idPremierDimanche;
+			}
+			set
+			{
+				if ((this._idPremierDimanche != value))
+				{
+					this.OnidPremierDimancheChanging(value);
+					this.SendPropertyChanging();
+					this._idPremierDimanche = value;
+					this.SendPropertyChanged("idPremierDimanche");
+					this.OnidPremierDimancheChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateDimanche", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime dateDimanche
+		{
+			get
+			{
+				return this._dateDimanche;
+			}
+			set
+			{
+				if ((this._dateDimanche != value))
+				{
+					this.OndateDimancheChanging(value);
+					this.SendPropertyChanging();
+					this._dateDimanche = value;
+					this.SendPropertyChanged("dateDimanche");
+					this.OndateDimancheChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1858,7 +1955,7 @@ namespace UrbanEco
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_PremierDimanche")]
-	public partial class tbl_PremierDimanche : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class tbl_PremierDimanche1 : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1877,7 +1974,7 @@ namespace UrbanEco
     partial void OndateDimancheChanged();
     #endregion
 		
-		public tbl_PremierDimanche()
+		public tbl_PremierDimanche1()
 		{
 			OnCreated();
 		}
