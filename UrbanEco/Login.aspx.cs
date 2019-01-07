@@ -64,8 +64,9 @@ namespace UrbanEco
             }
 
             //En cas d'échec de trouver un utilisateur
-            catch (Exception)
+            catch (Exception e)
             {
+                string str = e.Message;
                 AlertDiv.Visible = true;
             }
         }
