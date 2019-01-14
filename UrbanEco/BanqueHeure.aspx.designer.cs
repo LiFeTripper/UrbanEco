@@ -40,7 +40,25 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList ddl_empBH;
         
         /// <summary>
-        /// tbl_BH control.
+        /// Contrôle Label1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// Contrôle tbx_heureMinimum.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_heureMinimum;
+        
+        /// <summary>
+        /// Contrôle tbl_BH.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +67,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Table tbl_BH;
         
         /// <summary>
-        /// tbx_nbHeureBanque control.
+        /// Contrôle tbx_nbHeureBanqueU.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureBanqueU;
+        
+        /// <summary>
+        /// Contrôle tbx_nbHeureBanque.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -67,7 +94,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureBanqueI;
         
         /// <summary>
-        /// tbx_nbHeureJourFerie control.
+        /// Contrôle tbx_nbHeureJourFerieU.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureJourFerieU;
+        
+        /// <summary>
+        /// Contrôle tbx_nbHeureJourFerie.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -85,7 +121,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureJourFerieI;
         
         /// <summary>
-        /// tbx_nbHeureVacance control.
+        /// Contrôle tbx_nbHeureVacanceU.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureVacanceU;
+        
+        /// <summary>
+        /// Contrôle tbx_nbHeureVacance.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -103,7 +148,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureVacanceI;
         
         /// <summary>
-        /// tbx_nbHeureCongePerso control.
+        /// Contrôle tbx_nbHeureCongePersoU.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureCongePersoU;
+        
+        /// <summary>
+        /// Contrôle tbx_nbHeureCongePerso.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -121,7 +175,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureCongePersoI;
         
         /// <summary>
-        /// tbx_nbHeureCongeMaladie control.
+        /// Contrôle tbx_nbHeureCongeMaladieU.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbx_nbHeureCongeMaladieU;
+        
+        /// <summary>
+        /// Contrôle tbx_nbHeureCongeMaladie.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

@@ -85,6 +85,24 @@
             </asp:table>
         </div>
 
+        <%--Approbation feuille de temps checkbox--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <table style="width: 100% !important;">
+                <tr class="mb-3">
+                    <%--CHECKBOX INACTIF OU ACTIF--%>
+                    <td style="width: 50%;">
+                        <label class="switch" style="float: right;">
+                            <asp:CheckBox ID="Chkbx_App" runat="server" />
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <h4 style="float: left;">Approbation</h4>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
         <%--Status--%>
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">

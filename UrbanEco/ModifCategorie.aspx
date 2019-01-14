@@ -4,6 +4,8 @@
     <style>
         .asp-table {
             table-layout: fixed;
+
+
         }
     </style>
 </asp:Content>

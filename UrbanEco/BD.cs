@@ -17,7 +17,7 @@ namespace UrbanEco
         public static tbl_Employe GetUserConnected(CoecoDataContext ctx, HttpCookie myCookie)
         {
             //return userConnected;
-            //User not connected, un peu intule avec le webconfig, mais on sais jamais
+            //User not connected, un peu inutile avec le webconfig, mais on sais jamais
             if (myCookie == null || myCookie.Value == null)
             {
                 //Response.Redirect("Login.aspx", true);
@@ -117,6 +117,7 @@ namespace UrbanEco
 
             return query.Distinct().ToList();
         }
+
 
         public static List<tbl_Employe> GetAllEmployeFtFiltered(CoecoDataContext ctx, DateTime dateMin, DateTime dateMax, bool approuver)
         {
