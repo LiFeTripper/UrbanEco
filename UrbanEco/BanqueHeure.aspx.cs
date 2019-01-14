@@ -33,6 +33,7 @@ namespace UrbanEco
             else
             {
                 LoadUser();
+                Load_Heure_Use();
             }
         }
 
@@ -65,6 +66,25 @@ namespace UrbanEco
             {
                 AlertDiv.Visible = true;
             }
+        }
+
+        protected void Load_Heure_Use()
+        {
+            int nbHeureBanqueUse = int.Parse(tbx_nbHeureBanqueI.Text) - int.Parse(tbx_nbHeureBanque.Text);
+            tbx_nbHeureBanqueU.Text = nbHeureBanqueUse.ToString();
+
+            int nbJourFerie = int.Parse(tbx_nbHeureJourFerieI.Text) - int.Parse(tbx_nbHeureJourFerie.Text);
+            tbx_nbHeureJourFerieU.Text = nbJourFerie.ToString();
+
+            int nbVacance = int.Parse(tbx_nbHeureVacanceI.Text) - int.Parse(tbx_nbHeureVacance.Text);
+            tbx_nbHeureVacanceU.Text = nbVacance.ToString();
+
+            int nbConge = int.Parse(tbx_nbHeureCongePersoI.Text) - int.Parse(tbx_nbHeureCongePerso.Text);
+            tbx_nbHeureCongePersoU.Text = nbConge.ToString();
+
+            int nbMaladie = int.Parse(tbx_nbHeureCongeMaladieI.Text) - int.Parse(tbx_nbHeureCongeMaladie.Text);
+            tbx_nbHeureCongeMaladieU.Text = nbMaladie.ToString();
+
         }
 
         //Bouton pour passer d'admin à employé, bouton de test
@@ -209,6 +229,7 @@ namespace UrbanEco
                 //On cache l'alerte de choix d'employé
                 load_BHemp(ddl_empBH.SelectedItem.Value);
                 AlertDiv.Visible = false;
+                Load_Heure_Use();
             }
         }
 
@@ -455,6 +476,7 @@ namespace UrbanEco
             ddl_empBH.Enabled = true;
 
             load_BHemp(ddl_empBH.Text);
+            Load_Heure_Use();
         }
     }
 
