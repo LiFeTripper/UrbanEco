@@ -34,9 +34,10 @@ CREATE TABLE tbl_Employe
 	nom VARCHAR(250) NOT NULL,
 	idTypeEmpl INT NOT NULL,
 	email VARCHAR(250),
-	username VARCHAR(250) NOT NULL,
+	username VARCHAR(250) NOT NULL UNIQUE,
 	password VARCHAR(250),
 	inactif BIT DEFAULT 0,
+	nbHeureSemaine FLOAT(24) DEFAULT 0,
 
 	--FOREIGN KEY
 	CONSTRAINT FK_tbl_Employe_idTypeEmpl FOREIGN KEY (idTypeEmpl) REFERENCES tbl_TypeEmploye(idType)
