@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoecoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=BD_Coeco;Integrated Security=True;User ID=WEB_USER" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Integrated Security=False;Persist Security Info=True;User ID=WEB_USER" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
     <Type Name="tbl_BanqueHeure">
       <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
