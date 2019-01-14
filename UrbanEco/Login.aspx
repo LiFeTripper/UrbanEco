@@ -16,7 +16,13 @@
     <%--IMAGE CO-ÉCO--%>
     <%--<img class="mb-4" src="" alt="" width="72" height="72">--%>
 
-    <form class="form-signin" runat="server">
+    <div id="background">
+        <img src="Resources/fond-login.jpg" alt="Background" />
+    </div>
+
+    <!-- Contenu de la page -->
+    <div id="contenu">
+        <form class="form-signin" runat="server">
 
         <%--ALERT FAILED AUTHENTICATION--%>
         <div runat="server" id="AlertDiv" visible="false" class="alert alert-danger alert-dismissable">
@@ -34,13 +40,6 @@
 
         <%--PASSWORD--%>
         <input class="form-control" ID="Tbx_InputPassword" name="Tbx_InputPassword" placeholder="Mot de passe" runat="server" type="password" />
-        <%--<asp:TextBox class="form-control" ID="Tbx_InputPassword" name="Tbx_InputPassword" placeholder="Mot de passe" runat="server"></asp:TextBox>--%>
-
-        <%--CHECKBOX--%>
-<%--        <div class="checkbox mb-3">
-            <label for="Persist">Se souvenir de moi :</label>
-            <asp:CheckBox ID="Persist" runat="server"></asp:CheckBox>
-        </div>--%>
 
         <%--Checkbox--%>
         <table style="width: 100% !important; margin-top:10px; margin-bottom:10px;">
@@ -61,6 +60,9 @@
         <%--BOUTON D'IDENTIFICATION--%>
         <asp:Button ID="Btn_Signin" runat="server" Text="S'identifier" class="btn btn-lg btn-primary btn-block" type="submit" OnClick="Btn_Signin_Click" />
     </form>
+    </div>
+
+
 
 
     <%--SCRIPTS--%>
