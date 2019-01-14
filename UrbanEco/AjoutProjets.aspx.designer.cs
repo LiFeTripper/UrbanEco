@@ -58,6 +58,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.LinqDataSource LinqEmployes;
         
         /// <summary>
+        /// Contrôle Chkbx_App.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Chkbx_App;
+        
+        /// <summary>
         /// Contrôle Ddl_Status.
         /// </summary>
         /// <remarks>

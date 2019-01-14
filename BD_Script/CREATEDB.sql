@@ -16,7 +16,6 @@ CREATE TABLE tbl_Status
 )
 
 INSERT INTO tbl_Status (nomStatus) VALUES ('En cours');
-INSERT INTO tbl_Status (nomStatus) VALUES ('En attente d''approbation');
 INSERT INTO tbl_Status (nomStatus) VALUES ('Terminé');
 
 CREATE TABLE tbl_TypeEmploye
@@ -35,9 +34,10 @@ CREATE TABLE tbl_Employe
 	nom VARCHAR(250) NOT NULL,
 	idTypeEmpl INT NOT NULL,
 	email VARCHAR(250),
-	username VARCHAR(250) NOT NULL,
+	username VARCHAR(250) NOT NULL UNIQUE,
 	password VARCHAR(250),
 	inactif BIT DEFAULT 0,
+	nbHeureSemaine FLOAT(24) DEFAULT 0,
 
 	--FOREIGN KEY
 	CONSTRAINT FK_tbl_Employe_idTypeEmpl FOREIGN KEY (idTypeEmpl) REFERENCES tbl_TypeEmploye(idType)
@@ -69,6 +69,7 @@ CREATE TABLE tbl_Projet
 	description VARCHAR(MAX),
 	idStatus INT NOT NULL,
 	idEmployeResp INT,
+	approbation BIT DEFAULT 0,
 	tempsAllouer FLOAT(24),
 	dateDebut SMALLDATETIME DEFAULT GETDATE(),
 	dateFin SMALLDATETIME DEFAULT GETDATE(),
@@ -84,7 +85,7 @@ VALUES ('Collecte qui carbure!	', 'Une belle description', 1, 1, 24, 0)
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
 VALUES ('Écocentres', 'Une autre belle description', 2, 2, 12, 0)
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Peinture Boomerang', 'Une tout autre belle description', 3, 3, 40, 1)
+VALUES ('Peinture Boomerang', 'Une tout autre belle description', 2, 3, 40, 1)
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
 VALUES ('Vacances et congés', 'Congé, vacances et temps supplémentaires', 1, 1, 40, 0)
 
