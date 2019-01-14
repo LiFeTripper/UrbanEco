@@ -3,6 +3,29 @@ body {
   height: 100%;
 }
 
+#background {
+    width: 100%;
+    height: 100vh;
+    filter: blur(10px);
+    position: absolute;
+}
+
+#background img {
+  min-width: 100%;
+  height: 100%;
+}
+
+#contenu {
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
 body {
   display: -ms-flexbox;
   display: flex;
