@@ -79,7 +79,7 @@ namespace UrbanEco
         }
 
         /// <summary>
-        /// Retourne tous les employés avec des FT non-approuver
+        /// Retourne tous les employés avec des deps non-approuver
         /// </summary>
         /// <returns></returns>
         public static List<tbl_Employe> GetAllEmpDepWaiting(CoecoDataContext ctx, bool approuver = false)
@@ -99,7 +99,7 @@ namespace UrbanEco
 
 
         /// <summary>
-        /// Retourne l'employés employés avec des FT non-approuver
+        /// Retourne l'employé spécifié selon son id avec des deps non-approuver
         /// </summary>
         /// <returns></returns>
         public static List<tbl_Employe> GetEmpDepWaiting(CoecoDataContext ctx, int idEmploye, bool approuver = false)
