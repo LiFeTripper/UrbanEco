@@ -50,6 +50,7 @@ namespace UrbanEco
                             Tbx_Titre.Text = Projet.titre;
                             Tbx_Description.Text = Projet.description;
                             Ddl_Responsable.SelectedIndex = (int)Projet.idEmployeResp -1;
+
                             Ddl_Status.SelectedIndex = (int)Projet.idStatus - 1;
                             Tbx_HeuresAlloues.Text = Projet.tempsAllouer.ToString();
                             Cal_DateDebut.Value =  Layout.ToCalendarDate(Projet.dateDebut.Value);
