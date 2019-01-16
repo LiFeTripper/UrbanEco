@@ -291,7 +291,7 @@ namespace UrbanEco
         protected void Update_BH()
         {
             CoecoDataContext ctx = new CoecoDataContext();
-            if (ddl_empBH.SelectedIndex == 0)
+            if (ddl_empBH.SelectedIndex == -1)
             {
                 return;
             }
