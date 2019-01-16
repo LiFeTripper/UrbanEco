@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UrbanEco.Rapports;
 
 namespace UrbanEco
 {
@@ -284,6 +285,8 @@ namespace UrbanEco
             employes = ctx.tbl_Employe.Where(emp => SelectedEmployes.Contains(emp.idEmploye)).Distinct().ToList();
 
             categories = ctx.tbl_ProjetCat.Where(cat => SelectedCategories.Contains(cat.idProjetCat)).Distinct().ToList();
+
+            
         }
 
         protected void btn_retour_Click(object sender, EventArgs e)

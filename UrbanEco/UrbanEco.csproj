@@ -152,7 +152,7 @@
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
     <Compile Include="BD.cs" />
-    <Compile Include="Class Rapport\RapportNode.cs" />
+    <Compile Include="Rapports\RapportNode.cs" />
     <Compile Include="Coeco.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

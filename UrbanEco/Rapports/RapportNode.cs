@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace UrbanEco.Class_Rapport
+namespace UrbanEco.Rapports
 {
     public class RapportNode
     {
         private string nom;
         private TimeSpan? nbHeure;
-        private RapportNode child;
+        private RapportNode[] child;
 
         public RapportNode() {}
 
-        public RapportNode(string p_nom, TimeSpan p_nbHeure, RapportNode p_child)
+        public RapportNode(string p_nom, TimeSpan p_nbHeure, RapportNode[]p_child)
         {
             this.nom = p_nom;
             this.nbHeure = p_nbHeure;
@@ -22,6 +22,6 @@ namespace UrbanEco.Class_Rapport
 
         public string Nom { get => this.nom; }
         public TimeSpan? NbHeure { get => this.nbHeure; }
-        public RapportNode Child { get => this.child; }
+        public RapportNode[] Child { get => this.child; }
     }
 }
