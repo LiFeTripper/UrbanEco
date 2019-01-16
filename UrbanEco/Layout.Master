@@ -19,6 +19,7 @@
     <link href="lib/css/multi-select.css" rel="stylesheet" />
     <link href="lib/css/fancy-switch.css" rel="stylesheet" />
 
+
     <%--SCRIPTS --%>
     <script src="lib/js/jquery-3.3.1.min.js"></script>
     <script src="lib/js/popper.js"></script>
@@ -133,8 +134,6 @@
     <footer class="container">
         <%--<p>&copy; Company 2017-2018</p>--%>
     </footer>
-
-
 </body>
 
 </html>
