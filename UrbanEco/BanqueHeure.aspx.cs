@@ -33,7 +33,8 @@ namespace UrbanEco
             else
             {
                 LoadUser();
-                Load_Heure_Use();
+                Load_Heure_Use(ddl_empBH.SelectedItem.Value);
+                loadHeureMinEmp(ddl_empBH.SelectedItem.Value);
             }
         }
 
@@ -68,22 +69,76 @@ namespace UrbanEco
             }
         }
 
-        protected void Load_Heure_Use()
+        protected void loadHeureMinEmp(string nomEmp)
         {
-            int nbHeureBanqueUse = int.Parse(tbx_nbHeureBanqueI.Text) - int.Parse(tbx_nbHeureBanque.Text);
-            tbx_nbHeureBanqueU.Text = nbHeureBanqueUse.ToString();
+            CoecoDataContext ctx = new CoecoDataContext();
 
-            int nbJourFerie = int.Parse(tbx_nbHeureJourFerieI.Text) - int.Parse(tbx_nbHeureJourFerie.Text);
-            tbx_nbHeureJourFerieU.Text = nbJourFerie.ToString();
+            if (nomEmp != "Veuillez choisir un employé")
+            {
+                int idInt = GetIDEmp(nomEmp);
 
-            int nbVacance = int.Parse(tbx_nbHeureVacanceI.Text) - int.Parse(tbx_nbHeureVacance.Text);
-            tbx_nbHeureVacanceU.Text = nbVacance.ToString();
+                var BH = (from emp in ctx.tbl_Employe
+                         where emp.idEmploye == idInt
+                         select emp).First();
 
-            int nbConge = int.Parse(tbx_nbHeureCongePersoI.Text) - int.Parse(tbx_nbHeureCongePerso.Text);
-            tbx_nbHeureCongePersoU.Text = nbConge.ToString();
+                tbx_heureMinimum.Text = BH.nbHeureSemaine.ToString();
+            }            
+        }
 
-            int nbMaladie = int.Parse(tbx_nbHeureCongeMaladieI.Text) - int.Parse(tbx_nbHeureCongeMaladie.Text);
-            tbx_nbHeureCongeMaladieU.Text = nbMaladie.ToString();
+        protected void Load_Heure_Use(string nomEmp)
+        {
+            tbx_nbHeureBanqueU.Text = "0";
+            tbx_nbHeureJourFerieU.Text = "0";
+            tbx_nbHeureCongePersoU.Text = "0";
+            tbx_nbHeureVacanceU.Text = "0";
+            tbx_nbHeureCongeMaladieU.Text = "0";
+
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            if (nomEmp != "Veuillez choisir un employé")
+            {
+                int idInt = GetIDEmp(nomEmp);
+
+                var BH = from tblBH in ctx.tbl_BanqueHeure
+                         where tblBH.idEmploye == idInt
+                         select tblBH;
+
+                tbl_BH.Enabled = true;
+
+                foreach (var heureBH in BH)
+                {
+                    switch (heureBH.idTypeHeure)
+                    {
+                        case 1:
+                            tbx_nbHeureBanqueU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                            break;
+                        case 2:
+                            tbx_nbHeureJourFerieU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                            break;
+                        case 3:
+                            tbx_nbHeureCongePersoU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                            break;
+                        case 4:
+                            tbx_nbHeureVacanceU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                            break;
+                        case 5:
+                            tbx_nbHeureCongeMaladieU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                            break;
+                    }
+                }
+            }
+            else //vider les champs
+            {
+                tbl_BH.Enabled = true;
+
+                tbx_nbHeureBanqueU.Text = "0";
+                tbx_nbHeureJourFerieU.Text = "0";
+                tbx_nbHeureCongePersoU.Text = "0";
+                tbx_nbHeureVacanceU.Text = "0";
+                tbx_nbHeureCongeMaladieU.Text = "0";
+            }
+
+            tbl_BH.Enabled = false;
 
         }
 
@@ -222,14 +277,13 @@ namespace UrbanEco
             tbx_nbHeureCongeMaladieI.Text = "";
 
             //"Veuillez choisir un employé"
-            if (ddl_empBH.SelectedIndex != 0)
-            {
-                
-
+            if (ddl_empBH.SelectedIndex != -1)
+            {        
                 //On cache l'alerte de choix d'employé
                 load_BHemp(ddl_empBH.SelectedItem.Value);
                 AlertDiv.Visible = false;
-                Load_Heure_Use();
+                Load_Heure_Use(ddl_empBH.SelectedItem.Value);
+                loadHeureMinEmp(ddl_empBH.SelectedItem.Value);
             }
         }
 
@@ -476,7 +530,7 @@ namespace UrbanEco
             ddl_empBH.Enabled = true;
 
             load_BHemp(ddl_empBH.Text);
-            Load_Heure_Use();
+            Load_Heure_Use(ddl_empBH.SelectedItem.Value);
         }
     }
 

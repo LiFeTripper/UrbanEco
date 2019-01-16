@@ -491,10 +491,27 @@ namespace UrbanEco
                           & tbl.noSemaine == (noSemaine - 1)
                           select tbl);
 
+            
+
+            var querryNbSemaine = (from tbl in cdc.tbl_Employe
+                                   where tbl.idEmploye == idEmp
+                                   select tbl).First();
+
             var querrySemaineActuelle = (from tbl in cdc.tbl_FeuilleTemps
                                            where tbl.idEmploye == idEmp
                                            & tbl.noSemaine == noSemaine
                                            select tbl);
+
+            float nbHeureSemaineEmp = 0;
+
+            if (querryNbSemaine.idTypeEmpl == 1)
+            {
+                 nbHeureSemaineEmp = (float)querryNbSemaine.nbHeureSemaine;
+            }
+            if (querryNbSemaine.idTypeEmpl == 2)
+            {
+                 nbHeureSemaineEmp = 40;
+            }
 
 
             float nbHeureSemainePrecedente = 0;
@@ -502,15 +519,39 @@ namespace UrbanEco
 
             foreach (tbl_FeuilleTemps tbl in querrySemainePrecedente)
             {
-                nbHeureSemainePrecedente += tbl.nbHeure;
+                if(nbHeureSemainePrecedente + tbl.nbHeure > nbHeureSemaineEmp)
+                {
+                    float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemainePrecedente);
+                    nbHeureSemainePrecedente = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
+                }
+                else if(nbHeureSemainePrecedente > nbHeureSemaineEmp)
+                {
+                    nbHeureSemainePrecedente += (tbl.nbHeure * 1.5f);
+                }
+                else
+                {
+                    nbHeureSemainePrecedente += tbl.nbHeure;
+                }
             }
 
             foreach (tbl_FeuilleTemps tbl in querrySemaineActuelle)
             {
-                nbHeureSemaineActuelle += tbl.nbHeure;
+                if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
+                {
+                    float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemaineActuelle);
+                    nbHeureSemaineActuelle = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
+                }
+                else if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
+                {
+                    nbHeureSemaineActuelle += (tbl.nbHeure * 1.5f);
+                }
+                else
+                {
+                    nbHeureSemaineActuelle += tbl.nbHeure;
+                }
             }
 
-            if (nbHeureSemainePrecedente > 35)
+            if (nbHeureSemainePrecedente > nbHeureSemaineEmp)
             {
                 var querry = from tbl in cdc.tbl_TempsSupp
                              where tbl.idEmploye == idEmp
@@ -536,7 +577,7 @@ namespace UrbanEco
                 }
                 else
                 {
-                    querryBH.First().nbHeure += nbHeureSemainePrecedente - 35;
+                    querryBH.First().nbHeure += nbHeureSemainePrecedente - nbHeureSemaineEmp;
                 }
 
                 tbl_TempsSupp tblTemp = new tbl_TempsSupp();
@@ -549,7 +590,7 @@ namespace UrbanEco
                 cdc.SubmitChanges();
             }
 
-            if (nbHeureSemaineActuelle > 35)
+            if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
             {
                 var querry = from tbl in cdc.tbl_TempsSupp
                              where tbl.idEmploye == idEmp
@@ -575,7 +616,7 @@ namespace UrbanEco
                 }
                 else
                 {
-                    querryBH.First().nbHeure += nbHeureSemaineActuelle - 35;
+                    querryBH.First().nbHeure += nbHeureSemaineActuelle - nbHeureSemaineEmp;
                 }
 
                 tbl_TempsSupp tblTemp = new tbl_TempsSupp();
