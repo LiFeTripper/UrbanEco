@@ -11,6 +11,8 @@ namespace UrbanEco
     {
         CoecoDataContext cdc = new CoecoDataContext();
 
+        tbl_Employe empConnected;
+
         static List<tbl_PremierDimanche> dimanches = new List<tbl_PremierDimanche>();
 
         protected string formatRemoveHour(object date)
@@ -40,8 +42,8 @@ namespace UrbanEco
 
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
-
-                tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+                
+                empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
                 DateTime dateMin = DateTime.Parse(Calendar1.Value);
                 DateTime dateMax = DateTime.Parse(Calendar2.Value);
@@ -91,13 +93,20 @@ namespace UrbanEco
             }
         }
 
-        public bool isVisible()
+        public bool isVisible(object rptItem)
         {
             CoecoDataContext ctx = new CoecoDataContext();
             tbl_Employe user = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
             if (user.username == "admin")
             {
                 return true;
+            } else {
+                if (rptItem is tbl_FeuilleTemps) {
+                    tbl_FeuilleTemps laFeuille = (tbl_FeuilleTemps)rptItem;
+                    if (laFeuille.tbl_Projet.idEmployeResp == user.idEmploye) {
+                        return true;
+                    }
+                }
             }
 
             return false;
@@ -370,6 +379,7 @@ namespace UrbanEco
         protected bool ShowFT(object objetFeuille, string type)
         {
             tbl_FeuilleTemps feuille = (tbl_FeuilleTemps)objetFeuille;
+            bool show = true;
 
             //Pas approuver, on le met pas
             if (string.Compare(type, "Attente") == 0)
@@ -388,28 +398,34 @@ namespace UrbanEco
             dateMinimal = Calendar1.Value;
             dateMaximal = Calendar2.Value;
 
-            //Filtre non valide
-            if (string.IsNullOrWhiteSpace(dateMinimal) || string.IsNullOrWhiteSpace(dateMaximal))
+            //Filtre valide
+            if (!string.IsNullOrWhiteSpace(dateMinimal) && !string.IsNullOrWhiteSpace(dateMaximal))
             {
-                //alert_missingDate.Visible = true;
-                return true;
+                DateTime dateMin = DateTime.Parse(dateMinimal);
+                DateTime dateMax = DateTime.Parse(dateMaximal);
+
+                //Filtre valide
+                if (dateMin <= dateMax) {
+                    if (feuille.dateCreation > dateMax || feuille.dateCreation < dateMin)
+                        show = false;
+                }
             }
 
             //alert_missingDate.Visible = false;
 
-            DateTime dateMin = DateTime.Parse(dateMinimal);
-            DateTime dateMax = DateTime.Parse(dateMaximal);
-
-            //Filtre non valide encore
-            if (dateMin > dateMax)
-            {
-                return true;
+            if (empConnected.username == "admin") {
+                
+            } else {
+                if (feuille.tbl_Projet.idEmployeResp == empConnected.idEmploye && (bool)feuille.tbl_Projet.approbation) {
+                    return show;
+                } else if (feuille.idEmploye == empConnected.idEmploye) {
+                    return show;
+                } else {
+                    show = false;
+                }
             }
 
-            if (feuille.dateCreation > dateMax || feuille.dateCreation < dateMin)
-                return false;
-
-            return true;
+            return show;
         }
 
         protected void btn_ajouterFT_Click(object sender, EventArgs e)

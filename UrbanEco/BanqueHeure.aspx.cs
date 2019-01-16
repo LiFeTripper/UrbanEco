@@ -28,13 +28,15 @@ namespace UrbanEco
                 if (!IsPostBack)
                 {
                     LoadListEmploye();
+                    Load_Heure_Use(ddl_empBH.SelectedItem.Value);
+                    loadHeureMinEmp(ddl_empBH.SelectedItem.Value);
                 }
             }
             else
             {
                 LoadUser();
-                Load_Heure_Use(ddl_empBH.SelectedItem.Value);
-                loadHeureMinEmp(ddl_empBH.SelectedItem.Value);
+                load_Heure_Use_Emp(emp.nom + "," +  emp.prenom);
+                loadHeureSemaineEmp(emp.nom + "," + emp.prenom);
             }
         }
 
@@ -70,6 +72,22 @@ namespace UrbanEco
             }
         }
 
+        protected void loadHeureSemaineEmp(string nomEmp)
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            if (nomEmp != "Veuillez choisir un employé")
+            {
+                int idInt = GetIDEmp(nomEmp);
+
+                var BH = (from emp in ctx.tbl_Employe
+                          where emp.idEmploye == idInt
+                          select emp).First();
+
+                tbx_heureMinimum.Text = BH.nbHeureSemaine.ToString();
+            }
+        }
+
         protected void loadHeureMinEmp(string nomEmp)
         {
             CoecoDataContext ctx = new CoecoDataContext();
@@ -86,14 +104,8 @@ namespace UrbanEco
             }            
         }
 
-        protected void Load_Heure_Use(string nomEmp)
+        protected void load_Heure_Use_Emp(string nomEmp)
         {
-            tbx_nbHeureBanqueU.Text = "0";
-            tbx_nbHeureJourFerieU.Text = "0";
-            tbx_nbHeureCongePersoU.Text = "0";
-            tbx_nbHeureVacanceU.Text = "0";
-            tbx_nbHeureCongeMaladieU.Text = "0";
-
             CoecoDataContext ctx = new CoecoDataContext();
 
             if (nomEmp != "Veuillez choisir un employé")
@@ -104,7 +116,7 @@ namespace UrbanEco
                          where tblBH.idEmploye == idInt
                          select tblBH;
 
-                tbl_BH.Enabled = true;
+                tbl_BH.Enabled = true;  //Activation de la table pour faire des modifs
 
                 foreach (var heureBH in BH)
                 {
@@ -127,17 +139,68 @@ namespace UrbanEco
                             break;
                     }
                 }
-            }
-            else //vider les champs
-            {
-                tbl_BH.Enabled = true;
 
-                tbx_nbHeureBanqueU.Text = "0";
-                tbx_nbHeureJourFerieU.Text = "0";
-                tbx_nbHeureCongePersoU.Text = "0";
-                tbx_nbHeureVacanceU.Text = "0";
-                tbx_nbHeureCongeMaladieU.Text = "0";
+                tbl_BH.Enabled = false;
+
             }
+
+            }
+
+        protected void Load_Heure_Use(string nomEmp)
+        {
+            tbx_nbHeureBanqueU.Text = "0";
+            tbx_nbHeureJourFerieU.Text = "0";
+            tbx_nbHeureCongePersoU.Text = "0";
+            tbx_nbHeureVacanceU.Text = "0";
+            tbx_nbHeureCongeMaladieU.Text = "0";
+
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            tbl_Employe emp = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+
+                if (nomEmp != "Veuillez choisir un employé")
+                {
+                    int idInt = GetIDEmp(nomEmp);
+
+                    var BH = from tblBH in ctx.tbl_BanqueHeure
+                             where tblBH.idEmploye == idInt
+                             select tblBH;
+
+                    tbl_BH.Enabled = true;
+
+                    foreach (var heureBH in BH)
+                    {
+                        switch (heureBH.idTypeHeure)
+                        {
+                            case 1:
+                                tbx_nbHeureBanqueU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                                break;
+                            case 2:
+                                tbx_nbHeureJourFerieU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                                break;
+                            case 3:
+                                tbx_nbHeureCongePersoU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                                break;
+                            case 4:
+                                tbx_nbHeureVacanceU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                                break;
+                            case 5:
+                                tbx_nbHeureCongeMaladieU.Text = (heureBH.nbHeureInitial - heureBH.nbHeure).ToString();
+                                break;
+                        }
+                    }
+                }
+                else //vider les champs
+                {
+                    tbl_BH.Enabled = true;
+
+                    tbx_nbHeureBanqueU.Text = "0";
+                    tbx_nbHeureJourFerieU.Text = "0";
+                    tbx_nbHeureCongePersoU.Text = "0";
+                    tbx_nbHeureVacanceU.Text = "0";
+                    tbx_nbHeureCongeMaladieU.Text = "0";
+                }
+            
 
             tbl_BH.Enabled = false;
 

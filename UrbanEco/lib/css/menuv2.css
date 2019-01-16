@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #F2F2F2;
 }
 
 p {
@@ -64,7 +64,7 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #2e353d;
+    background: #1B7B04;
     color: #fff;
     transition: all 0.3s;
 }
@@ -79,24 +79,48 @@ span {
 
     #sidebar .sidebar-header {
         padding: 20px;
-        background: #23282e;
+        background: #1B7B04;
+        text-align: center;
     }
 
-        #sidebar .sidebar-header strong {
-            display: none;
-            font-size: 1.8em;
-        }
+    #sidebar .sidebar-header:after {
+        content: "";
+        position: absolute;
+        width: 25%;
+        bottom: 0px;
+        left: 38%;
+        height: 2px;
+        background-color: white;
+    }
+
+    #sidebar .sidebar-header strong {
+        display: none;
+        font-size: 1.8em;
+    }
 
     #sidebar ul.components {
         padding: 20px 0;
-        border-bottom: 1px solid #47748b;
     }
 
-    #sidebar ul li a {
-        padding: 10px;
-        font-size: 1.1em;
-        display: block;
+    #Btn_DelogAdmin {
+        border-color: unset;
+        background-image: unset;
+        background-color: #145D03;
+        height: 35px;
+        width: 100%;
     }
+
+    #Btn_DelogAdmin:hover {
+        transition: background-color ease-out 0.1s;
+        background-color: #166B02;
+        cursor: pointer;
+    }
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
 
         #sidebar ul li a:hover {
             color: #23282e;
