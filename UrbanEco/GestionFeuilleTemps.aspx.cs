@@ -24,9 +24,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            CoecoDataContext ctx = new CoecoDataContext();
+            empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+
+            if (!IsPostBack)
             {
-                CoecoDataContext ctx = new CoecoDataContext();
                 Page.MaintainScrollPositionOnPostBack = true;
 
                 //Premier dimanche
@@ -42,8 +44,6 @@ namespace UrbanEco
 
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
-
-                empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
                 DateTime dateMin = DateTime.Parse(Calendar1.Value);
                 DateTime dateMax = DateTime.Parse(Calendar2.Value);
