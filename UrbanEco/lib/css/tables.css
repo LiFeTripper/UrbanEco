@@ -1,0 +1,27 @@
+﻿.table {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+/* Titres de colonne */
+.table thead th {
+    color: #424242;
+    font-weight: bold;
+}
+
+/* Titres de colonne */
+.table tbody td {
+    color: #424242;
+    font-weight: lighter;
+}
+
+.table tbody td span {
+    font-weight: normal;
+}
+
+.t_footer th{
+    color: #424242 !important;
+    background-color: white !important;
+    font-weight: bold;
+}
