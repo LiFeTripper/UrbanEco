@@ -94,7 +94,8 @@ namespace UrbanEco
         public bool isVisible()
         {
             CoecoDataContext ctx = new CoecoDataContext();
-            if (BD.GetUserConnected(ctx, Request.Cookies["userInfo"]).username == "admin")
+            tbl_Employe user = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            if (user.username == "admin")
             {
                 return true;
             }
@@ -354,7 +355,7 @@ namespace UrbanEco
                 if (item == null)
                     continue;
 
-                if (ShowFT(item.approuver, item.dateCreation, "Attente"))
+                if (ShowFT(item, "Attente"))
                 {
                     totalHeure += item.nbHeure;
                 }
@@ -364,20 +365,21 @@ namespace UrbanEco
             return totalHeure + "h";
         }
 
-        protected bool ShowFT(object approuver, object date, string type)
+        protected bool ShowFT(object objetFeuille, string type)
         {
+            tbl_FeuilleTemps feuille = (tbl_FeuilleTemps)objetFeuille;
+
             //Pas approuver, on le met pas
             if(string.Compare(type, "Attente") == 0)
             {
-                if ((bool)approuver)
+                if ((bool)feuille.approuver)
                     return false;
             }
             else if (string.Compare(type, "Approuver") == 0)
             {
-                if (!(bool)approuver)
+                if (!(bool)feuille.approuver)
                     return false;
             }
-
 
             string dateMinimal, dateMaximal;
 
@@ -402,7 +404,7 @@ namespace UrbanEco
                 return true;
             }
 
-            if ((DateTime)date > dateMax || (DateTime)date < dateMin)
+            if (feuille.dateCreation > dateMax || feuille.dateCreation < dateMin)
                 return false;
 
             return true;

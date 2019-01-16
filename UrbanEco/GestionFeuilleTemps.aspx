@@ -190,8 +190,7 @@
                     <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
                         <%--ITEMTEMPLATE--%>
                         <ItemTemplate>
-                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Eval("approuver"),Eval("dateCreation"), "Attente") %>'>
-                                <%--<td></td>--%>
+                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Container.DataItem, "Attente") %>'>
                                 <td></td>
                                 <td>
                                     <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />
@@ -265,13 +264,14 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" /></td>
+                        <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' Font-Bold="true" />
+                    </td>
                 </tr>    
                     <%--SECOND REPEATER DE FEUILLE DE TEMPS--%>
                     <asp:Repeater ID="Rptr_FeuilleTempsApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load">
                         <%--ITEMTEMPLATE--%>
                         <ItemTemplate>
-                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Eval("approuver"),Eval("dateCreation"), "Approuver") %>'>
+                            <tr style="border-bottom: 1px solid #23282e" runat="server" visible='<%# ShowFT(Container.DataItem, "Approuver")%>'>
                                 <td></td>
                                 <td>
                                     <asp:Label ID="lbl_Date" runat="server" Text='<%# formatRemoveHour(Eval("dateCreation")) %>' Font-Bold="true" />
