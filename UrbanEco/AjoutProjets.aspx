@@ -78,8 +78,8 @@
                         Responsable
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
-                        <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="prenom" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
-                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom, nom, idEmploye)" TableName="tbl_Employe" OrderBy="prenom"></asp:LinqDataSource>
+                        <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="personne" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
+                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" TableName="tbl_Employe"></asp:LinqDataSource>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
