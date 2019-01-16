@@ -93,13 +93,20 @@ namespace UrbanEco
             }
         }
 
-        public bool isVisible(object feuille)
+        public bool isVisible(object rptItem)
         {
             CoecoDataContext ctx = new CoecoDataContext();
             tbl_Employe user = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
             if (user.username == "admin")
             {
                 return true;
+            } else {
+                if (rptItem is tbl_FeuilleTemps) {
+                    tbl_FeuilleTemps laFeuille = (tbl_FeuilleTemps)rptItem;
+                    if (laFeuille.tbl_Projet.idEmployeResp == user.idEmploye) {
+                        return true;
+                    }
+                }
             }
 
             return false;
