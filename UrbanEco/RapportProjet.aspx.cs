@@ -49,21 +49,21 @@ namespace UrbanEco
                 //Query pour les projet
                 CoecoDataContext context = new CoecoDataContext();
 
-                var empBureau = from emp in context.tbl_Employe
-                                where emp.idTypeEmpl == 1 && emp.idEmploye != 4
+                var empBureau = from emp in context.tbl_Employe                 //1 = Bureau
+                                where emp.idTypeEmpl == 1 && emp.idEmploye != 4 //4 = Administrateur
                                 orderby emp.nom, emp.prenom
                                 select emp;
 
-                var empTerrain = from emp in context.tbl_Employe
+                var empTerrain = from emp in context.tbl_Employe                //2 = Terrain
                                 where emp.idTypeEmpl == 2 && emp.idEmploye != 4
                                  orderby emp.nom, emp.prenom
                                 select emp;
 
 
-                emp_bureau = empBureau.ToList();
+                emp_bureau = empBureau.ToList(); //on prend la request de la BD et on met dans la liste des employés
                 emp_terrain = empTerrain.ToList();
 
-                RepBureau.DataSource = emp_bureau;
+                RepBureau.DataSource = emp_bureau; //On met la liste des employés au repeter
                 RepBureau.DataBind();
 
                 RepTerrain.DataSource = emp_terrain;
@@ -254,17 +254,6 @@ namespace UrbanEco
             }
 
             return "";
-        }
-
-        /// <summary>
-        /// To delete
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void BtnTesting_Click(object sender, EventArgs e)
-        {
-            UpdateSelectedEmployeList();
-            UpdateSelectedCategorieList();
         }
 
         protected string FormatCategorieName(object idCat)

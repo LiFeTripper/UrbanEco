@@ -18,13 +18,14 @@ namespace UrbanEco
 
             lbl_noProjet.Text = argument;
 
-            CoecoDataContext ctx = new CoecoDataContext();
+            
 
             if (!IsPostBack)
             {
                 Page.MaintainScrollPositionOnPostBack = true;
 
                 //CODE POUR BIND LE REPEATER DE CATÉGORIE
+                CoecoDataContext ctx = new CoecoDataContext();
                 var queryMasterProjetCat = BD.GetMasterCategorieProjet(ctx,int.Parse(argument));
 
                 Rptr_Categorie.DataSource = null;
@@ -34,6 +35,7 @@ namespace UrbanEco
                 Rptr_Categorie.DataSource = queryMasterProjetCat.Distinct();
                 Rptr_Categorie.DataBind();
 
+                lbl_nomProjet.InnerText = "Sous-Projets de " + BD.GetProjet(ctx, int.Parse(argument)).titre;
             }
         }
 
