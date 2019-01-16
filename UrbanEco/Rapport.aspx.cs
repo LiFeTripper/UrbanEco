@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace UrbanEco
 {
-    public partial class RapportProjet : System.Web.UI.Page
+    public partial class Rapport : System.Web.UI.Page
     {
         static List<tbl_ProjetCat> sortedCats = new List<tbl_ProjetCat>();
 
@@ -289,7 +289,7 @@ namespace UrbanEco
             dateDebut = DateTime.Parse(date_debut.Value);
             dateFin = DateTime.Parse(date_fin.Value);
 
-            projet = ctx.tbl_Projet.Where(p => p.idProjet == idProjet).First();
+            projet = ctx.tbl_Projet.Where(p => p.idProjet == idProjet).First( );
 
             employes = ctx.tbl_Employe.Where(emp => SelectedEmployes.Contains(emp.idEmploye)).Distinct().ToList();
 

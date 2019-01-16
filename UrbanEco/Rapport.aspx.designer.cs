@@ -10,7 +10,7 @@
 namespace UrbanEco {
     
     
-    public partial class RapportProjet {
+    public partial class Rapport {
         
         /// <summary>
         /// Contrôle lst_projet.

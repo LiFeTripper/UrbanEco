@@ -107,7 +107,7 @@
     <Content Include="ModifCategorie.aspx" />
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
-    <Content Include="RapportProjet.aspx" />
+    <Content Include="Rapport.aspx" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
@@ -239,12 +239,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RapportProjet.aspx.cs">
-      <DependentUpon>RapportProjet.aspx</DependentUpon>
+    <Compile Include="Rapport.aspx.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RapportProjet.aspx.designer.cs">
-      <DependentUpon>RapportProjet.aspx</DependentUpon>
+    <Compile Include="Rapport.aspx.designer.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
