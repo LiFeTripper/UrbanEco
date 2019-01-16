@@ -305,10 +305,14 @@ namespace UrbanEco
             CoecoDataContext context = ctx;
 
 
-            var query_Projets = (from tblProjetCat in context.tbl_ProjetCatEmploye
-                                 join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
-                                 orderby tblProjet.titre
-                                 select tblProjet);
+            //var query_Projets = (from tblProjetCat in context.tbl_ProjetCatEmploye
+            //                     join tblProjet in context.tbl_Projet on tblProjetCat.idProjet equals tblProjet.idProjet
+            //                     orderby tblProjet.titre
+            //                     select tblProjet);
+
+            var query_Projets = from tblProjet in context.tbl_Projet
+                                orderby tblProjet.titre
+                                select tblProjet;
 
             if (query_Projets.Count() == 0)
                 return null;

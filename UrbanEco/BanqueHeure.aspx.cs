@@ -63,6 +63,7 @@ namespace UrbanEco
                 btn_Annuler.Visible = true;
                 btn_modifBH.Visible = false;
                 ddl_empBH.Enabled = false;
+                tbx_heureMinimum.Enabled = true;
             }
             //Si aucun employé n'est sélectionner, on affiche une alerte
             else
@@ -374,6 +375,8 @@ namespace UrbanEco
                     int.TryParse(ddl_empBH.SelectedItem.Value, out idEmp);
                     if (idEmp == -1)
                         throw new Exception();
+
+                   
                 }
                 catch(Exception ex)
                 {
@@ -383,6 +386,8 @@ namespace UrbanEco
             }
 
             var BH = BD.GetBanqueHeure(ctx,idEmp);
+            Update_HeureSemaine(idEmp);
+
 
             //On obtient les heures actuelles de l'employé
             List<tbl_BanqueHeure> listHeure = new List<tbl_BanqueHeure>();
@@ -439,6 +444,8 @@ namespace UrbanEco
                 }
             }
 
+
+            
             ctx.SubmitChanges();
 
         }
@@ -523,6 +530,7 @@ namespace UrbanEco
                 tbx_nbHeureCongePerso.Enabled = false;
                 tbx_nbHeureJourFerie.Enabled = false;
                 tbx_nbHeureVacance.Enabled = false;
+                
                 btn_modifBHI.Visible = false;
                 }
                 //Lorsque les modifications désactivées, on enregistre les changements fait dans la table d'heures de l'employé sélectionner
@@ -534,6 +542,7 @@ namespace UrbanEco
                     tbx_nbHeureJourFerieI.Enabled = false;
                     tbx_nbHeureVacanceI.Enabled = false;
                     btn_modifBHI.Visible = false;
+                    
                     btn_modifBHI.Text = "Activer la modification des heures initiales";
                 }
 
@@ -575,6 +584,7 @@ namespace UrbanEco
                 AlertDiv.Visible = false;   //On cache l'alerte de choix d'employé
             }
 
+            tbx_heureMinimum.Enabled = false;
             btn_modifBH.Visible = true;
             btn_modifBHI.Text = "Activer la modification des heures initiales";
             ddl_empBH.Enabled = true;
@@ -591,9 +601,21 @@ namespace UrbanEco
             btn_Annuler.Visible = false;
             btn_modifBHI.Text = "Activer la modification des heures initiales";
             ddl_empBH.Enabled = true;
+            tbx_heureMinimum.Enabled = false;
 
             load_BHemp(ddl_empBH.Text);
             Load_Heure_Use(ddl_empBH.SelectedItem.Value);
+        }
+
+        protected void Update_HeureSemaine(int idEmp)
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+            var BH = (from emp in ctx.tbl_Employe
+                      where emp.idEmploye == idEmp
+                      select emp).First();
+
+            BH.nbHeureSemaine = float.Parse(tbx_heureMinimum.Text);
+            ctx.SubmitChanges();
         }
     }
 
