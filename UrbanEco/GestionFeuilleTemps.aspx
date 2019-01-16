@@ -156,7 +156,7 @@
                                 <th style="width: 22%" scope="col">Catégorie</th>
                                 <th style="width: 20%" scope="col">Note</th>
                                 <th style="width: 5%" scope="col">
-                                    <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" Visible=<%# isVisible() %> runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout" />
+                                    <asp:Button ID="Btn_ApproveTout" CssClass="btn btn-md btn-primary" Visible=<%# isVisible(Container.DataItem) %> runat="server" OnClick="Btn_ApproveTout_Click" Text="Approuver Tout" />
                                 </th>
                             </tr>
                         </thead>
@@ -182,7 +182,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <asp:Button ID="Btn_ApproveEmp" Visible=<%# isVisible() %> CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye")%>' />
+                        <asp:Button ID="Btn_ApproveEmp" Visible=<%# isVisible(Container.DataItem) %> CssClass="btn btn-md btn-primary" runat="server" OnClick="Btn_ApproveEmp_Click" Text="Approuver Employé" CommandArgument='<%#Eval("idEmploye")%>' />
                     </td>
                 </tr>
                 <tr class="collapse" id="collapseAjout">

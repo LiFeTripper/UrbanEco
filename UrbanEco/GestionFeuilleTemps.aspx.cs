@@ -93,7 +93,7 @@ namespace UrbanEco
             }
         }
 
-        public bool isVisible()
+        public bool isVisible(object feuille)
         {
             CoecoDataContext ctx = new CoecoDataContext();
             tbl_Employe user = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
