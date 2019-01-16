@@ -50,7 +50,7 @@ namespace UrbanEco
                             Tbx_Titre.Text = Projet.titre;
                             Tbx_Description.Text = Projet.description;
                             Ddl_Responsable.SelectedIndex = (int)Projet.idEmployeResp -1;
-
+                            Chkbx_App.Checked = (bool)Projet.approbation;
                             Ddl_Status.SelectedIndex = (int)Projet.idStatus - 1;
                             Tbx_HeuresAlloues.Text = Projet.tempsAllouer.ToString();
                             Cal_DateDebut.Value =  Layout.ToCalendarDate(Projet.dateDebut.Value);
@@ -93,6 +93,7 @@ namespace UrbanEco
                 tableProjet.dateFin = date2;
 
                 tableProjet.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
+                tableProjet.approbation = Chkbx_App.Checked;
 
                 ctx.tbl_Projet.InsertOnSubmit(tableProjet);
             }
@@ -106,6 +107,7 @@ namespace UrbanEco
                 ProjetToModif.titre = Tbx_Titre.Text;
                 ProjetToModif.description = Tbx_Description.Text;
                 ProjetToModif.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
+                ProjetToModif.approbation = Chkbx_App.Checked;
                 ProjetToModif.idStatus = int.Parse(Ddl_Status.SelectedValue);
                 ProjetToModif.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
                 ProjetToModif.dateDebut = DateTime.Parse(Cal_DateDebut.Value);
@@ -115,7 +117,6 @@ namespace UrbanEco
 
             //Étape finale SUBMIT CHANGES
             ctx.SubmitChanges();
-
             
             Response.Redirect("Projets.aspx");
 
@@ -123,7 +124,6 @@ namespace UrbanEco
 
         protected void Btn_Annuler_Click(object sender, EventArgs e)
         {
-
             ((Button)sender).CausesValidation = false;
             Response.Redirect("Projets.aspx",false);
             HttpContext.Current.ApplicationInstance.CompleteRequest();

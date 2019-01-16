@@ -33,16 +33,5 @@ namespace UrbanEco.Properties {
                 return ((string)(this["BD_CoecoConnectionString1"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=BD_Coeco;Integrated Security=True;User ID=WEB" +
-            "_USER")]
-        public string BD_CoecoConnectionString {
-            get {
-                return ((string)(this["BD_CoecoConnectionString"]));
-            }
-        }
     }
 }
