@@ -921,8 +921,6 @@ namespace UrbanEco
 		
 		private int _idTypeEmpl;
 		
-		private string _noTel;
-		
 		private string _email;
 		
 		private string _username;
@@ -930,6 +928,8 @@ namespace UrbanEco
 		private string _password;
 		
 		private System.Nullable<bool> _inactif;
+		
+		private System.Nullable<float> _nbHeureSemaine;
 		
 		private EntitySet<tbl_BanqueHeure> _tbl_BanqueHeure;
 		
@@ -957,8 +957,6 @@ namespace UrbanEco
     partial void OnnomChanged();
     partial void OnidTypeEmplChanging(int value);
     partial void OnidTypeEmplChanged();
-    partial void OnnoTelChanging(string value);
-    partial void OnnoTelChanged();
     partial void OnemailChanging(string value);
     partial void OnemailChanged();
     partial void OnusernameChanging(string value);
@@ -967,6 +965,8 @@ namespace UrbanEco
     partial void OnpasswordChanged();
     partial void OninactifChanging(System.Nullable<bool> value);
     partial void OninactifChanged();
+    partial void OnnbHeureSemaineChanging(System.Nullable<float> value);
+    partial void OnnbHeureSemaineChanged();
     #endregion
 		
 		public tbl_Employe()
@@ -1065,26 +1065,6 @@ namespace UrbanEco
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noTel", DbType="VarChar(50)")]
-		public string noTel
-		{
-			get
-			{
-				return this._noTel;
-			}
-			set
-			{
-				if ((this._noTel != value))
-				{
-					this.OnnoTelChanging(value);
-					this.SendPropertyChanging();
-					this._noTel = value;
-					this.SendPropertyChanged("noTel");
-					this.OnnoTelChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(250)")]
 		public string email
 		{
@@ -1161,6 +1141,26 @@ namespace UrbanEco
 					this._inactif = value;
 					this.SendPropertyChanged("inactif");
 					this.OninactifChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nbHeureSemaine", DbType="Real")]
+		public System.Nullable<float> nbHeureSemaine
+		{
+			get
+			{
+				return this._nbHeureSemaine;
+			}
+			set
+			{
+				if ((this._nbHeureSemaine != value))
+				{
+					this.OnnbHeureSemaineChanging(value);
+					this.SendPropertyChanging();
+					this._nbHeureSemaine = value;
+					this.SendPropertyChanged("nbHeureSemaine");
+					this.OnnbHeureSemaineChanged();
 				}
 			}
 		}
@@ -1959,6 +1959,8 @@ namespace UrbanEco
 		
 		private System.Nullable<int> _idEmployeResp;
 		
+		private System.Nullable<bool> _approbation;
+		
 		private System.Nullable<float> _tempsAllouer;
 		
 		private System.Nullable<System.DateTime> _dateDebut;
@@ -1991,6 +1993,8 @@ namespace UrbanEco
     partial void OnidStatusChanged();
     partial void OnidEmployeRespChanging(System.Nullable<int> value);
     partial void OnidEmployeRespChanged();
+    partial void OnapprobationChanging(System.Nullable<bool> value);
+    partial void OnapprobationChanged();
     partial void OntempsAllouerChanging(System.Nullable<float> value);
     partial void OntempsAllouerChanged();
     partial void OndateDebutChanging(System.Nullable<System.DateTime> value);
@@ -2115,6 +2119,26 @@ namespace UrbanEco
 					this._idEmployeResp = value;
 					this.SendPropertyChanged("idEmployeResp");
 					this.OnidEmployeRespChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approbation", DbType="Bit")]
+		public System.Nullable<bool> approbation
+		{
+			get
+			{
+				return this._approbation;
+			}
+			set
+			{
+				if ((this._approbation != value))
+				{
+					this.OnapprobationChanging(value);
+					this.SendPropertyChanging();
+					this._approbation = value;
+					this.SendPropertyChanged("approbation");
+					this.OnapprobationChanged();
 				}
 			}
 		}

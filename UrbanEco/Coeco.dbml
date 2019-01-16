@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoecoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Integrated Security=True" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Integrated Security=False;Persist Security Info=True;User ID=WEB_USER" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
     <Type Name="tbl_BanqueHeure">
       <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -39,11 +39,11 @@
       <Column Name="prenom" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="nom" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="idTypeEmpl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="noTel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="email" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="username" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="inactif" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="nbHeureSemaine" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Association Name="tbl_Employe_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_BanqueHeure" />
       <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Depense" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Depense" />
       <Association Name="tbl_Employe_tbl_FeuilleTemps" Member="tbl_FeuilleTemps" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_FeuilleTemps" />
@@ -89,6 +89,7 @@
       <Column Name="description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idEmployeResp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="approbation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="tempsAllouer" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="dateDebut" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
       <Column Name="dateFin" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />

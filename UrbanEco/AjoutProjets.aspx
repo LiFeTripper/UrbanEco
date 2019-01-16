@@ -78,11 +78,29 @@
                         Responsable
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
-                        <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="prenom" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
-                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom, nom, idEmploye)" TableName="tbl_Employe" OrderBy="prenom"></asp:LinqDataSource>
+                        <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="personne" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
+                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" TableName="tbl_Employe"></asp:LinqDataSource>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
+        </div>
+
+        <%--Approbation feuille de temps checkbox--%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <table style="width: 100% !important;">
+                <tr class="mb-3">
+                    <%--CHECKBOX INACTIF OU ACTIF--%>
+                    <td style="width: 50%;">
+                        <label class="switch" style="float: right;">
+                            <asp:CheckBox ID="Chkbx_App" runat="server" />
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <h4 style="float: left;">Approbation</h4>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <%--Status--%>
