@@ -95,29 +95,52 @@ namespace UrbanEco
             CoecoDataContext context = new CoecoDataContext();
             int idProjet = -1;
 
-            idProjet = ConvertValueToInt(lst_projet.Items[lst_projet.SelectedIndex].Value);
+            string[] projetSelectedStr = hiddenFieldProjet.Value.Split(',');
 
-            //No project selected
-            if (idProjet <= -1)
+            if (projetSelectedStr.Length == 0)
             {
                 repParentCat.DataSource = null;
                 repParentCat.DataBind();
                 return;
             }
 
-            var queryCatMaster = from tbl in context.tbl_ProjetCat
-                                 join tbl2 in context.tbl_ProjetCat on tbl.idProjetCat equals tbl2.idCatMaitre
-                                 where tbl.idCatMaitre == null && tbl.idProjet == idProjet
-                                 orderby tbl.titre
-                                 select tbl;
+            List<ListItem> categoriesAvailable = new List<ListItem>();
+
+            foreach (var IDProjet in projetSelectedStr)
+            {
+                if (string.IsNullOrWhiteSpace(IDProjet))
+                    continue;
+
+                idProjet = ConvertValueToInt(IDProjet);
+
+                //Project invalid
+                if (idProjet <= -1)               
+                    continue;
 
 
-            projet_categorie = queryCatMaster.Distinct().ToList();
-             
-            repParentCat.DataSource = queryCatMaster.Distinct();
+                //var queryCatMaster = from tbl in context.tbl_ProjetCat
+                //                     join tbl2 in context.tbl_ProjetCat on tbl.idProjetCat equals tbl2.idCatMaitre
+                //                     where tbl.idCatMaitre == null && tbl.idProjet == idProjet
+                //                     orderby tbl.titre
+                //                     select tbl;
+
+                var queryCatNiveau2 = from tblProjetCat in context.tbl_ProjetCat
+                                      where tblProjetCat.idCatMaitre != null && tblProjetCat.idProjet == idProjet
+                                      select tblProjetCat;
+
+                var temp = queryCatNiveau2.ToList().Count;
+
+                foreach (var cat in queryCatNiveau2.ToList())
+                { 
+
+                    ListItem ls = new ListItem(cat.tbl_ProjetCat1.titre + " - " + cat.titre, cat.idProjetCat.ToString());
+
+                    categoriesAvailable.Add(ls);
+                }
+            }
+
+            repParentCat.DataSource = categoriesAvailable;
             repParentCat.DataBind();
-
-
         }
 
         void RequeryEmployes()
@@ -198,9 +221,28 @@ namespace UrbanEco
             return "";
         }
 
+        protected string ProjetSelected(object id)
+        {
+            int idProjet = (int) id;
+
+            //Permet de lire la liste des employé dans le textbox hidden
+            UpdateSelectedProjetList();
+
+            foreach (var item in SelectedProjets)
+            {
+                if (item == idProjet)
+                    return "selected";
+            }
+
+            return "";
+        }
+
         protected string CategorieSelected(object id)
         {
-            int idProjetCat = (int) id;
+            int idProjetCat = -1;
+            int.TryParse(id.ToString(), out idProjetCat);
+
+            
 
             //Permet de lire la liste des catégories dans le textbox hidden
             UpdateSelectedCategorieList();
@@ -223,6 +265,11 @@ namespace UrbanEco
         {
             UpdateSelectedEmployeList();
             UpdateSelectedCategorieList();
+        }
+
+        protected string FormatCategorieName(object idCat)
+        {
+            return "";
         }
 
         /// <summary>
@@ -248,7 +295,34 @@ namespace UrbanEco
             }
 
             SelectedEmployes = listEmp;
+        }  
+        
+        /// <summary>
+        /// Update la liste des employés sélectionnés
+        /// </summary>
+        void UpdateSelectedProjetList()
+        {
+            List<int> listProjet = new List<int>();
+
+            foreach (var idProjet in hiddenFieldProjet.Value.Split(','))
+            {
+                int id = -1;
+
+                if (string.IsNullOrWhiteSpace(idProjet))
+                    continue;
+
+                id = ConvertValueToInt(idProjet);
+
+                if (id <= -1)
+                    continue;
+
+                listProjet.Add(id);
+            }
+
+            SelectedProjets = listProjet;
         }
+
+
 
         /// <summary>
         /// Update la liste des catégories sélectionner

@@ -49,15 +49,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldProjet;
         
         /// <summary>
-        /// Contrôle Linq_projets.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Linq_projets;
-        
-        /// <summary>
         /// Contrôle repParentCat.
         /// </summary>
         /// <remarks>

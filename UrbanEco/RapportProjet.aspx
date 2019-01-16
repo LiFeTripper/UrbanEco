@@ -38,7 +38,8 @@
         }
 
         .ms-container .ms-list {
-            height: 250px !important;
+            height: 300px !important;
+            width : 600px !important;
         }
     </style>
 </asp:Content>
@@ -61,29 +62,20 @@
                 </asp:TableRow>
             </asp:Table>
         </div>
-        <div class="justify-content-lg-center input-group mb-3 col-12">
+        <div class="input-group mb-3 col-12">
             <select id="projetMultiSelect" multiple="multiple">
 
                 <asp:Repeater ID="rptr_projets" runat="server">
                     <ItemTemplate>
 
-                        <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-1"><%#Eval("titre")%> </option>
-
-                        <asp:Repeater ID="repTest" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
-                            <ItemTemplate>
-
-                                <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-2">&nbsp;&nbsp;<%#Eval("titre") %></option>
-
-                            </ItemTemplate>
-                        </asp:Repeater>
+                        <option value='<%#Eval("idProjet") %>' <%# ProjetSelected(Eval("idProjet")) %> class="font-repeater-level-1"><%#Eval("titre")%> </option>
 
                     </ItemTemplate>
                 </asp:Repeater>
             </select>
 
         </div>
-        <asp:LinqDataSource ID="Linq_Projets" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" TableName="tbl_Projet">
-        </asp:LinqDataSource>
+        <asp:LinqDataSource ID="Linq_Projets" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" TableName="tbl_Projet"></asp:LinqDataSource>
         <input hidden="hidden" type="text" runat="server" id="hiddenFieldProjet" />
 
         <div class="row justify-content-md-center" style="margin-bottom: 20px;">
@@ -94,7 +86,7 @@
                 <table style="width: 100% !important;">
                     <tr>
                         <th>
-                            <h5 style="float: left; width: 49% !important;" class="input-title">Sous-Catégorie<asp:SqlDataSource ID="Linq_projets" runat="server"></asp:SqlDataSource>
+                            <h5 style="float: left; width: 49% !important;" class="input-title">Sous-Catégorie
 
                             </h5>
                             <h5 style="float: right; width: 49% !important;" class="input-title">Inclus dans le rapport</h5>
@@ -108,15 +100,15 @@
                                     <asp:Repeater ID="repParentCat" runat="server">
                                         <ItemTemplate>
 
-                                            <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-1"><%#Eval("titre")%> </option>
+                                            <option value='<%#Eval("value") %>' <%# CategorieSelected(Eval("value")) %> class="font-repeater-level-1"><%#Eval("text")%> </option>
 
-                                            <asp:Repeater ID="repTest" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
+<%--                                            <asp:Repeater ID="repTest" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
                                                 <ItemTemplate>
 
                                                     <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-2">&nbsp;&nbsp;<%#Eval("titre") %></option>
 
                                                 </ItemTemplate>
-                                            </asp:Repeater>
+                                            </asp:Repeater>--%>
 
                                         </ItemTemplate>
                                     </asp:Repeater>
