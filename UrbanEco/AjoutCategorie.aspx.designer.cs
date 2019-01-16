@@ -13,6 +13,15 @@ namespace UrbanEco {
     public partial class AjoutCategorie {
         
         /// <summary>
+        /// Contrôle lbl_nomProjet.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_nomProjet;
+        
+        /// <summary>
         /// Contrôle lbl_noProjet.
         /// </summary>
         /// <remarks>

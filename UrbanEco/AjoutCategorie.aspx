@@ -10,7 +10,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Sous-Projets</h1>
+    <h1 runat="server" id="lbl_nomProjet"></h1>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -32,7 +32,6 @@
                                 <th scope="col">Sous-Projet Niveau 2</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">
-                                    <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAjoutCat" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Ajouter</button>--%>
                                     <asp:Button class="btn btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />
                                 </th>
                             </tr>
@@ -44,37 +43,8 @@
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
 
-                <%--MENU COLLAPSE DE CATÉGORIE
-                <tr class="collapse" id="collapseAjoutCat">
-                    <form>
-                        <td>PREMIERE COLONE VIDE</td>
-                        <td>
-                            <div class="form-group col-12 mx-auto">
-                                <label for="Tbx_Titre">Titre</label>
-                                <input type="text" class="form-control" id="Text1" placeholder="Titre" runat="server">
-                            </div>
-                        </td>
-                        <td>TROISIEME COLONE VIDE</td>
-                        <td>
-                            <div class="form-group mb-4 col-12 mx-auto">
-                                <label for="Tbx_Description">Description</label>
-                                <input type="text" class="form-control" id="Text2" placeholder="Description" runat="server">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group mb-4 col-12 mx-auto">
-                                <asp:Button class="btn btn-success" ID="Btn_AjoutCat" runat="server" Text="Ajouter" OnClick="Btn_AjoutCat_Click" />
-                                <button class="btn btn-danger" id="Btn_AnnulerCat" data-toggle="collapse" data-target="#collapseAjout">Annuler</button>
-                            </div>
-                        </td>
-                    </form>
-                </tr>--%>
-
                 <%--LIGNE DU REPEATER--%>
                 <tr style="border-bottom: 1px solid #23282e" runat="server" class="table-secondary">
-<%--                    <td>
-                        <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjetCat") %>' Font-Bold="true" />
-                    </td>--%>
                     <td>
                         <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
                     </td>
@@ -91,39 +61,9 @@
                     </td>
                 </tr>
 
-                <%--MENU COLLAPSE DE SOUS-CATÉGORIE
-                <tr class="collapse" id="collapseAjout">
-                    <form>
-                        <td>PREMIERE COLONE VIDE</td>
-                        <td>
-                            <div class="form-group col-12 mx-auto">
-                                <label for="Tbx_Titre">Titre</label>
-                                <input type="text" class="form-control" id="Tbx_Titre" placeholder="Titre" runat="server">
-                            </div>
-                        </td>
-                        <td>TROISIEME COLONE VIDE</td>
-                        <td>
-                            <div class="form-group mb-4 col-12 mx-auto">
-                                <label for="Tbx_Description">Description</label>
-                                <input type="text" class="form-control" id="Tbx_Description" placeholder="Description" runat="server">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group mb-4 col-12 mx-auto">
-                                <asp:Button class="btn btn-success" ID="Btn_AjoutSousCat" runat="server" Text="Ajouter" OnClientClick="valeurCollapse()" OnClick="Btn_AjoutSousCat_Click" CommandArgument='<%#Eval("idProjetCat") %>' />
-                                <button class="btn btn-danger" id="Btn_Annuler" data-toggle="collapse" data-target="#collapseAjout">Annuler</button>
-                            </div>
-                        </td>
-                    </form>
-                </tr>--%>
-
-
                 <asp:Repeater ID="Rptr_SousCat" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
                     <ItemTemplate>
                         <tr style="border-bottom: 1px solid #23282e" runat="server">
-<%--                            <td>
-                                <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjetCat") %>' Font-Bold="true" />
-                            </td>--%>
                             <td>
                                 <%--TD VIDE CAR PAS UNE CATÉGORIE--%>
                             </td>
@@ -135,28 +75,9 @@
                             </td>
                             <%--BOUTON AJOUT D'EMPLOYÉ DANS SOUS-CATÉGORIE--%>
                             <td>
-                                <%--<button class="btn btn-primary" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="false" aria-controls="collapseExample" onclick="return false;">Employés</button>--%>
                                 <asp:ImageButton CssClass="btn-option" ID="Btn_ModifSousProjet" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_ModifSousProjet_Click" CommandArgument='<%# Eval("idProjetCat")%>' />
                             </td>
                         </tr>
-
-                        <%--MENU COLLAPSE D'AJOUT D'EMPT
-                <tr class="collapse" id="collapseEmp">
-                    <form>
-                        MULTISELECT
-                            <div class="justify-content-lg-center input-group mb-3 col-12">
-                                <select id="Multiselection" multiple="multiple">
-                                    <optgroup label='Bureau'>
-                                        <option value="Mathieu"></option>
-                                    </optgroup>
-                                    <optgroup label='Terrain'>
-                                        <option value="Marc"></option>
-                                    </optgroup>
-                                </select>
-                            </div>
-
-                    </form>
-                </tr>--%>
                     </ItemTemplate>
                 </asp:Repeater>
             </ItemTemplate>
@@ -184,47 +105,4 @@
         <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjetsCat" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_ProjetCat">
         </asp:LinqDataSource>
     </form>
-
-
-    <%--FONCTION JAVASCRIPT DU BOOTBOX--%>
-    <script>
-        //function Send() {
-        //    bootbox.dialog({
-        //        title: 'Nouvelle Catégorie pour ce projet',
-        //        message: "<p>Veuillez entrez les informations de la nouvelle catégorie :</p>" +
-
-        //            "<p><label for='Tbx_AjoutCat1'>Nom de la catégorie :</label></p>" +
-        //            "<p><input type='text' id='Tbx_AjoutCat1'/></p>" +
-        //            "<p><label for='Tbx_AjoutCatDesc1'>Description de la catégorie :</label></p>" +
-        //            "<p><input type='text' id='Tbx_AjoutCatDesc1'/></p>",
-
-        //        buttons: {
-        //            ok: {
-        //                label: "Ajouter",
-        //                className: 'btn-info',
-        //                callback: function () {
-
-        //                    var cat = document.getElementById('Tbx_AjoutCat1');
-        //                    var desc = document.getElementById('Tbx_AjoutCatDesc1');
-
-        //                    var categorie = cat.value;
-        //                    var description = desc.value;
-
-        //                    document.getElementById('HiddenField_Titre').textContent = categorie;
-        //                    document.getElementById('HiddenField_Desc').textContent = description;
-        //                    document.getElementById('lbl_noProjet').value = categorie;
-        //                    Btn_AjoutSousCat();
-        //                }
-        //            },
-        //            cancel: {
-        //                label: "Annuler",
-        //                className: 'btn-danger',
-        //                callback: function () {
-        //                    Example.show('Pas de nouvelle catégorie ajoutée');
-        //                }
-        //            },
-        //        }
-        //    });
-
-    </script>
 </asp:Content>
