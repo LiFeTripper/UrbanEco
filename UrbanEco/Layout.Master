@@ -111,7 +111,7 @@
             </ul>
 
             <div class="mx-2 ">
-                <button id="Btn_DelogAdmin" runat="server" class="form-control btn-danger mx-auto ml-2 mr-2" onserverclick="Btn_Deconnect_Click">Déconnection</button>
+                <button id="Btn_DelogAdmin" runat="server" class="form-control btn-danger mx-auto ml-2 mr-2" onserverclick="Btn_Deconnect_Click">Déconnexion</button>
             </div>
         </nav>
 
