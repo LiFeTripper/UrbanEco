@@ -15,10 +15,13 @@ namespace UrbanEco
         static List<tbl_Employe> emp_bureau = new List<tbl_Employe>();
         static List<tbl_Employe> emp_terrain = new List<tbl_Employe>();
 
+        
+
         static List<tbl_ProjetCat> projet_categorie = new List<tbl_ProjetCat>();
 
         static List<tbl_ProjetCatEmploye> projet_categorie_employe = new List<tbl_ProjetCatEmploye>();
 
+        static List<int> SelectedProjets = new List<int>();
         static List<int> SelectedEmployes = new List<int>();
         static List<int> SelectedCategories = new List<int>();
 
@@ -34,6 +37,11 @@ namespace UrbanEco
 
             repParentCat.DataSource = projet_categorie;
             repParentCat.DataBind();
+
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            rptr_projets.DataSource = BD.GetAllProjets(ctx);
+            rptr_projets.DataBind();
 
             if (!IsPostBack)
             {    
@@ -294,6 +302,8 @@ namespace UrbanEco
             employes = ctx.tbl_Employe.Where(emp => SelectedEmployes.Contains(emp.idEmploye)).Distinct().ToList();
 
             categories = ctx.tbl_ProjetCat.Where(cat => SelectedCategories.Contains(cat.idProjetCat)).Distinct().ToList();
+
+
         }
 
         protected void btn_retour_Click(object sender, EventArgs e)

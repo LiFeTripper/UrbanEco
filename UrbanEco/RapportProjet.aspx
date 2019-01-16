@@ -25,34 +25,28 @@
             width: 100% !important;
         }
 
-        .font-repeater-level-1{
-            font-size:20px !important;
+        .font-repeater-level-1 {
+            font-size: 20px !important;
         }
 
-        .font-repeater-level-2{
-            font-size:15px !important;
+        .font-repeater-level-2 {
+            font-size: 15px !important;
         }
 
         .asp-table {
             table-layout: fixed;
         }
 
-        .ms-container .ms-list{
+        .ms-container .ms-list {
             height: 250px !important;
         }
-
     </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-      <h1>Rapport par projet</h1> 
+    <h1>Rapport par projet</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server" style="text-align: center;" class="container center col-12">
-<%--        <div>
-            <h1>Rapport par projet
-            </h1>
-            <hr style="border: 20px solid #23282e; width: 100% !important; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px" />
-        </div>--%>
 
         <%--Projet--%>
         <div class="form-group mb-4 col-6 mx-auto">
@@ -62,11 +56,35 @@
                         Nom du projet
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                            <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="lst_projet_SelectedIndexChanged" DataTextField="titre" DataValueField="idProjet" ID="lst_projet" runat="server" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="lst_projet_SelectedIndexChanged" DataTextField="titre" DataValueField="idProjet" ID="lst_projet" runat="server" AutoPostBack="true"></asp:DropDownList>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
         </div>
+        <div class="justify-content-lg-center input-group mb-3 col-12">
+            <select id="projetMultiSelect" multiple="multiple">
+
+                <asp:Repeater ID="rptr_projets" runat="server">
+                    <ItemTemplate>
+
+                        <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-1"><%#Eval("titre")%> </option>
+
+                        <asp:Repeater ID="repTest" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
+                            <ItemTemplate>
+
+                                <option value='<%#Eval("idProjetCat") %>' <%# CategorieSelected(Eval("idProjetCat")) %> class="font-repeater-level-2">&nbsp;&nbsp;<%#Eval("titre") %></option>
+
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+                    </ItemTemplate>
+                </asp:Repeater>
+            </select>
+
+        </div>
+        <asp:LinqDataSource ID="Linq_Projets" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" OrderBy="titre" TableName="tbl_Projet">
+        </asp:LinqDataSource>
+        <input hidden="hidden" type="text" runat="server" id="hiddenFieldProjet" />
 
         <div class="row justify-content-md-center" style="margin-bottom: 20px;">
             <div class="col-md-offset-3 col-6">
@@ -76,14 +94,16 @@
                 <table style="width: 100% !important;">
                     <tr>
                         <th>
-                            <h5 style="float: left; width: 49% !important;" class="input-title">Sous-Catégorie</h5>
+                            <h5 style="float: left; width: 49% !important;" class="input-title">Sous-Catégorie<asp:SqlDataSource ID="Linq_projets" runat="server"></asp:SqlDataSource>
+
+                            </h5>
                             <h5 style="float: right; width: 49% !important;" class="input-title">Inclus dans le rapport</h5>
                         </th>
                     </tr>
                     <tr>
                         <td>
                             <div class="justify-content-lg-center input-group mb-3 col-12">
-                                <select id="SelectCat" multiple="multiple">
+                                <select id="catMultiSelect" multiple="multiple">
 
                                     <asp:Repeater ID="repParentCat" runat="server">
                                         <ItemTemplate>
@@ -193,45 +213,47 @@
                         <td>
                             <!--MULTISELECT-->
                             <div class="justify-content-lg-center input-group mb-3 col-12">
-                                <select id="Multiselection" multiple="multiple">
+                                <select id="empMultiSelect" multiple="multiple">
                                     <optgroup label='Bureau'>
-                                        <asp:Repeater runat="server" ID="RepBureau" >
-                                                <ItemTemplate>
-                                                    <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %> ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
-                                                </ItemTemplate>
+                                        <asp:Repeater runat="server" ID="RepBureau">
+                                            <ItemTemplate>
+                                                <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                            </ItemTemplate>
                                         </asp:Repeater>
                                     </optgroup>
                                     <optgroup label='Terrain'>
-                                        <asp:Repeater runat="server" ID="RepTerrain" >
-                                                <ItemTemplate>
-                                                    <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>  ><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
-                                                </ItemTemplate>
+                                        <asp:Repeater runat="server" ID="RepTerrain">
+                                            <ItemTemplate>
+                                                <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                            </ItemTemplate>
                                         </asp:Repeater>
                                     </optgroup>
                                 </select>
                             </div>
 
                             <input hidden="hidden" type="text" runat="server" id="hiddenFieldEmploye" />
-<%--                            <asp:Button ID="BtnTesting" runat="server" Text="Button" OnClick="BtnTesting_Click"/>--%>
+                            <%--                            <asp:Button ID="BtnTesting" runat="server" Text="Button" OnClick="BtnTesting_Click"/>--%>
                             <!--Multiselect javascript-->
                             <script>
                                 //Callback for fuck sake
-                                var selected = document.getElementById('<%=hiddenFieldEmploye.ClientID%>').value.split(',');
+                                var empSelected = document.getElementById('<%=hiddenFieldEmploye.ClientID%>').value.split(',');
 
                                 var catSelected = document.getElementById('<%=hiddenFieldCat.ClientID%>').value.split(',');
 
+                                var projetSelected = document.getElementById('<%=hiddenFieldProjet.ClientID%>').value.split(',');
+
                                 //ID du crisse de multi + class du css
-                                $('#Multiselection').multiSelect({
+                                $('#empMultiSelect').multiSelect({
                                     //EVENT inscrit nul part guess Onchange, onSelected pis onclick avec function return click
                                     afterSelect: function (values) {
                                         //Parce que D'amours
-                                        selected.push(values);
-                                        console.log(selected);
+                                        empSelected.push(values);
+                                        console.log(empSelected);
 
 
                                         var htmlStorage = document.getElementById('<%=hiddenFieldEmploye.ClientID%>');
                                         //htmlStorage.attr("data-assessments", JSON.stringify(selected));
-                                        htmlStorage.value = selected;
+                                        htmlStorage.value = empSelected;
 
                                         console.log(htmlStorage);
                                     },
@@ -239,18 +261,18 @@
                                     afterDeselect: function (values) {
                                         var copy = [];
 
-                                        for (var idx in selected) {
-                                            if (selected[idx][0] != values[0]) {
-                                                copy.push(selected[idx])
+                                        for (var idx in empSelected) {
+                                            if (empSelected[idx][0] != values[0]) {
+                                                copy.push(empSelected[idx])
                                             }
                                         }
 
-                                        selected = copy;
+                                        empSelected = copy;
 
-                                        console.log(selected);
+                                        console.log(empSelected);
                                         var htmlHiddenFieldEmploye = document.getElementById('<%=hiddenFieldEmploye.ClientID%>');
 
-                                        htmlHiddenFieldEmploye.value = selected;
+                                        htmlHiddenFieldEmploye.value = empSelected;
                                     },
 
                                     selectableOptgroup: true,
@@ -258,7 +280,7 @@
                                 });
 
                                 //ID du crisse de multi + class du css
-                                $('#SelectCat').multiSelect({
+                                $('#catMultiSelect').multiSelect({
                                     //EVENT inscrit nul part guess Onchange, onSelected pis onclick avec function return click
                                     afterSelect: function (values) {
                                         //Parce que D'amours
@@ -288,6 +310,43 @@
                                         var htmlhiddenFieldCat = document.getElementById('<%=hiddenFieldCat.ClientID%>');
 
                                         htmlhiddenFieldCat.value = catSelected;
+                                    },
+
+                                    selectableOptgroup: true,
+                                    keepOrder: true
+                                });
+
+                                //ID du crisse de multi + class du css
+                                $('#projetMultiSelect').multiSelect({
+                                    //EVENT inscrit nul part guess Onchange, onSelected pis onclick avec function return click
+                                    afterSelect: function (values) {
+                                        //Parce que D'amours
+                                        projetSelected.push(values);
+                                        //console.log("Caegories : " + catSelected);
+
+
+                                        var htmlhiddenFieldCat = document.getElementById('<%=hiddenFieldProjet.ClientID%>');
+                                        //htmlStorage.attr("data-assessments", JSON.stringify(selected));
+                                        htmlhiddenFieldCat.value = projetSelected;
+
+                                        console.log(htmlhiddenFieldCat);
+                                    },
+
+                                    afterDeselect: function (values) {
+                                        var copy = [];
+
+                                        for (var idx in projetSelected) {
+                                            if (projetSelected[idx][0] != values[0]) {
+                                                copy.push(projetSelected[idx])
+                                            }
+                                        }
+
+                                        projetSelected = copy;
+
+                                        console.log(catSelected);
+                                        var htmlhiddenFieldCat = document.getElementById('<%=hiddenFieldProjet.ClientID%>');
+
+                                        htmlhiddenFieldCat.value = projetSelected;
                                     },
 
                                     selectableOptgroup: true,
