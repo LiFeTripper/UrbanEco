@@ -139,7 +139,7 @@ namespace UrbanEco
 
         }
 
-        public static List<tbl_Employe> GetEmployeFtFiltered(CoecoDataContext ctx, int idEmploye, DateTime dateMin, DateTime dateMax, bool approuver)
+        /*public static List<tbl_Employe> GetEmployeFtFiltered(CoecoDataContext ctx, int idEmploye, DateTime dateMin, DateTime dateMax, bool approuver)
         {
 
             CoecoDataContext context = ctx;
@@ -152,6 +152,27 @@ namespace UrbanEco
                         & tblE.idEmploye == idEmploye
                         orderby tblFT.dateCreation descending
                         select tblE;
+
+            if (queryEmployes.Count() == 0)
+                return null;
+
+            return queryEmployes.Distinct().ToList();
+
+        }*/
+
+        public static List<tbl_Employe> GetEmployeFtFiltered(CoecoDataContext ctx, int idEmploye, DateTime dateMin, DateTime dateMax, bool approuver) {
+
+            CoecoDataContext context = ctx;
+
+            var queryEmployes = from tblE in context.tbl_Employe
+                                join tblFT in context.tbl_FeuilleTemps on tblE.idEmploye equals tblFT.idEmploye
+                                join tblProj in context.tbl_Projet on tblFT.idProjet equals tblProj.idProjet
+                                where tblFT.approuver == approuver
+                                & (tblFT.dateCreation >= dateMin)
+                                & (tblFT.dateCreation <= dateMax)
+                                & ((tblProj.idEmployeResp == idEmploye & (bool)tblProj.approbation) | tblFT.idEmploye == idEmploye)
+                                orderby tblFT.dateCreation descending
+                                select tblE;
 
             if (queryEmployes.Count() == 0)
                 return null;
