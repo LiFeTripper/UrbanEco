@@ -26,6 +26,14 @@ body {
     height: 100vh;
 }
 
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
 .card {
     display: grid;
     grid-template-columns: 1fr;
@@ -66,7 +74,7 @@ body {
   height: auto;
   margin-bottom: 20px;
   font-size: 16px;
-
+  background-image: linear-gradient(0deg, #1B7B04 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0)
 }
 .form-signin .form-control:focus {
   z-index: 2;
@@ -82,6 +90,10 @@ body {
   border-top-right-radius: 0;
 }
 
+h5 {
+    color: rgba(0, 0, 0, 0.7);
+}
+
 #Btn_Signin {
     text-transform: unset;
     font-size: 16px;
@@ -89,7 +101,19 @@ body {
     background-color: rgba(255,255,255, 0.5);
 }
 
+#Btn_Signin:hover {
+    text-transform: unset;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(255,255,255, 1);
+}
+
 @media screen and (max-width: 1000px) {
+
+    .form-signin .form-control
+    {
+        width:100%;
+    }
 
     .card {
         width: 80%;
