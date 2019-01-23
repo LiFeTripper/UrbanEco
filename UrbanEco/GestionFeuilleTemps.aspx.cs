@@ -171,10 +171,10 @@ namespace UrbanEco
                          select tblSC;
                 switch (SC.First().titre)
                 {
-                    case "Congé fériés":
+                    case "Congés fériés":
                         EnleverHeuresBH(2, FT);
                         break;
-                    case "Congé vacances":
+                    case "Congés vacances":
                         EnleverHeuresBH(4, FT);
                         break;
                     case "Temps supplémentaires":
