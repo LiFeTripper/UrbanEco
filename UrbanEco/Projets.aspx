@@ -49,7 +49,7 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">Status du projet</th>
                                 <th scope="col">Employé Responsable</th>
-                                <th scope="col">Date de début</th>
+<%--                                <th scope="col">Date de début</th>--%>
                                 <th scope="col">
                                     <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau Projet" OnClick="Btn_Ajout_Click" />
                                 </th>
@@ -77,9 +77,9 @@
                     <td>
                         <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%# String.Format("{0} {1}", Eval("Tbl_Employe.prenom"), Eval("Tbl_Employe.nom")) %>' Font-Bold="true" />
                     </td>
-                    <td>
+<%--                    <td>
                         <asp:Label ID="lbl_dateDebut" runat="server" Text='<%#Eval("dateDebut") %>' Font-Bold="true" />
-                    </td>
+                    </td>--%>
                     <td>
                         <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>'/>
                         <asp:ImageButton CssClass="btn-option" ID="Btn_Cat" runat="server" src="Resources/folder_open.png" Style="margin-right: 10px;" OnClick="Btn_Cat_Click" CommandArgument='<%#Eval("idProjet") %>'/>
@@ -97,7 +97,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Status du projet</th>
                         <th scope="col">Employé Responsable</th>
-                        <th scope="col">Date de début</th>
+<%--                        <th scope="col">Date de début</th>--%>
                         <th scope="col">
                             <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau Projet" OnClick="Btn_Ajout_Click" />
                         </th>
@@ -122,7 +122,7 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">Status du projet</th>
                                 <th scope="col">Employé Responsable</th>
-                                <th scope="col">Date de début</th>
+<%--                                <th scope="col">Date de début</th>--%>
                                 <th scope="col">
                                     <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
                                 </th>
@@ -149,9 +149,9 @@
                     <td>
                         <asp:Label ID="lbl_idEmployeResp" runat="server" Text='<%# String.Format("{0} {1}", Eval("Tbl_Employe.prenom"), Eval("Tbl_Employe.nom")) %>' Font-Bold="true" />
                     </td>
-                    <td>
+<%--                    <td>
                         <asp:Label ID="lbl_dateDebut" runat="server" Text='<%#Eval("dateDebut") %>' Font-Bold="true" />
-                    </td>
+                    </td>--%>
                     <td>
                         <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>'/>
                         <%--<asp:Button ID="Btn_Modif" CssClass="btn btn-md btn-primary" runat="server" Text="Modifier" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idProjet") %>' />--%>
