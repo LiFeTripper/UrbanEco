@@ -192,7 +192,7 @@ namespace UrbanEco
                     //if (nbH.Contains(","))
                     //{
                     //    nbH.Replace(",", ".");
-                     //   tbFT.nbHeure = float.Parse(nbH);
+                    //    tbFT.nbHeure = float.Parse(nbH);
                     //}
                     //else
                     //{
