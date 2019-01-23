@@ -123,6 +123,15 @@ namespace UrbanEco
             return false;
         }
 
+        public bool IsAdmin()
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+
+            return empconnected.username == "admin";
+        }
+
         public bool isModifVisible(object item) {
             CoecoDataContext ctx = new CoecoDataContext();
 
