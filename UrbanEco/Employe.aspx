@@ -48,7 +48,7 @@
                                 <th scope="col">Prénom</th>
                                 <th scope="col">Adresse Courriel</th>
                                 <th scope="col">
-                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
+                                    <asp:Button ID="Btn_Ajout" CssClass="btn btn-raised btn-success" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
                                 </th>
                             </tr>
                         </thead>
@@ -130,7 +130,7 @@
                             <th scope="col">Prénom</th>
                             <th scope="col">Adresse courriel</th>
                             <th scope="col">
-                                <asp:Button ID="Btn_Ajout" CssClass="btn-ajouter" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
+                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-raised btn-success" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
                             </th>
                         </tr>
                     </thead>
