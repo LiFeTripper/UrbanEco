@@ -107,10 +107,12 @@
     <Content Include="ModifCategorie.aspx" />
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
-    <Content Include="RapportProjet.aspx" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
+    <Content Include="Rapports\RapportNode.cs" />
+    <Content Include="Rapports\Rapport.css" />
+    <Content Include="Rapports\Rapport.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -151,8 +153,14 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Rapport.aspx.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rapport.aspx.designer.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BD.cs" />
-    <Compile Include="Class Rapport\RapportNode.cs" />
     <Compile Include="Coeco.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,12 +247,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RapportProjet.aspx.cs">
-      <DependentUpon>RapportProjet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="RapportProjet.aspx.designer.cs">
-      <DependentUpon>RapportProjet.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Rapports\RapportNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Layout.Master" />

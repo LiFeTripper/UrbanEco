@@ -185,6 +185,14 @@
             <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
         </div>
 
+        <!-- File upload facture
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <label for="fupl_facture">Ajouter une facture</label>
+            <asp:FileUpload ID="fupl_facture" runat="server" />
+            <asp:Button ID="btn_upload" OnClick="btn_upload_Click" runat="server" Text="Button" />
+            <asp:Image ID="img_facture" runat="server" />
+        </div>-->
+
         <%--MESSAGES--%>
         <div class="form-group mb-4 col-6 mx-auto">
             <div class="alert alert-success" runat="server" id="alert_success" visible="false">
