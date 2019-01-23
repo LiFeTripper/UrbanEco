@@ -88,6 +88,7 @@ namespace UrbanEco
                         tableEmp.username = Tbx_username.Text;
                         tableEmp.password = Tbx_password.Text;
                         tableEmp.inactif = Chkbx_Inactif.Checked;
+                        tableEmp.nbHeureSemaine = 0;
 
                         ctx.tbl_Employe.InsertOnSubmit(tableEmp);
                         ctx.SubmitChanges();
