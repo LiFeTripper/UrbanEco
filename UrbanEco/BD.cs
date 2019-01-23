@@ -170,7 +170,7 @@ namespace UrbanEco
                                 where tblFT.approuver == approuver
                                 & (tblFT.dateCreation >= dateMin)
                                 & (tblFT.dateCreation <= dateMax)
-                                & ((tblProj.idEmployeResp == idEmploye & (bool)tblProj.approbation) | tblFT.idEmploye == idEmploye)
+                                & ((tblProj.idEmployeResp == idEmploye) | tblFT.idEmploye == idEmploye)
                                 orderby tblFT.dateCreation descending
                                 select tblE;
 

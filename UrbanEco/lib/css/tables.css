@@ -10,10 +10,11 @@
     font-weight: bold;
 }
 
-/* Titres de colonne */
+/* Rangée */
 .table tbody td {
     color: #424242;
     font-weight: lighter;
+    border-top: 1px solid rgba(0,0,0,.1);
 }
 
 .table tbody td span {
@@ -21,7 +22,7 @@
 }
 
 .t_footer th{
-    color: #424242 !important;
-    background-color: white !important;
+    color: #424242;
+    background-color: white;
     font-weight: bold;
 }

@@ -40,8 +40,8 @@
             <HeaderTemplate>
                 <div class="table-responsive">
                     <table class="table">
-                        <thead class="thead-dark">
-                            <tr style="border-bottom: 5px solid #23282e">
+                        <thead>
+                            <tr >
                                 <th scope="col">Type Employé</th>
                                 <%--<th scope="col">ID</th>--%>
                                 <th scope="col">Nom</th>
@@ -79,13 +79,13 @@
                                 <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />
                             </td>--%>
                             <td>
-                                <asp:Label ID="lbl_Nom" runat="server" Text='<%#Eval("nom") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_Nom" runat="server" Text='<%#Eval("nom") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="lbl_Prenom" runat="server" Text='<%#Eval("prenom") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_Prenom" runat="server" Text='<%#Eval("prenom") %>'  />
                             </td>
                             <td>
-                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>'/>
                             </td>
                             <td>
                                 <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>'/>
@@ -122,8 +122,8 @@
             <%--FOOTERTEMPLATE--%>
             <FooterTemplate>
                 </tbody>
-                    <thead class="thead-dark">
-                        <tr style="border-bottom: 5px solid #23282e">
+                    <thead>
+                        <tr class="t_footer">
                             <th scope="col">Type Employé</th>
                             <%--<th scope="col">ID</th>--%>
                             <th scope="col">Nom</th>
