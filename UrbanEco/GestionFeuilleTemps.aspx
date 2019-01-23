@@ -208,7 +208,7 @@
                                     <asp:Label ID="lbl_Note" runat="server" Text='<%#Eval("commentaire") %>' Font-Bold="true" />
                                 </td>
                                 <td>
-                                    <asp:ImageButton ID="Btn_Modif" CssClass=" btn-option" OnClick="Btn_Modif_Click1" runat="server" Text="Modification" src="Resources/pencil.png" CommandArgument='<%#Eval("idFeuille")%>' />
+                                    <asp:ImageButton ID="Btn_Modif" Visible=<%# isModifVisible(Container.DataItem)%> CssClass=" btn-option" OnClick="Btn_Modif_Click1" runat="server" Text="Modification" src="Resources/pencil.png" CommandArgument='<%#Eval("idFeuille")%>' />
                                     <asp:ImageButton ID="Btn_Approve" Visible=<%# isVisible(Container.DataItem) %> CssClass="btn-option" runat="server" OnClick="Btn_Approve_Click" src="Resources/checkmark.png" Text="Approuver" CommandArgument='<%#Eval("idFeuille")%>' />
                                 </td>
                             </tr>

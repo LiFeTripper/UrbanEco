@@ -1,0 +1,79 @@
+﻿.center {
+    margin: auto;
+    width: 50%;
+}
+
+.input-box {
+    width: 100% !important;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+.input-title {
+    text-align: left !important;
+}
+
+.table-custom {
+    width: 800px !important;
+}
+
+.table-custom > table {
+    width: 100% !important;
+}
+
+.font-repeater-level-1 {
+    font-size: 20px !important;
+}
+
+.font-repeater-level-2 {
+    font-size: 15px !important;
+}
+
+.asp-table {
+    table-layout: fixed;
+}
+
+.ms-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.ms-selectable, .ms-selection {
+    width: 100%;
+    margin: 10px;
+}
+
+.ms-selectable {
+    justify-self: right;
+}
+
+.select_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+.select_group .input-group {
+    grid-column: span 2;
+    justify-content: center;
+}
+
+.date_inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 50%;
+}
+
+.date_inputs h5 {
+    justify-self: end;
+    margin-right: 40px;
+}
+
+.date_inputs input {
+    width: 50%;
+    margin-left: 40px;
+}
+

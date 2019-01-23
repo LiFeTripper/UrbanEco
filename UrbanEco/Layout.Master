@@ -20,6 +20,7 @@
     <link href="lib/css/fancy-switch.css" rel="stylesheet" />
     <link href="lib/css/tables.css" rel="stylesheet" />
 
+
     <%--SCRIPTS --%>
     <script src="lib/js/jquery-3.3.1.min.js"></script>
     <script src="lib/js/popper.js"></script>
@@ -69,13 +70,9 @@
                         <i class="fas fa-piggy-bank"></i>
                         Banque d'heures
                     </a>
-                    <a href="RapportProjet.aspx">
+                    <a href="Rapport.aspx">
                         <i class="fas fa-clipboard"></i>
-                        Rapport Projets
-                    </a>
-                    <a href="#" >
-                        <i class="fas fa-clipboard"></i>
-                        Rapport Employés
+                        Rapports
                     </a>
                     <a href="ParametreAdmin.aspx">
                         <i class="fas fa-wrench"></i>
@@ -138,8 +135,6 @@
     <footer class="container">
         <%--<p>&copy; Company 2017-2018</p>--%>
     </footer>
-
-
 </body>
 
 </html>
