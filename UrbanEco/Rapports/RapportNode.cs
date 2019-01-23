@@ -13,15 +13,18 @@ namespace UrbanEco.Rapports
 
         public RapportNode() {}
 
-        public RapportNode(string p_nom, TimeSpan p_nbHeure, RapportNode[]p_child)
+        public RapportNode(string p_nom, TimeSpan p_nbHeure)
         {
             this.nom = p_nom;
             this.nbHeure = p_nbHeure;
-            this.child = p_child;
         }
 
         public string Nom { get => this.nom; }
-        public TimeSpan? NbHeure { get => this.nbHeure; }
-        public RapportNode[] Child { get => this.child; }
+        public TimeSpan? NbHeure { get => this.nbHeure; set => this.nbHeure = value; }
+
+        public RapportNode[] Child {
+            get => this.child == null ? new RapportNode[0] : this.child;
+            set => this.child = value;
+        }
     }
 }
