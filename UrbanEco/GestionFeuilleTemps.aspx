@@ -68,7 +68,7 @@
                         <asp:Table CssClass="col-md-6 asp-table" style="float:left;" runat="server">
                             <asp:TableRow>
                                 <asp:TableHeaderCell CssClass="form-control">
-                        Date minimale
+                        Date maximal
                                 </asp:TableHeaderCell>
                                 <asp:TableCell>
                                     <input class="form-control" type="date" id="Calendar2" style="margin: auto;" runat="server" />
@@ -133,7 +133,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </asp:TableCell>
+                    </asp:TableCell>    
                 </asp:TableRow>
             </asp:Table>
 

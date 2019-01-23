@@ -31,6 +31,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_Prenom;
         
         /// <summary>
+        /// Contrôle lb_erreurPrenom.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_erreurPrenom;
+        
+        /// <summary>
+        /// Contrôle Tbx_Nom.
         /// Tbx_Nom control.
         /// </summary>
         /// <remarks>
@@ -40,6 +50,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_Nom;
         
         /// <summary>
+        /// Contrôle lb_erreurNom.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_erreurNom;
+        
+        /// <summary>
+        /// Contrôle Ddl_TypeEmp.
         /// Ddl_TypeEmp control.
         /// </summary>
         /// <remarks>
@@ -76,6 +96,17 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_username;
         
         /// <summary>
+        /// Contrôle lb_erreurUsername.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_erreurUsername;
+        
+        /// <summary>
+        /// Contrôle Tbx_password.
+
         /// Tbx_password control.
         /// </summary>
         /// <remarks>

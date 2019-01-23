@@ -106,6 +106,10 @@ namespace UrbanEco
                     if ((bool)laFeuille.tbl_Projet.approbation && laFeuille.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
                         return true;
                     }
+                } else if (rptItem is tbl_Employe) {
+                    tbl_Employe empl = (tbl_Employe)rptItem;
+                    if (empl.idEmploye != empConnected.idEmploye) 
+                        return true;
                 }
             }
 
@@ -143,6 +147,7 @@ namespace UrbanEco
             FT.approuver = true;
             SwitchTypeBHCongés(FT);
 
+            
             ctx.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
@@ -164,10 +169,14 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
-                
-                FTemp.approuver = true;
-                cdc.SubmitChanges();
-                SwitchTypeBHCongés(FTemp);
+                if ((bool)FTemp.approuver)
+                    continue;
+
+                if (empConnected.username == "admin" || FTemp.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                    FTemp.approuver = true;
+                    cdc.SubmitChanges();
+                    SwitchTypeBHCongés(FTemp);
+                }
             }
 
             Response.Redirect(Request.RawUrl);
@@ -392,6 +401,7 @@ namespace UrbanEco
             dateMinimal = Calendar1.Value;
             dateMaximal = Calendar2.Value;
 
+
             //Filtre valide
             if (!string.IsNullOrWhiteSpace(dateMinimal) && !string.IsNullOrWhiteSpace(dateMaximal))
             {
@@ -420,6 +430,7 @@ namespace UrbanEco
             }
 
             return show;
+
         }
 
         protected void btn_ajouterFT_Click(object sender, EventArgs e)

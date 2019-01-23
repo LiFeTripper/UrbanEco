@@ -3,26 +3,42 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-
 /* Titres de colonne */
 .table thead th {
     color: #424242;
     font-weight: bold;
+    font-size: 1.2em;
 }
 
 /* Rangée */
 .table tbody td {
+    padding-top: 15px;
+    padding-bottom: 0px;
     color: #424242;
     font-weight: lighter;
     border-top: 1px solid rgba(0,0,0,.1);
+}
+
+/* Sous-Catégorie */
+.table-SousCategorie {
+    background-color: #eaeaea;
+    height: 50px;
 }
 
 .table tbody td span {
     font-weight: normal;
 }
 
-.t_footer th{
+.t_footer {
+    background-color: #eaeaea;
+}
+
+.t_footer2 {
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.t_footer th {
     color: #424242;
-    background-color: white;
+    background-color: #eaeaea;
     font-weight: bold;
 }

@@ -32,8 +32,7 @@ namespace UrbanEco
 
                 tbl_Employe userConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
-                List<tbl_Projet> listProjets = new List<tbl_Projet>();
-
+                List<tbl_Projet> listProjets = new List<tbl_Projet>();               
 
                 int idFeuilleTemps = -1;
                 if(Request.QueryString["FT"] != "New")
@@ -189,7 +188,7 @@ namespace UrbanEco
                 }
                 else
                 {
-                    tbFT.nbHeure = int.Parse(tbx_nbHeure.Text);
+                    tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
                 }
 
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
@@ -221,9 +220,12 @@ namespace UrbanEco
 
 
                 feuilleTemps.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
-                feuilleTemps.nbHeure = int.Parse(tbx_nbHeure.Text);
-                feuilleTemps.dateCreation = DateTime.Parse(DateCreation.Value);
-                feuilleTemps.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
+                feuilleTemps.nbHeure = float.Parse(tbx_nbHeure.Text);
+                if (Request.QueryString["FT"] == "New")
+                {
+                    feuilleTemps.dateCreation = DateTime.Parse(DateCreation.Value);
+                    feuilleTemps.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
+                }           
 
                 feuilleTemps.commentaire = txa_comments.Value;
 
@@ -241,6 +243,8 @@ namespace UrbanEco
 
             tbl_Employe emp = ft.tbl_Employe;
 
+            ddl_employe.SelectedValue = emp.idEmploye.ToString();
+            
             tbx_projet.SelectedValue = ft.idProjet.ToString();
             tbx_categorie.Enabled = true;
 
@@ -268,12 +272,14 @@ namespace UrbanEco
                     }
                 }
 
-
-            tbx_nbHeure.Text = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
+            tbx_nbHeure.Text = ft.nbHeure.ToString();
+            //tbx_nbHeure.Text = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
 
             dateFormated.InnerText = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
             DateCreation.Value = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
             txa_comments.Value = ft.commentaire;
+            dateFormated.InnerText = DateCreation.Value.ToString();
+            
         }
 
         protected void ChangeDate()
