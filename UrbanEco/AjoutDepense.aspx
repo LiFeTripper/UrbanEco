@@ -185,13 +185,28 @@
             <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
         </div>
 
-        <!-- File upload facture
+        File upload facture
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <script type="text/javascript">
+                function showpreview(input) {
+
+                    if (input.files && input.files[0]) {
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#imgpreview').css('visibility', 'visible');
+                            $('#imgpreview').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+
+                }
+
+            </script>
             <label for="fupl_facture">Ajouter une facture</label>
-            <asp:FileUpload ID="fupl_facture" runat="server" />
-            <asp:Button ID="btn_upload" OnClick="btn_upload_Click" runat="server" Text="Button" />
-            <asp:Image ID="img_facture" runat="server" />
-        </div>-->
+            <asp:FileUpload ID="fuimage" runat="server" onchange="showpreview(this);" />
+            <img id="imgpreview" src="" height="200" width="200" style="border-width: 0px; visibility: hidden;"/>
+        </div>
 
         <%--MESSAGES--%>
         <div class="form-group mb-4 col-6 mx-auto">

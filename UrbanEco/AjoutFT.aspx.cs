@@ -207,8 +207,18 @@ namespace UrbanEco
                 }
                 else
                 {
-                    tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
+                    //string nbH = tbx_nbHeure.Text;
+                    //if (nbH.Contains(","))
+                    //{
+                    //    nbH.Replace(",", ".");
+                     //   tbFT.nbHeure = float.Parse(nbH);
+                    //}
+                    //else
+                    //{
+                        tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
+                    //}
                 }
+
 
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 tbFT.dateCreation = DateTime.Parse(DateCreation.Value);
