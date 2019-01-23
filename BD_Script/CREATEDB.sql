@@ -2,7 +2,7 @@
 
 USE master
 go
-
+DROP DATABASE BD_Coeco
 CREATE DATABASE BD_Coeco
 go
 
