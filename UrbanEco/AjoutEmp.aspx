@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutEmp.aspx.cs" Inherits="UrbanEco.AjoutEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%-- StyleSheet pour formater l'interface d'ajout --%>
-    <link href="lib/css/ajoutEmploye.css" rel="stylesheet" />
     <style>
         .asp-table {
             table-layout: fixed;
