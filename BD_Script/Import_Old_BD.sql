@@ -6,13 +6,13 @@ GO
 
 
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (36, 'Employ�', 'Supprimer', '', 2, 1, 'suppr')
+ VALUES (36, 'Employe', 'Supprimer', '', 2, 1, 'suppr')
 
 INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (64, 'Employ�', 'Supprimer', '', 2, 1, '@!#$')
+ VALUES (64, 'Employe', 'Supprimer', '', 2, 1, '@!#$')
 
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (69, 'Employ�', 'Supprimer', '', 2, 1, '#@!@')
+ VALUES (69, 'Employe', 'Supprimer', '', 2, 1, '#@!@')
 
 -- IMPORTER LES EMPLOY�S AVEC LEURS USER
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
@@ -34,7 +34,7 @@ GO
 
 -- Admin ID = 8
  INSERT INTO tbl_Projet (idProjet, titre, description, approbation, idStatus, idEmployeResp, tempsAllouer, dateDebut, dateFin, archiver)
-VALUES (13, 'Projet supprim�', '', 0, 2, 8, 0, '1900-01-01','1900-01-01', 1)
+VALUES (13, 'Projet supprime', '', 0, 2, 8, 0, '1900-01-01','1900-01-01', 1)
 
 
 -- IMPORTER LES PROJETS
@@ -106,5 +106,5 @@ GO
 --WHERE idcat NOT IN (SELECT id FROM coeco.dbo.tblprojetcat)
 
 
-SELECT TOP 300 * FROM tbl_FeuilleTemps
-ORDER BY idFeuille DESC, dateCreation
+--SELECT TOP 300 * FROM tbl_FeuilleTemps
+--ORDER BY idFeuille DESC, dateCreation
