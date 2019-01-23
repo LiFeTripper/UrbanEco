@@ -106,6 +106,8 @@ namespace UrbanEco
                     if ((bool)laFeuille.tbl_Projet.approbation && laFeuille.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
                         return true;
                     }
+                } else if (rptItem is tbl_Employe) {
+                    tbl_Employe empl = (tbl_Employe)rptItem;
                 }
             }
 
