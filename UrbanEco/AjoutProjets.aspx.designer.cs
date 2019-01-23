@@ -22,6 +22,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Label lbl_Top;
         
         /// <summary>
+        /// Contrôle AlertDiv.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AlertDiv;
+        
+        /// <summary>
         /// Contrôle Tbx_Titre.
         /// </summary>
         /// <remarks>
