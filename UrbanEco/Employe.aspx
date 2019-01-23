@@ -57,9 +57,9 @@
 
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
-                <tr style="border-bottom: 1px solid #23282e" class="table-secondary">
+                <tr style="border-bottom: 1px solid #23282e" class="table-SousCategorie">
                     <td>
-                        <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("nomType") %>' Font-Bold="true" />
+                        <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("nomType") %>' />
                     </td>
                     <%--Ajustement pour le gris se rende au bout--%>
                     <td />
@@ -130,7 +130,7 @@
                             <th scope="col">Prénom</th>
                             <th scope="col">Adresse courriel</th>
                             <th scope="col">
-                                <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
+                                <asp:Button ID="Btn_Ajout" CssClass="btn-ajouter" runat="server" Text="Ajouter un employé" Onclick="Btn_Ajout_Click" />
                             </th>
                         </tr>
                     </thead>
