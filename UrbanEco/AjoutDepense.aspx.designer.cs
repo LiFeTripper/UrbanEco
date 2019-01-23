@@ -184,6 +184,33 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_note;
         
         /// <summary>
+        /// Contrôle fupl_facture.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fupl_facture;
+        
+        /// <summary>
+        /// Contrôle btn_upload.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_upload;
+        
+        /// <summary>
+        /// Contrôle img_facture.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_facture;
+        
+        /// <summary>
         /// Contrôle alert_success.
         /// </summary>
         /// <remarks>
