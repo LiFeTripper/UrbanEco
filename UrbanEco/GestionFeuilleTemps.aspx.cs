@@ -106,6 +106,10 @@ namespace UrbanEco
                     if ((bool)laFeuille.tbl_Projet.approbation && laFeuille.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
                         return true;
                     }
+                } else if (rptItem is tbl_Employe) {
+                    tbl_Employe empl = (tbl_Employe)rptItem;
+                    if (empl.idEmploye != empConnected.idEmploye) 
+                        return true;
                 }
             }
 
@@ -129,12 +133,7 @@ namespace UrbanEco
 
             return false;
         }
-
-        protected void Btn_Modif_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         protected void Btn_Approve_Click(object sender, EventArgs e)
         {
             CoecoDataContext ctx = new CoecoDataContext();
@@ -143,12 +142,12 @@ namespace UrbanEco
             int idFeuille = int.Parse(temp.CommandArgument);
 
             tbl_FeuilleTemps FT = BD.GetFeuilleTemps(ctx, idFeuille);
-
-            CheckTempsSupp(FT);
+            
 
             FT.approuver = true;
             SwitchTypeBHCongés(FT);
 
+            
             ctx.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
@@ -170,10 +169,14 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
-                CheckTempsSupp(FTemp);
-                FTemp.approuver = true;
-                cdc.SubmitChanges();
-                SwitchTypeBHCongés(FTemp);
+                if ((bool)FTemp.approuver)
+                    continue;
+
+                if (empConnected.username == "admin" || FTemp.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                    FTemp.approuver = true;
+                    cdc.SubmitChanges();
+                    SwitchTypeBHCongés(FTemp);
+                }
             }
 
             Response.Redirect(Request.RawUrl);
@@ -188,10 +191,10 @@ namespace UrbanEco
                          select tblSC;
                 switch (SC.First().titre)
                 {
-                    case "Congé fériés":
+                    case "Congés fériés":
                         EnleverHeuresBH(2, FT);
                         break;
-                    case "Congé vacances":
+                    case "Congés vacances":
                         EnleverHeuresBH(4, FT);
                         break;
                     case "Temps supplémentaires":
@@ -209,7 +212,7 @@ namespace UrbanEco
             }
             catch (Exception e)
             {
-
+                CheckTempsSupp(FT);
             }
         }
 
@@ -220,6 +223,7 @@ namespace UrbanEco
                      & tblBH.idTypeHeure == idTypeHeure
                      select tblBH;
             BH.First().nbHeure -= FT.nbHeure;
+            cdc.SubmitChanges();
         }
 
         protected void Rptr_FeuilleTempsNonApprouver_Load(object sender, EventArgs e)
@@ -257,25 +261,11 @@ namespace UrbanEco
 
             Response.Redirect(Request.RawUrl);
         }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void btnCloseOpen_Click(object sender, EventArgs e)
         {
             //En pause bouton pour ouvrir
-
-        }
-
-        protected void btnOpen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnOpenTest_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -285,11 +275,7 @@ namespace UrbanEco
 
             Response.Redirect("AjoutFT.aspx?FT=" + ib.CommandArgument);
         }
-
-        protected void Btn_ApproveTout_Click1(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void btn_Filtrer_Click(object sender, EventArgs e)
         {
@@ -522,35 +508,7 @@ namespace UrbanEco
         protected void CheckTempsSupp(tbl_FeuilleTemps FT)
         {
             int noSemaine = GetWeekToYear(DateTime.Now);
-
-            //float tempsSupp;
-
-            //  int noSemaine = GetWeekToYear(DateTime.Now);
-
-            //var querryTempsSupp = from tbl in cdc.tbl_TempsSupp
-            //                      where tbl.idEmploye == FT.idEmploye
-            //                      & tbl.noSemaine == noSemaine
-            //                      select tbl;
-
-            //if (querryTempsSupp.Count() > 0)
-            //{
-            //    tempsSupp = float.Parse(querryTempsSupp.First().tempsSupp.ToString());
-            //    querryTempsSupp.First().tempsSupp += FT.nbHeure;
-
-            //}
-            //else
-            //{
-            //    tbl_TempsSupp tb = new tbl_TempsSupp();
-            //    tb.noSemaine = noSemaine;
-            //    tb.idEmploye = FT.idEmploye;
-            //    tb.tempsSupp = FT.nbHeure;
-            //    cdc.tbl_TempsSupp.InsertOnSubmit(tb);
-            //}
-
-            //cdc.SubmitChanges();
-
-
-
+            
 
 
             var querrySemainePrecedente = (from tbl in cdc.tbl_FeuilleTemps

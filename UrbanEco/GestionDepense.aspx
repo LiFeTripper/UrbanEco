@@ -15,7 +15,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <form runat="server" style="text-align: center;" class="container center col-12">
-
         <%--CODE REPEATER D'EMPLOYÉ--%>
         <asp:Repeater ID="Rptr_Emploe" runat="server" DataSourceID="LinqEmploye">
 
