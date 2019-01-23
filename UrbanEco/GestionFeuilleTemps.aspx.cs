@@ -108,6 +108,8 @@ namespace UrbanEco
                     }
                 } else if (rptItem is tbl_Employe) {
                     tbl_Employe empl = (tbl_Employe)rptItem;
+                    if (empl.idEmploye != empConnected.idEmploye) 
+                        return true;
                 }
             }
 
@@ -167,10 +169,14 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
-                
-                FTemp.approuver = true;
-                cdc.SubmitChanges();
-                SwitchTypeBHCongés(FTemp);
+                if ((bool)FTemp.approuver)
+                    continue;
+
+                if (empConnected.username == "admin" || FTemp.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                    FTemp.approuver = true;
+                    cdc.SubmitChanges();
+                    SwitchTypeBHCongés(FTemp);
+                }
             }
 
             Response.Redirect(Request.RawUrl);
