@@ -107,10 +107,10 @@
     <Content Include="ModifCategorie.aspx" />
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
+    <Content Include="Rapport.aspx" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
-    <Content Include="Rapports\RapportNode.cs" />
     <Content Include="Rapports\Rapport.css" />
     <Content Include="Rapports\Rapport.js" />
     <Content Include="Web.config">
