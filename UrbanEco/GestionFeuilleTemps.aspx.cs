@@ -401,6 +401,7 @@ namespace UrbanEco
             dateMinimal = Calendar1.Value;
             dateMaximal = Calendar2.Value;
 
+
             //Filtre valide
             if (!string.IsNullOrWhiteSpace(dateMinimal) && !string.IsNullOrWhiteSpace(dateMaximal))
             {
@@ -429,6 +430,7 @@ namespace UrbanEco
             }
 
             return show;
+
         }
 
         protected void btn_ajouterFT_Click(object sender, EventArgs e)

@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutEmp.aspx.cs" Inherits="UrbanEco.AjoutEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%-- StyleSheet pour formater l'interface d'ajout --%>
-    <link href="lib/css/ajoutEmploye.css" rel="stylesheet" />
     <style>
         .asp-table {
             table-layout: fixed;
@@ -21,13 +19,17 @@
     <form runat="server">
         <%--PRÉNOM--%>
         <div class="form-group mb-4 col-6 mx-auto">
+            
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
+                    
                     <asp:TableHeaderCell CssClass="form-control">
                         Prénom <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
+                        
                         <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control" ></asp:TextBox>
+                        <asp:Label ID="lb_erreurPrenom" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -42,6 +44,7 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
+                        <asp:Label ID="lb_erreurNom" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -100,6 +103,7 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox ID="Tbx_username" runat="server" class="form-control" ></asp:TextBox>
+                        <asp:Label ID="lb_erreurUsername" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -153,5 +157,6 @@
                 </asp:TableRow>
             </asp:Table>
         </div>
+
     </form>
 </asp:Content>

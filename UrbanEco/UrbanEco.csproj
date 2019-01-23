@@ -79,7 +79,6 @@
     <Content Include="Employe.aspx" />
     <Content Include="GestionFeuilleTemps.aspx" />
     <Content Include="Home.aspx" />
-    <Content Include="lib\css\ajoutEmploye.css" />
     <Content Include="lib\css\old\bootstrap-grid.css" />
     <Content Include="lib\css\old\bootstrap-grid.min.css" />
     <Content Include="lib\css\old\bootstrap-reboot.css" />
@@ -95,7 +94,6 @@
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
     <Content Include="lib\css\style.css" />
-    <Content Include="lib\css\tables.css" />
     <Content Include="lib\js\bootstrap.bundle.js" />
     <Content Include="lib\js\bootstrap.bundle.min.js" />
     <Content Include="lib\js\bootstrap.js" />
@@ -109,9 +107,7 @@
     <Content Include="ModifCategorie.aspx" />
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
-    <Content Include="Rapport.aspx" />
-    <Content Include="Rapports\Rapport.css" />
-    <Content Include="Rapports\Rapport.js" />
+    <Content Include="RapportProjet.aspx" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
@@ -155,13 +151,8 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Rapport.aspx.cs">
-      <DependentUpon>Rapport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Rapport.aspx.designer.cs">
-      <DependentUpon>Rapport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="BD.cs" />
+    <Compile Include="Class Rapport\RapportNode.cs" />
     <Compile Include="Coeco.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -248,7 +239,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Rapports\RapportNode.cs" />
+    <Compile Include="RapportProjet.aspx.cs">
+      <DependentUpon>RapportProjet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RapportProjet.aspx.designer.cs">
+      <DependentUpon>RapportProjet.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Layout.Master" />
