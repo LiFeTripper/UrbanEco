@@ -241,7 +241,6 @@
     </Compile>
     <Compile Include="RapportProjet.aspx.cs">
       <DependentUpon>RapportProjet.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="RapportProjet.aspx.designer.cs">
       <DependentUpon>RapportProjet.aspx</DependentUpon>

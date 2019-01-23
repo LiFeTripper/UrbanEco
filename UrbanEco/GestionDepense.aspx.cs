@@ -22,17 +22,35 @@ namespace UrbanEco
             {
                 List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpDepWaiting(ctx);
 
-                Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
-                Rptr_Emploe.DataBind();
+                if (queryAllEmpFtWaiting != null)
+
+                {
+                    Rptr_Emploe.DataSourceID = null;
+                    Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
+                    Rptr_Emploe.DataBind();
+                }
+
             }
             else
             {
                 List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpDepWaiting(ctx,empconnected.idEmploye);
 
-                Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = queryEmpFtWaiting;
-                Rptr_Emploe.DataBind();
+                if(queryEmpFtWaiting != null)
+                {
+                    Rptr_Emploe.DataSourceID = null;
+                    Rptr_Emploe.DataSource = queryEmpFtWaiting;
+                    Rptr_Emploe.DataBind();
+                }
+                else
+                {
+                    var queryEmp = from tbl in ctx.tbl_Employe
+                                   where tbl.idEmploye == empconnected.idEmploye
+                                   select tbl;
+
+                    Rptr_Emploe.DataSourceID = null;
+                    Rptr_Emploe.DataSource = queryEmp;
+                    Rptr_Emploe.DataBind();
+                }
             }
 
 

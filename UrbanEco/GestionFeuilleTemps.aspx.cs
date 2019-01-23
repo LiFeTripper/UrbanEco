@@ -11,20 +11,24 @@ namespace UrbanEco
     {
         CoecoDataContext cdc = new CoecoDataContext();
 
+        tbl_Employe empConnected;
+
         static List<tbl_PremierDimanche> dimanches = new List<tbl_PremierDimanche>();
 
         protected string formatRemoveHour(object date)
         {
             DateTime dt = (DateTime)date;
             return dt.ToString().Split(' ')[0];
-                
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            CoecoDataContext ctx = new CoecoDataContext();
+            empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+
+            if (!IsPostBack)
             {
-                CoecoDataContext ctx = new CoecoDataContext();
                 Page.MaintainScrollPositionOnPostBack = true;
 
                 //Premier dimanche
@@ -33,15 +37,13 @@ namespace UrbanEco
 
                 if (queryDimanche.Count() > 0)
                 {
-                    dimanches = queryDimanche.ToList();                   
+                    dimanches = queryDimanche.ToList();
                 }
 
-                List < tbl_Employe > listTable = new List<tbl_Employe>();
+                List<tbl_Employe> listTable = new List<tbl_Employe>();
 
                 Calendar1.Value = "1/1/1754";
                 Calendar2.Value = "1/1/3000";
-
-                tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
                 DateTime dateMin = DateTime.Parse(Calendar1.Value);
                 DateTime dateMax = DateTime.Parse(Calendar2.Value);
@@ -49,7 +51,7 @@ namespace UrbanEco
                 if (empConnected.username == "admin")
                 {
                     var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, false);
-                                                                  
+
                     var queryFTApprouver = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, true);
 
                     Rptr_EmployeNonApprouver.DataSource = null;
@@ -91,23 +93,47 @@ namespace UrbanEco
             }
         }
 
-        public bool isVisible()
+        public bool isVisible(object rptItem)
         {
             CoecoDataContext ctx = new CoecoDataContext();
-            tbl_Employe user = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
-            if (user.username == "admin")
+            
+            if (empConnected.username == "admin")
             {
                 return true;
+            } else {
+                if (rptItem is tbl_FeuilleTemps) {
+                    tbl_FeuilleTemps laFeuille = (tbl_FeuilleTemps)rptItem;
+                    if ((bool)laFeuille.tbl_Projet.approbation && laFeuille.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                        return true;
+                    }
+                } else if (rptItem is tbl_Employe) {
+                    tbl_Employe empl = (tbl_Employe)rptItem;
+                    if (empl.idEmploye != empConnected.idEmploye) 
+                        return true;
+                }
             }
 
             return false;
         }
 
-        protected void Btn_Modif_Click(object sender, EventArgs e)
-        {
+        public bool isModifVisible(object item) {
+            CoecoDataContext ctx = new CoecoDataContext();
 
+            if (empConnected.username == "admin" || (item as tbl_FeuilleTemps).idEmploye == empConnected.idEmploye) {
+                return true;
+            }
+            else {
+                if (item is tbl_FeuilleTemps) {
+                    tbl_FeuilleTemps laFeuille = (tbl_FeuilleTemps)item;
+                    if ((bool)laFeuille.tbl_Projet.approbation && laFeuille.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
-
+        
         protected void Btn_Approve_Click(object sender, EventArgs e)
         {
             CoecoDataContext ctx = new CoecoDataContext();
@@ -115,21 +141,21 @@ namespace UrbanEco
             ImageButton temp = (sender as ImageButton);
             int idFeuille = int.Parse(temp.CommandArgument);
 
-            tbl_FeuilleTemps FT = BD.GetFeuilleTemps(ctx,idFeuille);
-
-            CheckTempsSupp(FT.idEmploye);
+            tbl_FeuilleTemps FT = BD.GetFeuilleTemps(ctx, idFeuille);
+            
 
             FT.approuver = true;
             SwitchTypeBHCongés(FT);
 
-            cdc.SubmitChanges();
+            
+            ctx.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
         }
 
         protected void Rptr_FeuilleTemps_Load(object sender, EventArgs e)
         {
-          
+
         }
 
         protected void Btn_ApproveEmp_Click(object sender, EventArgs e)
@@ -141,47 +167,52 @@ namespace UrbanEco
                      where tblFT.idEmploye == idEmp
                      select tblFT;
 
-            foreach(var FTemp in FT)
+            foreach (var FTemp in FT)
             {
-                CheckTempsSupp(FTemp.idEmploye);
-                FTemp.approuver = true;
-                SwitchTypeBHCongés(FTemp);
+                if ((bool)FTemp.approuver)
+                    continue;
 
-
+                if (empConnected.username == "admin" || FTemp.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                    FTemp.approuver = true;
+                    cdc.SubmitChanges();
+                    SwitchTypeBHCongés(FTemp);
                 }
-
-            cdc.tbl_FeuilleTemps.DeleteAllOnSubmit(FT);
-            cdc.tbl_FeuilleTemps.InsertAllOnSubmit(FT);
-
-            cdc.SubmitChanges();
+            }
 
             Response.Redirect(Request.RawUrl);
         }
 
         protected void SwitchTypeBHCongés(tbl_FeuilleTemps FT)
         {
-            var SC = from tblSC in cdc.tbl_ProjetCat
-                     where tblSC.idProjetCat == FT.idCat
-                     select tblSC;
-            switch (SC.First().titre)
+            try
             {
-                case "Congé fériés":
-                    EnleverHeuresBH(2, FT);
-                    break;
-                case "Congé vacances":
-                    EnleverHeuresBH(4, FT);
-                    break;
-                case "Temps supplémentaires":
-                    EnleverHeuresBH(1, FT);
-                    break;
-                case "Congés maladies":
-                    EnleverHeuresBH(5, FT);
-                    break;
-                case "Congé personnelle":
-                    EnleverHeuresBH(3, FT);
-                    break;
-                default:
-                    break;
+                var SC = from tblSC in cdc.tbl_ProjetCat
+                         where tblSC.idProjetCat == FT.idCat
+                         select tblSC;
+                switch (SC.First().titre)
+                {
+                    case "Congés fériés":
+                        EnleverHeuresBH(2, FT);
+                        break;
+                    case "Congés vacances":
+                        EnleverHeuresBH(4, FT);
+                        break;
+                    case "Temps supplémentaires":
+                        EnleverHeuresBH(1, FT);
+                        break;
+                    case "Congés maladies":
+                        EnleverHeuresBH(5, FT);
+                        break;
+                    case "Congé personnelle":
+                        EnleverHeuresBH(3, FT);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                CheckTempsSupp(FT);
             }
         }
 
@@ -192,6 +223,7 @@ namespace UrbanEco
                      & tblBH.idTypeHeure == idTypeHeure
                      select tblBH;
             BH.First().nbHeure -= FT.nbHeure;
+            cdc.SubmitChanges();
         }
 
         protected void Rptr_FeuilleTempsNonApprouver_Load(object sender, EventArgs e)
@@ -217,37 +249,23 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
-                CheckTempsSupp(FTemp.idEmploye);
+                CheckTempsSupp(FTemp);
                 FTemp.approuver = true;
                 SwitchTypeBHCongés(FTemp);
             }
 
-           /* cdc.tbl_FeuilleTemps.DeleteAllOnSubmit(FT);
-            cdc.tbl_FeuilleTemps.InsertAllOnSubmit(FT);*/
+            /* cdc.tbl_FeuilleTemps.DeleteAllOnSubmit(FT);
+             cdc.tbl_FeuilleTemps.InsertAllOnSubmit(FT);*/
 
             cdc.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
         }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void btnCloseOpen_Click(object sender, EventArgs e)
         {
             //En pause bouton pour ouvrir
-            
-        }
-
-        protected void btnOpen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnOpenTest_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -257,11 +275,7 @@ namespace UrbanEco
 
             Response.Redirect("AjoutFT.aspx?FT=" + ib.CommandArgument);
         }
-
-        protected void Btn_ApproveTout_Click1(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void btn_Filtrer_Click(object sender, EventArgs e)
         {
@@ -270,7 +284,7 @@ namespace UrbanEco
             dateMinimal = Calendar1.Value;
             dateMaximal = Calendar2.Value;
 
-            if(string.IsNullOrWhiteSpace(dateMinimal) || string.IsNullOrWhiteSpace(dateMaximal))
+            if (string.IsNullOrWhiteSpace(dateMinimal) || string.IsNullOrWhiteSpace(dateMaximal))
             {
                 alert_missingDate.Visible = true;
                 return;
@@ -281,7 +295,7 @@ namespace UrbanEco
             DateTime dateMin = DateTime.Parse(dateMinimal);
             DateTime dateMax = DateTime.Parse(dateMaximal);
 
-            if(dateMin > dateMax)
+            if (dateMin > dateMax)
             {
                 alert_dateOrder.Visible = true;
                 return;
@@ -291,21 +305,21 @@ namespace UrbanEco
 
 
             RequeryFT(dateMin, dateMax);
-           
+
         }
 
         void RequeryFT(DateTime dateMin, DateTime dateMax)
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+            tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
             if (empConnected.username == "admin")
             {
 
-                var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx,dateMin, dateMax, false);
+                var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, false);
 
-                var queryFTApprouver = BD.GetAllEmployeFtFiltered(ctx,dateMin, dateMax, true);
+                var queryFTApprouver = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
@@ -323,9 +337,9 @@ namespace UrbanEco
             }
             else
             {
-                var queryFTAttente = BD.GetEmployeFtFiltered(ctx,empConnected.idEmploye, dateMin, dateMax, false);
+                var queryFTAttente = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, false);
 
-                var queryFTApprouver = BD.GetEmployeFtFiltered(ctx,empConnected.idEmploye, dateMin, dateMax, true);
+                var queryFTApprouver = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
@@ -361,16 +375,17 @@ namespace UrbanEco
                 }
             }
 
- 
+
             return totalHeure + "h";
         }
 
         protected bool ShowFT(object objetFeuille, string type)
         {
             tbl_FeuilleTemps feuille = (tbl_FeuilleTemps)objetFeuille;
+            bool show = true;
 
             //Pas approuver, on le met pas
-            if(string.Compare(type, "Attente") == 0)
+            if (string.Compare(type, "Attente") == 0)
             {
                 if ((bool)feuille.approuver)
                     return false;
@@ -386,13 +401,36 @@ namespace UrbanEco
             dateMinimal = Calendar1.Value;
             dateMaximal = Calendar2.Value;
 
-            DateTime dateMin = DateTime.Parse(dateMinimal);
-            DateTime dateMax = DateTime.Parse(dateMaximal);
 
-            if (feuille.dateCreation > dateMax || feuille.dateCreation < dateMin)
-                return false;
+            //Filtre valide
+            if (!string.IsNullOrWhiteSpace(dateMinimal) && !string.IsNullOrWhiteSpace(dateMaximal))
+            {
+                DateTime dateMin = DateTime.Parse(dateMinimal);
+                DateTime dateMax = DateTime.Parse(dateMaximal);
 
-            return true;
+                //Filtre valide
+                if (dateMin <= dateMax) {
+                    if (feuille.dateCreation > dateMax || feuille.dateCreation < dateMin)
+                        show = false;
+                }
+            }
+
+            //alert_missingDate.Visible = false;
+
+            if (empConnected.username == "admin") {
+                
+            } else {
+                if (feuille.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                    return show;
+                } else if (feuille.idEmploye == empConnected.idEmploye) {
+                    return show;
+                } else {
+                    show = false;
+                }
+            }
+
+            return show;
+
         }
 
         protected void btn_ajouterFT_Click(object sender, EventArgs e)
@@ -427,7 +465,7 @@ namespace UrbanEco
             for (int i = 1; i < dimanches.Count; i++)
             {
                 //Si la date voulu vien avant la date du dimanche, l'index est le numéro de semaine
-                if(date < dimanches[i].dateDimanche)
+                if (date < dimanches[i].dateDimanche)
                 {
                     return i;
                 }
@@ -439,13 +477,13 @@ namespace UrbanEco
         protected List<DateTime> IntervalDateFromWeekNumber(int weekNumber)
         {
             //on commence a 1, pas zéro
-            if(weekNumber == 0)
+            if (weekNumber == 0)
             {
                 return null;
             }
 
             //En dehors de l'array des semainez
-            if(weekNumber > dimanches.Count || dimanches.Count == 0)
+            if (weekNumber > dimanches.Count || dimanches.Count == 0)
             {
                 return null;
             }
@@ -455,7 +493,7 @@ namespace UrbanEco
             DateTime dateDebutSemaine;
             DateTime dateFinSemaine;
 
-            if(dimanches[indexInList] != null)
+            if (dimanches[indexInList] != null)
             {
                 dateDebutSemaine = dimanches[indexInList].dateDimanche;
 
@@ -469,35 +507,37 @@ namespace UrbanEco
         }
 
 
-        protected void CheckTempsSupp(int idEmp)
+        protected void CheckTempsSupp(tbl_FeuilleTemps FT)
         {
             int noSemaine = GetWeekToYear(DateTime.Now);
-
-            var querrySemainePrecedente = (from tbl in cdc.tbl_FeuilleTemps
-                          where tbl.idEmploye == idEmp
-                          & tbl.noSemaine == (noSemaine - 1)
-                          select tbl);
-
             
 
+
+            var querrySemainePrecedente = (from tbl in cdc.tbl_FeuilleTemps
+                                           where tbl.idEmploye == FT.idEmploye
+                                           & tbl.noSemaine == (noSemaine - 1)
+                                           select tbl);
+
+
+
             var querryNbSemaine = (from tbl in cdc.tbl_Employe
-                                   where tbl.idEmploye == idEmp
+                                   where tbl.idEmploye == FT.idEmploye
                                    select tbl).First();
 
             var querrySemaineActuelle = (from tbl in cdc.tbl_FeuilleTemps
-                                           where tbl.idEmploye == idEmp
-                                           & tbl.noSemaine == noSemaine
-                                           select tbl);
+                                         where tbl.idEmploye == FT.idEmploye
+                                         & tbl.noSemaine == noSemaine
+                                         select tbl);
 
             float nbHeureSemaineEmp = 0;
 
             if (querryNbSemaine.idTypeEmpl == 1)
             {
-                 nbHeureSemaineEmp = (float)querryNbSemaine.nbHeureSemaine;
+                nbHeureSemaineEmp = (float)querryNbSemaine.nbHeureSemaine;
             }
             if (querryNbSemaine.idTypeEmpl == 2)
             {
-                 nbHeureSemaineEmp = 40;
+                nbHeureSemaineEmp = 40;
             }
 
 
@@ -506,12 +546,12 @@ namespace UrbanEco
 
             foreach (tbl_FeuilleTemps tbl in querrySemainePrecedente)
             {
-                if(nbHeureSemainePrecedente + tbl.nbHeure > nbHeureSemaineEmp)
+                if (nbHeureSemainePrecedente + tbl.nbHeure > nbHeureSemaineEmp)
                 {
                     float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemainePrecedente);
                     nbHeureSemainePrecedente = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
                 }
-                else if(nbHeureSemainePrecedente > nbHeureSemaineEmp)
+                else if (nbHeureSemainePrecedente > nbHeureSemaineEmp)
                 {
                     nbHeureSemainePrecedente += (tbl.nbHeure * 1.5f);
                 }
@@ -541,7 +581,7 @@ namespace UrbanEco
             if (nbHeureSemainePrecedente > nbHeureSemaineEmp)
             {
                 var querry = from tbl in cdc.tbl_TempsSupp
-                             where tbl.idEmploye == idEmp
+                             where tbl.idEmploye == FT.idEmploye
                              & tbl.noSemaine == (noSemaine - 1)
                              select tbl;
 
@@ -549,7 +589,7 @@ namespace UrbanEco
 
                 var querryBH = from tbl in cdc.tbl_BanqueHeure
                                where tbl.idTypeHeure == 1
-                               & tbl.idEmploye == idEmp
+                               & tbl.idEmploye == FT.idEmploye
                                select tbl;
 
                 if (querry.Count() > 0)
@@ -568,7 +608,7 @@ namespace UrbanEco
                 }
 
                 tbl_TempsSupp tblTemp = new tbl_TempsSupp();
-                tblTemp.idEmploye = idEmp;
+                tblTemp.idEmploye = FT.idEmploye;
                 tblTemp.noSemaine = noSemaine - 1;
                 tblTemp.tempsSupp = nbHeureSemainePrecedente;
 
@@ -580,7 +620,7 @@ namespace UrbanEco
             if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
             {
                 var querry = from tbl in cdc.tbl_TempsSupp
-                             where tbl.idEmploye == idEmp
+                             where tbl.idEmploye == FT.idEmploye
                              & tbl.noSemaine == noSemaine
                              select tbl;
 
@@ -588,7 +628,7 @@ namespace UrbanEco
 
                 var querryBH = from tbl in cdc.tbl_BanqueHeure
                                where tbl.idTypeHeure == 1
-                               & tbl.idEmploye == idEmp
+                               & tbl.idEmploye == FT.idEmploye
                                select tbl;
 
                 if (querry.Count() > 0)
@@ -607,7 +647,7 @@ namespace UrbanEco
                 }
 
                 tbl_TempsSupp tblTemp = new tbl_TempsSupp();
-                tblTemp.idEmploye = idEmp;
+                tblTemp.idEmploye = FT.idEmploye;
                 tblTemp.noSemaine = noSemaine;
                 tblTemp.tempsSupp = nbHeureSemaineActuelle;
 
@@ -617,8 +657,9 @@ namespace UrbanEco
             }
 
         }
+    }
+}
 
 
         
-    }
-}
+    

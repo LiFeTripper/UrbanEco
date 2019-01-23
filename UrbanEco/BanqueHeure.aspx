@@ -31,7 +31,7 @@
         <%-- Entrer le nombre d'heure par semaine pour cet employé --%>
         <div class="col-md-5 mx-auto">
             <asp:Label ID="Label1" runat="server" Text="Nombre d'heure par semaine que l'employé doit travaillé : "></asp:Label>
-            <asp:TextBox CssClass="form-control col-md-2 float-right" runat="server" ID="tbx_heureMinimum"></asp:TextBox>
+            <asp:TextBox CssClass="form-control col-md-2 float-right" runat="server" ID="tbx_heureMinimum" Enabled="false"></asp:TextBox>
         </div>
 
         <div class="form-group mb-4 col-6 mx-auto">

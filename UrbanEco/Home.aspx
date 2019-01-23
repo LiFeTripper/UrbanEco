@@ -26,8 +26,8 @@
                 <HeaderTemplate>
                     <div class="table-responsive">
                         <table class="table">
-                            <thead class="thead-dark">
-                                <tr style="border-bottom: 5px solid #23282e">
+                            <thead>
+                                <tr>
                                     <%--<th style="width: 4%" scope="col"></th>--%>
                                     <th style="width: 13%" scope="col">Projet en charge</th>
                                     <th style="width: 8%" scope="col">Employé</th>
@@ -68,10 +68,10 @@
                                     <%--<td></td>--%>
                                     <td></td>
                                     <td>
-                                        <asp:Label ID="lbl_Date" runat="server" Text='<%# GetEmployeName(Eval("idEmploye")) %>' Font-Bold="true" />
+                                        <asp:Label ID="lbl_Date" runat="server" Text='<%# GetEmployeName(Eval("idEmploye")) %>'/>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lbl_Duree" runat="server" Text='<%#CalculerTotalHeureEmploye(Eval("idEmploye"), Eval("idProjet"))%>' Font-Bold="true" />
+                                        <asp:Label ID="lbl_Duree" runat="server" Text='<%#CalculerTotalHeureEmploye(Eval("idEmploye"), Eval("idProjet"))%>'/>
 
                                     </td>
                                     <td>
@@ -87,15 +87,15 @@
                 <%--FOOTERTEMPLATE--%>
                 <FooterTemplate>
                     </tbody>
-                <thead class="thead-dark">
-                    <tr style="border-bottom: 5px solid #23282e">
-                        <th style="width: 13%" scope="col">Projet en charge</th>
-                        <th style="width: 8%" scope="col">Employé</th>
-                        <th style="width: 8%" scope="col">Durée (h)</th>
-                        <th style="width: 5%" scope="col"></th>
-                    </tr>
-                </thead>
-                    </table>
+                    <thead>
+                        <tr class="t_footer">
+                            <th style="width: 13%" scope="col">Projet en charge</th>
+                            <th style="width: 8%" scope="col">Employé</th>
+                            <th style="width: 8%" scope="col">Durée (h)</th>
+                            <th style="width: 5%" scope="col"></th>
+                        </tr>
+                    </thead>
+                </table>
                 </div>
                 </FooterTemplate>
             </asp:Repeater>
