@@ -30,6 +30,7 @@ namespace UrbanEco
                     Rptr_Emploe.DataBind();
                 }
 
+                
             }
             else
             {
@@ -147,6 +148,15 @@ namespace UrbanEco
             }
 
             Response.Redirect(Request.RawUrl);
+        }
+
+        public bool IsAdmin()
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+
+            return empconnected.username == "admin";
         }
     }
 }
