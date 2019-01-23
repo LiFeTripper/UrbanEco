@@ -386,23 +386,8 @@ namespace UrbanEco
             dateMinimal = Calendar1.Value;
             dateMaximal = Calendar2.Value;
 
-            //Filtre non valide
-            if (string.IsNullOrWhiteSpace(dateMinimal) || string.IsNullOrWhiteSpace(dateMaximal))
-            {
-                //alert_missingDate.Visible = true;
-                return true;
-            }
-
-            //alert_missingDate.Visible = false;
-
             DateTime dateMin = DateTime.Parse(dateMinimal);
             DateTime dateMax = DateTime.Parse(dateMaximal);
-
-            //Filtre non valide encore
-            if (dateMin > dateMax)
-            {
-                return true;
-            }
 
             if (feuille.dateCreation > dateMax || feuille.dateCreation < dateMin)
                 return false;
