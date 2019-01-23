@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Rapports/Rapport.css" rel="stylesheet" />
 
-    <script src="Rapports/Rapport.js"></script>
+    <%--<script src="Rapports/Rapport.js"></script>--%>
 </asp:Content>
 
 <%-- Title --%>

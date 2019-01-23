@@ -71,7 +71,7 @@ namespace UrbanEco
                 RepTerrain.DataBind();
 
                 var queryProjet = from tbl in context.tbl_Projet
-                            //where tbl.archiver == false
+                            where tbl.archiver == false
                             orderby tbl.titre
                             select tbl;
 
@@ -243,8 +243,6 @@ namespace UrbanEco
             int idProjetCat = -1;
             int.TryParse(id.ToString(), out idProjetCat);
 
-            
-
             //Permet de lire la liste des catégories dans le textbox hidden
             UpdateSelectedCategorieList();
 
@@ -347,18 +345,73 @@ namespace UrbanEco
             DateTime dateFin = DateTime.Parse(date_fin.Value);
 
             // Loop through all projets
-            List<tbl_Projet> projets = ctx.tbl_Projet.Where(p => SelectedProjets.Contains(p.idProjet)).Distinct().ToList();
+            List<tbl_Projet> projets = ctx.tbl_Projet
+                                                        .Where(p => SelectedProjets.Count > 0 ?
+                                                                            SelectedProjets.Contains(p.idProjet):
+                                                                            true)
+                                                        .Distinct()
+                                                        .ToList();
+
+            List<tbl_ProjetCat> categories = ctx.tbl_ProjetCat
+                                                        .Where(cat => SelectedCategories.Count > 0 ?
+                                                                            SelectedCategories.Contains(cat.idProjetCat):
+                                                                            true)
+                                                        .Distinct()
+                                                        .ToList();
+            
+            
+            // Loop through all projects
             foreach(tbl_Projet projet in projets)
             {
-                RapportNode proj = new RapportNode(projet.titre, new TimeSpan(0, 0, 0));
+                RapportNode projNode = new RapportNode(projet.titre);
+
+                foreach(tbl_ProjetCat categorie in categories)
+                {
+                    RapportNode catNode = new RapportNode(categorie.titre);
+
+                    var catemp = ctx.tbl_ProjetCatEmploye.Where(c => c.idCategorie == categorie.idProjetCat)
+                                                            .Where(c => SelectedEmployes.Count > 0 ?
+                                                                            SelectedCategories.Contains(c.idEmploye):
+                                                                            true)
+                                                            .Distinct()
+                                                            .ToList();
+
+
+                    var employes = ctx.tbl_Employe
+                        .Where(emp => catemp.Select(ce => ce.idEmploye).Contains(emp.idEmploye));
+                    
+                    foreach (tbl_Employe employe in employes)
+                    {
+                        RapportNode EmplNode = new RapportNode(string.Format("{0} {1}", employe.prenom, employe.nom));
+
+                        // Get les heures de lemployes avec le projet ici
+                        var heures = ctx.tbl_FeuilleTemps.Where(c => c.idCat == categorie.idProjetCat)
+                                                        .Where(c => c.idEmploye == employe.idEmploye)
+                                                        .Where(c => (bool)c.approuver)
+                                                        .Where(c => c.dateCreation > dateFin)
+                                                        .Where(c => c.dateCreation < dateDebut);
+
+                        // Compiler les heures dans le node
+                        foreach (var heure in heures)
+                        {
+                            int hrs = (int)heure.nbHeure;
+                            int min = (int)(heure.nbHeure - hrs) * 100;
+                            EmplNode.NbHeure += new TimeSpan(hrs, min, 0);
+                        }
+
+                        // Ajouter l'employe au node de categorie
+                        catNode.Child.Add(EmplNode);
+                    }
+
+                    // Ajouter de la categorie au projet node
+                    // Ajouter la categorie en tant que child au projet node
+                }
+
+                // Ajouter les heures du projet au rapport node
+                // Ajouter le projet au rapport node en tant qu'enfant
             }
 
-
-            List<tbl_Employe> employes = ctx.tbl_Employe.Where(emp => SelectedEmployes.Contains(emp.idEmploye)).Distinct().ToList();
-
-            List<tbl_ProjetCat> categories = ctx.tbl_ProjetCat.Where(cat => SelectedCategories.Contains(cat.idProjetCat)).Distinct().ToList();
-
-            
+            // Rediriger vers un page avec les informations du rapport pour cree le rapport
         }
 
         protected void btn_retour_Click(object sender, EventArgs e)

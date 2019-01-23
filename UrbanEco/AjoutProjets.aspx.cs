@@ -116,9 +116,17 @@ namespace UrbanEco
             }
 
             //Étape finale SUBMIT CHANGES
-            ctx.SubmitChanges();
+            if (Tbx_Titre.Text != "")
+            {
+                ctx.SubmitChanges();
+                Response.Redirect("Projets.aspx");
+            }
+            else
+            {
+                AlertDiv.Visible = true;
+            }
             
-            Response.Redirect("Projets.aspx");
+            
 
         }
 
