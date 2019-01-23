@@ -63,8 +63,26 @@ namespace UrbanEco
                     tbx_projet.Items.Insert(0, "Veuillez sélectionner le projet");
                     tbx_projet.SelectedIndex = 0;
 
-                    tbx_typeDepense.SelectedIndex = 0;
+                    if(empConnected.username == "admin")
+                    {
+                        //Remplissage du dropdownlist d'employé
+                        List<ListItem> listItemEmployes = new List<ListItem>();
 
+                        var allEmployes = BD.GetAllEmployes(ctx);
+
+                        foreach (var employes in allEmployes)
+                        {
+                            listItemEmployes.Add(new ListItem(employes.nom + "," + employes.prenom, employes.idEmploye.ToString()));
+                        }
+
+                        ddlEmp.DataSource = listItemEmployes;
+                        ddlEmp.DataBind();
+
+                        ddlEmp.Items.Insert(0, "Veuillez choisir un employé");
+                        divEmp.Visible = true;
+                       
+                    }
+                    tbx_typeDepense.SelectedIndex = 0;
 
 
                     var query_Dépense_Kilometrage = BD.GetDepenseDeplacement(ctx);
@@ -232,15 +250,24 @@ namespace UrbanEco
                     //Créer une dépense
                     tbl_Depense dep = new tbl_Depense();
 
+
                     //obtenir l'employé connecter
                     tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+
+                    if(empConnected.username == "admin")
+                    {
+                        dep.idEmploye = int.Parse(ddlEmp.SelectedValue);
+                    }
+                    else
+                    {
+                        dep.idEmploye = empConnected.idEmploye;
+                    }
 
                     //Peut etre améliorer
                     //obtenir le id du type de la dépense
                     int idTypeDepense = tbx_typeDepense.SelectedIndex + 1;
 
                     //Assigner les valeurs a la dépense
-                    dep.idEmploye = empConnected.idEmploye;
                     dep.typeDepense = tbx_typeDepense.SelectedItem.Text;
 
                     //Pas de sous-catégorie sélectionner
@@ -287,6 +314,8 @@ namespace UrbanEco
                 }
                 else
                 {
+
+
                     CoecoDataContext context = new CoecoDataContext();
 
                     var querry = from tbl in context.tbl_Depense
