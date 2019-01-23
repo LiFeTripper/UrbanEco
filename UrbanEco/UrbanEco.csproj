@@ -79,6 +79,12 @@
     <Content Include="Employe.aspx" />
     <Content Include="GestionFeuilleTemps.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="lib\css\old\bootstrap-grid.css" />
+    <Content Include="lib\css\old\bootstrap-grid.min.css" />
+    <Content Include="lib\css\old\bootstrap-reboot.css" />
+    <Content Include="lib\css\old\bootstrap-reboot.min.css" />
+    <Content Include="lib\css\old\bootstrap.css" />
+    <Content Include="lib\css\old\bootstrap.min.css" />
     <Content Include="lib\css\fancy-switch.css" />
     <Content Include="lib\css\fontawesome.css" />
     <Content Include="lib\css\menu.css" />
@@ -88,7 +94,6 @@
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
     <Content Include="lib\css\style.css" />
-    <Content Include="lib\css\tables.css" />
     <Content Include="lib\js\bootstrap.bundle.js" />
     <Content Include="lib\js\bootstrap.bundle.min.js" />
     <Content Include="lib\js\bootstrap.js" />
@@ -103,10 +108,11 @@
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
     <Content Include="Rapport.aspx" />
-    <Content Include="Rapports\Rapport.css" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
+    <Content Include="Rapports\Rapport.css" />
+    <Content Include="Rapports\Rapport.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -147,8 +153,14 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Rapport.aspx.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rapport.aspx.designer.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BD.cs" />
-    <Compile Include="Rapports\RapportNode.cs" />
     <Compile Include="Coeco.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -235,16 +247,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Rapport.aspx.cs">
-      <DependentUpon>Rapport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Rapport.aspx.designer.cs">
-      <DependentUpon>Rapport.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Rapports\RapportNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Layout.Master" />
+    <Content Include="lib\css\old\bootstrap-grid.css.map" />
+    <Content Include="lib\css\old\bootstrap-grid.min.css.map" />
+    <Content Include="lib\css\old\bootstrap-reboot.css.map" />
+    <Content Include="lib\css\old\bootstrap-reboot.min.css.map" />
+    <Content Include="lib\css\old\bootstrap.css.map" />
+    <Content Include="lib\css\old\bootstrap.min.css.map" />
     <Content Include="lib\js\bootstrap.bundle.js.map" />
     <Content Include="lib\js\bootstrap.bundle.min.js.map" />
     <Content Include="lib\js\bootstrap.js.map" />

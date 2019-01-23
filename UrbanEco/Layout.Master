@@ -18,7 +18,9 @@
     <%--Multiselect CSS--%>
     <link href="lib/css/multi-select.css" rel="stylesheet" />
     <link href="lib/css/fancy-switch.css" rel="stylesheet" />
+    <%-- Updates CSS --%>
     <link href="lib/css/tables.css" rel="stylesheet" />
+    <link href="lib/css/ajoutEmploye.css" rel="stylesheet" />
 
 
     <%--SCRIPTS --%>
@@ -135,6 +137,7 @@
     <footer class="container">
         <%--<p>&copy; Company 2017-2018</p>--%>
     </footer>
+
 </body>
 
 </html>

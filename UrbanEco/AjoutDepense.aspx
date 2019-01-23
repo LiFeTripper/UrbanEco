@@ -20,7 +20,19 @@
             <h3>Projet associé</h3>
         </div>
 
-        
+        <%--Employé--%>
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="divEmp" visible="false">
+            <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
+                <asp:TableRow>    
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Nom de l'employé <b style="color:red">*</b>
+                    </asp:TableHeaderCell>    
+                    <asp:TableCell>
+                        <asp:DropDownList CssClass="form-control" name="idEmploye" ID="ddlEmp" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:table>
+        </div>
 
         <%--Projet--%>
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
@@ -172,6 +184,14 @@
             <label for="tbx_note">Note</label>
             <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
         </div>
+
+        <!-- File upload facture
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <label for="fupl_facture">Ajouter une facture</label>
+            <asp:FileUpload ID="fupl_facture" runat="server" />
+            <asp:Button ID="btn_upload" OnClick="btn_upload_Click" runat="server" Text="Button" />
+            <asp:Image ID="img_facture" runat="server" />
+        </div>-->
 
         <%--MESSAGES--%>
         <div class="form-group mb-4 col-6 mx-auto">

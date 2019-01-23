@@ -87,7 +87,7 @@
                 <%--FOOTERTEMPLATE--%>
                 <FooterTemplate>
                     </tbody>
-                    <thead class="thead-dark">
+                    <thead>
                         <tr class="t_footer">
                             <th style="width: 13%" scope="col">Projet en charge</th>
                             <th style="width: 8%" scope="col">Employé</th>

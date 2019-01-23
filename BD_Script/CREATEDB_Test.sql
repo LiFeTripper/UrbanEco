@@ -3,10 +3,10 @@
 USE master
 go
 
-CREATE DATABASE BD_Coeco
+CREATE DATABASE BD_Coeco_Test
 go
 
-use BD_Coeco
+use BD_Coeco_Test
 go
 
 CREATE TABLE tbl_Status
@@ -175,7 +175,7 @@ VALUES (1, 5, 3, 15, 'Ce fut une excellente journée', GETDATE());
 
 CREATE TABLE tbl_ProjetCatEmploye
 (
-	idPCE INT IDENTITY(500,1) PRIMARY KEY,
+	idPCE INT IDENTITY(1,1) PRIMARY KEY,
 	idProjet INT NOT NULL,
 	idCategorie INT NOT NULL,
 	idEmploye INT NOT NULL

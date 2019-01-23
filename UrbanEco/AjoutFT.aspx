@@ -83,7 +83,10 @@
                         Durée (hrs) <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+
+                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
+<%--                        <asp:RegularExpressionValidator ID="heureCheck" runat="server" Display="Dynamic" ControlToValidate="tbx_nbHeure" ErrorMessage="Nombre d'heure invalide" ValidationExpression="^-?([0-9]{0,2}(\.[0-5])?|100(\.00?)?)$"></asp:RegularExpressionValidator>--%>
+
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -141,7 +144,7 @@
             UpdateDateFormat();
 
             input.onchange = function () {
-                UpdateDateFormat();
+                //UpdateDateFormat();
                 //UpdateDateRep();
             }
 
@@ -149,14 +152,14 @@
 
                 var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
-                if (input.value == "") {
+                if (input.value != "") {
                     dateFormated.innerText = "Veuillez sélectionner la date";
                     return;
                 }
 
-                var format = FormatYear(input.value);
+                //var format = FormatYear(input.value);
 
-                dateFormated.innerText = format;
+                //dateFormated.innerText = format;
 
 
             }
