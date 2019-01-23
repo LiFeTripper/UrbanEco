@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="coeco" Class="AncienneBDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=127.0.0.1;Initial Catalog=coeco;Integrated Security=True" SettingsObjectName="BD_IMPORT.Properties.Settings" SettingsPropertyName="coecoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblclient" Member="tblclient">
+    <Type Name="tblclient">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="compagnie" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="contact" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="adresse" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ville" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="province" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="cp" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="pays" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel1" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel1com" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel2" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel2com" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="siteweb" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="dateInsc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbluser" Member="tbluser">
+    <Type Name="tbluser">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usr" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="pwd" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="prenom" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="nom" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tpe" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="idperso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sttus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblemploye" Member="tblemploye">
+    <Type Name="tblemploye">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nom" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="prenom" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="adresse" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ville" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="province" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="cp" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="pays" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel1" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel1com" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel2" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel2com" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="salaireheure" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dateInsc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblheure" Member="tblheure">
+    <Type Name="tblheure">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idprojet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idcat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idperso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tbl" Type="System.String" DbType="VarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="dateEffect" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="temps" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="note" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="dateInsc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblprojet" Member="tblprojet">
+    <Type Name="tblprojet">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="noprojet" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="titre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="idstatut" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idresponsable" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="temps" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="montantsalaire" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="montantcontribnature" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="montantcontribespece" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="datedebut" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="datefin" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dateInsc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblprojetcat" Member="tblprojetcat">
+    <Type Name="tblprojetcat">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idprojet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idcatmaitre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="titre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="temps" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="montantsalaire" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="montantcontribnature" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="montantcontribespece" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="niveau" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dateInsc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblprojetcatperso" Member="tblprojetcatperso">
+    <Type Name="tblprojetcatperso">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idprojet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idcat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idperso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tbl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="nbrheure" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dateInsc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblprojetclient" Member="tblprojetclient">
+    <Type Name="tblprojetclient">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idclient" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idprojet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblresponsable" Member="tblresponsable">
+    <Type Name="tblresponsable">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nom" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="prenom" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="adresse" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ville" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="province" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="cp" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="pays" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel1" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel1com" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel2" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="tel2com" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="salaireheure" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dateInsc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblstatut" Member="tblstatut">
+    <Type Name="tblstatut">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="titre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
