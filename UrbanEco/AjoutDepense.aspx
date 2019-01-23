@@ -20,7 +20,19 @@
             <h3>Projet associé</h3>
         </div>
 
-        
+        <%--Employé--%>
+        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="divEmp" visible="false">
+            <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
+                <asp:TableRow>    
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Nom de l'employé <b style="color:red">*</b>
+                    </asp:TableHeaderCell>    
+                    <asp:TableCell>
+                        <asp:DropDownList CssClass="form-control" name="idEmploye" ID="ddlEmp" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:table>
+        </div>
 
         <%--Projet--%>
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
@@ -171,6 +183,29 @@
         <div class="form-group mb-4 col-6 mx-auto" id="Div1" runat="server">
             <label for="tbx_note">Note</label>
             <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
+        </div>
+
+        File upload facture
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <script type="text/javascript">
+                function showpreview(input) {
+
+                    if (input.files && input.files[0]) {
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#imgpreview').css('visibility', 'visible');
+                            $('#imgpreview').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+
+                }
+
+            </script>
+            <label for="fupl_facture">Ajouter une facture</label>
+            <asp:FileUpload ID="fuimage" runat="server" onchange="showpreview(this);" />
+            <img id="imgpreview" src="" height="200" width="200" style="border-width: 0px; visibility: hidden;"/>
         </div>
 
         <%--MESSAGES--%>

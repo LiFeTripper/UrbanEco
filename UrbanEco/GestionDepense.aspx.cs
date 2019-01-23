@@ -22,17 +22,36 @@ namespace UrbanEco
             {
                 List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpDepWaiting(ctx);
 
-                Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
-                Rptr_Emploe.DataBind();
+                if (queryAllEmpFtWaiting != null)
+
+                {
+                    Rptr_Emploe.DataSourceID = null;
+                    Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
+                    Rptr_Emploe.DataBind();
+                }
+
+                
             }
             else
             {
                 List<tbl_Employe> queryEmpFtWaiting = BD.GetEmpDepWaiting(ctx,empconnected.idEmploye);
 
-                Rptr_Emploe.DataSourceID = null;
-                Rptr_Emploe.DataSource = queryEmpFtWaiting;
-                Rptr_Emploe.DataBind();
+                if(queryEmpFtWaiting != null)
+                {
+                    Rptr_Emploe.DataSourceID = null;
+                    Rptr_Emploe.DataSource = queryEmpFtWaiting;
+                    Rptr_Emploe.DataBind();
+                }
+                else
+                {
+                    var queryEmp = from tbl in ctx.tbl_Employe
+                                   where tbl.idEmploye == empconnected.idEmploye
+                                   select tbl;
+
+                    Rptr_Emploe.DataSourceID = null;
+                    Rptr_Emploe.DataSource = queryEmp;
+                    Rptr_Emploe.DataBind();
+                }
             }
 
 
@@ -129,6 +148,15 @@ namespace UrbanEco
             }
 
             Response.Redirect(Request.RawUrl);
+        }
+
+        public bool IsAdmin()
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+
+            return empconnected.username == "admin";
         }
     }
 }

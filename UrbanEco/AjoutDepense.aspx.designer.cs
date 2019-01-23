@@ -13,6 +13,24 @@ namespace UrbanEco {
     public partial class AjoutDepense {
         
         /// <summary>
+        /// Contrôle divEmp.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEmp;
+        
+        /// <summary>
+        /// Contrôle ddlEmp.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmp;
+        
+        /// <summary>
         /// Contrôle tbx_projet.
         /// </summary>
         /// <remarks>
@@ -164,6 +182,15 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_note;
+        
+        /// <summary>
+        /// Contrôle fuimage.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuimage;
         
         /// <summary>
         /// Contrôle alert_success.

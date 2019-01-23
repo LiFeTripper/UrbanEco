@@ -103,13 +103,33 @@ namespace UrbanEco
             } else {
                 if (rptItem is tbl_FeuilleTemps) {
                     tbl_FeuilleTemps laFeuille = (tbl_FeuilleTemps)rptItem;
-                    if ((bool)laFeuille.tbl_Projet.approbation && laFeuille.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                    if ((bool)laFeuille.tbl_Projet.approbation && laFeuille.tbl_Projet.idEmployeResp == empConnected.idEmploye && laFeuille.idEmploye != laFeuille.tbl_Projet.idEmployeResp) {
+                        return true;
+                    }
+                } else if (rptItem is tbl_Employe) {
+                    tbl_Employe empl = (tbl_Employe)rptItem;
+                    if (empl.idEmploye != empConnected.idEmploye) {
+                        foreach (tbl_FeuilleTemps item in empl.tbl_FeuilleTemps) {
+                            if (!(bool)item.tbl_Projet.approbation || item.tbl_Projet.idEmployeResp != empConnected.idEmploye) {
+                                return false;
+                            }
+                        }
+
                         return true;
                     }
                 }
             }
 
             return false;
+        }
+
+        public bool IsAdmin()
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+
+            return empconnected.username == "admin";
         }
 
         public bool isModifVisible(object item) {
@@ -143,6 +163,7 @@ namespace UrbanEco
             FT.approuver = true;
             SwitchTypeBHCongés(FT);
 
+            
             ctx.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
@@ -164,10 +185,14 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
-                
-                FTemp.approuver = true;
-                cdc.SubmitChanges();
-                SwitchTypeBHCongés(FTemp);
+                if ((bool)FTemp.approuver)
+                    continue;
+
+                if (empConnected.username == "admin" || FTemp.tbl_Projet.idEmployeResp == empConnected.idEmploye) {
+                    FTemp.approuver = true;
+                    cdc.SubmitChanges();
+                    SwitchTypeBHCongés(FTemp);
+                }
             }
 
             Response.Redirect(Request.RawUrl);
@@ -392,6 +417,7 @@ namespace UrbanEco
             dateMinimal = Calendar1.Value;
             dateMaximal = Calendar2.Value;
 
+
             //Filtre valide
             if (!string.IsNullOrWhiteSpace(dateMinimal) && !string.IsNullOrWhiteSpace(dateMaximal))
             {
@@ -420,6 +446,7 @@ namespace UrbanEco
             }
 
             return show;
+
         }
 
         protected void btn_ajouterFT_Click(object sender, EventArgs e)

@@ -79,7 +79,6 @@
     <Content Include="Employe.aspx" />
     <Content Include="GestionFeuilleTemps.aspx" />
     <Content Include="Home.aspx" />
-    <Content Include="lib\css\ajoutEmploye.css" />
     <Content Include="lib\css\old\bootstrap-grid.css" />
     <Content Include="lib\css\old\bootstrap-grid.min.css" />
     <Content Include="lib\css\old\bootstrap-reboot.css" />
@@ -95,7 +94,6 @@
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
     <Content Include="lib\css\style.css" />
-    <Content Include="lib\css\tables.css" />
     <Content Include="lib\js\bootstrap.bundle.js" />
     <Content Include="lib\js\bootstrap.bundle.min.js" />
     <Content Include="lib\js\bootstrap.js" />
@@ -110,11 +108,11 @@
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
     <Content Include="Rapport.aspx" />
-    <Content Include="Rapports\Rapport.css" />
-    <Content Include="Rapports\Rapport.js" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
+    <Content Include="Rapports\Rapport.css" />
+    <Content Include="Rapports\Rapport.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -154,6 +152,13 @@
     </Compile>
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Rapport.aspx.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rapport.aspx.designer.cs">
+      <DependentUpon>Rapport.aspx</DependentUpon>
     </Compile>
     <Compile Include="BD.cs" />
     <Compile Include="Coeco.designer.cs">
@@ -298,9 +303,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Class Rapport\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

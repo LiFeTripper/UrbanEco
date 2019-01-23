@@ -35,8 +35,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
-
-
     <form runat="server" style="text-align: center;" class="container center col-12">
 
         <div class="form-group mb-4 col-6 mx-auto" runat="server" id="tbl_employe" visible="false">
@@ -52,7 +50,7 @@
             </asp:Table>
         </div>
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" >
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
@@ -85,7 +83,13 @@
                         Durée (hrs) <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
+
+                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
+<<<<<<< HEAD
+<%--                        <asp:RegularExpressionValidator ID="heureCheck" runat="server" Display="Dynamic" ControlToValidate="tbx_nbHeure" ErrorMessage="Nombre d'heure invalide" ValidationExpression="^-?([0-9]{0,2}(\.[0-5])?|100(\.00?)?)$"></asp:RegularExpressionValidator>--%>
+
+=======
+>>>>>>> db01161fdf610ad61b05e169d45a88667fc171c1
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -109,7 +113,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow CssClass="col-md-12">
                     <asp:TableHeaderCell CssClass="form-control">
-                        <b style="color:red; float:right;">*</b><h5  id="dateFormated" runat="server"></h5>
+                        <b style="color: red; float: right;">*</b><h5 id="dateFormated" runat="server"></h5>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" />
@@ -143,7 +147,7 @@
             UpdateDateFormat();
 
             input.onchange = function () {
-                UpdateDateFormat();
+                //UpdateDateFormat();
                 //UpdateDateRep();
             }
 
@@ -151,14 +155,14 @@
 
                 var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
-                if (input.value == "") {
+                if (input.value != "") {
                     dateFormated.innerText = "Veuillez sélectionner la date";
                     return;
                 }
 
-                var format = FormatYear(input.value);
+                //var format = FormatYear(input.value);
 
-                dateFormated.innerText = format;
+                //dateFormated.innerText = format;
 
 
             }
@@ -180,6 +184,6 @@
                 return day + " " + months[month - 1] + " " + year;;
             }
         </script>
-        
+
     </form>
 </asp:Content>
