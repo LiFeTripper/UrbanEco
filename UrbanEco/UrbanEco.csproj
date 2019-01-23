@@ -156,7 +156,6 @@
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
     <Compile Include="BD.cs" />
-    <Compile Include="Class Rapport\RapportNode.cs" />
     <Compile Include="Coeco.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,12 +242,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RapportProjet.aspx.cs">
-      <DependentUpon>RapportProjet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="RapportProjet.aspx.designer.cs">
-      <DependentUpon>RapportProjet.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Rapports\RapportNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Layout.Master" />
@@ -304,7 +298,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Class Rapport\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
