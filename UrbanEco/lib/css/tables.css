@@ -29,6 +29,10 @@
     font-weight: normal;
 }
 
+.btn-Approuver{
+    top: -5px;
+}
+
 .t_footer {
     background-color: #eaeaea;
 }

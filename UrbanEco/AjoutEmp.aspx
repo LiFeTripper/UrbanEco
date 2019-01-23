@@ -18,47 +18,28 @@
 
     <form runat="server">
         <%--PRÉNOM--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Prénom <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control" ></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+        
+        <div class="form-group">
+        <label for="Tbx_Prenom" class="bmd-label-floating">Prénom</label>
+        <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control" ></asp:TextBox>
         </div>
 
         <%--NOM--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Nom <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+
+        <div class="form-group">
+            <label for="Tbx_Nom" class="bmd-label-floating">Nom</label>
+            <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
         </div>
 
+
         <%--TYPE--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Type d'employé <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:DropDownList ID="Ddl_TypeEmp" runat="server" DataSourceID="LinqTypeEmp" DataTextField="nomType" DataValueField="idType" class="form-control"></asp:DropDownList>
-                        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqTypeEmp" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_TypeEmploye"></asp:LinqDataSource>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>
+         <div class="form-group">
+            <label for="exampleSelect1" class="bmd-label-floating">Type d'employé</label>
+            <asp:DropDownList ID="Ddl_TypeEmp" runat="server" DataSourceID="LinqTypeEmp" DataTextField="nomType" DataValueField="idType" class="form-control"></asp:DropDownList>
+            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqTypeEmp" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_TypeEmploye"></asp:LinqDataSource>
+          </div>
+
+
 
         <%--no tel--%>
         <%--<div class="form-group mb-4 col-6 mx-auto">
