@@ -108,8 +108,15 @@ namespace UrbanEco
                     }
                 } else if (rptItem is tbl_Employe) {
                     tbl_Employe empl = (tbl_Employe)rptItem;
-                    if (empl.idEmploye != empConnected.idEmploye) 
+                    if (empl.idEmploye != empConnected.idEmploye) {
+                        foreach (tbl_FeuilleTemps item in empl.tbl_FeuilleTemps) {
+                            if (!(bool)item.tbl_Projet.approbation || item.tbl_Projet.idEmployeResp != empConnected.idEmploye) {
+                                return false;
+                            }
+                        }
+
                         return true;
+                    }
                 }
             }
 
