@@ -341,31 +341,22 @@ namespace UrbanEco
 
         protected void btn_generer_Click(object sender, EventArgs e)
         {
-            tbl_Projet projet = null;
-            List<tbl_Employe> employes = new List<tbl_Employe>();
-            List<tbl_ProjetCat> categories = new List<tbl_ProjetCat>();
-
-            DateTime dateDebut;
-            DateTime dateFin;
-
-            int idProjet = ConvertValueToInt(lst_projet.Items[lst_projet.SelectedIndex].Value);
-
-            if(idProjet <= -1)
-            {
-                alert_failed.Visible = true;
-                return;
-            }
-
             CoecoDataContext ctx = new CoecoDataContext();
 
-            dateDebut = DateTime.Parse(date_debut.Value);
-            dateFin = DateTime.Parse(date_fin.Value);
+            DateTime dateDebut = DateTime.Parse(date_debut.Value);
+            DateTime dateFin = DateTime.Parse(date_fin.Value);
 
-            projet = ctx.tbl_Projet.Where(p => p.idProjet == idProjet).First( );
+            // Loop through all projets
+            List<tbl_Projet> projets = ctx.tbl_Projet.Where(p => SelectedProjets.Contains(p.idProjet)).Distinct().ToList();
+            foreach(tbl_Projet projet in projets)
+            {
+                RapportNode proj = new RapportNode(projet.titre, new TimeSpan(0, 0, 0));
+            }
 
-            employes = ctx.tbl_Employe.Where(emp => SelectedEmployes.Contains(emp.idEmploye)).Distinct().ToList();
 
-            categories = ctx.tbl_ProjetCat.Where(cat => SelectedCategories.Contains(cat.idProjetCat)).Distinct().ToList();
+            List<tbl_Employe> employes = ctx.tbl_Employe.Where(emp => SelectedEmployes.Contains(emp.idEmploye)).Distinct().ToList();
+
+            List<tbl_ProjetCat> categories = ctx.tbl_ProjetCat.Where(cat => SelectedCategories.Contains(cat.idProjetCat)).Distinct().ToList();
 
             
         }

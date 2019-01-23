@@ -109,6 +109,12 @@
     <Content Include="ModifCategorie.aspx" />
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
+<<<<<<< HEAD
+=======
+    <Content Include="Rapport.aspx" />
+    <Content Include="Rapports\Rapport.css" />
+    <Content Include="Rapports\Rapport.js" />
+>>>>>>> 6d17db790d5798562d6b62588a3f0bbd2e39aa45
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
