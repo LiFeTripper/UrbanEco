@@ -86,7 +86,6 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
-<%--                        <asp:RegularExpressionValidator ID="heureCheck" runat="server" Display="Dynamic" ControlToValidate="tbx_nbHeure" ErrorMessage="Nombre d'heure invalide" ValidationExpression="^-?([0-9]{0,2}(\.[0-5])?|100(\.00?)?)$"></asp:RegularExpressionValidator>--%>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
