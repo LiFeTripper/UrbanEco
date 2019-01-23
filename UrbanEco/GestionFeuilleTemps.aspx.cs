@@ -184,7 +184,6 @@ namespace UrbanEco
         {
             try
             {
-
                 var SC = from tblSC in cdc.tbl_ProjetCat
                          where tblSC.idProjetCat == FT.idCat
                          select tblSC;
