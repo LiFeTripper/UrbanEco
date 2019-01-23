@@ -117,7 +117,6 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr style="border-bottom: 5px solid #23282e" visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
-                                <th scope="col">ID</th>
                                 <th scope="col">Titre</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Status du projet</th>
@@ -134,9 +133,6 @@
             <%--ITEMTEMPLATE--%>
             <ItemTemplate>
                 <tr style="border-bottom: 1px solid #23282e" visible='<%# (Boolean.Parse(Eval("archiver").ToString()) && Chkbx_Inactif.Checked) %>' runat="server">
-                    <td class="align-middle">
-                        <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("idProjet") %>' Font-Bold="true" />
-                    </td>
                     <td>
                         <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
                     </td>
@@ -165,7 +161,6 @@
                 </tbody>
                 <thead class="thead-dark">
                     <tr style="border-top: 5px solid #23282e" visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
-                        <th scope="col">ID</th>
                         <th scope="col">Titre</th>
                         <th scope="col">Description</th>
                         <th scope="col">Status du projet</th>

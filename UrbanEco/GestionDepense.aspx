@@ -49,7 +49,7 @@
                     <td />
                     <td />
                     <td>
-                        <asp:Button ID="btn_approverEmploye" CssClass="btn btn-md btn-primary" runat="server" Text="Approuver l'employé" OnClick="btn_approverEmploye_Click" CommandArgument='<%#Eval("idEmploye") %>'/>
+                        <asp:Button ID="btn_approverEmploye" CssClass="btn btn-md btn-primary" Visible='<%# IsAdmin() %>' runat="server" Text="Approuver l'employé" OnClick="btn_approverEmploye_Click" CommandArgument='<%#Eval("idEmploye") %>'/>
                     </td>
                 </tr>
 
@@ -74,7 +74,7 @@
                             <td>
 
                                 <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%# Eval("idDepense")%>' />
-                                <asp:ImageButton CssClass="btn-option" ID="Btn_Approve" runat="server" src="Resources/checkmark.png" OnClick="Btn_Approve_Click" CommandArgument='<%# Eval("idDepense")%>' />
+                                <asp:ImageButton CssClass="btn-option" Visible='<%# IsAdmin() %>' ID="Btn_Approve" runat="server" src="Resources/checkmark.png" OnClick="Btn_Approve_Click" CommandArgument='<%# Eval("idDepense")%>' />
                             </td>
                         </tr>
                     </ItemTemplate>

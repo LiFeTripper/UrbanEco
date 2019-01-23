@@ -88,7 +88,7 @@ namespace UrbanEco
 
             var query = from tblEmp in context.tbl_Employe
                         join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-                        //where tblDep.approuver == approuver
+                        where tblEmp.username != "admin"
                         select tblEmp;
 
             if (query.Count() == 0)
