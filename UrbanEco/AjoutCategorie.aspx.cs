@@ -42,7 +42,7 @@ namespace UrbanEco
 
         protected void Btn_AjoutSousProjet_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Mode=*");
+            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Mode=*" + "&AE=true");
         }
 
         protected void Btn_ModifSousProjet_Click(object sender, ImageClickEventArgs e)
@@ -75,7 +75,7 @@ namespace UrbanEco
             //Ramassage du CommandArgument du bouton
             string commandArgument = button.CommandArgument;
 
-            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Cat=" + commandArgument + "&Mode=*");
+            Response.Redirect("ModifCategorie.aspx?Prj=" + argument + "&Cat=" + commandArgument + "&Mode=*" + "&AE=true");
         }
     }
 }
