@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutEmp.aspx.cs" Inherits="UrbanEco.AjoutEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" type="text/css" href="lib/css/ajoutEmpForm.css" />
     <style>
         .asp-table {
             table-layout: fixed;
@@ -18,140 +19,66 @@
 
     <form runat="server">
         <%--PRÉNOM--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Prénom <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        
-                        <asp:TextBox ID="Tbx_Prenom" runat="server" class="form-control" ></asp:TextBox>
-                        <asp:Label ID="lb_erreurPrenom" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+        <div class="form-group">
+            <label for="Tbx_Prenom" class="bmd-label-floating">Prénom</label>
+            <asp:TextBox ID="Tbx_Prenom" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+            <asp:Label ID="lb_erreurPrenom" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
         </div>
 
         <%--NOM--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Nom <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="Tbx_Nom" runat="server" class="form-control"></asp:TextBox>
-                        <asp:Label ID="lb_erreurNom" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+        <div class="form-group">
+            <label for="Tbx_Nom" class="bmd-label-floating">Nom</label>
+            <asp:TextBox ID="Tbx_Nom" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+            <asp:Label ID="lb_erreurNom" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
         </div>
 
+        <%--email--%>
+        <div class="form-group spantwo">
+            <label for="Tbx_email" class="bmd-label-floating">Courriel</label>
+            <asp:TextBox ID="Tbx_email" runat="server" CssClass="form-control" type="email"></asp:TextBox>
+        </div>
+
+        <%--Username--%>
+        <div class="form-group">
+            <label for="Tbx_username" class="bmd-label-floating">Nom d'usager</label>
+            <asp:TextBox ID="Tbx_username" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+            <asp:Label ID="lb_erreurUsername" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
+        </div>
+
+        <%--password--%>
+        <div class="form-group">
+            <label for="Tbx_password" class="bmd-label-floating">Mot De Passe</label>
+            <asp:TextBox ID="Tbx_password" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+        </div>
 
         <%--TYPE--%>
          <div class="form-group">
-            <label for="exampleSelect1" class="bmd-label-floating">Type d'employé</label>
+            <label for="Ddl_TypeEmp" class="bmd-label-floating">Type d'employé</label>
             <asp:DropDownList ID="Ddl_TypeEmp" runat="server" DataSourceID="LinqTypeEmp" DataTextField="nomType" DataValueField="idType" class="form-control"></asp:DropDownList>
             <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqTypeEmp" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_TypeEmploye"></asp:LinqDataSource>
           </div>
 
-
-
-        <%--no tel--%>
-        <%--<div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Numéro de téléphone
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="Tbx_noTel" runat="server" class="form-control"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>--%>
-
-        <%--email--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Adresse courriel
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="Tbx_email" runat="server" class="form-control"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>
-
-
-        <%--Username--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Nom d'utilisateur <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="Tbx_username" runat="server" class="form-control" ></asp:TextBox>
-                        <asp:Label ID="lb_erreurUsername" runat="server" Text="Le champ n'est pas valide" Visible="false" CssClass="alert-danger small"></asp:Label>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>
-
-        <%--password--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Mot de passe
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="Tbx_password" runat="server" class="form-control"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>
-
         <%--inactif--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <table style="width: 100% !important;">
-                <tr class="mb-3">
+        <div class="form-group monCheckbox">
+            <table>
+                <tr>
                     <%--CHECKBOX INACTIF OU ACTIF--%>
-                    <td style="width: 50%;">
-                        <label class="switch" style="float: right;">
+                    <td>
+                        <label class="switch">
                             <asp:CheckBox ID="Chkbx_Inactif" runat="server" />
                             <span class="slider round"></span>
                         </label>
                     </td>
                     <td>
-                        <h4 style="float: left;">Inactif</h4>
+                        <h5>Inactif</h5>
                     </td>
                 </tr>
             </table>
         </div>
 
         <%--btn--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableCell CssClass="col-md-4">
-                        <asp:Button CssClass="btn btn-lg btn-danger" Style="width: 100%;" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
-                    </asp:TableCell>
-                    <asp:TableCell CssClass="col-md-4">
-                            &nbsp;
-                    </asp:TableCell>
-                    <asp:TableCell CssClass="col-md-4">
-                        <asp:Button CssClass="btn btn-lg btn-success" Style="width: 100%;" ID="Btn_Enregistrer" runat="server" Text="Enregistrer" OnClick="Btn_Enregistrer_Click" />
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>
+        <asp:Button CssClass="btn btn-raised btn-success" ID="Btn_Enregistrer" runat="server" Text="Enregistrer" OnClick="Btn_Enregistrer_Click" />
+        <asp:Button type="button" CssClass="btn btn-raised btn-danger" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
 
     </form>
 </asp:Content>

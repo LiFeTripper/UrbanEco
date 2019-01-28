@@ -73,7 +73,7 @@
                 <%--REPEATER DES ACTIF--%>
                 <asp:Repeater ID="Rptr_EmployeActif" runat="server" DataSource='<%#Eval("tbl_Employe") %>'>
                     <ItemTemplate>
-                        <tr visible='<%# (!Boolean.Parse(Eval("inactif").ToString()) && !Chkbx_Inactif.Checked) %>' runat="server">
+                        <tr visible='<%# (!Boolean.Parse(Eval("inactif").ToString()) && !Chkbx_Inactif.Checked) && Eval("prenom").ToString() != "Administrateur" %>' runat="server">
                             <td></td>
 <%--                            <td>
                                 <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />
