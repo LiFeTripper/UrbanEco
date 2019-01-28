@@ -2,11 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="lib/css/ajoutEmpForm.css" />
-    <style>
-        .asp-table {
-            table-layout: fixed;
-        }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -56,7 +51,7 @@
             <label for="Ddl_TypeEmp" class="bmd-label-floating">Type d'employé</label>
             <asp:DropDownList ID="Ddl_TypeEmp" runat="server" DataSourceID="LinqTypeEmp" DataTextField="nomType" DataValueField="idType" class="form-control"></asp:DropDownList>
             <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqTypeEmp" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_TypeEmploye"></asp:LinqDataSource>
-          </div>
+        </div>
 
         <%--inactif--%>
         <div class="form-group monCheckbox">
