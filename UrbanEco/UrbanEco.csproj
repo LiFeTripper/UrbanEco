@@ -94,9 +94,6 @@
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
     <Content Include="lib\css\style.css" />
-    <Content Include="lib\js\bootstrap.bundle.js" />
-    <Content Include="lib\js\bootstrap.bundle.min.js" />
-    <Content Include="lib\js\bootstrap.js" />
     <Content Include="lib\js\bootstrap.min.js" />
     <Content Include="lib\js\jquery-3.3.1.min.js" />
     <Content Include="lib\js\popper.js" />
@@ -257,10 +254,6 @@
     <Content Include="lib\css\old\bootstrap-reboot.min.css.map" />
     <Content Include="lib\css\old\bootstrap.css.map" />
     <Content Include="lib\css\old\bootstrap.min.css.map" />
-    <Content Include="lib\js\bootstrap.bundle.js.map" />
-    <Content Include="lib\js\bootstrap.bundle.min.js.map" />
-    <Content Include="lib\js\bootstrap.js.map" />
-    <Content Include="lib\js\bootstrap.min.js.map" />
     <Content Include="lib\webfonts\fa-brands-400.eot" />
     <Content Include="lib\webfonts\fa-brands-400.ttf" />
     <Content Include="lib\webfonts\fa-brands-400.woff" />
