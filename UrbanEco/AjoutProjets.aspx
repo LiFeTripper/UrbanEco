@@ -41,7 +41,7 @@
 
     <form runat="server">
 
-        <%--ALERT FAILED AUTHENTICATION--%>
+        <%--ALERT PROJECT NAME EMPTY--%>
         <div runat="server" id="AlertDiv" visible="false" class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Attention!</strong>

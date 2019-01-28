@@ -98,22 +98,31 @@ namespace UrbanEco
 
                 ctx.tbl_Projet.InsertOnSubmit(tableProjet);
 
-                ctx.SubmitChanges();
-                //On retourne chercher notre ajout pour avoir son id 
-                var query_Projets = (from tblProjet in ctx.tbl_Projet
-                                    where tblProjet.titre == tblProjet.titre
-                                     orderby tblProjet.idProjet descending
-                                     select tblProjet).First();
+                if (Tbx_Titre.Text != "")
+                {
+                    ctx.SubmitChanges();
+                    //On retourne chercher notre ajout pour avoir son id 
+                    var query_Projets = (from tblProjet in ctx.tbl_Projet
+                                         where tblProjet.titre == tblProjet.titre
+                                         orderby tblProjet.idProjet descending
+                                         select tblProjet).First();
 
-                //On créé un ligne dans la table associé a ce projet 
-                tbl_ProjetCat tableCat = new tbl_ProjetCat();
-                tableCat.titre = "Général";
-                tableCat.idProjet = query_Projets.idProjet;
+                    //On créé un ligne dans la table associé a ce projet 
+                    tbl_ProjetCat tableCat = new tbl_ProjetCat();
+                    tableCat.titre = "Général";
+                    tableCat.idProjet = query_Projets.idProjet;
 
-                //On insert dans la table
-                ctx.tbl_ProjetCat.InsertOnSubmit(tableCat);
+                    //On insert dans la table
+                    ctx.tbl_ProjetCat.InsertOnSubmit(tableCat);
 
-                ctx.SubmitChanges();
+                    ctx.SubmitChanges();
+                }
+                else
+                {
+                    AlertDiv.Visible = true;
+                }
+
+                
             }
             //Modification dans la base de données
             else
@@ -143,9 +152,6 @@ namespace UrbanEco
             {
                 AlertDiv.Visible = true;
             }
-            
-            
-
         }
 
         protected void Btn_Annuler_Click(object sender, EventArgs e)
