@@ -65,7 +65,9 @@
                                 <optgroup label='Bureau'>
                                     <asp:Repeater runat="server" ID="RepBureau">
                                         <ItemTemplate>
+                                            
                                             <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                                
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </optgroup>

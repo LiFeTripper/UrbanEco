@@ -19,7 +19,7 @@
         <%--Employé--%>
         <div id="divEmp" runat="server" visible="false" class="form-group">
             <label for="ddlEmp" class="bmd-label-floating">Nom de l'employé</label>
-            <asp:DropDownList ID="ddlEmp" name="idEmploye" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" class="form-control"></asp:DropDownList>
+            <asp:DropDownList ID="ddlEmp" name="idEmploye" runat="server" OnSelectedIndexChanged="ddlEmp_SelectedIndexChanged" DataTextField="text" DataValueField="value" AutoPostBack="true" class="form-control"></asp:DropDownList>
         </div>
 
         <%--Projet--%>
