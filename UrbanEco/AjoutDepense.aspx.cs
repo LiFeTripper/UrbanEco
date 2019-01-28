@@ -30,8 +30,6 @@ namespace UrbanEco
             //Empecher la page de remonter a chaque action
             Page.MaintainScrollPositionOnPostBack = true;
 
-            fupl_facture.Attributes["onchange"] = "UploadImage(this)";
-
             if (!IsPostBack)
             {
 
@@ -506,24 +504,6 @@ namespace UrbanEco
                     prixTotalKm.InnerText = prixtotal;
                 }
             }
-        }
-
-        protected void btn_upload_Click(object sender, EventArgs e) {
-            /*string folderPath = Server.MapPath("~/Files/");
-
-            //Check whether Directory (Folder) exists.
-            if (!Directory.Exists(folderPath)) {
-                //If Directory (Folder) does not exists Create it.
-                Directory.CreateDirectory(folderPath);
-            }
-
-            //Save the File to the Directory (Folder).
-            fupl_facture.SaveAs(folderPath + Path.GetFileName(fupl_facture.FileName));
-
-            //Display the Picture in Image control.
-            img_facture.ImageUrl = "~/Files/" + Path.GetFileName(fupl_facture.FileName);*/
-
-            img_facture.ImageUrl = fupl_facture.PostedFile.FileName;
         }
     }
 }

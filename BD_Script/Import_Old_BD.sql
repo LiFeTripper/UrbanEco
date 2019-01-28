@@ -6,15 +6,15 @@ GO
 
 
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (36, 'Employé', 'Supprimer', '', 2, 1, 'suppr')
+ VALUES (36, 'Employe', 'Supprimer', '', 2, 1, 'suppr')
 
 INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (64, 'Employé', 'Supprimer', '', 2, 1, '@!#$')
+ VALUES (64, 'Employe', 'Supprimer', '', 2, 1, '@!#$')
 
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (69, 'Employé', 'Supprimer', '', 2, 1, '#@!@')
+ VALUES (69, 'Employe', 'Supprimer', '', 2, 1, '#@!@')
 
--- IMPORTER LES EMPLOYÉS AVEC LEURS USER
+-- IMPORTER LES EMPLOYï¿½S AVEC LEURS USER
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
 	SELECT emp.id, emp.prenom, emp.nom, emp.email, 2 as idTypeEmpl, 
 	(CASE WHEN us.sttus = 0 THEN 1 else 0 END) as Inactif , us.usr AS username
@@ -34,7 +34,7 @@ GO
 
 -- Admin ID = 8
  INSERT INTO tbl_Projet (idProjet, titre, description, approbation, idStatus, idEmployeResp, tempsAllouer, dateDebut, dateFin, archiver)
-VALUES (13, 'Projet supprimé', '', 0, 2, 8, 0, '1900-01-01','1900-01-01', 1)
+VALUES (13, 'Projet supprime', '', 0, 2, 8, 0, '1900-01-01','1900-01-01', 1)
 
 
 -- IMPORTER LES PROJETS
@@ -53,7 +53,7 @@ GO
 Set Identity_Insert tbl_ProjetCat ON
 GO
 
--- IMPORTER LES CATÉGORIES DE PROJETS
+-- IMPORTER LES CATï¿½GORIES DE PROJETS
  INSERT INTO tbl_ProjetCat (idProjetCat, idProjet, idCatMaitre, titre, description)
 	SELECT projCat.id, projCat.idprojet, (CASE WHEN projCat.idcatmaitre = 0 THEN NULL else projCat.idcatmaitre END) AS idCatMaitre,
 	 projCat.titre, projCat.description 
@@ -65,7 +65,7 @@ GO
 Set Identity_Insert tbl_ProjetCatEmploye ON
 GO
 
--- IMPORTER LES CATÉGORIES DE PROJETS
+-- IMPORTER LES CATï¿½GORIES DE PROJETS
  INSERT INTO tbl_ProjetCatEmploye (idPCE, idProjet, idCategorie, idEmploye)
 	SELECT catPerso.id, catPerso.idprojet, catPerso.idcat, catPerso.idperso 
 	FROM coeco.dbo.tblprojetcatperso AS catPerso
@@ -76,7 +76,7 @@ GO
 Set Identity_Insert tbl_ProjetCatEmploye OFF
 GO
 
---SORTIR LES ID DES EMPLOYÉS QUI NE SONT PAS PRÉSENT DANS LES CATÉGORIES
+--SORTIR LES ID DES EMPLOYï¿½S QUI NE SONT PAS PRï¿½SENT DANS LES CATï¿½GORIES
 --SELECT * FROM coeco.dbo.tblprojetcatperso AS c
 --WHERE 1=1
 --AND c.tbl = 'tblemploye'
@@ -88,7 +88,7 @@ GO
 DELETE FROM coeco.dbo.tblheure
 WHERE idCat IN (56, 58, 378)
 
--- IMPORTER LES CATÉGORIES DE PROJETS
+-- IMPORTER LES CATï¿½GORIES DE PROJETS
  INSERT INTO tbl_FeuilleTemps (idFeuille, idProjet, idCat, idEmploye, nbHeure, commentaire, noSemaine, dateCreation, approuver)
 	SELECT id, idprojet, idcat, idperso, temps, c.note, 0 AS noSemaine, (CASE WHEN c.dateEffect IS NULL THEN c.dateInsc else c.dateEffect END)AS dateCreation, 1 AS approuver 
 	FROM coeco.dbo.tblheure AS c
@@ -106,5 +106,5 @@ GO
 --WHERE idcat NOT IN (SELECT id FROM coeco.dbo.tblprojetcat)
 
 
-SELECT TOP 300 * FROM tbl_FeuilleTemps
-ORDER BY idFeuille DESC, dateCreation
+--SELECT TOP 300 * FROM tbl_FeuilleTemps
+--ORDER BY idFeuille DESC, dateCreation
