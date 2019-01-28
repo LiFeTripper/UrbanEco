@@ -51,7 +51,7 @@
         </div>
 
         <%--DIV DES EMPLOYÉS--%>
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="divAjoutEmp">
+        <div class="form-group mb-4 col-6 mx-auto" id="divAjoutEmp" runat="server" >
             <asp:Table CssClass="asp-table mx-auto" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control col-lg-12" style="text-align:center;">

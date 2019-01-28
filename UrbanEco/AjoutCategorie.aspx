@@ -25,14 +25,14 @@
             <HeaderTemplate>
                 <div class="table-responsive">
                     <table class="table">
-                        <thead class="thead-dark">
-                            <tr style="border-bottom: 5px solid #23282e" runat="server">
+                        <thead>
+                            <tr  runat="server">
                                 <%--<th scope="col">ID</th>--%>
                                 <th scope="col">Sous-Projet Niveau 1</th>
                                 <th scope="col">Sous-Projet Niveau 2</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">
-                                    <asp:Button class="btn btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />
+                                    <asp:Button class="btn btn-raised btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />
                                 </th>
                             </tr>
                         </thead>
@@ -44,15 +44,15 @@
             <ItemTemplate>
 
                 <%--LIGNE DU REPEATER--%>
-                <tr style="border-bottom: 1px solid #23282e" runat="server" class="table-secondary">
+                <tr  class="table-SousCategorie" runat="server">
                     <td>
-                        <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
+                        <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' />
                     </td>
                     <td>
                         <%--TD VIDE CAR PAS UNE SOUS-CATÉGORIE--%>
                     </td>
                     <td>
-                        <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true" />
+                        <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>'  />
                     </td>
                     <%--BOUTON AJOUT SOUS-CAT POUR CETTE CATEGORIE--%>
                     <td>
@@ -63,15 +63,15 @@
 
                 <asp:Repeater ID="Rptr_SousCat" runat="server" DataSource='<%#Eval("tbl_ProjetCat2") %>'>
                     <ItemTemplate>
-                        <tr style="border-bottom: 1px solid #23282e" runat="server">
+                        <tr runat="server">
                             <td>
                                 <%--TD VIDE CAR PAS UNE CATÉGORIE--%>
                             </td>
                             <td>
-                                <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_Titre" runat="server" Text='<%#Eval("titre") %>'/>
                             </td>
                             <td>
-                                <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_Description" runat="server" Text='<%#Eval("description") %>'/>
                             </td>
                             <%--BOUTON AJOUT D'EMPLOYÉ DANS SOUS-CATÉGORIE--%>
                             <td>
@@ -85,14 +85,14 @@
             <%--FOOTERTEMPLATE--%>
             <FooterTemplate>
                 </tbody>
-                <thead class="thead-dark">
-                    <tr style="border-bottom: 5px solid #23282e" runat="server">
+                <thead>
+                    <tr class="t_footer" runat="server">
                         <%--<th scope="col">ID</th>--%>
                         <th scope="col">Sous-Projet Niveau 1</th>
                         <th scope="col">Sous-Projet Niveau 2</th>
                         <th scope="col">Description</th>
                         <th scope="col">
-                            <asp:Button class="btn btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />
+                            <asp:Button class="btn btn-raised btn-success" ID="Btn_AjoutSousProjet" runat="server" Text="Ajout Sous-Projet N1" OnClick="Btn_AjoutSousProjet_Click" />
                         </th>
                     </tr>
                 </thead>
