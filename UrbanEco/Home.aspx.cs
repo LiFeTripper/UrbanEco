@@ -46,11 +46,19 @@ namespace UrbanEco
                 }
 
 
-                //tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+                tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
-                tbl_Employe empConnected = BD.GetEmploye(ctx, 8);
+                //tbl_Employe empConnected = BD.GetEmploye(ctx, 8);
 
-                Lbl_HelloUser.InnerText = "Bonjour " + empConnected.nom + " " + empConnected.prenom;
+                if(empConnected.nom == "" || empConnected.nom == null)
+                {
+                    Lbl_HelloUser.InnerText = "Bonjour " + empConnected.prenom;
+                }
+                else
+                {
+                    Lbl_HelloUser.InnerText = "Bonjour " + empConnected.prenom + " " + empConnected.nom;
+                }
+                
 
                 tbl_Employes = (from tbl in ctx.tbl_Employe
                                     select tbl).ToList();

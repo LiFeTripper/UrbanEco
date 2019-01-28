@@ -53,8 +53,10 @@ namespace UrbanEco
                             Chkbx_App.Checked = (bool)Projet.approbation;
                             Ddl_Status.SelectedIndex = (int)Projet.idStatus - 1;
                             Tbx_HeuresAlloues.Text = Projet.tempsAllouer.ToString();
-                            Cal_DateDebut.Value =  Layout.ToCalendarDate(Projet.dateDebut.Value);
-                            Cal_DateFin.Value = Layout.ToCalendarDate(Projet.dateFin.Value);
+                            if(Projet.dateDebut != null)
+                                Cal_DateDebut.Value =  Layout.ToCalendarDate(Projet.dateDebut.Value);
+                            if(Projet.dateFin != null)
+                                Cal_DateFin.Value = Layout.ToCalendarDate(Projet.dateFin.Value);
 
                             insert = false;
                         }
