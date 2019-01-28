@@ -79,6 +79,7 @@ namespace UrbanEco
 
                 //Remplissage des champs de la table temporaire avec les contrôles
                 tableProjet.titre = Tbx_Titre.Text;
+                string titre = Tbx_Titre.Text;
                 tableProjet.description = Tbx_Description.Text;
 
                 if (string.IsNullOrWhiteSpace(Tbx_HeuresAlloues.Text))
@@ -98,6 +99,23 @@ namespace UrbanEco
                 tableProjet.approbation = Chkbx_App.Checked;
 
                 ctx.tbl_Projet.InsertOnSubmit(tableProjet);
+
+                ctx.SubmitChanges();
+                //On retourne chercher notre ajout pour avoir son id 
+                var query_Projets = (from tblProjet in ctx.tbl_Projet
+                                    where tblProjet.titre == tblProjet.titre
+                                     orderby tblProjet.idProjet descending
+                                     select tblProjet).First();
+
+                //On créé un ligne dans la table associé a ce projet 
+                tbl_ProjetCat tableCat = new tbl_ProjetCat();
+                tableCat.titre = "Général";
+                tableCat.idProjet = query_Projets.idProjet;
+
+                //On insert dans la table
+                ctx.tbl_ProjetCat.InsertOnSubmit(tableCat);
+
+                ctx.SubmitChanges();
             }
             //Modification dans la base de données
             else

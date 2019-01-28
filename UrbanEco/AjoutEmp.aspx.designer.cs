@@ -31,16 +31,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_Prenom;
         
         /// <summary>
-        /// Contrôle lb_erreurPrenom.
+        /// lb_erreurPrenom control.
         /// </summary>
         /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_erreurPrenom;
         
         /// <summary>
-        /// Contrôle Tbx_Nom.
         /// Tbx_Nom control.
         /// </summary>
         /// <remarks>
@@ -50,32 +49,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_Nom;
         
         /// <summary>
-        /// Contrôle lb_erreurNom.
+        /// lb_erreurNom control.
         /// </summary>
         /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_erreurNom;
-        
-        /// <summary>
-        /// Contrôle Ddl_TypeEmp.
-        /// Ddl_TypeEmp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Ddl_TypeEmp;
-        
-        /// <summary>
-        /// LinqTypeEmp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqTypeEmp;
         
         /// <summary>
         /// Tbx_email control.
@@ -96,17 +76,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_username;
         
         /// <summary>
-        /// Contrôle lb_erreurUsername.
+        /// lb_erreurUsername control.
         /// </summary>
         /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_erreurUsername;
         
         /// <summary>
-        /// Contrôle Tbx_password.
-
         /// Tbx_password control.
         /// </summary>
         /// <remarks>
@@ -114,6 +92,24 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Tbx_password;
+        
+        /// <summary>
+        /// Ddl_TypeEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Ddl_TypeEmp;
+        
+        /// <summary>
+        /// LinqTypeEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqTypeEmp;
         
         /// <summary>
         /// Chkbx_Inactif control.
@@ -125,15 +121,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.CheckBox Chkbx_Inactif;
         
         /// <summary>
-        /// btn_annuler control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_annuler;
-        
-        /// <summary>
         /// Btn_Enregistrer control.
         /// </summary>
         /// <remarks>
@@ -141,5 +128,14 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Enregistrer;
+        
+        /// <summary>
+        /// btn_annuler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_annuler;
     }
 }

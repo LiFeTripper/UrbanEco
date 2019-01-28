@@ -13,6 +13,15 @@ namespace UrbanEco {
     public partial class ModifCategorie {
         
         /// <summary>
+        /// Contrôle Lbl_Titre.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Titre;
+        
+        /// <summary>
         /// Contrôle Tbx_Titre.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Tbx_Description;
+        
+        /// <summary>
+        /// Contrôle divAjoutEmp.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAjoutEmp;
         
         /// <summary>
         /// Contrôle RepBureau.
