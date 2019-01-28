@@ -7,12 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace UrbanEco
 {
+    
     public partial class ModifCategorie : System.Web.UI.Page
     {
         string projet;
         string categorie;
         string mode;
-
+        bool ajoutEmploye;
         static bool SousCat;
         static bool modif;
 
@@ -39,6 +40,10 @@ namespace UrbanEco
             projet = Request.QueryString["Prj"];
 
             categorie = Request.QueryString["Cat"];
+            
+
+            
+            divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
             //if(categorie == null)
             //{
             //    modif = false;
@@ -46,7 +51,7 @@ namespace UrbanEco
 
             //Recherche du mode dans l'adresse
             mode = Request.QueryString["Mode"];
-
+            
             if (!IsPostBack)
             {
                 //Reset du hiddenfield
@@ -114,6 +119,7 @@ namespace UrbanEco
 
                             Tbx_Titre.Text = query.titre;
                             Tbx_Description.Text = query.description;
+                            Lbl_Titre.Text =  "Sous-Projet " + query.titre;
                         }
 
                         //Ajoute la liste a Selected Employes
@@ -164,6 +170,7 @@ namespace UrbanEco
 
                             Tbx_Titre.Text = query.titre;
                             Tbx_Description.Text = query.description;
+                            Lbl_Titre.Text = "Sous-Projet " + query.titre;
                         }
 
                         //Ajoute la liste a Selected Employes
@@ -279,6 +286,7 @@ namespace UrbanEco
 
                 query.titre = Tbx_Titre.Text;
                 query.description = Tbx_Description.Text;
+                Lbl_Titre.Text = "Sous-Projet " + query.titre;
 
                 //Méthode de traitement des employés
                 AjoutSuppressionTableCatEmp();
