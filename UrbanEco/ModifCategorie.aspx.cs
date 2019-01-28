@@ -202,7 +202,7 @@ namespace UrbanEco
 
             //On remplie le côté gauche du multiselect avec la liste complète des employés
             var empBureau = from emp in context.tbl_Employe
-                            where emp.idTypeEmpl == 1 && emp.idEmploye != 4
+                            where emp.idTypeEmpl == 1 && emp.idEmploye != 4 && emp.prenom != "Administrateur"
                             orderby emp.nom, emp.prenom
                             select emp;
 

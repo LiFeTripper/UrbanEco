@@ -28,7 +28,7 @@
                         Nom de l'employé <b style="color:red">*</b>
                     </asp:TableHeaderCell>    
                     <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" name="idEmploye" ID="ddlEmp" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList CssClass="form-control" name="idEmploye" OnSelectedIndexChanged="ddlEmp_SelectedIndexChanged" ID="ddlEmp" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
