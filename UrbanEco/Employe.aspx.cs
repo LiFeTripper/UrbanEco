@@ -8,18 +8,22 @@ using System.Data;
 
 namespace UrbanEco
 {
-    
-
     public partial class Employe : System.Web.UI.Page
     {
         static bool showInactive = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Authentification.Autorisation(true, false, false))
+            {
+                Response.Redirect("Home.aspx");
+            }
+
+
             CoecoDataContext context = new CoecoDataContext();
 
             Chkbx_Inactif.Checked = showInactive;
-            //
+
         }
 
         protected void Chkbx_Inactif_CheckedChanged(object sender, EventArgs e)
