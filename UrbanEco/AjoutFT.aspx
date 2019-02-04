@@ -31,7 +31,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Ajout de Feuille de Temps</h1>
+    <h1>Ajout d'une feuille de temps</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
@@ -41,7 +41,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Employés <b style="color:red">*</b>
+                        Employé <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
@@ -54,7 +54,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Projets <b style="color:red">*</b>
+                        Projet <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
@@ -97,7 +97,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Commentaire
+                        Note
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <textarea id="txa_comments" cols="50" rows="4" runat="server" style="width: 100%;" class="form-control"></textarea>

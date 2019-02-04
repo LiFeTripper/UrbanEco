@@ -75,9 +75,6 @@
                     <ItemTemplate>
                         <tr visible='<%# (!Boolean.Parse(Eval("inactif").ToString()) && !Chkbx_Inactif.Checked) && Eval("prenom").ToString() != "Administrateur" %>' runat="server">
                             <td></td>
-<%--                            <td>
-                                <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />
-                            </td>--%>
                             <td>
                                 <asp:Label ID="lbl_Nom" runat="server" Text='<%#Eval("nom") %>' />
                             </td>
@@ -97,7 +94,7 @@
                 <%--REPEATER DES INACTIF--%>
                 <asp:Repeater ID="Rptr_EmployeInactif" runat="server" DataSource='<%#Eval("tbl_Employe") %>'>
                     <ItemTemplate>
-                        <tr visible='<%# ((Boolean.Parse(Eval("inactif").ToString()) && Chkbx_Inactif.Checked)%>' runat="server">
+                        <tr visible='<%# ((Boolean.Parse(Eval("inactif").ToString()) && Chkbx_Inactif.Checked))%>' runat="server">
                             <td></td>
 <%--                            <td>
                                 <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />

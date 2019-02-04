@@ -58,13 +58,14 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
-        /// Contrôle Ddl_TypeEmp.
+
+        /// Calendar control.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Ddl_TypeEmp;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
         
         /// <summary>
         /// Contrôle dateFormated.
@@ -76,6 +77,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
         
         /// <summary>
+<<<<<<< HEAD
         /// Contrôle Calendar.
         /// </summary>
         /// <remarks>
@@ -86,6 +88,9 @@ namespace UrbanEco {
         
         /// <summary>
         /// Contrôle tbx_typeDepense.
+=======
+        /// tbx_typeDepense control.
+>>>>>>> ec7c50d34142ec08d6bc0f908ff60cb426d1c2f2
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -103,6 +108,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
         
         /// <summary>
+<<<<<<< HEAD
         /// Contrôle tbl_kilo.
         /// </summary>
         /// <remarks>
@@ -113,6 +119,9 @@ namespace UrbanEco {
         
         /// <summary>
         /// Contrôle tbx_nbKm.
+=======
+        /// tbx_nbKm control.
+>>>>>>> ec7c50d34142ec08d6bc0f908ff60cb426d1c2f2
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.

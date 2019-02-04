@@ -15,6 +15,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Authentification.Autorisation(true, false, false))
+            {
+                Response.Redirect("Home.aspx");
+            }
+
             insert = false;
             //Recherche de l'projet dans l'adresse
             argument = Request.QueryString["Prj"];
@@ -57,7 +62,7 @@ namespace UrbanEco
                                 Cal_DateDebut.Value =  Layout.ToCalendarDate(Projet.dateDebut.Value);
                             if(Projet.dateFin != null)
                                 Cal_DateFin.Value = Layout.ToCalendarDate(Projet.dateFin.Value);
-
+                            ChkBx_Archivé.Checked = (bool)Projet.archiver;
                             insert = false;
                         }
                         break;

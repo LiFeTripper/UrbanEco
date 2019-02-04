@@ -59,17 +59,17 @@
                         <i class="fas fa-book"></i>
                         Projets
                     </a>
-                    <a href="GestionDepense.aspx">
-                        <i class="fas fa-dollar-sign"></i>
-                        Dépenses
-                    </a>
                     <a href="GestionFeuilleTemps.aspx">
                         <i class="fas fa-tasks"></i>
-                        Feuille de temps
+                        Feuilles de temps
                     </a>
                     <a href="Banqueheure.aspx">
                         <i class="fas fa-piggy-bank"></i>
-                        Banque d'heures
+                        Banques d'heures
+                    </a>
+                    <a href="GestionDepense.aspx">
+                        <i class="fas fa-dollar-sign"></i>
+                        Dépenses
                     </a>
                     <a href="Rapport.aspx">
                         <i class="fas fa-clipboard"></i>
