@@ -97,7 +97,7 @@ namespace UrbanEco
                         SousCat = false;
 
                         var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                        where emp.idProjet == prj
+                                        where emp.idProjet == prj && (bool)emp.tbl_Employe.inactif
                                         orderby emp.idEmploye
                                         select emp.idEmploye;
 
@@ -148,7 +148,7 @@ namespace UrbanEco
                         int cat = int.Parse(categorie);
 
                         var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                        where emp.idProjet == prj && emp.idCategorie == cat
+                                        where emp.idProjet == prj && emp.idCategorie == cat && (bool)emp.tbl_Employe.inactif
                                         orderby emp.idEmploye
                                         select emp.idEmploye;
 
@@ -202,12 +202,12 @@ namespace UrbanEco
 
             //On remplie le côté gauche du multiselect avec la liste complète des employés
             var empBureau = from emp in context.tbl_Employe
-                            where emp.idTypeEmpl == 1 && emp.idEmploye != 4 && emp.prenom != "Administrateur"
+                            where emp.idTypeEmpl == 1 && emp.idEmploye != 4 && emp.prenom != "Administrateur" && !(bool)emp.inactif
                             orderby emp.nom, emp.prenom
                             select emp;
 
             var empTerrain = from emp in context.tbl_Employe
-                             where emp.idTypeEmpl == 2 && emp.idEmploye != 4
+                             where emp.idTypeEmpl == 2 && emp.idEmploye != 4 && !(bool)emp.inactif
                              orderby emp.nom, emp.prenom
                              select emp;
 
@@ -370,7 +370,7 @@ namespace UrbanEco
             List<string> AllEmployesString = new List<string>();
 
             var empSelect = from emp in context.tbl_Employe
-                            where emp.idEmploye != 4
+                            where emp.idEmploye != 4 && !(bool)emp.inactif
                             orderby emp.idEmploye
                             select emp.idEmploye;
 

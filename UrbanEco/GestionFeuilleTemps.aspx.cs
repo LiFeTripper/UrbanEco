@@ -67,12 +67,12 @@ namespace UrbanEco
                     Rptr_EmployeNonApprouver.DataBind();
 
 
-                    rptr_EmployeApprouver.DataSource = null;
+                    /*rptr_EmployeApprouver.DataSource = null;
                     rptr_EmployeApprouver.DataSourceID = null;
                     rptr_EmployeApprouver.DataBind();
 
                     rptr_EmployeApprouver.DataSource = queryFTApprouver;
-                    rptr_EmployeApprouver.DataBind();
+                    rptr_EmployeApprouver.DataBind();*/
                 }
                 else
                 {
@@ -87,12 +87,12 @@ namespace UrbanEco
                     Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
                     Rptr_EmployeNonApprouver.DataBind();
 
-                    rptr_EmployeApprouver.DataSource = null;
+                    /*rptr_EmployeApprouver.DataSource = null;
                     rptr_EmployeApprouver.DataSourceID = null;
                     rptr_EmployeApprouver.DataBind();
 
                     rptr_EmployeApprouver.DataSource = queryFTApprouver;
-                    rptr_EmployeApprouver.DataBind();
+                    rptr_EmployeApprouver.DataBind();*/
 
                 }
             }
@@ -349,12 +349,12 @@ namespace UrbanEco
                 Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
                 Rptr_EmployeNonApprouver.DataBind();
 
-                rptr_EmployeApprouver.DataSource = null;
+                /*rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;
                 rptr_EmployeApprouver.DataBind();
 
                 rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
-                rptr_EmployeApprouver.DataBind();
+                rptr_EmployeApprouver.DataBind();*/
             }
             else
             {
@@ -369,12 +369,12 @@ namespace UrbanEco
                 Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
                 Rptr_EmployeNonApprouver.DataBind();
 
-                rptr_EmployeApprouver.DataSource = null;
+                /*rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;
                 rptr_EmployeApprouver.DataBind();
 
                 rptr_EmployeApprouver.DataSource = queryFTApprouver.Distinct();
-                rptr_EmployeApprouver.DataBind();
+                rptr_EmployeApprouver.DataBind();*/
             }
         }
 
@@ -469,10 +469,11 @@ namespace UrbanEco
 
         protected void chbx_approved_CheckedChanged(object sender, EventArgs e)
         {
+            return;
             CheckBox ch = ((CheckBox)sender);
 
-            rptr_EmployeApprouver.Visible = ch.Checked;
-            lbl_approved.Visible = ch.Checked;
+            //rptr_EmployeApprouver.Visible = ch.Checked;
+            //lbl_approved.Visible = ch.Checked;
 
             Rptr_EmployeNonApprouver.Visible = !ch.Checked;
             lbl_attente.Visible = !ch.Checked;
