@@ -104,7 +104,7 @@
         <div class="form-group" runat="server" id="km_html">
             <div class="form-group">
                 <label for="tbl_kilo" class="bmd-label-floating">Kilométrage</label>
-                <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server"  OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true" TextMode="Number"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server"  OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false" TextMode="Number"></asp:TextBox>
             </div>
 
             <div class="form-group">
@@ -113,6 +113,9 @@
 
             <div class="form-group">
                 <div runat="server" id="prixTotalKm"></div>
+            </div>
+            <div>
+                 <asp:Button CssClass="btn btn-lg btn-info" ID="btnCalculer" runat="server" Text="Calculer"  />
             </div>
         </div>
         
@@ -127,7 +130,7 @@
                         Montant <b style="color:red">*</b>
                     </asp:TableHeaderCell>  
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"  TextMode="Number"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false"  TextMode="Number"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>

@@ -267,11 +267,11 @@ namespace UrbanEco
 
                 feuilleTemps.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 feuilleTemps.nbHeure = float.Parse(tbx_nbHeure.Text.Replace(',','.'));
-                if (Request.QueryString["FT"] == "New")
-                {
+                //if (Request.QueryString["FT"] == "New")
+                //{
                     feuilleTemps.dateCreation = DateTime.Parse(DateCreation.Value);
                     feuilleTemps.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
-                }           
+                //}           
 
                 feuilleTemps.commentaire = txa_comments.Value;
 
@@ -321,16 +321,9 @@ namespace UrbanEco
             tbx_nbHeure.Text = ft.nbHeure.ToString();
             //tbx_nbHeure.Text = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
 
-            dateFormated.InnerText = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
-            DateCreation.Value = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
-            txa_comments.Value = ft.commentaire;
-            dateFormated.InnerText = DateCreation.Value.ToString();
-            
-        }
+            DateCreation.Value = Layout.ToCalendarDate(DateTime.Parse(ft.dateCreation.ToString()));
 
-        protected void ChangeDate()
-        {
-            dateFormated.InnerText = DateCreation.Value;
+            txa_comments.Value = ft.commentaire;
         }
 
         protected void ddl_employe_SelectedIndexChanged(object sender, EventArgs e)

@@ -16,6 +16,11 @@ namespace UrbanEco
 
             if (!IsPostBack)
             {
+                if (!Authentification.Autorisation(true, false, false))
+                {
+                    Response.Redirect("Home.aspx");
+                }
+
                 CoecoDataContext ctx = new CoecoDataContext();
 
                 var queryTypeDepBureau = from tbl in ctx.tbl_TypeDepense
