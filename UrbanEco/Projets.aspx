@@ -7,6 +7,7 @@
             width: 30px !important;
         }
     </style>
+    <title>Co-Éco - Projets</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">

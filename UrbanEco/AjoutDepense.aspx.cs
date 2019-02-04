@@ -85,7 +85,7 @@ namespace UrbanEco
 
                         foreach (var employes in allEmployes)
                         {
-                            listItemEmployes.Add(new ListItem(employes.nom + "," + employes.prenom, employes.idEmploye.ToString()));
+                            listItemEmployes.Add(new ListItem(employes.nom + ", " + employes.prenom, employes.idEmploye.ToString()));
                         }
 
                         ddlEmp.DataSource = listItemEmployes;
