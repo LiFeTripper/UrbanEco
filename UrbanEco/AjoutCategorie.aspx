@@ -7,6 +7,7 @@
         width: 30px !important;
     }
     </style>
+    <title>Co-Éco - Ajout de catégories</title>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">

@@ -58,8 +58,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
-
-        /// Calendar control.
+        /// Contrôle Calendar.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -77,8 +76,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
         
         /// <summary>
-
-        /// tbx_typeDepense control.
+        /// Contrôle tbx_typeDepense.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -94,9 +92,9 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
-        
 
-        /// tbx_nbKm control.
+        /// <summary>
+        /// Contrôle tbx_nbKm.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.

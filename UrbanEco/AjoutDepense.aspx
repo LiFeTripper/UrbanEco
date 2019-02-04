@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="lib/css/ajoutDepenseForm.css" />
+    <title>Co-Éco - Ajout de dépenses</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -10,11 +11,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server">
-
-        <%--EN-TËTE--%>
-        <div class="form-group spantwo">
-            <h3>Projet associé</h3>
-        </div>
 
         <%--Employé--%>
         <div id="divEmp" runat="server" visible="false" class="form-group">
@@ -94,12 +90,12 @@
 
         <%--EN-TËTE--%>
         <div class="spantwo">
-            <h3>Information sur la dépense</h3>
+            <h3>Informations sur la dépense</h3>
         </div>
 
         <%--Type de dépense--%>
         <div class="form-group" runat="server">
-            <label for="ddlEmp" class="bmd-label-floating">Type De Dépense</label>
+            <label for="ddlEmp" class="bmd-label-floating">Type de dépense</label>
             <asp:DropDownList ID="tbx_typeDepense" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" class="form-control" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
@@ -107,7 +103,7 @@
 
         <div class="form-group" runat="server" id="km_html">
             <div class="form-group">
-                <label for="tbl_kilo" class="bmd-label-floating">Kilomètrage</label>
+                <label for="tbl_kilo" class="bmd-label-floating">Kilométrage</label>
                 <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server"  OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true" TextMode="Number"></asp:TextBox>
             </div>
 
@@ -169,13 +165,13 @@
         <%--MESSAGES--%>
         <div class="form-group mb-4 col-6 mx-auto">
             <div class="alert alert-success" runat="server" id="alert_success" visible="false">
-                <strong>Succès!</strong>  Votre dépense a bien été ajouté !
+                <strong>Succès!</strong>  Votre dépense a bien été ajoutée !
             </div>
             <div class="alert alert-danger" runat="server" id="alert_failed" visible="false">
-                <strong>Erreur!</strong>  Votre dépense n'as pas pu être ajouté à la base de donnée !
+                <strong>Erreur!</strong>  Votre dépense n'as pas pu être ajoutée à la base de donnée !
             </div>
             <div class="alert alert-warning" runat="server" id="alert_warning" visible="false">
-                <strong>Attention!</strong>  Votre dépense a déjà été ajouté à la base de donnée !
+                <strong>Attention!</strong>  Votre dépense a déjà été ajoutée à la base de donnée !
             </div>
         </div>
         <%--BOUTON--%>
