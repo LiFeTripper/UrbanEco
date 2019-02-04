@@ -103,6 +103,6 @@
         </asp:Repeater>
 
         <%--DATASOURCE--%>
-        <asp:LinqDataSource ID="LinqEmploye" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_Employe" />
+        <asp:LinqDataSource ID="LinqEmploye" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_Employe" OrderBy="prenom, nom" />
     </form>
 </asp:Content>

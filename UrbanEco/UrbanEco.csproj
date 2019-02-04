@@ -155,6 +155,7 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Authentification.cs" />
     <Compile Include="Rapport.aspx.cs">
       <DependentUpon>Rapport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -29,6 +29,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             distinct = new List<Distinct>();
             Page.MaintainScrollPositionOnPostBack = true;
 
