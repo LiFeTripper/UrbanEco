@@ -254,7 +254,7 @@ namespace UrbanEco
 
 
                 feuilleTemps.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
-                feuilleTemps.nbHeure = float.Parse(tbx_nbHeure.Text);
+                feuilleTemps.nbHeure = float.Parse(tbx_nbHeure.Text.Replace(',','.'));
                 if (Request.QueryString["FT"] == "New")
                 {
                     feuilleTemps.dateCreation = DateTime.Parse(DateCreation.Value);
