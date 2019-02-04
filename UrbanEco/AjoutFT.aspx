@@ -31,11 +31,9 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Ajout de Feuille de Temps</h1>
+    <h1>Ajout d'une feuille de temps</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-
-
 
     <form runat="server" style="text-align: center;" class="container center col-12">
 
@@ -43,7 +41,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Employés <b style="color:red">*</b>
+                        Employé <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
@@ -52,11 +50,11 @@
             </asp:Table>
         </div>
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" >
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Projets <b style="color:red">*</b>
+                        Projet <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
@@ -85,8 +83,11 @@
                         Durée (hrs) <b style="color:red">*</b>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
+
                         <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
+
 <%--                        <asp:RegularExpressionValidator ID="heureCheck" runat="server" Display="Dynamic" ControlToValidate="tbx_nbHeure" ErrorMessage="Nombre d'heure invalide" ValidationExpression="^-?([0-9]{0,2}(\.[0-5])?|100(\.00?)?)$"></asp:RegularExpressionValidator>--%>
+
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -96,7 +97,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
-                        Commentaire
+                        Note
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <textarea id="txa_comments" cols="50" rows="4" runat="server" style="width: 100%;" class="form-control"></textarea>
@@ -110,7 +111,7 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow CssClass="col-md-12">
                     <asp:TableHeaderCell CssClass="form-control">
-                        <b style="color:red; float:right;">*</b><h5  id="dateFormated" runat="server"></h5>
+                        <b style="color: red; float: right;">*</b><h5 id="dateFormated" runat="server"></h5>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
                         <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" />
@@ -181,6 +182,6 @@
                 return day + " " + months[month - 1] + " " + year;;
             }
         </script>
-        
+
     </form>
 </asp:Content>

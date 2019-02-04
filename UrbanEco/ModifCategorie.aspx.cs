@@ -7,12 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace UrbanEco
 {
+    
     public partial class ModifCategorie : System.Web.UI.Page
     {
         string projet;
         string categorie;
         string mode;
-
+        bool ajoutEmploye;
         static bool SousCat;
         static bool modif;
 
@@ -39,6 +40,10 @@ namespace UrbanEco
             projet = Request.QueryString["Prj"];
 
             categorie = Request.QueryString["Cat"];
+            
+
+            
+            divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
             //if(categorie == null)
             //{
             //    modif = false;
@@ -46,7 +51,7 @@ namespace UrbanEco
 
             //Recherche du mode dans l'adresse
             mode = Request.QueryString["Mode"];
-
+            
             if (!IsPostBack)
             {
                 //Reset du hiddenfield
@@ -92,7 +97,7 @@ namespace UrbanEco
                         SousCat = false;
 
                         var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                        where emp.idProjet == prj
+                                        where emp.idProjet == prj && (bool)emp.tbl_Employe.inactif
                                         orderby emp.idEmploye
                                         select emp.idEmploye;
 
@@ -114,6 +119,7 @@ namespace UrbanEco
 
                             Tbx_Titre.Text = query.titre;
                             Tbx_Description.Text = query.description;
+                            Lbl_Titre.Text =  "Sous-Projet " + query.titre;
                         }
 
                         //Ajoute la liste a Selected Employes
@@ -142,7 +148,7 @@ namespace UrbanEco
                         int cat = int.Parse(categorie);
 
                         var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                        where emp.idProjet == prj && emp.idCategorie == cat
+                                        where emp.idProjet == prj && emp.idCategorie == cat && (bool)emp.tbl_Employe.inactif
                                         orderby emp.idEmploye
                                         select emp.idEmploye;
 
@@ -164,6 +170,7 @@ namespace UrbanEco
 
                             Tbx_Titre.Text = query.titre;
                             Tbx_Description.Text = query.description;
+                            Lbl_Titre.Text = "Sous-Projet " + query.titre;
                         }
 
                         //Ajoute la liste a Selected Employes
@@ -195,12 +202,12 @@ namespace UrbanEco
 
             //On remplie le côté gauche du multiselect avec la liste complète des employés
             var empBureau = from emp in context.tbl_Employe
-                            where emp.idTypeEmpl == 1 && emp.idEmploye != 4
+                            where emp.idTypeEmpl == 1 && emp.idEmploye != 4 && emp.prenom != "Administrateur" && !(bool)emp.inactif
                             orderby emp.nom, emp.prenom
                             select emp;
 
             var empTerrain = from emp in context.tbl_Employe
-                             where emp.idTypeEmpl == 2 && emp.idEmploye != 4
+                             where emp.idTypeEmpl == 2 && emp.idEmploye != 4 && !(bool)emp.inactif
                              orderby emp.nom, emp.prenom
                              select emp;
 
@@ -279,6 +286,7 @@ namespace UrbanEco
 
                 query.titre = Tbx_Titre.Text;
                 query.description = Tbx_Description.Text;
+                Lbl_Titre.Text = "Sous-Projet " + query.titre;
 
                 //Méthode de traitement des employés
                 AjoutSuppressionTableCatEmp();
@@ -362,7 +370,7 @@ namespace UrbanEco
             List<string> AllEmployesString = new List<string>();
 
             var empSelect = from emp in context.tbl_Employe
-                            where emp.idEmploye != 4
+                            where emp.idEmploye != 4 && !(bool)emp.inactif
                             orderby emp.idEmploye
                             select emp.idEmploye;
 

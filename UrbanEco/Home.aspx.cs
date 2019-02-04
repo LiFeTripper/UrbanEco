@@ -29,7 +29,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            distinct = new List<Distinct>();
+            
             Page.MaintainScrollPositionOnPostBack = true;
 
             if(!IsPostBack)
@@ -46,30 +46,20 @@ namespace UrbanEco
                 }
 
 
-                //tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+                tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
-                tbl_Employe empConnected = BD.GetEmploye(ctx, 8);
+                //tbl_Employe empConnected = BD.GetEmploye(ctx, 8);
 
-                Lbl_HelloUser.InnerText = "Bonjour " + empConnected.nom + " " + empConnected.prenom;
-
-                tbl_Employes = (from tbl in ctx.tbl_Employe
-                                    select tbl).ToList();
-
-
-                var queryProjetResponsable = from tbl in ctx.tbl_Projet
-                                             where (tbl.idEmployeResp == empConnected.idEmploye && tbl.idProjet != 4) || (empConnected.username.Equals("admin"))
-                                             select tbl;
-
-                if (queryProjetResponsable.Count() == 0)
+                if(empConnected.nom == "" || empConnected.nom == null)
                 {
-                    rpt_employe.Visible = false;
-                    lbl_resume.Visible = false;
-                    tbl_resume.Visible = false;
-                    return;
+                    Lbl_HelloUser.InnerText = "Bonjour " + empConnected.prenom;
                 }
-
-                rpt_employe.DataSource = queryProjetResponsable;
-                rpt_employe.DataBind();
+                else
+                {
+                    Lbl_HelloUser.InnerText = "Bonjour " + empConnected.prenom + " " + empConnected.nom;
+                }
+                
+                
 
 
                 DateTime today = DateTime.Today;
@@ -87,7 +77,7 @@ namespace UrbanEco
                 }
                 else
                 {
-                    lbl_resume.InnerText = "Résumé de la semaine";
+                    
 
                     //Admin connecté
                     if (empConnected.username.Equals("admin"))
@@ -195,8 +185,7 @@ namespace UrbanEco
                         weekInterval = IntervalDateFromWeekNumber(weekNB);
                         if (weekInterval == null)
                             return null;
-
-                        lbl_resume.InnerText = "Résumé de la semaine du " +  Layout.GetDateFormated(weekInterval[0]) + " au " + Layout.GetDateFormated(today);
+                        
                     }
                 }
                 if(weekInterval != null && weekInterval.Count == 0)

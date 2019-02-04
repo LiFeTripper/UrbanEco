@@ -115,7 +115,7 @@
         <div class="form-group mb-4 col-6 mx-auto">
             <hr style="width:100%; border:2px solid black;"/>
         </div>     
-
+        <%-- Mot de passe admin --%>
         <div class="form-group mb-4 col-6 mx-auto">
             <label for="tbl_taux" style="font-size: 20px;">Mot de passe administrateur</label>
             <asp:Table runat="server" ID="tbl_mdpAdmin" Style="width: 100%; table-layout:fixed;">

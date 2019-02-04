@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Win32.TaskScheduler;
 
 namespace UrbanEco
 {
@@ -13,14 +14,42 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+      
             //Sur chargement, vérification de l'authentification du user avec le cookie
             if (User.Identity.IsAuthenticated)
                 Response.Redirect("/Home.aspx");
+
         }
 
         protected void Btn_Signin_Click(object sender, EventArgs e)
         {
             ValidateUser();
+        }
+
+        protected void test()
+        {
+            // Get the service on the local machine
+            using (TaskService ts = new TaskService())
+            {
+                // Create a new task definition and assign properties
+                TaskDefinition td = ts.NewTask();
+                td.RegistrationInfo.Description = "Does something";
+
+
+                // Create a trigger that will fire the task at this time every other day
+                td.Triggers.Add(new TimeTrigger { StartBoundary = DateTime.Now });
+
+                // Create an action that will launch Notepad whenever the trigger fires
+                td.Actions.Add(new ExecAction("notepad.exe", "c:\test.log", null));
+
+                // Register the task in the root folder
+                ts.RootFolder.RegisterTaskDefinition(@"Test", td);
+
+                // Remove the task we just created
+                ts.RootFolder.DeleteTask("Test");
+
+                
+            }
         }
 
         protected void ValidateUser()
