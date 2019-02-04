@@ -108,17 +108,9 @@
         </div>
 
         <%--Type de dépense--%>
-        <div class="form-group mb-4 col-6 mx-auto" runat="server">
-            <asp:table CssClass="asp-table" runat="server" style="width: 100% !important;">
-                <asp:TableRow>    
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Type de dépense <b style="color:red">*</b>
-                    </asp:TableHeaderCell>    
-                    <asp:TableCell>
-                        <asp:DropDownList class="form-control" ID="tbx_typeDepense" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:table>
+        <div class="form-group" runat="server">
+            <label for="ddlEmp" class="bmd-label-floating">Type De Dépense</label>
+            <asp:DropDownList ID="tbx_typeDepense" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" class="form-control" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
 

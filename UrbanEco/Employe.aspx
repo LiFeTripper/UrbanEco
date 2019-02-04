@@ -103,13 +103,13 @@
                                 <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />
                             </td>--%>
                             <td>
-                                <asp:Label ID="lbl_Nom" runat="server" Text='<%#Eval("nom") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_Nom" runat="server" Text='<%#Eval("nom") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="lbl_Prenom" runat="server" Text='<%#Eval("prenom") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_Prenom" runat="server" Text='<%#Eval("prenom") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>' Font-Bold="true" />
+                                <asp:Label ID="lbl_noTel" runat="server" Text='<%#Eval("email") %>'/>
                             </td>
                             <td>
                                 <asp:ImageButton CssClass="btn-option" ToolTip="Modifier cet employé" ID="Btn_Modif" runat="server" src="Resources/pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%#Eval("idEmploye") %>'/>

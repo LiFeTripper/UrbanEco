@@ -56,7 +56,7 @@
 
         <%--Date de fin--%>
         <div class="form-group">
-            <label for="Cal_DateFin" class="bmd-label-floating">Date de début</label>
+            <label for="Cal_DateFin" class="bmd-label-floating">Date de fin</label>
             <input type="date"  runat="server" id="Cal_DateFin" class="form-control" />
         </div>
 
