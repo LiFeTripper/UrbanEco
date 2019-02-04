@@ -427,5 +427,20 @@ namespace UrbanEco
             return queryProjet.First();
         }
 
+        public static tbl_ProjetCat GetCategorieById(CoecoDataContext ctx, int idCat)
+        {
+            CoecoDataContext context = ctx;
+
+            var query = from tbl in context.tbl_ProjetCat
+                        where tbl.idProjetCat == idCat
+                        select tbl;
+            if(query.Count() == 0)
+            {
+                return null;
+            }
+
+            return query.First();
+        }
+
     }
 }

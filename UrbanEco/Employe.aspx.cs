@@ -19,7 +19,7 @@ namespace UrbanEco
             CoecoDataContext context = new CoecoDataContext();
 
             Chkbx_Inactif.Checked = showInactive;
-
+            //
         }
 
         protected void Chkbx_Inactif_CheckedChanged(object sender, EventArgs e)

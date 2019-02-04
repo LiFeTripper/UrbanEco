@@ -30,6 +30,8 @@ namespace UrbanEco
             //Empecher la page de remonter a chaque action
             Page.MaintainScrollPositionOnPostBack = true;
 
+            
+
             if (!IsPostBack)
             {
 
@@ -66,10 +68,14 @@ namespace UrbanEco
 
                     if(empConnected.username == "admin")
                     {
+                        
+
+
                         //Remplissage du dropdownlist d'employé
                         List<ListItem> listItemEmployes = new List<ListItem>();
 
                         var allEmployes = BD.GetAllEmployes(ctx);
+                        allEmployes = allEmployes.OrderBy(o => o.nom).ThenBy(o => o.prenom).ToList();
 
                         foreach (var employes in allEmployes)
                         {
@@ -186,7 +192,7 @@ namespace UrbanEco
 
                     foreach (tbl_ProjetCatEmploye item in query)
                     {
-                        ListItem categorie = new ListItem(item.tbl_ProjetCat.titre, item.idCategorie.ToString());
+                        ListItem categorie = new ListItem(BD.GetCategorieById(ctx, (int)BD.GetCategorieById(ctx, item.idCategorie).idCatMaitre).titre + " - " + item.tbl_ProjetCat.titre, item.idCategorie.ToString());
                         listeCategorieEmploye.Add(categorie);
                     }
 
@@ -414,15 +420,22 @@ namespace UrbanEco
 
             tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
-            var query = BD.GetProjetLinkedCategorieEmploye(ctx,projectID, empConnected.idEmploye);
+            var query = BD.GetProjetLinkedCategorieEmploye(ctx, projectID, empConnected.idEmploye);
+
+            if (empConnected.username == "admin")
+            {
+                //Connecté en admin
+                query = BD.GetProjetLinkedCategorieEmploye(ctx, projectID, int.Parse(ddlEmp.SelectedValue));
+            }
+
 
             List<ListItem> listeCategorieEmploye = new List<ListItem>();
             listeCategorieEmploye.Add(new ListItem("Aucune", (-1).ToString()));
 
             foreach (tbl_ProjetCatEmploye item in query)
             {
-                
-                ListItem categorie = new ListItem(item.tbl_ProjetCat.titre, item.idCategorie.ToString());
+                //Inséré la catégorie maitre en premier
+                ListItem categorie = new ListItem(BD.GetCategorieById(ctx, (int)BD.GetCategorieById(ctx, item.idCategorie).idCatMaitre).titre + " - " + item.tbl_ProjetCat.titre, item.idCategorie.ToString());
                 listeCategorieEmploye.Add(categorie);
             }
 
@@ -504,6 +517,18 @@ namespace UrbanEco
                     prixTotalKm.InnerText = prixtotal;
                 }
             }
+        }
+        protected void ddlEmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+            var query_Projets2 = BD.GetEmployeProjet(ctx, BD.GetEmploye(ctx, int.Parse(ddlEmp.SelectedValue)));
+
+            tbx_projet.DataSource = query_Projets2;
+            tbx_projet.DataBind();
+
+            //Insérer un text pour sélectionner le projet au début
+            tbx_projet.Items.Insert(0, "Veuillez sélectionner le projet");
+            tbx_projet.SelectedIndex = 0;
         }
     }
 }
