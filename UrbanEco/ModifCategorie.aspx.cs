@@ -45,8 +45,8 @@ namespace UrbanEco
             projet = Request.QueryString["Prj"];
 
             categorie = Request.QueryString["Cat"];
-            
 
+            AllEmployees();
             
             divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
             //if(categorie == null)
@@ -63,8 +63,6 @@ namespace UrbanEco
                 hiddenFieldEmploye.Value = String.Empty;
                 //Reset du hiddenfield
                 hiddenFieldTotal.Value = String.Empty;
-
-                AllEmployees();
 
                 int prj = int.Parse(projet);
 
@@ -331,42 +329,60 @@ namespace UrbanEco
                              select tbl.idProjetCat).First();
                 cat = query;
             }
-            
 
-            //DELETE 
-            //Liste d'employé non sélectionné
-            UnselectedEmployes = AllEmployes.Except(SelectedEmployes).ToList();
+            string[] deselectedEmployes = hiddenFieldEmployeDeselect.Value.Split(',');
 
-            tbl_ProjetCatEmploye TableCatEmp = new tbl_ProjetCatEmploye();
-
-            foreach (var emp in UnselectedEmployes)
+            foreach (string idEmplStr in deselectedEmployes)
             {
+                if (string.IsNullOrWhiteSpace(idEmplStr))
+                    continue;
+
+                int idEmpl = ConvertValueToInt(idEmplStr);
+
+                if (idEmpl <= 0)
+                    continue;
+
                 var query = from tbl in context.tbl_ProjetCatEmploye
-                            where tbl.idCategorie == cat && tbl.idEmploye == emp
+                            where tbl.idCategorie == cat && tbl.idEmploye == idEmpl
                             select tbl;
 
                 if (query.Count() == 1)
                     context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
             }
+
+            string[] selectedEmpl = hiddenFieldEmploye.Value.Split(',');
+
+            var emplSelected = selectedEmpl.Except(deselectedEmployes);
 
             //ADD
-            foreach (var emp in SelectedEmployes)
+            foreach (string idEmplStr in emplSelected)
             {
+                if (string.IsNullOrWhiteSpace(idEmplStr))
+                    continue;
+
+                int idEmpl = ConvertValueToInt(idEmplStr);
+
+                if (idEmpl <= 0)
+                    continue;
+
                 var query = from tbl in context.tbl_ProjetCatEmploye
-                            where tbl.idCategorie == cat && tbl.idEmploye == emp
+                            where tbl.idCategorie == cat && tbl.idEmploye == idEmpl
                             select tbl;
 
-                if (query.Count() == 1)
-                    context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
+                if (query.Count() == 0)
+                {     //context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
 
-                tbl_ProjetCatEmploye tableCatEmp = new tbl_ProjetCatEmploye();
+                    tbl_ProjetCatEmploye tableCatEmp = new tbl_ProjetCatEmploye();
 
-                tableCatEmp.idCategorie = cat;
-                tableCatEmp.idEmploye = emp;
-                tableCatEmp.idProjet = projet;
+                    tableCatEmp.idCategorie = cat;
+                    tableCatEmp.idEmploye = idEmpl;
+                    tableCatEmp.idProjet = projet;
 
-                context.tbl_ProjetCatEmploye.InsertOnSubmit(tableCatEmp);
+                    context.tbl_ProjetCatEmploye.InsertOnSubmit(tableCatEmp);
+                }
             }
+
+            context.SubmitChanges();
         }
 
         public void AllEmployees()
@@ -375,7 +391,7 @@ namespace UrbanEco
             List<string> AllEmployesString = new List<string>();
 
             var empSelect = from emp in context.tbl_Employe
-                            where emp.idEmploye != 4 && !(bool)emp.inactif
+                            where emp.idEmploye != 4
                             orderby emp.idEmploye
                             select emp.idEmploye;
 
