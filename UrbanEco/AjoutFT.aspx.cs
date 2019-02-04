@@ -92,12 +92,24 @@ namespace UrbanEco
 
             foreach (var employes in allEmployes)
             {
-                listItemEmployes.Add(new ListItem(employes.nom + "," + employes.prenom, employes.idEmploye.ToString()));
+                listItemEmployes.Add(new ListItem(employes.nom + ", " + employes.prenom, employes.idEmploye.ToString()));
+            }
+
+            List<ListItem> listCopy = new List<ListItem>();
+            foreach (ListItem item in listItemEmployes)
+                listCopy.Add(item);
+
+            listItemEmployes.Clear();
+
+            foreach (ListItem item in listCopy.OrderBy(item => item.Text))
+            {
+                listItemEmployes.Add(item);
             }
 
             ddl_employe.DataSource = null;
             ddl_employe.DataBind();
             ddl_employe.DataSource = listItemEmployes;
+            
             ddl_employe.DataBind();
 
             ddl_employe.Items.Insert(0, "Veuillez choisir un employé");

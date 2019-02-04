@@ -15,7 +15,7 @@ namespace UrbanEco
 
             IJobDetail job = JobBuilder.Create<EmailJobcs>().Build();
 
-            TimeOfDay time = TimeOfDay.HourMinuteAndSecondOfDay(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, DateTime.UtcNow.Second + 5);
+            TimeOfDay time = TimeOfDay.HourMinuteAndSecondOfDay(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, DateTime.UtcNow.Second);
 
             ITrigger trigger = TriggerBuilder.Create()
                 .WithDailyTimeIntervalSchedule
