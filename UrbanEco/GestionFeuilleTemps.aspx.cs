@@ -476,7 +476,7 @@ namespace UrbanEco
             //lbl_approved.Visible = ch.Checked;
 
             Rptr_EmployeNonApprouver.Visible = !ch.Checked;
-            lbl_attente.Visible = !ch.Checked;
+            //lbl_attente.Visible = !ch.Checked;
         }
 
         protected int GetWeekToYear(DateTime date)
