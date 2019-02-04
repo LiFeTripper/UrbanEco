@@ -115,13 +115,13 @@
             <asp:Table runat="server" CssClass="col-md-12" Style="margin-top:150px !important;">
                 <asp:TableRow>
                     <asp:TableCell Style="float: left; width: 50%;" >
-                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_attente" visible="true">En attente</h2>
-                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_approved" visible="false">Approuvées</h2>
+                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_attente" visible="true">Feuille de temps en attente</h2>
+                        <%--<h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_approved" visible="false">Approuvées</h2>--%>
                     </asp:TableCell>
-                    <asp:TableCell Style="float: left; width: 50%;">
+<%--                <asp:TableCell Style="float: left; width: 50%;">
                         <table style="width: 100% !important; float: left;">
                             <tr>
-                                <%--CHECKBOX INACTIF OU ACTIF--%>
+                                
                                 <td style="width: 30%;" class="mb-3">
                                     <label class="switch" style="float: right;">
                                         <asp:CheckBox runat="server" ID="chbx_approved" OnCheckedChanged="chbx_approved_CheckedChanged" AutoPostBack="true" />
@@ -133,7 +133,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </asp:TableCell>    
+                    </asp:TableCell> --%>   
                 </asp:TableRow>
             </asp:Table>
 
@@ -238,9 +238,8 @@
         </asp:Repeater>
 
         <%--CODE REPEATER DE FEUILLES DE TEMPS APPROUVÉES--%>
-        <asp:Repeater ID="rptr_EmployeApprouver" runat="server" visible="false">
+        <%--<asp:Repeater ID="rptr_EmployeApprouver" runat="server" visible="false">
 
-            <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
                 <div class="table-responsive">
                 <table class="table">
@@ -253,23 +252,22 @@
                         <th style="width: 20%" scope="col">Catégorie</th>
                         <th style="width: 17%" scope="col">Note</th>
                         <th style="width: 15%" scope="col">
-                            <%--<asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-secondary" runat="server" Text="Nouveau" />--%>
                         </th>
                     </tr>
                         </thead>
                         <tbody>
             </HeaderTemplate>
 
-            <%--ITEMTEMPLATE--%>
+            
             <ItemTemplate>
                 <tr>
                     <td>
                         <asp:Label ID="lbl_ID" runat="server" Text='<%# String.Format("{0} {1}", Eval("prenom"), Eval("nom")) %>' />
                     </td>
                 </tr>    
-                    <%--SECOND REPEATER DE FEUILLE DE TEMPS--%>
+                   
                     <asp:Repeater ID="Rptr_FeuilleTempsApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTemps_Load">
-                        <%--ITEMTEMPLATE--%>
+                        
                         <ItemTemplate>
                             <tr runat="server" visible='<%# ShowFT(Container.DataItem, "Approuver")%>'>
                                 <td></td>
@@ -294,7 +292,7 @@
                     </asp:Repeater>
             </ItemTemplate>
 
-            <%--FOOTERTEMPLATE--%>
+           
             <FooterTemplate>
                 </tbody>
                 <thead>
@@ -311,7 +309,7 @@
                 </table>
                 </div>
             </FooterTemplate>
-        </asp:Repeater>
+        </asp:Repeater>--%>
 
         <%--JAVASCRIPT--%>
         <script>
