@@ -69,7 +69,7 @@
                         <asp:Table CssClass="col-md-6 asp-table" style="float:left;" runat="server">
                             <asp:TableRow>
                                 <asp:TableHeaderCell CssClass="form-control">
-                        Date maximale
+                                    Date maximale
                                 </asp:TableHeaderCell>
                                 <asp:TableCell>
                                     <input class="form-control" type="date" id="Calendar2" style="margin: auto;" runat="server" />
@@ -358,6 +358,10 @@
 
             }
 
+            function MessageErreur(valeur) {
+                var params = valeur.split(";;;");
+                alert("Cet employé (" + params[0] + ") n'est plus associé au sous-projet (" + params[1] + ") du projet (" + params[2] + ").\n\nVeuillez réassigner l'employé au sous-projet pour réactiver la modification de cette feuille de temps. \nVous pourrez ensuite retirer l'employé de la catégorie à nouveau.\n\nMerci!");
+            }
 
             function FormatYear(yearString) {
 
@@ -374,7 +378,6 @@
 
                 return day + " " + months[month - 1] + " " + year;;
             }
-
         </script>
     </form>
 

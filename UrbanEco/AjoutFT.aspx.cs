@@ -333,22 +333,6 @@ namespace UrbanEco
             dateFormated.InnerText = DateCreation.Value;
         }
 
-
-        //Obtient l'id de l'empolòyé à l'aide de son nom et prénom séparé par une virgule
-        protected int GetIDEmp(string nomEmp)
-        {
-            CoecoDataContext ctx = new CoecoDataContext();
-
-            string[] nomEmpArray = nomEmp.Split(',');
-
-            var id = from tblEmp in ctx.tbl_Employe
-                     where tblEmp.nom == nomEmpArray[0]
-                     where tblEmp.prenom == nomEmpArray[1]
-                     select tblEmp.idEmploye;
-
-            return id.First();
-        }
-
         protected void ddl_employe_SelectedIndexChanged(object sender, EventArgs e)
         {
             CoecoDataContext ctx = new CoecoDataContext();
@@ -388,7 +372,7 @@ namespace UrbanEco
 
         protected void btn_annuler_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("GestionFeuilleTemps.aspx");
         }
 
         protected int GetWeekToYear(DateTime date)
