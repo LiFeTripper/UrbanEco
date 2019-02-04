@@ -57,7 +57,7 @@
                     <%--BOUTON AJOUT SOUS-CAT POUR CETTE CATEGORIE--%>
                     <td>
                         <asp:ImageButton CssClass="btn-option" ID="Btn_ModifSousProjet" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_ModifSousProjet_Click_1" CommandArgument='<%# Eval("idProjetCat")%>' />
-                        <asp:ImageButton CssClass="btn-option" ID="Btn_AjoutSSProjet" runat="server" src="Resources/folder_open.png" Style="margin-right: 10px;" OnClick="Btn_AjoutSSProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>'/>
+                        <asp:ImageButton CssClass="btn-option" ID="Btn_AjoutSSProjet" runat="server" src="Resources/add.ico" Style="margin-right: 10px;" OnClick="Btn_AjoutSSProjet_Click" CommandArgument='<%#Eval("idProjetCat") %>'/>
                     </td>
                 </tr>
 
