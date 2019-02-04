@@ -157,7 +157,7 @@
             selectableOptgroup: true,
             keepOrder: true,
             selectableHeader: "<div class='form-control'>Disponible</div>",
-            selectionHeader: "<div class='form-control'>Sélectionné</div>",
+            selectionHeader: "<div class='form-control'>Sélectionné(s)</div>",
         });
         //RÉUSSI
     </script>
