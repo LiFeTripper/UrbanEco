@@ -64,7 +64,7 @@
         <div class="form-group">
             <label for="Ddl_TypeEmp" class="bmd-label-floating">Responsable</label>
             <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="personne" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
-            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" TableName="tbl_Employe"></asp:LinqDataSource>
+            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" OrderBy="nom, prenom" Where="inactif == false" TableName="tbl_Employe"></asp:LinqDataSource>
         </div>
 
         <%--Approbation feuille de temps checkbox--%>
@@ -79,7 +79,7 @@
                         </label>
                     </td>
                     <td>
-                        <h5>Approbation</h5>
+                        <h6>Approbation des feuilles de temps par le responsable</h6>
                     </td>
                 </tr>
             </table>
@@ -98,7 +98,7 @@
                         </label>
                     </td>
                     <td>
-                        <h5>Archivé</h5>
+                        <h5>Inactif</h5>
                     </td>
                 </tr>
             </table>
