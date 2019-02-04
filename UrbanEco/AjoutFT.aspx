@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Ajout de feuille de temps" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutFT.aspx.cs" Inherits="UrbanEco.AjoutFT" %>
+﻿<%@ Page Title="Co-Éco" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutFT.aspx.cs" Inherits="UrbanEco.AjoutFT" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -29,6 +29,7 @@
             table-layout: fixed;
         }
     </style>
+    <title>Co-Éco - Ajout de feuilles de temps</title>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
     <h1>Ajout d'une feuille de temps</h1>
