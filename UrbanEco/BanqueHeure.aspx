@@ -11,7 +11,7 @@
     <form runat="server" style="text-align: center" class="container center col-12">
 
         <div class="form-group mb-4 col-6 mx-auto">
-            <h1 id="h1TitlePage" runat="server">Gestion de la Banque d'Heures</h1>
+            <h1 id="h1TitlePage" runat="server">Gestion de la banque d'heures de</h1>
         </div>
 
         <%--ALERTE--%>

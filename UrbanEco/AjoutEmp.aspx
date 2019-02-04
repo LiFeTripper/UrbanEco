@@ -42,7 +42,7 @@
 
         <%--password--%>
         <div class="form-group">
-            <label for="Tbx_password" class="bmd-label-floating">Mot De Passe</label>
+            <label for="Tbx_password" class="bmd-label-floating">Mot de passe</label>
             <asp:TextBox ID="Tbx_password" runat="server" CssClass="form-control" type="text"></asp:TextBox>
         </div>
 

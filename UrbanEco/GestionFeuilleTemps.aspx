@@ -68,7 +68,7 @@
                         <asp:Table CssClass="col-md-6 asp-table" style="float:left;" runat="server">
                             <asp:TableRow>
                                 <asp:TableHeaderCell CssClass="form-control">
-                        Date maximal
+                        Date maximale
                                 </asp:TableHeaderCell>
                                 <asp:TableCell>
                                     <input class="form-control" type="date" id="Calendar2" style="margin: auto;" runat="server" />
@@ -115,7 +115,7 @@
             <asp:Table runat="server" CssClass="col-md-12" Style="margin-top:150px !important;">
                 <asp:TableRow>
                     <asp:TableCell Style="float: left; width: 50%;" >
-                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_attente" visible="true">Feuille de temps en attente</h2>
+                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_attente" visible="true">Feuilles de temps en attente</h2>
                         <%--<h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_approved" visible="false">Approuvées</h2>--%>
                     </asp:TableCell>
 <%--                <asp:TableCell Style="float: left; width: 50%;">
