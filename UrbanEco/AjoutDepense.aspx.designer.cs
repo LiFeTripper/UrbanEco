@@ -58,13 +58,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
-        /// Ddl_TypeEmp control.
+        /// Calendar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Ddl_TypeEmp;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
         
         /// <summary>
         /// dateFormated control.
@@ -74,15 +74,6 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
-        
-        /// <summary>
-        /// Calendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
         
         /// <summary>
         /// tbx_typeDepense control.
@@ -101,15 +92,6 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
-        
-        /// <summary>
-        /// tbl_kilo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_kilo;
         
         /// <summary>
         /// tbx_nbKm control.
