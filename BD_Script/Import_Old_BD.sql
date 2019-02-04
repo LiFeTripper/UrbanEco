@@ -5,14 +5,14 @@ Set Identity_Insert tbl_Employe ON
 GO
 
 
- INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (36, 'Employe', 'Supprimer', '', 2, 1, 'suppr')
+ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
+ VALUES (36, 'Employe', 'Supprimer', '', 2, 1, '@#!@', '#!@@#$$')
 
-INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (64, 'Employe', 'Supprimer', '', 2, 1, '@!#$')
+INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
+ VALUES (64, 'Employe', 'Supprimer', '', 2, 1, '@!#$', '$#@@#$')
 
- INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
- VALUES (69, 'Employe', 'Supprimer', '', 2, 1, '#@!@')
+ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
+ VALUES (69, 'Employe', 'Supprimer', '', 2, 1, '#@!@', '%?%#@$$')
 
 -- IMPORTER LES EMPLOY�S AVEC LEURS USER
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
