@@ -17,7 +17,7 @@
     <form runat="server" style="text-align: center;" class="container center col-12">
 
         <%--Projet--%>
-        <div class="form-group mb-4 col-6 mx-auto">
+        <%--<div class="form-group mb-4 col-6 mx-auto">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">
@@ -28,7 +28,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-        </div>
+        </div>--%>
 
         <%-- Dates --%>
         <div class="row justify-content-center">
@@ -39,6 +39,8 @@
                 <input class="form-control" type="date" id="date_fin" runat="server" />
             </div>
         </div>
+
+        <asp:Button Text="text" runat="server" />
         
 
 
@@ -129,13 +131,13 @@
     </form>
 
     <script>
-        <%--var empSelected = document.getElementById('<%=hiddenFieldEmploye.ClientID%>').value.split(',');
+        var empSelected = document.getElementById('<%=hiddenFieldEmploye.ClientID%>').value.split(',');
 
         var catSelected = document.getElementById('<%=hiddenFieldCat.ClientID%>').value.split(',');
 
         var projetSelected = document.getElementById('<%=hiddenFieldProjet.ClientID%>').value.split(',');
 
-        function UpdateDateFormat() {
+        <%--function UpdateDateFormat() {
 
             var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
@@ -147,7 +149,7 @@
             var format = FormatYear(input.value);
 
             dateFormated.innerText = format;
-        }
+        }--%>
 
         function FormatYear(yearString) {
 
@@ -163,7 +165,7 @@
             var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
             return day + " " + months[month - 1] + " " + year;;
-        }--%>
+        }
 
         //ID du crisse de multi + class du css
 $('#empMultiSelect').multiSelect({

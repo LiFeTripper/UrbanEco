@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UrbanEco</RootNamespace>
-    <AssemblyName>UrbanEco</AssemblyName>
+    <AssemblyName>o</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -108,6 +108,8 @@
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
     <Content Include="Rapport.aspx" />
+    <Content Include="RapportPage.aspx" />
+    <Content Include="Rapports\rapportPage.css" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
     <Content Include="Resources\pencil.png" />
@@ -246,6 +248,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RapportPage.aspx.cs">
+      <DependentUpon>RapportPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RapportPage.aspx.designer.cs">
+      <DependentUpon>RapportPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Rapports\RapportNode.cs" />
   </ItemGroup>

@@ -23,7 +23,7 @@ namespace UrbanEco.Rapports
         public TimeSpan? NbHeure { get => this.nbHeure; set => this.nbHeure = value; }
 
         public List<RapportNode> Child {
-            get => this.child == null ? new List<RapportNode>() : this.child;
+            get => this.child == null ? this.child = new List<RapportNode>() : this.child;
             set => this.child = value;
         }
     }
