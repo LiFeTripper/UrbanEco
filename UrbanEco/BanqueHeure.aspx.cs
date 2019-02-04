@@ -462,8 +462,8 @@ namespace UrbanEco
             string[] nomEmpArray = nomEmp.Split(',');
 
             var id = from tblEmp in ctx.tbl_Employe
-                     where tblEmp.nom == nomEmpArray[0]
-                     where tblEmp.prenom == nomEmpArray[1]
+                     where tblEmp.nom == nomEmpArray[0].Trim()
+                     where tblEmp.prenom == nomEmpArray[1].Trim()
                      select tblEmp.idEmploye;
 
             return id.First();
@@ -510,7 +510,9 @@ namespace UrbanEco
 
             foreach (var emp in tblEmp)
             {
-                listEmp.Add(new ListItem(emp.nom + "," + emp.prenom, emp.idEmploye.ToString()));
+                if ((bool)!emp.inactif) {
+                    listEmp.Add(new ListItem(emp.nom + ", " + emp.prenom, emp.idEmploye.ToString()));
+                }
             }
 
             ddl_empBH.DataSource = null;
