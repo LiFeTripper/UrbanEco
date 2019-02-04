@@ -17,7 +17,7 @@
 
         <%--EN-TËTE--%>
         <div class="form-group mb-4 col-6 mx-auto" style="text-align:center;">
-            <h3>Paramètre Administrateur</h3>
+            <h3>Paramètres Administrateur</h3>
         </div>        
         <div class="form-group mb-4 col-6 mx-auto">
             <label for="tbl_taux" style="font-size:20px;">Taux de kilomètrage</label>
