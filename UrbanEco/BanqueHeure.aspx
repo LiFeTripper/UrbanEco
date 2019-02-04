@@ -1,6 +1,7 @@
 <%@ Page Title="Gestion de la banque d'heures" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Co-Éco - Banque d'heures</title>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">

@@ -29,6 +29,7 @@
             table-layout: fixed;
         }
     </style>
+    <title>Co-Éco - Ajout de feuilles de temps</title>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
     <h1>Ajout d'une feuille de temps</h1>
