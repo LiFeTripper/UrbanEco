@@ -29,6 +29,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Authentification.Autorisation(true, false, false))
+            {
+                Response.Redirect("Home.aspx");
+            }
+
             //Réassigne les datasources des repeater
             RepBureau.DataSource = emp_bureau;
             RepBureau.DataBind();
