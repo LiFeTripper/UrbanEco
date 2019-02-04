@@ -9,6 +9,7 @@
             cursor: default;
         }
     </style>
+    <title>Co-Éco - Paramètres administrateur</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
 </asp:Content>
