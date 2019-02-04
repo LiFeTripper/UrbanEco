@@ -47,7 +47,7 @@
                                 <%--<th scope="col">ID</th>--%>
                                 <th scope="col">Titre</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Status du projet</th>
+                                <th scope="col">Statut du projet</th>
                                 <th scope="col">Employé Responsable</th>
 <%--                                <th scope="col">Date de début</th>--%>
                                 <th scope="col">
@@ -96,7 +96,7 @@
                         <%--<th scope="col">ID</th>--%>
                         <th scope="col">Titre</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Status du projet</th>
+                        <th scope="col">Statut du projet</th>
                         <th scope="col">Employé Responsable</th>
 <%--                        <th scope="col">Date de début</th>--%>
                         <th scope="col">
@@ -121,7 +121,7 @@
                             <tr visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
                                 <th scope="col">Titre</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Status du projet</th>
+                                <th scope="col">Statut du projet</th>
                                 <th scope="col">Employé Responsable</th>
 <%--                                <th scope="col">Date de début</th>--%>
                                 <th scope="col">
@@ -167,7 +167,7 @@
                     <tr visible='<%# (Chkbx_Inactif.Checked) %>' runat="server">
                         <th scope="col">Titre</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Status du projet</th>
+                        <th scope="col">Statut du projet</th>
                         <th scope="col">Employé Responsable</th>
                         <th scope="col">Date de début</th>
                         <th scope="col">

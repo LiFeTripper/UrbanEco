@@ -43,11 +43,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.SqlServer.ASTasks, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.7.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.8.7\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationBuildTasks" />
+    <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -78,7 +89,9 @@
     <Content Include="BanqueHeure.aspx" />
     <Content Include="Employe.aspx" />
     <Content Include="GestionFeuilleTemps.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="lib\css\ajoutProjetForm.css" />
     <Content Include="lib\css\old\bootstrap-grid.css" />
     <Content Include="lib\css\old\bootstrap-grid.min.css" />
     <Content Include="lib\css\old\bootstrap-reboot.css" />
@@ -94,9 +107,6 @@
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
     <Content Include="lib\css\style.css" />
-    <Content Include="lib\js\bootstrap.bundle.js" />
-    <Content Include="lib\js\bootstrap.bundle.min.js" />
-    <Content Include="lib\js\bootstrap.js" />
     <Content Include="lib\js\bootstrap.min.js" />
     <Content Include="lib\js\jquery-3.3.1.min.js" />
     <Content Include="lib\js\popper.js" />
@@ -153,6 +163,11 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmailJobcs.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="JobScheduler.cs" />
     <Compile Include="Rapport.aspx.cs">
       <DependentUpon>Rapport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,10 +272,6 @@
     <Content Include="lib\css\old\bootstrap-reboot.min.css.map" />
     <Content Include="lib\css\old\bootstrap.css.map" />
     <Content Include="lib\css\old\bootstrap.min.css.map" />
-    <Content Include="lib\js\bootstrap.bundle.js.map" />
-    <Content Include="lib\js\bootstrap.bundle.min.js.map" />
-    <Content Include="lib\js\bootstrap.js.map" />
-    <Content Include="lib\js\bootstrap.min.js.map" />
     <Content Include="lib\webfonts\fa-brands-400.eot" />
     <Content Include="lib\webfonts\fa-brands-400.ttf" />
     <Content Include="lib\webfonts\fa-brands-400.woff" />
@@ -304,6 +315,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

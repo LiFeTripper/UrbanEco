@@ -49,33 +49,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox Tbx_Description;
         
         /// <summary>
-        /// Contrôle Ddl_Responsable.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Ddl_Responsable;
-        
-        /// <summary>
-        /// Contrôle LinqEmployes.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqEmployes;
-        
-        /// <summary>
-        /// Contrôle Chkbx_App.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Chkbx_App;
-        
-        /// <summary>
         /// Contrôle Ddl_Status.
         /// </summary>
         /// <remarks>
@@ -121,6 +94,33 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Cal_DateFin;
         
         /// <summary>
+        /// Contrôle Ddl_Responsable.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Ddl_Responsable;
+        
+        /// <summary>
+        /// Contrôle LinqEmployes.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqEmployes;
+        
+        /// <summary>
+        /// Contrôle Chkbx_App.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Chkbx_App;
+        
+        /// <summary>
         /// Contrôle ChkBx_Archivé.
         /// </summary>
         /// <remarks>
@@ -130,15 +130,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.CheckBox ChkBx_Archivé;
         
         /// <summary>
-        /// Contrôle Btn_Annuler.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Annuler;
-        
-        /// <summary>
         /// Contrôle Btn_Enregistrer.
         /// </summary>
         /// <remarks>
@@ -146,5 +137,14 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Enregistrer;
+        
+        /// <summary>
+        /// Contrôle Btn_Annuler.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Annuler;
     }
 }

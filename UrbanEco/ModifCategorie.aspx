@@ -11,7 +11,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    <h1>Sous-Projet</h1>
+    <h1>
+        <asp:Label ID="Lbl_Titre" runat="server" Text="Sous-Projet"></asp:Label>
+    </h1>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -49,7 +51,7 @@
         </div>
 
         <%--DIV DES EMPLOYÉS--%>
-        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+        <div class="form-group mb-4 col-6 mx-auto" id="divAjoutEmp" runat="server" >
             <asp:Table CssClass="asp-table mx-auto" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control col-lg-12" style="text-align:center;">
@@ -63,7 +65,9 @@
                                 <optgroup label='Bureau'>
                                     <asp:Repeater runat="server" ID="RepBureau">
                                         <ItemTemplate>
+                                            
                                             <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                                
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </optgroup>
@@ -153,7 +157,7 @@
             selectableOptgroup: true,
             keepOrder: true,
             selectableHeader: "<div class='form-control'>Disponible</div>",
-            selectionHeader: "<div class='form-control'>Sélectionné</div>",
+            selectionHeader: "<div class='form-control'>Sélectionné(s)</div>",
         });
         //RÉUSSI
     </script>
