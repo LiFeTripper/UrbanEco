@@ -66,7 +66,7 @@
                                     <asp:Repeater runat="server" ID="RepBureau">
                                         <ItemTemplate>
                                             
-                                            <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                            <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0}, {1}", Eval("nom"), Eval("prenom")) %></option>
                                                 
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -74,7 +74,7 @@
                                 <optgroup label='Terrain'>
                                     <asp:Repeater runat="server" ID="RepTerrain">
                                         <ItemTemplate>
-                                            <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0} {1}", Eval("nom"), Eval("prenom")) %></option>
+                                            <option value='<%#Eval("idEmploye") %>' <%# EmployeSelected(Eval("idEmploye")) %>><%# String.Format("{0}, {1}", Eval("nom"), Eval("prenom")) %></option>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </optgroup>
