@@ -5,7 +5,7 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>First Page</title>
+    <title>Co-Éco</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <!-- Bootstrap CSS -->
@@ -77,7 +77,7 @@
                     </a>
                     <a href="ParametreAdmin.aspx">
                         <i class="fas fa-wrench"></i>
-                        Paramètre Administrateur
+                        Paramètres Administrateur
                     </a>
                 </li>
 

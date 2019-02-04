@@ -1,6 +1,7 @@
 <%@ Page Title="Gestion de la banque d'heures" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="BanqueHeure.aspx.cs" Inherits="UrbanEco.BanqueHeure" EnableViewState="True" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Co-Éco - Banque d'heures</title>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -30,7 +31,7 @@
 
         <%-- Entrer le nombre d'heure par semaine pour cet employé --%>
         <div class="col-md-5 mx-auto">
-            <asp:Label ID="Label1" runat="server" Text="Nombre d'heure par semaine que l'employé doit travaillé : "></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Nombre d'heures à faire chaque semaine : "></asp:Label>
             <asp:TextBox CssClass="form-control col-md-2 float-right" runat="server" ID="tbx_heureMinimum" Enabled="false"></asp:TextBox>
         </div>
 
@@ -39,13 +40,13 @@
                 <%--HEURES EN BANQUES--%>
                 <asp:TableRow>
                     <asp:TableCell></asp:TableCell>
-                    <asp:TableHeaderCell>Heures utilisés</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Heures utilisées</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Heures actuelles</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Heures initiales</asp:TableHeaderCell>
 
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">Heure en banque</asp:TableHeaderCell>
+                    <asp:TableHeaderCell CssClass="form-control">Heures en banque</asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureBanqueU"></asp:TextBox>
                     </asp:TableCell>
@@ -58,7 +59,7 @@
                 </asp:TableRow>
                 <%--JOUR FÉRIÉ--%>
                 <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">Jour ferié</asp:TableHeaderCell>
+                    <asp:TableHeaderCell CssClass="form-control">Jours feriés</asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureJourFerieU"></asp:TextBox>
                     </asp:TableCell>
@@ -85,7 +86,7 @@
                 <%--CONGÉ PERSONNEL--%>
                 <asp:TableRow>
 
-                    <asp:TableHeaderCell CssClass="form-control">Congé personnel</asp:TableHeaderCell>
+                    <asp:TableHeaderCell CssClass="form-control">Congés personnels</asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureCongePersoU"></asp:TextBox>
                     </asp:TableCell>
@@ -99,7 +100,7 @@
                 </asp:TableRow>
                 <%--CONGÉ MALADIE--%>
                 <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">Congé maladie</asp:TableHeaderCell>
+                    <asp:TableHeaderCell CssClass="form-control">Congés maladie</asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureCongeMaladieU"></asp:TextBox>
                     </asp:TableCell>

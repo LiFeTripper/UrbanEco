@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="GestionFeuilleTemps.aspx.cs" Inherits="UrbanEco.GestionFeuilleTemps" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" type="text/css" href="lib/css/gestionFeuilleDeTemps.css" />
+<title>Co-Éco - Gestion des dépenses</title>    
+<link rel="stylesheet" type="text/css" href="lib/css/gestionFeuilleDeTemps.css" />
     <style>
         .center {
             margin: auto;
