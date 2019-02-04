@@ -19,6 +19,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Authentification.Autorisation(true,true,false))
+            {
+                Response.Redirect("Home.aspx");
+            }
+
             CoecoDataContext ctx = new CoecoDataContext();
             Page.MaintainScrollPositionOnPostBack = true;
             tbl_Employe emp = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);

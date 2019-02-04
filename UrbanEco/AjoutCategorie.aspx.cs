@@ -13,6 +13,12 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!Authentification.Autorisation(true, false, false))
+            {
+                Response.Redirect("Home.aspx");
+            }
+            
+
             //Recherche de l'projet dans l'adresse
             argument = Request.QueryString["Prj"];
 
