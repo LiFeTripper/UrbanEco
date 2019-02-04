@@ -3,7 +3,7 @@
 <%-- Head --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Rapports/Rapport.css" rel="stylesheet" />
-
+    <title>Co-Éco - Rapports</title>
     <%--<script src="Rapports/Rapport.js"></script>--%>
 </asp:Content>
 
