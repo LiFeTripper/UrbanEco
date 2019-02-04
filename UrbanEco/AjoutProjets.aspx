@@ -98,7 +98,7 @@
                         </label>
                     </td>
                     <td>
-                        <h5>Archivé</h5>
+                        <h5>Inactif</h5>
                     </td>
                 </tr>
             </table>
