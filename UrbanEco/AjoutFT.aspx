@@ -112,10 +112,10 @@
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow CssClass="col-md-12">
                     <asp:TableHeaderCell CssClass="form-control">
-                        <b style="color: red; float: right;">*</b><h5 id="dateFormated" runat="server"></h5>
+                        <b style="color: red; float: right;">*</b><h5 id="dateFormated" runat="server">Date</h5>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" />
+                        <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" onchange="ChangeDate" />
                     </asp:TableCell>
                 </asp:TableRow>
 
@@ -154,7 +154,8 @@
 
                 var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
 
-                if (input.value != "") {
+                if (input.value == "") {
+                    console.log(input)
                     dateFormated.innerText = "Veuillez sélectionner la date";
                     return;
                 }
