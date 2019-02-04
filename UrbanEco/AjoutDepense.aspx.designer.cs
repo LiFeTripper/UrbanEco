@@ -58,13 +58,16 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
-        /// Contrôle Ddl_TypeEmp.
+
+
+        /// Calendar control.
+
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Ddl_TypeEmp;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
         
         /// <summary>
         /// Contrôle dateFormated.
@@ -76,16 +79,10 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
         
         /// <summary>
-        /// Contrôle Calendar.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Calendar;
-        
-        /// <summary>
-        /// Contrôle tbx_typeDepense.
+
+
+        /// tbx_typeDepense control.
+
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -102,17 +99,10 @@ namespace UrbanEco {
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl km_html;
         
-        /// <summary>
-        /// Contrôle tbl_kilo.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_kilo;
-        
-        /// <summary>
-        /// Contrôle tbx_nbKm.
+
+
+        /// tbx_nbKm control.
+
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.

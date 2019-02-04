@@ -181,12 +181,12 @@
         </asp:Repeater>
 
         <%--DATA SOURCE--%>
-        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjetsActif" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Projet" Where="archiver == @archiver">
+        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjetsActif" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Projet" Where="archiver == @archiver" OrderBy="titre">
             <WhereParameters>
                 <asp:Parameter DefaultValue="false" Name="archiver" Type="Boolean"></asp:Parameter>
             </WhereParameters>
         </asp:LinqDataSource>
-        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjetsInactif" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Projet" Where="archiver == @archiver">
+        <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqProjetsInactif" ContextTypeName="UrbanEco.CoecoDataContext" TableName="tbl_Projet" Where="archiver == @archiver" OrderBy="titre">
             <WhereParameters>
                 <asp:Parameter DefaultValue="true" Name="archiver" Type="Boolean"></asp:Parameter>
             </WhereParameters>

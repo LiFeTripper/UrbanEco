@@ -97,7 +97,7 @@ namespace UrbanEco
                         SousCat = false;
 
                         var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                        where emp.idProjet == prj && (bool)emp.tbl_Employe.inactif
+                                        where emp.idProjet == prj
                                         orderby emp.idEmploye
                                         select emp.idEmploye;
 
@@ -148,7 +148,7 @@ namespace UrbanEco
                         int cat = int.Parse(categorie);
 
                         var empSelect = from emp in context.tbl_ProjetCatEmploye
-                                        where emp.idProjet == prj && emp.idCategorie == cat && (bool)emp.tbl_Employe.inactif
+                                        where emp.idProjet == prj && emp.idCategorie == cat
                                         orderby emp.idEmploye
                                         select emp.idEmploye;
 
