@@ -12,11 +12,8 @@ namespace UrbanEco
     {
         static List<tbl_ProjetCat> sortedCats = new List<tbl_ProjetCat>();
 
-
         static List<tbl_Employe> emp_bureau = new List<tbl_Employe>();
         static List<tbl_Employe> emp_terrain = new List<tbl_Employe>();
-
-        
 
         static List<tbl_ProjetCat> projet_categorie = new List<tbl_ProjetCat>();
 
@@ -28,7 +25,6 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             //Permet de recréer les repeater asp pour vérifier les valeurs selected pour les employés et les catégories
             RepBureau.DataSource = emp_bureau;
             RepBureau.DataBind();
@@ -43,10 +39,9 @@ namespace UrbanEco
 
             rptr_projets.DataSource = BD.GetAllProjets(ctx);
             rptr_projets.DataBind();
-
+            
             if (!IsPostBack)
-            {    
-                
+            {
                 //Query pour les projet
                 CoecoDataContext context = new CoecoDataContext();
 
@@ -75,26 +70,21 @@ namespace UrbanEco
                             orderby tbl.titre
                             select tbl;
 
-                lst_projet.DataSource = queryProjet;
-                lst_projet.DataBind();
-
-                lst_projet.Items.Insert(0, "Veuillez sélectionner le projet");
-                lst_projet.SelectedIndex = 0;
-
-
-
-                RequeryCategorie();
-                RequeryEmployes();
-
+                
                 date_debut.Value = Layout.ToCalendarDate(DateTime.Today);
                 date_fin.Value = Layout.ToCalendarDate(DateTime.Today);
+            }
+
+            if (IsPostBack)
+            {
+                RequeryCategorie();
+                RequeryEmployes();
             }
         }
 
         void RequeryCategorie()
         {
             CoecoDataContext context = new CoecoDataContext();
-            int idProjet = -1;
 
             string[] projetSelectedStr = hiddenFieldProjet.Value.Split(',');
 
@@ -107,33 +97,19 @@ namespace UrbanEco
 
             List<ListItem> categoriesAvailable = new List<ListItem>();
 
-            foreach (var IDProjet in projetSelectedStr)
+            foreach (string IDProjet in projetSelectedStr)
             {
                 if (string.IsNullOrWhiteSpace(IDProjet))
                     continue;
 
-                idProjet = ConvertValueToInt(IDProjet);
-
-                //Project invalid
-                if (idProjet <= -1)               
-                    continue;
-
-
-                //var queryCatMaster = from tbl in context.tbl_ProjetCat
-                //                     join tbl2 in context.tbl_ProjetCat on tbl.idProjetCat equals tbl2.idCatMaitre
-                //                     where tbl.idCatMaitre == null && tbl.idProjet == idProjet
-                //                     orderby tbl.titre
-                //                     select tbl;
+                int idProjet = Convert.ToInt32(IDProjet);
 
                 var queryCatNiveau2 = from tblProjetCat in context.tbl_ProjetCat
                                       where tblProjetCat.idCatMaitre != null && tblProjetCat.idProjet == idProjet
                                       select tblProjetCat;
 
-                var temp = queryCatNiveau2.ToList().Count;
-
                 foreach (var cat in queryCatNiveau2.ToList())
-                { 
-
+                {
                     ListItem ls = new ListItem(cat.tbl_ProjetCat1.titre + " - " + cat.titre, cat.idProjetCat.ToString());
 
                     categoriesAvailable.Add(ls);
@@ -147,29 +123,16 @@ namespace UrbanEco
         void RequeryEmployes()
         {
             CoecoDataContext context = new CoecoDataContext();
-            int idProjet = -1;
-
-            idProjet = ConvertValueToInt(lst_projet.Items[lst_projet.SelectedIndex].Value);
-
-            //No project selected
-            if (idProjet <= -1)
-            {
-                RepTerrain.DataSource = null;
-                RepTerrain.DataBind();
-
-                RepBureau.DataSource = null;
-                RepBureau.DataBind();
-                return;
-            }
+            
 
             var queryEmpBureau = from tbl in context.tbl_ProjetCatEmploye
                                  join empBureau in context.tbl_Employe on tbl.idEmploye equals empBureau.idEmploye
-                                 where tbl.idProjet == idProjet && empBureau.idTypeEmpl == 1
+                                 where SelectedProjets.Contains(tbl.idProjet) && empBureau.idTypeEmpl == 1
                                  select empBureau;
 
             var queryEmpterrain = from tbl in context.tbl_ProjetCatEmploye
                                  join empterrain in context.tbl_Employe on tbl.idEmploye equals empterrain.idEmploye
-                                 where tbl.idProjet == idProjet && empterrain.idTypeEmpl == 2
+                                 where SelectedProjets.Contains(tbl.idProjet) && empterrain.idTypeEmpl == 2
                                  select empterrain;
 
             emp_bureau = queryEmpBureau.Distinct().ToList();
@@ -180,8 +143,6 @@ namespace UrbanEco
 
             RepTerrain.DataSource = emp_terrain;
             RepTerrain.DataBind();
-
-
         }
 
         protected void lst_projet_SelectedIndexChanged(object sender, EventArgs e)
@@ -352,46 +313,48 @@ namespace UrbanEco
                                                         .Distinct()
                                                         .ToList();
 
-            List<tbl_ProjetCat> categories = ctx.tbl_ProjetCat
-                                                        .Where(cat => SelectedCategories.Count > 0 ?
-                                                                            SelectedCategories.Contains(cat.idProjetCat):
-                                                                            true)
-                                                        .Distinct()
-                                                        .ToList();
-            
-            
+            RapportNode rapportNode = new RapportNode("rapport");
             // Loop through all projects
             foreach(tbl_Projet projet in projets)
             {
                 RapportNode projNode = new RapportNode(projet.titre);
 
+                List<tbl_ProjetCat> categories = ctx.tbl_ProjetCat
+                                                            .Where(cat => SelectedCategories.Count > 0 ?
+                                                                                SelectedCategories.Contains(cat.idProjetCat) :
+                                                                                true)
+                                                            .Where(cat => cat.idProjet == projet.idProjet)
+                                                            .Distinct()
+                                                            .ToList();
+
+                // Loop trough all categories in the project
                 foreach(tbl_ProjetCat categorie in categories)
                 {
                     RapportNode catNode = new RapportNode(categorie.titre);
 
                     var catemp = ctx.tbl_ProjetCatEmploye.Where(c => c.idCategorie == categorie.idProjetCat)
                                                             .Where(c => SelectedEmployes.Count > 0 ?
-                                                                            SelectedCategories.Contains(c.idEmploye):
+                                                                            SelectedEmployes.Contains(c.idEmploye):
                                                                             true)
                                                             .Distinct()
                                                             .ToList();
 
-
                     var employes = ctx.tbl_Employe
                         .Where(emp => catemp.Select(ce => ce.idEmploye).Contains(emp.idEmploye));
                     
+                    // Loop through all employes in category
                     foreach (tbl_Employe employe in employes)
                     {
                         RapportNode EmplNode = new RapportNode(string.Format("{0} {1}", employe.prenom, employe.nom));
 
-                        // Get les heures de lemployes avec le projet ici
+                        // Get entries in Feuille de temps from employe
                         var heures = ctx.tbl_FeuilleTemps.Where(c => c.idCat == categorie.idProjetCat)
                                                         .Where(c => c.idEmploye == employe.idEmploye)
                                                         .Where(c => (bool)c.approuver)
-                                                        .Where(c => c.dateCreation > dateFin)
-                                                        .Where(c => c.dateCreation < dateDebut);
+                                                        .Where(c => c.dateCreation < dateFin)
+                                                        .Where(c => c.dateCreation > dateDebut);
 
-                        // Compiler les heures dans le node
+                        // Compile the entries
                         foreach (var heure in heures)
                         {
                             int hrs = (int)heure.nbHeure;
@@ -399,19 +362,33 @@ namespace UrbanEco
                             EmplNode.NbHeure += new TimeSpan(hrs, min, 0);
                         }
 
-                        // Ajouter l'employe au node de categorie
-                        catNode.Child.Add(EmplNode);
+                        // Add employe to category node
+                        if (EmplNode.NbHeure > TimeSpan.Zero)
+                        {
+                            catNode.NbHeure += EmplNode.NbHeure;
+                            catNode.Child.Add(EmplNode);
+                        }
                     }
 
-                    // Ajouter de la categorie au projet node
-                    // Ajouter la categorie en tant que child au projet node
+                    // Add all hours
+                    if (catNode.NbHeure > TimeSpan.Zero)
+                    {
+                        projNode.NbHeure += catNode.NbHeure;
+                        projNode.Child.Add(catNode);
+                    }
                 }
 
                 // Ajouter les heures du projet au rapport node
                 // Ajouter le projet au rapport node en tant qu'enfant
+                if (projNode.NbHeure > TimeSpan.Zero)
+                {
+                    rapportNode.NbHeure += projNode.NbHeure;
+                    rapportNode.Child.Add(projNode);
+                }
             }
-
-            // Rediriger vers un page avec les informations du rapport pour cree le rapport
+            
+            Session["rapportNode"] = rapportNode;
+            Response.Redirect("RapportPage.aspx");
         }
 
         protected void btn_retour_Click(object sender, EventArgs e)
