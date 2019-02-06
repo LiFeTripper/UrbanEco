@@ -12,7 +12,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <h1>Rapport</h1>
-    <span>Rapport <%# Eval("") %> à <%# Eval("") %></span>
+    <span>Rapport <%# Eval("dateDebut") %> à <%# Eval("dateFin") %></span> <br />
 
     <asp:repeater id="rapportRepeater" runat="server">
         <itemtemplate>
