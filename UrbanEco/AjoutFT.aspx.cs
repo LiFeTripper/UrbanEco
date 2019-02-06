@@ -218,12 +218,12 @@ namespace UrbanEco
                     tbFT.idCat = null;
                 }
 
-                if(string.IsNullOrWhiteSpace(tbx_nbHeure.Text))
-                {
-                    tbFT.nbHeure = 0;
-                }
-                else
-                {
+                //if(string.IsNullOrWhiteSpace(tbx_nbHeure.Text))
+                //{
+                //    tbFT.nbHeure = 0;
+                //}
+                //else
+                //{
                     //string nbH = tbx_nbHeure.Text;
                     //if (nbH.Contains(","))
                     //{
@@ -232,9 +232,9 @@ namespace UrbanEco
                     //}
                     //else
                     //{
-                        tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
+                        //tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
                     //}
-                }
+                //}
 
 
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
@@ -242,6 +242,7 @@ namespace UrbanEco
                 tbFT.commentaire = txa_comments.Value;
                 tbFT.approuver = false;
                 tbFT.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
+                tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue) + float.Parse(tbx_minutes.SelectedValue);
 
                 ctx.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
                 ctx.SubmitChanges();
@@ -266,9 +267,10 @@ namespace UrbanEco
 
 
                 feuilleTemps.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
-                feuilleTemps.nbHeure = float.Parse(tbx_nbHeure.Text.Replace(',','.'));
+
                 //if (Request.QueryString["FT"] == "New")
                 //{
+
                     feuilleTemps.dateCreation = DateTime.Parse(DateCreation.Value);
                     feuilleTemps.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
                 //}           
@@ -318,8 +320,41 @@ namespace UrbanEco
                     }
                 }
 
-            tbx_nbHeure.Text = ft.nbHeure.ToString();
-            //tbx_nbHeure.Text = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
+            
+            //tbx_nbHeure.Text = ft.nbHeure.ToString();
+            string nbHeures = ft.nbHeure.ToString();
+            string[] nb = nbHeures.Split('.');
+            tbx_heures.SelectedValue = nb[0];
+
+            if (nb.Length > 1)
+            {
+                switch (nb[1])
+                {
+                    case ("0"):
+                        {
+                            nb[1] = ("0");
+                            break;
+                        }
+                    case ("25"):
+                        {
+                            nb[1] = ("0.25");
+                            break;
+                        }
+                    case ("5"):
+                        {
+                            nb[1] = ("0.50");
+                            break;
+                        }
+                    case ("75"):
+                        {
+                            nb[1] = ("0.75");
+                            break;
+                        }
+                }
+                tbx_minutes.SelectedValue = nb[1];
+            }
+            else
+                tbx_minutes.SelectedValue = "0";
 
             DateCreation.Value = Layout.ToCalendarDate(DateTime.Parse(ft.dateCreation.ToString()));
 

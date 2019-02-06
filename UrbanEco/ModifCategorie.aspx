@@ -60,7 +60,7 @@
         <input type="text" runat="server" id="hiddenFieldEmployeDeselect" hidden/>
         <input type="text" runat="server" id="hiddenFieldEmploye" hidden/>
         <div class="spantwo">
-            <input type="text" runat="server" id="hiddenFieldTotal" hidden/>
+            <input type="text" runat="server" id="hiddenFieldAllEmploye" hidden/>
         </div>
 
         <asp:Button ID="Btn_Enregistrer" runat="server" Text="Enregistrer"  CssClass="btn btn-raised btn-success" OnClick="Btn_Enregistrer_Click" />

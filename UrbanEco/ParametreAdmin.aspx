@@ -21,7 +21,7 @@
             <h3>Paramètres Administrateur</h3>
         </div>        
         <div class="form-group mb-4 col-6 mx-auto">
-            <label for="tbl_taux" style="font-size:20px;">Taux de kilomètrage</label>
+            <label for="tbl_taux" style="font-size:20px;">Taux de kilométrage</label>
             <asp:table runat="server" id="tbl_taux" style="width: 100%">
                 <%--Voiture--%>
                 <asp:TableRow>    
@@ -47,7 +47,7 @@
         </div>
         
         <div class="form-group mb-4 col-6 mx-auto alert alert-info">
-            <strong>Note*</strong> Les modifications apportées aux types de dépenses (en bleu) ne sont enregistrées qu'après avoir confirmé avec le bouton ci-dessous.
+            <strong>Note*</strong> Les modifications apportées aux types de dépense (en bleu) ne sont enregistrées qu'après avoir confirmé avec le bouton ci-dessous.
         </div>
          <%--Type dépense Bureau--%>
         <div class="form-group mb-4 col-6 mx-auto">
@@ -118,7 +118,7 @@
         </div>     
         <%-- Mot de passe admin --%>
         <div class="form-group mb-4 col-6 mx-auto">
-            <label for="tbl_taux" style="font-size: 20px;">Mot de passe administrateur</label>
+            <label for="tbl_taux" style="font-size: 20px;">Mot de passe du compte Administrateur</label>
             <asp:Table runat="server" ID="tbl_mdpAdmin" Style="width: 100%; table-layout:fixed;">
                 <asp:TableRow>
                     <asp:TableHeaderCell CssClass="form-control">Nouveau mot de passe</asp:TableHeaderCell>
