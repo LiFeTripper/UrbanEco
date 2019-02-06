@@ -10,7 +10,8 @@ use BD_Coeco
 go
 
 CREATE TABLE tbl_ConfigAdmin(
-jourRappel VARCHAR(8) DEFAULT 'Lundi',
+	idConfigAdmin INT PRIMARY KEY IDENTITY(1,1),
+	jourRappel VARCHAR(8) DEFAULT 'Lundi',
     heureRappel TIME NOT NULL DEFAULT '08:00:00',
     emailRappel VARCHAR(80) NOT NULL,
     pwdEmailRappel VARCHAR(256) NOT NULL,
