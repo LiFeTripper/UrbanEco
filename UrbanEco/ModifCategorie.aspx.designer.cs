@@ -85,7 +85,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldEmploye;
         
         /// <summary>
-        /// Contrôle hiddenFieldAllEmploye.
+        /// hiddenFieldAllEmploye control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
