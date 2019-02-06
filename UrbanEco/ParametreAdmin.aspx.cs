@@ -171,14 +171,18 @@ namespace UrbanEco
 
         protected void btn_deleteDepBureau_Click(object sender, EventArgs e)
         {
-            lbx_depBureau.Items.RemoveAt(lbx_depBureau.SelectedIndex);
-            lbx_depBureau.SelectedIndex = -1;
+            if (lbx_depBureau.SelectedIndex != -1) {
+                lbx_depBureau.Items.RemoveAt(lbx_depBureau.SelectedIndex);
+                lbx_depBureau.SelectedIndex = -1;
+            }
         }
 
         protected void btn_deleteDepTerrain_Click(object sender, EventArgs e)
         {
-            lbx_depTerrain.Items.RemoveAt(lbx_depTerrain.SelectedIndex);
-            lbx_depTerrain.SelectedIndex = -1;
+            if (lbx_depTerrain.SelectedIndex != -1) {
+                lbx_depTerrain.Items.RemoveAt(lbx_depTerrain.SelectedIndex);
+                lbx_depTerrain.SelectedIndex = -1;
+            }
         }
 
         /// <summary>
