@@ -328,12 +328,6 @@ namespace UrbanEco
             
         }
 
-        protected void ChangeDate()
-        {
-            dateFormated.InnerText = DateCreation.Value;
-        }
-
-
         //Obtient l'id de l'empolòyé à l'aide de son nom et prénom séparé par une virgule
         protected int GetIDEmp(string nomEmp)
         {

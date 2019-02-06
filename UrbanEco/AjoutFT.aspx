@@ -114,7 +114,7 @@
                         <b style="color: red; float: right;">*</b><h5 id="dateFormated" runat="server"></h5>
                     </asp:TableHeaderCell>
                     <asp:TableCell>
-                        <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" />
+                        <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control"/>
                     </asp:TableCell>
                 </asp:TableRow>
 
@@ -140,6 +140,15 @@
 
         <%--On change for date--%>
         <script>
+
+           function getDate(){
+             var today = new Date();
+
+            document.getElementById("date").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+
+            }
+
             var input = document.getElementById('<%=DateCreation.ClientID%>')
             console.log(input);
             UpdateDateFormat();
@@ -181,6 +190,8 @@
 
                 return day + " " + months[month - 1] + " " + year;;
             }
+
+
         </script>
 
     </form>
