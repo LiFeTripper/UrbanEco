@@ -62,7 +62,7 @@ namespace UrbanEco
                 //Reset du hiddenfield
                 hiddenFieldEmploye.Value = String.Empty;
                 //Reset du hiddenfield
-                hiddenFieldTotal.Value = String.Empty;
+                hiddenFieldAllEmploye.Value = String.Empty;
 
                 int prj = int.Parse(projet);
 
@@ -413,9 +413,9 @@ namespace UrbanEco
             }
 
             //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
-            hiddenFieldTotal.Value = string.Empty;
+            hiddenFieldAllEmploye.Value = string.Empty;
             var result = String.Join(",", AllEmployesString.ToArray());
-            hiddenFieldTotal.Value = result;
+            hiddenFieldAllEmploye.Value = result;
         }
 
         protected string EmployeSelected(object id)
