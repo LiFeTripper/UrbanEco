@@ -85,13 +85,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldEmploye;
         
         /// <summary>
-        /// Contrôle hiddenFieldTotal.
+        /// Contrôle hiddenFieldAllEmploye.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldTotal;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldAllEmploye;
         
         /// <summary>
         /// Contrôle Btn_Enregistrer.

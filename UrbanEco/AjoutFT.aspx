@@ -49,9 +49,42 @@
             <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
         </div>
 
+<<<<<<< HEAD
+        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
+                <asp:TableRow>
+                    <asp:TableHeaderCell CssClass="form-control">
+                        Durée (hrs) <b style="color:red">*</b>
+                    </asp:TableHeaderCell>
+                    <asp:TableCell>
+
+                        <%--<asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                        <asp:DropDownList ID="tbx_heures" runat="server" CssClass="form-control">
+                            <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
+                            <asp:ListItem Value="1">1</asp:ListItem>
+                            <asp:ListItem Value="2">2</asp:ListItem>
+                            <asp:ListItem Value="3">3</asp:ListItem>
+                            <asp:ListItem Value="4">4</asp:ListItem>
+                            <asp:ListItem Value="5">5</asp:ListItem>
+                            <asp:ListItem Value="6">6</asp:ListItem>
+                            <asp:ListItem Value="7">7</asp:ListItem>
+                            <asp:ListItem Value="8">8</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="tbx_minutes" runat="server" CssClass="form-control" >
+                            <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
+                            <asp:ListItem Value="0.25">0.25</asp:ListItem>
+                            <asp:ListItem Value="0.50">0.50</asp:ListItem>
+                            <asp:ListItem Value="0.75">0.75</asp:ListItem>
+                        </asp:DropDownList>
+
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+=======
         <div class="form-group" runat="server">
             <label for="tbx_categorie" class="bmd-label-floating">Sous-Catégorie</label>
             <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
+>>>>>>> 3d76ad82c5e047c8261fec9693bb9c9b64576a83
         </div>
 
         <div class="form-group" runat="server">
