@@ -49,13 +49,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
-        /// Contrôle tbx_nbHeure.
+        /// Contrôle tbx_heures.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_nbHeure;
+        protected global::System.Web.UI.WebControls.DropDownList tbx_heures;
+        
+        /// <summary>
+        /// Contrôle tbx_minutes.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbx_minutes;
         
         /// <summary>
         /// Contrôle txa_comments.

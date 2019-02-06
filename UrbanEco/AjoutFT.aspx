@@ -84,9 +84,24 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell>
 
-                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
-
-<%--                        <asp:RegularExpressionValidator ID="heureCheck" runat="server" Display="Dynamic" ControlToValidate="tbx_nbHeure" ErrorMessage="Nombre d'heure invalide" ValidationExpression="^-?([0-9]{0,2}(\.[0-5])?|100(\.00?)?)$"></asp:RegularExpressionValidator>--%>
+                        <%--<asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                        <asp:DropDownList ID="tbx_heures" runat="server" CssClass="form-control">
+                            <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
+                            <asp:ListItem Value="1">1</asp:ListItem>
+                            <asp:ListItem Value="2">2</asp:ListItem>
+                            <asp:ListItem Value="3">3</asp:ListItem>
+                            <asp:ListItem Value="4">4</asp:ListItem>
+                            <asp:ListItem Value="5">5</asp:ListItem>
+                            <asp:ListItem Value="6">6</asp:ListItem>
+                            <asp:ListItem Value="7">7</asp:ListItem>
+                            <asp:ListItem Value="8">8</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="tbx_minutes" runat="server" CssClass="form-control" >
+                            <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
+                            <asp:ListItem Value="0.25">0.25</asp:ListItem>
+                            <asp:ListItem Value="0.50">0.50</asp:ListItem>
+                            <asp:ListItem Value="0.75">0.75</asp:ListItem>
+                        </asp:DropDownList>
 
                     </asp:TableCell>
                 </asp:TableRow>
