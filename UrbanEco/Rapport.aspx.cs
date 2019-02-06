@@ -25,6 +25,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Authentification.Autorisation(true, false, false))
+            {
+                Response.Redirect("Home.aspx");
+            }
+
             //Permet de recréer les repeater asp pour vérifier les valeurs selected pour les employés et les catégories
             RepBureau.DataSource = emp_bureau;
             RepBureau.DataBind();

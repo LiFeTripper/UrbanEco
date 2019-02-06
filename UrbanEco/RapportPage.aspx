@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/Rapports/rapportPage.css" rel="stylesheet" />
+    <title>Co-Éco - Rapports</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">

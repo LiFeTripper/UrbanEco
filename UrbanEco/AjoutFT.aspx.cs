@@ -92,12 +92,24 @@ namespace UrbanEco
 
             foreach (var employes in allEmployes)
             {
-                listItemEmployes.Add(new ListItem(employes.nom + "," + employes.prenom, employes.idEmploye.ToString()));
+                listItemEmployes.Add(new ListItem(employes.nom + ", " + employes.prenom, employes.idEmploye.ToString()));
+            }
+
+            List<ListItem> listCopy = new List<ListItem>();
+            foreach (ListItem item in listItemEmployes)
+                listCopy.Add(item);
+
+            listItemEmployes.Clear();
+
+            foreach (ListItem item in listCopy.OrderBy(item => item.Text))
+            {
+                listItemEmployes.Add(item);
             }
 
             ddl_employe.DataSource = null;
             ddl_employe.DataBind();
             ddl_employe.DataSource = listItemEmployes;
+            
             ddl_employe.DataBind();
 
             ddl_employe.Items.Insert(0, "Veuillez choisir un employé");
@@ -206,12 +218,12 @@ namespace UrbanEco
                     tbFT.idCat = null;
                 }
 
-                if(string.IsNullOrWhiteSpace(tbx_nbHeure.Text))
-                {
-                    tbFT.nbHeure = 0;
-                }
-                else
-                {
+                //if(string.IsNullOrWhiteSpace(tbx_nbHeure.Text))
+                //{
+                //    tbFT.nbHeure = 0;
+                //}
+                //else
+                //{
                     //string nbH = tbx_nbHeure.Text;
                     //if (nbH.Contains(","))
                     //{
@@ -220,9 +232,9 @@ namespace UrbanEco
                     //}
                     //else
                     //{
-                        tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
+                        //tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
                     //}
-                }
+                //}
 
 
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
@@ -230,6 +242,7 @@ namespace UrbanEco
                 tbFT.commentaire = txa_comments.Value;
                 tbFT.approuver = false;
                 tbFT.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
+                tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue) + float.Parse(tbx_minutes.SelectedValue);
 
                 ctx.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
                 ctx.SubmitChanges();
@@ -254,12 +267,13 @@ namespace UrbanEco
 
 
                 feuilleTemps.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
-                feuilleTemps.nbHeure = float.Parse(tbx_nbHeure.Text);
-                if (Request.QueryString["FT"] == "New")
-                {
+
+                //if (Request.QueryString["FT"] == "New")
+                //{
+
                     feuilleTemps.dateCreation = DateTime.Parse(DateCreation.Value);
                     feuilleTemps.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
-                }           
+                //}           
 
                 feuilleTemps.commentaire = txa_comments.Value;
 
@@ -306,35 +320,45 @@ namespace UrbanEco
                     }
                 }
 
-            tbx_nbHeure.Text = ft.nbHeure.ToString();
-            //tbx_nbHeure.Text = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
-
-            dateFormated.InnerText = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
-            DateCreation.Value = Layout.GetDateFormated(DateTime.Parse(ft.dateCreation.ToString()));
-            txa_comments.Value = ft.commentaire;
-            dateFormated.InnerText = DateCreation.Value.ToString();
             
-        }
+            //tbx_nbHeure.Text = ft.nbHeure.ToString();
+            string nbHeures = ft.nbHeure.ToString();
+            string[] nb = nbHeures.Split('.');
+            tbx_heures.SelectedValue = nb[0];
 
-        protected void ChangeDate()
-        {
-            dateFormated.InnerText = DateCreation.Value;
-        }
+            if (nb.Length > 1)
+            {
+                switch (nb[1])
+                {
+                    case ("0"):
+                        {
+                            nb[1] = ("0");
+                            break;
+                        }
+                    case ("25"):
+                        {
+                            nb[1] = ("0.25");
+                            break;
+                        }
+                    case ("5"):
+                        {
+                            nb[1] = ("0.50");
+                            break;
+                        }
+                    case ("75"):
+                        {
+                            nb[1] = ("0.75");
+                            break;
+                        }
+                }
+                tbx_minutes.SelectedValue = nb[1];
+            }
+            else
+                tbx_minutes.SelectedValue = "0";
 
+            DateCreation.Value = Layout.ToCalendarDate(DateTime.Parse(ft.dateCreation.ToString()));
 
-        //Obtient l'id de l'empolòyé à l'aide de son nom et prénom séparé par une virgule
-        protected int GetIDEmp(string nomEmp)
-        {
-            CoecoDataContext ctx = new CoecoDataContext();
-
-            string[] nomEmpArray = nomEmp.Split(',');
-
-            var id = from tblEmp in ctx.tbl_Employe
-                     where tblEmp.nom == nomEmpArray[0]
-                     where tblEmp.prenom == nomEmpArray[1]
-                     select tblEmp.idEmploye;
-
-            return id.First();
+            txa_comments.Value = ft.commentaire;
         }
 
         protected void ddl_employe_SelectedIndexChanged(object sender, EventArgs e)
@@ -376,7 +400,7 @@ namespace UrbanEco
 
         protected void btn_annuler_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("GestionFeuilleTemps.aspx");
         }
 
         protected int GetWeekToYear(DateTime date)

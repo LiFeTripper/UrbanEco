@@ -14,10 +14,15 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-      
+
             //Sur chargement, vérification de l'authentification du user avec le cookie
-            if (User.Identity.IsAuthenticated)
+            //if (User.Identity.IsAuthenticated)
+            //Response.Redirect("/Home.aspx");
+            HttpCookie reader = HttpContext.Current.Request.Cookies["userinfo"];
+            if(reader != null)
+            {
                 Response.Redirect("/Home.aspx");
+            }
 
         }
 
@@ -80,7 +85,9 @@ namespace UrbanEco
                     Response.Cookies["userInfo"].Value = Tbx_InputUsername.Text.ToString();
                     //Si le cookie est persistant, il est enregistrer sur l'ordi
                     //Ici, son expiration est de 1 journée
-                    Response.Cookies["userInfo"].Expires = DateTime.Now.AddDays(1);
+
+                    if(Persist.Checked)
+                        Response.Cookies["userInfo"].Expires = DateTime.Now.AddDays(3);
 
                     //Redirection vers le Home
                     Response.Redirect("/Home.aspx");

@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="GestionFeuilleTemps.aspx.cs" Inherits="UrbanEco.GestionFeuilleTemps" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<title>Co-Éco - Gestion des dépenses</title>    
+<link rel="stylesheet" type="text/css" href="lib/css/gestionFeuilleDeTemps.css" />
     <style>
         .center {
             margin: auto;
@@ -41,103 +43,48 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
-    <form runat="server" style="text-align: center;" class="container center col-12">
+    <form runat="server" class="container center col-12">
+        <div id="filtreDate" class="form-group" runat="server">
+            <div class="form-group spantwo titreFiltre">
+                <h3>Filtrer Par Date</h3>
+            </div>
 
-        <%--Filtre--%>
+            <div class="form-group">
+                <label for="Calendar1" class="bmd-label-floating">Data Minimum</label>
+                <input class="form-control" type="date" id="Calendar1" runat="server" />
+            </div>
+
+            <div class="form-group">
+                <label for="Calendar2" class="bmd-label-floating">Data Maximum</label>
+                <input class="form-control" type="date" id="Calendar2" runat="server" />
+            </div>
+
+            <div class="form-group">
+                <asp:Button ID="btn_Filtrer" CssClass="btn btn-raised btn-md btn-primary form-control" runat="server" OnClick="btn_Filtrer_Click" Text="Appliquer le filtre" />
+            </div>
+
+            <div class="form-group">
+                <asp:Button ID="btn_removefilter" CssClass="btn btn-md btn-raised btn-danger form-control" runat="server" OnClick="btn_removefilter_Click" Text="Supprimer le filtre" />
+            </div>
+
+            <div runat="server" visible="false" id="alert_dateOrder" class="alert alert-danger" style="width:100%"><b>Attention !</b> La date maximal est plus petite que la date minimale.</div>
+            <div runat="server" visible="false" id="alert_missingDate" class="alert alert-danger" style="width:100%"><b>Attention !</b> Les deux dates sont requises pour le filtre.</div>
+        </div>
+
+        <div id="ajoutFDT">
+
+            
+
+            <h2>Feuille de temps en attente</h2>
+
+            <div class="form-group">
+                <asp:Button ID="btn_ajouterFT" CssClass="btn btn-md btn-raised btn-success" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
+            </div>
+
+        </div>
+
         
-        <div class="form-group mb-4 col-12 mx-auto">
-            <asp:Table runat="server" CssClass="col-md-8 asp-table" style="float:left;" ID="filtre">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Filtrer par date
-                    </asp:TableHeaderCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Table CssClass="col-md-6 asp-table" style="float:left;" runat="server">
-                            <asp:TableRow>
-                                <asp:TableHeaderCell CssClass="form-control">
-                        Date minimale
-                                </asp:TableHeaderCell>
-                                <asp:TableCell>
-                                    <input class="form-control" type="date" id="Calendar1" style="margin: auto;" runat="server" />
-                                </asp:TableCell>
-
-                            </asp:TableRow>
-                        </asp:Table>
-                        <asp:Table CssClass="col-md-6 asp-table" style="float:left;" runat="server">
-                            <asp:TableRow>
-                                <asp:TableHeaderCell CssClass="form-control">
-                        Date maximale
-                                </asp:TableHeaderCell>
-                                <asp:TableCell>
-                                    <input class="form-control" type="date" id="Calendar2" style="margin: auto;" runat="server" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                        </asp:Table>
-                    </asp:TableCell>
-                </asp:TableRow>  
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <h5 class="col-md-4" style="float:left; text-align:center;" id="dateFormated2" runat="server"></h5>                    
-                        <h5 class="col-md-4" style="float:left; text-align:center;" runat="server">&nbsp;au&nbsp;</h5>                    
-                        <h5 class="col-md-4" style="float:left; text-align:center;" id="dateFormated1" runat="server"></h5>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Button style="float:left;" ID="btn_removefilter" CssClass="btn btn-md btn-danger form-control col-md-4" runat="server" OnClick="btn_removefilter_Click" Text="Supprimer le filtre" />
-                        <div style="float:left;" class="col-md-4">&nbsp;</div>
-                        <asp:Button style="float:left;" ID="btn_Filtrer" CssClass="btn btn-md btn-primary form-control col-md-4" runat="server" OnClick="btn_Filtrer_Click" Text="Appliquer le filtre" />
-                    </asp:TableCell>
-                </asp:TableRow>  
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <div runat="server" visible="false" id="alert_dateOrder" class="alert alert-danger" style="width:100%"><b>Attention !</b> La date maximal est plus petite que la date minimale.</div>
-                        <div runat="server" visible="false" id="alert_missingDate" class="alert alert-danger" style="width:100%"><b>Attention !</b> Les deux dates sont requises pour le filtre.</div>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-
-            <asp:Table runat="server" CssClass="col-md-4  mx-auto" style="float:left; width:100%;">
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Button ID="btn_ajouterFT" CssClass="btn btn-lg btn-success  mx-auto" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
-                    </asp:TableCell>
-                </asp:TableRow>
-
-            </asp:Table>
-        </div>
-
-        <p style="height:20px;"></p>
-        <div style="margin-top:15px;">
-
-            <asp:Table runat="server" CssClass="col-md-12" Style="margin-top:150px !important;">
-                <asp:TableRow>
-                    <asp:TableCell Style="float: left; width: 50%;" >
-                        <h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_attente" visible="true">Feuilles de temps en attente</h2>
-                        <%--<h2 style="margin-bottom: 10px; float: right; width: 50%;" runat="server" id="lbl_approved" visible="false">Approuvées</h2>--%>
-                    </asp:TableCell>
-<%--                <asp:TableCell Style="float: left; width: 50%;">
-                        <table style="width: 100% !important; float: left;">
-                            <tr>
-                                
-                                <td style="width: 30%;" class="mb-3">
-                                    <label class="switch" style="float: right;">
-                                        <asp:CheckBox runat="server" ID="chbx_approved" OnCheckedChanged="chbx_approved_CheckedChanged" AutoPostBack="true" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <h4 style="float: left;">Afficher les feuilles de temps approuvées</h4>
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:TableCell> --%>   
-                </asp:TableRow>
-            </asp:Table>
-
-        </div>
+        
 
         <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
         <asp:Repeater ID="Rptr_EmployeNonApprouver" runat="server">
@@ -310,70 +257,11 @@
                 </div>
             </FooterTemplate>
         </asp:Repeater>--%>
-
-        <%--JAVASCRIPT--%>
         <script>
-            var input1 = document.getElementById('<%=Calendar1.ClientID%>')
-            var input2 = document.getElementById('<%=Calendar2.ClientID%>')
-
-            UpdateDateFormat(1);
-            UpdateDateFormat(2);
-
-            input1.onchange = function () {
-                UpdateDateFormat(1);
+            function MessageErreur(valeur) {
+                var params = valeur.split(";;;");
+                alert("Cet employé (" + params[0] + ") n'est plus associé au sous-projet (" + params[1] + ") du projet (" + params[2] + ").\n\nVeuillez réassigner l'employé au sous-projet pour réactiver la modification de cette feuille de temps. \nVous pourrez ensuite retirer l'employé de la catégorie à nouveau.\n\nMerci!");
             }
-
-            input2.onchange = function () {
-                UpdateDateFormat(2);
-            }
-
-            function UpdateDateFormat(int) {
-                if (int == 1) {
-
-                    var dateFormated = document.getElementById('<%=dateFormated2.ClientID%>')
-                    if (input1.value == "") {
-                        dateFormated.innerText = "Veuillez sélectionner la date";
-                        return;
-                    }
-
-                    var format = FormatYear(input1.value);
-
-                    dateFormated.innerText = format;
-                }
-
-                else {
-                    var dateFormated = document.getElementById('<%=dateFormated1.ClientID%>')
-                    if (input2.value == "") {
-                        dateFormated.innerText = "Veuillez sélectionner la date";
-                        return;
-                    }
-
-                    var format = FormatYear(input2.value);
-
-                    dateFormated.innerText = format;
-                }
-
-
-
-            }
-
-
-            function FormatYear(yearString) {
-
-                var split = yearString.split('-');
-
-                if (split.length != 3)
-                    split = yearString.split('/');
-
-                var year = split[0];
-                var month = parseInt(split[1]);
-                var day = parseInt(split[2]);
-
-                var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-
-                return day + " " + months[month - 1] + " " + year;;
-            }
-
         </script>
     </form>
 

@@ -1,6 +1,7 @@
-﻿<%@ Page Title="Ajout de feuille de temps" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutFT.aspx.cs" Inherits="UrbanEco.AjoutFT" %>
+﻿<%@ Page Title="Co-Éco" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutFT.aspx.cs" Inherits="UrbanEco.AjoutFT" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" type="text/css" href="lib/css/ajoutFDT.css" />
     <style>
         .center {
             margin: auto;
@@ -29,53 +30,26 @@
             table-layout: fixed;
         }
     </style>
+    <title>Co-Éco - Ajout de feuilles de temps</title>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
     <h1>Ajout d'une feuille de temps</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
-    <form runat="server" style="text-align: center;" class="container center col-12">
+    <form runat="server">
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="tbl_employe" visible="false">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Employé <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+        <div class="form-group" runat="server" id="tbl_employe" visible="false">
+            <label for="ddl_employe" class="bmd-label-floating">Employé</label>
+            <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
         </div>
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Projet <b style="color:red">*</b>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+        <div class="form-group" runat="server">
+            <label for="idProjet" class="bmd-label-floating">Projet</label>
+            <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
         </div>
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Sous-Catégorie
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>
-
+<<<<<<< HEAD
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
@@ -84,104 +58,54 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell>
 
-                        <asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>
-
-<%--                        <asp:RegularExpressionValidator ID="heureCheck" runat="server" Display="Dynamic" ControlToValidate="tbx_nbHeure" ErrorMessage="Nombre d'heure invalide" ValidationExpression="^-?([0-9]{0,2}(\.[0-5])?|100(\.00?)?)$"></asp:RegularExpressionValidator>--%>
+                        <%--<asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                        <asp:DropDownList ID="tbx_heures" runat="server" CssClass="form-control">
+                            <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
+                            <asp:ListItem Value="1">1</asp:ListItem>
+                            <asp:ListItem Value="2">2</asp:ListItem>
+                            <asp:ListItem Value="3">3</asp:ListItem>
+                            <asp:ListItem Value="4">4</asp:ListItem>
+                            <asp:ListItem Value="5">5</asp:ListItem>
+                            <asp:ListItem Value="6">6</asp:ListItem>
+                            <asp:ListItem Value="7">7</asp:ListItem>
+                            <asp:ListItem Value="8">8</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="tbx_minutes" runat="server" CssClass="form-control" >
+                            <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
+                            <asp:ListItem Value="0.25">0.25</asp:ListItem>
+                            <asp:ListItem Value="0.50">0.50</asp:ListItem>
+                            <asp:ListItem Value="0.75">0.75</asp:ListItem>
+                        </asp:DropDownList>
 
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
+=======
+        <div class="form-group" runat="server">
+            <label for="tbx_categorie" class="bmd-label-floating">Sous-Catégorie</label>
+            <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
+>>>>>>> 3d76ad82c5e047c8261fec9693bb9c9b64576a83
         </div>
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Note
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <textarea id="txa_comments" cols="50" rows="4" runat="server" style="width: 100%;" class="form-control"></textarea>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+        <div class="form-group" runat="server">
+            <label for="tbx_nbHeure" class="bmd-label-floating">Durée</label>
+            <asp:TextBox ID="tbx_nbHeure" runat="server" type="number" CssClass="form-control monInputTypeNumber"></asp:TextBox>
         </div>
 
-
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" style="margin-bottom: 0px;">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow CssClass="col-md-12">
-                    <asp:TableHeaderCell CssClass="form-control">
-                        <b style="color: red; float: right;">*</b><h5 id="dateFormated" runat="server"></h5>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <input type="date" id="DateCreation" style="margin: auto;" runat="server" class="form-control" />
-                    </asp:TableCell>
-                </asp:TableRow>
-
-            </asp:Table>
+        <div class="form-group" runat="server">
+            <label for="DateCreation" class="bmd-label-floating">Date</label>
+            <input type="date" id="DateCreation" runat="server" class="form-control" onchange="ChangeDate" />
         </div>
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" style="margin-bottom: 0px;">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow CssClass="col-md-12">
-                    <asp:TableCell CssClass="col-md-4">
-                        <asp:Button ID="btn_annuler" CssClass="btn btn-lg btn-danger col-md-12" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
-                    </asp:TableCell>
-                    <asp:TableCell CssClass="col-md-4">
-                        &nbsp;
-                    </asp:TableCell>
-                    <asp:TableCell CssClass="col-md-4">
-                        <asp:Button ID="Btn_Enreg" CssClass="btn btn-lg btn-success col-md-12" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click" />
-                    </asp:TableCell>
-                </asp:TableRow>
-
-            </asp:Table>
+        <div class="form-group" runat="server">
+            <label for="txa_comments" class="bmd-label-floating">Note</label>
+            <textarea id="txa_comments" cols="50" rows="2" runat="server" class="form-control"></textarea>
         </div>
 
-        <%--On change for date--%>
-        <script>
-            var input = document.getElementById('<%=DateCreation.ClientID%>')
-            console.log(input);
-            UpdateDateFormat();
+        <asp:Button ID="Btn_Enreg" CssClass="btn btn-raised btn-success" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click" />
 
-            input.onchange = function () {
-                //UpdateDateFormat();
-                //UpdateDateRep();
-            }
-
-            function UpdateDateFormat() {
-
-                var dateFormated = document.getElementById('<%=dateFormated.ClientID%>')
-
-                if (input.value != "") {
-                    dateFormated.innerText = "Veuillez sélectionner la date";
-                    return;
-                }
-
-                //var format = FormatYear(input.value);
-
-                //dateFormated.innerText = format;
-
-
-            }
-
-
-            function FormatYear(yearString) {
-
-                var split = yearString.split('-');
-
-                if (split.length != 3)
-                    split = yearString.split('/');
-
-                var year = split[0];
-                var month = parseInt(split[1]);
-                var day = parseInt(split[2]);
-
-                var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-
-                return day + " " + months[month - 1] + " " + year;;
-            }
-        </script>
+        <asp:Button ID="btn_annuler" CssClass="btn btn-raised btn-danger" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
+        
 
     </form>
 </asp:Content>

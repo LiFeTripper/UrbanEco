@@ -99,6 +99,7 @@
     <Content Include="Home.aspx" />
     <Content Include="lib\css\ajoutDepenseForm.css" />
     <Content Include="lib\css\ajoutProjetForm.css" />
+    <Content Include="lib\css\gestionFeuilleDeTemps.css" />
     <Content Include="lib\css\old\bootstrap-grid.css" />
     <Content Include="lib\css\old\bootstrap-grid.min.css" />
     <Content Include="lib\css\old\bootstrap-reboot.css" />
