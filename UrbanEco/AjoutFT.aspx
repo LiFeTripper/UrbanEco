@@ -68,6 +68,7 @@
                             <asp:ListItem Value="6">6</asp:ListItem>
                             <asp:ListItem Value="7">7</asp:ListItem>
                             <asp:ListItem Value="8">8</asp:ListItem>
+                            <asp:ListItem Value="50">50</asp:ListItem>
                         </asp:DropDownList>
                         <asp:DropDownList ID="tbx_minutes" runat="server" CssClass="form-control" >
                             <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
