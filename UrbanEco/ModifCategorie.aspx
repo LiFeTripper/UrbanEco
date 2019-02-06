@@ -88,7 +88,7 @@
 
             <input type="text" runat="server" id="hiddenFieldEmployeDeselect" hidden/>
             <input type="text" runat="server" id="hiddenFieldEmploye" hidden/>
-            <input type="text" runat="server" id="hiddenFieldTotal" hidden/>
+            <input type="text" runat="server" id="hiddenFieldAllEmploye" hidden/>
 
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
