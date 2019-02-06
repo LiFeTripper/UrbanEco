@@ -50,12 +50,12 @@
             </div>
 
             <div class="form-group">
-                <label for="Calendar1" class="bmd-label-floating">Data Minimum</label>
+                <label for="Calendar1">Data Minimum</label>
                 <input class="form-control" type="date" id="Calendar1" runat="server" />
             </div>
 
             <div class="form-group">
-                <label for="Calendar2" class="bmd-label-floating">Data Maximum</label>
+                <label for="Calendar2">Data Maximum</label>
                 <input class="form-control" type="date" id="Calendar2" runat="server" />
             </div>
 
