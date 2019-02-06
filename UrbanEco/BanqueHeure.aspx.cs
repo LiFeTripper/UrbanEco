@@ -21,7 +21,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true,true,false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             CoecoDataContext ctx = new CoecoDataContext();
