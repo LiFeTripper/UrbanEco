@@ -20,7 +20,6 @@ namespace UrbanEco
             {
                 Response.Redirect("Login.aspx");
             }
-
             Chkbx_Inactif.Checked = showInactive;
         }
 

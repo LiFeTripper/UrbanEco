@@ -10,7 +10,8 @@ use BD_Coeco
 go
 
 CREATE TABLE tbl_ConfigAdmin(
-jourRappel VARCHAR(8) DEFAULT 'Lundi',
+	idConfigAdmin INT PRIMARY KEY IDENTITY(1,1),
+	jourRappel VARCHAR(8) DEFAULT 'Lundi',
     heureRappel TIME NOT NULL DEFAULT '08:00:00',
     emailRappel VARCHAR(80) NOT NULL,
     pwdEmailRappel VARCHAR(256) NOT NULL,
@@ -23,6 +24,7 @@ jourRappel VARCHAR(8) DEFAULT 'Lundi',
     smtpSSL BIT DEFAULT 1,
     CONSTRAINT cJourSemaine CHECK (jourRappel IN ('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi')),
 )
+INSERT INTO tbl_ConfigAdmin ([jourRappel],[heureRappel],[emailRappel],[pwdEmailRappel],[statutRappelBureau],[statutRappelTerrain],[objetRappel],[contenuRappel],[smtpServer],[smtpPort],[smtpSSL]) VALUES ('Lundi','08:00:00','theverygoodteam@gmail.com','CodeBreaker',1,1,'Voici un objet','Voici un contenu','smtp.gmail.com',587,1)
 
 CREATE TABLE tbl_Status
 (
