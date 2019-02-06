@@ -270,7 +270,7 @@ namespace UrbanEco
 
         protected void Btn_ApproveTout_Click(object sender, EventArgs e)
         {
-            var FT = from tblFT in cdc.tbl_FeuilleTemps
+            var FT = from tblFT in cdc.tbl_FeuilleTemps where tblFT.approuver == false
                      select tblFT;
 
             foreach (var FTemp in FT)
