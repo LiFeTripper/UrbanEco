@@ -49,7 +49,7 @@
             <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
         </div>
 
-<<<<<<< HEAD
+
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
@@ -58,7 +58,7 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell>
 
-                        <%--<asp:TextBox ID="tbx_nbHeure" runat="server" CssClass="form-control"></asp:TextBox>--%>
+
                         <asp:DropDownList ID="tbx_heures" runat="server" CssClass="form-control">
                             <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
                             <asp:ListItem Value="1">1</asp:ListItem>
@@ -80,16 +80,11 @@
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-=======
-        <div class="form-group" runat="server">
-            <label for="tbx_categorie" class="bmd-label-floating">Sous-Catégorie</label>
-            <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
->>>>>>> 3d76ad82c5e047c8261fec9693bb9c9b64576a83
         </div>
 
         <div class="form-group" runat="server">
-            <label for="tbx_nbHeure" class="bmd-label-floating">Durée</label>
-            <asp:TextBox ID="tbx_nbHeure" runat="server" type="number" CssClass="form-control monInputTypeNumber"></asp:TextBox>
+            <label for="tbx_categorie" class="bmd-label-floating">Sous-Catégorie</label>
+            <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
         </div>
 
         <div class="form-group" runat="server">
@@ -106,6 +101,5 @@
 
         <asp:Button ID="btn_annuler" CssClass="btn btn-raised btn-danger" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
         
-
     </form>
 </asp:Content>
