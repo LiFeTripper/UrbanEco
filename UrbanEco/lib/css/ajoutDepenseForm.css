@@ -25,6 +25,27 @@
     height: 43px;
 }
 
+.champKilometrage {
+    width: auto;
+    margin-top: 0px;
+    margin-left: 00px;
+    padding-right: 00px;
+    display: grid;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    grid-template-columns: 25% 21% 25% 29%;
+}
+
+.flexEnd {
+    align-self: flex-end;
+    justify-self: end;
+}
+
+.boutonCalculer {
+    transform: translateY(-12px);
+}
+
+
 .monCheckbox {
     transform: translateY(20px);
 }
