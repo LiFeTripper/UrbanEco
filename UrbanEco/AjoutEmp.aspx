@@ -1,18 +1,20 @@
 ﻿<%@ Page Title="Co-Éco" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutEmp.aspx.cs" Inherits="UrbanEco.AjoutEmp" %>
 
+<%--HEADER DE LA PAGE--%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="lib/css/ajoutEmpForm.css" />
     <title>Co-Éco - Ajout d'employés</title>
 </asp:Content>
 
+<%--HEAD DU CONTENU--%>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
     <h1>
         <asp:Label ID="lbl_Top" runat="server" Text="Label"></asp:Label>
     </h1>
 </asp:Content>
 
+<%--CONTENU DE LA PAGE--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-
     <form runat="server">
         <%--PRÉNOM--%>
         <div class="form-group">
