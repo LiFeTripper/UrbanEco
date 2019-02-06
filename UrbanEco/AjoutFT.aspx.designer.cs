@@ -49,11 +49,8 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
-<<<<<<< HEAD
-        /// Contrôle tbx_heures.
-=======
+
         /// tbx_nbHeure control.
->>>>>>> 3d76ad82c5e047c8261fec9693bb9c9b64576a83
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
