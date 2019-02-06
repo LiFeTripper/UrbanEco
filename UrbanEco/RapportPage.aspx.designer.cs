@@ -13,6 +13,24 @@ namespace UrbanEco {
     public partial class RapportPage {
         
         /// <summary>
+        /// tbx_dateDebut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbx_dateDebut;
+        
+        /// <summary>
+        /// tbx_dateFin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbx_dateFin;
+        
+        /// <summary>
         /// rapportRepeater control.
         /// </summary>
         /// <remarks>
