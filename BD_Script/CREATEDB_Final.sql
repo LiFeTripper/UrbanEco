@@ -24,6 +24,7 @@ CREATE TABLE tbl_ConfigAdmin(
     smtpSSL BIT DEFAULT 1,
     CONSTRAINT cJourSemaine CHECK (jourRappel IN ('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi')),
 )
+INSERT INTO tbl_ConfigAdmin ([jourRappel],[heureRappel],[emailRappel],[pwdEmailRappel],[statutRappelBureau],[statutRappelTerrain],[objetRappel],[contenuRappel],[smtpServer],[smtpPort],[smtpSSL]) VALUES ('Lundi','08:00:00','theverygoodteam@gmail.com','CodeBreaker',1,1,'Voici un objet','Voici un contenu','smtp.gmail.com',587,1)
 
 CREATE TABLE tbl_Status
 (
