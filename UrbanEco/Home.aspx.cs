@@ -118,10 +118,8 @@ namespace UrbanEco
                 if (item == null)
                     continue;
 
-               // if ()
-                {
                     totalHeure += item.nbHeure;
-                }
+                
             }
 
 

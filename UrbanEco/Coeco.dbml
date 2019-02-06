@@ -161,6 +161,7 @@
   </Table>
   <Table Name="dbo.tbl_ConfigAdmin" Member="tbl_ConfigAdmin">
     <Type Name="tbl_ConfigAdmin">
+      <Column Name="idConfigAdmin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="jourRappel" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
       <Column Name="heureRappel" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
       <Column Name="emailRappel" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />

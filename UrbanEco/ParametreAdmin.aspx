@@ -128,6 +128,106 @@
                 </asp:TableRow>
             </asp:Table>
         </div>
+        
+        <div class="form-group mb-4 col-6 mx-auto">
+            <hr style="width:100%; border:2px solid black;"/>
+        </div>
+        <%-- Configuration des rappels --%>
+        <div class="form-group mb-4 col-6 mx-auto">
+            <label for="Table2" style="font-size: 20px;">Configuration des rappels</label>
+            <asp:Table runat="server" ID="Table2" Style="width: 100%; table-layout:fixed;">
+                <asp:TableRow>
+                    <%-- Jour de rappel --%>
+                    <asp:TableHeaderCell CssClass="form-control">Jour du rappel</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <select id="cb_jourRappel" style="width:100%;" class="form-control" runat="server">
+                            <option>Lundi</option>
+                            <option>Mardi</option>
+                            <option>Mercredi</option>
+                            <option>Jeudi</option>
+                            <option>Vendredi</option>
+                            <option>Samedi</option>
+                            <option>Dimanche</option>
+                        </select>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- Heure de rappel --%>
+                    <asp:TableHeaderCell CssClass="form-control">Heure de rappel</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="time" id="tbx_heureRappel" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+
+                <asp:TableRow>
+                    <%-- Objet du courriel --%>
+                    <asp:TableHeaderCell CssClass="form-control">Objet du courriel</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="text" id="tbx_objet" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- Contenu du courriel --%>
+                    <asp:TableHeaderCell CssClass="form-control">Contenu du courriel</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <textarea id="ta_contenu" style="width:100%;" class="form-control" runat="server"></textarea>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- Rappel actif bureau --%>
+                    <asp:TableHeaderCell CssClass="form-control">Rappel Bureau Actif</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="checkbox" id="ckb_rappelBureau" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- Rappel actif terrain --%>
+                    <asp:TableHeaderCell CssClass="form-control">Rappel Terrain Actif</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="checkbox" id="ckb_rappelTerrain" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+
+            <label for="Table3" style="font-size: 20px;">Configurations avancées</label>
+            <asp:Table runat="server" ID="Table3" Style="width: 100%; table-layout:fixed;">
+                <asp:TableRow>
+                    <%-- email --%>
+                    <asp:TableHeaderCell CssClass="form-control">Email de rappel</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="email" id="tbx_email" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- mot de passe --%>
+                    <asp:TableHeaderCell CssClass="form-control">Changer mot de passe du email</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="password" id="tbx_mdpEmail" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- Serveur SMTP --%>
+                    <asp:TableHeaderCell CssClass="form-control">Serveur SMTP</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="text" id="tbx_smtp" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- Port SMTP --%>
+                    <asp:TableHeaderCell CssClass="form-control">Port SMTP</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="number" id="tbx_port" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <%-- SMTP SSL --%>
+                    <asp:TableHeaderCell CssClass="form-control">SMTP SSL</asp:TableHeaderCell>
+                    <asp:TableCell>
+                        <input type="checkbox" id="chk_ssl" style="width:100%;" class="form-control" runat="server"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
 
         <div class="form-group mb-4 col-6 mx-auto">
             <hr style="width:100%; border:2px solid black;"/>

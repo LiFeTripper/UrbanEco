@@ -10,6 +10,9 @@ namespace UrbanEco
 {
     public partial class RapportPage : System.Web.UI.Page
     {
+        DateTime dateDebut;
+        DateTime dateFin;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Authentification.Autorisation(true, false, false))
@@ -23,6 +26,8 @@ namespace UrbanEco
         private void chercherRapport()
         {
             RapportNode rapportNode = (RapportNode)Session["rapportNode"];
+            dateDebut = (DateTime)Session["dateDebut"];
+            dateFin = (DateTime)Session["dateFin"];
 
             if (rapportNode != null)
             {
