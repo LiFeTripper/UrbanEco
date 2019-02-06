@@ -5,16 +5,15 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-using Quartz;
-using Quartz.Impl;
 
 namespace UrbanEco
 {
     public class Global : System.Web.HttpApplication
     {
 
-        protected void Application_Start(object sender, EventArgs e) =>
-            JobScheduler.Start();
+        protected void Application_Start(object sender, EventArgs e) {
+
+        }
 
         protected void Session_Start(object sender, EventArgs e)
         {
