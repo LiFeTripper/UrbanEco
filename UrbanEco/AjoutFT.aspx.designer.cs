@@ -40,20 +40,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
         
         /// <summary>
-        /// tbx_categorie control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
-        
-        /// <summary>
-<<<<<<< HEAD
-        /// Contrôle tbx_heures.
-=======
-        /// tbx_nbHeure control.
->>>>>>> 3d76ad82c5e047c8261fec9693bb9c9b64576a83
+        /// tbx_heures control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -62,13 +49,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_heures;
         
         /// <summary>
-        /// Contrôle tbx_minutes.
+        /// tbx_minutes control.
         /// </summary>
         /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tbx_minutes;
+        
+        /// <summary>
+        /// tbx_categorie control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
         /// DateCreation control.

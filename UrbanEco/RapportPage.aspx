@@ -10,6 +10,10 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+
+    <h1>Rapport</h1>
+    <span>Rapport <%# Eval("") %> à <%# Eval("") %></span>
+
     <asp:repeater id="rapportRepeater" runat="server">
         <itemtemplate>
             <%-- Loop Through Projects --%>

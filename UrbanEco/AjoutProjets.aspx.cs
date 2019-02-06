@@ -54,7 +54,7 @@ namespace UrbanEco
 
                             Tbx_Titre.Text = Projet.titre;
                             Tbx_Description.Text = Projet.description;
-                            Ddl_Responsable.SelectedIndex = (int)Projet.idEmployeResp -1;
+                            Ddl_Responsable.SelectedValue = Projet.idEmployeResp.ToString();
                             Chkbx_App.Checked = (bool)Projet.approbation;
                             Ddl_Status.SelectedIndex = (int)Projet.idStatus - 1;
                             Tbx_HeuresAlloues.Text = Projet.tempsAllouer.ToString();
