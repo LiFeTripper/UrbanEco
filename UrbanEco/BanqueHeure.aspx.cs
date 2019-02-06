@@ -515,12 +515,22 @@ namespace UrbanEco
                 }
             }
 
+            //trier le ddl en ordre 
+            List<ListItem> listCopy = new List<ListItem>();
+            foreach (ListItem item in listEmp)
+                listCopy.Add(item);
+
+            listEmp.Clear();
+
+            foreach (ListItem item in listCopy.OrderBy(item => item.Text))
+            {
+                listEmp.Add(item);
+            }
+
             ddl_empBH.DataSource = null;
             ddl_empBH.DataBind();
             ddl_empBH.DataSource = listEmp;
             ddl_empBH.DataBind();
-
-            //ddl_empBH.Items.Insert(0, new ListItem("Veuillez choisir un employé",(-1).ToString()));
         }
 
         protected void btn_modifBHI_Click(object sender, EventArgs e)
