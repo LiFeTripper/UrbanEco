@@ -10,8 +10,6 @@ namespace UrbanEco
 {
     public partial class RapportPage : System.Web.UI.Page
     {
-        DateTime dateDebut;
-        DateTime dateFin;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,8 +24,8 @@ namespace UrbanEco
         private void chercherRapport()
         {
             RapportNode rapportNode = (RapportNode)Session["rapportNode"];
-            dateDebut = (DateTime)Session["dateDebut"];
-            dateFin = (DateTime)Session["dateFin"];
+            tbx_dateDebut.InnerHtml = Layout.GetDateFormated((DateTime)Session["dateDebut"]);
+            tbx_dateFin.InnerHtml = Layout.GetDateFormated((DateTime)Session["dateFin"]);
 
             if (rapportNode != null)
             {
