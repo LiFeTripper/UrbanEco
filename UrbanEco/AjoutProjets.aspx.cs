@@ -62,7 +62,7 @@ namespace UrbanEco
                                 Cal_DateDebut.Value =  Layout.ToCalendarDate(Projet.dateDebut.Value);
                             if(Projet.dateFin != null)
                                 Cal_DateFin.Value = Layout.ToCalendarDate(Projet.dateFin.Value);
-
+                            ChkBx_Archivé.Checked = (bool)Projet.archiver;
                             insert = false;
                         }
                         break;

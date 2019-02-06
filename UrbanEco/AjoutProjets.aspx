@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="lib/css/ajoutProjetForm.css" />
+    <title>Co-Éco - Ajout de projets</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -64,7 +65,7 @@
         <div class="form-group">
             <label for="Ddl_TypeEmp" class="bmd-label-floating">Responsable</label>
             <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="personne" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
-            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" OrderBy="nom, prenom" Where="inactif == false" TableName="tbl_Employe"></asp:LinqDataSource>
+            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" OrderBy="prenom, nom" Where="inactif == false" TableName="tbl_Employe"></asp:LinqDataSource>
         </div>
 
         <%--Approbation feuille de temps checkbox--%>

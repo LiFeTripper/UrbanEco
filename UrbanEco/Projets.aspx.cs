@@ -13,6 +13,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Authentification.Autorisation(true, false, false))
+            {
+                Response.Redirect("Home.aspx");
+            }
+
             CoecoDataContext context = new CoecoDataContext();
 
             Chkbx_Inactif.Checked = showInactive;

@@ -1,7 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutDepense.aspx.cs" Inherits="UrbanEco.AjoutDepense" %>
+﻿<%@ Page Title="Co-Éco" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="AjoutDepense.aspx.cs" Inherits="UrbanEco.AjoutDepense" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="lib/css/ajoutDepenseForm.css" />
+    <title>Co-Éco - Ajout de dépenses</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -10,11 +11,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server">
-
-        <%--EN-TËTE--%>
-        <div class="form-group">
-            <h3>Projet associé</h3>
-        </div>
 
         <%--Employé--%>
         <div id="divEmp" runat="server" visible="false" class="form-group">
@@ -30,24 +26,18 @@
 
         <%--SOUS-CATÉGORIE--%>
 
-        <div class="form-group" runat="server" id="SProjet" visible="false">
+        <div class="form-group spantwo" runat="server" id="SProjet" visible="false">
             <label for="ddlEmp" class="bmd-label-floating">Sous-Catégorie</label>
             <asp:DropDownList ID="tbx_categorie" Enabled="false" name="idProjet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" class="form-control"></asp:DropDownList>
         </div>
 
-        <div class="form-group mb-4 col-6 mx-auto">
-            <%--<label for="Ddl_TypeEmp">Date </label>--%>
-            <asp:table CssClass="asp-table" runat="server" id="Ddl_TypeEmp" style="width: 100% !important;">
-                <%--DATE--%>
-                <asp:TableRow>    
-                    <asp:TableHeaderCell CssClass="form-control">
-                        <b style="color:red; float:right;">*</b><div id="dateFormated" runat="server" style="width:100%; font-size:15px;"></div>
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <input type="date" id="Calendar" style="width:100%;" class="form-control" runat="server" />
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:table>
+        <div class="form-group">
+            <label for="Calendar" class="bmd-label-floating">Modifier date de facturation</label>
+            <input type="date" id="Calendar" class="form-control" runat="server" />
+        </div>
+
+        <div class="form-group bold alignEnd">
+            <div id="dateFormated" runat="server"></div>
         </div>
 
         <%--On change for date--%>
@@ -98,36 +88,38 @@
             }
         </script>
 
-        <div class="form-group mb-4 col-6 mx-auto">
-            <hr style="width:100%; border:2px solid black;"/>
-        </div>
-
         <%--EN-TËTE--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <h3>Information sur la dépense</h3>
+        <div class="spantwo">
+            <h3>Informations sur la dépense</h3>
         </div>
 
         <%--Type de dépense--%>
         <div class="form-group" runat="server">
-            <label for="ddlEmp" class="bmd-label-floating">Type De Dépense</label>
+            <label for="ddlEmp" class="bmd-label-floating">Type de dépense</label>
             <asp:DropDownList ID="tbx_typeDepense" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" class="form-control" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="km_html">
-            <label for="tbl_kilo">Kilomètrage <b style="color:red">*</b></label>
-            <asp:table CssClass="asp-table" runat="server" id="tbl_kilo" style="width: 100% !important;">
-                <asp:TableRow>    
-                    <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true" TextMode="Number"></asp:TextBox>
-                    </asp:TableCell>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        <div runat="server" id="prixKm" style=" float:left; text-align:left;"></div>
-                        <div runat="server" id="prixTotalKm" style=" float:right; text-align:left;"></div>
-                    </asp:TableHeaderCell>    
-                </asp:TableRow>
-            </asp:table>
+
+        <div class="form-group" runat="server" id="km_html">
+            <div class="form-group">
+                <label for="tbl_kilo" class="bmd-label-floating">Kilométrage</label>
+                <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server"  OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false" TextMode="Number"></asp:TextBox>
+            </div>
+
+            <div class="form-group">
+                <div runat="server" id="prixKm"></div>
+            </div>
+
+            <div class="form-group">
+                <div runat="server" id="prixTotalKm"></div>
+            </div>
+            <div>
+                 <asp:Button CssClass="btn btn-lg btn-info" ID="btnCalculer" runat="server" Text="Calculer"  />
+            </div>
         </div>
+        
+        
 
 
         <div class="form-group mb-4 col-6 mx-auto" runat="server" id="montant_html">
@@ -138,14 +130,14 @@
                         Montant <b style="color:red">*</b>
                     </asp:TableHeaderCell>  
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="true"  TextMode="Number"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false"  TextMode="Number"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:table>
         </div>
 
         <%--NOTES--%>
-        <div class="form-group mb-4 col-6 mx-auto" id="Div1" runat="server">
+        <div class="" id="Div1" runat="server">
             <label for="tbx_note">Note</label>
             <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
         </div>
@@ -176,19 +168,19 @@
         <%--MESSAGES--%>
         <div class="form-group mb-4 col-6 mx-auto">
             <div class="alert alert-success" runat="server" id="alert_success" visible="false">
-                <strong>Succès!</strong>  Votre dépense a bien été ajouté !
+                <strong>Succès!</strong>  Votre dépense a bien été ajoutée !
             </div>
             <div class="alert alert-danger" runat="server" id="alert_failed" visible="false">
-                <strong>Erreur!</strong>  Votre dépense n'as pas pu être ajouté à la base de donnée !
+                <strong>Erreur!</strong>  Votre dépense n'as pas pu être ajoutée à la base de donnée !
             </div>
             <div class="alert alert-warning" runat="server" id="alert_warning" visible="false">
-                <strong>Attention!</strong>  Votre dépense a déjà été ajouté à la base de donnée !
+                <strong>Attention!</strong>  Votre dépense a déjà été ajoutée à la base de donnée !
             </div>
         </div>
         <%--BOUTON--%>
         <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Button Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-danger input-box" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
-            <asp:Button Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-success input-box" ID="btn_envoyer" runat="server" Text="Confirmer" OnClick="btn_envoyer_Click" />
+            <asp:Button Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-raised btn-danger input-box" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
+            <asp:Button Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-raised btn-success input-box" ID="btn_envoyer" runat="server" Text="Confirmer" OnClick="btn_envoyer_Click" />
         </div>
     </form>
 </asp:Content>

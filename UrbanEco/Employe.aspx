@@ -7,6 +7,7 @@
             width: 30px !important;
         }
     </style>
+    <title>Co-Éco - Employés</title>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -94,7 +95,7 @@
                 <%--REPEATER DES INACTIF--%>
                 <asp:Repeater ID="Rptr_EmployeInactif" runat="server" DataSource='<%#Eval("tbl_Employe") %>'>
                     <ItemTemplate>
-                        <tr visible='<%# ((Boolean.Parse(Eval("inactif").ToString()) && Chkbx_Inactif.Checked)%>' runat="server">
+                        <tr visible='<%# ((Boolean.Parse(Eval("inactif").ToString()) && Chkbx_Inactif.Checked))%>' runat="server">
                             <td></td>
 <%--                            <td>
                                 <asp:Label ID="lbl_idEmploye" runat="server" Text='<%#Eval("idEmploye") %>' Font-Bold="true" />
