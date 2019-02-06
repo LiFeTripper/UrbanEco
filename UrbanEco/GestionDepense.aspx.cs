@@ -81,20 +81,20 @@ namespace UrbanEco
 
         }
 
+        //crochet approuver
         protected void Btn_Approve_Click(object sender, ImageClickEventArgs e)
         {
-            ImageButton btn = ((ImageButton)sender);
 
             CoecoDataContext ctx = new CoecoDataContext();
 
+            ImageButton btn = ((ImageButton)sender);
+      
             int idDepense = -1;
 
             int.TryParse(btn.CommandArgument, out idDepense);
 
             if (idDepense != -1)
             {
-                CoecoDataContext context = new CoecoDataContext();
-
                 tbl_Depense depense = BD.GetDepense(ctx,idDepense);
 
                 if(depense != null)
@@ -102,7 +102,7 @@ namespace UrbanEco
                     depense.approuver = true;
                 }
 
-                context.SubmitChanges();
+                ctx.SubmitChanges();
 
                 Response.Redirect(Request.RawUrl);
             }
@@ -126,6 +126,7 @@ namespace UrbanEco
         {
         }
 
+        //bouton approuver l'employé
         protected void btn_approverEmploye_Click(object sender, EventArgs e)
         {
             Button btn = ((Button)sender);

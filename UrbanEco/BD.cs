@@ -222,7 +222,7 @@ namespace UrbanEco
 
         public static tbl_Depense GetDepense(CoecoDataContext ctx, int idDepense)
         {
-            CoecoDataContext context = new CoecoDataContext();
+            CoecoDataContext context = ctx;
 
             var query = from tbl in context.tbl_Depense
                         where tbl.idDepense == idDepense
