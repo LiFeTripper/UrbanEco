@@ -8,6 +8,7 @@
 
         }
     </style>
+    <title>Co-Éco - modification des catégories</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
@@ -85,9 +86,9 @@
             </asp:Table>
         </div>
 
-            <input type="text" runat="server" id="hiddenFieldEmployeDeselect" hidden />
-            <input type="text" runat="server" id="hiddenFieldEmploye" hidden />
-            <input type="text" runat="server" id="hiddenFieldTotal" hidden />
+            <input type="text" runat="server" id="hiddenFieldEmployeDeselect" hidden/>
+            <input type="text" runat="server" id="hiddenFieldEmploye" hidden/>
+            <input type="text" runat="server" id="hiddenFieldAllEmploye" hidden/>
 
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
@@ -151,7 +152,9 @@
 
                 //Ajustement de la liste de deselected pour un update
                 var htmlStorageDeselect = document.getElementById('<%=hiddenFieldEmployeDeselect.ClientID%>');
-                htmlStorageDeselect.value = deselected;
+                htmlStorageDeselect.value += values[0] + ",";
+
+               
             },
 
             selectableOptgroup: true,

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Connexion</title>
+    <title>Co-Éco - Connexion</title>
     
     <link href="lib/css/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/css/signin.css" rel="stylesheet" />

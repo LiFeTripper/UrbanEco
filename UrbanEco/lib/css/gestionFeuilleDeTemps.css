@@ -1,0 +1,40 @@
+﻿#BodyPlaceHolder_filtreDate {
+    width: auto;
+    margin-top: 45px;
+    margin-left: 20px;
+    padding-right: 50px;
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    grid-template-columns: 20% 20%;
+}
+
+#ajoutFDT {
+    width: auto;
+    margin-top: 45px;
+    margin-left: 20px;
+    padding-right: 50px;
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    grid-template-columns: 100%;
+}
+
+#ajoutFDT div input
+{
+    width: 20%;
+}
+
+
+
+.titreFiltre {
+    margin-bottom: -25px !important;
+}
+
+.spantwo {
+    grid-column: span 2;
+}
+
+.btn {
+    height: 43px;
+}

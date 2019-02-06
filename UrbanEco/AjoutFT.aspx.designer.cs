@@ -40,6 +40,24 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
         
         /// <summary>
+        /// Contrôle tbx_heures.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbx_heures;
+        
+        /// <summary>
+        /// Contrôle tbx_minutes.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbx_minutes;
+        
+        /// <summary>
         /// Contrôle tbx_categorie.
         /// </summary>
         /// <remarks>
@@ -58,24 +76,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_nbHeure;
         
         /// <summary>
-        /// Contrôle txa_comments.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txa_comments;
-        
-        /// <summary>
-        /// Contrôle dateFormated.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFormated;
-        
-        /// <summary>
         /// Contrôle DateCreation.
         /// </summary>
         /// <remarks>
@@ -85,13 +85,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl DateCreation;
         
         /// <summary>
-        /// Contrôle btn_annuler.
+        /// Contrôle txa_comments.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_annuler;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txa_comments;
         
         /// <summary>
         /// Contrôle Btn_Enreg.
@@ -101,5 +101,14 @@ namespace UrbanEco {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Enreg;
+        
+        /// <summary>
+        /// Contrôle btn_annuler.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_annuler;
     }
 }
