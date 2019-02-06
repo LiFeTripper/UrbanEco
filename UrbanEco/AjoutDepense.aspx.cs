@@ -247,7 +247,7 @@ namespace UrbanEco
         }
 
         /// <summary>
-        /// Boutton envoyé la dépense
+        /// Boutton confirmer la dépense
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -276,7 +276,6 @@ namespace UrbanEco
                         dep.idEmploye = empConnected.idEmploye;
                     }
 
-                    //Peut etre améliorer
                     //obtenir le id du type de la dépense
                     int idTypeDepense = tbx_typeDepense.SelectedIndex + 1;
 
@@ -285,7 +284,11 @@ namespace UrbanEco
 
                     //Pas de sous-catégorie sélectionner
                     if (tbx_categorie.SelectedIndex == 0)
-                        dep.idProjetCat = null;
+                    {
+                        //message d'erreur
+                        alert_failed.Visible = true;
+                        //dep.idProjetCat = null;
+                    }
                     else
                         dep.idProjetCat = int.Parse(tbx_categorie.Items[tbx_categorie.SelectedIndex].Value);
 

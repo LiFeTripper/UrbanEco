@@ -76,34 +76,43 @@ namespace UrbanEco
 
             CoecoDataContext ctx = new CoecoDataContext();
 
+            if(!VerifInfoProjet(insert))
+            {
+                return;
+            }
+
+            DateTime dateDebut;
+            DateTime dateFin;
+
+            //Date ou NULL
+            DateTime.TryParse(Cal_DateDebut.Value, out dateDebut);
+            DateTime.TryParse(Cal_DateDebut.Value, out dateFin);
+
             //Insertion dans la base de données
             if (insert == true)
             {
                 //Objet de ma table Projet
-                tbl_Projet tableProjet = new tbl_Projet();
+                tbl_Projet nouveauProjet = new tbl_Projet();
 
                 //Remplissage des champs de la table temporaire avec les contrôles
-                tableProjet.titre = Tbx_Titre.Text;
+                nouveauProjet.titre = Tbx_Titre.Text;
                 string titre = Tbx_Titre.Text;
-                tableProjet.description = Tbx_Description.Text;
+                nouveauProjet.description = Tbx_Description.Text;
 
                 if (string.IsNullOrWhiteSpace(Tbx_HeuresAlloues.Text))
                     Tbx_HeuresAlloues.Text = "0";
 
-                tableProjet.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
-                tableProjet.idStatus = int.Parse(Ddl_Status.SelectedValue);
-                tableProjet.archiver = ChkBx_Archivé.Checked;
+                nouveauProjet.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
+                nouveauProjet.idStatus = int.Parse(Ddl_Status.SelectedValue);
+                nouveauProjet.archiver = ChkBx_Archivé.Checked;
 
-                DateTime date1 = DateTime.Parse(Cal_DateDebut.Value);
-                tableProjet.dateDebut = date1;
+                nouveauProjet.dateDebut = dateDebut;
+                nouveauProjet.dateFin = dateFin;
 
-                DateTime date2 = DateTime.Parse(Cal_DateDebut.Value);
-                tableProjet.dateFin = date2;
+                nouveauProjet.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
+                nouveauProjet.approbation = Chkbx_App.Checked;
 
-                tableProjet.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
-                tableProjet.approbation = Chkbx_App.Checked;
-
-                ctx.tbl_Projet.InsertOnSubmit(tableProjet);
+                ctx.tbl_Projet.InsertOnSubmit(nouveauProjet);
 
                 if (Tbx_Titre.Text != "")
                 {
@@ -138,14 +147,15 @@ namespace UrbanEco
 
                 tbl_Projet ProjetToModif = BD.GetProjet(ctx,idProjet);
 
+
                 ProjetToModif.titre = Tbx_Titre.Text;
                 ProjetToModif.description = Tbx_Description.Text;
                 ProjetToModif.idEmployeResp = int.Parse(Ddl_Responsable.SelectedValue);
                 ProjetToModif.approbation = Chkbx_App.Checked;
                 ProjetToModif.idStatus = int.Parse(Ddl_Status.SelectedValue);
                 ProjetToModif.tempsAllouer = float.Parse(Tbx_HeuresAlloues.Text);
-                ProjetToModif.dateDebut = DateTime.Parse(Cal_DateDebut.Value);
-                ProjetToModif.dateFin = DateTime.Parse(Cal_DateFin.Value);
+                ProjetToModif.dateDebut = dateDebut;
+                ProjetToModif.dateFin = dateFin;
                 ProjetToModif.archiver = ChkBx_Archivé.Checked;
             }
 
@@ -166,6 +176,17 @@ namespace UrbanEco
             ((Button)sender).CausesValidation = false;
             Response.Redirect("Projets.aspx",false);
             HttpContext.Current.ApplicationInstance.CompleteRequest();
+        }
+
+        private bool VerifInfoProjet(bool insert)
+        {
+            if(string.IsNullOrWhiteSpace(Tbx_Titre.Text))
+            {
+                return false;
+            }
+
+
+            return true;
         }
     }
 }
