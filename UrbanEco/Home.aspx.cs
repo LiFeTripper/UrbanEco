@@ -29,10 +29,9 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Partie inutile, mais pour l'uniformité
             if (!Authentification.Autorisation(true, true, true))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             Page.MaintainScrollPositionOnPostBack = true;

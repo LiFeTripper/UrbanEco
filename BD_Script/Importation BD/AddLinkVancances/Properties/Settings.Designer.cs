@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Deplace_Sous_Cat.Properties {
+namespace AddLinkVancances.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,8 @@ namespace Deplace_Sous_Cat.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.253;Initial Catalog=BD_Coeco_Test;User ID=WEB_USER;Password" +
-            "=1234")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.253;Initial Catalog=BD_Coeco_Test;Persist Security Info=Tru" +
+            "e;User ID=WEB_USER;Password=1234")]
         public string BD_Coeco_TestConnectionString {
             get {
                 return ((string)(this["BD_Coeco_TestConnectionString"]));
@@ -37,8 +37,8 @@ namespace Deplace_Sous_Cat.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Persist Security Info=True;Use" +
-            "r ID=WEB_USER;Password=1234")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.253;Initial Catalog=BD_Coeco;User ID=WEB_USER;Password=1234" +
+            "")]
         public string BD_CoecoConnectionString {
             get {
                 return ((string)(this["BD_CoecoConnectionString"]));

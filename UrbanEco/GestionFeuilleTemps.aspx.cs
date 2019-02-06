@@ -26,7 +26,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true, true, true))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             CoecoDataContext ctx = new CoecoDataContext();
@@ -273,7 +273,7 @@ namespace UrbanEco
 
         protected void Btn_ApproveTout_Click(object sender, EventArgs e)
         {
-            var FT = from tblFT in cdc.tbl_FeuilleTemps
+            var FT = from tblFT in cdc.tbl_FeuilleTemps where tblFT.approuver == false
                      select tblFT;
 
             foreach (var FTemp in FT)

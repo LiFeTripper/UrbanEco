@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UrbanEco
+namespace AddLinkVancances
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -22,8 +22,8 @@ namespace UrbanEco
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco_test")]
-	public partial class CoecoDataContext : System.Data.Linq.DataContext
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco")]
+	public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -74,31 +74,31 @@ namespace UrbanEco
     partial void Deletetbl_TypeEmploye(tbl_TypeEmploye instance);
     #endregion
 		
-		public CoecoDataContext() : 
-				base(global::UrbanEco.Properties.Settings.Default.BD_CoecoConnectionString1, mappingSource)
+		public CoEco_BDDataContext() : 
+				base(global::AddLinkVancances.Properties.Settings.Default.BD_CoecoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(string connection) : 
+		public CoEco_BDDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(System.Data.IDbConnection connection) : 
+		public CoEco_BDDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CoEco_BDDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CoEco_BDDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -213,14 +213,6 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_TypeEmploye>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tbl_ConfigAdmin> tbl_ConfigAdmin
-		{
-			get
-			{
-				return this.GetTable<tbl_ConfigAdmin>();
 			}
 		}
 	}
@@ -3583,213 +3575,6 @@ namespace UrbanEco
 		{
 			this.SendPropertyChanging();
 			entity.tbl_TypeEmploye = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_ConfigAdmin")]
-	public partial class tbl_ConfigAdmin
-	{
-		
-		private string _jourRappel;
-		
-		private System.TimeSpan _heureRappel;
-		
-		private string _emailRappel;
-		
-		private string _pwdEmailRappel;
-		
-		private System.Nullable<bool> _statutRappelBureau;
-		
-		private System.Nullable<bool> _statutRappelTerrain;
-		
-		private string _objetRappel;
-		
-		private string _contenuRappel;
-		
-		private string _smtpServer;
-		
-		private int _smtpPort;
-		
-		private System.Nullable<bool> _smtpSSL;
-		
-		public tbl_ConfigAdmin()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jourRappel", DbType="VarChar(8)")]
-		public string jourRappel
-		{
-			get
-			{
-				return this._jourRappel;
-			}
-			set
-			{
-				if ((this._jourRappel != value))
-				{
-					this._jourRappel = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_heureRappel", DbType="Time NOT NULL")]
-		public System.TimeSpan heureRappel
-		{
-			get
-			{
-				return this._heureRappel;
-			}
-			set
-			{
-				if ((this._heureRappel != value))
-				{
-					this._heureRappel = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailRappel", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
-		public string emailRappel
-		{
-			get
-			{
-				return this._emailRappel;
-			}
-			set
-			{
-				if ((this._emailRappel != value))
-				{
-					this._emailRappel = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdEmailRappel", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
-		public string pwdEmailRappel
-		{
-			get
-			{
-				return this._pwdEmailRappel;
-			}
-			set
-			{
-				if ((this._pwdEmailRappel != value))
-				{
-					this._pwdEmailRappel = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_statutRappelBureau", DbType="Bit")]
-		public System.Nullable<bool> statutRappelBureau
-		{
-			get
-			{
-				return this._statutRappelBureau;
-			}
-			set
-			{
-				if ((this._statutRappelBureau != value))
-				{
-					this._statutRappelBureau = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_statutRappelTerrain", DbType="Bit")]
-		public System.Nullable<bool> statutRappelTerrain
-		{
-			get
-			{
-				return this._statutRappelTerrain;
-			}
-			set
-			{
-				if ((this._statutRappelTerrain != value))
-				{
-					this._statutRappelTerrain = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_objetRappel", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
-		public string objetRappel
-		{
-			get
-			{
-				return this._objetRappel;
-			}
-			set
-			{
-				if ((this._objetRappel != value))
-				{
-					this._objetRappel = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contenuRappel", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string contenuRappel
-		{
-			get
-			{
-				return this._contenuRappel;
-			}
-			set
-			{
-				if ((this._contenuRappel != value))
-				{
-					this._contenuRappel = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_smtpServer", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string smtpServer
-		{
-			get
-			{
-				return this._smtpServer;
-			}
-			set
-			{
-				if ((this._smtpServer != value))
-				{
-					this._smtpServer = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_smtpPort", DbType="Int NOT NULL")]
-		public int smtpPort
-		{
-			get
-			{
-				return this._smtpPort;
-			}
-			set
-			{
-				if ((this._smtpPort != value))
-				{
-					this._smtpPort = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_smtpSSL", DbType="Bit")]
-		public System.Nullable<bool> smtpSSL
-		{
-			get
-			{
-				return this._smtpSSL;
-			}
-			set
-			{
-				if ((this._smtpSSL != value))
-				{
-					this._smtpSSL = value;
-				}
-			}
 		}
 	}
 }

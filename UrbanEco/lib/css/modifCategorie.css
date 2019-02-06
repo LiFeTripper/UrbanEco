@@ -1,0 +1,30 @@
+﻿form {
+    width: auto;
+    margin-top: 45px;
+    margin-left: 20px;
+    padding-right: 50px;
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    grid-template-columns: 20% 20%;
+}
+
+.titre {
+    color: #555;
+}
+
+.spantwo {
+    grid-column: span 2;
+}
+
+.noTopPadding{
+    padding-top: unset !important;
+}
+
+.ms-selectable {
+    width: 46%;
+}
+
+.ms-selection {
+    width: 47%;
+}

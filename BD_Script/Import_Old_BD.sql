@@ -1,4 +1,4 @@
-USE BD_Coeco_Test
+USE BD_Coeco
 GO
 
 Set Identity_Insert tbl_Employe ON
@@ -15,9 +15,9 @@ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, use
  VALUES (69, 'Employe', 'Supprimer', '', 2, 1, '#@!@', '%?%#@$$')
 
 -- IMPORTER LES EMPLOY�S AVEC LEURS USER
- INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username)
+ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
 	SELECT emp.id, emp.prenom, emp.nom, emp.email, 2 as idTypeEmpl, 
-	(CASE WHEN us.sttus = 0 THEN 1 else 0 END) as Inactif , us.usr AS username
+	(CASE WHEN us.sttus = 0 THEN 1 else 0 END) as Inactif , us.usr AS username, ('') AS emptyPassword
 	FROM coeco.dbo.tblemploye AS emp
 	JOIN coeco.dbo.tbluser AS us ON us.idperso = emp.id
 	WHERE 1=1
@@ -27,6 +27,11 @@ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, use
 Set Identity_Insert tbl_Employe OFF
 GO
 
+--Finalement on prend pas la contrainte unique
+--ALTER TABLE tbl_Employe
+--ADD CONSTRAINT UC_tbl_Employe_Unique UNIQUE(prenom, nom) 
+--GO
+
 
 
 Set Identity_Insert tbl_Projet ON
@@ -34,13 +39,13 @@ GO
 
 -- Admin ID = 8
  INSERT INTO tbl_Projet (idProjet, titre, description, approbation, idStatus, idEmployeResp, tempsAllouer, dateDebut, dateFin, archiver)
-VALUES (13, 'Projet supprime', '', 0, 2, 8, 0, '1900-01-01','1900-01-01', 1)
+VALUES (13, 'Projet supprime', '', 0, 2, 1, 0, '1900-01-01','1900-01-01', 1)
 
 
 -- IMPORTER LES PROJETS
  INSERT INTO tbl_Projet (idProjet, titre, description, approbation, idStatus, idEmployeResp, tempsAllouer, dateDebut, dateFin, archiver)
 	SELECT proj.id, proj.titre, proj.description, 0 AS approbation,(CASE WHEN proj.status = 1 THEN 1 else 2 END) AS idStatus, 
-	8 AS AdminID, proj.temps, 
+	1 AS AdminID, proj.temps, 
 	(CASE WHEN proj.datedebut IS NULL THEN proj.dateInsc else proj.datedebut END) AS dateDebut, 
 	proj.datefin, (CASE WHEN proj.status = 0 THEN 1 else 0 END) as archiver 
 	FROM coeco.dbo.tblprojet AS proj
@@ -108,3 +113,32 @@ GO
 
 --SELECT TOP 300 * FROM tbl_FeuilleTemps
 --ORDER BY idFeuille DESC, dateCreation
+
+--Creer procedure stocker
+
+IF OBJECT_ID ( 'PS_ChangeCatMaster', 'P' ) IS NOT NULL 
+    DROP PROCEDURE PS_ChangeCatMaster 
+GO
+CREATE PROC PS_ChangeCatMaster
+	@idCat INT
+AS
+	--Créé une nouvelle catégorie N1
+	INSERT INTO tbl_ProjetCat (idProjet, idCatMaitre, titre, description)(
+		SELECT idProjet, NULL, titre, description FROM tbl_ProjetCat
+		WHERE idProjetCat = @idCat
+	)
+	--Transfert de la catégorie N1 vers N2 et l'attaché à la nouvelle catégorie
+	UPDATE tbl_ProjetCat
+	SET idCatMaitre = (SELECT MAX(idProjetCat) FROM tbl_ProjetCat)
+	WHERE idProjetCat = @idCat
+
+	--Garder les catégories existantes
+	UPDATE tbl_ProjetCat
+	SET idCatMaitre = (SELECT MAX(idProjetCat) FROM tbl_ProjetCat)
+	WHERE idCatMaitre = @idCat
+
+GO
+
+
+
+
