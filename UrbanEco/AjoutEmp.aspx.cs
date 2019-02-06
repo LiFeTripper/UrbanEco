@@ -269,6 +269,8 @@ namespace UrbanEco
                         Response.Redirect("Employe.aspx");
                     }
                 }
+                //Redirection vers la page employés une fois terminé
+                Response.Redirect("Employe.aspx");
             }
         }
 
@@ -281,6 +283,11 @@ namespace UrbanEco
 
         bool verifEntree(CoecoDataContext ctx, bool insert)
         {
+
+            lb_erreurUsername.Visible = false;
+            lb_erreurPrenom.Visible = false;
+            lb_erreurNom.Visible = false;
+            lb_erreurUsername.Visible = false;
 
             if (string.IsNullOrWhiteSpace(Tbx_Prenom.Text))
             {
