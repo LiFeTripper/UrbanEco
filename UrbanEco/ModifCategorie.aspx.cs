@@ -34,12 +34,6 @@ namespace UrbanEco
                 Response.Redirect("Login.aspx");
             }
 
-            //Réassigne les datasources des repeater
-            RepBureau.DataSource = emp_bureau;
-            RepBureau.DataBind();
-
-            RepTerrain.DataSource = emp_terrain;
-            RepTerrain.DataBind();
 
             //Recherche de l'projet dans l'adresse
             projet = Request.QueryString["Prj"];
@@ -47,22 +41,13 @@ namespace UrbanEco
             categorie = Request.QueryString["Cat"];
 
             AllEmployees();
-            
-            divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
-            //if(categorie == null)
-            //{
-            //    modif = false;
-            //}
+
 
             //Recherche du mode dans l'adresse
             mode = Request.QueryString["Mode"];
             
             if (!IsPostBack)
             {
-                //Reset du hiddenfield
-                hiddenFieldEmploye.Value = String.Empty;
-                //Reset du hiddenfield
-                hiddenFieldAllEmploye.Value = String.Empty;
 
                 int prj = int.Parse(projet);
 
@@ -138,7 +123,6 @@ namespace UrbanEco
 
                         //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
                         var result = String.Join(",", SelectedEmployesString.ToArray());
-                        hiddenFieldEmploye.Value = result;
 
                         //Call méthode qui recherche les employé
                         RequeryEmployes();
@@ -189,7 +173,6 @@ namespace UrbanEco
 
                         //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
                         var result = String.Join(",", SelectedEmployesString.ToArray());
-                        hiddenFieldEmploye.Value = result;
 
                         //Call méthode qui recherche les employé
                         RequeryEmployes();
@@ -218,12 +201,6 @@ namespace UrbanEco
             emp_bureau = empBureau.ToList();
             emp_terrain = empTerrain.ToList();
 
-            //Permet de recréer les repeater asp pour vérifier les valeurs selected pour les employés et les catégories
-            RepBureau.DataSource = emp_bureau;
-            RepBureau.DataBind();
-
-            RepTerrain.DataSource = emp_terrain;
-            RepTerrain.DataBind();
 
         }
 
@@ -310,7 +287,6 @@ namespace UrbanEco
 
         public void AjoutSuppressionTableCatEmp()
         {
-            UpdateSelectedEmployeList();
 
             int cat = 0;
 
@@ -330,57 +306,11 @@ namespace UrbanEco
                 cat = query;
             }
 
-            string[] deselectedEmployes = hiddenFieldEmployeDeselect.Value.Split(',');
 
-            foreach (string idEmplStr in deselectedEmployes)
-            {
-                if (string.IsNullOrWhiteSpace(idEmplStr))
-                    continue;
 
-                int idEmpl = ConvertValueToInt(idEmplStr);
 
-                if (idEmpl <= 0)
-                    continue;
 
-                var query = from tbl in context.tbl_ProjetCatEmploye
-                            where tbl.idCategorie == cat && tbl.idEmploye == idEmpl
-                            select tbl;
 
-                if (query.Count() == 1)
-                    context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
-            }
-
-            string[] selectedEmpl = hiddenFieldEmploye.Value.Split(',');
-
-            var emplSelected = selectedEmpl.Except(deselectedEmployes);
-
-            //ADD
-            foreach (string idEmplStr in emplSelected)
-            {
-                if (string.IsNullOrWhiteSpace(idEmplStr))
-                    continue;
-
-                int idEmpl = ConvertValueToInt(idEmplStr);
-
-                if (idEmpl <= 0)
-                    continue;
-
-                var query = from tbl in context.tbl_ProjetCatEmploye
-                            where tbl.idCategorie == cat && tbl.idEmploye == idEmpl
-                            select tbl;
-
-                if (query.Count() == 0)
-                {     //context.tbl_ProjetCatEmploye.DeleteOnSubmit(query.First());
-
-                    tbl_ProjetCatEmploye tableCatEmp = new tbl_ProjetCatEmploye();
-
-                    tableCatEmp.idCategorie = cat;
-                    tableCatEmp.idEmploye = idEmpl;
-                    tableCatEmp.idProjet = projet;
-
-                    context.tbl_ProjetCatEmploye.InsertOnSubmit(tableCatEmp);
-                }
-            }
 
             context.SubmitChanges();
         }
@@ -412,10 +342,6 @@ namespace UrbanEco
                 AllEmployesString.Add(id.ToString());
             }
 
-            //On transforme cette liste en string ordinaire pour l'envoyer dans le hiddenfield de Marc qui est utilisé
-            hiddenFieldAllEmploye.Value = string.Empty;
-            var result = String.Join(",", AllEmployesString.ToArray());
-            hiddenFieldAllEmploye.Value = result;
         }
 
         protected string EmployeSelected(object id)
@@ -423,7 +349,6 @@ namespace UrbanEco
             int idEmploye = (int)id;
 
             //Permet de lire la liste des employé dans le textbox hidden
-            UpdateSelectedEmployeList();
 
             foreach (var item in SelectedEmployes)
             {
@@ -434,30 +359,6 @@ namespace UrbanEco
             return "";
         }
 
-        /// <summary>
-        /// Update la liste des employés sélectionnés
-        /// </summary>
-        void UpdateSelectedEmployeList()
-        {
-            List<int> listEmp = new List<int>();
-
-            foreach (var idEmpl in hiddenFieldEmploye.Value.Split(','))
-            {
-                int id = -1;
-
-                if (string.IsNullOrWhiteSpace(idEmpl))
-                    continue;
-
-                id = ConvertValueToInt(idEmpl);
-
-                if (id <= -1)
-                    continue;
-
-                listEmp.Add(id);
-            }
-
-            SelectedEmployes = listEmp;
-        }
 
         private int ConvertValueToInt(string value)
         {

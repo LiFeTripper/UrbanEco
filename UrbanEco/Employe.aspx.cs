@@ -20,12 +20,6 @@ namespace UrbanEco
             {
                 Response.Redirect("Login.aspx");
             }
-<<<<<<< HEAD
-=======
-
-            CoecoDataContext context = new CoecoDataContext();
-
->>>>>>> 8fd7e880cd1dc3d335f3af6a15ef159ec1214c28
             Chkbx_Inactif.Checked = showInactive;
 
             CoecoDataContext ctx = new CoecoDataContext();
