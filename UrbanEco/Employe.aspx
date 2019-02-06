@@ -38,6 +38,7 @@
 
         <%--CODE REPEATER D'EMPLOYÉ--%>
         <asp:Repeater ID="Rptr_TypeEmploye" runat="server" DataSourceID="LinqEmploye">
+        <%--<asp:Repeater ID="Rptr_TypeEmploye" runat="server">--%>
 
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
@@ -72,7 +73,7 @@
 
                 <%--SECOND REPEATER AVEC LES USERS--%>
                 <%--REPEATER DES ACTIF--%>
-                <asp:Repeater ID="Rptr_EmployeActif" runat="server" DataSource='<%#Eval("tbl_Employe") %>'>
+                <asp:Repeater ID="Rptr_EmployeActif" runat="server" DataSource='<%# OrderEmployes(Eval("tbl_Employe")) %>'>
                     <ItemTemplate>
                         <tr visible='<%# (!Boolean.Parse(Eval("inactif").ToString()) && !Chkbx_Inactif.Checked) && Eval("prenom").ToString() != "Administrateur" %>' runat="server">
                             <td></td>
@@ -93,7 +94,7 @@
                 </asp:Repeater>
 
                 <%--REPEATER DES INACTIF--%>
-                <asp:Repeater ID="Rptr_EmployeInactif" runat="server" DataSource='<%#Eval("tbl_Employe") %>'>
+                <asp:Repeater ID="Rptr_EmployeInactif" runat="server" DataSource='<%# OrderEmployes(Eval("tbl_Employe")) %>'>
                     <ItemTemplate>
                         <tr visible='<%# ((Boolean.Parse(Eval("inactif").ToString()) && Chkbx_Inactif.Checked))%>' runat="server">
                             <td></td>

@@ -20,9 +20,15 @@ namespace UrbanEco
             HttpCookie reader = HttpContext.Current.Request.Cookies["userinfo"];
             if(reader != null)
             {
-                Response.Redirect("/Home.aspx");
-            }
+                CoecoDataContext bd = new CoecoDataContext();
+                tbl_Employe emp = bd.tbl_Employe.Single(f => f.username == reader.Value);
+                bd.Dispose();
 
+                if (emp.inactif == false)
+                    Response.Redirect("/Home.aspx");
+                else
+                    reader.Expires = DateTime.Now.AddDays(-10);
+            }
         }
 
         protected void Btn_Signin_Click(object sender, EventArgs e)

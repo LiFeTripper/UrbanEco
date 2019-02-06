@@ -72,6 +72,9 @@ namespace UrbanEco
     partial void Inserttbl_TypeEmploye(tbl_TypeEmploye instance);
     partial void Updatetbl_TypeEmploye(tbl_TypeEmploye instance);
     partial void Deletetbl_TypeEmploye(tbl_TypeEmploye instance);
+    partial void Inserttbl_ConfigAdmin(tbl_ConfigAdmin instance);
+    partial void Updatetbl_ConfigAdmin(tbl_ConfigAdmin instance);
+    partial void Deletetbl_ConfigAdmin(tbl_ConfigAdmin instance);
     #endregion
 		
 		public CoecoDataContext() : 
@@ -3587,8 +3590,12 @@ namespace UrbanEco
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_ConfigAdmin")]
-	public partial class tbl_ConfigAdmin
+	public partial class tbl_ConfigAdmin : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idConfigAdmin;
 		
 		private string _jourRappel;
 		
@@ -3612,8 +3619,59 @@ namespace UrbanEco
 		
 		private System.Nullable<bool> _smtpSSL;
 		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidConfigAdminChanging(int value);
+    partial void OnidConfigAdminChanged();
+    partial void OnjourRappelChanging(string value);
+    partial void OnjourRappelChanged();
+    partial void OnheureRappelChanging(System.TimeSpan value);
+    partial void OnheureRappelChanged();
+    partial void OnemailRappelChanging(string value);
+    partial void OnemailRappelChanged();
+    partial void OnpwdEmailRappelChanging(string value);
+    partial void OnpwdEmailRappelChanged();
+    partial void OnstatutRappelBureauChanging(System.Nullable<bool> value);
+    partial void OnstatutRappelBureauChanged();
+    partial void OnstatutRappelTerrainChanging(System.Nullable<bool> value);
+    partial void OnstatutRappelTerrainChanged();
+    partial void OnobjetRappelChanging(string value);
+    partial void OnobjetRappelChanged();
+    partial void OncontenuRappelChanging(string value);
+    partial void OncontenuRappelChanged();
+    partial void OnsmtpServerChanging(string value);
+    partial void OnsmtpServerChanged();
+    partial void OnsmtpPortChanging(int value);
+    partial void OnsmtpPortChanged();
+    partial void OnsmtpSSLChanging(System.Nullable<bool> value);
+    partial void OnsmtpSSLChanged();
+    #endregion
+		
 		public tbl_ConfigAdmin()
 		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idConfigAdmin", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idConfigAdmin
+		{
+			get
+			{
+				return this._idConfigAdmin;
+			}
+			set
+			{
+				if ((this._idConfigAdmin != value))
+				{
+					this.OnidConfigAdminChanging(value);
+					this.SendPropertyChanging();
+					this._idConfigAdmin = value;
+					this.SendPropertyChanged("idConfigAdmin");
+					this.OnidConfigAdminChanged();
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jourRappel", DbType="VarChar(8)")]
@@ -3627,7 +3685,11 @@ namespace UrbanEco
 			{
 				if ((this._jourRappel != value))
 				{
+					this.OnjourRappelChanging(value);
+					this.SendPropertyChanging();
 					this._jourRappel = value;
+					this.SendPropertyChanged("jourRappel");
+					this.OnjourRappelChanged();
 				}
 			}
 		}
@@ -3643,7 +3705,11 @@ namespace UrbanEco
 			{
 				if ((this._heureRappel != value))
 				{
+					this.OnheureRappelChanging(value);
+					this.SendPropertyChanging();
 					this._heureRappel = value;
+					this.SendPropertyChanged("heureRappel");
+					this.OnheureRappelChanged();
 				}
 			}
 		}
@@ -3659,7 +3725,11 @@ namespace UrbanEco
 			{
 				if ((this._emailRappel != value))
 				{
+					this.OnemailRappelChanging(value);
+					this.SendPropertyChanging();
 					this._emailRappel = value;
+					this.SendPropertyChanged("emailRappel");
+					this.OnemailRappelChanged();
 				}
 			}
 		}
@@ -3675,7 +3745,11 @@ namespace UrbanEco
 			{
 				if ((this._pwdEmailRappel != value))
 				{
+					this.OnpwdEmailRappelChanging(value);
+					this.SendPropertyChanging();
 					this._pwdEmailRappel = value;
+					this.SendPropertyChanged("pwdEmailRappel");
+					this.OnpwdEmailRappelChanged();
 				}
 			}
 		}
@@ -3691,7 +3765,11 @@ namespace UrbanEco
 			{
 				if ((this._statutRappelBureau != value))
 				{
+					this.OnstatutRappelBureauChanging(value);
+					this.SendPropertyChanging();
 					this._statutRappelBureau = value;
+					this.SendPropertyChanged("statutRappelBureau");
+					this.OnstatutRappelBureauChanged();
 				}
 			}
 		}
@@ -3707,7 +3785,11 @@ namespace UrbanEco
 			{
 				if ((this._statutRappelTerrain != value))
 				{
+					this.OnstatutRappelTerrainChanging(value);
+					this.SendPropertyChanging();
 					this._statutRappelTerrain = value;
+					this.SendPropertyChanged("statutRappelTerrain");
+					this.OnstatutRappelTerrainChanged();
 				}
 			}
 		}
@@ -3723,7 +3805,11 @@ namespace UrbanEco
 			{
 				if ((this._objetRappel != value))
 				{
+					this.OnobjetRappelChanging(value);
+					this.SendPropertyChanging();
 					this._objetRappel = value;
+					this.SendPropertyChanged("objetRappel");
+					this.OnobjetRappelChanged();
 				}
 			}
 		}
@@ -3739,7 +3825,11 @@ namespace UrbanEco
 			{
 				if ((this._contenuRappel != value))
 				{
+					this.OncontenuRappelChanging(value);
+					this.SendPropertyChanging();
 					this._contenuRappel = value;
+					this.SendPropertyChanged("contenuRappel");
+					this.OncontenuRappelChanged();
 				}
 			}
 		}
@@ -3755,7 +3845,11 @@ namespace UrbanEco
 			{
 				if ((this._smtpServer != value))
 				{
+					this.OnsmtpServerChanging(value);
+					this.SendPropertyChanging();
 					this._smtpServer = value;
+					this.SendPropertyChanged("smtpServer");
+					this.OnsmtpServerChanged();
 				}
 			}
 		}
@@ -3771,7 +3865,11 @@ namespace UrbanEco
 			{
 				if ((this._smtpPort != value))
 				{
+					this.OnsmtpPortChanging(value);
+					this.SendPropertyChanging();
 					this._smtpPort = value;
+					this.SendPropertyChanged("smtpPort");
+					this.OnsmtpPortChanged();
 				}
 			}
 		}
@@ -3787,8 +3885,32 @@ namespace UrbanEco
 			{
 				if ((this._smtpSSL != value))
 				{
+					this.OnsmtpSSLChanging(value);
+					this.SendPropertyChanging();
 					this._smtpSSL = value;
+					this.SendPropertyChanged("smtpSSL");
+					this.OnsmtpSSLChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

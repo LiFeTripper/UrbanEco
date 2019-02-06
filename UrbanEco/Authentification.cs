@@ -28,6 +28,14 @@ namespace UrbanEco
                 CoecoDataContext bd = new CoecoDataContext();
                 tbl_Employe emp = bd.tbl_Employe.Single(f => f.username == username);
                 bd.Dispose();
+
+                if(emp.inactif == true)
+                {
+                    HttpContext.Current.Response.Redirect("Login.aspx", true);
+                    return false;
+                }
+
+
                 int typeEmp = emp.idTypeEmpl;
                 if (emp.username == "admin")
                 {

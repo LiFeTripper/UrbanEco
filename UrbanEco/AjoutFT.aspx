@@ -70,7 +70,6 @@
                     <asp:ListItem Value="0.75">0.75</asp:ListItem>
                 </asp:DropDownList>
             </div>
-            
         </div>
 
         <div class="form-group" runat="server">

@@ -89,61 +89,51 @@
         </script>
 
         <%--EN-TËTE--%>
-        <div class="spantwo">
-            <h3>Informations sur la dépense</h3>
-        </div>
+        <h3 class="spantwo">Informations sur la dépense</h3>
 
         <%--Type de dépense--%>
-        <div class="form-group" runat="server">
+        <div class="form-group spantwo" runat="server">
             <label for="ddlEmp" class="bmd-label-floating">Type de dépense</label>
             <asp:DropDownList ID="tbx_typeDepense" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" class="form-control" OnSelectedIndexChanged="tbx_typeDepense_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
-
-
-        <div class="form-group" runat="server" id="km_html">
+        <div class="form-group spantwo champKilometrage" runat="server" id="km_html">
             <div class="form-group">
-                <label for="tbl_kilo" class="bmd-label-floating">Kilométrage</label>
-                <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server"  OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false" TextMode="Number"></asp:TextBox>
+                <label for="tbx_nbKm" class="bmd-label-floating">Kilométrage</label>
+                <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server"  type="number" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false"></asp:TextBox>
             </div>
 
-            <div class="form-group">
+            <div class="form-group flexEnd">
+                <label for="prixKm" class="bmd-label-floating">Taux</label>
                 <div runat="server" id="prixKm"></div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group flexEnd">
+                <label for="prixTotalKm" class="bmd-label-floating">Total</label>
                 <div runat="server" id="prixTotalKm"></div>
             </div>
-            <div>
-                 <asp:Button CssClass="btn btn-lg btn-info" ID="btnCalculer" runat="server" Text="Calculer"  />
+
+            <div class="flexEnd">
+                 <asp:Button CssClass="btn btn-raised btn-info boutonCalculer" ID="btnCalculer" runat="server" Text="Calculer"  />
             </div>
         </div>
         
         
 
 
-        <div class="form-group mb-4 col-6 mx-auto" runat="server" id="montant_html">
-            <%--<label for="tbl_montant">Montant</label>--%>
-            <asp:table CssClass="asp-table" runat="server" id="tbl_montant" style="width: 100% !important;">
-                <asp:TableRow>    
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Montant <b style="color:red">*</b>
-                    </asp:TableHeaderCell>  
-                    <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" style="width:100%; font-size:15px;" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false"  TextMode="Number"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:table>
+        <div class="form-group" runat="server" id="montant_html">
+            <label for="tbx_montantNormal" class="bmd-label-floating">Montant ($)</label>
+            <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false" type="number"></asp:TextBox>
         </div>
+
 
         <%--NOTES--%>
         <div class="" id="Div1" runat="server">
-            <label for="tbx_note">Note</label>
-            <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="3" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
+            <label for="tbx_note" class="bmd-label-floating">Note</label>
+            <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="1" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
         </div>
 
-        File upload facture
-        <div class="form-group mb-4 col-6 mx-auto" runat="server">
+        <div class="form-group" runat="server">
             <script type="text/javascript">
                 function showpreview(input) {
 
@@ -166,7 +156,7 @@
         </div>
 
         <%--MESSAGES--%>
-        <div class="form-group mb-4 col-6 mx-auto">
+        <div class="form-group spantwo">
             <div class="alert alert-success" runat="server" id="alert_success" visible="false">
                 <strong>Succès!</strong>  Votre dépense a bien été ajoutée !
             </div>
@@ -178,9 +168,7 @@
             </div>
         </div>
         <%--BOUTON--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <asp:Button Style="width: 40% !important; float: left;" CssClass="btn btn-lg btn-raised btn-danger input-box" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
-            <asp:Button Style="width: 40% !important; float: right;" CssClass="btn btn-lg btn-raised btn-success input-box" ID="btn_envoyer" runat="server" Text="Confirmer" OnClick="btn_envoyer_Click" />
-        </div>
+        <asp:Button CssClass="btn btn-raised btn-success" ID="btn_envoyer" runat="server" Text="Confirmer" OnClick="btn_envoyer_Click" />
+        <asp:Button CssClass="btn btn-raised btn-danger" ID="btn_annuler" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
     </form>
 </asp:Content>

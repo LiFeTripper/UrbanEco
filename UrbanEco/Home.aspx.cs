@@ -31,7 +31,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true, true, true))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             Page.MaintainScrollPositionOnPostBack = true;
@@ -118,10 +118,8 @@ namespace UrbanEco
                 if (item == null)
                     continue;
 
-               // if ()
-                {
                     totalHeure += item.nbHeure;
-                }
+                
             }
 
 

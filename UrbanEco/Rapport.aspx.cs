@@ -27,7 +27,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true, false, false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             //Permet de recréer les repeater asp pour vérifier les valeurs selected pour les employés et les catégories
@@ -356,8 +356,8 @@ namespace UrbanEco
                         var heures = ctx.tbl_FeuilleTemps.Where(c => c.idCat == categorie.idProjetCat)
                                                         .Where(c => c.idEmploye == employe.idEmploye)
                                                         .Where(c => (bool)c.approuver)
-                                                        .Where(c => c.dateCreation < dateFin)
-                                                        .Where(c => c.dateCreation > dateDebut);
+                                                        .Where(c => c.dateCreation <= dateFin)
+                                                        .Where(c => c.dateCreation >= dateDebut);
 
                         // Compile the entries
                         foreach (var heure in heures)
@@ -393,6 +393,8 @@ namespace UrbanEco
             }
             
             Session["rapportNode"] = rapportNode;
+            Session["dateDebut"] = dateDebut;
+            Session["dateFin"] = dateFin;
             Response.Redirect("RapportPage.aspx");
         }
 

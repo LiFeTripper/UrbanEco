@@ -18,11 +18,31 @@ namespace UrbanEco
             //Redirection si l'utilisateur a été autorisé (Admin, Bureau, Terrain)
             if (!Authentification.Autorisation(true, false, false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
-            //Le checkbox est coché selon l'état du bool des inactifs
             Chkbx_Inactif.Checked = showInactive;
+        }
+
+        /// <summary>
+        /// Order by employe nom, prenom
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        protected List<tbl_Employe> OrderEmployes(object list)
+        {
+            System.Data.Linq.EntitySet <tbl_Employe> employes = list as System.Data.Linq.EntitySet<tbl_Employe>;
+
+            var listEmps = employes.ToList<tbl_Employe>();
+
+            List<tbl_Employe> employerTrier = new List<tbl_Employe>();
+
+            foreach (var emp in listEmps.OrderBy(c => c.nom).ThenBy(c => c.prenom))
+            {
+                employerTrier.Add(emp);
+            }
+
+            return employerTrier;
         }
 
         /// <summary>

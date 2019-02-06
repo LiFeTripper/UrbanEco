@@ -26,7 +26,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true, true, true))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             CoecoDataContext ctx = new CoecoDataContext();
@@ -164,16 +164,15 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
+            // Get le id de la feuille de temps a approver
             ImageButton temp = (sender as ImageButton);
             int idFeuille = int.Parse(temp.CommandArgument);
 
             tbl_FeuilleTemps FT = BD.GetFeuilleTemps(ctx, idFeuille);
-            
 
+            // Approuve la feuille de temps
             FT.approuver = true;
             SwitchTypeBHCongés(FT);
-
-            
             ctx.SubmitChanges();
 
             Response.Redirect(Request.RawUrl);
@@ -212,6 +211,9 @@ namespace UrbanEco
         {
             try
             {
+                // Si la catégorie de la feuille de temps est une banque d'heure
+                // On ajuste la banque d'heure
+                // SC = Sous-catégorie
                 var SC = from tblSC in cdc.tbl_ProjetCat
                          where tblSC.idProjetCat == FT.idCat
                          select tblSC;
@@ -233,6 +235,7 @@ namespace UrbanEco
                         EnleverHeuresBH(3, FT);
                         break;
                     default:
+                        CheckTempsSupp(FT);
                         break;
                 }
             }
@@ -550,68 +553,73 @@ namespace UrbanEco
 
         protected void CheckTempsSupp(tbl_FeuilleTemps FT)
         {
+            // GetWeekToYear = Get Week of year.
             int noSemaine = GetWeekToYear(DateTime.Now);
             
 
 
+            // Tout les feuilles de temps de la semaine passé
             var querrySemainePrecedente = (from tbl in cdc.tbl_FeuilleTemps
                                            where tbl.idEmploye == FT.idEmploye
                                            & tbl.noSemaine == (noSemaine - 1)
                                            select tbl);
 
 
-
-            var querryNbSemaine = (from tbl in cdc.tbl_Employe
+            // Get l'employé associé à la feuille de temps
+            var queryEmploye = (from tbl in cdc.tbl_Employe
                                    where tbl.idEmploye == FT.idEmploye
                                    select tbl).First();
 
+            // Get tout les feuilles de temps de la semaine actuel.
             var querrySemaineActuelle = (from tbl in cdc.tbl_FeuilleTemps
                                          where tbl.idEmploye == FT.idEmploye
                                          & tbl.noSemaine == noSemaine
                                          select tbl);
 
             float nbHeureSemaineEmp = 0;
-
-            if (querryNbSemaine.idTypeEmpl == 1)
+            
+            if (queryEmploye.idTypeEmpl == 1) // Bureau
             {
-                nbHeureSemaineEmp = (float)querryNbSemaine.nbHeureSemaine;
+                nbHeureSemaineEmp = (float)queryEmploye.nbHeureSemaine; //nbHeureSemaine == nombre d'heure max avant que sa tombe en temps sup
             }
-            if (querryNbSemaine.idTypeEmpl == 2)
+            if (queryEmploye.idTypeEmpl == 2) // Terrain
             {
                 nbHeureSemaineEmp = 40;
             }
 
 
-            float nbHeureSemainePrecedente = 0;
+            float totalHeuresSemainePrecendante = 0;
             float nbHeureSemaineActuelle = 0;
 
-            foreach (tbl_FeuilleTemps tbl in querrySemainePrecedente)
+            // Loop sur chaque feuille de la semaine passé
+            foreach (tbl_FeuilleTemps feuilleDeTemps in querrySemainePrecedente)
             {
-                if (nbHeureSemainePrecedente + tbl.nbHeure > nbHeureSemaineEmp)
+                // Si le nombre d'heure est du temps sup
+                if (totalHeuresSemainePrecendante > nbHeureSemaineEmp)
                 {
-                    float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemainePrecedente);
-                    nbHeureSemainePrecedente = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
+                    totalHeuresSemainePrecendante += (feuilleDeTemps.nbHeure * 1.5f);
                 }
-                else if (nbHeureSemainePrecedente > nbHeureSemaineEmp)
+                else if (totalHeuresSemainePrecendante + feuilleDeTemps.nbHeure > nbHeureSemaineEmp)
                 {
-                    nbHeureSemainePrecedente += (tbl.nbHeure * 1.5f);
+                    float tempsEtDemi = feuilleDeTemps.nbHeure - (nbHeureSemaineEmp - totalHeuresSemainePrecendante);
+                    totalHeuresSemainePrecendante = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
                 }
                 else
                 {
-                    nbHeureSemainePrecedente += tbl.nbHeure;
+                    totalHeuresSemainePrecendante += feuilleDeTemps.nbHeure;
                 }
             }
 
             foreach (tbl_FeuilleTemps tbl in querrySemaineActuelle)
             {
-                if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
+                if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
+                {
+                    nbHeureSemaineActuelle += (tbl.nbHeure * 1.5f);
+                }
+                else if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
                 {
                     float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemaineActuelle);
                     nbHeureSemaineActuelle = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
-                }
-                else if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
-                {
-                    nbHeureSemaineActuelle += (tbl.nbHeure * 1.5f);
                 }
                 else
                 {
@@ -619,39 +627,44 @@ namespace UrbanEco
                 }
             }
 
-            if (nbHeureSemainePrecedente > nbHeureSemaineEmp)
+            // Avant: 35
+
+
+            if (totalHeuresSemainePrecendante > nbHeureSemaineEmp)
             {
-                var querry = from tbl in cdc.tbl_TempsSupp
-                             where tbl.idEmploye == FT.idEmploye
-                             & tbl.noSemaine == (noSemaine - 1)
-                             select tbl;
+                var queryTempsSupActuel = from tbl_tempSup in cdc.tbl_TempsSupp
+                             where tbl_tempSup.idEmploye == FT.idEmploye
+                             & tbl_tempSup.noSemaine == (noSemaine - 1)
+                             select tbl_tempSup;
 
-                float nbHeureBH;
 
-                var querryBH = from tbl in cdc.tbl_BanqueHeure
+                var queryBanqueHeure = from tbl in cdc.tbl_BanqueHeure
                                where tbl.idTypeHeure == 1
                                & tbl.idEmploye == FT.idEmploye
                                select tbl;
 
-                if (querry.Count() > 0)
+                float nbHeureBH;
+                if (queryTempsSupActuel.Count() > 0)
                 {
-                    nbHeureBH = (float)querry.First().tempsSupp;
-                    if (nbHeureBH < nbHeureSemainePrecedente)
+                    nbHeureBH = (float)queryTempsSupActuel.First().tempsSupp;
+                    // Si on a besoin d'ajouter du temps dans la banque d'heure
+                    if (nbHeureBH < totalHeuresSemainePrecendante)
                     {
-                        querryBH.First().nbHeure += nbHeureSemainePrecedente - nbHeureBH;
+                        // Ajoute le nouveau temps supplémentaire
+                        queryBanqueHeure.First().nbHeure += totalHeuresSemainePrecendante - nbHeureBH;
                     }
 
-                    cdc.tbl_TempsSupp.DeleteOnSubmit(querry.First());
+                    cdc.tbl_TempsSupp.DeleteOnSubmit(queryTempsSupActuel.First());
                 }
                 else
                 {
-                    querryBH.First().nbHeure += nbHeureSemainePrecedente - nbHeureSemaineEmp;
+                    queryBanqueHeure.First().nbHeure += totalHeuresSemainePrecendante - nbHeureSemaineEmp;
                 }
 
                 tbl_TempsSupp tblTemp = new tbl_TempsSupp();
                 tblTemp.idEmploye = FT.idEmploye;
                 tblTemp.noSemaine = noSemaine - 1;
-                tblTemp.tempsSupp = nbHeureSemainePrecedente;
+                tblTemp.tempsSupp = totalHeuresSemainePrecendante;
 
                 cdc.tbl_TempsSupp.InsertOnSubmit(tblTemp);
 
