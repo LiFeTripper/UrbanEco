@@ -53,6 +53,11 @@ namespace UrbanEco
                 DateTime dateMin = DateTime.Parse(Calendar1.Value);
                 DateTime dateMax = DateTime.Parse(Calendar2.Value);
 
+                if (Request.QueryString["no"] == "true") {
+                    string maString = "J'fourre";
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(&quot;" + maString + "&quot;)", true);
+                }
+
                 if (empConnected.username == "admin")
                 {
                     var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, false);
@@ -294,6 +299,20 @@ namespace UrbanEco
         {
             ImageButton ib = (ImageButton)sender;
 
+            CoecoDataContext ctx = new CoecoDataContext();
+            tbl_FeuilleTemps ft = BD.GetFeuilleTemps(ctx, int.Parse(ib.CommandArgument));
+
+            tbl_Employe emp = ft.tbl_Employe;
+
+            List<tbl_ProjetCat> projetCategorie = BD.GetProjetCategorieEmploye(ctx, ft.idProjet, emp.idEmploye);
+
+            if (projetCategorie == null) {
+                string valeur = emp.prenom + " " + emp.nom + ";;;" + ft.tbl_ProjetCat.titre + ";;;" + ft.tbl_Projet.titre;
+                valeur = valeur.Replace("\'", "\\'").Replace("\"","\\\"");
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "callJS", "MessageErreur(\"" + valeur + "\")", true);
+                return;
+            }
+
             Response.Redirect("AjoutFT.aspx?FT=" + ib.CommandArgument);
         }
         
@@ -476,7 +495,7 @@ namespace UrbanEco
             //lbl_approved.Visible = ch.Checked;
 
             Rptr_EmployeNonApprouver.Visible = !ch.Checked;
-            lbl_attente.Visible = !ch.Checked;
+            //lbl_attente.Visible = !ch.Checked;
         }
 
         protected int GetWeekToYear(DateTime date)
