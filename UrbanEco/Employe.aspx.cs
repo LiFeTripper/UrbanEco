@@ -18,10 +18,11 @@ namespace UrbanEco
             //Redirection si l'utilisateur a été autorisé (Admin, Bureau, Terrain)
             if (!Authentification.Autorisation(true, false, false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
-            //Le checkbox est coché selon l'état du bool des inactifs
+            CoecoDataContext context = new CoecoDataContext();
+
             Chkbx_Inactif.Checked = showInactive;
 
             CoecoDataContext ctx = new CoecoDataContext();

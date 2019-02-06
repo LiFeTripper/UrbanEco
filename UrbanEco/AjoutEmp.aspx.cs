@@ -18,7 +18,7 @@ namespace UrbanEco
 
             if (!Authentification.Autorisation(true, false, false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             //A la base, on assume que ce n'est pas un nouvel employé
