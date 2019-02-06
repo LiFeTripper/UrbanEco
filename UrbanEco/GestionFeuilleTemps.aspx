@@ -67,8 +67,8 @@
                 <asp:Button ID="btn_removefilter" CssClass="btn btn-md btn-raised btn-danger form-control" runat="server" OnClick="btn_removefilter_Click" Text="Supprimer le filtre" />
             </div>
 
-            <div runat="server" visible="false" id="alert_dateOrder" class="alert alert-danger" style="width:100%"><b>Attention !</b> La date maximal est plus petite que la date minimale.</div>
-            <div runat="server" visible="false" id="alert_missingDate" class="alert alert-danger" style="width:100%"><b>Attention !</b> Les deux dates sont requises pour le filtre.</div>
+            <div runat="server" visible="false" id="alert_dateOrder" class="alert alert-danger spantwo"><b>Attention !</b> La date maximal est plus petite que la date minimale.</div>
+            <div runat="server" visible="false" id="alert_missingDate" class="alert alert-danger spantwo"><b>Attention !</b> Les deux dates sont requises pour le filtre.</div>
         </div>
 
         <div id="ajoutFDT">
