@@ -45,19 +45,19 @@
 
         <%--Heures Allouées--%>
         <div class="form-group fix-Number-Input">
-            <label for="Tbx_HeuresAlloues" class="bmd-label-floating">Heures Allouées</label>
+            <label for="Tbx_HeuresAlloues">Heures Allouées</label>
             <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" CssClass="form-control" placeholder="0" TextMode="number"></asp:TextBox>
         </div>
 
         <%--Date de début--%>
         <div class="form-group">
-            <label for="Cal_DateDebut" class="bmd-label-floating">Date de début</label>
+            <label for="Cal_DateDebut">Date de début</label>
             <input type="date" runat="server" id="Cal_DateDebut" class="form-control" />
         </div>
 
         <%--Date de fin--%>
         <div class="form-group">
-            <label for="Cal_DateFin" class="bmd-label-floating">Date de fin</label>
+            <label for="Cal_DateFin">Date de fin</label>
             <input type="date"  runat="server" id="Cal_DateFin" class="form-control" />
         </div>
 
