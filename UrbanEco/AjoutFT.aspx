@@ -49,7 +49,6 @@
             <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
         </div>
 
-
         <div class="form-group mb-4 col-6 mx-auto" runat="server">
             <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
                 <asp:TableRow>
@@ -90,6 +89,7 @@
         <div class="form-group" runat="server">
             <label for="DateCreation" class="bmd-label-floating">Date</label>
             <input type="date" id="DateCreation" runat="server" class="form-control" onchange="ChangeDate" />
+
         </div>
 
         <div class="form-group" runat="server">
@@ -100,6 +100,6 @@
         <asp:Button ID="Btn_Enreg" CssClass="btn btn-raised btn-success" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click" />
 
         <asp:Button ID="btn_annuler" CssClass="btn btn-raised btn-danger" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
-        
+
     </form>
 </asp:Content>
