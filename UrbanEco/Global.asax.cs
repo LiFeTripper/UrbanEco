@@ -44,10 +44,9 @@ namespace UrbanEco
                     day = DayOfWeek.Monday;
                     break;
             }
+
             RappelJob rappel = new RappelJob();
-            rappel.Execute();
-            //registry.Schedule(() => rappel).ToRunEvery(0).Weeks().On(DayOfWeek.Wednesday).At(9, 53);
-            //registry.Schedule(() => new RappelJob()).ToRunEvery(0).Weeks().On(day).At(config.heureRappel.Hours, config.heureRappel.Minutes);
+            registry.Schedule(() => new RappelJob()).ToRunEvery(0).Weeks().On(day).At(config.heureRappel.Hours, config.heureRappel.Minutes);
             JobManager.Initialize(registry);
         }
 
