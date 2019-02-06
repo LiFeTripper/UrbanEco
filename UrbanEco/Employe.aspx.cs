@@ -21,14 +21,8 @@ namespace UrbanEco
                 Response.Redirect("Home.aspx");
             }
 
-<<<<<<< HEAD
-
-
             CoecoDataContext context = new CoecoDataContext();
 
-=======
-            //Le checkbox est coché selon l'état du bool des inactifs
->>>>>>> 1917fc5c8ae76eca18c7245cc0d5c6ecd8d462ad
             Chkbx_Inactif.Checked = showInactive;
         }
 
