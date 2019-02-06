@@ -86,7 +86,7 @@
         <elementListCompartment Id="89e40d9d-02df-41bf-8b2f-e895c02db246" absoluteBounds="0.765, 9.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 5.97524251302083); (6.34375 : 5.97524251302083); (6.34375 : 7)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 5.97524251302083); (6.34375 : 5.97524251302083); (6.34375 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CoecoDataContext/tbl_TypeHeure/tbl_TypeHeure_tbl_BanqueHeure" />
       <nodes>
         <classShapeMoniker Id="460405c7-73e8-48bb-9db5-fa3847f75fa5" />
@@ -163,7 +163,7 @@
         <classShapeMoniker Id="87124e19-c413-4b9c-be57-c286becbd63f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.45259415384615 : 9.625); (4.45259415384615 : 9.02089680989583); (5.79166666666667 : 9.02089680989583 : JumpStart); (5.95833333333333 : 9.02089680989583 : JumpEnd); (9.63541466666667 : 9.02089680989583 : JumpStart); (9.80208133333333 : 9.02089680989583 : JumpEnd); (10.1666666666667 : 9.02089680989583 : JumpStart); (10.3333333333333 : 9.02089680989583 : JumpEnd); (12.3854141666667 : 9.02089680989583 : JumpStart); (12.5520808333333 : 9.02089680989583 : JumpEnd); (12.9166666666667 : 9.02089680989583 : JumpStart); (13.0833333333333 : 9.02089680989583 : JumpEnd); (14.375 : 9.02089680989583); (14.375 : 8.78929768880208); (14.75 : 8.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.45259415384615 : 9.625); (4.45259415384615 : 9.02089680989583); (9.63541466666667 : 9.02089680989583 : JumpStart); (9.80208133333333 : 9.02089680989583 : JumpEnd); (10.1666666666667 : 9.02089680989583 : JumpStart); (10.3333333333333 : 9.02089680989583 : JumpEnd); (12.3854141666667 : 9.02089680989583 : JumpStart); (12.5520808333333 : 9.02089680989583 : JumpEnd); (12.9166666666667 : 9.02089680989583 : JumpStart); (13.0833333333333 : 9.02089680989583 : JumpEnd); (14.375 : 9.02089680989583); (14.375 : 8.78929768880208); (14.75 : 8.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CoecoDataContext/tbl_Employe/tbl_Employe_tbl_ProjetCatEmploye" />
       <nodes>
         <classShapeMoniker Id="8c62f0f5-bd16-45e2-a569-65a87c5ca1ca" />
@@ -205,10 +205,10 @@
         <classShapeMoniker Id="80af2c2a-938d-4971-80e9-fd93b9087186" />
       </nodes>
     </associationConnector>
-    <classShape Id="166be258-469a-49fd-9059-5c442f1f2e61" absoluteBounds="0.75, 2.625, 2, 2.9247054036458331">
+    <classShape Id="7ffe54a6-6ed3-4934-a5c0-f3490132d225" absoluteBounds="0.625, 2.5, 2, 3.1170068359375">
       <DataClassMoniker Name="/CoecoDataContext/tbl_ConfigAdmin" />
       <nestedChildShapes>
-        <elementListCompartment Id="d603590f-3262-495a-bde3-41d6b6a51f4c" absoluteBounds="0.76500000000000012, 3.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5f8a2015-07db-493c-a820-4085bf4d160b" absoluteBounds="0.64000000000000012, 2.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
