@@ -75,7 +75,7 @@
 
             
 
-            <h2>Feuille de temps en attente</h2>
+            <h2>Feuilles de temps en attente</h2>
 
             <div class="form-group">
                 <asp:Button ID="btn_ajouterFT" CssClass="btn btn-md btn-raised btn-success" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>

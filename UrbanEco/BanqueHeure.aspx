@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Gestion des banques d'heures</h1>
+    <h1 runat="server" id="titrePage">Gestion des banques d'heures</h1>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -30,7 +30,7 @@
 
         <%-- Entrer le nombre d'heure par semaine pour cet employé --%>
         <div class="form-group">
-            <label for="tbx_heureMinimum" class="bmd-label-floating">Nombres d'heures à faire à chaque semaines</label>
+            <label for="tbx_heureMinimum" class="bmd-label-floating">Nombre d'heures à faire à chaque semaine</label>
             <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_heureMinimum" Enabled="false"></asp:TextBox>
         </div>
 
@@ -71,7 +71,7 @@
                 </asp:TableRow>
                 <%--VACANCES--%>
                 <asp:TableRow>
-                    <asp:TableHeaderCell>Vacance</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Vacances</asp:TableHeaderCell>
                     <asp:TableCell>
                         <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureVacanceU"></asp:TextBox>
                     </asp:TableCell>
