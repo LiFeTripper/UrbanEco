@@ -168,7 +168,7 @@
                         <th scope="col">Statut du projet</th>
                         <th scope="col">Employé Responsable</th>
                         <th scope="col">
-                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-md btn-success" runat="server" Text="Nouveau" OnClick="Btn_Ajout_Click" />
+                            <asp:Button ID="Btn_Ajout" CssClass="btn btn-raised btn-success" runat="server" Text="Nouveau Projet" OnClick="Btn_Ajout_Click" />
                         </th>
                     </tr>
                 </thead>

@@ -13,15 +13,6 @@ namespace UrbanEco {
     public partial class BanqueHeure {
         
         /// <summary>
-        /// h1TitlePage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h1TitlePage;
-        
-        /// <summary>
         /// AlertDiv control.
         /// </summary>
         /// <remarks>
@@ -202,15 +193,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_modifBH;
         
         /// <summary>
-        /// btn_Annuler control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Annuler;
-        
-        /// <summary>
         /// btn_Sauvegarder control.
         /// </summary>
         /// <remarks>
@@ -218,6 +200,15 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Sauvegarder;
+        
+        /// <summary>
+        /// btn_Annuler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Annuler;
         
         /// <summary>
         /// btn_modifBHI control.

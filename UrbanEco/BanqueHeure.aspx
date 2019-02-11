@@ -2,19 +2,18 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Co-Éco - Banque d'heures</title>
+    <link rel="stylesheet" type="text/css" href="lib/css/BanqueHeure.css" />
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Banques d'heures</h1>
+    <h1>Gestion des banques d'heures</h1>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server">
 
-        <h1 id="h1TitlePage" runat="server">Gestion des banques d'heures</h1>
-
         <%--ALERTE--%>
-        <div class="form-group mb-4 col-6 mx-auto">
+        <div class="form-group spantwo">
             <div runat="server" id="AlertDiv" visible="false" class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Attention!</strong>
@@ -32,10 +31,10 @@
         <%-- Entrer le nombre d'heure par semaine pour cet employé --%>
         <div class="form-group">
             <label for="tbx_heureMinimum" class="bmd-label-floating">Nombres d'heures à faire à chaque semaines</label>
-            <asp:TextBox CssClass="form-control" runat="server" ID="tbx_heureMinimum" Enabled="false"></asp:TextBox>
+            <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_heureMinimum" Enabled="false"></asp:TextBox>
         </div>
 
-        <div class="form-group">
+        <div class="spantwo">
             <asp:Table runat="server" ID="tbl_BH" Enabled="false">
                 <%--HEURES EN BANQUES--%>
                 <asp:TableRow>
@@ -114,16 +113,16 @@
             </asp:Table>
         </div>
         <%--BOUTON--%>
-        <div class="form-group mb-4 col-6 mx-auto">
-            <%--<asp:Button ID="btn_Admin" runat="server" OnClick="btn_Admin_Click" Text="Admin" CssClass="btn btn-md btn-success" AutoPostBack="true" />--%>
-            <asp:Button ID="btn_modifBH" runat="server" OnClick="btn_modifBH_Click" Text="Activer la modification" CssClass="btn btn-md btn-success" />
 
-            <asp:Button ID="btn_Annuler" runat="server" OnClick="btn_Annuler_Click" Text="Annuler" CssClass="btn btn-md btn-danger" Visible="false" />
-            <asp:Button ID="btn_Sauvegarder" runat="server" OnClick="btn_Sauvegarder_Click" Text="Sauvegarder" CssClass="btn btn-md btn-success" Visible="false" />
+        <%--<asp:Button ID="btn_Admin" runat="server" OnClick="btn_Admin_Click" Text="Admin" CssClass="btn btn-md btn-success" AutoPostBack="true" />--%>
+        <asp:Button ID="btn_modifBH" runat="server" OnClick="btn_modifBH_Click" Text="Activer la modification" CssClass="btn btn-raised btn-success" />
+        <asp:Button ID="btn_Sauvegarder" runat="server" OnClick="btn_Sauvegarder_Click" Text="Sauvegarder" CssClass="btn btn-raised btn-success" Visible="false" />
+        <asp:Button ID="btn_Annuler" runat="server" OnClick="btn_Annuler_Click" Text="Annuler" CssClass="btn btn-raised btn-danger" Visible="false" />
+
+        <div class="spantwo">
+            <asp:Button ID="btn_modifBHI" runat="server" OnClick="btn_modifBHI_Click" Text="Activer la modification des heures initiales" CssClass="btn btn-raised btn-warning fullwidth" Visible="false" />
         </div>
-        <div>
-            <asp:Button ID="btn_modifBHI" runat="server" OnClick="btn_modifBHI_Click" Text="Activer la modification des heures initiales" CssClass="btn btn-md btn-warning" Visible="false" />
-        </div>
+
     </form>
 </asp:Content>
 
