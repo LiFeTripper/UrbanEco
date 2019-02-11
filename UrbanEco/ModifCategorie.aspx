@@ -33,10 +33,11 @@
             <asp:TextBox ID="Tbx_Description" runat="server" class="form-control"></asp:TextBox>
         </div>
 
-        <h5 runat="server" id="titre_emp" class="spantwo titre">Assignation des employés</h5>
+        
 
         <%--DIV DES EMPLOYÉS--%>
         <div class="form-group spantwo noTopPadding" id="divAjoutEmp" runat="server" >
+            <h5 runat="server" id="titre_emp" class="spantwo titre">Assignation des employés</h5>
             <select id="Multiselection" multiple="multiple">
                 <optgroup label='Bureau'>
                     <asp:Repeater runat="server" ID="RepBureau">

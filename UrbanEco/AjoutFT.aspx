@@ -70,10 +70,10 @@
                 </asp:DropDownList>
                 <p id="pHeure">h</p>
                 <asp:DropDownList ID="tbx_minutes" runat="server" CssClass="form-control" >
-                    <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
-                    <asp:ListItem Value="0.25">0.25</asp:ListItem>
-                    <asp:ListItem Value="0.50">0.50</asp:ListItem>
-                    <asp:ListItem Value="0.75">0.75</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="0">00</asp:ListItem>
+                    <asp:ListItem Value="15">15</asp:ListItem>
+                    <asp:ListItem Value="30">30</asp:ListItem>
+                    <asp:ListItem Value="45">45</asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>

@@ -53,7 +53,7 @@ namespace UrbanEco
             else
             {
                 divAjoutEmp.Visible = false;
-                titre_emp.Visible = false;
+                //titre_emp.Visible = false;
             }
             //if(categorie == null)
             //{
