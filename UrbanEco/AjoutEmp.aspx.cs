@@ -101,6 +101,7 @@ namespace UrbanEco
                     ctx.tbl_Employe.InsertOnSubmit(tableEmp);
                     ctx.SubmitChanges();
 
+                    //Init banque heure
                     for (int i = 0; i < 5; i++)
                     {
                         tbl_BanqueHeure bh = new tbl_BanqueHeure();
@@ -110,7 +111,7 @@ namespace UrbanEco
                         ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
                     }
 
-
+                    ctx.SubmitChanges();
                 }
                 //Modification dans la base de données
                 else
@@ -162,7 +163,7 @@ namespace UrbanEco
                                 ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
                             }
 
-
+                            ctx.SubmitChanges();
                         }
                         //Modification d'un employé existant
                         else
