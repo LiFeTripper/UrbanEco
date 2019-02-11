@@ -66,6 +66,8 @@ namespace AddLinkVancances
             foreach (tbl_Employe emp in listEmp)
             {
                 //Vérif si la liaison est déjà existante
+
+                //Enlever le try/catch et temp si erreur lors de l'import
                 try
                 {
                     tbl_BanqueHeure temp = bd.tbl_BanqueHeure.Single(f => f.idEmploye == emp.idEmploye);
