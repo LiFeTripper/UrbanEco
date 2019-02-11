@@ -195,6 +195,8 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
+            ((Button)sender).Enabled = false;
+
             if (Request.QueryString["FT"] == "New")
             {
                 tbl_FeuilleTemps tbFT = new tbl_FeuilleTemps();
@@ -247,6 +249,8 @@ namespace UrbanEco
                 ctx.SubmitChanges();
 
                 Response.Redirect("GestionFeuilleTemps.aspx");
+
+                ((Button)sender).Enabled = true;
             }
             else
             {
@@ -282,6 +286,8 @@ namespace UrbanEco
 
             ctx.SubmitChanges();
             Response.Redirect("GestionFeuilleTemps.aspx");
+
+            ((Button)sender).Enabled = true;
         }
 
         protected void LoadFT(tbl_FeuilleTemps ft)
