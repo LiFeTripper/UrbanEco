@@ -57,19 +57,22 @@ namespace UrbanEco
             {
                 //Query du premier utilisateur dont le username est identique a celui entré
                 var query = (from tbl in context.tbl_Employe
-                             where tbl.username == Tbx_InputUsername.Text
-                             select tbl).First();
+                             where tbl.username == user
+                             select tbl);
+
+                var empl = query.First();
 
                 //Vérification du mot de passe entré avec celui de l'utilisateur trouvé dans la BD
-                if (query.password == Tbx_InputPassword.Value)
+                if (empl.password == password)
                 {
                     //Si le mot de passe est trouvé, le user est authentifié
                     //Persist crée un cookie persistant 
                     FormsAuthentication.RedirectFromLoginPage
-                            (Tbx_InputUsername.Text, Persist.Checked);
+                            (user, Persist.Checked);
 
+                    Response.Charset = "utf-8";
                     //Création du cookie de sécurité maximale avec le user en clair dedans
-                    Response.Cookies["userInfo"].Value = Tbx_InputUsername.Text.ToString();
+                    Response.Cookies["userInfo"].Value = user;
                     //Si le cookie est persistant, il est enregistrer sur l'ordi
                     //Ici, son expiration est de 1 journée
 
