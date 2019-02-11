@@ -32,9 +32,11 @@ namespace UrbanEco
                 tbl_Employe emp = bd.tbl_Employe.Where(e => e.username == username).First();
                 bd.Dispose();
 
-                if(emp.inactif == true)
+
+                if (emp.inactif == true)
                 {
                     HttpContext.Current.Response.Redirect("Login.aspx", true);
+                    reader.Expires = DateTime.Now.AddDays(-10);
                     return false;
                 }
 
