@@ -118,16 +118,16 @@ namespace UrbanEco
                 {
                     int idEmploye = int.Parse(argument);
 
-                    var query = BD.GetEmploye(ctx, idEmploye);
+                    var employeModifier = BD.GetEmploye(ctx, idEmploye);
 
 
-                    query.prenom = Tbx_Prenom.Text;
-                    query.nom = Tbx_Nom.Text;
-                    query.email = Tbx_email.Text;
-                    query.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
-                    query.username = Tbx_username.Text;
-                    query.password = Tbx_password.Text;
-                    query.inactif = Chkbx_Inactif.Checked;
+                    employeModifier.prenom = Tbx_Prenom.Text;
+                    employeModifier.nom = Tbx_Nom.Text;
+                    employeModifier.email = Tbx_email.Text;
+                    employeModifier.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
+                    employeModifier.username = Tbx_username.Text;
+                    employeModifier.password = Tbx_password.Text;
+                    employeModifier.inactif = Chkbx_Inactif.Checked;
 
                     if (verifEntree(ctx, insert))
                     {
@@ -170,16 +170,16 @@ namespace UrbanEco
                         {
                             idEmploye = int.Parse(argument);
 
-                            query = BD.GetEmploye(ctx, idEmploye);
+                            employeModifier = BD.GetEmploye(ctx, idEmploye);
 
 
-                            query.prenom = Tbx_Prenom.Text;
-                            query.nom = Tbx_Nom.Text;
-                            query.email = Tbx_email.Text;
-                            query.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
-                            query.username = Tbx_username.Text;
-                            query.password = Tbx_password.Text;
-                            query.inactif = Chkbx_Inactif.Checked;
+                            employeModifier.prenom = Tbx_Prenom.Text;
+                            employeModifier.nom = Tbx_Nom.Text;
+                            employeModifier.email = Tbx_email.Text;
+                            employeModifier.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
+                            employeModifier.username = Tbx_username.Text;
+                            employeModifier.password = Tbx_password.Text;
+                            employeModifier.inactif = Chkbx_Inactif.Checked;
 
                             //Sert a rien ?
                             var queryVerifTypeEmp = (from tbl in ctx.tbl_ProjetCatEmploye
@@ -187,7 +187,7 @@ namespace UrbanEco
                                                      & tbl.idCategorie == idCategorieTempsSupp
                                                      select tbl);
                             //Terrain
-                            if (query.idTypeEmpl == 2)
+                            if (employeModifier.idTypeEmpl == 2)
                             {
                                 //Surpprimer le lien de l'employé au temps supp
                                 if (queryVerifTypeEmp.Count() != 0)
@@ -196,7 +196,7 @@ namespace UrbanEco
                                 }
                             }
                             //Bureau
-                            else if (query.idTypeEmpl == 1)
+                            else if (employeModifier.idTypeEmpl == 1)
                             {
                                 //Ajouter le lien de l'employé au temps supp
                                 if (queryVerifTypeEmp.Count() == 0)
@@ -204,10 +204,30 @@ namespace UrbanEco
                                     tbl_ProjetCatEmploye pceTemp = new tbl_ProjetCatEmploye();
 
                                     pceTemp.idProjet = idProjetVacance;
-                                    pceTemp.idEmploye = query.idEmploye;
+                                    pceTemp.idEmploye = employeModifier.idEmploye;
                                     pceTemp.idCategorie = idCategorieTempsSupp;
                                     ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp);
                                 }
+                            }
+
+                            var BanqueHeureEmpl = from tbl in ctx.tbl_BanqueHeure
+                                                  where tbl.idEmploye == employeModifier.idEmploye
+                                                  select tbl;
+
+
+                            if(BanqueHeureEmpl.Count() != 5)
+                            {
+                                //Init la banque d'heure
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    tbl_BanqueHeure bh = new tbl_BanqueHeure();
+                                    bh.idEmploye = employeModifier.idEmploye;
+                                    bh.idTypeHeure = i + 1;
+                                    bh.nbHeure = bh.nbHeureInitial = 0;
+                                    ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
+                                }
+
+                                ctx.SubmitChanges();
                             }
                         }
 
