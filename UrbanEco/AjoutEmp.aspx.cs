@@ -218,7 +218,7 @@ namespace UrbanEco
 
                         if (insert == true)
                         {
-                            int indexCat = 10;
+                            int indexCat = idProjetVacance;
 
                             //Si employé bureau
                             if ((from tbl in ctx.tbl_Employe
