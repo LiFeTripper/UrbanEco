@@ -346,7 +346,7 @@ namespace UrbanEco
             tbx_nbHeureCongeMaladieI.Text = "";
 
             //"Veuillez choisir un employé"
-            if (ddl_empBH.SelectedIndex != -1)
+            if (ddl_empBH.SelectedIndex > 0)
             {        
                 //On cache l'alerte de choix d'employé
                 load_BHemp(ddl_empBH.SelectedItem.Value);
@@ -526,6 +526,8 @@ namespace UrbanEco
             {
                 listEmp.Add(item);
             }
+
+            listEmp.Insert(0, new ListItem("Choisir un employé", "-1"));
 
             ddl_empBH.DataSource = null;
             ddl_empBH.DataBind();

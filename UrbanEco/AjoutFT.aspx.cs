@@ -58,7 +58,7 @@ namespace UrbanEco
                 }
 
                 List<ListItem> listItemProjets = new List<ListItem>();
-                listItemProjets.Add(new ListItem("Aucune", (-1).ToString()));
+                listItemProjets.Add(new ListItem("Aucun", (-1).ToString()));
 
                 if (listProjets != null && listProjets.Count != 0) {
                     foreach (tbl_Projet item in listProjets) {
