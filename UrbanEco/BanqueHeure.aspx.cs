@@ -461,6 +461,11 @@ namespace UrbanEco
         //Obtient l'id de l'empolòyé à l'aide de son nom et prénom séparé par une virgule
         protected int GetIDEmp(string nomEmp)
         {
+            if(nomEmp == "Veuillez choisir un employé")
+            {
+                return -1;
+            }
+
             CoecoDataContext ctx = new CoecoDataContext();
             string[] nomEmpArray = nomEmp.Split(',');
 
@@ -530,7 +535,7 @@ namespace UrbanEco
                 listEmp.Add(item);
             }
 
-            listEmp.Insert(0, new ListItem("Choisir un employé", "-1"));
+            listEmp.Insert(0, new ListItem("Veuillez choisir un employé", "-1"));
 
             ddl_empBH.DataSource = null;
             ddl_empBH.DataBind();
