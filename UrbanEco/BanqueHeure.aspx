@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Gestion des banques d'heures</h1>
+    <h1 runat="server" id="titrePage">Gestion des banques d'heures</h1>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
