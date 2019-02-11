@@ -134,7 +134,7 @@
                 </tr>
                 <tr class="collapse" id="collapseAjout">
                     <%--SECOND REPEATER DES FEUILLES DE TEMPS--%>
-                    <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
+                    <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# TrierFT(Eval("tbl_FeuilleTemps"))%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
                         <%--ITEMTEMPLATE--%>
                         <ItemTemplate>
                             <tr runat="server" visible='<%# ShowFT(Container.DataItem, "Attente") %>'>

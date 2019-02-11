@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -546,6 +547,11 @@ namespace UrbanEco
             return null;
         }
 
+        protected List<tbl_FeuilleTemps> TrierFT(object choses) {
+            EntitySet<tbl_FeuilleTemps> maListe = choses as EntitySet<tbl_FeuilleTemps>;
+
+            return maListe.OrderByDescending(ft => ft.dateCreation).ToList();
+        }
 
         protected void CheckTempsSupp(tbl_FeuilleTemps FT)
         {
