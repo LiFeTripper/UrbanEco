@@ -17,10 +17,11 @@
     <form runat="server">
 
         <%--EN-TËTE--%>
-        <div class="form-group mb-4 col-6 mx-auto" style="text-align:center;">
+        <div class="form-group">
             <h3>Paramètres Administrateur</h3>
-        </div>        
-        <div class="form-group mb-4 col-6 mx-auto">
+        </div>
+
+        <div class="form-group">
             <label for="tbl_taux" style="font-size:20px;">Taux de kilométrage</label>
             <asp:table runat="server" id="tbl_taux" style="width: 100%">
                 <%--Voiture--%>
