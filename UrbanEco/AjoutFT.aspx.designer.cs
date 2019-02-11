@@ -46,7 +46,7 @@ namespace UrbanEco {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_heures;
+        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
         /// Contrôle tbx_minutes.
@@ -55,7 +55,7 @@ namespace UrbanEco {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_minutes;
+        protected global::System.Web.UI.WebControls.DropDownList tbx_heures;
         
         /// <summary>
         /// Contrôle tbx_categorie.
@@ -64,7 +64,7 @@ namespace UrbanEco {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
+        protected global::System.Web.UI.WebControls.DropDownList tbx_minutes;
         
         /// <summary>
         /// Contrôle DateCreation.
