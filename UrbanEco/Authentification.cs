@@ -26,39 +26,45 @@ namespace UrbanEco
 
                 //Optien l'employé connecté
                 CoecoDataContext bd = new CoecoDataContext();
-                tbl_Employe emp = bd.tbl_Employe.Single(f => f.username == username);
-                bd.Dispose();
 
-                if(emp.inactif == true)
+                try
                 {
-                    HttpContext.Current.Response.Redirect("Login.aspx", true);
-                    return false;
-                }
+                    tbl_Employe emp = bd.tbl_Employe.Single(f => f.username == username);
+                    bd.Dispose();
+
+                    if (emp.inactif == true)
+                    {
+                        HttpContext.Current.Response.Redirect("Login.aspx", true);
+                        return false;
+                    }
 
 
-                int typeEmp = emp.idTypeEmpl;
-                if (emp.username == "admin")
-                {
-                    isAdmin = true;
-                }
-                //1 = Bureau
-                //2 = Terrain
+                    int typeEmp = emp.idTypeEmpl;
+                    if (emp.username == "admin")
+                    {
+                        isAdmin = true;
+                    }
+                    //1 = Bureau
+                    //2 = Terrain
 
-                //Partie Adm
-                if (adm == true && isAdmin == true)
-                {
-                    return true;
+                    //Partie Adm
+                    if (adm == true && isAdmin == true)
+                    {
+                        return true;
+                    }
+                    //Partie bureau
+                    if (bureau && typeEmp == 1)
+                    {
+                        return true;
+                    }
+                    //Partie terrain
+                    if (terrain && typeEmp == 2)
+                    {
+                        return true;
+                    }
                 }
-                //Partie bureau
-                if (bureau && typeEmp == 1)
-                {
-                    return true;
-                }
-                //Partie terrain
-                if (terrain && typeEmp == 2)
-                {
-                    return true;
-                }
+                catch
+                {}
             }
             HttpContext.Current.Response.Redirect("Login.aspx", true);
             return false;

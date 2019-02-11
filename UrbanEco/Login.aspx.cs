@@ -21,13 +21,21 @@ namespace UrbanEco
             if(reader != null)
             {
                 CoecoDataContext bd = new CoecoDataContext();
-                tbl_Employe emp = bd.tbl_Employe.Single(f => f.username == reader.Value);
-                bd.Dispose();
 
-                if (emp.inactif == false)
-                    Response.Redirect("/Home.aspx");
-                else
-                    reader.Expires = DateTime.Now.AddDays(-10);
+                try
+                {
+                    tbl_Employe emp = bd.tbl_Employe.Single(f => f.username == reader.Value);
+                    bd.Dispose();
+                    if (emp.inactif == false)
+                        Response.Redirect("/Home.aspx");
+                    else
+                        reader.Expires = DateTime.Now.AddDays(-10);
+                }
+                catch
+                {
+
+                }
+
             }
         }
 
