@@ -40,6 +40,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
         
         /// <summary>
+        /// tbx_categorie control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
+        
+        /// <summary>
         /// tbx_heures control.
         /// </summary>
         /// <remarks>
@@ -56,15 +65,6 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tbx_minutes;
-        
-        /// <summary>
-        /// tbx_categorie control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
         /// DateCreation control.
