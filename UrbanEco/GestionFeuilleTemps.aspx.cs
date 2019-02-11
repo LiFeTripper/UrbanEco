@@ -190,6 +190,7 @@ namespace UrbanEco
 
             var FT = from tblFT in cdc.tbl_FeuilleTemps
                      where tblFT.idEmploye == idEmp
+                     && tblFT.approuver == false
                      select tblFT;
 
             foreach (var FTemp in FT)
