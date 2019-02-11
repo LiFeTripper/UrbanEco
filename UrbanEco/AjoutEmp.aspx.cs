@@ -15,7 +15,7 @@ namespace UrbanEco
         private int idProjetVacance = 38;
         private int idCategorieTempsSupp = 194;
 
-        private int[] idCategoriesVacance = new int[5] { 191, 192, 193, 194, 255 };
+        private int[] idCategoriesProjetVacance = new int[5] { 191, 192, 193, 194, 255 };
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -86,30 +86,51 @@ namespace UrbanEco
                 {
 
                     //Objet de ma table Projet
-                    tbl_Employe tableEmp = new tbl_Employe();
+                    tbl_Employe employeAjouter = new tbl_Employe();
 
                     //Remplissage des champs de la table temporaire avec les contrôles
-                    tableEmp.prenom = Tbx_Prenom.Text;
-                    tableEmp.nom = Tbx_Nom.Text;
-                    tableEmp.email = Tbx_email.Text;
-                    tableEmp.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
-                    tableEmp.username = Tbx_username.Text;
-                    tableEmp.password = Tbx_password.Text;
-                    tableEmp.inactif = Chkbx_Inactif.Checked;
-                    tableEmp.nbHeureSemaine = 0;
+                    employeAjouter.prenom = Tbx_Prenom.Text;
+                    employeAjouter.nom = Tbx_Nom.Text;
+                    employeAjouter.email = Tbx_email.Text;
+                    employeAjouter.idTypeEmpl = int.Parse(Ddl_TypeEmp.SelectedValue);
+                    employeAjouter.username = Tbx_username.Text;
+                    employeAjouter.password = Tbx_password.Text;
+                    employeAjouter.inactif = Chkbx_Inactif.Checked;
+                    employeAjouter.nbHeureSemaine = 0;
 
-                    ctx.tbl_Employe.InsertOnSubmit(tableEmp);
+                    ctx.tbl_Employe.InsertOnSubmit(employeAjouter);
                     ctx.SubmitChanges();
 
                     //Init banque heure
                     for (int i = 0; i < 5; i++)
                     {
                         tbl_BanqueHeure bh = new tbl_BanqueHeure();
-                        bh.idEmploye = tableEmp.idEmploye;
+                        bh.idEmploye = employeAjouter.idEmploye;
                         bh.idTypeHeure = i + 1;
                         bh.nbHeure = bh.nbHeureInitial = 0;
                         ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
                     }
+
+                    for (int i = 0; i < idCategoriesProjetVacance.Length; i++)
+                    {
+                        //Employer terrain, ne pas ajouter temps supp
+                        if (employeAjouter.idTypeEmpl == 2 && idCategoriesProjetVacance[i] == idCategorieTempsSupp)
+                            continue;
+
+                        tbl_ProjetCatEmploye pceTemp = new tbl_ProjetCatEmploye();
+
+                        //Vancance projet
+                        pceTemp.idProjet = idProjetVacance;
+                        pceTemp.idEmploye = (from tbl in ctx.tbl_Employe
+                                                orderby tbl.idEmploye descending
+                                                select tbl).First().idEmploye;
+
+                        pceTemp.idCategorie = idCategoriesProjetVacance[i];
+
+                        ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp);
+                        ctx.SubmitChanges();
+                    }
+
 
                     ctx.SubmitChanges();
                 }
@@ -181,7 +202,6 @@ namespace UrbanEco
                             employeModifier.password = Tbx_password.Text;
                             employeModifier.inactif = Chkbx_Inactif.Checked;
 
-                            //Sert a rien ?
                             var queryVerifTypeEmp = (from tbl in ctx.tbl_ProjetCatEmploye
                                                      where tbl.idEmploye == idEmploye
                                                      & tbl.idCategorie == idCategorieTempsSupp
@@ -248,7 +268,7 @@ namespace UrbanEco
                                  select tbl).First().idTypeEmpl == 1)
                             {
                                 tbl_ProjetCatEmploye[] pceTemp = new tbl_ProjetCatEmploye[5];
-                                for (int i = 0; i < idCategoriesVacance.Length; i++)
+                                for (int i = 0; i < idCategoriesProjetVacance.Length; i++)
                                 {
                                     pceTemp[i] = new tbl_ProjetCatEmploye();
 
@@ -258,7 +278,7 @@ namespace UrbanEco
                                                             orderby tbl.idEmploye descending
                                                             select tbl).First().idEmploye;
 
-                                    pceTemp[i].idCategorie = idCategoriesVacance[i];
+                                    pceTemp[i].idCategorie = idCategoriesProjetVacance[i];
 
                                     ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
                                     ctx.SubmitChanges();
@@ -272,7 +292,7 @@ namespace UrbanEco
                                 for (int i = 0; i < 4; i++)
                                 {
                                     //Skip la catégorie temps supp pour les emp terrain
-                                    if (idCategoriesVacance[i] == idCategorieTempsSupp)
+                                    if (idCategoriesProjetVacance[i] == idCategorieTempsSupp)
                                         continue;
 
                                     pceTemp[i] = new tbl_ProjetCatEmploye();
@@ -282,7 +302,7 @@ namespace UrbanEco
                                                             orderby tbl.idEmploye descending
                                                             select tbl).First().idEmploye;
 
-                                    pceTemp[i].idCategorie = idCategoriesVacance[i];
+                                    pceTemp[i].idCategorie = idCategoriesProjetVacance[i];
 
 
                                     ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
