@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentScheduler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -234,8 +235,46 @@ namespace UrbanEco
             //Sauvegarde des paramètres email
             tbl_ConfigAdmin config = monContext.tbl_ConfigAdmin.First();
 
-            config.jourRappel = cb_jourRappel.Value;
-            config.heureRappel = TimeSpan.Parse(tbx_heureRappel.Value);
+            if (config.jourRappel != cb_jourRappel.Value || config.heureRappel != TimeSpan.Parse(tbx_heureRappel.Value)) {
+                JobManager.RemoveAllJobs();
+
+                config.jourRappel = cb_jourRappel.Value;
+                config.heureRappel = TimeSpan.Parse(tbx_heureRappel.Value);
+
+                DayOfWeek day;
+                switch (config.jourRappel) {
+                    case "Dimanche":
+                        day = DayOfWeek.Sunday;
+                        break;
+                    case "Lundi":
+                        day = DayOfWeek.Monday;
+                        break;
+                    case "Mardi":
+                        day = DayOfWeek.Tuesday;
+                        break;
+                    case "Mercredi":
+                        day = DayOfWeek.Wednesday;
+                        break;
+                    case "Jeudi":
+                        day = DayOfWeek.Thursday;
+                        break;
+                    case "Vendredi":
+                        day = DayOfWeek.Friday;
+                        break;
+                    case "Samedi":
+                        day = DayOfWeek.Saturday;
+                        break;
+                    default:
+                        day = DayOfWeek.Monday;
+                        break;
+                }
+
+                Registry registry = new Registry();
+                RappelJob emailJob = new RappelJob();
+                registry.Schedule(() => emailJob.Execute()).ToRunEvery(0).Weeks().On(day).At(config.heureRappel.Hours, config.heureRappel.Minutes);
+                JobManager.Initialize(registry);
+            }
+
             config.objetRappel = tbx_objet.Value;
             config.contenuRappel = ta_contenu.Value;
             config.statutRappelBureau = ckb_rappelBureau.Checked;
