@@ -233,6 +233,7 @@ namespace UrbanEco
                         EnleverHeuresBH(3, FT);
                         break;
                     default:
+                        CheckTempsSupp(FT);
                         break;
                 }
             }
@@ -275,7 +276,7 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
-                CheckTempsSupp(FTemp);
+                //CheckTempsSupp(FTemp);
                 FTemp.approuver = true;
                 SwitchTypeBHCongés(FTemp);
             }
@@ -604,7 +605,7 @@ namespace UrbanEco
 
             foreach (tbl_FeuilleTemps tbl in querrySemaineActuelle)
             {
-                if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
+                if (nbHeureSemaineActuelle + tbl.nbHeure  > nbHeureSemaineEmp)
                 {
                     float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemaineActuelle);
                     nbHeureSemaineActuelle = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
