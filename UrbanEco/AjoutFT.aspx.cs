@@ -227,16 +227,16 @@ namespace UrbanEco
                 switch (tbx_minutes.SelectedValue)
                 {
                     case ("15"):
-                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".25");
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ",25");
                         break;
                     case ("30"):
-                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".50");
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ",50");
                         break;
                     case ("45"):
-                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".75");
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ",75");
                         break;
                     default:
-                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".00");
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ",00");
                         break;
                 }
 
@@ -321,7 +321,7 @@ namespace UrbanEco
             
             //tbx_nbHeure.Text = ft.nbHeure.ToString();
             string nbHeures = ft.nbHeure.ToString();
-            string[] nb = nbHeures.Split('.');
+            string[] nb = nbHeures.Split(',');
             tbx_heures.SelectedValue = nb[0];
 
             if (nb.Length > 1)
