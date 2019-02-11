@@ -30,6 +30,7 @@ namespace UrbanEco
 
             if (emp.username == "admin")
             {
+                titrePage.InnerText = "Gestion des banques d'heures";
                 if (!IsPostBack)
                 {
                     LoadListEmploye();
@@ -42,6 +43,8 @@ namespace UrbanEco
                 LoadUser();
                 load_Heure_Use_Emp(emp.nom + "," +  emp.prenom);
                 loadHeureSemaineEmp(emp.nom + "," + emp.prenom);
+
+                titrePage.InnerText = "Votre banque d'heures";
             }
         }
 
