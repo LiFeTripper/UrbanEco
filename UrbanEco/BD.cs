@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,7 +27,8 @@ namespace UrbanEco
 
             CoecoDataContext context = ctx;
 
-            string cookieValue = myCookie.Value;
+            byte[] cookieName = Encoding.Default.GetBytes(myCookie.Value);
+            string cookieValue = Encoding.UTF8.GetString(cookieName);
 
             var query_Employe = from tbl in context.tbl_Employe
                         where tbl.username == cookieValue

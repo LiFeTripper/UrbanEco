@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace UrbanEco
@@ -21,12 +22,14 @@ namespace UrbanEco
             HttpCookie reader = HttpContext.Current.Request.Cookies["userinfo"];
             if(reader != null)
             {
-                string username = reader.Value;
+                byte[] cookieName = Encoding.Default.GetBytes(reader.Value);
+                string username = Encoding.UTF8.GetString(cookieName);
+
                 bool isAdmin = false;
 
                 //Optien l'employé connecté
                 CoecoDataContext bd = new CoecoDataContext();
-                tbl_Employe emp = bd.tbl_Employe.Single(f => f.username == username);
+                tbl_Employe emp = bd.tbl_Employe.Where(e => e.username == username).First();
                 bd.Dispose();
 
                 if(emp.inactif == true)
@@ -34,7 +37,6 @@ namespace UrbanEco
                     HttpContext.Current.Response.Redirect("Login.aspx", true);
                     return false;
                 }
-
 
                 int typeEmp = emp.idTypeEmpl;
                 if (emp.username == "admin")

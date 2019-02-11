@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Text;
 
 namespace UrbanEco
 {
@@ -23,7 +24,9 @@ namespace UrbanEco
                 return;
                 //Response.Redirect("Login.aspx");
             }
-            string cookie = Request.Cookies["userInfo"].Value;
+
+            byte[] cookieName = Encoding.Default.GetBytes(Request.Cookies["userInfo"].Value);
+            string cookie = Encoding.UTF8.GetString(cookieName);
 
             var query = from tbl in context.tbl_Employe
                         where tbl.username == cookie
