@@ -53,11 +53,6 @@ namespace UrbanEco
                 DateTime dateMin = DateTime.Parse(Calendar1.Value);
                 DateTime dateMax = DateTime.Parse(Calendar2.Value);
 
-                if (Request.QueryString["no"] == "true") {
-                    string maString = "J'fourre";
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(&quot;" + maString + "&quot;)", true);
-                }
-
                 if (empConnected.username == "admin")
                 {
                     var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, false);
