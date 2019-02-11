@@ -60,10 +60,11 @@ namespace UrbanEco
                 List<ListItem> listItemProjets = new List<ListItem>();
                 listItemProjets.Add(new ListItem("Aucune", (-1).ToString()));
 
-                foreach (tbl_Projet item in listProjets)
-                {
-                    ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
-                    listItemProjets.Add(projet);
+                if (listProjets != null && listProjets.Count != 0) {
+                    foreach (tbl_Projet item in listProjets) {
+                        ListItem projet = new ListItem(item.titre, item.idProjet.ToString());
+                        listItemProjets.Add(projet);
+                    }
                 }
 
                 tbx_projet.DataSource = listItemProjets.Distinct();

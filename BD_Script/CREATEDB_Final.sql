@@ -80,6 +80,9 @@ CREATE TABLE tbl_Projet
 	CONSTRAINT FK_tbl_Projet_idStatus FOREIGN KEY (idStatus) REFERENCES tbl_Status(idstatus)
 )
 
+INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
+VALUES ('Vacances et congés', 'Congé, vacances et temps supplémentaires', 1, 1, 40, 0)
+
 CREATE TABLE tbl_ProjetCat
 (
 	idProjetCat INT IDENTITY(1,1) PRIMARY KEY,
@@ -92,6 +95,19 @@ CREATE TABLE tbl_ProjetCat
 	CONSTRAINT FK_tbl_ProjetCat_idProjet FOREIGN KEY (idProjet) REFERENCES tbl_Projet(idProjet),
 	CONSTRAINT FK_tbl_ProjetCat_idCatMaitre FOREIGN KEY (idCatMaitre) REFERENCES tbl_ProjetCat(idProjetCat)
 )
+
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, NULL, 'Général', '');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, 1, 'Congés fériés', 'Utilise les heures de congés fériés de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, 1, 'Congés vacances', 'Utilise les heures de congés vacances de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, 1, 'Temps supplémentaires', 'Utilise les heures supplémentaires de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, 1, 'Congés maladies', 'Utilise les heures de congés maladies de la banque dheures');
+INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
+VALUES (1, 1, 'Congé personnelle', 'Utilise les heures de congés personnelles de la banque dheures');
 
 
 CREATE TABLE tbl_FeuilleTemps
