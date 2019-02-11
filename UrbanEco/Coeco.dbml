@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco_test" Class="CoecoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco_test;Integrated Security=False;Persist Security Info=True;User ID=WEB_USER" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoecoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Integrated Security=False;Persist Security Info=True;User ID=WEB_USER" SettingsObjectName="UrbanEco.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
     <Type Name="tbl_BanqueHeure">
       <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -16,6 +16,22 @@
       <Column Name="idTypeHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nomTypeHeure" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_BanqueHeure" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ConfigAdmin" Member="tbl_ConfigAdmin">
+    <Type Name="tbl_ConfigAdmin">
+      <Column Name="idConfigAdmin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="jourRappel" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="heureRappel" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="emailRappel" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="pwdEmailRappel" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="statutRappelBureau" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="statutRappelTerrain" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="objetRappel" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="contenuRappel" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="smtpServer" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="smtpPort" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="smtpSSL" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_Depense" Member="tbl_Depense">
@@ -157,22 +173,6 @@
       <Column Name="nomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Association Name="tbl_TypeEmploye_tbl_Employe" Member="tbl_Employe" ThisKey="idType" OtherKey="idTypeEmpl" Type="tbl_Employe" />
       <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeDepense" ThisKey="idType" OtherKey="idTypeEmploye" Type="tbl_TypeDepense" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_ConfigAdmin" Member="tbl_ConfigAdmin">
-    <Type Name="tbl_ConfigAdmin">
-      <Column Name="idConfigAdmin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="jourRappel" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
-      <Column Name="heureRappel" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
-      <Column Name="emailRappel" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
-      <Column Name="pwdEmailRappel" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="statutRappelBureau" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="statutRappelTerrain" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="objetRappel" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
-      <Column Name="contenuRappel" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="smtpServer" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="smtpPort" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="smtpSSL" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
