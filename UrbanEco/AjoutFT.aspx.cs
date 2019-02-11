@@ -16,7 +16,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true,true,true))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             if (!IsPostBack)
@@ -218,31 +218,29 @@ namespace UrbanEco
                     tbFT.idCat = null;
                 }
 
-                //if(string.IsNullOrWhiteSpace(tbx_nbHeure.Text))
-                //{
-                //    tbFT.nbHeure = 0;
-                //}
-                //else
-                //{
-                    //string nbH = tbx_nbHeure.Text;
-                    //if (nbH.Contains(","))
-                    //{
-                    //    nbH.Replace(",", ".");
-                    //    tbFT.nbHeure = float.Parse(nbH);
-                    //}
-                    //else
-                    //{
-                        //tbFT.nbHeure = float.Parse(tbx_nbHeure.Text);
-                    //}
-                //}
-
-
                 tbFT.idProjet = int.Parse(tbx_projet.SelectedItem.Value);
                 tbFT.dateCreation = DateTime.Parse(DateCreation.Value);
                 tbFT.commentaire = txa_comments.Value;
                 tbFT.approuver = false;
                 tbFT.noSemaine = GetWeekToYear(DateTime.Parse(DateCreation.Value));
-                tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue) + float.Parse(tbx_minutes.SelectedValue);
+
+                switch (tbx_minutes.SelectedValue)
+                {
+                    case ("15"):
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".25");
+                        break;
+                    case ("30"):
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".50");
+                        break;
+                    case ("45"):
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".75");
+                        break;
+                    default:
+                        tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue + ".00");
+                        break;
+                }
+
+                //tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue) + float.Parse(minutes);
 
                 ctx.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
                 ctx.SubmitChanges();
@@ -332,22 +330,22 @@ namespace UrbanEco
                 {
                     case ("0"):
                         {
-                            nb[1] = ("0");
+                            nb[1] = ("00");
                             break;
                         }
                     case ("25"):
                         {
-                            nb[1] = ("0.25");
+                            nb[1] = ("15");
                             break;
                         }
                     case ("5"):
                         {
-                            nb[1] = ("0.50");
+                            nb[1] = ("30");
                             break;
                         }
                     case ("75"):
                         {
-                            nb[1] = ("0.75");
+                            nb[1] = ("45");
                             break;
                         }
                 }

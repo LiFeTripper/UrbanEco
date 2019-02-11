@@ -21,7 +21,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true,true,false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             CoecoDataContext ctx = new CoecoDataContext();
@@ -223,7 +223,7 @@ namespace UrbanEco
             if (admin)
             {
                 this.Page.Title = "Gestion de la banque d'heures";
-                h1TitlePage.InnerText = "Gestion de la Banque d'Heures";
+                //h1TitlePage.InnerText = "Gestion de la Banque d'Heures";
 
                 ddl_empBH.Visible = true;
                 btn_modifBH.Visible = true;
@@ -489,7 +489,7 @@ namespace UrbanEco
             CoecoDataContext ctx = new CoecoDataContext();
 
             this.Page.Title = "Ma banque d'heures";
-            h1TitlePage.InnerText = "Ma banque d'heure";
+            //h1TitlePage.InnerText = "Ma banque d'heure";
 
             ddl_empBH.Visible = false;
             btn_modifBH.Visible = false;

@@ -12,17 +12,17 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <h1>Rapport</h1>
-    <span>Rapport <%# Eval("") %> à <%# Eval("") %></span>
+    <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
 
     <asp:repeater id="rapportRepeater" runat="server">
         <itemtemplate>
             <%-- Loop Through Projects --%>
-            <%# Eval("Nom") %> - <%# formatHeure(Eval("NbHeure")) %>
+            <h3><%# Eval("Nom") %> (<%# formatHeure(Eval("NbHeure")) %>)</h3>
             <asp:repeater runat="server" DataSource='<%# Eval("Child") %>' >
                 <itemtemplate>
                     <%-- Loop Through Categories --%>
                     <div class="rapport_div cat_div">
-                        <%# Eval("Nom") %> - <%# formatHeure(Eval("NbHeure")) %>
+                        <h5><%# Eval("Nom") %> (<%# formatHeure(Eval("NbHeure")) %>)</h5>
                         <asp:repeater runat="server" DataSource='<%# Eval("Child") %>' >
                             <itemtemplate>
                                 <div class="rapport_div">

@@ -10,11 +10,12 @@ namespace UrbanEco
 {
     public partial class RapportPage : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Authentification.Autorisation(true, false, false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             chercherRapport();
@@ -23,6 +24,8 @@ namespace UrbanEco
         private void chercherRapport()
         {
             RapportNode rapportNode = (RapportNode)Session["rapportNode"];
+            tbx_dateDebut.InnerHtml = Layout.GetDateFormated((DateTime)Session["dateDebut"]);
+            tbx_dateFin.InnerHtml = Layout.GetDateFormated((DateTime)Session["dateFin"]);
 
             if (rapportNode != null)
             {

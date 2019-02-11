@@ -22,7 +22,7 @@ namespace Deplace_Sous_Cat
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco_Test")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco")]
 	public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -75,7 +75,7 @@ namespace Deplace_Sous_Cat
     #endregion
 		
 		public CoEco_BDDataContext() : 
-				base(global::Deplace_Sous_Cat.Properties.Settings.Default.BD_Coeco_TestConnectionString, mappingSource)
+				base(global::Deplace_Sous_Cat.Properties.Settings.Default.BD_CoecoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

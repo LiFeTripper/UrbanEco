@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentScheduler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,7 @@ namespace UrbanEco
             {
                 if (!Authentification.Autorisation(true, false, false))
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("Login.aspx");
                 }
 
                 CoecoDataContext ctx = new CoecoDataContext();
@@ -75,6 +76,20 @@ namespace UrbanEco
                     DateTime date = queryDimanche.First().dateDimanche;
                     tbx_firstDimanche.Value = Layout.ToCalendarDate(date);
                 }
+
+                tbl_ConfigAdmin config = ctx.tbl_ConfigAdmin.First();
+                cb_jourRappel.Value = config.jourRappel;
+                tbx_heureRappel.Value = config.heureRappel.ToString();
+                tbx_objet.Value = config.objetRappel;
+                ta_contenu.Value = config.contenuRappel;
+                ckb_rappelBureau.Checked = (bool)config.statutRappelBureau;
+                ckb_rappelTerrain.Checked = (bool)config.statutRappelTerrain;
+
+                tbx_email.Value = config.emailRappel;
+
+                tbx_smtp.Value = config.smtpServer;
+                tbx_port.Value = config.smtpPort.ToString();
+                chk_ssl.Checked = (bool)config.smtpSSL;
             }
             else
             {
@@ -157,14 +172,18 @@ namespace UrbanEco
 
         protected void btn_deleteDepBureau_Click(object sender, EventArgs e)
         {
-            lbx_depBureau.Items.RemoveAt(lbx_depBureau.SelectedIndex);
-            lbx_depBureau.SelectedIndex = -1;
+            if (lbx_depBureau.SelectedIndex != -1) {
+                lbx_depBureau.Items.RemoveAt(lbx_depBureau.SelectedIndex);
+                lbx_depBureau.SelectedIndex = -1;
+            }
         }
 
         protected void btn_deleteDepTerrain_Click(object sender, EventArgs e)
         {
-            lbx_depTerrain.Items.RemoveAt(lbx_depTerrain.SelectedIndex);
-            lbx_depTerrain.SelectedIndex = -1;
+            if (lbx_depTerrain.SelectedIndex != -1) {
+                lbx_depTerrain.Items.RemoveAt(lbx_depTerrain.SelectedIndex);
+                lbx_depTerrain.SelectedIndex = -1;
+            }
         }
 
         /// <summary>
@@ -211,8 +230,69 @@ namespace UrbanEco
 
         protected void btn_envoyer_Click(object sender, EventArgs e)
         {
-            //mdp admin
+            CoecoDataContext monContext = new CoecoDataContext();
 
+            //Sauvegarde des paramètres email
+            tbl_ConfigAdmin config = monContext.tbl_ConfigAdmin.First();
+
+            if (config.jourRappel != cb_jourRappel.Value || config.heureRappel != TimeSpan.Parse(tbx_heureRappel.Value)) {
+                JobManager.RemoveAllJobs();
+
+                config.jourRappel = cb_jourRappel.Value;
+                config.heureRappel = TimeSpan.Parse(tbx_heureRappel.Value);
+
+                DayOfWeek day;
+                switch (config.jourRappel) {
+                    case "Dimanche":
+                        day = DayOfWeek.Sunday;
+                        break;
+                    case "Lundi":
+                        day = DayOfWeek.Monday;
+                        break;
+                    case "Mardi":
+                        day = DayOfWeek.Tuesday;
+                        break;
+                    case "Mercredi":
+                        day = DayOfWeek.Wednesday;
+                        break;
+                    case "Jeudi":
+                        day = DayOfWeek.Thursday;
+                        break;
+                    case "Vendredi":
+                        day = DayOfWeek.Friday;
+                        break;
+                    case "Samedi":
+                        day = DayOfWeek.Saturday;
+                        break;
+                    default:
+                        day = DayOfWeek.Monday;
+                        break;
+                }
+
+                Registry registry = new Registry();
+                RappelJob emailJob = new RappelJob();
+                registry.Schedule(() => emailJob.Execute()).ToRunEvery(0).Weeks().On(day).At(config.heureRappel.Hours, config.heureRappel.Minutes);
+                JobManager.Initialize(registry);
+            }
+
+            config.objetRappel = tbx_objet.Value;
+            config.contenuRappel = ta_contenu.Value;
+            config.statutRappelBureau = ckb_rappelBureau.Checked;
+            config.statutRappelTerrain = ckb_rappelTerrain.Checked;
+
+            config.emailRappel = tbx_email.Value;
+            if (!String.IsNullOrEmpty(tbx_mdpEmail.Value)) {
+                config.pwdEmailRappel = tbx_mdpEmail.Value;
+            }
+
+            config.smtpServer = tbx_smtp.Value;
+            config.smtpPort = int.Parse(tbx_port.Value);
+            config.smtpSSL = chk_ssl.Checked;
+
+            monContext.SubmitChanges();
+            
+
+            //mdp admin
             if (!string.IsNullOrWhiteSpace(tbx_adminMdp.Value))
             {
                 CoecoDataContext context = new CoecoDataContext();
@@ -338,7 +418,6 @@ namespace UrbanEco
 
                 ctx.SubmitChanges();
             }
-
 
             Response.Redirect(Request.RawUrl);
 

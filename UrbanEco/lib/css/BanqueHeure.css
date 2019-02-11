@@ -1,0 +1,26 @@
+﻿form {
+    width: auto;
+    margin-top: 45px;
+    margin-left: 20px;
+    padding-right: 50px;
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    grid-template-columns: 20% 20%;
+}
+
+tr{
+    height: 60px;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.spantwo {
+    grid-column: span 2;
+}
+
+.fixNbHeures {
+    height: 40px;
+}

@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UrbanEco
+namespace AddLinkVancances
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -23,7 +23,7 @@ namespace UrbanEco
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco")]
-	public partial class CoecoDataContext : System.Data.Linq.DataContext
+	public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -36,9 +36,6 @@ namespace UrbanEco
     partial void Inserttbl_TypeHeure(tbl_TypeHeure instance);
     partial void Updatetbl_TypeHeure(tbl_TypeHeure instance);
     partial void Deletetbl_TypeHeure(tbl_TypeHeure instance);
-    partial void Inserttbl_ConfigAdmin(tbl_ConfigAdmin instance);
-    partial void Updatetbl_ConfigAdmin(tbl_ConfigAdmin instance);
-    partial void Deletetbl_ConfigAdmin(tbl_ConfigAdmin instance);
     partial void Inserttbl_Depense(tbl_Depense instance);
     partial void Updatetbl_Depense(tbl_Depense instance);
     partial void Deletetbl_Depense(tbl_Depense instance);
@@ -77,31 +74,31 @@ namespace UrbanEco
     partial void Deletetbl_TypeEmploye(tbl_TypeEmploye instance);
     #endregion
 		
-		public CoecoDataContext() : 
-				base(global::UrbanEco.Properties.Settings.Default.BD_CoecoConnectionString1, mappingSource)
+		public CoEco_BDDataContext() : 
+				base(global::AddLinkVancances.Properties.Settings.Default.BD_CoecoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(string connection) : 
+		public CoEco_BDDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(System.Data.IDbConnection connection) : 
+		public CoEco_BDDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CoEco_BDDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CoecoDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CoEco_BDDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -120,14 +117,6 @@ namespace UrbanEco
 			get
 			{
 				return this.GetTable<tbl_TypeHeure>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tbl_ConfigAdmin> tbl_ConfigAdmin
-		{
-			get
-			{
-				return this.GetTable<tbl_ConfigAdmin>();
 			}
 		}
 		
@@ -579,332 +568,6 @@ namespace UrbanEco
 		{
 			this.SendPropertyChanging();
 			entity.tbl_TypeHeure = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_ConfigAdmin")]
-	public partial class tbl_ConfigAdmin : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idConfigAdmin;
-		
-		private string _jourRappel;
-		
-		private System.TimeSpan _heureRappel;
-		
-		private string _emailRappel;
-		
-		private string _pwdEmailRappel;
-		
-		private System.Nullable<bool> _statutRappelBureau;
-		
-		private System.Nullable<bool> _statutRappelTerrain;
-		
-		private string _objetRappel;
-		
-		private string _contenuRappel;
-		
-		private string _smtpServer;
-		
-		private int _smtpPort;
-		
-		private System.Nullable<bool> _smtpSSL;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidConfigAdminChanging(int value);
-    partial void OnidConfigAdminChanged();
-    partial void OnjourRappelChanging(string value);
-    partial void OnjourRappelChanged();
-    partial void OnheureRappelChanging(System.TimeSpan value);
-    partial void OnheureRappelChanged();
-    partial void OnemailRappelChanging(string value);
-    partial void OnemailRappelChanged();
-    partial void OnpwdEmailRappelChanging(string value);
-    partial void OnpwdEmailRappelChanged();
-    partial void OnstatutRappelBureauChanging(System.Nullable<bool> value);
-    partial void OnstatutRappelBureauChanged();
-    partial void OnstatutRappelTerrainChanging(System.Nullable<bool> value);
-    partial void OnstatutRappelTerrainChanged();
-    partial void OnobjetRappelChanging(string value);
-    partial void OnobjetRappelChanged();
-    partial void OncontenuRappelChanging(string value);
-    partial void OncontenuRappelChanged();
-    partial void OnsmtpServerChanging(string value);
-    partial void OnsmtpServerChanged();
-    partial void OnsmtpPortChanging(int value);
-    partial void OnsmtpPortChanged();
-    partial void OnsmtpSSLChanging(System.Nullable<bool> value);
-    partial void OnsmtpSSLChanged();
-    #endregion
-		
-		public tbl_ConfigAdmin()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idConfigAdmin", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idConfigAdmin
-		{
-			get
-			{
-				return this._idConfigAdmin;
-			}
-			set
-			{
-				if ((this._idConfigAdmin != value))
-				{
-					this.OnidConfigAdminChanging(value);
-					this.SendPropertyChanging();
-					this._idConfigAdmin = value;
-					this.SendPropertyChanged("idConfigAdmin");
-					this.OnidConfigAdminChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jourRappel", DbType="VarChar(8)")]
-		public string jourRappel
-		{
-			get
-			{
-				return this._jourRappel;
-			}
-			set
-			{
-				if ((this._jourRappel != value))
-				{
-					this.OnjourRappelChanging(value);
-					this.SendPropertyChanging();
-					this._jourRappel = value;
-					this.SendPropertyChanged("jourRappel");
-					this.OnjourRappelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_heureRappel", DbType="Time NOT NULL")]
-		public System.TimeSpan heureRappel
-		{
-			get
-			{
-				return this._heureRappel;
-			}
-			set
-			{
-				if ((this._heureRappel != value))
-				{
-					this.OnheureRappelChanging(value);
-					this.SendPropertyChanging();
-					this._heureRappel = value;
-					this.SendPropertyChanged("heureRappel");
-					this.OnheureRappelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailRappel", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
-		public string emailRappel
-		{
-			get
-			{
-				return this._emailRappel;
-			}
-			set
-			{
-				if ((this._emailRappel != value))
-				{
-					this.OnemailRappelChanging(value);
-					this.SendPropertyChanging();
-					this._emailRappel = value;
-					this.SendPropertyChanged("emailRappel");
-					this.OnemailRappelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdEmailRappel", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
-		public string pwdEmailRappel
-		{
-			get
-			{
-				return this._pwdEmailRappel;
-			}
-			set
-			{
-				if ((this._pwdEmailRappel != value))
-				{
-					this.OnpwdEmailRappelChanging(value);
-					this.SendPropertyChanging();
-					this._pwdEmailRappel = value;
-					this.SendPropertyChanged("pwdEmailRappel");
-					this.OnpwdEmailRappelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_statutRappelBureau", DbType="Bit")]
-		public System.Nullable<bool> statutRappelBureau
-		{
-			get
-			{
-				return this._statutRappelBureau;
-			}
-			set
-			{
-				if ((this._statutRappelBureau != value))
-				{
-					this.OnstatutRappelBureauChanging(value);
-					this.SendPropertyChanging();
-					this._statutRappelBureau = value;
-					this.SendPropertyChanged("statutRappelBureau");
-					this.OnstatutRappelBureauChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_statutRappelTerrain", DbType="Bit")]
-		public System.Nullable<bool> statutRappelTerrain
-		{
-			get
-			{
-				return this._statutRappelTerrain;
-			}
-			set
-			{
-				if ((this._statutRappelTerrain != value))
-				{
-					this.OnstatutRappelTerrainChanging(value);
-					this.SendPropertyChanging();
-					this._statutRappelTerrain = value;
-					this.SendPropertyChanged("statutRappelTerrain");
-					this.OnstatutRappelTerrainChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_objetRappel", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
-		public string objetRappel
-		{
-			get
-			{
-				return this._objetRappel;
-			}
-			set
-			{
-				if ((this._objetRappel != value))
-				{
-					this.OnobjetRappelChanging(value);
-					this.SendPropertyChanging();
-					this._objetRappel = value;
-					this.SendPropertyChanged("objetRappel");
-					this.OnobjetRappelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contenuRappel", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string contenuRappel
-		{
-			get
-			{
-				return this._contenuRappel;
-			}
-			set
-			{
-				if ((this._contenuRappel != value))
-				{
-					this.OncontenuRappelChanging(value);
-					this.SendPropertyChanging();
-					this._contenuRappel = value;
-					this.SendPropertyChanged("contenuRappel");
-					this.OncontenuRappelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_smtpServer", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string smtpServer
-		{
-			get
-			{
-				return this._smtpServer;
-			}
-			set
-			{
-				if ((this._smtpServer != value))
-				{
-					this.OnsmtpServerChanging(value);
-					this.SendPropertyChanging();
-					this._smtpServer = value;
-					this.SendPropertyChanged("smtpServer");
-					this.OnsmtpServerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_smtpPort", DbType="Int NOT NULL")]
-		public int smtpPort
-		{
-			get
-			{
-				return this._smtpPort;
-			}
-			set
-			{
-				if ((this._smtpPort != value))
-				{
-					this.OnsmtpPortChanging(value);
-					this.SendPropertyChanging();
-					this._smtpPort = value;
-					this.SendPropertyChanged("smtpPort");
-					this.OnsmtpPortChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_smtpSSL", DbType="Bit")]
-		public System.Nullable<bool> smtpSSL
-		{
-			get
-			{
-				return this._smtpSSL;
-			}
-			set
-			{
-				if ((this._smtpSSL != value))
-				{
-					this.OnsmtpSSLChanging(value);
-					this.SendPropertyChanging();
-					this._smtpSSL = value;
-					this.SendPropertyChanged("smtpSSL");
-					this.OnsmtpSSLChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	

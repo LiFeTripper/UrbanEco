@@ -7,13 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace UrbanEco
 {
-    
+
     public partial class ModifCategorie : System.Web.UI.Page
     {
         string projet;
         string categorie;
         string mode;
-        bool ajoutEmploye;
         static bool SousCat;
         static bool modif;
 
@@ -31,7 +30,7 @@ namespace UrbanEco
         {
             if (!Authentification.Autorisation(true, false, false))
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             //Réassigne les datasources des repeater
@@ -47,8 +46,15 @@ namespace UrbanEco
             categorie = Request.QueryString["Cat"];
 
             AllEmployees();
-            
-            divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
+            if (categorie != null)
+            {
+                divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
+            }
+            else
+            {
+                divAjoutEmp.Visible = false;
+                //titre_emp.Visible = false;
+            }
             //if(categorie == null)
             //{
             //    modif = false;
@@ -56,7 +62,7 @@ namespace UrbanEco
 
             //Recherche du mode dans l'adresse
             mode = Request.QueryString["Mode"];
-            
+
             if (!IsPostBack)
             {
                 //Reset du hiddenfield
@@ -110,7 +116,7 @@ namespace UrbanEco
                             listEmp.Add(emp);
                         }
 
-                            modif = true;
+                        modif = true;
 
                         if (!IsPostBack)
                         {
@@ -122,7 +128,7 @@ namespace UrbanEco
 
                             Tbx_Titre.Text = query.titre;
                             Tbx_Description.Text = query.description;
-                            Lbl_Titre.Text =  "Sous-Projet " + query.titre;
+                            Lbl_Titre.Text = "Sous-Projet " + query.titre;
                         }
 
                         //Ajoute la liste a Selected Employes
@@ -161,7 +167,7 @@ namespace UrbanEco
                             listEmp.Add(emp);
                         }
 
-                            modif = true;
+                        modif = true;
 
                         if (!IsPostBack)
                         {
@@ -274,7 +280,7 @@ namespace UrbanEco
                         }
                 }
 
-                
+
             }
             else if (modif)
             {

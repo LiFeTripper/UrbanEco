@@ -45,19 +45,19 @@
 
         <%--Heures Allouées--%>
         <div class="form-group fix-Number-Input">
-            <label for="Tbx_HeuresAlloues" class="bmd-label-floating">Heures Allouées</label>
+            <label for="Tbx_HeuresAlloues">Heures Allouées</label>
             <asp:TextBox ID="Tbx_HeuresAlloues" runat="server" CssClass="form-control" placeholder="0" TextMode="number"></asp:TextBox>
         </div>
 
         <%--Date de début--%>
         <div class="form-group">
-            <label for="Cal_DateDebut" class="bmd-label-floating">Date de début</label>
+            <label for="Cal_DateDebut">Date de début</label>
             <input type="date" runat="server" id="Cal_DateDebut" class="form-control" />
         </div>
 
         <%--Date de fin--%>
         <div class="form-group">
-            <label for="Cal_DateFin" class="bmd-label-floating">Date de fin</label>
+            <label for="Cal_DateFin">Date de fin</label>
             <input type="date"  runat="server" id="Cal_DateFin" class="form-control" />
         </div>
 
@@ -65,7 +65,7 @@
         <div class="form-group">
             <label for="Ddl_TypeEmp" class="bmd-label-floating">Responsable</label>
             <asp:DropDownList ID="Ddl_Responsable" runat="server" DataSourceID="LinqEmployes" DataTextField="personne" DataValueField="idEmploye" class="form-control"></asp:DropDownList>
-            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" OrderBy="prenom, nom" Where="inactif == false" TableName="tbl_Employe"></asp:LinqDataSource>
+            <asp:LinqDataSource runat="server" EntityTypeName="" ID="LinqEmployes" ContextTypeName="UrbanEco.CoecoDataContext" Select="new (prenom + ' ' + nom as personne, idEmploye)" OrderBy="prenom, nom" Where="inactif == false && idTypeEmpl == 1" TableName="tbl_Employe"></asp:LinqDataSource>
         </div>
 
         <%--Approbation feuille de temps checkbox--%>
