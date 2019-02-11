@@ -12,8 +12,10 @@ namespace UrbanEco
         bool insert;
         string argument;
 
-        private int idProjetVacance = 1;
-        private int idCategorieTempsSupp = 4;
+        private int idProjetVacance = 38;
+        private int idCategorieTempsSupp = 194;
+
+        private int[] idCategoriesVacance = new int[5] { 191, 192, 193, 194, 255 };
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -218,7 +220,6 @@ namespace UrbanEco
 
                         if (insert == true)
                         {
-                            int indexCat = idProjetVacance;
 
                             //Si employé bureau
                             if ((from tbl in ctx.tbl_Employe
@@ -226,7 +227,7 @@ namespace UrbanEco
                                  select tbl).First().idTypeEmpl == 1)
                             {
                                 tbl_ProjetCatEmploye[] pceTemp = new tbl_ProjetCatEmploye[5];
-                                for (int i = 0; i < 5; i++)
+                                for (int i = 0; i < idCategoriesVacance.Length; i++)
                                 {
                                     pceTemp[i] = new tbl_ProjetCatEmploye();
 
@@ -235,9 +236,8 @@ namespace UrbanEco
                                     pceTemp[i].idEmploye = (from tbl in ctx.tbl_Employe
                                                             orderby tbl.idEmploye descending
                                                             select tbl).First().idEmploye;
-                                    pceTemp[i].idCategorie = indexCat;
 
-                                    indexCat++;
+                                    pceTemp[i].idCategorie = idCategoriesVacance[i];
 
                                     ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
                                     ctx.SubmitChanges();
@@ -250,20 +250,19 @@ namespace UrbanEco
                                 tbl_ProjetCatEmploye[] pceTemp = new tbl_ProjetCatEmploye[4];
                                 for (int i = 0; i < 4; i++)
                                 {
+                                    //Skip la catégorie temps supp pour les emp terrain
+                                    if (idCategoriesVacance[i] == idCategorieTempsSupp)
+                                        continue;
+
                                     pceTemp[i] = new tbl_ProjetCatEmploye();
 
                                     pceTemp[i].idProjet = idProjetVacance;
                                     pceTemp[i].idEmploye = (from tbl in ctx.tbl_Employe
                                                             orderby tbl.idEmploye descending
                                                             select tbl).First().idEmploye;
-                                    pceTemp[i].idCategorie = indexCat;
 
-                                    indexCat++;
+                                    pceTemp[i].idCategorie = idCategoriesVacance[i];
 
-                                    //Pour skip la catégorie Temps Supplémentaires (Terrain pas de temps supp)
-
-                                    if (indexCat == idCategorieTempsSupp)
-                                        indexCat++;
 
                                     ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
                                     ctx.SubmitChanges();
