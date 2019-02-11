@@ -12,6 +12,9 @@ namespace UrbanEco
         bool insert;
         string argument;
 
+        private int idProjetVacance = 1;
+        private int idCategorieTempsSupp = 4;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //Redirection si l'utilisateur a été autorisé (Admin, Bureau, Terrain)
@@ -175,27 +178,31 @@ namespace UrbanEco
                             query.password = Tbx_password.Text;
                             query.inactif = Chkbx_Inactif.Checked;
 
+                            //Sert a rien ?
                             var queryVerifTypeEmp = (from tbl in ctx.tbl_ProjetCatEmploye
                                                      where tbl.idEmploye == idEmploye
-                                                     & tbl.idCategorie == 12
+                                                     & tbl.idCategorie == idCategorieTempsSupp
                                                      select tbl);
-
+                            //Terrain
                             if (query.idTypeEmpl == 2)
                             {
+                                //Surpprimer le lien de l'employé au temps supp
                                 if (queryVerifTypeEmp.Count() != 0)
                                 {
                                     ctx.tbl_ProjetCatEmploye.DeleteOnSubmit(queryVerifTypeEmp.First());
                                 }
                             }
+                            //Bureau
                             else if (query.idTypeEmpl == 1)
                             {
+                                //Ajouter le lien de l'employé au temps supp
                                 if (queryVerifTypeEmp.Count() == 0)
                                 {
                                     tbl_ProjetCatEmploye pceTemp = new tbl_ProjetCatEmploye();
 
-                                    pceTemp.idProjet = 4;
+                                    pceTemp.idProjet = idProjetVacance;
                                     pceTemp.idEmploye = query.idEmploye;
-                                    pceTemp.idCategorie = 12;
+                                    pceTemp.idCategorie = idCategorieTempsSupp;
                                     ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp);
                                 }
                             }
@@ -224,7 +231,7 @@ namespace UrbanEco
                                     pceTemp[i] = new tbl_ProjetCatEmploye();
 
                                     //Vancance projet
-                                    pceTemp[i].idProjet = 4;
+                                    pceTemp[i].idProjet = idProjetVacance;
                                     pceTemp[i].idEmploye = (from tbl in ctx.tbl_Employe
                                                             orderby tbl.idEmploye descending
                                                             select tbl).First().idEmploye;
@@ -245,7 +252,7 @@ namespace UrbanEco
                                 {
                                     pceTemp[i] = new tbl_ProjetCatEmploye();
 
-                                    pceTemp[i].idProjet = 4;
+                                    pceTemp[i].idProjet = idProjetVacance;
                                     pceTemp[i].idEmploye = (from tbl in ctx.tbl_Employe
                                                             orderby tbl.idEmploye descending
                                                             select tbl).First().idEmploye;
@@ -255,7 +262,7 @@ namespace UrbanEco
 
                                     //Pour skip la catégorie Temps Supplémentaires (Terrain pas de temps supp)
 
-                                    if (indexCat == 12)
+                                    if (indexCat == idCategorieTempsSupp)
                                         indexCat++;
 
                                     ctx.tbl_ProjetCatEmploye.InsertOnSubmit(pceTemp[i]);
