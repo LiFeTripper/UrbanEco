@@ -30,6 +30,8 @@ namespace UrbanEco
 
             if (emp.username == "admin")
             {
+                titrePage.InnerText = "Gestion des banques d'heures";
+                
                 if (!IsPostBack)
                 {
                     LoadListEmploye();
@@ -42,6 +44,8 @@ namespace UrbanEco
                 LoadUser();
                 load_Heure_Use_Emp(emp.nom + "," +  emp.prenom);
                 loadHeureSemaineEmp(emp.nom + "," + emp.prenom);
+
+                titrePage.InnerText = "Votre banque d'heures";
             }
         }
 
@@ -346,7 +350,7 @@ namespace UrbanEco
             tbx_nbHeureCongeMaladieI.Text = "";
 
             //"Veuillez choisir un employé"
-            if (ddl_empBH.SelectedIndex != -1)
+            if (ddl_empBH.SelectedIndex > 0)
             {        
                 //On cache l'alerte de choix d'employé
                 load_BHemp(ddl_empBH.SelectedItem.Value);
@@ -458,6 +462,11 @@ namespace UrbanEco
         //Obtient l'id de l'empolòyé à l'aide de son nom et prénom séparé par une virgule
         protected int GetIDEmp(string nomEmp)
         {
+            if(nomEmp == "Veuillez choisir un employé")
+            {
+                return -1;
+            }
+
             CoecoDataContext ctx = new CoecoDataContext();
             string[] nomEmpArray = nomEmp.Split(',');
 
@@ -526,6 +535,8 @@ namespace UrbanEco
             {
                 listEmp.Add(item);
             }
+
+            listEmp.Insert(0, new ListItem("Veuillez choisir un employé", "-1"));
 
             ddl_empBH.DataSource = null;
             ddl_empBH.DataBind();

@@ -75,7 +75,7 @@
 
             
 
-            <h2>Feuille de temps en attente</h2>
+            <h2>Feuilles de temps en attente</h2>
 
             <div class="form-group">
                 <asp:Button ID="btn_ajouterFT" CssClass="btn btn-md btn-raised btn-success" runat="server" Text="Ajouter une feuille de temps" OnClick="btn_ajouterFT_Click"/>
@@ -134,7 +134,7 @@
                 </tr>
                 <tr class="collapse" id="collapseAjout">
                     <%--SECOND REPEATER DES FEUILLES DE TEMPS--%>
-                    <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# Eval("tbl_FeuilleTemps")%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
+                    <asp:Repeater ID="Rptr_FeuilleTempsNonApprouver" runat="server" DataSource='<%# TrierFT(Eval("tbl_FeuilleTemps"))%>' OnLoad="Rptr_FeuilleTempsNonApprouver_Load1">
                         <%--ITEMTEMPLATE--%>
                         <ItemTemplate>
                             <tr runat="server" visible='<%# ShowFT(Container.DataItem, "Attente") %>'>

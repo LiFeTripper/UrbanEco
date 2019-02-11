@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -52,11 +53,6 @@ namespace UrbanEco
 
                 DateTime dateMin = DateTime.Parse(Calendar1.Value);
                 DateTime dateMax = DateTime.Parse(Calendar2.Value);
-
-                if (Request.QueryString["no"] == "true") {
-                    string maString = "J'fourre";
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(&quot;" + maString + "&quot;)", true);
-                }
 
                 if (empConnected.username == "admin")
                 {
@@ -551,6 +547,11 @@ namespace UrbanEco
             return null;
         }
 
+        protected List<tbl_FeuilleTemps> TrierFT(object choses) {
+            EntitySet<tbl_FeuilleTemps> maListe = choses as EntitySet<tbl_FeuilleTemps>;
+
+            return maListe.OrderByDescending(ft => ft.dateCreation).ToList();
+        }
 
         protected void CheckTempsSupp(tbl_FeuilleTemps FT)
         {
@@ -577,17 +578,7 @@ namespace UrbanEco
                                          & tbl.noSemaine == noSemaine
                                          select tbl);
 
-            float nbHeureSemaineEmp = 0;
-            
-            if (queryEmploye.idTypeEmpl == 1) // Bureau
-            {
-                nbHeureSemaineEmp = (float)queryEmploye.nbHeureSemaine; //nbHeureSemaine == nombre d'heure max avant que sa tombe en temps sup
-            }
-            if (queryEmploye.idTypeEmpl == 2) // Terrain
-            {
-                nbHeureSemaineEmp = 40;
-            }
-
+            float nbHeureSemaineEmp = (float)queryEmploye.nbHeureSemaine; //nbHeureSemaine == nombre d'heure max avant que sa tombe en temps sup
 
             float totalHeuresSemainePrecendante = 0;
             float nbHeureSemaineActuelle = 0;
