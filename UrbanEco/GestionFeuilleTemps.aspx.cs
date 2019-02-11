@@ -278,7 +278,7 @@ namespace UrbanEco
 
             foreach (var FTemp in FT)
             {
-                CheckTempsSupp(FTemp);
+                //CheckTempsSupp(FTemp);
                 FTemp.approuver = true;
                 SwitchTypeBHCongés(FTemp);
             }

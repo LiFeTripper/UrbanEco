@@ -22,7 +22,7 @@
          
         </div>
         <div class="col-md-4" style="float:left;">
-            <asp:Button ID="btn_download" CssClass="btn btn-lg btn-success" runat="server" Text="Télécharger le guide d'utilisateur" OnClick="btn_download_Click" style="float:right;" />
+            <asp:Button ID="btn_download" CssClass="btn btn-raised btn-success" runat="server" Text="Télécharger le guide d'utilisateur" OnClick="btn_download_Click" style="float:right;" />
         </div>
 
     </form>

@@ -13,7 +13,6 @@ namespace UrbanEco
         string projet;
         string categorie;
         string mode;
-        bool ajoutEmploye;
         static bool SousCat;
         static bool modif;
 
@@ -47,8 +46,15 @@ namespace UrbanEco
             categorie = Request.QueryString["Cat"];
 
             AllEmployees();
-
-            divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
+            if (categorie != null)
+            {
+                divAjoutEmp.Visible = bool.Parse(Request.QueryString["AE"]);
+            }
+            else
+            {
+                divAjoutEmp.Visible = false;
+                //titre_emp.Visible = false;
+            }
             //if(categorie == null)
             //{
             //    modif = false;

@@ -39,14 +39,19 @@
 
     <form runat="server">
 
-        <div class="form-group" runat="server" id="tbl_employe" visible="false">
+        <div class="form-group spantwo" runat="server" id="tbl_employe" visible="false">
             <label for="ddl_employe" class="bmd-label-floating">Employé</label>
             <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
         </div>
 
-        <div class="form-group" runat="server">
+        <div class="form-group spantwo" runat="server">
             <label for="idProjet" class="bmd-label-floating">Projet</label>
             <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="tbx_projet_SelectedIndexChanged" name="idProjet" ID="tbx_projet" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true" Visible="true"></asp:DropDownList>
+        </div>   
+
+        <div class="form-group" runat="server">
+            <label for="tbx_categorie" class="bmd-label-floating">Sous-Catégorie</label>
+            <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
         </div>
 
         <div class="form-group" runat="server">
@@ -63,18 +68,14 @@
                     <asp:ListItem Value="7">7</asp:ListItem>
                     <asp:ListItem Value="8">8</asp:ListItem>
                 </asp:DropDownList>
+                <p id="pHeure">h</p>
                 <asp:DropDownList ID="tbx_minutes" runat="server" CssClass="form-control" >
-                    <asp:ListItem Selected="True" Value="0">0</asp:ListItem>
-                    <asp:ListItem Value="0.25">0.25</asp:ListItem>
-                    <asp:ListItem Value="0.50">0.50</asp:ListItem>
-                    <asp:ListItem Value="0.75">0.75</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="0">00</asp:ListItem>
+                    <asp:ListItem Value="15">15</asp:ListItem>
+                    <asp:ListItem Value="30">30</asp:ListItem>
+                    <asp:ListItem Value="45">45</asp:ListItem>
                 </asp:DropDownList>
             </div>
-        </div>
-
-        <div class="form-group" runat="server">
-            <label for="tbx_categorie" class="bmd-label-floating">Sous-Catégorie</label>
-            <asp:DropDownList CssClass="form-control" Enabled="false" ID="tbx_categorie" runat="server" DataTextField="text" DataValueField="value" AutoPostBack="true"></asp:DropDownList>
         </div>
 
         <div class="form-group" runat="server">
