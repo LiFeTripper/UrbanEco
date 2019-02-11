@@ -128,6 +128,7 @@
     <Content Include="Rapport.aspx" />
     <Content Include="RapportPage.aspx" />
     <Content Include="Rapports\rapportPage.css" />
+    <Content Include="Rapports\rapportPage.print.css" />
     <Content Include="Resources\add.ico" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
