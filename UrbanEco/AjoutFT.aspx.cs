@@ -280,6 +280,22 @@ namespace UrbanEco
 
                 feuilleTemps.commentaire = txa_comments.Value;
 
+                switch (tbx_minutes.SelectedValue)
+                {
+                    case ("15"):
+                        feuilleTemps.nbHeure = float.Parse(tbx_heures.SelectedValue) + .25f;
+                        break;
+                    case ("30"):
+                        feuilleTemps.nbHeure = float.Parse(tbx_heures.SelectedValue) + .50f;
+                        break;
+                    case ("45"):
+                        feuilleTemps.nbHeure = float.Parse(tbx_heures.SelectedValue) + .75f;
+                        break;
+                    default:
+                        feuilleTemps.nbHeure = float.Parse(tbx_heures.SelectedValue) + .00f;
+                        break;
+                }
+
                 ctx.tbl_FeuilleTemps.DeleteOnSubmit(feuilleTemps);
                 ctx.tbl_FeuilleTemps.InsertOnSubmit(feuilleTemps);
             }
@@ -328,7 +344,7 @@ namespace UrbanEco
             
             //tbx_nbHeure.Text = ft.nbHeure.ToString();
             string nbHeures = ft.nbHeure.ToString();
-            string[] nb = nbHeures.Split('.');
+            string[] nb = nbHeures.Split(',');
             tbx_heures.SelectedValue = nb[0];
 
             if (nb.Length > 1)
