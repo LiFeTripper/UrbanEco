@@ -328,7 +328,7 @@ namespace UrbanEco
             
             //tbx_nbHeure.Text = ft.nbHeure.ToString();
             string nbHeures = ft.nbHeure.ToString();
-            string[] nb = nbHeures.Split(',');
+            string[] nb = nbHeures.Split('.');
             tbx_heures.SelectedValue = nb[0];
 
             if (nb.Length > 1)
