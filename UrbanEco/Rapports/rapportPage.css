@@ -8,3 +8,8 @@
     margin-top: 20px;
 }
 
+@media print {
+    #btn_Imprimer {
+        display: none !important;
+    }
+}
