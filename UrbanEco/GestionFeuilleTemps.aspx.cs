@@ -25,13 +25,9 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, true, true))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(true, true);
             CoecoDataContext ctx = new CoecoDataContext();
-            empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (!IsPostBack)
             {
@@ -135,7 +131,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             return empconnected.username == "admin";
         }
@@ -354,7 +350,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (empConnected.username == "admin")
             {

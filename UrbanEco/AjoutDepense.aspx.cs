@@ -27,12 +27,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, true, true))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
-
+            Autorisation2.Autorisation(true, true);
             //Empecher la page de remonter a chaque action
             Page.MaintainScrollPositionOnPostBack = true;
 
@@ -45,7 +40,7 @@ namespace UrbanEco
 
                 List<ListItem> ListTypeDepense = new List<ListItem>();
 
-                tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+                tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
                 tbl_TypeEmploye typeEmpl = empConnected.tbl_TypeEmploye;
 
 
@@ -264,7 +259,7 @@ namespace UrbanEco
                     tbl_Depense dep = new tbl_Depense();
 
                     //obtenir l'employé connecter
-                    tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+                    tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
                     if(empConnected.username == "admin")
                     {
@@ -439,7 +434,7 @@ namespace UrbanEco
             CoecoDataContext context = new CoecoDataContext();
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
 
-            tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+            tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             var query = BD.GetProjetLinkedCategorieEmploye(ctx, projectID, empConnected.idEmploye);
 
