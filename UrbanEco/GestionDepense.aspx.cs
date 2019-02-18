@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace UrbanEco
 {
@@ -98,6 +99,14 @@ namespace UrbanEco
                 if(depense != null)
                 {
                     depense.approuver = true;
+
+                    if (depense.facturePath != "") {
+                        if (File.Exists(Server.MapPath(depense.facturePath))) {
+                            File.Delete(Server.MapPath(depense.facturePath));
+                        }
+                    }
+
+                    depense.facturePath = "";
                 }
 
                 ctx.SubmitChanges();
