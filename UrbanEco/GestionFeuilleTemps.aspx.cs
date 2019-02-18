@@ -578,17 +578,7 @@ namespace UrbanEco
                                          & tbl.noSemaine == noSemaine
                                          select tbl);
 
-            float nbHeureSemaineEmp = 0;
-            
-            if (queryEmploye.idTypeEmpl == 1) // Bureau
-            {
-                nbHeureSemaineEmp = (float)queryEmploye.nbHeureSemaine; //nbHeureSemaine == nombre d'heure max avant que sa tombe en temps sup
-            }
-            if (queryEmploye.idTypeEmpl == 2) // Terrain
-            {
-                nbHeureSemaineEmp = 40;
-            }
-
+            float nbHeureSemaineEmp = (float)queryEmploye.nbHeureSemaine; //nbHeureSemaine == nombre d'heure max avant que sa tombe en temps sup
 
             float totalHeuresSemainePrecendante = 0;
             float nbHeureSemaineActuelle = 0;

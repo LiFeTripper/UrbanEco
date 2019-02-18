@@ -96,7 +96,18 @@ namespace UrbanEco
                     employeAjouter.username = Tbx_username.Text;
                     employeAjouter.password = Tbx_password.Text;
                     employeAjouter.inactif = Chkbx_Inactif.Checked;
-                    employeAjouter.nbHeureSemaine = 0;
+
+                    switch (employeAjouter.idTypeEmpl) {
+                        case 1:
+                            employeAjouter.nbHeureSemaine = 35;
+                            break;
+                        case 2:
+                            employeAjouter.nbHeureSemaine = 40;
+                            break;
+                        default:
+                            employeAjouter.nbHeureSemaine = 35;
+                            break;
+                    }
 
                     ctx.tbl_Employe.InsertOnSubmit(employeAjouter);
                     ctx.SubmitChanges();
