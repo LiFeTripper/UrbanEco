@@ -32,6 +32,16 @@ namespace UrbanEco {
         
         /// <summary>
         /// rptr_projets control.
+        /// btn_Refresh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Refresh;
+        
+        /// <summary>
+        /// rptr_projets control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -112,31 +122,13 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldEmploye;
         
         /// <summary>
-        /// alert_success control.
+        /// btn_generer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_success;
-        
-        /// <summary>
-        /// alert_failed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_failed;
-        
-        /// <summary>
-        /// alert_warning control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_warning;
+        protected global::System.Web.UI.WebControls.Button btn_generer;
         
         /// <summary>
         /// btn_retour control.
@@ -146,14 +138,5 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_retour;
-        
-        /// <summary>
-        /// btn_generer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_generer;
     }
 }
