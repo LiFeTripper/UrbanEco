@@ -325,10 +325,10 @@ namespace UrbanEco
                         }
 
                         string filename = System.Guid.NewGuid().ToString() + "." + ext;
-                        string filepath = Server.MapPath("Factures\\" + filename);
+                        string filepath = Server.MapPath("Factures\\CoEco_" + filename);
                         File.WriteAllBytes(filepath, Convert.FromBase64String(base64[1].Split(',')[1]));
 
-                        dep.facturePath = "Factures\\" + filename;
+                        dep.facturePath = "Factures\\CoEco_" + filename;
                     } else {
                         dep.facturePath = "";
                     }
