@@ -28,7 +28,7 @@ namespace UrbanEco
         protected string FormatMontant(object p_montant)
         {
             float montant = (float)p_montant;
-            return montant.ToString("2c");
+            return montant.ToString("c2");
         }
     }
 }
