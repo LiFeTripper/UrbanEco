@@ -1,13 +1,30 @@
-
+ï»¿
 
 USE master
 go
-
+DROP DATABASE BD_Coeco_Test
 CREATE DATABASE BD_Coeco_Test
 go
 
 use BD_Coeco_Test
 go
+
+CREATE TABLE tbl_ConfigAdmin(
+	idConfigAdmin INT PRIMARY KEY IDENTITY(1,1),
+	jourRappel VARCHAR(8) DEFAULT 'Lundi',
+    heureRappel TIME NOT NULL DEFAULT '08:00:00',
+    emailRappel VARCHAR(80) NOT NULL,
+    pwdEmailRappel VARCHAR(256) NOT NULL,
+    statutRappelBureau BIT DEFAULT 1,
+	statutRappelTerrain BIT DEFAULT 1,
+    objetRappel VARCHAR(70) NOT NULL,
+    contenuRappel VARCHAR(MAX) NOT NULL,
+    smtpServer VARCHAR(100) NOT NULL,
+    smtpPort INT NOT NULL,
+    smtpSSL BIT DEFAULT 1,
+    CONSTRAINT cJourSemaine CHECK (jourRappel IN ('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi')),
+)
+INSERT INTO tbl_ConfigAdmin ([jourRappel],[heureRappel],[emailRappel],[pwdEmailRappel],[statutRappelBureau],[statutRappelTerrain],[objetRappel],[contenuRappel],[smtpServer],[smtpPort],[smtpSSL]) VALUES ('Lundi','08:00:00','theverygoodteam@gmail.com','CodeBreaker',1,1,'Voici un objet','Voici un contenu','smtp.gmail.com',587,1)
 
 CREATE TABLE tbl_Status
 (
@@ -16,7 +33,7 @@ CREATE TABLE tbl_Status
 )
 
 INSERT INTO tbl_Status (nomStatus) VALUES ('En cours');
-INSERT INTO tbl_Status (nomStatus) VALUES ('Terminé');
+INSERT INTO tbl_Status (nomStatus) VALUES ('TerminÃ©');
 
 CREATE TABLE tbl_TypeEmploye
 (
@@ -42,23 +59,6 @@ CREATE TABLE tbl_Employe
 	--FOREIGN KEY
 	CONSTRAINT FK_tbl_Employe_idTypeEmpl FOREIGN KEY (idTypeEmpl) REFERENCES tbl_TypeEmploye(idType)
 )
-
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
-VALUES ('Marc-André', 'Fortin', 1 , 'monemail@gmail.com', 'marc', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
-VALUES ('Mike', 'Ward', 1 , 'monemail@gmail.com', 'mike', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
-VALUES ('Mathieu', 'Rioux', 2 , 'monemail@gmail.com', 'mathieu', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
-VALUES ('Serge', 'Postigo', 2 , 'monemail@gmail.com', 'serge', 'pwd123', 0)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
-VALUES ('Denis', 'Drolet', 2 , 'monemail@gmail.com', 'denis', 'pwd123', 0)
-
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
-VALUES ('Stéphane', 'Pelletier', 1 , 'monemail@gmail.com', 'stéphane', 'pwd123', 1)
-INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
-VALUES ('David', 'Jalbert', 2 , 'monemail@gmail.com', 'david', 'pwd123', 1)
-
 INSERT INTO tbl_Employe (prenom, nom, idTypeEmpl, email, username, password, inactif) 
 VALUES ('Administrateur', '', 1 , 'monemail@gmail.com', 'admin', 'mobius', 0)
 
@@ -81,13 +81,7 @@ CREATE TABLE tbl_Projet
 )
 
 INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Collecte qui carbure!	', 'Une belle description', 1, 1, 24, 0)
-INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Écocentres', 'Une autre belle description', 2, 2, 12, 0)
-INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Peinture Boomerang', 'Une tout autre belle description', 2, 3, 40, 1)
-INSERT INTO tbl_Projet(titre, description, idStatus, idEmployeResp, tempsAllouer,archiver) 
-VALUES ('Vacances et congés', 'Congé, vacances et temps supplémentaires', 1, 1, 40, 0)
+VALUES ('Vacances et congÃ©s', 'CongÃ©, vacances et temps supplÃ©mentaires', 1, 1, 40, 0)
 
 CREATE TABLE tbl_ProjetCat
 (
@@ -103,37 +97,17 @@ CREATE TABLE tbl_ProjetCat
 )
 
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, NULL, 'Général', 'Projet 1');
+VALUES (1, NULL, 'GÃ©nÃ©ral', '');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, 1, 'Affiche', 'Projet 1 Sous-projet 1');
+VALUES (1, 1, 'CongÃ©s fÃ©riÃ©s', 'Utilise les heures de congÃ©s fÃ©riÃ©s de la banque dheures');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, 1, 'Capsule Vidéo', 'Projet 1 Sous-projet 1');
+VALUES (1, 1, 'CongÃ©s vacances', 'Utilise les heures de congÃ©s vacances de la banque dheures');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, NULL, 'MRC de Kamouraska', 'Projet 1');
+VALUES (1, 1, 'Temps supplÃ©mentaires', 'Utilise les heures supplÃ©mentaires de la banque dheures');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (1, 1, 'Kiosques', 'Projet 1 Sous-projet 2');
-
+VALUES (1, 1, 'CongÃ©s maladies', 'Utilise les heures de congÃ©s maladies de la banque dheures');
 INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (2, NULL, 'Éco-Centre La Pocatière', 'Projet 2');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (2, 4, 'Accueil et gestion quotidienne', 'Projet 2 Sous-Projet 1');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (2, 4, 'Gestion administrative', 'Projet 2 Sous-Projet 1');
-
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (3, NULL, 'Vente de peinture et administration', 'Projet 3');
-
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (4, NULL, 'Congés fériés', 'Utilise les heures de congés fériés de la banque dheures');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (4, NULL, 'Congés vacances', 'Utilise les heures de congés vacances de la banque dheures');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (4, NULL, 'Temps supplémentaires', 'Utilise les heures supplémentaires de la banque dheures');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (4, NULL, 'Congés maladies', 'Utilise les heures de congés maladies de la banque dheures');
-INSERT INTO tbl_ProjetCat(idProjet,idCatMaitre, titre,description) 
-VALUES (4, NULL, 'Congé personnelle', 'Utilise les heures de congés personnelles de la banque dheures');
-
+VALUES (1, 1, 'CongÃ© personnelle', 'Utilise les heures de congÃ©s personnelles de la banque dheures');
 
 
 CREATE TABLE tbl_FeuilleTemps
@@ -154,28 +128,10 @@ CREATE TABLE tbl_FeuilleTemps
 	CONSTRAINT FK_tbl_FeuilleTemps_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye)
 )
 
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE()-10);
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE()-10);
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 5, 3, 15, 'Ce fut une excellente journée', GETDATE()-10);
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE()-5);
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE()-5);
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 5, 3, 15, 'Ce fut une excellente journée', GETDATE()-5);
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 1, 1, 10, 'Ce fut une belle journée', GETDATE());
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (2, 3, 2, 8, 'Ce fut une autre belle journée', GETDATE());
-INSERT INTO tbl_FeuilleTemps(idProjet, idCat, idEmploye, nbHeure, commentaire, dateCreation) 
-VALUES (1, 5, 3, 15, 'Ce fut une excellente journée', GETDATE());
 
 CREATE TABLE tbl_ProjetCatEmploye
 (
-	idPCE INT IDENTITY(1,1) PRIMARY KEY,
+	idPCE INT IDENTITY(500,1) PRIMARY KEY,
 	idProjet INT NOT NULL,
 	idCategorie INT NOT NULL,
 	idEmploye INT NOT NULL
@@ -186,27 +142,6 @@ CREATE TABLE tbl_ProjetCatEmploye
 	CONSTRAINT FK_tbl_ProjetCatEmploye_idEmploye FOREIGN KEY (idEmploye) REFERENCES tbl_Employe(idEmploye)
 )
 
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (1, 1, 1) 
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (1, 2, 1) 
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (1, 3, 1) 
-
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (2, 4, 2) 
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (2, 5, 2) 
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (2, 6, 2) 
-
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (3, 7, 3) 
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (3, 8, 3) 
-INSERT INTO tbl_ProjetCatEmploye (idProjet, idCategorie, idEmploye)
-VALUES (3, 9, 3) 
-
 
 CREATE TABLE tbl_TypeHeure
 (
@@ -215,10 +150,10 @@ CREATE TABLE tbl_TypeHeure
 )
 
 INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Heure en banque');
-INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Jour férié');
-INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé personnel');
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Jour fÃ©riÃ©');
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('CongÃ© personnel');
 INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Vacance');
-INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('Congé maladie');
+INSERT INTO tbl_TypeHeure (nomTypeHeure) VALUES ('CongÃ© maladie');
 
 CREATE TABLE tbl_BanqueHeure
 (
@@ -227,7 +162,6 @@ CREATE TABLE tbl_BanqueHeure
 	idTypeHeure INT NOT NULL,
 	nbHeureInitial FLOAT(24),
 	nbHeure FLOAT(24)
-	--Cancer
 	
 	--FOREIGN KEY
 
@@ -236,24 +170,6 @@ CREATE TABLE tbl_BanqueHeure
 
 )
 
-
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,1,5,5);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,2,10,10);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,3,4,4);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,4,3,3);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (1,5,22,2);
-
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,1,15,15);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,2,10,10);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,3,14,14);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,4,13,13);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (2,5,12,12);
-
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,1,25,25);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,2,21,21);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,3,24,24);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,4,23,23);
-INSERT INTO tbl_BanqueHeure(idEmploye,idTypeHeure,nbHeure, nbHeureInitial) VALUES (3,5,22,22);
 
 CREATE TABLE tbl_TypeDepense
 (
@@ -265,19 +181,17 @@ CREATE TABLE tbl_TypeDepense
 
 )
 
-INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (1, 'Déplacement (Voiture)', NULL);
-INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (2, 'Déplacement (Camion)', NULL);
-INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (3, 'Restaurant',1);
-INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (4, 'Restaurant',2);
-INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (5, 'Autre (Bureau)',1);
-INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (6, 'Autre (Terrain)',2);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (1, 'DÃ©placement (Voiture)', NULL);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (2, 'DÃ©placement (Camion)', NULL);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (3, 'Autre (Bureau)',1);
+INSERT INTO tbl_TypeDepense (idTypeDepense, nomDepense, idTypeEmploye) VALUES (4, 'Autre (Terrain)',2);
 
 CREATE TABLE tbl_Depense
 (
 	idDepense INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	typeDepense VARCHAR(250) NOT NULL,
-
+	facturePath VARCHAR(MAX) DEFAULT NULL,
 	idProjetCat INT DEFAULT NULL,
 	note VARCHAR(MAX),
 	dateDepense SMALLDATETIME DEFAULT GETDATE(),
@@ -379,4 +293,149 @@ USE [BD_Coeco]
 GO
 ALTER ROLE [db_securityadmin] ADD MEMBER [WEB_USER]
 GO
+
+USE BD_Coeco_Test
+GO
+
+Set Identity_Insert tbl_Employe ON
+GO
+
+
+ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
+ VALUES (36, 'Employe', 'Supprimer', '', 2, 1, '@#!@', '#!@@#$$')
+
+INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
+ VALUES (64, 'Employe', 'Supprimer', '', 2, 1, '@!#$', '$#@@#$')
+
+ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
+ VALUES (69, 'Employe', 'Supprimer', '', 2, 1, '#@!@', '%?%#@$$')
+
+-- IMPORTER LES EMPLOYï¿½S AVEC LEURS USER
+ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
+	SELECT emp.id, emp.prenom, emp.nom, emp.email, 2 as idTypeEmpl, 
+	(CASE WHEN us.sttus = 0 THEN 1 else 0 END) as Inactif , us.usr AS username, ('') AS emptyPassword
+	FROM coeco.dbo.tblemploye AS emp
+	JOIN coeco.dbo.tbluser AS us ON us.idperso = emp.id
+	WHERE 1=1
+	AND us.tpe = 'emp'
+	ORDER BY emp.id
+
+Set Identity_Insert tbl_Employe OFF
+GO
+
+--Finalement on prend pas la contrainte unique
+--ALTER TABLE tbl_Employe
+--ADD CONSTRAINT UC_tbl_Employe_Unique UNIQUE(prenom, nom) 
+--GO
+
+
+
+Set Identity_Insert tbl_Projet ON
+GO
+
+-- Admin ID = 8
+ INSERT INTO tbl_Projet (idProjet, titre, description, approbation, idStatus, idEmployeResp, tempsAllouer, dateDebut, dateFin, archiver)
+VALUES (13, 'Projet supprime', '', 0, 2, 1, 0, '1900-01-01','1900-01-01', 1)
+
+
+-- IMPORTER LES PROJETS
+ INSERT INTO tbl_Projet (idProjet, titre, description, approbation, idStatus, idEmployeResp, tempsAllouer, dateDebut, dateFin, archiver)
+	SELECT proj.id, proj.titre, proj.description, 0 AS approbation,(CASE WHEN proj.status = 1 THEN 1 else 2 END) AS idStatus, 
+	1 AS AdminID, proj.temps, 
+	(CASE WHEN proj.datedebut IS NULL THEN proj.dateInsc else proj.datedebut END) AS dateDebut, 
+	proj.datefin, (CASE WHEN proj.status = 0 THEN 1 else 0 END) as archiver 
+	FROM coeco.dbo.tblprojet AS proj
+
+Set Identity_Insert tbl_Projet OFF
+GO
+
+
+
+Set Identity_Insert tbl_ProjetCat ON
+GO
+
+-- IMPORTER LES CATï¿½GORIES DE PROJETS
+ INSERT INTO tbl_ProjetCat (idProjetCat, idProjet, idCatMaitre, titre, description)
+	SELECT projCat.id, projCat.idprojet, (CASE WHEN projCat.idcatmaitre = 0 THEN NULL else projCat.idcatmaitre END) AS idCatMaitre,
+	 projCat.titre, projCat.description 
+	FROM coeco.dbo.tblprojetcat AS projCat
+
+Set Identity_Insert tbl_ProjetCat OFF
+GO
+
+Set Identity_Insert tbl_ProjetCatEmploye ON
+GO
+
+-- IMPORTER LES CATï¿½GORIES DE PROJETS
+ INSERT INTO tbl_ProjetCatEmploye (idPCE, idProjet, idCategorie, idEmploye)
+	SELECT catPerso.id, catPerso.idprojet, catPerso.idcat, catPerso.idperso 
+	FROM coeco.dbo.tblprojetcatperso AS catPerso
+	WHERE catPerso.tbl = 'tblemploye'
+	ORDER BY catPerso.idperso
+	
+
+Set Identity_Insert tbl_ProjetCatEmploye OFF
+GO
+
+--SORTIR LES ID DES EMPLOYï¿½S QUI NE SONT PAS PRï¿½SENT DANS LES CATï¿½GORIES
+--SELECT * FROM coeco.dbo.tblprojetcatperso AS c
+--WHERE 1=1
+--AND c.tbl = 'tblemploye'
+--AND idperso NOT IN (SELECT id FROM coeco.dbo.tblemploye)
+
+Set Identity_Insert tbl_FeuilleTemps ON
+GO
+
+DELETE FROM coeco.dbo.tblheure
+WHERE idCat IN (56, 58, 378)
+
+-- IMPORTER LES CATï¿½GORIES DE PROJETS
+ INSERT INTO tbl_FeuilleTemps (idFeuille, idProjet, idCat, idEmploye, nbHeure, commentaire, noSemaine, dateCreation, approuver)
+	SELECT id, idprojet, idcat, idperso, temps, c.note, 0 AS noSemaine, (CASE WHEN c.dateEffect IS NULL THEN c.dateInsc else c.dateEffect END)AS dateCreation, 1 AS approuver 
+	FROM coeco.dbo.tblheure AS c
+	
+
+Set Identity_Insert tbl_FeuilleTemps OFF
+GO
+
+--ID FT PROJET NOT IN PROJET
+--SELECT idProjet FROM coeco.dbo.tblheure
+--WHERE idProjet NOT IN (SELECT id FROM coeco.dbo.tblprojet)
+
+----ID CAT NOT IN PROJET CAT
+--SELECT DISTINCT idcat FROM coeco.dbo.tblheure
+--WHERE idcat NOT IN (SELECT id FROM coeco.dbo.tblprojetcat)
+
+
+--SELECT TOP 300 * FROM tbl_FeuilleTemps
+--ORDER BY idFeuille DESC, dateCreation
+
+--Creer procedure stocker
+
+IF OBJECT_ID ( 'PS_ChangeCatMaster', 'P' ) IS NOT NULL 
+    DROP PROCEDURE PS_ChangeCatMaster 
+GO
+CREATE PROC PS_ChangeCatMaster
+	@idCat INT
+AS
+	--CrÃ©Ã© une nouvelle catÃ©gorie N1
+	INSERT INTO tbl_ProjetCat (idProjet, idCatMaitre, titre, description)(
+		SELECT idProjet, NULL, 'GÃ©nÃ©ral', description FROM tbl_ProjetCat
+		WHERE idProjetCat = @idCat
+	)
+	--Transfert de la catÃ©gorie N1 vers N2 et l'attachÃ© Ã  la nouvelle catÃ©gorie
+	UPDATE tbl_ProjetCat
+	SET idCatMaitre = (SELECT MAX(idProjetCat) FROM tbl_ProjetCat)
+	WHERE idProjetCat = @idCat
+
+	--Garder les catÃ©gories existantes
+	UPDATE tbl_ProjetCat
+	SET idCatMaitre = (SELECT MAX(idProjetCat) FROM tbl_ProjetCat)
+	WHERE idCatMaitre = @idCat
+
+GO
+
+
+
+
 
