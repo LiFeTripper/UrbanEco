@@ -152,7 +152,7 @@
                 }
             </script>
             <label for="fupl_facture">Ajouter une facture</label>
-            <asp:FileUpload ID="fuimage" runat="server" onchange="showpreview(this);"/>
+            <asp:FileUpload ID="fuimage" runat="server" accept=".gif,.jpg,.jpeg,.png,.tif" onchange="showpreview(this);"/>
             <img id="imgpreview" runat="server" src="" height="200" width="500" style="visibility: hidden;"/>
             <input id="base64img" runat="server" type="hidden" />
         </div>
