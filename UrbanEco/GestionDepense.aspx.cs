@@ -154,6 +154,10 @@ namespace UrbanEco
             Response.Redirect(Request.RawUrl);
         }
 
+        protected void Btn_ShowImage_Click(object sender, EventArgs e) {
+            
+        }
+
         public bool IsAdmin()
         {
             CoecoDataContext ctx = new CoecoDataContext();
@@ -161,6 +165,12 @@ namespace UrbanEco
             tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             return empconnected.username == "admin";
+        }
+
+        public bool ShowImage(object path) {
+            string filePath = (string)path;
+
+            return filePath != "";
         }
     }
 }
