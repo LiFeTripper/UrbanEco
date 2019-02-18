@@ -179,7 +179,7 @@ namespace UrbanEco
         public bool ShowImage(object path) {
             string filePath = (string)path;
 
-            return filePath != "";
+            return File.Exists(Server.MapPath(filePath)) && filePath != "";
         }
     }
 }
