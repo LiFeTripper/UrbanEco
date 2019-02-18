@@ -107,13 +107,9 @@
         <%--DATASOURCE--%>
         <%--<asp:LinqDataSource ID="LinqEmploye" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_Employe" OrderBy="prenom, nom" />--%>
     </form>
-    <div id="dialog" title="Basic dialog">
-      <p>Image:</p>
-      <img src="http://placehold.it/50x50" alt="Placeholder Image" />
-    </div>
     <script>
         function showImage(path) {
-            $("#dialog").dialog();
+            bootbox.alert('Voici votre facture<br/><img style="max-width:100%;" src="' + path.alt + '" />');
         }
         
     </script>
