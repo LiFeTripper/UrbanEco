@@ -26,7 +26,8 @@ namespace UrbanEco
 
             if (emp.username == "admin")
             {
-                titrePage.InnerText = "Gestion des banques d'heures";
+                if(titrePage != null)
+                    titrePage.InnerText = "Gestion des banques d'heures";
                 
                 if (!IsPostBack)
                 {
@@ -41,7 +42,8 @@ namespace UrbanEco
                 load_Heure_Use_Emp(emp.nom + "," +  emp.prenom);
                 loadHeureSemaineEmp(emp.nom + "," + emp.prenom);
 
-                titrePage.InnerText = "Votre banque d'heures";
+                if(titrePage != null)
+                    titrePage.InnerText = "Votre banque d'heures";
             }
         }
 
@@ -390,7 +392,31 @@ namespace UrbanEco
                 }
             }
 
-            var BH = BD.GetBanqueHeure(ctx,idEmp);
+            
+
+            var BanqueHeureEmpl = from tbl in ctx.tbl_BanqueHeure
+                                  where tbl.idEmploye == idEmp
+                                  select tbl;
+
+
+            if (BanqueHeureEmpl.Count() != 5)
+            {
+                //Init la banque d'heure
+                for (int i = 0; i < 5; i++)
+                {
+                    tbl_BanqueHeure bh = new tbl_BanqueHeure();
+                    bh.idEmploye = idEmp;
+                    bh.idTypeHeure = i + 1;
+                    bh.nbHeure = bh.nbHeureInitial = 0;
+                    ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
+                }
+
+                ctx.SubmitChanges();
+            }
+
+            var BH = BD.GetBanqueHeure(ctx, idEmp);
+
+
             Update_HeureSemaine(idEmp);
 
 

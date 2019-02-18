@@ -87,15 +87,15 @@ namespace UrbanEco
         {
             CoecoDataContext context = ctx;
 
-            var query = from tblEmp in context.tbl_Employe
-                        join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-                        where tblEmp.username != "admin"
-                        select tblEmp;
+            var DepenseNA = (from tbl in ctx.tbl_Depense
+                             where !tbl.approuver
+                             select tbl.idEmploye).Distinct().ToList();
 
-            if (query.Count() == 0)
-                return null;
+            var EmployeDepNA = (from tbl in ctx.tbl_Employe
+                                where DepenseNA.Contains(tbl.idEmploye)
+                                select tbl).Distinct().ToList();
 
-            return query.Distinct().ToList();
+            return EmployeDepNA;
         }
 
 

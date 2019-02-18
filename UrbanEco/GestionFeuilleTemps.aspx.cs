@@ -56,9 +56,11 @@ namespace UrbanEco
 
                     var queryFTApprouver = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, true);
 
+                    /*
                     Rptr_EmployeNonApprouver.DataSource = null;
                     Rptr_EmployeNonApprouver.DataSourceID = null;
                     Rptr_EmployeNonApprouver.DataBind();
+                    */
 
                     Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
                     Rptr_EmployeNonApprouver.DataBind();

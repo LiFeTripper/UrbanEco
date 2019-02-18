@@ -82,7 +82,7 @@ namespace UrbanEco
 
             //Date ou NULL
             DateTime.TryParse(Cal_DateDebut.Value, out dateDebut);
-            DateTime.TryParse(Cal_DateDebut.Value, out dateFin);
+            DateTime.TryParse(Cal_DateFin.Value, out dateFin);
 
             //Insertion dans la base de données
             if (insert == true)

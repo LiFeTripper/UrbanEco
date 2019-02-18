@@ -45,6 +45,7 @@
       <Column Name="montant" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="prixKilometrage" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="approuver" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="facturePath" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="tbl_Employe_tbl_Depense" Member="tbl_Employe" ThisKey="idEmploye" OtherKey="idEmploye" Type="tbl_Employe" IsForeignKey="true" />
       <Association Name="tbl_ProjetCat_tbl_Depense" Member="tbl_ProjetCat" ThisKey="idProjetCat" OtherKey="idProjetCat" Type="tbl_ProjetCat" IsForeignKey="true" />
     </Type>

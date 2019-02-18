@@ -932,6 +932,8 @@ namespace UrbanEco
 		
 		private bool _approuver;
 		
+		private string _facturePath;
+		
 		private EntityRef<tbl_Employe> _tbl_Employe;
 		
 		private EntityRef<tbl_ProjetCat> _tbl_ProjetCat;
@@ -958,6 +960,8 @@ namespace UrbanEco
     partial void OnprixKilometrageChanged();
     partial void OnapprouverChanging(bool value);
     partial void OnapprouverChanged();
+    partial void OnfacturePathChanging(string value);
+    partial void OnfacturePathChanged();
     #endregion
 		
 		public tbl_Depense()
@@ -1151,6 +1155,26 @@ namespace UrbanEco
 					this._approuver = value;
 					this.SendPropertyChanged("approuver");
 					this.OnapprouverChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facturePath", DbType="VarChar(MAX)")]
+		public string facturePath
+		{
+			get
+			{
+				return this._facturePath;
+			}
+			set
+			{
+				if ((this._facturePath != value))
+				{
+					this.OnfacturePathChanging(value);
+					this.SendPropertyChanging();
+					this._facturePath = value;
+					this.SendPropertyChanged("facturePath");
+					this.OnfacturePathChanged();
 				}
 			}
 		}
