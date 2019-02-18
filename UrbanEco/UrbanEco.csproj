@@ -175,12 +175,6 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Coeco.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Coeco.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="Authentification.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
