@@ -24,5 +24,11 @@ namespace UrbanEco
                 rapportRepeater.DataBind();
             }
         }
+
+        protected string FormatMontant(object p_montant)
+        {
+            float montant = (float)p_montant;
+            return montant.ToString("2c");
+        }
     }
 }
