@@ -86,11 +86,6 @@ namespace UrbanEco
                                                                         true)
                                                             .ToList();
 
-            var selectedEmploye = ctx.tbl_Employe.Where(emp => selectedIdEmploye.Count > 0 ? 
-                                                                selectedIdEmploye.Contains(emp.idEmploye):
-                                                                true)
-                                                    .ToList();
-
             // Crée l'arbre de rapport
             RapportDepenseNode rapport = new RapportDepenseNode("Rapport");
             foreach (var typeCategorie in selectedTypeCategorie)
@@ -98,7 +93,9 @@ namespace UrbanEco
                 RapportDepenseNode typeCategorieNode = new RapportDepenseNode(typeCategorie.nomDepense);
 
                 var depenses = ctx.tbl_Depense.Where(d => d.typeDepense == typeCategorie.nomDepense)
-                                                .Where(d => selectedIdEmploye.Contains(d.idEmploye))
+                                                .Where(d => selectedIdEmploye.Count > 0 ? 
+                                                                selectedIdEmploye.Contains(d.idEmploye):
+                                                                true)
                                                 .Where(d => d.approuver)
                                                 .Where(d => d.dateDepense < DateTime.Parse(date_fin.Value))
                                                 .Where(d => d.dateDepense > DateTime.Parse(date_debut.Value))
