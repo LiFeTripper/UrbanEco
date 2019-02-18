@@ -71,17 +71,20 @@
     </form>
 
     <script>
+        let typeDepenseSelected = document.getElementById('<%=hiddenFieldTypeDepense.ClientID%>').value.split(',');
+        let empSelected = document.getElementById('<%=hiddenFieldEmploye.ClientID%>').value.split(',');
+        
         $('#catDepenseMultiselect').multiSelect({
         //EVENT inscrit nul part guess Onchange, onSelected pis onclick avec function return click
         afterSelect: function (values) {
             //Parce que D'amours
-            empSelected.push(values);
-            console.log(empSelected);
+            typeDepenseSelected.push(values);
+            console.log(typeDepenseSelected);
 
 
             var htmlStorage = document.getElementById('<%=hiddenFieldTypeDepense.ClientID%>');
             //htmlStorage.attr("data-assessments", JSON.stringify(selected));
-            htmlStorage.value = empSelected;
+            htmlStorage.value = typeDepenseSelected;
 
             console.log(htmlStorage);
         },
@@ -89,18 +92,18 @@
         afterDeselect: function (values) {
             var copy = [];
 
-            for (var idx in empSelected) {
-                if (empSelected[idx][0] != values[0]) {
-                    copy.push(empSelected[idx])
+            for (var idx in typeDepenseSelected) {
+                if (typeDepenseSelected[idx][0] != values[0]) {
+                    copy.push(typeDepenseSelected[idx])
                 }
             }
 
-            empSelected = copy;
+            typeDepenseSelected = copy;
 
-            console.log(empSelected);
+            console.log(typeDepenseSelected);
             var htmlHiddenFieldEmploye = document.getElementById('<%=hiddenFieldTypeDepense.ClientID%>');
 
-            htmlHiddenFieldEmploye.value = empSelected;
+            htmlHiddenFieldEmploye.value = typeDepenseSelected;
         },
 
         selectableOptgroup: true,

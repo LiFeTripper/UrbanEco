@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="RapportDepensePage.aspx.cs" Inherits="UrbanEco.RapportDepensePage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    <link href="Rapports/Rapport.css" rel="stylesheet" />
+    <link href="Rapports/Rapport.print.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
@@ -13,15 +14,15 @@
     <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
 
     <%-- Loop Through Catégories de dépense --%>
-    <asp:Repeater runat="server">
+    <asp:Repeater id="rapportRepeater" runat="server">
         <ItemTemplate>
             <div class="rapport_div cat_div">
-                <h3><%# Eval("Nom") %>(<%# Eval("NbHeure") %> $)</h3>
+                <h3><%# Eval("Nom") %> (<%# Eval("TotalDepense") %> $)</h3>
                <%-- Loop Through Dépenses --%>
-                <asp:Repeater runat="server">
+                <asp:Repeater runat="server" DataSource='<%# Eval("Childs") %>'>
                     <ItemTemplate>
                         <div class="rapport_div">
-                            <p><%# Eval("Nom") %>(<%# Eval("NbHeure") %> $)</p>
+                            <p><%# Eval("Nom") %> (<%# Eval("TotalDepense") %> $)</p>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
