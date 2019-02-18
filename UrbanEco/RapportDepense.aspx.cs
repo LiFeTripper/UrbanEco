@@ -97,8 +97,8 @@ namespace UrbanEco
                                                                 selectedIdEmploye.Contains(d.idEmploye):
                                                                 true)
                                                 .Where(d => d.approuver)
-                                                .Where(d => d.dateDepense < DateTime.Parse(date_fin.Value))
-                                                .Where(d => d.dateDepense > DateTime.Parse(date_debut.Value))
+                                                .Where(d => d.dateDepense <= DateTime.Parse(date_fin.Value))
+                                                .Where(d => d.dateDepense >= DateTime.Parse(date_debut.Value))
                                                 .OrderBy(d => d.dateDepense)
                                                 .ToList();
 
