@@ -11,6 +11,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <h1>Rapport de Dépense</h1>
+    <button id="btn_Imprimer" class="btn btn-raised btn-success" onclick="window.print();return false;">Imprimer</button>
     <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
 
     <%-- Loop Through Catégories de dépense --%>
