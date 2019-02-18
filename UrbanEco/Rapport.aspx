@@ -14,38 +14,27 @@
 
 <%-- Content --%>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-    <form runat="server" style="text-align: center;" class="container center col-12">
-
-        <%--Projet--%>
-        <%--<div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Nom du projet
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="lst_projet_SelectedIndexChanged" DataTextField="titre" DataValueField="idProjet" ID="lst_projet" runat="server" AutoPostBack="true"></asp:DropDownList>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>--%>
+    <form runat="server">
 
         <%-- Dates --%>
-        <div class="row justify-content-center">
-            <div class="date_inputs">
-                <h5>Date de début</h5>
-                <input class="form-control" type="date" id="date_debut" runat="server" />
-                <h5>Date de fin</h5>
-                <input class="form-control" type="date" id="date_fin" runat="server" />
-            </div>
+        <div class="form-group">
+            <label for="date_debut" class="">Date de début</label>
+            <input type="date" id="date_debut" class="form-control" runat="server" />
         </div>
 
-        <asp:Button Text="text" runat="server" />
-        
+        <div class="form-group">
+            <label for="date_fin" class="">Date de fin</label>
+            <input type="date" id="date_fin" class="form-control" runat="server" />
+        </div>
 
+        <asp:Button Id="btn_Refresh" Text="Actualiser la sélection" runat="server" CssClass="hidden" />
 
         <%-- Projets --%>
-        <div class="row justify-content-center">
+        <div class="form-group spantwo noTopPadding">
+            <div class="sousTitres">
+                <h5 runat="server" class="titre">Projets</h5>
+                <h5 runat="server" class="titre">Projets choisis</h5>
+            </div>
             <div class="select_group">
                 <div class="input-group">
                     <select id="projetMultiSelect" multiple="multiple">
@@ -63,11 +52,13 @@
         </div>
 
         <%-- Catégories --%>
-        <div class="row justify-content-center">
-            <div class="select_group">
+        <div class="form-group spantwo noTopPadding">
+            <div class="sousTitres">
                 <h5>Sous-Catégorie</h5>
-                <h5>Inclus dans le rapport</h5>
+                <h5>Sous-catégories choisis</h5>
+            </div>
 
+            <div class="select_group">
                 <div class="input-group">
                     <select id="catMultiSelect" multiple="multiple">
                         <asp:Repeater ID="repParentCat" runat="server">
@@ -85,10 +76,13 @@
         </div>
 
         <%-- Employés --%>
-        <div class="row justify-content-md-center">
-            <div class="select_group">
+        <div class="form-group spantwo noTopPadding">
+            <div class="sousTitres">
                 <h5>Employés</h5>
-                <h5>Inclus dans le rapport</h5>
+                <h5>Employés choisis</h5>
+            </div>
+
+            <div class="select_group">
 
                 <div class="input-group">
                     <select id="empMultiSelect" multiple="multiple">
@@ -114,20 +108,8 @@
         </div>
 
         <%-- Bottom Inputs --%>
-        <div>
-            <div class="alert alert-success" runat="server" id="alert_success" visible="false">
-                <strong>Succès!</strong>  Votre dépense a bien été ajouté !
-            </div>
-            <div class="alert alert-danger" runat="server" id="alert_failed" visible="false">
-                <strong>Erreur!</strong>  Votre dépense n'as pas pu être ajouté à la base de donnée !
-            </div>
-            <div class="alert alert-warning" runat="server" id="alert_warning" visible="false">
-                <strong>Attention!</strong>  Votre dépense a déjà été ajouté à la base de donnée !
-            </div>
-
-            <asp:Button CssClass="btn btn-lg btn-danger input-box" ID="btn_retour" runat="server" Text="Retour" OnClick="btn_retour_Click" />
-            <asp:Button CssClass="btn btn-lg btn-success input-box" ID="btn_generer" runat="server" Text="Généré le rapport" OnClick="btn_generer_Click" />
-        </div>
+        <asp:Button CssClass="btn btn-raised btn-success" ID="btn_generer" runat="server" Text="Générer le rapport" OnClick="btn_generer_Click" />
+        <asp:Button CssClass="btn btn-raised btn-danger" ID="btn_retour" runat="server" Text="Retour" OnClick="btn_retour_Click" />
     </form>
 
     <script>
@@ -218,6 +200,7 @@ $('#catMultiSelect').multiSelect({
         htmlhiddenFieldCat.value = catSelected;
 
         console.log(htmlhiddenFieldCat);
+        $('#BodyPlaceHolder_btn_Refresh').click();
     },
 
     afterDeselect: function (values) {
@@ -255,6 +238,7 @@ $('#projetMultiSelect').multiSelect({
         htmlhiddenFieldCat.value = projetSelected;
 
         console.log(htmlhiddenFieldCat);
+        $('#BodyPlaceHolder_btn_Refresh').click();
     },
 
     afterDeselect: function (values) {

@@ -204,3 +204,10 @@ ul.CTAs {
         padding: 10px !important;
     }
 }
+
+@media print {
+    #sidebar {
+        display: none !important;
+    }
+
+}
