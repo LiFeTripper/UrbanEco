@@ -16,20 +16,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <form runat="server">
 
-        <%--Projet--%>
-        <%--<div class="form-group mb-4 col-6 mx-auto">
-            <asp:Table CssClass="asp-table" runat="server" Style="width: 100% !important;">
-                <asp:TableRow>
-                    <asp:TableHeaderCell CssClass="form-control">
-                        Nom du projet
-                    </asp:TableHeaderCell>
-                    <asp:TableCell>
-                        <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="lst_projet_SelectedIndexChanged" DataTextField="titre" DataValueField="idProjet" ID="lst_projet" runat="server" AutoPostBack="true"></asp:DropDownList>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </div>--%>
-
         <%-- Dates --%>
         <div class="form-group">
             <label for="date_debut" class="">Date de début</label>

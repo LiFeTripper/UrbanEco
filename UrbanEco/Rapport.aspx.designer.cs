@@ -31,6 +31,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl date_fin;
         
         /// <summary>
+        /// rptr_projets control.
         /// btn_Refresh control.
         /// </summary>
         /// <remarks>
