@@ -132,8 +132,8 @@ namespace UrbanEco
 
 
                     employe_Associer_depense = BD.GetEmploye(ctx,depenseToModify.idEmploye);
-                    
 
+                    imageUploading.Visible = false;
                     typeEmpl = employe_Associer_depense.tbl_TypeEmploye;
 
                     var queryProjet = BD.GetEmployeProjet(ctx,employe_Associer_depense);
@@ -324,8 +324,13 @@ namespace UrbanEco
                             Directory.CreateDirectory(Server.MapPath("Factures"));
                         }
 
-                        string filepath = Server.MapPath("Factures\\" + System.Guid.NewGuid().ToString() + "." + ext);
+                        string filename = System.Guid.NewGuid().ToString() + "." + ext;
+                        string filepath = Server.MapPath("Factures\\" + filename);
                         File.WriteAllBytes(filepath, Convert.FromBase64String(base64[1].Split(',')[1]));
+
+                        dep.facturePath = "Factures\\" + filename;
+                    } else {
+                        dep.facturePath = "";
                     }
 
                     //Insérer la déepense
