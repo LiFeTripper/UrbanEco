@@ -263,7 +263,6 @@ namespace UrbanEco
                     //Créer une dépense
                     tbl_Depense dep = new tbl_Depense();
 
-
                     //obtenir l'employé connecter
                     tbl_Employe empConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
@@ -319,6 +318,19 @@ namespace UrbanEco
                         //Montant autre
                         dep.montant = float.Parse(tbx_montantNormal.Text);
                         dep.prixKilometrage = null;
+                    }
+
+                    if (base64img.Value != "") {
+                        //DirectoryInfo dir = Directory.CreateDirectory("Factures");
+                        string[] base64 = base64img.Value.Split(';');
+                        string ext = base64[0].Split('/')[1];
+
+                        if (!Directory.Exists(Server.MapPath("Factures"))) {
+                            Directory.CreateDirectory(Server.MapPath("Factures"));
+                        }
+
+                        string filepath = Server.MapPath("Factures\\" + System.Guid.NewGuid().ToString() + "." + ext);
+                        File.WriteAllBytes(filepath, Convert.FromBase64String(base64[1].Split(',')[1]));
                     }
 
                     //Insérer la déepense

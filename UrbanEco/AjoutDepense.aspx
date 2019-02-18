@@ -141,18 +141,20 @@
 
                         var reader = new FileReader();
                         reader.onload = function (e) {
-                            $('#imgpreview').css('visibility', 'visible');
-                            $('#imgpreview').attr('src', e.target.result);
+                            var image = document.getElementById('<%=imgpreview.ClientID%>');
+                            var source = document.getElementById('<%=base64img.ClientID%>');
+                            image.style.visibility = "visible";
+                            image.src = e.target.result;
+                            source.value = e.target.result;
                         }
                         reader.readAsDataURL(input.files[0]);
                     }
-
                 }
-
             </script>
             <label for="fupl_facture">Ajouter une facture</label>
-            <asp:FileUpload ID="fuimage" runat="server" onchange="showpreview(this);" />
-            <img id="imgpreview" src="" height="200" width="200" style="border-width: 0px; visibility: hidden;"/>
+            <asp:FileUpload ID="fuimage" runat="server" onchange="showpreview(this);"/>
+            <img id="imgpreview" runat="server" src="" height="200" width="500" style="border-width: 0px; visibility: hidden;"/>
+            <input id="base64img" runat="server" type="hidden" />
         </div>
 
         <%--MESSAGES--%>
