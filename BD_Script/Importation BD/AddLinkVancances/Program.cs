@@ -14,11 +14,11 @@ namespace AddLinkVancances
         {
             //191-194 inclu et 255
             Console.WriteLine("Cette oppération peut prendre un certain temps...");
-            //CreateLinks(191);
-            //CreateLinks(192);
-            //CreateLinks(193);
-            //CreateLinks(194);
-            //CreateLinks(255);
+            CreateLinks(191);
+            CreateLinks(192);
+            CreateLinks(193);
+            CreateLinks(194);
+            CreateLinks(255);
             AjouterBH();
             Console.WriteLine("Oppération terminé sans erreur! Appuyer sur une touche pour continuer");
             Console.ReadKey();

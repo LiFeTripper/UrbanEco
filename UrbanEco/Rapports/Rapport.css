@@ -1,4 +1,52 @@
-﻿.center {
+﻿form {
+    width: auto;
+    margin-top: 45px;
+    margin-left: 20px;
+    padding-right: 50px;
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    grid-template-columns: 20% 20%;
+}
+
+.sousTitres, .ms-container {
+    width: 605px;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 0px;
+    grid-template-columns: 50% 50%;
+}
+
+.ms-selectable, .ms-selection {
+    float: unset !important;
+}
+
+
+.titre {
+    color: #555;
+}
+
+.spantwo {
+    grid-column: span 2;
+}
+
+.noTopPadding {
+    padding-top: unset !important;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+/* ------------------- ANCIEN CSS ------------------*/
+/*.center {
     margin: auto;
     width: 50%;
 }
@@ -75,5 +123,5 @@
 .date_inputs input {
     width: 50%;
     margin-left: 40px;
-}
+}*/
 

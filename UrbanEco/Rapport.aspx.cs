@@ -72,8 +72,8 @@ namespace UrbanEco
                             select tbl;
 
                 
-                date_debut.Value = Layout.ToCalendarDate(DateTime.Today);
-                date_fin.Value = Layout.ToCalendarDate(DateTime.Today);
+                date_debut.Value = Layout.ToCalendarDate(DateTime.MinValue);
+                date_fin.Value = Layout.ToCalendarDate(DateTime.MaxValue);
             }
 
             if (IsPostBack)

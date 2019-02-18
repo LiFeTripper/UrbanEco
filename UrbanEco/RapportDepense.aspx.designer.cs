@@ -10,69 +10,78 @@
 namespace UrbanEco {
     
     
-    public partial class Layout {
+    public partial class RapportDepense {
         
         /// <summary>
-        /// head control.
+        /// date_debut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl date_debut;
         
         /// <summary>
-        /// liAdmin control.
+        /// date_fin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAdmin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl date_fin;
         
         /// <summary>
-        /// liEmpTerrain control.
+        /// repeaterTypeDepense control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liEmpTerrain;
+        protected global::System.Web.UI.WebControls.Repeater repeaterTypeDepense;
         
         /// <summary>
-        /// liEmpBureau control.
+        /// hiddenFieldTypeDepense control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liEmpBureau;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldTypeDepense;
         
         /// <summary>
-        /// Btn_DelogAdmin control.
+        /// datasourceTypeDepenses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Btn_DelogAdmin;
+        protected global::System.Web.UI.WebControls.LinqDataSource datasourceTypeDepenses;
         
         /// <summary>
-        /// TitlePlaceholder control.
+        /// repeaterEmploye control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitlePlaceholder;
+        protected global::System.Web.UI.WebControls.Repeater repeaterEmploye;
         
         /// <summary>
-        /// BodyPlaceHolder control.
+        /// hiddenFieldEmploye control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyPlaceHolder;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenFieldEmploye;
+        
+        /// <summary>
+        /// datasourceEmployes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource datasourceEmployes;
     }
 }
