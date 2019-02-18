@@ -124,7 +124,7 @@ CREATE PROC PS_ChangeCatMaster
 AS
 	--Créé une nouvelle catégorie N1
 	INSERT INTO tbl_ProjetCat (idProjet, idCatMaitre, titre, description)(
-		SELECT idProjet, NULL, 'Général', description FROM tbl_ProjetCat
+		SELECT idProjet, NULL, titre, description FROM tbl_ProjetCat
 		WHERE idProjetCat = @idCat
 	)
 	--Transfert de la catégorie N1 vers N2 et l'attaché à la nouvelle catégorie
