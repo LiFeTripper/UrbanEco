@@ -75,6 +75,10 @@
                         <i class="fas fa-clipboard"></i>
                         Rapports
                     </a>
+                    <a href="RapportDepense.aspx">
+                        <i class="fas fa-clipboard"></i>
+                        Rapports Depenses
+                    </a>
                     <a href="ParametreAdmin.aspx">
                         <i class="fas fa-wrench"></i>
                         Paramètres Administrateur

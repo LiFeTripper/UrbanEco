@@ -126,6 +126,8 @@
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
     <Content Include="Rapport.aspx" />
+    <Content Include="RapportDepense.aspx" />
+    <Content Include="RapportDepensePage.aspx" />
     <Content Include="RapportPage.aspx" />
     <Content Include="Rapports\rapportPage.css" />
     <Content Include="Rapports\rapportPage.print.css" />
@@ -274,6 +276,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RapportDepense.aspx.cs">
+      <DependentUpon>RapportDepense.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RapportDepense.aspx.designer.cs">
+      <DependentUpon>RapportDepense.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RapportDepenses\RapportDepenseNode.cs" />
+    <Compile Include="RapportDepensePage.aspx.cs">
+      <DependentUpon>RapportDepensePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RapportDepensePage.aspx.designer.cs">
+      <DependentUpon>RapportDepensePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RapportPage.aspx.cs">
       <DependentUpon>RapportPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,6 +328,7 @@
     <None Include="Coeco.dbml.layout">
       <DependentUpon>Coeco.dbml</DependentUpon>
     </None>
+    <Content Include="libman.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
