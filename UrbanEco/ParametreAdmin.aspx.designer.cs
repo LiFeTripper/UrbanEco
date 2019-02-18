@@ -13,15 +13,6 @@ namespace UrbanEco {
     public partial class ParametreAdmin {
         
         /// <summary>
-        /// tbl_taux control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_taux;
-        
-        /// <summary>
         /// tbx_voiture control.
         /// </summary>
         /// <remarks>
@@ -38,15 +29,6 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_camion;
-        
-        /// <summary>
-        /// tbl_depBureau control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_depBureau;
         
         /// <summary>
         /// tbx_depBureau control.
@@ -85,15 +67,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_deleteDepBureau;
         
         /// <summary>
-        /// tbl_depTerrain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_depTerrain;
-        
-        /// <summary>
         /// tbx_depTerrain control.
         /// </summary>
         /// <remarks>
@@ -130,15 +103,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_deleteDepTerrain;
         
         /// <summary>
-        /// Table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
-        
-        /// <summary>
         /// tbx_firstDimanche control.
         /// </summary>
         /// <remarks>
@@ -148,15 +112,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tbx_firstDimanche;
         
         /// <summary>
-        /// tbl_mdpAdmin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_mdpAdmin;
-        
-        /// <summary>
         /// tbx_adminMdp control.
         /// </summary>
         /// <remarks>
@@ -164,15 +119,6 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword tbx_adminMdp;
-        
-        /// <summary>
-        /// Table2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table2;
         
         /// <summary>
         /// cb_jourRappel control.
@@ -229,15 +175,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox ckb_rappelTerrain;
         
         /// <summary>
-        /// Table3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table3;
-        
-        /// <summary>
         /// tbx_email control.
         /// </summary>
         /// <remarks>
@@ -283,15 +220,6 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_ssl;
         
         /// <summary>
-        /// btn_annuler control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_annuler;
-        
-        /// <summary>
         /// btn_envoyer control.
         /// </summary>
         /// <remarks>
@@ -299,5 +227,14 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_envoyer;
+        
+        /// <summary>
+        /// btn_annuler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_annuler;
     }
 }

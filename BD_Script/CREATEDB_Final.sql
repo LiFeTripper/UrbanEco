@@ -162,7 +162,6 @@ CREATE TABLE tbl_BanqueHeure
 	idTypeHeure INT NOT NULL,
 	nbHeureInitial FLOAT(24),
 	nbHeure FLOAT(24)
-	--Cancer
 	
 	--FOREIGN KEY
 
@@ -192,7 +191,7 @@ CREATE TABLE tbl_Depense
 	idDepense INT IDENTITY(1,1) PRIMARY KEY,
 	idEmploye INT NOT NULL,
 	typeDepense VARCHAR(250) NOT NULL,
-
+	facturePath VARCHAR(MAX) DEFAULT NULL,
 	idProjetCat INT DEFAULT NULL,
 	note VARCHAR(MAX),
 	dateDepense SMALLDATETIME DEFAULT GETDATE(),

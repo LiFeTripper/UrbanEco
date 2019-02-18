@@ -111,6 +111,7 @@
     <Content Include="lib\css\menu.css" />
     <Content Include="lib\css\menuv2.css" />
     <Content Include="lib\css\multi-select.css" />
+    <Content Include="lib\css\parametres.css" />
     <Content Include="lib\css\signin.css" />
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
@@ -175,11 +176,6 @@
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Authentification.cs" />
-    <Compile Include="Coeco.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Coeco.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +188,11 @@
       <DependentUpon>Rapport.aspx</DependentUpon>
     </Compile>
     <Compile Include="BD.cs" />
+    <Compile Include="Coeco.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Coeco.dbml</DependentUpon>
+    </Compile>
     <Compile Include="GestionDepense.aspx.cs">
       <DependentUpon>GestionDepense.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
