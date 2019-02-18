@@ -14,11 +14,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true,true,true))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(true, true);
             if (!IsPostBack)
             {
 
@@ -35,7 +31,7 @@ namespace UrbanEco
                 DateCreation.Value = Layout.ToCalendarDate(DateTime.Today);
 
 
-                tbl_Employe userConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+                tbl_Employe userConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
                 List<tbl_Projet> listProjets = new List<tbl_Projet>();               
 
@@ -141,7 +137,7 @@ namespace UrbanEco
                 return;
             }
 
-            tbl_Employe userConnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+            tbl_Employe userConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             int projectID = int.Parse(tbx_projet.Items[tbx_projet.SelectedIndex].Value);
 
@@ -208,7 +204,7 @@ namespace UrbanEco
                 }
                 else //User
                 {
-                    tbFT.idEmploye = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]).idEmploye;
+                    tbFT.idEmploye = BD.GetUserConnected(ctx, Session["username"].ToString()).idEmploye;
                 }
                 
                 //S-Catégorie selected

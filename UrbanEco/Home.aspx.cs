@@ -29,10 +29,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, true, true))
-            {
-                Response.Redirect("Login.aspx");
-            }
+            Autorisation2.Autorisation(true, true);
 
             Page.MaintainScrollPositionOnPostBack = true;
 
@@ -49,8 +46,8 @@ namespace UrbanEco
                     dimanches = queryDimanche.ToList();
                 }
 
-
-                tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+                string username = Session["username"].ToString();
+                tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
                 //tbl_Employe empConnected = BD.GetEmploye(ctx, 8);
 

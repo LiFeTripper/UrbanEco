@@ -19,14 +19,10 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true,true,false))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(true, false);
             CoecoDataContext ctx = new CoecoDataContext();
             Page.MaintainScrollPositionOnPostBack = true;
-            tbl_Employe emp = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+            tbl_Employe emp = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (emp.username == "admin")
             {
@@ -165,7 +161,7 @@ namespace UrbanEco
 
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe emp = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe emp = BD.GetUserConnected(ctx, Session["username"].ToString());
 
                 if (nomEmp != "Veuillez choisir un employé")
                 {
@@ -503,7 +499,7 @@ namespace UrbanEco
             ddl_empBH.Visible = false;
             btn_modifBH.Visible = false;
 
-            load_BHemp(BD.GetUserConnected(ctx,Request.Cookies["userInfo"]).idEmploye);
+            load_BHemp(BD.GetUserConnected(ctx, Session["username"].ToString()).idEmploye);
         }
 
         //On obient la liste des employées et on la link au DropDownList

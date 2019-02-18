@@ -13,15 +13,11 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Autorisation2.Autorisation(false, false);
             Page.MaintainScrollPositionOnPostBack = true;
 
             if (!IsPostBack)
             {
-                if (!Authentification.Autorisation(true, false, false))
-                {
-                    Response.Redirect("Login.aspx");
-                }
-
                 CoecoDataContext ctx = new CoecoDataContext();
 
                 var queryTypeDepBureau = from tbl in ctx.tbl_TypeDepense

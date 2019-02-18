@@ -15,11 +15,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, false, false))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(false, false);
             insert = false;
             //Recherche de l'projet dans l'adresse
             argument = Request.QueryString["Prj"];

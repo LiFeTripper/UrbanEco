@@ -174,7 +174,6 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Authentification.cs" />
     <Compile Include="Coeco.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -307,6 +306,7 @@
       <LastGenOutput>Coeco.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Compile Include="Autorisation2.cs" />
     <None Include="Coeco.dbml.layout">
       <DependentUpon>Coeco.dbml</DependentUpon>
     </None>
