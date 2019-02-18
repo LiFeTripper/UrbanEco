@@ -37,6 +37,10 @@
     padding-top: unset !important;
 }
 
+.hidden {
+    display: none;
+}
+
 
 
 

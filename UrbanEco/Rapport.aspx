@@ -41,9 +41,7 @@
             <input type="date" id="date_fin" class="form-control" runat="server" />
         </div>
 
-        <asp:Button Text="Actualiser la sélection" runat="server" CssClass="spantwo btn btn-raised btn-success" />
-        
-
+        <asp:Button Id="btn_Refresh" Text="Actualiser la sélection" runat="server" CssClass="hidden" />
 
         <%-- Projets --%>
         <div class="form-group spantwo noTopPadding">
@@ -71,7 +69,7 @@
         <div class="form-group spantwo noTopPadding">
             <div class="sousTitres">
                 <h5>Sous-Catégorie</h5>
-                <h5>Sous-catégories sélectionnés</h5>
+                <h5>Sous-catégories choisis</h5>
             </div>
 
             <div class="select_group">
@@ -95,7 +93,7 @@
         <div class="form-group spantwo noTopPadding">
             <div class="sousTitres">
                 <h5>Employés</h5>
-                <h5>Employés sélectionnés</h5>
+                <h5>Employés choisis</h5>
             </div>
 
             <div class="select_group">
@@ -216,6 +214,7 @@ $('#catMultiSelect').multiSelect({
         htmlhiddenFieldCat.value = catSelected;
 
         console.log(htmlhiddenFieldCat);
+        $('#BodyPlaceHolder_btn_Refresh').click();
     },
 
     afterDeselect: function (values) {
@@ -253,6 +252,7 @@ $('#projetMultiSelect').multiSelect({
         htmlhiddenFieldCat.value = projetSelected;
 
         console.log(htmlhiddenFieldCat);
+        $('#BodyPlaceHolder_btn_Refresh').click();
     },
 
     afterDeselect: function (values) {
