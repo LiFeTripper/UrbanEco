@@ -14,28 +14,26 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, true, true))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(true, true);
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
+
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
+
 
             if (empconnected.username == "admin")
             {
-                List<tbl_Employe> queryAllEmpFtWaiting = BD.GetAllEmpDepWaiting(ctx);
+                var DepenseNA = (from tbl in ctx.tbl_Depense
+                                    where !tbl.approuver
+                                    select tbl.idEmploye).Distinct().ToList();
 
-                if (queryAllEmpFtWaiting != null)
+                var EmployeDepNA = (from tbl in ctx.tbl_Employe
+                                    where DepenseNA.Contains(tbl.idEmploye)
+                                    select tbl).Distinct().ToList();
 
-                {
-                    Rptr_Emploe.DataSourceID = null;
-                    Rptr_Emploe.DataSource = queryAllEmpFtWaiting;
-                    Rptr_Emploe.DataBind();
-                }
-
-                
+                Rptr_Emploe.DataSource = EmployeDepNA;
+                Rptr_Emploe.DataBind();
+                         
             }
             else
             {
@@ -160,7 +158,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             return empconnected.username == "admin";
         }

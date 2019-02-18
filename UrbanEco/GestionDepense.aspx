@@ -18,7 +18,7 @@
 
     <form runat="server" style="text-align: center;" class="container center col-12">
         <%--CODE REPEATER D'EMPLOYÉ--%>
-        <asp:Repeater ID="Rptr_Emploe" runat="server" DataSourceID="LinqEmploye">
+        <asp:Repeater ID="Rptr_Emploe" runat="server">
 
             <%--HEADERTEMPLATE--%>
             <HeaderTemplate>
@@ -105,6 +105,6 @@
         </asp:Repeater>
 
         <%--DATASOURCE--%>
-        <asp:LinqDataSource ID="LinqEmploye" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_Employe" OrderBy="prenom, nom" />
+        <%--<asp:LinqDataSource ID="LinqEmploye" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_Employe" OrderBy="prenom, nom" />--%>
     </form>
 </asp:Content>

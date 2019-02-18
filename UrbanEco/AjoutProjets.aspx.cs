@@ -15,11 +15,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, false, false))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(false, false);
             insert = false;
             //Recherche de l'projet dans l'adresse
             argument = Request.QueryString["Prj"];
@@ -86,7 +82,7 @@ namespace UrbanEco
 
             //Date ou NULL
             DateTime.TryParse(Cal_DateDebut.Value, out dateDebut);
-            DateTime.TryParse(Cal_DateDebut.Value, out dateFin);
+            DateTime.TryParse(Cal_DateFin.Value, out dateFin);
 
             //Insertion dans la base de données
             if (insert == true)

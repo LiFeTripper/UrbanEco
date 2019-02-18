@@ -18,23 +18,13 @@ namespace UrbanEco
 
             CoecoDataContext context = new CoecoDataContext();
 
-            //User not connected, redirect to login page
-            if (Request.Cookies["userinfo"] == null)
-            {
-                return;
-                //Response.Redirect("Login.aspx");
-            }
-
-            byte[] cookieName = Encoding.Default.GetBytes(Request.Cookies["userInfo"].Value);
-            string cookie = Encoding.UTF8.GetString(cookieName);
-
             var query = from tbl in context.tbl_Employe
-                        where tbl.username == cookie
+                        where tbl.username == Session["username"].ToString()
                         select tbl;
 
             tbl_Employe userConnected = query.First();
 
-            if(Request.Cookies["userInfo"].Value == "admin")
+            if(Session["username"].ToString() == "admin")
             {
                 liAdmin.Visible = true;
                 liEmpBureau.Visible = false;

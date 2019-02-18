@@ -15,11 +15,11 @@ namespace UrbanEco
         /// </summary>
         /// <param name="myCookie"></param>
         /// <returns></returns>
-        public static tbl_Employe GetUserConnected(CoecoDataContext ctx, HttpCookie myCookie)
+        public static tbl_Employe GetUserConnected(CoecoDataContext ctx, string username)
         {
             //return userConnected;
             //User not connected, un peu inutile avec le webconfig, mais on sais jamais
-            if (myCookie == null || myCookie.Value == null)
+            if (username == null || username == "")
             {
                 //Response.Redirect("Login.aspx", true);
                 return null;
@@ -27,7 +27,7 @@ namespace UrbanEco
 
             CoecoDataContext context = ctx;
 
-            byte[] cookieName = Encoding.Default.GetBytes(myCookie.Value);
+            byte[] cookieName = Encoding.Default.GetBytes(username);
             string cookieValue = Encoding.UTF8.GetString(cookieName);
 
             var query_Employe = from tbl in context.tbl_Employe
@@ -36,7 +36,6 @@ namespace UrbanEco
 
             if (query_Employe.Count() == 0)
             {
-                myCookie.Value = null;
                 return null;
             }
 
@@ -88,15 +87,15 @@ namespace UrbanEco
         {
             CoecoDataContext context = ctx;
 
-            var query = from tblEmp in context.tbl_Employe
-                        join tblDep in context.tbl_Depense on tblEmp.idEmploye equals tblDep.idEmploye
-                        where tblEmp.username != "admin"
-                        select tblEmp;
+            var DepenseNA = (from tbl in ctx.tbl_Depense
+                             where !tbl.approuver
+                             select tbl.idEmploye).Distinct().ToList();
 
-            if (query.Count() == 0)
-                return null;
+            var EmployeDepNA = (from tbl in ctx.tbl_Employe
+                                where DepenseNA.Contains(tbl.idEmploye)
+                                select tbl).Distinct().ToList();
 
-            return query.Distinct().ToList();
+            return EmployeDepNA;
         }
 
 
