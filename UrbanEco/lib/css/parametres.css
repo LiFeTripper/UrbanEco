@@ -1,0 +1,31 @@
+﻿form {
+    width: auto;
+    margin-top: 45px;
+    margin-left: 20px;
+    padding-right: 50px;
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    grid-template-columns: 20% 20%;
+}
+
+.spantwo {
+    grid-column: span 2;
+}
+
+.bold {
+    font-weight: bold;
+    transform: translateX(-35px) translateY(27px);
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.btn {
+    height: 43px;
+}
+
+.alignementBouton{
+    transform: translateY(13px);
+}
