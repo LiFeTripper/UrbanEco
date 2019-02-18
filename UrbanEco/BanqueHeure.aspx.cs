@@ -387,7 +387,6 @@ namespace UrbanEco
                 }
                 catch(Exception ex)
                 {
-
                     return;
                 }
             }

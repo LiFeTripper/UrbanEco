@@ -132,8 +132,8 @@ namespace UrbanEco
 
 
                     employe_Associer_depense = BD.GetEmploye(ctx,depenseToModify.idEmploye);
-                    
 
+                    imageUploading.Visible = false;
                     typeEmpl = employe_Associer_depense.tbl_TypeEmploye;
 
                     var queryProjet = BD.GetEmployeProjet(ctx,employe_Associer_depense);
@@ -258,7 +258,6 @@ namespace UrbanEco
                     //Créer une dépense
                     tbl_Depense dep = new tbl_Depense();
 
-
                     //obtenir l'employé connecter
                     tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
@@ -314,6 +313,24 @@ namespace UrbanEco
                         //Montant autre
                         dep.montant = float.Parse(tbx_montantNormal.Text);
                         dep.prixKilometrage = null;
+                    }
+
+                    if (base64img.Value != "") {
+                        //DirectoryInfo dir = Directory.CreateDirectory("Factures");
+                        string[] base64 = base64img.Value.Split(';');
+                        string ext = base64[0].Split('/')[1];
+
+                        if (!Directory.Exists(Server.MapPath("Factures"))) {
+                            Directory.CreateDirectory(Server.MapPath("Factures"));
+                        }
+
+                        string filename = System.Guid.NewGuid().ToString() + "." + ext;
+                        string filepath = Server.MapPath("Factures\\CoEco_" + filename);
+                        File.WriteAllBytes(filepath, Convert.FromBase64String(base64[1].Split(',')[1]));
+
+                        dep.facturePath = "Factures\\CoEco_" + filename;
+                    } else {
+                        dep.facturePath = "";
                     }
 
                     //Insérer la déepense
