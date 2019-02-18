@@ -20,8 +20,6 @@
 
     <form runat="server">
 
-
-
         <%--SOUS-CATÉGORIE--%>
         <div class="form-group" runat="server">
             <label for="Tbx_Titre" class="bmd-label-floating">Titre</label>

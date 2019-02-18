@@ -133,7 +133,7 @@
             <asp:TextBox class="form-control" ID="tbx_note" runat="server" Rows="1" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
         </div>
 
-        <div class="form-group" runat="server">
+        <div id="imageUploading" class="form-group" runat="server">
             <script type="text/javascript">
                 function showpreview(input) {
 
@@ -152,8 +152,8 @@
                 }
             </script>
             <label for="fupl_facture">Ajouter une facture</label>
-            <asp:FileUpload ID="fuimage" runat="server" onchange="showpreview(this);"/>
-            <img id="imgpreview" runat="server" src="" height="200" width="500" style="border-width: 0px; visibility: hidden;"/>
+            <asp:FileUpload ID="fuimage" runat="server" accept=".gif,.jpg,.jpeg,.png,.tif" onchange="showpreview(this);"/>
+            <img id="imgpreview" runat="server" src="" height="200" width="500" style="visibility: hidden;"/>
             <input id="base64img" runat="server" type="hidden" />
         </div>
 
