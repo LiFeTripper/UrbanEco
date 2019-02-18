@@ -13,7 +13,9 @@
     <h1>Rapport</h1>
     <button id="btn_Imprimer" class="btn btn-raised btn-success" onclick="window.print();return false;">Imprimer</button>
     <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
-
+    <form runat="server">
+        <asp:Button ID="btn_excel" runat="server" Text="Esti d'Excel" OnClick="btn_excel_Click"/>
+    </form>
     <asp:repeater id="rapportRepeater" runat="server">
         <itemtemplate>
             <%-- Loop Through Projects --%>
