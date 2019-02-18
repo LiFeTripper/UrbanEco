@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.Master" AutoEventWireup="true" CodeBehind="RapportDepense.aspx.cs" Inherits="UrbanEco.RapportDepense" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="RapportDepenses/Multiselect.js"></script>
+    <link href="Rapports/Rapport.css" rel="stylesheet" />
     <title>Coeco - Rapport Depense</title>
 </asp:Content>
 
@@ -13,21 +13,23 @@
 
     <form runat="server">
         <%-- Dates --%>
-        <div class="row justify-content-center">
-            <div class="date_inputs">
-                <h5>Date de début</h5>
-                <input class="form-control" type="date" id="date_debut" runat="server" />
-                <h5>Date de fin</h5>
-                <input class="form-control" type="date" id="date_fin" runat="server" />
-            </div>
+        <div class="form-group">
+            <label for="date_debut" class="">Date de début</label>
+            <input type="date" id="date_debut" class="form-control" runat="server" />
         </div>
 
-        <asp:Button Text="text" runat="server" />
+        <div class="form-group">
+            <label for="date_fin" class="">Date de fin</label>
+            <input type="date" id="date_fin" class="form-control" runat="server" />
+        </div>
 
         <%-- CatégorieDepense --%>
-        <div class="row justify-content-center">
+        <div class="form-group spantwo noTopPadding">
+            <div class="sousTitres">
+                <h5 runat="server" class="titre">Catégories De Dépenses</h5>
+                <h5 runat="server" class="titre">Catégories choisies</h5>
+            </div>
             <div class="select_group">
-                <h5>Catégorie de dépenses</h5>
                 <div class="input-group">
                     <select id="catDepenseMultiselect" multiple="multiple">
                         <asp:Repeater ID="repeaterTypeDepense" runat="server">
@@ -46,10 +48,12 @@
         </div>
 
         <%-- Employés --%>
-        <div class="row justify-content-center">
-            <div class="select_group">
+        <div class="form-group spantwo noTopPadding">
+            <div class="sousTitres">
                 <h5>Employés</h5>
-
+                <h5>Employés choisis</h5>
+            </div>
+            <div class="select_group">
                 <div class="input-group">
                     <select id="employeMultiselect" multiple="multiple">
                         <asp:Repeater ID="repeaterEmploye" runat="server">
@@ -67,7 +71,8 @@
             </div>
         </div>
 
-        <asp:Button Text="Generer Rapport" runat="server" OnClick="GenererRapport" />
+        <asp:Button CssClass="btn btn-raised btn-success" ID="btn_generer" runat="server" Text="Générer le rapport" OnClick="GenererRapport" />
+
     </form>
 
     <script>

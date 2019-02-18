@@ -21,7 +21,6 @@
     <%-- Updates CSS --%>
     <link href="lib/css/tables.css" rel="stylesheet" />
 
-
     <%--SCRIPTS --%>
     <script src="lib/js/jquery-3.3.1.min.js"></script>
     <script src="lib/js/popper.js"></script>
@@ -77,7 +76,7 @@
                     </a>
                     <a href="RapportDepense.aspx">
                         <i class="fas fa-clipboard"></i>
-                        Rapports Depenses
+                        Rapports Dépenses
                     </a>
                     <a href="ParametreAdmin.aspx">
                         <i class="fas fa-wrench"></i>
