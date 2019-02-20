@@ -52,7 +52,11 @@ namespace UrbanEco
 
             //File info
             string filename = "RapportDepense.xlsx";
-            string filepath = Server.MapPath("Excel/" + filename);
+            string directory = Server.MapPath("Excel/");
+            string filepath = directory + filename;
+
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
 
             bool ExcelGeneratedWithError = false;
 
@@ -87,8 +91,6 @@ namespace UrbanEco
                     for (int y = 0; y < categorie.Childs.Count; y++)
                     {
                         var employe = categorie.Childs[y];
-                        //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
-                        //xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
 
                         xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
                         xlWorkSheet.Cells[indexX, 2].Value = employe.Nom;
@@ -172,7 +174,7 @@ namespace UrbanEco
             try
             {
                 Response.ContentType = "Application/xlsx";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=RapportProjet.xlsx");
+                Response.AppendHeader("Content-Disposition", "attachment; filename=RapportDepense.xlsx");
                 Response.TransmitFile(filepath);
                 Response.End();
             }

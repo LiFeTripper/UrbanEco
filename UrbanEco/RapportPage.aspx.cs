@@ -79,7 +79,11 @@ namespace UrbanEco
 
             //File info
             string filename = "RapportProjet.xlsx";
-            string filepath = Server.MapPath("Excel/" + filename);
+            string directory = Server.MapPath("Excel/");
+            string filepath = directory + filename;
+
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
 
             bool ExcelGeneratedWithError = false;
 
