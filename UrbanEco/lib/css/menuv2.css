@@ -81,9 +81,10 @@ span {
         padding: 20px;
         background: #1B7B04;
         text-align: center;
+        position: relative;
     }
 
-    #sidebar .sidebar-header:after {
+    #sidebar .sidebar-header::after {
         content: "";
         position: absolute;
         width: 25%;
