@@ -94,6 +94,16 @@ namespace UrbanEco
 
             uint processId = 0;
 
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+            
+            if(!isExcelInstalled)
+            {
+                lbl_erreur.Visible = true;
+                lbl_erreur.InnerText = "Le serveur ne possède pas Excel.\nL'exportation en XLSX est donc impossible.";
+                return;
+            }
+
+
             try
             {
                 //Open Excel
@@ -238,7 +248,7 @@ namespace UrbanEco
             {
                 var projet = rapportNode.Child[x];
 
-                fileContent += "Total de " + projet.Nom + "; ; ;";
+                fileContent += "Total de : " + projet.Nom + "; ; ;";
                 fileContent += formatHeureFloat(projet.NbHeure);
                 fileContent += "\n";
 

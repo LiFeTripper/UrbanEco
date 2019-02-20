@@ -9,7 +9,7 @@
 
 <%-- Title --%>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Rapport par projet</h1>
+    <h1>Rapport Projets</h1>
 </asp:Content>
 
 <%-- Content --%>
