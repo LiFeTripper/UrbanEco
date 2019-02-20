@@ -18,7 +18,7 @@ namespace UrbanEco
             Gestion des erreurs (champs vide)
         */
 
-
+        private tbl_Employe empConnected;
 
         protected enum TypeKm { Voiture, Camion, Nothing}
         protected static TypeKm typeKm = TypeKm.Voiture;
@@ -31,21 +31,16 @@ namespace UrbanEco
             //Empecher la page de remonter a chaque action
             Page.MaintainScrollPositionOnPostBack = true;
 
-            
+            CoecoDataContext ctx = new CoecoDataContext();
+            empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (!IsPostBack)
             {
-
-                CoecoDataContext ctx = new CoecoDataContext();
-
                 List<ListItem> ListTypeDepense = new List<ListItem>();
 
-                tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
                 tbl_TypeEmploye typeEmpl = empConnected.tbl_TypeEmploye;
 
-
                 prixKilometrage = BD.GetDeplacementPrice(ctx);
-
 
                 //Nouvelle dépense
                 if (Request.QueryString["Dep"] == "New")
@@ -95,8 +90,10 @@ namespace UrbanEco
 
                     var query_Dépense_Kilometrage = BD.GetDepenseDeplacement(ctx);
 
-                    var query_Type_Depense_UserType = BD.GetTypeDepense(ctx,empConnected.idTypeEmpl);
-
+                    List<tbl_TypeDepense> query_Type_Depense_UserType = new List<tbl_TypeDepense>();
+                    if (empConnected.username != "admin") {
+                        query_Type_Depense_UserType = BD.GetTypeDepense(ctx, empConnected.idTypeEmpl);
+                    }
 
                     ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
 
@@ -545,6 +542,28 @@ namespace UrbanEco
             //Insérer un text pour sélectionner le projet au début
             tbx_projet.Items.Insert(0, "Veuillez sélectionner le projet");
             tbx_projet.SelectedIndex = 0;
+
+            if (empConnected.username == "admin") {
+                List<ListItem> ListTypeDepense = new List<ListItem>();
+
+                ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
+
+                var query_Dépense_Kilometrage = BD.GetDepenseDeplacement(ctx);
+                foreach (var item in query_Dépense_Kilometrage) {
+                    ListItem l = new ListItem(item.nomDepense, item.idTypeDepense.ToString());
+                    ListTypeDepense.Add(l);
+                }
+
+                List<tbl_TypeDepense> query_Type_Depense_UserType = new List<tbl_TypeDepense>();
+                query_Type_Depense_UserType = BD.GetTypeDepense(ctx, BD.GetEmploye(ctx, int.Parse(ddlEmp.SelectedValue)).idTypeEmpl);
+                foreach (var item in query_Type_Depense_UserType) {
+                    ListItem l = new ListItem(item.nomDepense, item.idTypeDepense.ToString());
+                    ListTypeDepense.Add(l);
+                }
+
+                tbx_typeDepense.DataSource = ListTypeDepense;
+                tbx_typeDepense.DataBind();
+            }
         }
     }
 }
