@@ -60,20 +60,117 @@ namespace UrbanEco
 
             bool ExcelGeneratedWithError = false;
 
-            uint processId = 0;
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
 
-            try
+            //Generate XLSX
+            if(isExcelInstalled)
             {
-                //Open Excel
-                xlApp = new Excel.Application();
-                xlWorkBook = xlApp.Workbooks.Add(misValue);
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                uint processId = 0;
 
-                xlApp.Visible = false;
+                try
+                {
+                    //Open Excel
+                    xlApp = new Excel.Application();
+                    xlWorkBook = xlApp.Workbooks.Add(misValue);
+                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
-                int indexX = 1;
+                    xlApp.Visible = false;
 
-                GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
+                    int indexX = 1;
+
+                    GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
+
+                    //Projet
+                    for (int x = 0; x < rapportNode.Childs.Count; x++)
+                    {
+                        var categorie = rapportNode.Childs[x];
+                        //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+
+                        xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
+                        xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(categorie.TotalDepense);
+                        indexX++;
+                        indexX++;
+
+                        //Sous-Catégorie
+                        for (int y = 0; y < categorie.Childs.Count; y++)
+                        {
+                            var employe = categorie.Childs[y];
+
+                            xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
+                            xlWorkSheet.Cells[indexX, 2].Value = employe.Nom;
+                            xlWorkSheet.Cells[indexX, 3].Value = employe.Date;
+                            xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(employe.TotalDepense);
+
+                            indexX++;
+                        }
+
+                        indexX++;
+                        indexX++;
+                    }
+
+                    //Delete existing file
+                    if (File.Exists(filepath))
+                    {
+                        File.Delete(filepath);
+                    }
+
+                    //Save file
+                    FileInfo info = new FileInfo(filepath);
+
+                    xlWorkBook.SaveAs(info);
+
+                    ExcelGeneratedWithError = false;
+
+                }
+                catch (Exception ex)
+                {
+                    ExcelGeneratedWithError = true;
+                    lbl_erreur.Visible = true;
+                    lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
+                }
+                finally
+                {
+                    xlWorkBook.Close(0);
+                    xlApp.Application.Quit();
+
+                    //Kill processId Excel
+                    if (processId != 0)
+                    {
+                        Process excelProcess = Process.GetProcessById((int)processId);
+                        excelProcess.CloseMainWindow();
+                        excelProcess.Refresh();
+                        excelProcess.Kill();
+                    }
+
+                    //release COM object
+                    try
+                    {
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+                        xlWorkSheet = null;
+                        xlWorkBook = null;
+                        xlApp = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        xlWorkSheet = null;
+                        xlWorkBook = null;
+                        xlApp = null;
+                        lbl_erreur.Visible = true;
+                        lbl_erreur.InnerText = ("Exception Occured while releasing object " + ex.ToString());
+                    }
+                    finally
+                    {
+                        GC.Collect();
+                    }
+                }
+            }
+            else //Generate CSV
+            {
+
+                string fileContent = "Type de dépense;Nom employé;Date;Montant";
+                fileContent += "\n";
 
                 //Projet
                 for (int x = 0; x < rapportNode.Childs.Count; x++)
@@ -81,100 +178,54 @@ namespace UrbanEco
                     var categorie = rapportNode.Childs[x];
                     //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
 
-                    xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
-                    xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(categorie.TotalDepense);
-                    indexX++;
-                    indexX++;
-
+                    fileContent += categorie.Nom + "; ; ;";
+                    fileContent += FormatMontant(categorie.TotalDepense);
+                    fileContent += "\n";
+                    
                     //Sous-Catégorie
                     for (int y = 0; y < categorie.Childs.Count; y++)
                     {
                         var employe = categorie.Childs[y];
 
-                        xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
-                        xlWorkSheet.Cells[indexX, 2].Value = employe.Nom;
-                        xlWorkSheet.Cells[indexX, 3].Value = employe.Date;
-                        xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(employe.TotalDepense);
+                        fileContent += categorie.Nom + ";";
+                        fileContent += employe.Nom + ";";
+                        fileContent += employe.Date + ";";
+                        fileContent += FormatMontant(employe.TotalDepense);
 
-                        indexX++;
+                        fileContent += "\n";
                     }
 
-                    indexX++;
-                    indexX++;
                 }
 
-                //Delete existing file
-                if (File.Exists(filepath))
+                if(fileContent.Length != 0)
                 {
-                    File.Delete(filepath);
+                    filename = "RapportDepense.csv";
+                    directory = Server.MapPath("Excel/");
+                    filepath = directory + filename;
+
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
+
+                    File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
                 }
-
-                //Save file
-                FileInfo info = new FileInfo(filepath);
-
-                xlWorkBook.SaveAs(info);
-
-                ExcelGeneratedWithError = false;
-
             }
-            catch (Exception ex)
-            {
-                ExcelGeneratedWithError = true;
-                lbl_erreur.Visible = true;
-                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
-            }
-            finally
-            {
-                xlWorkBook.Close(0);
-                xlApp.Application.Quit();
 
-                //Kill processId Excel
-                if (processId != 0)
-                {
-                    Process excelProcess = Process.GetProcessById((int)processId);
-                    excelProcess.CloseMainWindow();
-                    excelProcess.Refresh();
-                    excelProcess.Kill();
-                }
 
-                //release COM object
-                try
-                {
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
-                    xlWorkSheet = null;
-                    xlWorkBook = null;
-                    xlApp = null;
-                }
-                catch (Exception ex)
-                {
-                    xlWorkSheet = null;
-                    xlWorkBook = null;
-                    xlApp = null;
-                    lbl_erreur.Visible = true;
-                    lbl_erreur.InnerText = ("Exception Occured while releasing object " + ex.ToString());
-                }
-                finally
-                {
-                    GC.Collect();
-                }
-
-                if (!ExcelGeneratedWithError)
-                    DownloadFile(filepath);
-            }
+            if (!ExcelGeneratedWithError)
+                DownloadFile(filepath, filename);
         }
 
         /// <summary>
         /// Download file with filepath
         /// </summary>
         /// <param name="filepath"></param>
-        private void DownloadFile(string filepath)
+        private void DownloadFile(string filepath, string filename)
         {
             try
             {
                 Response.ContentType = "Application/xlsx";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=RapportDepense.xlsx");
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename);
                 Response.TransmitFile(filepath);
                 Response.End();
             }
