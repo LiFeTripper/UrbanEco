@@ -21,7 +21,7 @@
             <h5>Bienvenue dans la gestion des projets de Co-Éco!</h5>
          
         </div>
-        <div class="" >
+        <div style="margin-top: 20px;" >
             <asp:Button ID="btn_download" CssClass="btn btn-raised btn-success" runat="server" Text="Télécharger le guide d'utilisateur" OnClick="btn_download_Click"/>
         </div>
 

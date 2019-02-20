@@ -158,6 +158,15 @@ namespace UrbanEco
                 xlWorkBook.Close(0);
                 xlApp.Application.Quit();
 
+<<<<<<< HEAD
+            releaseComObject(xlWorkSheet);
+            releaseComObject(xlWorkBook);
+            releaseComObject(xlApp);
+
+            lbl_success.Visible = true;
+            lbl_success.Text = "Exportation Excel réussie !";
+            DownloadFile(filePath);
+=======
                 //Kill processId Excel
                 if (processId != 0)
                 {
@@ -189,6 +198,7 @@ namespace UrbanEco
                 {
                     GC.Collect();
                 }
+>>>>>>> e1d604036f1d53618514027f29b0d6cf79030d02
 
                 if (!ExcelGeneratedWithError)
                     DownloadFile(filepath);

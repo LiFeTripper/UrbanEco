@@ -68,6 +68,7 @@
             </div>
 
             <div runat="server" visible="false" id="alert_dateOrder" class="alert alert-danger spantwo"><b>Attention !</b> La date maximal est plus petite que la date minimale.</div>
+            <div runat="server" visible="false" id="alert_aucun" class="alert alert-danger spantwo"><b>Attention !</b> Aucune feuille de temps trouvée.</div>
             <div runat="server" visible="false" id="alert_missingDate" class="alert alert-danger spantwo"><b>Attention !</b> Les deux dates sont requises pour le filtre.</div>
         </div>
 

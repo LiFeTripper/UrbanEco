@@ -346,14 +346,22 @@ namespace UrbanEco
             {
                 var queryFTAttente = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, false);
 
-                var queryFTApprouver = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, true);
+               // var queryFTApprouver = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
                 Rptr_EmployeNonApprouver.DataBind();
 
-                Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
-                Rptr_EmployeNonApprouver.DataBind();
+                if (queryFTAttente != null)
+                {
+                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                    Rptr_EmployeNonApprouver.DataBind();
+                }
+                else
+                {
+                    alert_aucun.Visible = true;
+                }
+
 
                 /*rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;
@@ -447,6 +455,7 @@ namespace UrbanEco
 
         protected void btn_removefilter_Click(object sender, EventArgs e)
         {
+            alert_aucun.Visible = false;
             Calendar1.Value = "1/1/1754";
             Calendar2.Value = "1/1/3000";
 
