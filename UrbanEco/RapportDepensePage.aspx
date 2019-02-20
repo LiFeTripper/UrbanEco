@@ -7,15 +7,19 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
     <h1>Rapport Dépense</h1>
-    <form runat="server">
-        <asp:Button ID="btn_excel" CssClass="btn btn-lg btn-success" runat="server" Text="Exporter en Excel" OnClick="btn_excel_Click" AutoPostBack="true"/>
-        <h3  ID="lbl_erreur" runat="server" class="alert alert-danger" Text="Erreur" Visible="false"></h3>
-    </form>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-    <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
-    <button id="btn_Imprimer" class="btn btn-raised btn-success" onclick="window.print();return false;">Imprimer</button>
+
+    <h1 id="titreImprimante">Rapport Dépense</h1>
+    <div id="infosRapport">
+        <p class="spantwo"><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
+        <button id="btn_Imprimer" class="btn btn-raised btn-secondary" onclick="window.print();return false;">Imprimer</button>
+        <form runat="server">
+            <asp:Button ID="btn_excel" CssClass="btn btn-raised btn-success" runat="server" Text="Exporter en Excel" OnClick="btn_excel_Click" AutoPostBack="true"/>
+            <h3  ID="lbl_erreur" runat="server" class="alert alert-danger" Text="Erreur" Visible="false"></h3>
+        </form>
+    </div>
 
 
     <%-- Loop Through Catégories de dépense --%>
@@ -27,7 +31,7 @@
                 <asp:Repeater runat="server" DataSource='<%# Eval("Childs") %>'>
                     <ItemTemplate>
                         <div class="rapport_div">
-                            <p><%# Eval("Nom") %> - <%# Eval("Date") %>: (<%# FormatMontant(Eval("TotalDepense")) %>)</p>
+                            <p><%# Eval("Nom") %>, <%# FormatDate(Eval("Date")) %> (<%# FormatMontant(Eval("TotalDepense")) %>)</p>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>

@@ -40,7 +40,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_projet;
         
         /// <summary>
-        /// Contrôle tbx_heures.
+        /// Contrôle tbx_categorie.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -49,7 +49,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_categorie;
         
         /// <summary>
-        /// Contrôle tbx_minutes.
+        /// Contrôle tbx_heures.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -58,7 +58,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.DropDownList tbx_heures;
         
         /// <summary>
-        /// Contrôle tbx_categorie.
+        /// Contrôle tbx_minutes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.

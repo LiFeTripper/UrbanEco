@@ -31,6 +31,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AlertDiv;
         
         /// <summary>
+        /// Contrôle emplSelect.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl emplSelect;
+        
+        /// <summary>
         /// Contrôle ddl_empBH.
         /// </summary>
         /// <remarks>

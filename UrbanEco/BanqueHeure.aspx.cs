@@ -44,6 +44,8 @@ namespace UrbanEco
 
                 if(titrePage != null)
                     titrePage.InnerText = "Votre banque d'heures";
+
+                emplSelect.Visible = false;
             }
         }
 
