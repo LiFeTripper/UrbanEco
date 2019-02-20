@@ -7,11 +7,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
     <h1>Rapport</h1>
-    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
+    <h1 id="titreImprimante">Rapport</h1>
     <div id="infosRapport">
         <p class="spantwo"><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
         <button id="btn_Imprimer" class="btn btn-raised btn-secondary" onclick="window.print();return false;">Imprimer</button>
