@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace UrbanEco
 {
@@ -14,16 +15,12 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, true, true))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(true, true);
             CoecoDataContext ctx = new CoecoDataContext();
 
 
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx,Request.Cookies["userInfo"]);
 
             if (empconnected.username == "admin")
             {
@@ -102,6 +99,14 @@ namespace UrbanEco
                 if(depense != null)
                 {
                     depense.approuver = true;
+
+                    if (depense.facturePath != "") {
+                        if (File.Exists(Server.MapPath(depense.facturePath))) {
+                            File.Delete(Server.MapPath(depense.facturePath));
+                        }
+                    }
+
+                    depense.facturePath = "";
                 }
 
                 ctx.SubmitChanges();
@@ -158,13 +163,23 @@ namespace UrbanEco
             Response.Redirect(Request.RawUrl);
         }
 
+        protected void Btn_ShowImage_Click(object sender, EventArgs e) {
+            
+        }
+
         public bool IsAdmin()
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             return empconnected.username == "admin";
+        }
+
+        public bool ShowImage(object path) {
+            string filePath = (string)path;
+
+            return File.Exists(Server.MapPath(filePath)) && filePath != "";
         }
     }
 }

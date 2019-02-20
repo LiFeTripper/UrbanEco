@@ -19,12 +19,7 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Redirection si l'utilisateur a été autorisé (Admin, Bureau, Terrain)
-
-            if (!Authentification.Autorisation(true, false, false))
-            {
-                Response.Redirect("Login.aspx");
-            }
+            Autorisation2.Autorisation(false, false);
 
             //A la base, on assume que ce n'est pas un nouvel employé
             insert = false;

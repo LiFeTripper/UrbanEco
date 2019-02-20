@@ -11,7 +11,6 @@
             width: 30px !important;
         }
     </style>
-    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -77,6 +76,7 @@
 
                                 <asp:ImageButton CssClass="btn-option" ID="Btn_Modif" runat="server" src="Resources/Pencil.png" Style="margin-right: 10px;" OnClick="Btn_Modif_Click" CommandArgument='<%# Eval("idDepense")%>' />
                                 <asp:ImageButton CssClass="btn-option" Visible='<%# IsAdmin() %>' ID="Btn_Approve" runat="server" src="Resources/checkmark.png" OnClick="Btn_Approve_Click" CommandArgument='<%# Eval("idDepense")%>' />
+                                <asp:ImageButton CssClass="btn-option" Visible='<%# ShowImage(Eval("facturePath")) %>' ID="Btn_Facture" runat="server" src="Resources/icon-image.png" OnClientClick="showImage(this); return false;" alt='<%# Eval("facturePath")%>'/>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -107,4 +107,10 @@
         <%--DATASOURCE--%>
         <%--<asp:LinqDataSource ID="LinqEmploye" runat="server" ContextTypeName="UrbanEco.CoecoDataContext" EntityTypeName="" TableName="tbl_Employe" OrderBy="prenom, nom" />--%>
     </form>
+    <script>
+        function showImage(path) {
+            bootbox.alert('Voici votre facture<br/><img style="max-width:100%;" src="' + path.alt + '" />');
+        }
+        
+    </script>
 </asp:Content>

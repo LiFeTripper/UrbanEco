@@ -127,8 +127,11 @@
     <Content Include="ParametreAdmin.aspx" />
     <Content Include="Projets.aspx" />
     <Content Include="Rapport.aspx" />
+    <Content Include="RapportDepense.aspx" />
+    <Content Include="RapportDepensePage.aspx" />
     <Content Include="RapportPage.aspx" />
     <Content Include="Rapports\rapportPage.css" />
+    <Content Include="Rapports\rapportPage.print.css" />
     <Content Include="Resources\add.ico" />
     <Content Include="Resources\checkmark.png" />
     <Content Include="Resources\folder_open.png" />
@@ -175,7 +178,6 @@
     <Compile Include="AjoutProjets.aspx.designer.cs">
       <DependentUpon>AjoutProjets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Authentification.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -274,6 +276,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RapportDepense.aspx.cs">
+      <DependentUpon>RapportDepense.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RapportDepense.aspx.designer.cs">
+      <DependentUpon>RapportDepense.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RapportDepenses\RapportDepenseNode.cs" />
+    <Compile Include="RapportDepensePage.aspx.cs">
+      <DependentUpon>RapportDepensePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RapportDepensePage.aspx.designer.cs">
+      <DependentUpon>RapportDepensePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RapportPage.aspx.cs">
       <DependentUpon>RapportPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -308,9 +325,11 @@
       <LastGenOutput>Coeco.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Compile Include="Autorisation2.cs" />
     <None Include="Coeco.dbml.layout">
       <DependentUpon>Coeco.dbml</DependentUpon>
     </None>
+    <Content Include="libman.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -333,7 +352,35 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

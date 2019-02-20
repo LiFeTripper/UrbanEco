@@ -18,7 +18,7 @@
 
         <div class="col-md-8" style="float: left;" runat="server" id="tbl_resume">
             <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
-
+            Bienvenue dans la gestion des projets de Co-Éco!
          
         </div>
         <div class="col-md-4" style="float:left;">

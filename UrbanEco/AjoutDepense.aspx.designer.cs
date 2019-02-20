@@ -166,6 +166,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_note;
         
         /// <summary>
+        /// imageUploading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl imageUploading;
+        
+        /// <summary>
         /// fuimage control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,24 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fuimage;
+        
+        /// <summary>
+        /// imgpreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgpreview;
+        
+        /// <summary>
+        /// base64img control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden base64img;
         
         /// <summary>
         /// alert_success control.

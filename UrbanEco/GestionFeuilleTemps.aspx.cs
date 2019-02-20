@@ -25,13 +25,9 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, true, true))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(true, true);
             CoecoDataContext ctx = new CoecoDataContext();
-            empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (!IsPostBack)
             {
@@ -111,7 +107,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             return empconnected.username == "admin";
         }
@@ -330,7 +326,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (empConnected.username == "admin")
             {
@@ -462,18 +458,6 @@ namespace UrbanEco
             Calendar2.Value = "1/1/3000";
 
             RequeryFT(DateTime.Parse(Calendar1.Value), DateTime.Parse(Calendar2.Value));
-        }
-
-        protected void chbx_approved_CheckedChanged(object sender, EventArgs e)
-        {
-            return;
-            CheckBox ch = ((CheckBox)sender);
-
-            //rptr_EmployeApprouver.Visible = ch.Checked;
-            //lbl_approved.Visible = ch.Checked;
-
-            Rptr_EmployeNonApprouver.Visible = !ch.Checked;
-            //lbl_attente.Visible = !ch.Checked;
         }
 
         protected int GetWeekToYear(DateTime date)
