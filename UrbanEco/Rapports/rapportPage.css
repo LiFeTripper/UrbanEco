@@ -8,8 +8,29 @@
     margin-top: 20px;
 }
 
+#infosRapport {
+    width: 450px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.spantwo {
+    grid-column: span 2;
+}
+
+.btn {
+    width: 180px;
+    height: 35px;
+}
+
 @media print {
     #btn_Imprimer {
-        display: none !important;
+        display: none;
     }
+
+    #BodyPlaceHolder_btn_excel {
+        display: none;
+    }
+
+
 }
