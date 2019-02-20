@@ -46,16 +46,7 @@ namespace UrbanEco {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_erreur;
-        
-        /// <summary>
-        /// Contrôle lbl_success.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_success;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_erreur;
         
         /// <summary>
         /// Contrôle rapportRepeater.

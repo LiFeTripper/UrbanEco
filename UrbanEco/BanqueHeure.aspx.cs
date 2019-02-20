@@ -250,6 +250,26 @@ namespace UrbanEco
             {
                 int idInt = GetIDEmp(nomEmp);
 
+                var BanqueHeureEmpl = from tbl in ctx.tbl_BanqueHeure
+                                      where tbl.idEmploye == idInt
+                                      select tbl;
+
+
+                if (BanqueHeureEmpl.Count() != 5)
+                {
+                    //Init la banque d'heure
+                    for (int i = 0; i < 5; i++)
+                    {
+                        tbl_BanqueHeure bh = new tbl_BanqueHeure();
+                        bh.idEmploye = idInt;
+                        bh.idTypeHeure = i + 1;
+                        bh.nbHeure = bh.nbHeureInitial = 0;
+                        ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
+                    }
+
+                    ctx.SubmitChanges();
+                }
+
                 var BH = from tblBH in ctx.tbl_BanqueHeure
                          where tblBH.idEmploye == idInt
                          select tblBH;
@@ -291,6 +311,27 @@ namespace UrbanEco
         protected void load_BHemp(int idEmploye)
         {
             CoecoDataContext ctx = new CoecoDataContext();
+
+            var BanqueHeureEmpl = from tbl in ctx.tbl_BanqueHeure
+                                  where tbl.idEmploye == idEmploye
+                                  select tbl;
+
+
+            if (BanqueHeureEmpl.Count() != 5)
+            {
+                //Init la banque d'heure
+                for (int i = 0; i < 5; i++)
+                {
+                    tbl_BanqueHeure bh = new tbl_BanqueHeure();
+                    bh.idEmploye = idEmploye;
+                    bh.idTypeHeure = i + 1;
+                    bh.nbHeure = bh.nbHeureInitial = 0;
+                    ctx.tbl_BanqueHeure.InsertOnSubmit(bh);
+                }
+
+                ctx.SubmitChanges();
+            }
+
             var BH = BD.GetBanqueHeure(ctx,idEmploye);
 
             tbl_BH.Enabled = true;
