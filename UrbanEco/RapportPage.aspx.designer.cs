@@ -46,7 +46,7 @@ namespace UrbanEco {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_erreur;
+        protected global::System.Web.UI.WebControls.Label lbl_erreur;
         
         /// <summary>
         /// lbl_success control.
@@ -55,7 +55,7 @@ namespace UrbanEco {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_success;
+        protected global::System.Web.UI.WebControls.Label lbl_success;
         
         /// <summary>
         /// rapportRepeater control.

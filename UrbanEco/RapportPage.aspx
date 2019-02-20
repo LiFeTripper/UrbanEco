@@ -16,8 +16,8 @@
         <button id="btn_Imprimer" class="btn btn-raised btn-secondary" onclick="window.print();return false;">Imprimer</button>
         <form runat="server">
             <asp:Button ID="btn_excel" CssClass="btn btn-raised btn-success" runat="server" Text="Exporter vers Excel" OnClick="btn_excel_Click"/>
-            <h2 id="lbl_erreur" class="alert alert-danger" visible="false" runat="server" text="Erreur"></h2>
-            <h2 id="lbl_success" class="alert alert-success" visible="false" runat="server" text="Succès"></h2>
+            <asp:Label runat="server" ID="lbl_erreur" CssClass="alert alert-danger"></asp:Label>
+            <asp:Label runat="server" id="lbl_success" class="alert alert-success"></asp:Label>
         </form>
     </div>
     
