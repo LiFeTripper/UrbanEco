@@ -244,7 +244,7 @@ namespace UrbanEco
                 ctx.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
                 ctx.SubmitChanges();
 
-                Response.Redirect("GestionFeuilleTemps.aspx");
+                Response.Redirect("AjoutFT.aspx?FT=New");
 
                 ((Button)sender).Enabled = true;
             }
