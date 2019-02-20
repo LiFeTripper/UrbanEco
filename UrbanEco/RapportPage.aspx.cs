@@ -8,7 +8,6 @@ using System.IO;
 using UrbanEco.Rapports;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
-using System.Net;
 using System.Diagnostics;
 
 namespace UrbanEco
