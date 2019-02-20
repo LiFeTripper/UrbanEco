@@ -484,18 +484,6 @@ namespace UrbanEco
             RequeryFT(DateTime.Parse(Calendar1.Value), DateTime.Parse(Calendar2.Value));
         }
 
-        protected void chbx_approved_CheckedChanged(object sender, EventArgs e)
-        {
-            return;
-            CheckBox ch = ((CheckBox)sender);
-
-            //rptr_EmployeApprouver.Visible = ch.Checked;
-            //lbl_approved.Visible = ch.Checked;
-
-            Rptr_EmployeNonApprouver.Visible = !ch.Checked;
-            //lbl_attente.Visible = !ch.Checked;
-        }
-
         protected int GetWeekToYear(DateTime date)
         {
             if (dimanches.Count == 0)

@@ -400,11 +400,6 @@ namespace UrbanEco
             }
         }
 
-        
-                
-
-        
-
         /// <summary>
         /// Le projet est changé
         /// </summary>

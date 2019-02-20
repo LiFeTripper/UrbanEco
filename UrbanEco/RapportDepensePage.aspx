@@ -18,12 +18,12 @@
     <asp:Repeater id="rapportRepeater" runat="server">
         <ItemTemplate>
             <div class="rapport_div cat_div">
-                <h3><%# Eval("Nom") %> (<%# Eval("TotalDepense.ToString(\"2c\");") %> $)</h3>
+                <h3><%# Eval("Nom") %> (<%# FormatMontant(Eval("TotalDepense")) %>)</h3>
                <%-- Loop Through Dépenses --%>
                 <asp:Repeater runat="server" DataSource='<%# Eval("Childs") %>'>
                     <ItemTemplate>
                         <div class="rapport_div">
-                            <p><%# Eval("Nom") %> (<%# Eval("TotalDepense.ToString(\"2c\");") %> $)</p>
+                            <p><%# Eval("Nom") %> (<%# FormatMontant(Eval("TotalDepense")) %>)</p>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
