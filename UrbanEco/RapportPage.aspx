@@ -14,7 +14,9 @@
     <button id="btn_Imprimer" class="btn btn-raised btn-success" onclick="window.print();return false;">Imprimer</button>
     <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
     <form runat="server">
-        <asp:Button ID="btn_excel" runat="server" Text="Esti d'Excel" OnClick="btn_excel_Click"/>
+        <asp:Button ID="btn_excel" CssClass="btn btn-lg btn-success" runat="server" Text="Exporter en Excel" OnClick="btn_excel_Click"/>
+        <h2 id="lbl_erreur" class="alert alert-danger" visible="false" runat="server" text="Erreur"></h2>
+        <h2 id="lbl_success" class="alert alert-success" visible="false" runat="server" text="Succès"></h2>
     </form>
     <asp:repeater id="rapportRepeater" runat="server">
         <itemtemplate>
