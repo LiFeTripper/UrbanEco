@@ -83,16 +83,6 @@ span {
         text-align: center;
     }
 
-    #sidebar .sidebar-header:after {
-        content: "";
-        position: absolute;
-        width: 25%;
-        bottom: 0px;
-        left: 38%;
-        height: 2px;
-        background-color: white;
-    }
-
     #sidebar .sidebar-header strong {
         display: none;
         font-size: 1.8em;
