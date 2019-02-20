@@ -22,7 +22,7 @@ namespace UrbanEco
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco_test")]
 	public partial class CoecoDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -920,6 +920,8 @@ namespace UrbanEco
 		
 		private string _typeDepense;
 		
+		private string _facturePath;
+		
 		private System.Nullable<int> _idProjetCat;
 		
 		private string _note;
@@ -931,8 +933,6 @@ namespace UrbanEco
 		private System.Nullable<float> _prixKilometrage;
 		
 		private bool _approuver;
-		
-		private string _facturePath;
 		
 		private EntityRef<tbl_Employe> _tbl_Employe;
 		
@@ -948,6 +948,8 @@ namespace UrbanEco
     partial void OnidEmployeChanged();
     partial void OntypeDepenseChanging(string value);
     partial void OntypeDepenseChanged();
+    partial void OnfacturePathChanging(string value);
+    partial void OnfacturePathChanged();
     partial void OnidProjetCatChanging(System.Nullable<int> value);
     partial void OnidProjetCatChanged();
     partial void OnnoteChanging(string value);
@@ -960,8 +962,6 @@ namespace UrbanEco
     partial void OnprixKilometrageChanged();
     partial void OnapprouverChanging(bool value);
     partial void OnapprouverChanged();
-    partial void OnfacturePathChanging(string value);
-    partial void OnfacturePathChanged();
     #endregion
 		
 		public tbl_Depense()
@@ -1031,6 +1031,26 @@ namespace UrbanEco
 					this._typeDepense = value;
 					this.SendPropertyChanged("typeDepense");
 					this.OntypeDepenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facturePath", DbType="VarChar(MAX)")]
+		public string facturePath
+		{
+			get
+			{
+				return this._facturePath;
+			}
+			set
+			{
+				if ((this._facturePath != value))
+				{
+					this.OnfacturePathChanging(value);
+					this.SendPropertyChanging();
+					this._facturePath = value;
+					this.SendPropertyChanged("facturePath");
+					this.OnfacturePathChanged();
 				}
 			}
 		}
@@ -1155,26 +1175,6 @@ namespace UrbanEco
 					this._approuver = value;
 					this.SendPropertyChanged("approuver");
 					this.OnapprouverChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facturePath", DbType="VarChar(MAX)")]
-		public string facturePath
-		{
-			get
-			{
-				return this._facturePath;
-			}
-			set
-			{
-				if ((this._facturePath != value))
-				{
-					this.OnfacturePathChanging(value);
-					this.SendPropertyChanging();
-					this._facturePath = value;
-					this.SendPropertyChanged("facturePath");
-					this.OnfacturePathChanged();
 				}
 			}
 		}
