@@ -157,7 +157,6 @@ namespace UrbanEco
 
             lbl_success.Visible = true;
             lbl_success.Text = "Exportation Excel réussie !";
-
             DownloadFile(filePath);
 
         }
