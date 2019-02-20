@@ -22,6 +22,11 @@ namespace UrbanEco
         {
             Autorisation2.Autorisation(false, false);
             chercherRapport();
+
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+
+            btn_excel.Visible = isExcelInstalled;
+
         }
 
         private void chercherRapport()
@@ -87,164 +92,111 @@ namespace UrbanEco
 
             bool ExcelGeneratedWithError = false;
 
-            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+            uint processId = 0;
 
-            //Export XLSX
-            if (!isExcelInstalled)
+            try
             {
-                uint processId = 0;
+                //Open Excel
+                xlApp = new Excel.Application();
+                xlWorkBook = xlApp.Workbooks.Add(misValue);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
-                try
-                {
-                    //Open Excel
-                    xlApp = new Excel.Application();
-                    xlWorkBook = xlApp.Workbooks.Add(misValue);
-                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                xlApp.Visible = false;
 
-                    xlApp.Visible = false;
+                int indexX = 1;
 
-                    int indexX = 1;
-
-                    GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
-
-                    //Projet
-                    for (int x = 0; x < rapportNode.Child.Count; x++)
-                    {
-                        var projet = rapportNode.Child[x];
-                        //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
-                        indexX++;
-
-
-                        //Sous-Catégorie
-                        for (int y = 0; y < projet.Child.Count; y++)
-                        {
-                            var s_cat = projet.Child[y];
-                            //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
-                            //xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
-                            indexX++;
-
-
-                            //Employé
-                            for (int z = 0; z < s_cat.Child.Count; z++)
-                            {
-                                var emp = s_cat.Child[z];
-
-                                xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
-                                xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
-                                xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
-                                xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure);
-                                indexX++;
-                            }
-                        }
-                    }
-
-                    //Delete existing file
-                    if (File.Exists(filepath))
-                    {
-                        File.Delete(filepath);
-                    }
-
-                    //Save file
-                    FileInfo info = new FileInfo(filepath);
-
-                    xlWorkBook.SaveAs(info);
-
-                    ExcelGeneratedWithError = false;
-
-                }
-                catch (Exception ex)
-                {
-                    ExcelGeneratedWithError = true;
-                    lbl_erreur.Visible = true;
-                    lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
-                }
-                finally
-                {
-                    xlWorkBook.Close(0);
-                    xlApp.Application.Quit();
-
-
-                    //Kill processId Excel
-                    if (processId != 0)
-                    {
-                        Process excelProcess = Process.GetProcessById((int)processId);
-                        excelProcess.CloseMainWindow();
-                        excelProcess.Refresh();
-                        excelProcess.Kill();
-                    }
-
-                    //release COM object
-                    try
-                    {
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
-                        xlWorkSheet = null;
-                        xlWorkBook = null;
-                        xlApp = null;
-                    }
-                    catch (Exception ex)
-                    {
-                        xlWorkSheet = null;
-                        xlWorkBook = null;
-                        xlApp = null;
-                        lbl_erreur.Visible = true;
-                        lbl_erreur.InnerText = ("Exception Occured while releasing object " + ex.ToString());
-                    }
-                    finally
-                    {
-                        GC.Collect();
-                    }
-                }       
-            }
-            else //Export CSV
-            {
-                string fileContent = "Nom Projet;Nom Catégorie;Nom Employé;Nombre d'heure";
-                fileContent += "\n";
+                GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
 
                 //Projet
                 for (int x = 0; x < rapportNode.Child.Count; x++)
                 {
                     var projet = rapportNode.Child[x];
+                    //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+                    indexX++;
 
-                    fileContent += "Total de " + projet.Nom + "; ; ;";
-                    fileContent += formatHeureFloat(projet.NbHeure);
-                    fileContent += "\n";
 
                     //Sous-Catégorie
                     for (int y = 0; y < projet.Child.Count; y++)
                     {
                         var s_cat = projet.Child[y];
-                        fileContent += "Total de " + s_cat.Nom + "; ; ;";
-                        fileContent += formatHeureFloat(s_cat.NbHeure);
+                        //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+                        //xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
+                        indexX++;
+
 
                         //Employé
                         for (int z = 0; z < s_cat.Child.Count; z++)
                         {
                             var emp = s_cat.Child[z];
 
-                            fileContent += projet.Nom + ";";
-                            fileContent += s_cat.Nom + ";";
-                            fileContent += emp.Nom + ";";
-                            fileContent += formatHeureFloat(emp.NbHeure);
-                            fileContent += "\n";
+                            xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+                            xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
+                            xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
+                            xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure);
+                            indexX++;
                         }
                     }
                 }
 
-                if (fileContent.Length != 0)
+                //Delete existing file
+                if (File.Exists(filepath))
                 {
-                    filename = "RapportProjet.csv";
-                    directory = Server.MapPath("Excel/");
-                    filepath = directory + filename;
+                    File.Delete(filepath);
+                }
 
-                    if (!Directory.Exists(directory))
-                        Directory.CreateDirectory(directory);
+                //Save file
+                FileInfo info = new FileInfo(filepath);
+
+                xlWorkBook.SaveAs(info);
+
+                ExcelGeneratedWithError = false;
+
+            }
+            catch (Exception ex)
+            {
+                ExcelGeneratedWithError = true;
+                lbl_erreur.Visible = true;
+                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
+            }
+            finally
+            {
+                xlWorkBook.Close(0);
+                xlApp.Application.Quit();
 
 
-                    File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
+                //Kill processId Excel
+                if (processId != 0)
+                {
+                    Process excelProcess = Process.GetProcessById((int)processId);
+                    excelProcess.CloseMainWindow();
+                    excelProcess.Refresh();
+                    excelProcess.Kill();
+                }
+
+                //release COM object
+                try
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+                    xlWorkSheet = null;
+                    xlWorkBook = null;
+                    xlApp = null;
+                }
+                catch (Exception ex)
+                {
+                    xlWorkSheet = null;
+                    xlWorkBook = null;
+                    xlApp = null;
+                    lbl_erreur.Visible = true;
+                    lbl_erreur.InnerText = ("Exception Occured while releasing object " + ex.ToString());
+                }
+                finally
+                {
+                    GC.Collect();
                 }
             }
+
 
             if (!ExcelGeneratedWithError)
                 DownloadFile(filepath, filename);
@@ -268,6 +220,58 @@ namespace UrbanEco
                 lbl_erreur.Visible = true;
                 lbl_erreur.InnerText = "Impossible de télécharger le fichier Excel : " + ex.Message;
             }
+        }
+
+        protected void btn_excel_csv_Click(object sender, EventArgs e)
+        {
+            string filename = "RapportProjet.csv";
+            string directory = Server.MapPath("Excel/");
+            string filepath = directory + filename;
+
+            RapportNode rapportNode = (RapportNode)Session["rapportNode"];
+
+            string fileContent = "Nom Projet;Nom Catégorie;Nom Employé;Nombre d'heure";
+            fileContent += "\n";
+
+            //Projet
+            for (int x = 0; x < rapportNode.Child.Count; x++)
+            {
+                var projet = rapportNode.Child[x];
+
+                fileContent += "Total de " + projet.Nom + "; ; ;";
+                fileContent += formatHeureFloat(projet.NbHeure);
+                fileContent += "\n";
+
+                //Sous-Catégorie
+                for (int y = 0; y < projet.Child.Count; y++)
+                {
+                    var s_cat = projet.Child[y];
+                    fileContent += "Total de " + s_cat.Nom + "; ; ;";
+                    fileContent += formatHeureFloat(s_cat.NbHeure);
+
+                    //Employé
+                    for (int z = 0; z < s_cat.Child.Count; z++)
+                    {
+                        var emp = s_cat.Child[z];
+
+                        fileContent += projet.Nom + ";";
+                        fileContent += s_cat.Nom + ";";
+                        fileContent += emp.Nom + ";";
+                        fileContent += formatHeureFloat(emp.NbHeure);
+                        fileContent += "\n";
+                    }
+                }
+            }
+
+            if (fileContent.Length != 0)
+            {
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+
+                File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
+            }
+
+            DownloadFile(filepath, filename);
         }
     }
 }
