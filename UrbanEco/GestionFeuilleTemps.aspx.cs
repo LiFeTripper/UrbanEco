@@ -25,13 +25,9 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Authentification.Autorisation(true, true, true))
-            {
-                Response.Redirect("Login.aspx");
-            }
-
+            Autorisation2.Autorisation(true, true);
             CoecoDataContext ctx = new CoecoDataContext();
-            empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (!IsPostBack)
             {
@@ -111,7 +107,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             return empconnected.username == "admin";
         }
@@ -184,8 +180,6 @@ namespace UrbanEco
 
         protected void SwitchTypeBHCongés(tbl_FeuilleTemps FT)
         {
-            try
-            {
                 // Si la catégorie de la feuille de temps est une banque d'heure
                 // On ajuste la banque d'heure
                 // SC = Sous-catégorie
@@ -197,27 +191,22 @@ namespace UrbanEco
                     case "Congés fériés":
                         EnleverHeuresBH(2, FT);
                         break;
-                    case "Congés vacances":
+                    case "Vacances":
                         EnleverHeuresBH(4, FT);
                         break;
-                    case "Temps supplémentaires":
+                    case "Heures accumulées ou sans solde":
                         EnleverHeuresBH(1, FT);
                         break;
-                    case "Congés maladies":
+                    case "Congés maladie":
                         EnleverHeuresBH(5, FT);
                         break;
-                    case "Congé personnelle":
+                    case "Congés personnels":
                         EnleverHeuresBH(3, FT);
                         break;
                     default:
                         CheckTempsSupp(FT);
                         break;
                 }
-            }
-            catch (Exception e)
-            {
-                CheckTempsSupp(FT);
-            }
         }
 
         protected void EnleverHeuresBH(int idTypeHeure, tbl_FeuilleTemps FT)
@@ -330,7 +319,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
+            tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (empConnected.username == "admin")
             {
@@ -575,13 +564,13 @@ namespace UrbanEco
                 {
                     case "Congés fériés":
                         break;
-                    case "Congés vacances":
+                    case "Vacances":
                         break;
-                    case "Temps supplémentaires":
+                    case "Heures accumuléees ou sans solde":
                         break;
-                    case "Congés maladies":
+                    case "Congés maladie":
                         break;
-                    case "Congé personnelle":
+                    case "Congés personnels":
                         break;
                     default:
                         // Si le nombre d'heure est du temps sup
@@ -616,13 +605,13 @@ namespace UrbanEco
                 {
                     case "Congés fériés":
                         break;
-                    case "Congés vacances":
+                    case "Vacances":
                         break;
-                    case "Temps supplémentaires":
+                    case "Heures accumuléees ou sans solde":
                         break;
-                    case "Congés maladies":
+                    case "Congés maladie":
                         break;
-                    case "Congé personnelle":
+                    case "Congés personnels":
                         break;
                     default:
                         if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
