@@ -19,7 +19,6 @@
         <asp:label runat="server" id="lbl_success" class="alert alert-success"></asp:label>
     </form>
 
-
     <asp:repeater id="rapportRepeater" runat="server">
         <itemtemplate>
             <%-- Loop Through Projects --%>
