@@ -142,27 +142,27 @@ namespace UrbanEco
             releaseComObject(xlWorkBook);
             releaseComObject(xlApp);
 
-            try
-            {
-                Response.ContentType = "Application/xlsx";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=RapportProjet.xlsx");
-                Response.TransmitFile(filePath);
-                Response.End();
-
-                lbl_success.Visible = true;
-                lbl_success.InnerText = "Exportation Excel réussie !";
-            }
-            catch(Exception ex)
-            {
-                lbl_erreur.Visible = true;
-                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
-            }
+            DownloadFile(filePath);
 
         }
 
         private void DownloadFile(string filepath)
         {
+            try
+            {
+                Response.ContentType = "Application/xlsx";
+                Response.AppendHeader("Content-Disposition", "attachment; filename=RapportProjet.xlsx");
+                Response.TransmitFile(filepath);
+                Response.End();
 
+                lbl_success.Visible = true;
+                lbl_success.InnerText = "Exportation Excel réussie !";
+            }
+            catch (Exception ex)
+            {
+                lbl_erreur.Visible = true;
+                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
+            }
         }
 
         private void releaseComObject(object obj)

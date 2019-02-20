@@ -16,13 +16,13 @@
             <span runat="server" class="alert alert-danger" style="width: 100%;" id="alert_danger_sunday" visible="false"><b>Le premier dimanche de l'année est expiré !</b> Veuillez aller le mettre à jour dans l'onglet "Paramètres Administrateur".</span>
         </div>
 
-        <div class="col-md-8" style="float: left;" runat="server" id="tbl_resume">
+        <div runat="server" id="tbl_resume">
             <%--CODE REPEATER DE FEUILLES DE TEMPS NON-APPROUVER--%>
-            Bienvenue dans la gestion des projets de Co-Éco!
+            <h5>Bienvenue dans la gestion des projets de Co-Éco!</h5>
          
         </div>
-        <div class="col-md-4" style="float:left;">
-            <asp:Button ID="btn_download" CssClass="btn btn-raised btn-success" runat="server" Text="Télécharger le guide d'utilisateur" OnClick="btn_download_Click" style="float:right;" />
+        <div class="" >
+            <asp:Button ID="btn_download" CssClass="btn btn-raised btn-success" runat="server" Text="Télécharger le guide d'utilisateur" OnClick="btn_download_Click"/>
         </div>
 
     </form>
