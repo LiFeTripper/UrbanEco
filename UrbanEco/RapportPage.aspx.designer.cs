@@ -40,6 +40,24 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_excel;
         
         /// <summary>
+        /// Contrôle lbl_erreur.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_erreur;
+        
+        /// <summary>
+        /// Contrôle lbl_success.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_success;
+        
+        /// <summary>
         /// Contrôle rapportRepeater.
         /// </summary>
         /// <remarks>

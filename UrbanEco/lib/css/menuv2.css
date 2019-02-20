@@ -78,7 +78,7 @@ span {
 
 
     #sidebar .sidebar-header {
-        padding: 20px;
+        padding: 20px 20px 10px 20px;
         background: #1B7B04;
         text-align: center;
         position: relative;
@@ -90,7 +90,7 @@ span {
         width: 25%;
         bottom: 0px;
         left: 38%;
-        height: 2px;
+        height: 1px;
         background-color: white;
     }
 
