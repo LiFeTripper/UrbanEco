@@ -25,9 +25,13 @@ namespace UrbanEco
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Autorisation2.Autorisation(true, true);
+            if (!Authentification.Autorisation(true, true, true))
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             CoecoDataContext ctx = new CoecoDataContext();
-            empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
+            empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
             if (!IsPostBack)
             {
@@ -107,7 +111,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empconnected = BD.GetUserConnected(ctx, Session["username"].ToString());
+            tbl_Employe empconnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
             return empconnected.username == "admin";
         }
@@ -326,7 +330,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
+            tbl_Employe empConnected = BD.GetUserConnected(ctx, Request.Cookies["userInfo"]);
 
             if (empConnected.username == "admin")
             {
@@ -460,6 +464,18 @@ namespace UrbanEco
             RequeryFT(DateTime.Parse(Calendar1.Value), DateTime.Parse(Calendar2.Value));
         }
 
+        protected void chbx_approved_CheckedChanged(object sender, EventArgs e)
+        {
+            return;
+            CheckBox ch = ((CheckBox)sender);
+
+            //rptr_EmployeApprouver.Visible = ch.Checked;
+            //lbl_approved.Visible = ch.Checked;
+
+            Rptr_EmployeNonApprouver.Visible = !ch.Checked;
+            //lbl_attente.Visible = !ch.Checked;
+        }
+
         protected int GetWeekToYear(DateTime date)
         {
             if (dimanches.Count == 0)
@@ -548,37 +564,84 @@ namespace UrbanEco
             // Loop sur chaque feuille de la semaine passé
             foreach (tbl_FeuilleTemps feuilleDeTemps in querrySemainePrecedente)
             {
-                // Si le nombre d'heure est du temps sup
-                if (totalHeuresSemainePrecendante > nbHeureSemaineEmp)
+
+                // Si la catégorie de la feuille de temps est une banque d'heure
+                // On ajuste la banque d'heure
+                // SC = Sous-catégorie
+                var SC = from tblSC in cdc.tbl_ProjetCat
+                         where tblSC.idProjetCat == FT.idCat
+                         select tblSC;
+                switch (SC.First().titre)
                 {
-                    totalHeuresSemainePrecendante += (feuilleDeTemps.nbHeure * 1.5f);
+                    case "Congés fériés":
+                        break;
+                    case "Congés vacances":
+                        break;
+                    case "Temps supplémentaires":
+                        break;
+                    case "Congés maladies":
+                        break;
+                    case "Congé personnelle":
+                        break;
+                    default:
+                        // Si le nombre d'heure est du temps sup
+                        if (totalHeuresSemainePrecendante > nbHeureSemaineEmp)
+                        {
+                            totalHeuresSemainePrecendante += (feuilleDeTemps.nbHeure * 1.5f);
+                        }
+                        else if (totalHeuresSemainePrecendante + feuilleDeTemps.nbHeure > nbHeureSemaineEmp)
+                        {
+                            float tempsEtDemi = feuilleDeTemps.nbHeure - (nbHeureSemaineEmp - totalHeuresSemainePrecendante);
+                            totalHeuresSemainePrecendante = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
+                        }
+                        else
+                        {
+                            totalHeuresSemainePrecendante += feuilleDeTemps.nbHeure;
+                        }
+                        break;
                 }
-                else if (totalHeuresSemainePrecendante + feuilleDeTemps.nbHeure > nbHeureSemaineEmp)
-                {
-                    float tempsEtDemi = feuilleDeTemps.nbHeure - (nbHeureSemaineEmp - totalHeuresSemainePrecendante);
-                    totalHeuresSemainePrecendante = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
-                }
-                else
-                {
-                    totalHeuresSemainePrecendante += feuilleDeTemps.nbHeure;
-                }
+
+                
             }
 
             foreach (tbl_FeuilleTemps tbl in querrySemaineActuelle)
             {
-                if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
+                // Si la catégorie de la feuille de temps est une banque d'heure
+                // On ajuste la banque d'heure
+                // SC = Sous-catégorie
+                var SC = from tblSC in cdc.tbl_ProjetCat
+                         where tblSC.idProjetCat == tbl.idCat
+                         select tblSC;
+                switch (SC.First().titre)
                 {
-                    nbHeureSemaineActuelle += (tbl.nbHeure * 1.5f);
+                    case "Congés fériés":
+                        break;
+                    case "Congés vacances":
+                        break;
+                    case "Temps supplémentaires":
+                        break;
+                    case "Congés maladies":
+                        break;
+                    case "Congé personnelle":
+                        break;
+                    default:
+                        if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
+                        {
+                            nbHeureSemaineActuelle += (tbl.nbHeure * 1.5f);
+                        }
+                        else if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
+                        {
+                            float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemaineActuelle);
+                            nbHeureSemaineActuelle = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
+                        }
+                        else
+                        {
+                            nbHeureSemaineActuelle += tbl.nbHeure;
+                        }
+                        break;
                 }
-                else if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
-                {
-                    float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemaineActuelle);
-                    nbHeureSemaineActuelle = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
-                }
-                else
-                {
-                    nbHeureSemaineActuelle += tbl.nbHeure;
-                }
+
+                
             }
 
             // Avant: 35
