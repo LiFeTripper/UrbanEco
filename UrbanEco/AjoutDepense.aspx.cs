@@ -18,7 +18,7 @@ namespace UrbanEco
             Gestion des erreurs (champs vide)
         */
 
-
+        private tbl_Employe empConnected;
 
         protected enum TypeKm { Voiture, Camion, Nothing}
         protected static TypeKm typeKm = TypeKm.Voiture;
@@ -31,21 +31,16 @@ namespace UrbanEco
             //Empecher la page de remonter a chaque action
             Page.MaintainScrollPositionOnPostBack = true;
 
-            
+            CoecoDataContext ctx = new CoecoDataContext();
+            empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
 
             if (!IsPostBack)
             {
-
-                CoecoDataContext ctx = new CoecoDataContext();
-
                 List<ListItem> ListTypeDepense = new List<ListItem>();
 
-                tbl_Employe empConnected = BD.GetUserConnected(ctx, Session["username"].ToString());
                 tbl_TypeEmploye typeEmpl = empConnected.tbl_TypeEmploye;
 
-
                 prixKilometrage = BD.GetDeplacementPrice(ctx);
-
 
                 //Nouvelle dépense
                 if (Request.QueryString["Dep"] == "New")
@@ -95,8 +90,10 @@ namespace UrbanEco
 
                     var query_Dépense_Kilometrage = BD.GetDepenseDeplacement(ctx);
 
-                    var query_Type_Depense_UserType = BD.GetTypeDepense(ctx,empConnected.idTypeEmpl);
-
+                    List<tbl_TypeDepense> query_Type_Depense_UserType = new List<tbl_TypeDepense>();
+                    if (empConnected.username != "admin") {
+                        query_Type_Depense_UserType = BD.GetTypeDepense(ctx, empConnected.idTypeEmpl);
+                    }
 
                     ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
 
@@ -145,7 +142,7 @@ namespace UrbanEco
 
                     var queryKilometreDepense = BD.GetDepenseDeplacement(ctx);
 
-                    var queryTypeDepense = BD.GetTypeDepense(ctx,empConnected.idTypeEmpl);
+                    List<tbl_TypeDepense> queryTypeDepense = BD.GetTypeDepense(ctx, employe_Associer_depense.idTypeEmpl);
 
                     ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
 
@@ -216,19 +213,19 @@ namespace UrbanEco
                         km_html.Visible = true;
                         typeKm = TypeKm.Voiture;
                         prixTotalKm.InnerText = depenseToModify.montant.ToString();
-                        tbx_nbKm.Text = (depenseToModify.montant / prixKilometrage.prixKilometrageVoiture).ToString();
+                        tbx_nbKm.Text = Math.Round((float)(depenseToModify.montant / prixKilometrage.prixKilometrageVoiture), 1).ToString().Replace(',','.');
                     }
                     else if (depenseToModify.typeDepense == "Déplacement (Camion)")
                     {
                         km_html.Visible = true;
                         typeKm = TypeKm.Camion;
                         prixTotalKm.InnerText = depenseToModify.montant.ToString();
-                        tbx_nbKm.Text = (depenseToModify.montant / prixKilometrage.prixKilometrageCamion).ToString();
+                        tbx_nbKm.Text = Math.Round((float)(depenseToModify.montant / prixKilometrage.prixKilometrageCamion), 1).ToString().Replace(',', '.');
                     }
                     else
                     {
                         montant_html.Visible = true;
-                        tbx_montantNormal.Text = depenseToModify.montant.ToString();
+                        tbx_montantNormal.Text = depenseToModify.montant.ToString().Replace(',','.');
                     }
 
 
@@ -252,7 +249,7 @@ namespace UrbanEco
 
             try
             {
-                if (Request.QueryString["Dep"] == "New")
+                if (Request.QueryString["Dep"] == "New" && tbx_typeDepense.SelectedIndex != 0)
                 {
 
                     //Créer une dépense
@@ -295,23 +292,24 @@ namespace UrbanEco
                     //Si le type de dépense = KM
                     if (km_html.Visible && typeKm != TypeKm.Nothing)
                     {
-                        switch (typeKm)
-                        {
+                        float prix = 0;
+                        float.TryParse(tbx_nbKm.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out prix);
+
+                        switch (typeKm) {
                             case TypeKm.Voiture:
-                                dep.montant = float.Parse(tbx_nbKm.Text) * prixKilometrage.prixKilometrageVoiture;
+                                dep.montant = (float)Math.Round(prix * prixKilometrage.prixKilometrageVoiture, 2);
                                 dep.prixKilometrage = prixKilometrage.prixKilometrageVoiture;
                                 break;
                             case TypeKm.Camion:
-                                dep.montant = float.Parse(tbx_nbKm.Text) * prixKilometrage.prixKilometrageCamion;
+                                dep.montant = (float)Math.Round(prix * prixKilometrage.prixKilometrageCamion, 2);
                                 dep.prixKilometrage = prixKilometrage.prixKilometrageCamion;
                                 break;
                         }
-
                     }
                     else
                     {
                         //Montant autre
-                        dep.montant = float.Parse(tbx_montantNormal.Text);
+                        dep.montant = float.Parse(tbx_montantNormal.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture);
                         dep.prixKilometrage = null;
                     }
 
@@ -342,8 +340,6 @@ namespace UrbanEco
                 }
                 else
                 {
-
-
                     CoecoDataContext context = new CoecoDataContext();
 
                     var querry = from tbl in context.tbl_Depense
@@ -361,23 +357,25 @@ namespace UrbanEco
 
                     if (km_html.Visible && typeKm != TypeKm.Nothing)
                     {
+                        float prix = 0;
+                        float.TryParse(tbx_nbKm.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out prix);
+
                         switch (typeKm)
                         {
                             case TypeKm.Voiture:
-                                tblDep.montant = float.Parse(tbx_nbKm.Text) * prixKilometrage.prixKilometrageVoiture;
+                                tblDep.montant = (float)Math.Round(prix * prixKilometrage.prixKilometrageVoiture, 2);
                                 tblDep.prixKilometrage = prixKilometrage.prixKilometrageVoiture;
                                 break;
                             case TypeKm.Camion:
-                                tblDep.montant = float.Parse(tbx_nbKm.Text) * prixKilometrage.prixKilometrageCamion;
+                                tblDep.montant = (float)Math.Round(prix * prixKilometrage.prixKilometrageCamion, 2);
                                 tblDep.prixKilometrage = prixKilometrage.prixKilometrageCamion;
                                 break;
                         }
-
                     }
                     else
                     {
                         //Montant autre
-                        tblDep.montant = float.Parse(tbx_montantNormal.Text);
+                        tblDep.montant = float.Parse(tbx_montantNormal.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture);
                         tblDep.prixKilometrage = null;
                     }
 
@@ -386,10 +384,6 @@ namespace UrbanEco
                     context.SubmitChanges();
 
                     Response.Redirect("GestionDepense.aspx");
-
-
-
-
                 }
             }
             catch (Exception ex)
@@ -514,7 +508,7 @@ namespace UrbanEco
             if (km_html.Visible && typeKm != TypeKm.Nothing)
             {
                 float prix = -1;
-                float.TryParse(tbx_nbKm.Text, out prix);
+                float.TryParse(tbx_nbKm.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out prix);
 
                 if (prix != -1)
                 {
@@ -523,12 +517,17 @@ namespace UrbanEco
                     switch (typeKm)
                     {
                         case TypeKm.Voiture:
-                            prixtotal = (prix * prixKilometrage.prixKilometrageVoiture) + "$";
+                            prix = prix * prixKilometrage.prixKilometrageVoiture;
+                            prix = (float)Math.Round(prix, 2);
+                            prixtotal = prix + "$";
                             break;
                         case TypeKm.Camion:
-                            prixtotal = (prix * prixKilometrage.prixKilometrageCamion) + "$";
+                            prix = prix * prixKilometrage.prixKilometrageCamion;
+                            prix = (float)Math.Round(prix, 2);
+                            prixtotal = prix + "$";
                             break;
                     }
+
                     //rep_montant.InnerText = prixtotal;
                     prixTotalKm.InnerText = prixtotal;
                 }
@@ -545,6 +544,28 @@ namespace UrbanEco
             //Insérer un text pour sélectionner le projet au début
             tbx_projet.Items.Insert(0, "Veuillez sélectionner le projet");
             tbx_projet.SelectedIndex = 0;
+
+            if (empConnected.username == "admin") {
+                List<ListItem> ListTypeDepense = new List<ListItem>();
+
+                ListTypeDepense.Add(new ListItem("Veuillez sélectionner un type de dépense", "-1"));
+
+                var query_Dépense_Kilometrage = BD.GetDepenseDeplacement(ctx);
+                foreach (var item in query_Dépense_Kilometrage) {
+                    ListItem l = new ListItem(item.nomDepense, item.idTypeDepense.ToString());
+                    ListTypeDepense.Add(l);
+                }
+
+                List<tbl_TypeDepense> query_Type_Depense_UserType = new List<tbl_TypeDepense>();
+                query_Type_Depense_UserType = BD.GetTypeDepense(ctx, BD.GetEmploye(ctx, int.Parse(ddlEmp.SelectedValue)).idTypeEmpl);
+                foreach (var item in query_Type_Depense_UserType) {
+                    ListItem l = new ListItem(item.nomDepense, item.idTypeDepense.ToString());
+                    ListTypeDepense.Add(l);
+                }
+
+                tbx_typeDepense.DataSource = ListTypeDepense;
+                tbx_typeDepense.DataBind();
+            }
         }
     }
 }

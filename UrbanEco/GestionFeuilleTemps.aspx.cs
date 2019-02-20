@@ -180,8 +180,6 @@ namespace UrbanEco
 
         protected void SwitchTypeBHCongés(tbl_FeuilleTemps FT)
         {
-            try
-            {
                 // Si la catégorie de la feuille de temps est une banque d'heure
                 // On ajuste la banque d'heure
                 // SC = Sous-catégorie
@@ -193,27 +191,22 @@ namespace UrbanEco
                     case "Congés fériés":
                         EnleverHeuresBH(2, FT);
                         break;
-                    case "Congés vacances":
+                    case "Vacances":
                         EnleverHeuresBH(4, FT);
                         break;
-                    case "Temps supplémentaires":
+                    case "Heures accumulées ou sans solde":
                         EnleverHeuresBH(1, FT);
                         break;
-                    case "Congés maladies":
+                    case "Congés maladie":
                         EnleverHeuresBH(5, FT);
                         break;
-                    case "Congé personnelle":
+                    case "Congés personnels":
                         EnleverHeuresBH(3, FT);
                         break;
                     default:
                         CheckTempsSupp(FT);
                         break;
                 }
-            }
-            catch (Exception e)
-            {
-                CheckTempsSupp(FT);
-            }
         }
 
         protected void EnleverHeuresBH(int idTypeHeure, tbl_FeuilleTemps FT)
@@ -353,14 +346,22 @@ namespace UrbanEco
             {
                 var queryFTAttente = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, false);
 
-                var queryFTApprouver = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, true);
+               // var queryFTApprouver = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, true);
 
                 Rptr_EmployeNonApprouver.DataSource = null;
                 Rptr_EmployeNonApprouver.DataSourceID = null;
                 Rptr_EmployeNonApprouver.DataBind();
 
-                Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
-                Rptr_EmployeNonApprouver.DataBind();
+                if (queryFTAttente != null)
+                {
+                    Rptr_EmployeNonApprouver.DataSource = queryFTAttente.Distinct();
+                    Rptr_EmployeNonApprouver.DataBind();
+                }
+                else
+                {
+                    alert_aucun.Visible = true;
+                }
+
 
                 /*rptr_EmployeApprouver.DataSource = null;
                 rptr_EmployeApprouver.DataSourceID = null;
@@ -454,10 +455,23 @@ namespace UrbanEco
 
         protected void btn_removefilter_Click(object sender, EventArgs e)
         {
+            alert_aucun.Visible = false;
             Calendar1.Value = "1/1/1754";
             Calendar2.Value = "1/1/3000";
 
             RequeryFT(DateTime.Parse(Calendar1.Value), DateTime.Parse(Calendar2.Value));
+        }
+
+        protected void chbx_approved_CheckedChanged(object sender, EventArgs e)
+        {
+            return;
+            CheckBox ch = ((CheckBox)sender);
+
+            //rptr_EmployeApprouver.Visible = ch.Checked;
+            //lbl_approved.Visible = ch.Checked;
+
+            Rptr_EmployeNonApprouver.Visible = !ch.Checked;
+            //lbl_attente.Visible = !ch.Checked;
         }
 
         protected int GetWeekToYear(DateTime date)
@@ -548,37 +562,84 @@ namespace UrbanEco
             // Loop sur chaque feuille de la semaine passé
             foreach (tbl_FeuilleTemps feuilleDeTemps in querrySemainePrecedente)
             {
-                // Si le nombre d'heure est du temps sup
-                if (totalHeuresSemainePrecendante > nbHeureSemaineEmp)
+
+                // Si la catégorie de la feuille de temps est une banque d'heure
+                // On ajuste la banque d'heure
+                // SC = Sous-catégorie
+                var SC = from tblSC in cdc.tbl_ProjetCat
+                         where tblSC.idProjetCat == FT.idCat
+                         select tblSC;
+                switch (SC.First().titre)
                 {
-                    totalHeuresSemainePrecendante += (feuilleDeTemps.nbHeure * 1.5f);
+                    case "Congés fériés":
+                        break;
+                    case "Vacances":
+                        break;
+                    case "Heures accumuléees ou sans solde":
+                        break;
+                    case "Congés maladie":
+                        break;
+                    case "Congés personnels":
+                        break;
+                    default:
+                        // Si le nombre d'heure est du temps sup
+                        if (totalHeuresSemainePrecendante > nbHeureSemaineEmp)
+                        {
+                            totalHeuresSemainePrecendante += (feuilleDeTemps.nbHeure * 1.5f);
+                        }
+                        else if (totalHeuresSemainePrecendante + feuilleDeTemps.nbHeure > nbHeureSemaineEmp)
+                        {
+                            float tempsEtDemi = feuilleDeTemps.nbHeure - (nbHeureSemaineEmp - totalHeuresSemainePrecendante);
+                            totalHeuresSemainePrecendante = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
+                        }
+                        else
+                        {
+                            totalHeuresSemainePrecendante += feuilleDeTemps.nbHeure;
+                        }
+                        break;
                 }
-                else if (totalHeuresSemainePrecendante + feuilleDeTemps.nbHeure > nbHeureSemaineEmp)
-                {
-                    float tempsEtDemi = feuilleDeTemps.nbHeure - (nbHeureSemaineEmp - totalHeuresSemainePrecendante);
-                    totalHeuresSemainePrecendante = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
-                }
-                else
-                {
-                    totalHeuresSemainePrecendante += feuilleDeTemps.nbHeure;
-                }
+
+                
             }
 
             foreach (tbl_FeuilleTemps tbl in querrySemaineActuelle)
             {
-                if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
+                // Si la catégorie de la feuille de temps est une banque d'heure
+                // On ajuste la banque d'heure
+                // SC = Sous-catégorie
+                var SC = from tblSC in cdc.tbl_ProjetCat
+                         where tblSC.idProjetCat == tbl.idCat
+                         select tblSC;
+                switch (SC.First().titre)
                 {
-                    nbHeureSemaineActuelle += (tbl.nbHeure * 1.5f);
+                    case "Congés fériés":
+                        break;
+                    case "Vacances":
+                        break;
+                    case "Heures accumuléees ou sans solde":
+                        break;
+                    case "Congés maladie":
+                        break;
+                    case "Congés personnels":
+                        break;
+                    default:
+                        if (nbHeureSemaineActuelle > nbHeureSemaineEmp)
+                        {
+                            nbHeureSemaineActuelle += (tbl.nbHeure * 1.5f);
+                        }
+                        else if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
+                        {
+                            float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemaineActuelle);
+                            nbHeureSemaineActuelle = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
+                        }
+                        else
+                        {
+                            nbHeureSemaineActuelle += tbl.nbHeure;
+                        }
+                        break;
                 }
-                else if (nbHeureSemaineActuelle + tbl.nbHeure > nbHeureSemaineEmp)
-                {
-                    float tempsEtDemi = tbl.nbHeure - (nbHeureSemaineEmp - nbHeureSemaineActuelle);
-                    nbHeureSemaineActuelle = nbHeureSemaineEmp + tempsEtDemi * 1.5f;
-                }
-                else
-                {
-                    nbHeureSemaineActuelle += tbl.nbHeure;
-                }
+
+                
             }
 
             // Avant: 35

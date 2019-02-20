@@ -7,12 +7,16 @@ using System.Web.UI.WebControls;
 using System.IO;
 using UrbanEco.Rapports;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Net;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace UrbanEco
 {
     public partial class RapportPage : System.Web.UI.Page
     {
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,6 +71,7 @@ namespace UrbanEco
 
             object misValue = System.Reflection.Missing.Value;
 
+
             //Excel
             Excel.Application xlApp = null;
             Excel.Workbook xlWorkBook = null;
@@ -74,7 +79,15 @@ namespace UrbanEco
 
             //File info
             string filename = "RapportProjet.xlsx";
-            string filePath = Server.MapPath("Excel/" + filename);
+            string directory = Server.MapPath("Excel/");
+            string filepath = directory + filename;
+
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            bool ExcelGeneratedWithError = false;
+
+            uint processId = 0;
 
             try
             {
@@ -86,6 +99,8 @@ namespace UrbanEco
                 xlApp.Visible = false;
 
                 int indexX = 1;
+
+                GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
 
                 //Projet
                 for (int x = 0; x < rapportNode.Child.Count; x++)
@@ -119,33 +134,73 @@ namespace UrbanEco
                 }
 
                 //Delete existing file
-                if (File.Exists(filePath))
+                if (File.Exists(filepath))
                 {
-                    File.Delete(filePath);
+                    File.Delete(filepath);
                 }
 
                 //Save file
-                FileInfo info = new FileInfo(filePath);
+                FileInfo info = new FileInfo(filepath);
                 
                 xlWorkBook.SaveAs(info);
+
+                ExcelGeneratedWithError = false;
+                
             }
             catch(Exception ex)
             {
+                ExcelGeneratedWithError = true;
                 lbl_erreur.Visible = true;
                 lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
             }
+            finally
+            {
+                xlWorkBook.Close(0);
+                xlApp.Application.Quit();
 
-            xlWorkBook.Close(0);
-            xlApp.Quit();
 
-            releaseComObject(xlWorkSheet);
-            releaseComObject(xlWorkBook);
-            releaseComObject(xlApp);
+                //Kill processId Excel
+                if (processId != 0)
+                {
+                    Process excelProcess = Process.GetProcessById((int)processId);
+                    excelProcess.CloseMainWindow();
+                    excelProcess.Refresh();
+                    excelProcess.Kill();
+                }
 
-            DownloadFile(filePath);
+                //release COM object
+                try
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+                    xlWorkSheet = null;
+                    xlWorkBook = null;
+                    xlApp = null;
+                }
+                catch (Exception ex)
+                {
+                    xlWorkSheet = null;
+                    xlWorkBook = null;
+                    xlApp = null;
+                    lbl_erreur.Visible = true;
+                    lbl_erreur.InnerText = ("Exception Occured while releasing object " + ex.ToString());
+                }
+                finally
+                {
+                    GC.Collect();
+                }
 
+
+                if (!ExcelGeneratedWithError)
+                    DownloadFile(filepath);
+            }
         }
 
+        /// <summary>
+        /// Download file with filepath
+        /// </summary>
+        /// <param name="filepath"></param>
         private void DownloadFile(string filepath)
         {
             try
@@ -154,32 +209,11 @@ namespace UrbanEco
                 Response.AppendHeader("Content-Disposition", "attachment; filename=RapportProjet.xlsx");
                 Response.TransmitFile(filepath);
                 Response.End();
-
-                lbl_success.Visible = true;
-                lbl_success.InnerText = "Exportation Excel réussie !";
             }
             catch (Exception ex)
             {
                 lbl_erreur.Visible = true;
-                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
-            }
-        }
-
-        private void releaseComObject(object obj)
-        {
-            try
-            {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
-            }
-            catch (Exception ex)
-            {
-                obj = null;
-                //MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
+                lbl_erreur.InnerText = "Impossible de télécharger le fichier Excel : " + ex.Message;
             }
         }
     }

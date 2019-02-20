@@ -86,21 +86,16 @@
 
                 <%--MENU UTILISATEUR NORMAL--%>
                 <li runat="server" id="liEmpTerrain">
-                    <a href="GestionDepense.aspx">
-                        <i class="fas fa-dollar-sign"></i>
-                        Dépenses
-                    </a>
                     <a href="GestionFeuilleTemps.aspx">
                         <i class="fas fa-tasks"></i>
                         Feuilles de temps
                     </a>
-
-                </li>
-                <li runat="server" id="liEmpBureau">
                     <a href="GestionDepense.aspx">
                         <i class="fas fa-dollar-sign"></i>
                         Dépenses
                     </a>
+                </li>
+                <li runat="server" id="liEmpBureau">
                     <a href="GestionFeuilleTemps.aspx">
                         <i class="fas fa-tasks"></i>
                         Feuilles de temps
@@ -108,6 +103,10 @@
                     <a href="Banqueheure.aspx">
                         <i class="fas fa-piggy-bank"></i>
                         Banques d'heures
+                    </a>
+                    <a href="GestionDepense.aspx">
+                        <i class="fas fa-dollar-sign"></i>
+                        Dépenses
                     </a>
                 </li>
             </ul>
