@@ -13,7 +13,7 @@ namespace UrbanEco {
     public partial class RapportDepensePage {
         
         /// <summary>
-        /// tbx_dateDebut control.
+        /// btn_excel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +22,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbx_dateDebut;
         
         /// <summary>
-        /// tbx_dateFin control.
+        /// lbl_erreur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +31,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbx_dateFin;
         
         /// <summary>
-        /// btn_excel control.
+        /// tbx_dateDebut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -40,7 +40,7 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_excel;
         
         /// <summary>
-        /// lbl_erreur control.
+        /// tbx_dateFin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

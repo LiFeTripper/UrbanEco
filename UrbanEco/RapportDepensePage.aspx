@@ -30,7 +30,7 @@
                 <asp:Repeater runat="server" DataSource='<%# Eval("Childs") %>'>
                     <ItemTemplate>
                         <div class="rapport_div">
-                            <p><%# Eval("Nom") %> - <%# Eval("Date") %>: (<%# FormatMontant(Eval("TotalDepense")) %>)</p>
+                            <p><%# Eval("Nom") %>, <%# FormatDate(Eval("Date")) %> (<%# FormatMontant(Eval("TotalDepense")) %>)</p>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
