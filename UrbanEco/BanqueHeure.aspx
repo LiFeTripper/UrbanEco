@@ -23,7 +23,7 @@
         </div>
 
         <%--SELECTION EMPLOYÉ--%>
-        <div class="form-group">
+        <div class="form-group" id="emplSelect" runat="server">
             <label for="ddl_empBH" class="bmd-label-floating">Employé</label>
             <asp:DropDownList ID="ddl_empBH" runat="server" OnSelectedIndexChanged="ddl_empBH_SelectedIndexChanged" CssClass="form-control" AutoPostBack="True" />
         </div>
