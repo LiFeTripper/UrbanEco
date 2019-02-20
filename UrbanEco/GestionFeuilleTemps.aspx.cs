@@ -59,43 +59,19 @@ namespace UrbanEco
                     var queryFTAttente = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, false);
 
                     var queryFTApprouver = BD.GetAllEmployeFtFiltered(ctx, dateMin, dateMax, true);
-
-                    /*
-                    Rptr_EmployeNonApprouver.DataSource = null;
-                    Rptr_EmployeNonApprouver.DataSourceID = null;
-                    Rptr_EmployeNonApprouver.DataBind();
-                    */
+                    
 
                     Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
                     Rptr_EmployeNonApprouver.DataBind();
-
-
-                    /*rptr_EmployeApprouver.DataSource = null;
-                    rptr_EmployeApprouver.DataSourceID = null;
-                    rptr_EmployeApprouver.DataBind();
-
-                    rptr_EmployeApprouver.DataSource = queryFTApprouver;
-                    rptr_EmployeApprouver.DataBind();*/
+                    
                 }
                 else
                 {
                     var queryFTAttente = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, false);
-
                     var queryFTApprouver = BD.GetEmployeFtFiltered(ctx, empConnected.idEmploye, dateMin, dateMax, true);
-
-                    Rptr_EmployeNonApprouver.DataSource = null;
-                    Rptr_EmployeNonApprouver.DataSourceID = null;
-                    Rptr_EmployeNonApprouver.DataBind();
 
                     Rptr_EmployeNonApprouver.DataSource = queryFTAttente;
                     Rptr_EmployeNonApprouver.DataBind();
-
-                    /*rptr_EmployeApprouver.DataSource = null;
-                    rptr_EmployeApprouver.DataSourceID = null;
-                    rptr_EmployeApprouver.DataBind();
-
-                    rptr_EmployeApprouver.DataSource = queryFTApprouver;
-                    rptr_EmployeApprouver.DataBind();*/
 
                 }
             }
@@ -162,7 +138,7 @@ namespace UrbanEco
         {
             CoecoDataContext ctx = new CoecoDataContext();
 
-            // Get le id de la feuille de temps a approver
+            // Get le id de la feuille de temps a approuver
             ImageButton temp = (sender as ImageButton);
             int idFeuille = int.Parse(temp.CommandArgument);
 
