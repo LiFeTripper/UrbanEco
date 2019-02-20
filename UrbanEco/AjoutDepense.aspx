@@ -100,7 +100,7 @@
         <div class="form-group spantwo champKilometrage" runat="server" id="km_html">
             <div class="form-group">
                 <label for="tbx_nbKm" class="bmd-label-floating">Kilométrage</label>
-                <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server"  type="number" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" id="tbx_nbKm" runat="server" step="0.1" type="number" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false"></asp:TextBox>
             </div>
 
             <div class="form-group flexEnd">
@@ -123,7 +123,7 @@
 
         <div class="form-group" runat="server" id="montant_html">
             <label for="tbx_montantNormal" class="bmd-label-floating">Montant ($)</label>
-            <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false" type="number"></asp:TextBox>
+            <asp:TextBox CssClass="form-control" id="tbx_montantNormal" runat="server" OnTextChanged="tbx_nbKm_TextChanged" AutoPostBack="false" type="number" step="0.01"></asp:TextBox>
         </div>
 
 
