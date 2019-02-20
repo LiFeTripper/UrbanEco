@@ -88,8 +88,7 @@ namespace UrbanEco
                     //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
 
                     xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
-                    xlWorkSheet.Cells[indexX, 2].Value = "Total :";
-                    xlWorkSheet.Cells[indexX, 3].Value = FormatMontant(categorie.TotalDepense);
+                    xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(categorie.TotalDepense);
                     indexX++;
                     indexX++;
 
@@ -100,7 +99,8 @@ namespace UrbanEco
 
                         xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
                         xlWorkSheet.Cells[indexX, 2].Value = employe.Nom;
-                        xlWorkSheet.Cells[indexX, 3].Value = FormatMontant(employe.TotalDepense);
+                        xlWorkSheet.Cells[indexX, 3].Value = employe.Date;
+                        xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(employe.TotalDepense);
 
                         indexX++;
                     }
