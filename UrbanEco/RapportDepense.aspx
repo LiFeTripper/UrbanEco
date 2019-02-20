@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    <h1>Rapport Dépense</h1>
+    <h1>Rapport Dépenses</h1>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
