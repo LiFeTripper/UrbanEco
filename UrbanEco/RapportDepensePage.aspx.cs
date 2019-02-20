@@ -30,6 +30,9 @@ namespace UrbanEco
                 rapportRepeater.DataSource = rapportNode.Childs;
                 rapportRepeater.DataBind();
             }
+
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+            btn_excel.Visible = isExcelInstalled;
         }
 
         protected string FormatMontant(object p_montant)
@@ -175,46 +178,6 @@ namespace UrbanEco
             else //Generate CSV
             {
 
-                string fileContent = "Type de dépense;Nom employé;Date;Montant";
-                fileContent += "\n";
-
-                //Projet
-                for (int x = 0; x < rapportNode.Childs.Count; x++)
-                {
-                    var categorie = rapportNode.Childs[x];
-                    //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
-
-                    fileContent += categorie.Nom + "; ; ;";
-                    fileContent += FormatMontant(categorie.TotalDepense);
-                    fileContent += "\n";
-                    
-                    //Sous-Catégorie
-                    for (int y = 0; y < categorie.Childs.Count; y++)
-                    {
-                        var employe = categorie.Childs[y];
-
-                        fileContent += categorie.Nom + ";";
-                        fileContent += employe.Nom + ";";
-                        fileContent += employe.Date + ";";
-                        fileContent += FormatMontant(employe.TotalDepense);
-
-                        fileContent += "\n";
-                    }
-
-                }
-
-                if(fileContent.Length != 0)
-                {
-                    filename = "RapportDepense.csv";
-                    directory = Server.MapPath("Excel/");
-                    filepath = directory + filename;
-
-                    if (!Directory.Exists(directory))
-                        Directory.CreateDirectory(directory);
-
-
-                    File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
-                }
             }
 
 
@@ -240,6 +203,56 @@ namespace UrbanEco
                 lbl_erreur.Visible = true;
                 lbl_erreur.InnerText = "Impossible de télécharger le fichier Excel : " + ex.Message;
             }
+        }
+
+        protected void btn_excel_csv_Click(object sender, EventArgs e)
+        {
+
+            //File info
+            string filename = "RapportDepense.csv";
+            string directory = Server.MapPath("Excel/");
+            string filepath = directory + filename;
+
+            RapportDepenseNode rapportNode = (RapportDepenseNode)Session["rapportNode"];
+
+            string fileContent = "Type de dépense;Nom employé;Date;Montant";
+            fileContent += "\n";
+
+            //Projet
+            for (int x = 0; x < rapportNode.Childs.Count; x++)
+            {
+                var categorie = rapportNode.Childs[x];
+                //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+
+                fileContent += categorie.Nom + "; ; ;";
+                fileContent += FormatMontant(categorie.TotalDepense);
+                fileContent += "\n";
+
+                //Sous-Catégorie
+                for (int y = 0; y < categorie.Childs.Count; y++)
+                {
+                    var employe = categorie.Childs[y];
+
+                    fileContent += categorie.Nom + ";";
+                    fileContent += employe.Nom + ";";
+                    fileContent += employe.Date + ";";
+                    fileContent += FormatMontant(employe.TotalDepense);
+
+                    fileContent += "\n";
+                }
+
+            }
+
+            if (fileContent.Length != 0)
+            {
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+
+
+                File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
+            }
+
+            DownloadFile(filepath, filename);
         }
     }
 }
