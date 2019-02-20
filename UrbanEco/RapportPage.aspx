@@ -15,8 +15,8 @@
     <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
     <form runat="server">
         <asp:Button ID="btn_excel" CssClass="btn btn-lg btn-success" runat="server" Text="Exporter en Excel" OnClick="btn_excel_Click"/>
-        <asp:label runat="server" id="lbl_erreur" class="alert alert-danger"></asp:label>
-        <asp:label runat="server" id="lbl_success" class="alert alert-success"></asp:label>
+        <asp:Label runat="server" ID="lbl_erreur" CssClass="alert alert-danger"></asp:Label>
+        <asp:Label runat="server" id="lbl_success" class="alert alert-success"></asp:Label>
     </form>
 
 
