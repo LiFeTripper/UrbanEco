@@ -152,7 +152,7 @@ namespace UrbanEco
             {
                 Response.ContentType = "Application/xlsx";
                 Response.AppendHeader("Content-Disposition", "attachment; filename=RapportProjet.xlsx");
-                Response.TransmitFile(fileath);
+                Response.TransmitFile(filepath);
                 Response.End();
 
                 lbl_success.Visible = true;
