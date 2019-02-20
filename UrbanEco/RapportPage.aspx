@@ -6,20 +6,21 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    Rapport Dépense
+    <h1>Rapport</h1>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-    <h1>Rapport</h1>
-    <button id="btn_Imprimer" class="btn btn-raised btn-success" onclick="window.print();return false;">Imprimer</button>
-    <p><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
-    <form runat="server">
-        <asp:Button ID="btn_excel" CssClass="btn btn-lg btn-success" runat="server" Text="Exporter en Excel" OnClick="btn_excel_Click"/>
-        <asp:label runat="server" id="lbl_erreur" class="alert alert-danger"></asp:label>
-        <asp:label runat="server" id="lbl_success" class="alert alert-success"></asp:label>
-    </form>
-
-
+    
+    <div id="infosRapport">
+        <p class="spantwo"><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
+        <button id="btn_Imprimer" class="btn btn-raised btn-secondary" onclick="window.print();return false;">Imprimer</button>
+        <form runat="server">
+            <asp:Button ID="btn_excel" CssClass="btn btn-raised btn-success" runat="server" Text="Exporter vers Excel" OnClick="btn_excel_Click"/>
+            <asp:Label runat="server" ID="lbl_erreur" CssClass="alert alert-danger"></asp:Label>
+            <asp:Label runat="server" id="lbl_success" class="alert alert-success"></asp:Label>
+        </form>
+    </div>
+    
     <asp:repeater id="rapportRepeater" runat="server">
         <itemtemplate>
             <%-- Loop Through Projects --%>
