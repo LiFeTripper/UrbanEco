@@ -13,25 +13,8 @@ namespace UrbanEco {
     public partial class RapportDepensePage {
         
         /// <summary>
+
         /// Contrôle btn_excel.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_excel;
-        
-        /// <summary>
-        /// Contrôle lbl_erreur.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_erreur;
-        
-        /// <summary>
-        /// Contrôle tbx_dateDebut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -40,13 +23,31 @@ namespace UrbanEco {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbx_dateDebut;
         
         /// <summary>
-        /// Contrôle tbx_dateFin.
+        /// Contrôle lbl_erreur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbx_dateFin;
+        
+        /// <summary>
+        /// Contrôle tbx_dateDebut.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_excel;
+        
+        /// <summary>
+        /// Contrôle tbx_dateFin.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_erreur;
         
         /// <summary>
         /// Contrôle rapportRepeater.
