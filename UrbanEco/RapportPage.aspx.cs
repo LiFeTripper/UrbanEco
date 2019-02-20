@@ -18,6 +18,10 @@ namespace UrbanEco
         {
             Autorisation2.Autorisation(false, false);
             chercherRapport();
+
+
+            //lbl_erreur.Visible = false;
+            //lbl_success.Visible = false;
         }
 
         private void chercherRapport()
@@ -67,6 +71,7 @@ namespace UrbanEco
 
             object misValue = System.Reflection.Missing.Value;
 
+
             //Excel
             Excel.Application xlApp = null;
             Excel.Workbook xlWorkBook = null;
@@ -75,6 +80,8 @@ namespace UrbanEco
             //File info
             string filename = "RapportProjet.xlsx";
             string filePath = Server.MapPath("Excel/" + filename);
+
+            lbl_success.Text = "Voyons tbk";
 
             try
             {
@@ -131,21 +138,34 @@ namespace UrbanEco
             }
             catch(Exception ex)
             {
+                xlWorkBook.Close(0);
+                xlApp.Quit();
+
                 lbl_erreur.Visible = true;
-                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
+                lbl_erreur.Text = "Impossible d'exporter en Excel : " + ex.Message;
+            }
+            finally
+            {
+                xlWorkBook.Close(0);
+                xlApp.Quit();
             }
 
-            xlWorkBook.Close(0);
-            xlApp.Quit();
 
             releaseComObject(xlWorkSheet);
             releaseComObject(xlWorkBook);
             releaseComObject(xlApp);
 
+            lbl_success.Visible = true;
+            lbl_success.Text = "Exportation Excel réussie !";
+
             DownloadFile(filePath);
 
         }
 
+        /// <summary>
+        /// Download file with filepath
+        /// </summary>
+        /// <param name="filepath"></param>
         private void DownloadFile(string filepath)
         {
             try
@@ -154,14 +174,12 @@ namespace UrbanEco
                 Response.AppendHeader("Content-Disposition", "attachment; filename=RapportProjet.xlsx");
                 Response.TransmitFile(filepath);
                 Response.End();
-
-                lbl_success.Visible = true;
-                lbl_success.InnerText = "Exportation Excel réussie !";
             }
             catch (Exception ex)
             {
+                lbl_success.Visible = false;
                 lbl_erreur.Visible = true;
-                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
+                lbl_erreur.Text = "Impossible de télécharger le fichier Excel : " + ex.Message;
             }
         }
 
