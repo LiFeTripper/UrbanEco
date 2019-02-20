@@ -38,6 +38,12 @@ namespace UrbanEco
             return montant.ToString("c2");
         }
 
+        protected string FormatDate(object p_date)
+        {
+            DateTime date = (DateTime)p_date;
+            return date.ToString("dd-MM-yyyy");
+        }
+
         protected void btn_excel_Click(object sender, EventArgs e)
         {
             RapportDepenseNode rapportNode = (RapportDepenseNode)Session["rapportNode"];
