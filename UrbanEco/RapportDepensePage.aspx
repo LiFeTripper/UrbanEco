@@ -12,10 +12,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <h1 id="titreImprimante">Rapport Dépenses</h1>
-    <div id="infosRapport">
+    <div class="infosRapport">
         <p class="spantwo"><span id="tbx_dateDebut" runat="server"></span> - <span id="tbx_dateFin" runat="server"></span></p>
         <button id="btn_Imprimer" class="btn btn-raised btn-secondary" onclick="window.print();return false;">Imprimer</button>
-        <form runat="server">
+        <form class="infosRapport" runat="server">
             <asp:Button ID="btn_excel" CssClass="btn btn-raised btn-success" runat="server" Text="Exporter en Excel" OnClick="btn_excel_Click" AutoPostBack="true"/>
             <asp:Button ID="btn_excel_csv" CssClass="btn btn-raised btn-success" runat="server" Text="Exporter en CSV" OnClick="btn_excel_csv_Click" AutoPostBack="true"/>
             <h3  ID="lbl_erreur" runat="server" class="alert alert-danger" Text="Erreur" Visible="false"></h3>
