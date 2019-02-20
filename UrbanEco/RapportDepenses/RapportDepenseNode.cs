@@ -1,37 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace UrbanEco.RapportDepenses
 {
     public class RapportDepenseNode
     {
-        private float totalDepense;     // Le total de tous les montants
-        private string nom;             // Le nom du node (Sois categorie ou employe)
+        public string Nom { get; }                  // Le nom du node (Sois categorie ou employe)
+        public float TotalDepense { get; set; }     // Le total de touts les depenses
+        public DateTime Date { get; set; }        // La date des affaires pi sa
         private List<RapportDepenseNode> childs;
 
         public RapportDepenseNode(string p_nom)
         {
-            this.nom = p_nom;
+            this.Nom = p_nom;
         }
 
-        /// <summary>
-        /// Le nom du node (Sois le nom de la catégorie de dépense ou le nom de l'employe
-        /// </summary>
-        public string Nom {
-            get { return this.nom; }
-        }
-        /// <summary>
-        /// Le total des montants de dépense
-        /// </summary>
-        public float TotalDepense
-        {
-            get { return this.totalDepense; }
-            set { this.totalDepense = value; }
-        }
         public List<RapportDepenseNode> Childs
         {
             get { return this.childs == null ? this.childs = new List<RapportDepenseNode>() : this.childs; }
             set { this.childs = value; }
         }
-
     }
 }

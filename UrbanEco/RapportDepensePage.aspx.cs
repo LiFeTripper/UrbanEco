@@ -38,6 +38,12 @@ namespace UrbanEco
             return montant.ToString("c2");
         }
 
+        protected string FormatDate(object p_date)
+        {
+            DateTime date = (DateTime)p_date;
+            return date.ToString("dd-MM-yyyy");
+        }
+
         protected void btn_excel_Click(object sender, EventArgs e)
         {
             RapportDepenseNode rapportNode = (RapportDepenseNode)Session["rapportNode"];
@@ -82,8 +88,7 @@ namespace UrbanEco
                     //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
 
                     xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
-                    xlWorkSheet.Cells[indexX, 2].Value = "Total :";
-                    xlWorkSheet.Cells[indexX, 3].Value = FormatMontant(categorie.TotalDepense);
+                    xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(categorie.TotalDepense);
                     indexX++;
                     indexX++;
 
@@ -94,7 +99,8 @@ namespace UrbanEco
 
                         xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
                         xlWorkSheet.Cells[indexX, 2].Value = employe.Nom;
-                        xlWorkSheet.Cells[indexX, 3].Value = FormatMontant(employe.TotalDepense);
+                        xlWorkSheet.Cells[indexX, 3].Value = employe.Date;
+                        xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(employe.TotalDepense);
 
                         indexX++;
                     }

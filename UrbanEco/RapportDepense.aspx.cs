@@ -109,7 +109,8 @@ namespace UrbanEco
 
                     var employe = ctx.tbl_Employe.Where(emp => emp.idEmploye == depense.idEmploye).First();
 
-                    RapportDepenseNode depenseNode = new RapportDepenseNode(string.Format("{0} {1} - {2}", employe.prenom, employe.nom, ((DateTime)depense.dateDepense).Date));
+                    RapportDepenseNode depenseNode = new RapportDepenseNode(string.Format("{0} {1}", employe.prenom, employe.nom));
+                    depenseNode.Date = ((DateTime)depense.dateDepense).Date;
                     depenseNode.TotalDepense = (float)depense.montant;
 
                     typeCategorieNode.TotalDepense += (float)depense.montant;
