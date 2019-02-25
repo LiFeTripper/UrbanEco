@@ -49,3 +49,11 @@
 .monCheckbox {
     transform: translateY(20px);
 }
+
+
+@media screen and (max-width: 1500px) {
+
+    form {
+        grid-template-columns: 45% 45%;
+    }
+}

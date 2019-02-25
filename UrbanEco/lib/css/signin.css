@@ -108,14 +108,17 @@ h5 {
     background-color: rgba(255,255,255, 1);
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1500px) {
 
-    .form-signin .form-control
-    {
-        width:100%;
+    .form-signin, .form-control {
+        width: 100%;
     }
 
     .card {
         width: 80%;
+    }
+
+    #background {
+        height: 200vh;
     }
 }

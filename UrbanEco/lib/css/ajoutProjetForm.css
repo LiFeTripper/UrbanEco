@@ -24,3 +24,11 @@
 .fix-Number-Input{
     transform: translateY(11px);
 }
+
+
+@media screen and (max-width: 1500px) {
+
+    form {
+        grid-template-columns: 45% 45%;
+    }
+}
