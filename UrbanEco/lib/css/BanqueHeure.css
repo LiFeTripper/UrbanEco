@@ -24,3 +24,10 @@ tr{
 .fixNbHeures {
     height: 40px;
 }
+
+@media screen and (max-width: 1500px) {
+
+    form {
+        grid-template-columns: 45% 45%;
+    }
+}
