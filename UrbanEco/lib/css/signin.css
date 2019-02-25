@@ -110,9 +110,8 @@ h5 {
 
 @media screen and (max-width: 1000px) {
 
-    .form-signin .form-control
-    {
-        width:100%;
+    .form-signin, .form-control {
+        width: 100%;
     }
 
     .card {

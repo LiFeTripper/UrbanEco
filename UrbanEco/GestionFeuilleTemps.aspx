@@ -60,11 +60,11 @@
             </div>
 
             <div class="form-group">
-                <asp:Button ID="btn_Filtrer" CssClass="btn btn-raised btn-md btn-primary form-control" runat="server" OnClick="btn_Filtrer_Click" Text="Appliquer le filtre" />
+                <asp:Button ID="btn_Filtrer" CssClass="btn btn-raised btn-md btn-primary form-control" runat="server" OnClick="btn_Filtrer_Click" Text="Appliquer filtre" />
             </div>
 
             <div class="form-group">
-                <asp:Button ID="btn_removefilter" CssClass="btn btn-md btn-raised btn-danger form-control" runat="server" OnClick="btn_removefilter_Click" Text="Supprimer le filtre" />
+                <asp:Button ID="btn_removefilter" CssClass="btn btn-md btn-raised btn-danger form-control" runat="server" OnClick="btn_removefilter_Click" Text="Supprimer filtre" />
             </div>
 
             <div runat="server" visible="false" id="alert_dateOrder" class="alert alert-danger spantwo"><b>Attention !</b> La date maximal est plus petite que la date minimale.</div>

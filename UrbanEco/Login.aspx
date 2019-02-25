@@ -59,7 +59,7 @@
             </table>
 
             <%--BOUTON D'IDENTIFICATION--%>
-            <asp:Button ID="Btn_Signin" runat="server" Text="Connexion" class="btn btn-lg btn-primary btn-block" type="submit" OnClick="Btn_Signin_Click" />
+            <asp:Button ID="Btn_Signin" runat="server" Text="Connexion" class="btn btn-primary btn-block" type="submit" OnClick="Btn_Signin_Click" />
             </form>
         </div> <!-- Div Card -->
     </div> <!-- Div Contenu -->

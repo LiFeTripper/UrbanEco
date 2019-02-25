@@ -38,3 +38,19 @@
 .btn {
     height: 43px;
 }
+
+@media screen and (max-width: 1000px) {
+    #BodyPlaceHolder_filtreDate {
+        margin-left: -18px;
+        grid-template-columns: 45% 45%;
+    }
+
+    #ajoutFDT {
+        margin-left: -18px;
+    }
+
+    #ajoutFDT div input {
+        width: 100%;
+    }
+
+}

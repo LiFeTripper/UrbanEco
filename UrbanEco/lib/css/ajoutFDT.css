@@ -49,3 +49,19 @@
 .monCheckbox {
     transform: translateY(20px);
 }
+
+@media screen and (max-width: 1000px) {
+
+    form {
+        margin-left: -18px;
+        padding-right: 30px;
+        grid-template-columns: 50% 50%;
+        grid-column-gap: 30px;
+    }
+
+    .monInputListeHeures {
+        grid-template-columns: 19% 18% 53%;
+    }
+
+}
+
