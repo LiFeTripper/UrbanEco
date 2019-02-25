@@ -117,4 +117,8 @@ h5 {
     .card {
         width: 80%;
     }
+
+    #background {
+        height: 200vh;
+    }
 }
