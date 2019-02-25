@@ -9,6 +9,10 @@
     grid-template-columns: 20% 20%;
 }
 
+td {
+    padding-right: 25px;
+}
+
 tr{
     height: 60px;
 }
