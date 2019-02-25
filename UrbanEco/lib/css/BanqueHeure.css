@@ -9,6 +9,10 @@
     grid-template-columns: 20% 20%;
 }
 
+td {
+    padding-right: 25px;
+}
+
 tr{
     height: 60px;
 }
@@ -23,4 +27,11 @@ tr{
 
 .fixNbHeures {
     height: 40px;
+}
+
+@media screen and (max-width: 1500px) {
+
+    form {
+        grid-template-columns: 45% 45%;
+    }
 }

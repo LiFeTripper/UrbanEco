@@ -38,7 +38,7 @@ namespace UrbanEco
 
             CoecoDataContext ctx = new CoecoDataContext();
 
-            rptr_projets.DataSource = BD.GetAllProjets(ctx);
+            rptr_projets.DataSource = BD.GetAllProjets(ctx).Where(p => p.archiver == chkbox_projets.Checked);
             rptr_projets.DataBind();
             
             if (!IsPostBack)
@@ -57,8 +57,8 @@ namespace UrbanEco
                                 select emp;
 
 
-                emp_bureau = empBureau.ToList(); //on prend la request de la BD et on met dans la liste des employés
-                emp_terrain = empTerrain.ToList();
+                emp_bureau = empBureau.Where(ep => ep.inactif == chkbox_employes.Checked).ToList(); //on prend la request de la BD et on met dans la liste des employés
+                emp_terrain = empTerrain.Where(ep => ep.inactif == chkbox_employes.Checked).ToList();
 
                 RepBureau.DataSource = emp_bureau; //On met la liste des employés au repeter
                 RepBureau.DataBind();
@@ -128,12 +128,12 @@ namespace UrbanEco
 
             var queryEmpBureau = from tbl in context.tbl_ProjetCatEmploye
                                  join empBureau in context.tbl_Employe on tbl.idEmploye equals empBureau.idEmploye
-                                 where SelectedProjets.Contains(tbl.idProjet) && empBureau.idTypeEmpl == 1
+                                 where (SelectedProjets.Count > 0 ? SelectedProjets.Contains(tbl.idProjet) : true) && empBureau.idTypeEmpl == 1 && empBureau.inactif == chkbox_employes.Checked
                                  select empBureau;
 
             var queryEmpterrain = from tbl in context.tbl_ProjetCatEmploye
                                  join empterrain in context.tbl_Employe on tbl.idEmploye equals empterrain.idEmploye
-                                 where SelectedProjets.Contains(tbl.idProjet) && empterrain.idTypeEmpl == 2
+                                 where (SelectedProjets.Count > 0 ? SelectedProjets.Contains(tbl.idProjet) : true) && empterrain.idTypeEmpl == 2 && empterrain.inactif == chkbox_employes.Checked
                                  select empterrain;
 
             emp_bureau = queryEmpBureau.Distinct().ToList();

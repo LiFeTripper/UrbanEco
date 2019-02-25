@@ -13,24 +13,6 @@ namespace UrbanEco {
     public partial class RapportPage {
         
         /// <summary>
-        /// btn_excel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_excel;
-        
-        /// <summary>
-        /// lbl_erreur control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_erreur;
-        
-        /// <summary>
         /// tbx_dateDebut control.
         /// </summary>
         /// <remarks>
@@ -47,6 +29,33 @@ namespace UrbanEco {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbx_dateFin;
+        
+        /// <summary>
+        /// btn_excel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_excel;
+        
+        /// <summary>
+        /// btn_excel_csv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_excel_csv;
+        
+        /// <summary>
+        /// lbl_erreur control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_erreur;
         
         /// <summary>
         /// rapportRepeater control.

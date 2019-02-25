@@ -4,13 +4,13 @@
     margin-left: 20px;
     padding-right: 50px;
     display: grid;
-    grid-column-gap: 40px;
+    grid-column-gap: 85px;
     grid-row-gap: 20px;
     grid-template-columns: 20% 20%;
 }
 
 .sousTitres, .ms-container {
-    width: 605px;
+    width: 100%;
     margin-top: 0px;
     margin-left: 0px;
     padding-right: 0px;
@@ -39,6 +39,12 @@
 
 .hidden {
     display: none;
+}
+
+@media screen and (max-width: 1500px) {
+    form {
+        grid-template-columns: 45% 45%;
+    }
 }
 
 

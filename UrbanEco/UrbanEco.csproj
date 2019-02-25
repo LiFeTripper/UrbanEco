@@ -112,6 +112,7 @@
     <Content Include="lib\css\menuv2.css" />
     <Content Include="lib\css\multi-select.css" />
     <Content Include="lib\css\parametres.css" />
+    <Content Include="lib\css\projet.css" />
     <Content Include="lib\css\signin.css" />
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />

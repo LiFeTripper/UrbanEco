@@ -67,6 +67,8 @@
                     <asp:ListItem Value="6">6</asp:ListItem>
                     <asp:ListItem Value="7">7</asp:ListItem>
                     <asp:ListItem Value="8">8</asp:ListItem>
+                    <asp:ListItem Value="9">9</asp:ListItem>
+                    <asp:ListItem Value="10">10</asp:ListItem>
                 </asp:DropDownList>
                 <p id="pHeure">h</p>
                 <asp:DropDownList ID="tbx_minutes" runat="server" CssClass="form-control" >
@@ -89,9 +91,9 @@
             <textarea id="txa_comments" cols="50" rows="2" runat="server" class="form-control"></textarea>
         </div>
 
-        <asp:Button ID="Btn_Enreg" CssClass="btn btn-raised btn-success" runat="server" Text="Enregistrer" OnClick="Btn_Enreg_Click" />
+        <asp:Button ID="Btn_Enreg" CssClass="btn btn-raised btn-success" runat="server" Text="Ajouter" OnClick="Btn_Enreg_Click" />
 
-        <asp:Button ID="btn_annuler" CssClass="btn btn-raised btn-danger" runat="server" Text="Annuler" OnClick="btn_annuler_Click" />
+        <asp:Button ID="btn_annuler" CssClass="btn btn-raised btn-danger" runat="server" Text="Retour" OnClick="btn_annuler_Click" />
 
     </form>
 </asp:Content>
