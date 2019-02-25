@@ -22,6 +22,11 @@ namespace UrbanEco
         {
             Autorisation2.Autorisation(false, false);
             chercherRapport();
+
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+
+            btn_excel.Visible = isExcelInstalled;
+
         }
 
         private void chercherRapport()
@@ -89,6 +94,16 @@ namespace UrbanEco
 
             uint processId = 0;
 
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+            
+            if(!isExcelInstalled)
+            {
+                lbl_erreur.Visible = true;
+                lbl_erreur.InnerText = "Le serveur ne possède pas Excel.\nL'exportation en XLSX est donc impossible.";
+                return;
+            }
+
+
             try
             {
                 //Open Excel
@@ -141,13 +156,13 @@ namespace UrbanEco
 
                 //Save file
                 FileInfo info = new FileInfo(filepath);
-                
+
                 xlWorkBook.SaveAs(info);
 
                 ExcelGeneratedWithError = false;
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExcelGeneratedWithError = true;
                 lbl_erreur.Visible = true;
@@ -157,6 +172,7 @@ namespace UrbanEco
             {
                 xlWorkBook.Close(0);
                 xlApp.Application.Quit();
+                
 
 
                 //Kill processId Excel
@@ -190,23 +206,23 @@ namespace UrbanEco
                 {
                     GC.Collect();
                 }
-
-
-                if (!ExcelGeneratedWithError)
-                    DownloadFile(filepath);
             }
+
+
+            if (!ExcelGeneratedWithError)
+                DownloadFile(filepath, filename);
         }
 
         /// <summary>
         /// Download file with filepath
         /// </summary>
         /// <param name="filepath"></param>
-        private void DownloadFile(string filepath)
+        private void DownloadFile(string filepath, string filename)
         {
             try
             {
                 Response.ContentType = "Application/xlsx";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=RapportProjet.xlsx");
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename);
                 Response.TransmitFile(filepath);
                 Response.End();
             }
@@ -215,6 +231,59 @@ namespace UrbanEco
                 lbl_erreur.Visible = true;
                 lbl_erreur.InnerText = "Impossible de télécharger le fichier Excel : " + ex.Message;
             }
+        }
+
+        protected void btn_excel_csv_Click(object sender, EventArgs e)
+        {
+            string filename = "RapportProjet.csv";
+            string directory = Server.MapPath("Excel/");
+            string filepath = directory + filename;
+
+            RapportNode rapportNode = (RapportNode)Session["rapportNode"];
+
+            string fileContent = "Nom Projet;Nom Catégorie;Nom Employé;Nombre d'heure";
+            fileContent += "\n";
+
+            //Projet
+            for (int x = 0; x < rapportNode.Child.Count; x++)
+            {
+                var projet = rapportNode.Child[x];
+
+                fileContent += "Total de : " + projet.Nom + "; ; ;";
+                fileContent += formatHeureFloat(projet.NbHeure);
+                fileContent += "\n";
+
+                //Sous-Catégorie
+                for (int y = 0; y < projet.Child.Count; y++)
+                {
+                    var s_cat = projet.Child[y];
+                    fileContent += "Total de : " + s_cat.Nom + "; ; ;";
+                    fileContent += formatHeureFloat(s_cat.NbHeure);
+                    fileContent += "\n";
+
+                    //Employé
+                    for (int z = 0; z < s_cat.Child.Count; z++)
+                    {
+                        var emp = s_cat.Child[z];
+
+                        fileContent += projet.Nom + ";";
+                        fileContent += s_cat.Nom + ";";
+                        fileContent += emp.Nom + ";";
+                        fileContent += formatHeureFloat(emp.NbHeure);
+                        fileContent += "\n";
+                    }
+                }
+            }
+
+            if (fileContent.Length != 0)
+            {
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+
+                File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
+            }
+
+            DownloadFile(filepath, filename);
         }
     }
 }

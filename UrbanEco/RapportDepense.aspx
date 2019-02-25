@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
-    <h1>Rapport Dépense</h1>
+    <h1>Rapport Dépenses</h1>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
@@ -27,7 +27,7 @@
         <div class="form-group spantwo noTopPadding">
             <div class="sousTitres">
                 <h5 runat="server" class="titre">Catégories De Dépenses</h5>
-                <h5 runat="server" class="titre">Catégories choisies</h5>
+                <h5 runat="server" class="titre">Catégories sélectionnées</h5>
             </div>
             <div class="select_group">
                 <div class="input-group">
@@ -51,7 +51,7 @@
         <div class="form-group spantwo noTopPadding">
             <div class="sousTitres">
                 <h5>Employés</h5>
-                <h5>Employés choisis</h5>
+                <h5>Employés sélectionnés</h5>
             </div>
             <div class="select_group">
                 <div class="input-group">

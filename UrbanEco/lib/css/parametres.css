@@ -29,3 +29,11 @@
 .alignementBouton{
     transform: translateY(13px);
 }
+
+@media screen and (max-width: 1500px) {
+
+    form{
+        grid-template-columns: 45% 45%;
+    }
+
+}

@@ -9,7 +9,7 @@
 
 <%-- Title --%>
 <asp:Content ID="Content3" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    <h1>Rapport par projet</h1>
+    <h1>Rapport Projets</h1>
 </asp:Content>
 
 <%-- Content --%>
@@ -33,7 +33,7 @@
         <div class="form-group spantwo noTopPadding">
             <div class="sousTitres">
                 <h5 runat="server" class="titre">Projets</h5>
-                <h5 runat="server" class="titre">Projets choisis</h5>
+                <h5 runat="server" class="titre">Projets sélectionnés</h5>
             </div>
             <div class="select_group">
                 <div class="input-group">
@@ -55,7 +55,7 @@
         <div class="form-group spantwo noTopPadding">
             <div class="sousTitres">
                 <h5>Sous-Catégorie</h5>
-                <h5>Sous-catégories choisis</h5>
+                <h5>Sous-catégories sélectionnées</h5>
             </div>
 
             <div class="select_group">
@@ -79,7 +79,7 @@
         <div class="form-group spantwo noTopPadding">
             <div class="sousTitres">
                 <h5>Employés</h5>
-                <h5>Employés choisis</h5>
+                <h5>Employés sélectionnés</h5>
             </div>
 
             <div class="select_group">

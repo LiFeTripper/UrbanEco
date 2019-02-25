@@ -40,6 +40,15 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.Button btn_excel;
         
         /// <summary>
+        /// btn_excel_csv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_excel_csv;
+        
+        /// <summary>
         /// lbl_erreur control.
         /// </summary>
         /// <remarks>

@@ -8,7 +8,7 @@
     margin-top: 20px;
 }
 
-#infosRapport {
+.infosRapport {
     width: 450px;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -23,6 +23,10 @@
     height: 35px;
 }
 
+#titreImprimante {
+    display: none;
+}
+
 @media print {
     #btn_Imprimer {
         display: none;
@@ -30,6 +34,10 @@
 
     #BodyPlaceHolder_btn_excel {
         display: none;
+    }
+
+    #titreImprimante {
+        display: initial;
     }
 
 

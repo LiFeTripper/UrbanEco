@@ -30,6 +30,9 @@ namespace UrbanEco
                 rapportRepeater.DataSource = rapportNode.Childs;
                 rapportRepeater.DataBind();
             }
+
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+            btn_excel.Visible = isExcelInstalled;
         }
 
         protected string FormatMontant(object p_montant)
@@ -65,6 +68,15 @@ namespace UrbanEco
                 Directory.CreateDirectory(directory);
 
             bool ExcelGeneratedWithError = false;
+
+            bool isExcelInstalled = Type.GetTypeFromProgID("Excel.Application") != null ? true : false;
+
+            if (!isExcelInstalled)
+            {
+                lbl_erreur.Visible = true;
+                lbl_erreur.InnerText = "Le serveur ne possède pas Excel.\nL'exportation en XLSX est donc impossible.";
+                return;
+            }
 
             uint processId = 0;
 
@@ -165,22 +177,24 @@ namespace UrbanEco
                 {
                     GC.Collect();
                 }
-
-                if (!ExcelGeneratedWithError)
-                    DownloadFile(filepath);
             }
+
+
+
+            if (!ExcelGeneratedWithError)
+                DownloadFile(filepath, filename);
         }
 
         /// <summary>
         /// Download file with filepath
         /// </summary>
         /// <param name="filepath"></param>
-        private void DownloadFile(string filepath)
+        private void DownloadFile(string filepath, string filename)
         {
             try
             {
                 Response.ContentType = "Application/xlsx";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=RapportDepense.xlsx");
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename);
                 Response.TransmitFile(filepath);
                 Response.End();
             }
@@ -189,6 +203,56 @@ namespace UrbanEco
                 lbl_erreur.Visible = true;
                 lbl_erreur.InnerText = "Impossible de télécharger le fichier Excel : " + ex.Message;
             }
+        }
+
+        protected void btn_excel_csv_Click(object sender, EventArgs e)
+        {
+
+            //File info
+            string filename = "RapportDepense.csv";
+            string directory = Server.MapPath("Excel/");
+            string filepath = directory + filename;
+
+            RapportDepenseNode rapportNode = (RapportDepenseNode)Session["rapportNode"];
+
+            string fileContent = "Type de dépense;Nom employé;Date;Montant";
+            fileContent += "\n";
+
+            //Projet
+            for (int x = 0; x < rapportNode.Childs.Count; x++)
+            {
+                var categorie = rapportNode.Childs[x];
+                //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+
+                fileContent += "Total de : " + categorie.Nom + "; ; ;";
+                fileContent += FormatMontant(categorie.TotalDepense);
+                fileContent += "\n";
+
+                //Sous-Catégorie
+                for (int y = 0; y < categorie.Childs.Count; y++)
+                {
+                    var employe = categorie.Childs[y];
+
+                    fileContent += categorie.Nom + ";";
+                    fileContent += employe.Nom + ";";
+                    fileContent += employe.Date + ";";
+                    fileContent += FormatMontant(employe.TotalDepense);
+
+                    fileContent += "\n";
+                }
+
+            }
+
+            if (fileContent.Length != 0)
+            {
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+
+
+                File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
+            }
+
+            DownloadFile(filepath, filename);
         }
     }
 }
