@@ -198,7 +198,7 @@ namespace UrbanEco
                 tbl_FeuilleTemps tbFT = new tbl_FeuilleTemps();
                 
                 //admin
-                if(ddl_employe.Visible == true)
+                if(ddl_employe.Visible == true && ddl_employe.SelectedIndex != 0)
                 { 
                     tbFT.idEmploye = int.Parse(ddl_employe.SelectedItem.Value);
                 }
@@ -208,7 +208,7 @@ namespace UrbanEco
                 }
                 
                 //S-Catégorie selected
-                if(tbx_categorie.SelectedItem.Text != "Aucune")
+                if(tbx_categorie.SelectedIndex != -1 && tbx_categorie.SelectedItem != null)
                 {
                     tbFT.idCat = int.Parse(tbx_categorie.SelectedItem.Value);
                 }
@@ -241,8 +241,14 @@ namespace UrbanEco
 
                 //tbFT.nbHeure = float.Parse(tbx_heures.SelectedValue) + float.Parse(minutes);
 
-                ctx.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
-                ctx.SubmitChanges();
+                try
+                {
+                    ctx.tbl_FeuilleTemps.InsertOnSubmit(tbFT);
+                    ctx.SubmitChanges();
+                }
+                catch(Exception u)
+                {
+                }
 
                 Response.Redirect("AjoutFT.aspx?FT=New");
 
