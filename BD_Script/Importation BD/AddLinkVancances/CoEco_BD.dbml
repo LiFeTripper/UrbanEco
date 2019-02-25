@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoEco_BDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;User ID=WEB_USER" SettingsObjectName="AddLinkVancances.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Integrated Security=True" SettingsObjectName="AddLinkVancances.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
     <Type Name="tbl_BanqueHeure">
       <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -39,6 +39,7 @@
       <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="typeDepense" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="facturePath" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="idProjetCat" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="dateDepense" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />

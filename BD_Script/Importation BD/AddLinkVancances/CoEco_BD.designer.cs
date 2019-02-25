@@ -78,7 +78,7 @@ namespace AddLinkVancances
     #endregion
 		
 		public CoEco_BDDataContext() : 
-				base(global::AddLinkVancances.Properties.Settings.Default.BD_CoecoConnectionString, mappingSource)
+				base(global::AddLinkVancances.Properties.Settings.Default.BD_CoecoConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -920,6 +920,8 @@ namespace AddLinkVancances
 		
 		private string _typeDepense;
 		
+		private string _facturePath;
+		
 		private System.Nullable<int> _idProjetCat;
 		
 		private string _note;
@@ -946,6 +948,8 @@ namespace AddLinkVancances
     partial void OnidEmployeChanged();
     partial void OntypeDepenseChanging(string value);
     partial void OntypeDepenseChanged();
+    partial void OnfacturePathChanging(string value);
+    partial void OnfacturePathChanged();
     partial void OnidProjetCatChanging(System.Nullable<int> value);
     partial void OnidProjetCatChanged();
     partial void OnnoteChanging(string value);
@@ -1027,6 +1031,26 @@ namespace AddLinkVancances
 					this._typeDepense = value;
 					this.SendPropertyChanged("typeDepense");
 					this.OntypeDepenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facturePath", DbType="VarChar(MAX)")]
+		public string facturePath
+		{
+			get
+			{
+				return this._facturePath;
+			}
+			set
+			{
+				if ((this._facturePath != value))
+				{
+					this.OnfacturePathChanging(value);
+					this.SendPropertyChanging();
+					this._facturePath = value;
+					this.SendPropertyChanged("facturePath");
+					this.OnfacturePathChanged();
 				}
 			}
 		}

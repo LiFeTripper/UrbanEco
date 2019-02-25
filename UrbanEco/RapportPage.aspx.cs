@@ -172,6 +172,7 @@ namespace UrbanEco
             {
                 xlWorkBook.Close(0);
                 xlApp.Application.Quit();
+                
 
 
                 //Kill processId Excel
@@ -256,8 +257,9 @@ namespace UrbanEco
                 for (int y = 0; y < projet.Child.Count; y++)
                 {
                     var s_cat = projet.Child[y];
-                    fileContent += "Total de " + s_cat.Nom + "; ; ;";
+                    fileContent += "Total de : " + s_cat.Nom + "; ; ;";
                     fileContent += formatHeureFloat(s_cat.NbHeure);
+                    fileContent += "\n";
 
                     //Employé
                     for (int z = 0; z < s_cat.Child.Count; z++)
