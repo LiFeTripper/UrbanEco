@@ -31,10 +31,18 @@
 
         <%-- Projets --%>
         <div class="form-group spantwo noTopPadding">
+            <div class="spantwo">
+                <label class="switch">
+                    <asp:CheckBox ID="chkbox_projets" runat="server" AutoPostBack="true" />
+                    <span class="slider round"></span>
+                </label>
+            </div>
             <div class="sousTitres">
                 <h5 runat="server" class="titre">Projets</h5>
+                
                 <h5 runat="server" class="titre">Projets sélectionnés</h5>
             </div>
+            
             <div class="select_group">
                 <div class="input-group">
                     <select id="projetMultiSelect" multiple="multiple">
@@ -77,6 +85,12 @@
 
         <%-- Employés --%>
         <div class="form-group spantwo noTopPadding">
+            <div class="spantwo">
+                <label class="switch">
+                    <asp:CheckBox ID="chkbox_employes" runat="server" AutoPostBack="true" />
+                    <span class="slider round"></span>
+                </label>
+            </div>
             <div class="sousTitres">
                 <h5>Employés</h5>
                 <h5>Employés sélectionnés</h5>
