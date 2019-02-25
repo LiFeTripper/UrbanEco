@@ -353,7 +353,8 @@ namespace UrbanEco
                                                         .Where(c => c.idEmploye == employe.idEmploye)
                                                         .Where(c => (bool)c.approuver)
                                                         .Where(c => c.dateCreation <= dateFin)
-                                                        .Where(c => c.dateCreation >= dateDebut);
+                                                        .Where(c => c.dateCreation >= dateDebut)
+                                                        .OrderBy(c => c.dateCreation);
 
                         // Compile the entries
                         foreach (var heure in heures)
