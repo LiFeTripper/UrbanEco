@@ -39,7 +39,7 @@
     height: 43px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1500px) {
     #BodyPlaceHolder_filtreDate {
         margin-left: -18px;
         grid-template-columns: 45% 45%;
