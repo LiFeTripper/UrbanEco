@@ -8,6 +8,8 @@
         }
     </style>
     <title>Co-Éco - Projets</title>
+    <link rel="stylesheet" type="text/css" href="lib/css/projet.css" />
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceHolder" runat="server">
@@ -46,9 +48,9 @@
                         <thead>
                             <tr visible='<%# (!Chkbx_Inactif.Checked) %>' runat="server">
                                 <%--<th scope="col">ID</th>--%>
-                                <th scope="col">Titre</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Statut</th>
+                                <th scope="col" class="titre">Titre</th>
+                                <th scope="col" class="description">Description</th>
+                                <th scope="col" class="statut">Statut</th>
                                 <th scope="col">Employé Responsable</th>
                                 <th scope="col">
                                     <asp:Button ID="Btn_Ajout" CssClass="btn btn-raised btn-success" runat="server" Text="Nouveau Projet" OnClick="Btn_Ajout_Click" />
