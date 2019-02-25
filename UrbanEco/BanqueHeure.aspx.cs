@@ -475,7 +475,9 @@ namespace UrbanEco
                 switch (heureBH.idTypeHeure)
                 {
                     case 1:
-                        if(tbx_nbHeureBanqueI.Enabled)
+                        tbx_nbHeureBanqueI.Text = tbx_nbHeureBanqueI.Text.Replace('.', ',');
+                        tbx_nbHeureBanque.Text = tbx_nbHeureBanque.Text.Replace('.', ',');
+                        if (tbx_nbHeureBanqueI.Enabled)
                             heureBH.nbHeure = float.Parse(tbx_nbHeureBanqueI.Text);
                         else
                             heureBH.nbHeure = float.Parse(tbx_nbHeureBanque.Text);
@@ -483,6 +485,8 @@ namespace UrbanEco
                         heureBH.nbHeureInitial = float.Parse(tbx_nbHeureBanqueI.Text);
                         break;
                     case 2:
+                        tbx_nbHeureJourFerieI.Text = tbx_nbHeureJourFerieI.Text.Replace('.', ',');
+                        tbx_nbHeureJourFerie.Text = tbx_nbHeureJourFerie.Text.Replace('.', ',');
                         if (tbx_nbHeureJourFerieI.Enabled)
                             heureBH.nbHeure = float.Parse(tbx_nbHeureJourFerieI.Text);
                         else
@@ -491,6 +495,8 @@ namespace UrbanEco
                         heureBH.nbHeureInitial = float.Parse(tbx_nbHeureJourFerieI.Text);
                         break;
                     case 3:
+                        tbx_nbHeureCongePersoI.Text = tbx_nbHeureCongePersoI.Text.Replace('.', ',');
+                        tbx_nbHeureCongePerso.Text = tbx_nbHeureCongePerso.Text.Replace('.', ',');
                         if (tbx_nbHeureCongePersoI.Enabled)
                             heureBH.nbHeure = float.Parse(tbx_nbHeureCongePersoI.Text);
                         else
@@ -499,6 +505,8 @@ namespace UrbanEco
                         heureBH.nbHeureInitial = float.Parse(tbx_nbHeureCongePersoI.Text);
                         break;
                     case 4:
+                        tbx_nbHeureVacanceI.Text = tbx_nbHeureVacanceI.Text.Replace('.', ',');
+                        tbx_nbHeureVacance.Text = tbx_nbHeureVacance.Text.Replace('.', ',');
                         if (tbx_nbHeureVacanceI.Enabled)
                             heureBH.nbHeure = float.Parse(tbx_nbHeureVacanceI.Text);
                         else
@@ -507,6 +515,8 @@ namespace UrbanEco
                         heureBH.nbHeureInitial = float.Parse(tbx_nbHeureVacanceI.Text);
                         break;
                     case 5:
+                        tbx_nbHeureCongeMaladieI.Text = tbx_nbHeureCongeMaladieI.Text.Replace('.', ',');
+                        tbx_nbHeureCongeMaladie.Text = tbx_nbHeureCongeMaladie.Text.Replace('.', ',');
                         if (tbx_nbHeureCongeMaladieI.Enabled)
                             heureBH.nbHeure = float.Parse(tbx_nbHeureCongeMaladieI.Text);
                         else

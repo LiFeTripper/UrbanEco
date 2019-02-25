@@ -47,39 +47,39 @@
                 <asp:TableRow>
                     <asp:TableHeaderCell>Heures en banque</asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureBanqueU"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureBanqueU" step="0.1"></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureBanque"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureBanque" step="0.1"></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureBanqueI"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureBanqueI"   step="0.1"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <%--JOUR FÉRIÉ--%>
                 <asp:TableRow>
                     <asp:TableHeaderCell>Jours feriés</asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureJourFerieU"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureJourFerieU"   step="0.1"></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureJourFerie" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureJourFerie"   step="0.1"/>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureJourFerieI" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureJourFerieI"   step="0.1"/>
                     </asp:TableCell>
                 </asp:TableRow>
                 <%--VACANCES--%>
                 <asp:TableRow>
                     <asp:TableHeaderCell>Vacances</asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureVacanceU"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureVacanceU"   step="0.1"></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureVacance" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureVacance"   step="0.1"/>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureVacanceI" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureVacanceI"   step="0.1"/>
                     </asp:TableCell>
                 </asp:TableRow>
                 <%--CONGÉ PERSONNEL--%>
@@ -87,27 +87,27 @@
 
                     <asp:TableHeaderCell>Congés personnels</asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureCongePersoU"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureCongePersoU"   step="0.1"></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongePerso" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongePerso"   step="0.1"/>
                     </asp:TableCell>
 
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongePersoI" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongePersoI"   step="0.1"/>
                     </asp:TableCell>
                 </asp:TableRow>
                 <%--CONGÉ MALADIE--%>
                 <asp:TableRow>
                     <asp:TableHeaderCell>Congés maladie</asp:TableHeaderCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureCongeMaladieU"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" Enabled="false" runat="server" ID="tbx_nbHeureCongeMaladieU"   step="0.1"></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongeMaladie" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongeMaladie"   step="0.1"/>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongeMaladieI" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbx_nbHeureCongeMaladieI"  step="0.1"/>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
