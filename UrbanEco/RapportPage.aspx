@@ -33,7 +33,16 @@
                             <itemtemplate>
                                 <div class="rapport_div">
                                     <%-- Loop Through Employes --%>
-                                    <%# Eval("Nom") %> - <%# formatHeure(Eval("NbHeure")) %>
+                                    <%# Eval("Nom") %> - (<%# formatHeure(Eval("NbHeure")) %>)
+
+                                    <asp:repeater runat="server" DataSource='<%# Eval("Child") %>' >
+                                        <itemtemplate>
+                                            <div class="rapport_div">
+                                                <%-- Loop Through Employes --%>
+                                                <%# Eval("Nom") %> - <%# Eval("Description") %> - <%# formatHeure(Eval("NbHeure")) %>
+                                            </div>
+                                        </itemtemplate>
+                                    </asp:repeater>
                                 </div>
                             </itemtemplate>
                         </asp:repeater>

@@ -7,20 +7,26 @@ namespace UrbanEco.Rapports
 {
     public class RapportNode
     {
-        private string nom;
-        private TimeSpan? nbHeure;
+        public string Nom { get; }
+        public string Description { get; }
+        public TimeSpan? NbHeure { get; set; }
         private List<RapportNode> child;
 
         public RapportNode() {}
 
         public RapportNode(string p_nom)
         {
-            this.nom = p_nom;
-            this.nbHeure = new TimeSpan(0, 0, 0);
+            this.Nom = p_nom;
+            this.Description = "";
+            this.NbHeure = new TimeSpan(0, 0, 0);
         }
 
-        public string Nom { get => this.nom; }
-        public TimeSpan? NbHeure { get => this.nbHeure; set => this.nbHeure = value; }
+        public RapportNode(string p_nom, string p_description)
+        {
+            this.Nom = p_nom;
+            this.Description = p_description;
+            this.NbHeure = new TimeSpan(0, 0, 0);
+        }
 
         public List<RapportNode> Child {
             get => this.child == null ? this.child = new List<RapportNode>() : this.child;

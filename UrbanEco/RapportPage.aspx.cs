@@ -55,8 +55,6 @@ namespace UrbanEco
         {
             TimeSpan nbHeure = (TimeSpan)p_nbHeure;
 
-            Console.WriteLine(nbHeure);
-
             int heure = nbHeure.Days * 24;
             heure += nbHeure.Hours;
 

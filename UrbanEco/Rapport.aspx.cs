@@ -358,9 +358,23 @@ namespace UrbanEco
                         // Compile the entries
                         foreach (var heure in heures)
                         {
+                            RapportNode hrsNode;
+                            string dateCreation = ((DateTime)heure.dateCreation).Year.ToString() + "/" + ((DateTime)heure.dateCreation).Month.ToString() + "/" + ((DateTime)heure.dateCreation).Day.ToString();
+                            if (string.IsNullOrWhiteSpace(heure.commentaire))
+                            {
+                                hrsNode = new RapportNode(dateCreation);
+                            }
+                            else
+                            {
+                                hrsNode = new RapportNode(dateCreation, heure.commentaire);
+                            }
+
                             int hrs = (int)heure.nbHeure;
-                            int min = (int)(heure.nbHeure - hrs) * 100;
-                            EmplNode.NbHeure += new TimeSpan(hrs, min, 0);
+                            int min = (int)((heure.nbHeure - hrs) * 60);
+                            TimeSpan hrsFait = new TimeSpan(hrs, min, 0);
+                            hrsNode.NbHeure = hrsFait;
+                            EmplNode.NbHeure += hrsFait;
+                            EmplNode.Child.Add(hrsNode);
                         }
 
                         // Add employe to category node
