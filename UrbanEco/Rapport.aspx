@@ -31,12 +31,27 @@
 
         <%-- Projets --%>
         <div class="form-group spantwo noTopPadding">
-            <div class="spantwo">
-                <label class="switch">
-                    <asp:CheckBox ID="chkbox_projets" runat="server" AutoPostBack="true" />
-                    <span class="slider round"></span>
-                </label>
+            <%--inactif--%>
+            <div class="form-group monCheckbox spantwo">
+                <table>
+                    <tr>
+                        <%--CHECKBOX INACTIF OU ACTIF--%>
+                        <td>
+                            <label class="switch">
+                                <asp:CheckBox ID="chkbox_projets" runat="server" AutoPostBack="true" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <h5>Inactif</h5>
+                        </td>
+                    </tr>
+                </table>
             </div>
+
+
+
+
             <div class="sousTitres">
                 <h5 runat="server" class="titre">Projets</h5>
                 
@@ -85,12 +100,29 @@
 
         <%-- Employés --%>
         <div class="form-group spantwo noTopPadding">
-            <div class="spantwo">
-                <label class="switch">
-                    <asp:CheckBox ID="chkbox_employes" runat="server" AutoPostBack="true" />
-                    <span class="slider round"></span>
-                </label>
+            <%--inactif--%>
+            <div class="form-group monCheckbox spantwo">
+                <table>
+                    <tr>
+                        <%--CHECKBOX INACTIF OU ACTIF--%>
+                        <td>
+                            <label class="switch">
+                                <asp:CheckBox ID="chkbox_employes" runat="server" AutoPostBack="true" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <h5>Inactif</h5>
+                        </td>
+                    </tr>
+                </table>
             </div>
+
+
+
+
+
+
             <div class="sousTitres">
                 <h5>Employés</h5>
                 <h5>Employés sélectionnés</h5>
