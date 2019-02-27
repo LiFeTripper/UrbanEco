@@ -15,9 +15,13 @@ namespace UrbanEco
         protected void Page_Load(object sender, EventArgs e)
         {
             Autorisation2.Autorisation(true, true);
+
+            if (Request.QueryString["Last"] == "done") {
+                alert.Visible = true;
+            }
+
             if (!IsPostBack)
             {
-
                 CoecoDataContext ctx = new CoecoDataContext();
                 //Premier dimanche
                 var queryDimanche = from tbl in ctx.tbl_PremierDimanche
@@ -248,9 +252,10 @@ namespace UrbanEco
                 }
                 catch(Exception u)
                 {
+                    Response.Redirect("AjoutFT.aspx?FT=New");
                 }
 
-                Response.Redirect("AjoutFT.aspx?FT=New");
+                Response.Redirect("AjoutFT.aspx?FT=New&Last=done");
 
                 ((Button)sender).Enabled = true;
             }

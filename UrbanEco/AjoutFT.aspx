@@ -36,9 +36,10 @@
     <h1>Ajout d'une feuille de temps</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-
+    <div class="col-md-12" id="alert" runat="server" visible="false">
+        <span class="alert alert-success" style="width: 100%;">Ajout réussi!</span>
+    </div>
     <form runat="server">
-
         <div class="form-group spantwo" runat="server" id="tbl_employe" visible="false">
             <label for="ddl_employe" class="bmd-label-floating">Employé</label>
             <asp:DropDownList CssClass="form-control" OnSelectedIndexChanged="ddl_employe_SelectedIndexChanged" ID="ddl_employe" runat="server" AutoPostBack="true" DataTextField="text" DataValueField="value"></asp:DropDownList>
