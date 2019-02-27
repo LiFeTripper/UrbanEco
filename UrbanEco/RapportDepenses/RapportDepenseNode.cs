@@ -7,7 +7,9 @@ namespace UrbanEco.RapportDepenses
     {
         public string Nom { get; }                  // Le nom du node (Sois categorie ou employe)
         public float TotalDepense { get; set; }     // Le total de touts les depenses
-        public DateTime Date { get; set; }        // La date des affaires pi sa
+        public string TitreProjet { get; set; }
+        public string TitreCategorie { get; set; }
+        public DateTime Date { get; set; }          // La date des affaires pi sa
         private List<RapportDepenseNode> childs;
 
         public RapportDepenseNode(string p_nom)
