@@ -119,6 +119,7 @@ namespace UrbanEco
                         indexX++;
                     }
 
+                    indexX++;
                 }
 
                 //Delete existing file
