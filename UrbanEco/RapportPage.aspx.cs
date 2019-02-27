@@ -276,7 +276,7 @@ namespace UrbanEco
 
             RapportNode rapportNode = (RapportNode)Session["rapportNode"];
 
-            string fileContent = "Nom Projet;Nom Catégorie;Nom Employé;Total d'heure;Date;Note;Nombre d'Heures";
+            string fileContent = "Nom Projet;Nom Catégorie;Nom Employé;Date;Note;Nombre d'Heures";
             fileContent += "\n";
 
             //Projet
@@ -284,7 +284,7 @@ namespace UrbanEco
             {
                 var projet = rapportNode.Child[x];
 
-                fileContent += "Total de : " + projet.Nom + "; ; ;";
+                fileContent += "Total de : " + projet.Nom + "; ; ; ; ;  ";
                 fileContent += formatHeureFloat(projet.NbHeure);
                 fileContent += "\n";
 
@@ -292,7 +292,8 @@ namespace UrbanEco
                 for (int y = 0; y < projet.Child.Count; y++)
                 {
                     var s_cat = projet.Child[y];
-                    fileContent += "Total de : " + s_cat.Nom + "; ; ;";
+                    fileContent += projet.Nom + ";";
+                    fileContent += "Total de : " + s_cat.Nom + "; ; ; ; ";
                     fileContent += formatHeureFloat(s_cat.NbHeure);
                     fileContent += "\n";
 
@@ -303,7 +304,8 @@ namespace UrbanEco
 
                         fileContent += projet.Nom + ";";
                         fileContent += s_cat.Nom + ";";
-                        fileContent += emp.Nom + ";";
+                        fileContent += "Total de : " + emp.Nom + ";";
+                        fileContent += "; ; ";
                         fileContent += formatHeureFloat(emp.NbHeure);
                         fileContent += "\n";
 
@@ -314,7 +316,7 @@ namespace UrbanEco
                             fileContent += projet.Nom + ";";
                             fileContent += s_cat.Nom + ";";
                             fileContent += emp.Nom + ";";
-                            fileContent += formatHeureFloat(emp.NbHeure) + ";";
+                            //fileContent += formatHeureFloat(emp.NbHeure) + ";";
                             fileContent += ft.Nom + ";";
                             fileContent += ft.Description + ";";
                             fileContent += ft.NbHeure;
