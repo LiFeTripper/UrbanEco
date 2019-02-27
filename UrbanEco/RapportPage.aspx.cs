@@ -119,7 +119,9 @@ namespace UrbanEco
                 for (int x = 0; x < rapportNode.Child.Count; x++)
                 {
                     var projet = rapportNode.Child[x];
-                    //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+                    xlWorkSheet.Cells[indexX, 1].Value = "Total de : " + projet.Nom;
+
+                    xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(projet.NbHeure).ToString();
                     indexX++;
 
 
@@ -127,8 +129,10 @@ namespace UrbanEco
                     for (int y = 0; y < projet.Child.Count; y++)
                     {
                         var s_cat = projet.Child[y];
-                        //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
-                        //xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
+                        xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+                        xlWorkSheet.Cells[indexX, 2].Value = "Total de : " + s_cat.Nom;
+                        //xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
+                        xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(s_cat.NbHeure).ToString();
                         indexX++;
 
 
@@ -136,6 +140,11 @@ namespace UrbanEco
                         for (int z = 0; z < s_cat.Child.Count; z++)
                         {
                             var emp = s_cat.Child[z];
+                            xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+                            xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
+                            xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
+                            xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure).ToString();
+                            indexX++;
 
                             //Feuille de temps
                             for (int a = 0; a < emp.Child.Count; a++)
