@@ -96,7 +96,7 @@
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="lib\css\ajoutDepenseForm.css" />
-    <Content Include="lib\css\ajoutEmpForm.css">
+    <Content Include="lib\css\ajoutEmpForm.css" />
     <Content Include="lib\css\ajoutFDT.css" />
     <Content Include="lib\css\ajoutProjetForm.css" />
     <Content Include="lib\css\BanqueHeure.css" />
