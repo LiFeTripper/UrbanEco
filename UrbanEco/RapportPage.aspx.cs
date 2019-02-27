@@ -183,7 +183,7 @@ namespace UrbanEco
             {
                 ExcelGeneratedWithError = true;
                 lbl_erreur.Visible = true;
-                lbl_erreur.InnerText = "Impossible d'exporter en Excel : " + ex.Message;
+                lbl_erreur.InnerText = "Impossible d'exporter en Excel";
             }
             finally
             {
@@ -210,9 +210,13 @@ namespace UrbanEco
                 //release COM object
                 try
                 {
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+                    if(xlWorkSheet != null)
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
+                    if (xlWorkBook != null)
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
+                    if (xlApp != null)
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+
                     xlWorkSheet = null;
                     xlWorkBook = null;
                     xlApp = null;
