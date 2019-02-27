@@ -137,6 +137,7 @@ namespace UrbanEco
                         {
                             var emp = s_cat.Child[z];
 
+                            //Feuille de temps
                             for (int a = 0; a < emp.Child.Count; a++)
                             {
                                 var ft = emp.Child[a];
@@ -176,10 +177,16 @@ namespace UrbanEco
             }
             finally
             {
-                xlWorkBook.Close(0);
-                xlApp.Application.Quit();
-                
+                try
+                {
+                    xlWorkBook.Close(0);
+                    xlApp.Application.Quit();
+                }
+                catch(Exception ex)
+                {
 
+                }
+                            
 
                 //Kill processId Excel
                 if (processId != 0)
@@ -317,6 +324,8 @@ namespace UrbanEco
             DownloadFile(filepath, filename);
         }
 
+
+        //Write filecontent append to the filetext
         private void SaveAppendText(string directory, string filename, string fileContent)
         {
 
