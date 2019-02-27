@@ -33,6 +33,15 @@
             <label for="tbx_heureMinimum" class="bmd-label-floating">Nombre d'heures à faire à chaque semaine</label>
             <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_heureMinimum" Enabled="false"></asp:TextBox>
         </div>
+        <%-- Entrer le nombre d'heure par semaine pour cet employé --%>
+        <div class="row">
+            <label for="" class="">Période du : </label>
+            <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_dateDebut" Enabled="false"></asp:TextBox>
+        </div>
+        <div class="row">
+            <br /><label for="" class=""> au : </label>
+            <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_dateFin" Enabled="false"></asp:TextBox>
+        </div>
 
         <div class="spantwo">
             <asp:Table runat="server" ID="tbl_BH" Enabled="false">

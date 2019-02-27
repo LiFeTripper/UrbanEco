@@ -34,6 +34,8 @@ namespace UrbanEco
                     LoadListEmploye();
                     Load_Heure_Use(ddl_empBH.SelectedItem.Value);
                     loadHeureMinEmp(ddl_empBH.SelectedItem.Value);
+                    loadDateDebutFin(ddl_empBH.SelectedItem.Value);
+
                 }
             }
             else
@@ -41,8 +43,9 @@ namespace UrbanEco
                 LoadUser();
                 load_Heure_Use_Emp(emp.nom + "," +  emp.prenom);
                 loadHeureSemaineEmp(emp.nom + "," + emp.prenom);
+                loadDateDebutFin(emp.nom + "," + emp.prenom);
 
-                if(titrePage != null)
+                if (titrePage != null)
                     titrePage.InnerText = "Votre banque d'heures";
 
                 emplSelect.Visible = false;
@@ -73,6 +76,8 @@ namespace UrbanEco
                 btn_modifBH.Visible = false;
                 ddl_empBH.Enabled = false;
                 tbx_heureMinimum.Enabled = true;
+                tbx_dateDebut.Enabled = true;
+                tbx_dateFin.Enabled = true;
             }
             //Si aucun employé n'est sélectionner, on affiche une alerte
             else
@@ -111,6 +116,30 @@ namespace UrbanEco
 
                 tbx_heureMinimum.Text = BH.nbHeureSemaine.ToString();
             }            
+        }
+
+        protected void loadDateDebutFin(string nomEmp)
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+
+            if (nomEmp != "Veuillez choisir un employé")
+            {
+                int idInt = GetIDEmp(nomEmp);
+
+                var BH = (from emp in ctx.tbl_Employe
+                          where emp.idEmploye == idInt
+                          where emp.dateDebut != null
+                          where emp.dateFin != null
+                          select emp);
+                
+                if(BH.Count() > 0)
+                {
+
+                    tbx_dateDebut.Text = BH.First().dateDebut.ToString();
+                    tbx_dateFin.Text = BH.First().dateFin.ToString();
+                }
+
+            }
         }
 
         protected void load_Heure_Use_Emp(string nomEmp)
@@ -387,8 +416,9 @@ namespace UrbanEco
             tbx_nbHeureCongePersoI.Text = "";
 
             tbx_nbHeureVacanceI.Text = "";
-
-            tbx_nbHeureCongeMaladieI.Text = "";
+            
+            tbx_dateDebut.Text = "";
+            tbx_dateFin.Text = "";
 
             //"Veuillez choisir un employé"
             if (ddl_empBH.SelectedIndex > 0)
@@ -398,6 +428,7 @@ namespace UrbanEco
                 AlertDiv.Visible = false;
                 Load_Heure_Use(ddl_empBH.SelectedItem.Value);
                 loadHeureMinEmp(ddl_empBH.SelectedItem.Value);
+                loadDateDebutFin(ddl_empBH.SelectedItem.Value);
             }
         }
 
@@ -460,6 +491,7 @@ namespace UrbanEco
 
 
             Update_HeureSemaine(idEmp);
+            Update_DateDebutFin(idEmp);
 
 
             //On obtient les heures actuelles de l'employé
@@ -679,6 +711,10 @@ namespace UrbanEco
                 tbx_nbHeureVacanceI.Text = "";
 
                 tbx_nbHeureCongeMaladieI.Text = "";
+
+                tbx_dateDebut.Text = "";
+                tbx_dateFin.Text = "";
+                tbx_heureMinimum.Text = "";
             }
             else
             {
@@ -704,6 +740,8 @@ namespace UrbanEco
             btn_modifBHI.Text = "Activer la modification des heures initiales";
             ddl_empBH.Enabled = true;
             tbx_heureMinimum.Enabled = false;
+            tbx_dateFin.Enabled = false;
+            tbx_dateDebut.Enabled = false;
 
             load_BHemp(ddl_empBH.Text);
             Load_Heure_Use(ddl_empBH.SelectedItem.Value);
@@ -717,6 +755,18 @@ namespace UrbanEco
                       select emp).First();
 
             BH.nbHeureSemaine = float.Parse(tbx_heureMinimum.Text);
+            ctx.SubmitChanges();
+        }
+
+        protected void Update_DateDebutFin(int idEmp)
+        {
+            CoecoDataContext ctx = new CoecoDataContext();
+            var BH = (from emp in ctx.tbl_Employe
+                      where emp.idEmploye == idEmp
+                      select emp).First();
+
+            BH.dateDebut = tbx_dateDebut.Text;
+            BH.dateFin = tbx_dateFin.Text;
             ctx.SubmitChanges();
         }
     }
