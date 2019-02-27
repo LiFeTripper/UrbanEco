@@ -22,7 +22,7 @@ namespace UrbanEco
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco_test")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Coeco")]
 	public partial class CoecoDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -1292,6 +1292,10 @@ namespace UrbanEco
 		
 		private System.Nullable<float> _nbHeureSemaine;
 		
+		private string _dateDebut;
+		
+		private string _dateFin;
+		
 		private EntitySet<tbl_BanqueHeure> _tbl_BanqueHeure;
 		
 		private EntitySet<tbl_Depense> _tbl_Depense;
@@ -1328,6 +1332,10 @@ namespace UrbanEco
     partial void OninactifChanged();
     partial void OnnbHeureSemaineChanging(System.Nullable<float> value);
     partial void OnnbHeureSemaineChanged();
+    partial void OndateDebutChanging(string value);
+    partial void OndateDebutChanged();
+    partial void OndateFinChanging(string value);
+    partial void OndateFinChanged();
     #endregion
 		
 		public tbl_Employe()
@@ -1522,6 +1530,46 @@ namespace UrbanEco
 					this._nbHeureSemaine = value;
 					this.SendPropertyChanged("nbHeureSemaine");
 					this.OnnbHeureSemaineChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateDebut", DbType="VarChar(250)")]
+		public string dateDebut
+		{
+			get
+			{
+				return this._dateDebut;
+			}
+			set
+			{
+				if ((this._dateDebut != value))
+				{
+					this.OndateDebutChanging(value);
+					this.SendPropertyChanging();
+					this._dateDebut = value;
+					this.SendPropertyChanged("dateDebut");
+					this.OndateDebutChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateFin", DbType="VarChar(250)")]
+		public string dateFin
+		{
+			get
+			{
+				return this._dateFin;
+			}
+			set
+			{
+				if ((this._dateFin != value))
+				{
+					this.OndateFinChanging(value);
+					this.SendPropertyChanging();
+					this._dateFin = value;
+					this.SendPropertyChanged("dateFin");
+					this.OndateFinChanged();
 				}
 			}
 		}
