@@ -96,9 +96,13 @@
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="lib\css\ajoutDepenseForm.css" />
+    <Content Include="lib\css\ajoutEmpForm.css">
     <Content Include="lib\css\ajoutFDT.css" />
     <Content Include="lib\css\ajoutProjetForm.css" />
     <Content Include="lib\css\BanqueHeure.css" />
+    <Content Include="lib\css\bootstrap-material-design.css" />
+    <Content Include="lib\css\bootstrap.min.css">
+    <Content Include="lib\css\Erreur.css" />
     <Content Include="lib\css\gestionFeuilleDeTemps.css" />
     <Content Include="lib\css\modifCategorie.css" />
     <Content Include="lib\css\fancy-switch.css" />
@@ -112,6 +116,7 @@
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
     <Content Include="lib\css\style.css" />
+    <Content Include="lib\css\tables.css" />
     <Content Include="lib\js\bootstrap.min.js" />
     <Content Include="lib\js\jquery-3.3.1.min.js" />
     <Content Include="lib\js\popper.js" />
@@ -134,6 +139,7 @@
     <Content Include="Resources\pencil.png" />
     <Content Include="Rapports\Rapport.css" />
     <Content Include="Rapports\Rapport.js" />
+    <Content Include="test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -302,6 +308,13 @@
       <DependentUpon>RapportPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Rapports\RapportNode.cs" />
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Layout.Master" />
