@@ -99,7 +99,7 @@ namespace UrbanEco
                     var categorie = rapportNode.Childs[x];
                     //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
 
-                    xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
+                    xlWorkSheet.Cells[indexX, 1].Value = "Total de : " + categorie.Nom;
                     xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(categorie.TotalDepense);
                     indexX++;
                     indexX++;
@@ -112,7 +112,9 @@ namespace UrbanEco
                         xlWorkSheet.Cells[indexX, 1].Value = categorie.Nom;
                         xlWorkSheet.Cells[indexX, 2].Value = employe.Nom;
                         xlWorkSheet.Cells[indexX, 3].Value = employe.Date;
-                        xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(employe.TotalDepense);
+                        xlWorkSheet.Cells[indexX, 4].Value = employe.TitreProjet;
+                        xlWorkSheet.Cells[indexX, 5].Value = employe.TitreCategorie;
+                        xlWorkSheet.Cells[indexX, 6].Value = FormatMontant(employe.TotalDepense);
 
                         indexX++;
                     }
@@ -215,7 +217,7 @@ namespace UrbanEco
 
             RapportDepenseNode rapportNode = (RapportDepenseNode)Session["rapportNode"];
 
-            string fileContent = "Type de dépense;Nom employé;Date;Montant";
+            string fileContent = "Type de dépense;Nom employé;Date;Projet;Sous-Catégorie;Montant";
             fileContent += "\n";
 
             //Projet
@@ -224,7 +226,7 @@ namespace UrbanEco
                 var categorie = rapportNode.Childs[x];
                 //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
 
-                fileContent += "Total de : " + categorie.Nom + "; ; ;";
+                fileContent += "Total de : " + categorie.Nom + "; ; ; ; ;";
                 fileContent += FormatMontant(categorie.TotalDepense);
                 fileContent += "\n";
 
@@ -235,7 +237,9 @@ namespace UrbanEco
 
                     fileContent += categorie.Nom + ";";
                     fileContent += employe.Nom + ";";
-                    fileContent += employe.Date + ";";
+                    fileContent += employe.Date + ";";              
+                    fileContent += employe.TitreProjet + ";";
+                    fileContent += employe.TitreCategorie + ";";
                     fileContent += FormatMontant(employe.TotalDepense);
 
                     fileContent += "\n";
