@@ -100,7 +100,7 @@ namespace UrbanEco
                     //xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
 
                     xlWorkSheet.Cells[indexX, 1].Value = "Total de : " + categorie.Nom;
-                    xlWorkSheet.Cells[indexX, 4].Value = FormatMontant(categorie.TotalDepense);
+                    xlWorkSheet.Cells[indexX, 6].Value = FormatMontant(categorie.TotalDepense);
                     indexX++;
                     indexX++;
 
