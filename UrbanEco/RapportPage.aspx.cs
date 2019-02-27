@@ -56,7 +56,7 @@ namespace UrbanEco
             return string.Format("{0} h {1}", heure, minute.ToString("00"));
         }
 
-        public float formatHeureFloat(object p_nbHeure)
+        public string formatHeureFloat(object p_nbHeure)
         {
             TimeSpan nbHeure = (TimeSpan)p_nbHeure;
 
@@ -65,7 +65,7 @@ namespace UrbanEco
 
             int minute = nbHeure.Minutes;
 
-            return heure + minute;
+            return heure + ":" + minute.ToString("00") + ":00";
         }
 
         protected void btn_excel_Click(object sender, EventArgs e)
@@ -73,7 +73,6 @@ namespace UrbanEco
             RapportNode rapportNode = (RapportNode)Session["rapportNode"];
 
             object misValue = System.Reflection.Missing.Value;
-
 
             //Excel
             Excel.Application xlApp = null;
@@ -101,7 +100,6 @@ namespace UrbanEco
                 return;
             }
 
-
             try
             {
                 //Open Excel
@@ -111,9 +109,16 @@ namespace UrbanEco
 
                 xlApp.Visible = false;
 
-                int indexX = 1;
+                int indexX = 2;
 
                 GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
+
+                xlWorkSheet.Cells[1, 1].Value = "Projet";
+                xlWorkSheet.Cells[1, 2].Value = "Catégorie";
+                xlWorkSheet.Cells[1, 3].Value = "Employé";
+                xlWorkSheet.Cells[1, 4].Value = "Date";
+                xlWorkSheet.Cells[1, 5].Value = "Note";
+                xlWorkSheet.Cells[1, 6].Value = "Heures";
 
                 //Projet
                 for (int x = 0; x < rapportNode.Child.Count; x++)
@@ -121,9 +126,8 @@ namespace UrbanEco
                     var projet = rapportNode.Child[x];
                     xlWorkSheet.Cells[indexX, 1].Value = "Total de : " + projet.Nom;
 
-                    xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(projet.NbHeure).ToString();
+                    xlWorkSheet.Cells[indexX, 6].Value = formatHeureFloat(projet.NbHeure);
                     indexX++;
-
 
                     //Sous-Catégorie
                     for (int y = 0; y < projet.Child.Count; y++)
@@ -131,10 +135,8 @@ namespace UrbanEco
                         var s_cat = projet.Child[y];
                         xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
                         xlWorkSheet.Cells[indexX, 2].Value = "Total de : " + s_cat.Nom;
-                        //xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
-                        xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(s_cat.NbHeure).ToString();
+                        xlWorkSheet.Cells[indexX, 6].Value = formatHeureFloat(s_cat.NbHeure);
                         indexX++;
-
 
                         //Employé
                         for (int z = 0; z < s_cat.Child.Count; z++)
@@ -142,8 +144,8 @@ namespace UrbanEco
                             var emp = s_cat.Child[z];
                             xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
                             xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
-                            xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
-                            xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure).ToString();
+                            xlWorkSheet.Cells[indexX, 3].Value = "Total de : " + emp.Nom;
+                            xlWorkSheet.Cells[indexX, 6].Value = formatHeureFloat(emp.NbHeure);
                             indexX++;
 
                             //Feuille de temps
@@ -154,10 +156,9 @@ namespace UrbanEco
                                 xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
                                 xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
                                 xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
-                                xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure);
-                                xlWorkSheet.Cells[indexX, 5].Value = ft.Nom;
-                                xlWorkSheet.Cells[indexX, 6].Value = ft.Description;
-                                xlWorkSheet.Cells[indexX, 7].Value = ft.NbHeure.ToString();
+                                xlWorkSheet.Cells[indexX, 4].Value = ft.Nom;
+                                xlWorkSheet.Cells[indexX, 5].Value = ft.Description;
+                                xlWorkSheet.Cells[indexX, 6].Value = ft.NbHeure.ToString();
                                 indexX++;
                             }
                         }
