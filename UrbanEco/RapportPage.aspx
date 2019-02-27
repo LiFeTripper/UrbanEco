@@ -19,7 +19,7 @@
         <form runat="server" class="infosRapport">
             <asp:Button ID="btn_excel" CssClass="btn btn-raised btn-success" runat="server" Text="Exporter vers Excel" OnClick="btn_excel_Click" AutoPostBack="true"/>
             <asp:Button ID="btn_excel_csv" CssClass="btn btn-raised btn-success" runat="server" Text="Exporter en CSV" OnClick="btn_excel_csv_Click" AutoPostBack="true"/>
-            <h3  ID="lbl_erreur" runat="server" class="alert alert-danger" Text="Erreur" Visible="false"></h3>
+            <h3 ID="lbl_erreur" runat="server" class="alert alert-danger" Text="Erreur" Visible="false"></h3>
         </form>
     </div>
 
