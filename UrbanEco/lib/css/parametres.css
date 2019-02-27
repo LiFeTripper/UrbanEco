@@ -30,6 +30,10 @@
     transform: translateY(13px);
 }
 
+#BodyPlaceHolder_ta_contenu {
+    line-height: 25px;
+}
+
 @media screen and (max-width: 1500px) {
 
     form{
