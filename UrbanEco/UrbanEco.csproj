@@ -101,7 +101,7 @@
     <Content Include="lib\css\ajoutProjetForm.css" />
     <Content Include="lib\css\BanqueHeure.css" />
     <Content Include="lib\css\bootstrap-material-design.css" />
-    <Content Include="lib\css\bootstrap.min.css">
+    <Content Include="lib\css\bootstrap.min.css" />
     <Content Include="lib\css\Erreur.css" />
     <Content Include="lib\css\gestionFeuilleDeTemps.css" />
     <Content Include="lib\css\modifCategorie.css" />
