@@ -5,6 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="TitlePlaceholder" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-    <h1>Érreur 404</h1>
-    <p>Une érreur c'est produite.</p>
+    <h1>Erreur 404</h1>
+    <p>Une Erreur c'est produite.</p>
 </asp:Content>
