@@ -107,11 +107,11 @@ namespace UrbanEco
                     // Si la dépense est un montant de 0, on ne l'ajoute pas
                     if (depense.montant == null) continue;
 
-                    var employe = ctx.tbl_Employe.Where(emp => emp.idEmploye == depense.idEmploye).First();
-
-                    RapportDepenseNode depenseNode = new RapportDepenseNode(string.Format("{0} {1}", employe.prenom, employe.nom));
+                    RapportDepenseNode depenseNode = new RapportDepenseNode(string.Format("{0} {1}", depense.tbl_Employe.prenom, depense.tbl_Employe.nom));
                     depenseNode.Date = ((DateTime)depense.dateDepense).Date;
                     depenseNode.TotalDepense = (float)depense.montant;
+                    depenseNode.TitreCategorie = depense.tbl_ProjetCat.titre;
+                    depenseNode.TitreProjet = depense.tbl_ProjetCat.tbl_Projet.titre;
 
                     typeCategorieNode.TotalDepense += (float)depense.montant;
                     typeCategorieNode.Childs.Add(depenseNode);

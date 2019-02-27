@@ -29,7 +29,15 @@ namespace UrbanEco {
                                where eh == null && !(bool)employe.inactif && employe.idTypeEmpl == 2
                                select employe.email;
 
-            /*if ((bool)config.statutRappelBureau) {
+            /*string[] tests = new string[] {"max.lajoie99@hotmail.com","will_1998@hotmail.fr","guillaume-gagnon@live.ca","gordonsys009@live.ca", "marcsypher@outlook.fr", "dark.piggy008@gmail.com","","","",""};
+            foreach (string email in tests) {
+                if (!String.IsNullOrEmpty(email)) {
+                    Courriel courriel = new Courriel(email, config);
+                    courriel.Send();
+                }
+            }*/
+
+            if ((bool)config.statutRappelBureau) {
                 foreach (string email in emailBureau.ToList()) {
                     if (!String.IsNullOrEmpty(email)) {
                         Courriel courriel = new Courriel(email, config);
@@ -45,7 +53,7 @@ namespace UrbanEco {
                         courriel.Send();
                     }
                 }
-            }*/
+            }
         }
     }
 
