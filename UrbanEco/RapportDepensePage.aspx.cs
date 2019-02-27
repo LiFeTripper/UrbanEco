@@ -102,7 +102,7 @@ namespace UrbanEco
                     xlWorkSheet.Cells[indexX, 1].Value = "Total de : " + categorie.Nom;
                     xlWorkSheet.Cells[indexX, 6].Value = FormatMontant(categorie.TotalDepense);
                     indexX++;
-                    indexX++;
+                    
 
                     //Sous-Catégorie
                     for (int y = 0; y < categorie.Childs.Count; y++)
@@ -119,8 +119,6 @@ namespace UrbanEco
                         indexX++;
                     }
 
-                    indexX++;
-                    indexX++;
                 }
 
                 //Delete existing file
