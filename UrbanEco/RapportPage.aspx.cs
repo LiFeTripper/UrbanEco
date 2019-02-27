@@ -163,6 +163,8 @@ namespace UrbanEco
                             }
                         }
                     }
+
+                    indexX++;
                 }
 
                 //Delete existing file

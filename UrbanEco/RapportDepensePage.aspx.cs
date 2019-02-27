@@ -89,7 +89,13 @@ namespace UrbanEco
 
                 xlApp.Visible = false;
 
-                int indexX = 1;
+                int indexX = 2;
+                xlWorkSheet.Cells[1, 1].Value = "Catégorie de dépense";
+                xlWorkSheet.Cells[1, 2].Value = "Employé";
+                xlWorkSheet.Cells[1, 3].Value = "Date";
+                xlWorkSheet.Cells[1, 4].Value = "Projet";
+                xlWorkSheet.Cells[1, 5].Value = "Catégorie de projet";
+                xlWorkSheet.Cells[1, 6].Value = "Montant";
 
                 GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
 
