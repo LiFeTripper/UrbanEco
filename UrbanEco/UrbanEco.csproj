@@ -100,12 +100,6 @@
     <Content Include="lib\css\BanqueHeure.css" />
     <Content Include="lib\css\gestionFeuilleDeTemps.css" />
     <Content Include="lib\css\modifCategorie.css" />
-    <Content Include="lib\css\old\bootstrap-grid.css" />
-    <Content Include="lib\css\old\bootstrap-grid.min.css" />
-    <Content Include="lib\css\old\bootstrap-reboot.css" />
-    <Content Include="lib\css\old\bootstrap-reboot.min.css" />
-    <Content Include="lib\css\old\bootstrap.css" />
-    <Content Include="lib\css\old\bootstrap.min.css" />
     <Content Include="lib\css\fancy-switch.css" />
     <Content Include="lib\css\fontawesome.css" />
     <Content Include="lib\css\menu.css" />
@@ -303,12 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Layout.Master" />
-    <Content Include="lib\css\old\bootstrap-grid.css.map" />
-    <Content Include="lib\css\old\bootstrap-grid.min.css.map" />
-    <Content Include="lib\css\old\bootstrap-reboot.css.map" />
-    <Content Include="lib\css\old\bootstrap-reboot.min.css.map" />
-    <Content Include="lib\css\old\bootstrap.css.map" />
-    <Content Include="lib\css\old\bootstrap.min.css.map" />
     <Content Include="lib\webfonts\fa-brands-400.eot" />
     <Content Include="lib\webfonts\fa-brands-400.ttf" />
     <Content Include="lib\webfonts\fa-brands-400.woff" />
@@ -332,6 +320,7 @@
     </None>
     <Content Include="libman.json" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
