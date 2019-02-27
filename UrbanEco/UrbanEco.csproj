@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.aspx" />
     <Content Include="AjoutCategorie.aspx" />
     <Content Include="AjoutDepense.aspx" />
     <Content Include="AjoutEmp.aspx" />
@@ -95,17 +96,15 @@
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="lib\css\ajoutDepenseForm.css" />
+    <Content Include="lib\css\ajoutEmpForm.css" />
     <Content Include="lib\css\ajoutFDT.css" />
     <Content Include="lib\css\ajoutProjetForm.css" />
     <Content Include="lib\css\BanqueHeure.css" />
+    <Content Include="lib\css\bootstrap-material-design.css" />
+    <Content Include="lib\css\bootstrap.min.css" />
+    <Content Include="lib\css\Erreur.css" />
     <Content Include="lib\css\gestionFeuilleDeTemps.css" />
     <Content Include="lib\css\modifCategorie.css" />
-    <Content Include="lib\css\old\bootstrap-grid.css" />
-    <Content Include="lib\css\old\bootstrap-grid.min.css" />
-    <Content Include="lib\css\old\bootstrap-reboot.css" />
-    <Content Include="lib\css\old\bootstrap-reboot.min.css" />
-    <Content Include="lib\css\old\bootstrap.css" />
-    <Content Include="lib\css\old\bootstrap.min.css" />
     <Content Include="lib\css\fancy-switch.css" />
     <Content Include="lib\css\fontawesome.css" />
     <Content Include="lib\css\menu.css" />
@@ -117,6 +116,7 @@
     <Content Include="lib\css\simple-sidebar.css" />
     <Content Include="lib\css\solid.css" />
     <Content Include="lib\css\style.css" />
+    <Content Include="lib\css\tables.css" />
     <Content Include="lib\js\bootstrap.min.js" />
     <Content Include="lib\js\jquery-3.3.1.min.js" />
     <Content Include="lib\js\popper.js" />
@@ -139,11 +139,19 @@
     <Content Include="Resources\pencil.png" />
     <Content Include="Rapports\Rapport.css" />
     <Content Include="Rapports\Rapport.js" />
+    <Content Include="test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AjoutCategorie.aspx.cs">
       <DependentUpon>AjoutCategorie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,15 +308,16 @@
       <DependentUpon>RapportPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Rapports\RapportNode.cs" />
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Layout.Master" />
-    <Content Include="lib\css\old\bootstrap-grid.css.map" />
-    <Content Include="lib\css\old\bootstrap-grid.min.css.map" />
-    <Content Include="lib\css\old\bootstrap-reboot.css.map" />
-    <Content Include="lib\css\old\bootstrap-reboot.min.css.map" />
-    <Content Include="lib\css\old\bootstrap.css.map" />
-    <Content Include="lib\css\old\bootstrap.min.css.map" />
     <Content Include="lib\webfonts\fa-brands-400.eot" />
     <Content Include="lib\webfonts\fa-brands-400.ttf" />
     <Content Include="lib\webfonts\fa-brands-400.woff" />
@@ -332,6 +341,7 @@
     </None>
     <Content Include="libman.json" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

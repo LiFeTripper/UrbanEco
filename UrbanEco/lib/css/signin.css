@@ -120,5 +120,15 @@ h5 {
 
     #background {
         height: 200vh;
+        display: none;
+    }
+
+    body {
+        background-color: #477923;
+        /*background-color: #53bb51;*/
+    }
+
+    *{
+        font-size: 20px;
     }
 }
