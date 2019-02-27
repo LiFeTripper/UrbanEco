@@ -58,22 +58,22 @@ namespace UrbanEco {
         protected global::System.Web.UI.WebControls.TextBox tbx_heureMinimum;
         
         /// <summary>
-        /// Contrôle tbx_dateDebut.
+        /// Contrôle cal_dateDebut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_dateDebut;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl cal_dateDebut;
         
         /// <summary>
-        /// Contrôle tbx_dateFin.
+        /// Contrôle cal_dateFin.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_dateFin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl cal_dateFin;
         
         /// <summary>
         /// Contrôle tbl_BH.

@@ -36,11 +36,14 @@
         <%-- Entrer le nombre d'heure par semaine pour cet employé --%>
         <div class="row">
             <label for="" class="">Période du : </label>
-            <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_dateDebut" Enabled="false"></asp:TextBox>
+            <input type="date" id="cal_dateDebut" runat="server" class="form-control"  disabled="disabled" />
+            <%--<asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_dateDebut" Enabled="false"></asp:TextBox>--%>
+
         </div>
         <div class="row">
             <br /><label for="" class=""> au : </label>
-            <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_dateFin" Enabled="false"></asp:TextBox>
+            <input type="date" id="cal_dateFin" runat="server" class="form-control" disabled="disabled"  />
+         <%--   <asp:TextBox CssClass="form-control fixNbHeures" runat="server" ID="tbx_dateFin" Enabled="false"></asp:TextBox>--%>
         </div>
 
         <div class="spantwo">

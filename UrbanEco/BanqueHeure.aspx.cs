@@ -76,8 +76,8 @@ namespace UrbanEco
                 btn_modifBH.Visible = false;
                 ddl_empBH.Enabled = false;
                 tbx_heureMinimum.Enabled = true;
-                tbx_dateDebut.Enabled = true;
-                tbx_dateFin.Enabled = true;
+                cal_dateDebut.Disabled = false;
+                cal_dateFin.Disabled = false;
             }
             //Si aucun employé n'est sélectionner, on affiche une alerte
             else
@@ -135,8 +135,11 @@ namespace UrbanEco
                 if(BH.Count() > 0)
                 {
 
-                    tbx_dateDebut.Text = BH.First().dateDebut.ToString();
-                    tbx_dateFin.Text = BH.First().dateFin.ToString();
+                    cal_dateDebut.Value = Layout.ToCalendarDate(DateTime.Parse(BH.First().dateDebut));
+                    cal_dateFin.Value = Layout.ToCalendarDate(DateTime.Parse(BH.First().dateFin));
+
+                    //tbx_dateDebut.Text = BH.First().dateDebut.ToString();
+                   // tbx_dateFin.Text = BH.First().dateFin.ToString();
                 }
 
             }
@@ -417,8 +420,8 @@ namespace UrbanEco
 
             tbx_nbHeureVacanceI.Text = "";
             
-            tbx_dateDebut.Text = "";
-            tbx_dateFin.Text = "";
+            cal_dateDebut.Value = "";
+            cal_dateFin.Value = "";
 
             //"Veuillez choisir un employé"
             if (ddl_empBH.SelectedIndex > 0)
@@ -712,8 +715,8 @@ namespace UrbanEco
 
                 tbx_nbHeureCongeMaladieI.Text = "";
 
-                tbx_dateDebut.Text = "";
-                tbx_dateFin.Text = "";
+                cal_dateDebut.Value = "";
+                cal_dateFin.Value = "";
                 tbx_heureMinimum.Text = "";
             }
             else
@@ -740,8 +743,8 @@ namespace UrbanEco
             btn_modifBHI.Text = "Activer la modification des heures initiales";
             ddl_empBH.Enabled = true;
             tbx_heureMinimum.Enabled = false;
-            tbx_dateFin.Enabled = false;
-            tbx_dateDebut.Enabled = false;
+            cal_dateDebut.Disabled = true;
+            cal_dateFin.Disabled = true;
 
             load_BHemp(ddl_empBH.Text);
             Load_Heure_Use(ddl_empBH.SelectedItem.Value);
@@ -765,8 +768,8 @@ namespace UrbanEco
                       where emp.idEmploye == idEmp
                       select emp).First();
 
-            BH.dateDebut = tbx_dateDebut.Text;
-            BH.dateFin = tbx_dateFin.Text;
+            BH.dateDebut = cal_dateDebut.Value.ToString();
+            BH.dateFin = cal_dateFin.Value.ToString();
             ctx.SubmitChanges();
         }
     }
