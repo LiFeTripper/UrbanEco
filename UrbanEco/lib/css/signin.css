@@ -122,4 +122,9 @@ h5 {
         height: 200vh;
         display: none;
     }
+
+    body {
+        background-color: rgba(27, 123, 4, 0.75);
+        /*background-color: #53bb51;*/
+    }
 }
