@@ -147,7 +147,7 @@ namespace UrbanEco
                                 xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure);
                                 xlWorkSheet.Cells[indexX, 5].Value = ft.Nom;
                                 xlWorkSheet.Cells[indexX, 6].Value = ft.Description;
-                                xlWorkSheet.Cells[indexX, 7].Value = ft.NbHeure;
+                                xlWorkSheet.Cells[indexX, 7].Value = ft.NbHeure.ToString();
                                 indexX++;
                             }
                         }
