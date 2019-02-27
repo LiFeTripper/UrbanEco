@@ -137,11 +137,19 @@ namespace UrbanEco
                         {
                             var emp = s_cat.Child[z];
 
-                            xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
-                            xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
-                            xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
-                            xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure);
-                            indexX++;
+                            for (int a = 0; a < emp.Child.Count; a++)
+                            {
+                                var ft = emp.Child[a];
+
+                                xlWorkSheet.Cells[indexX, 1].Value = projet.Nom;
+                                xlWorkSheet.Cells[indexX, 2].Value = s_cat.Nom;
+                                xlWorkSheet.Cells[indexX, 3].Value = emp.Nom;
+                                xlWorkSheet.Cells[indexX, 4].Value = formatHeureFloat(emp.NbHeure);
+                                xlWorkSheet.Cells[indexX, 5].Value = ft.Nom;
+                                xlWorkSheet.Cells[indexX, 6].Value = ft.Description;
+                                xlWorkSheet.Cells[indexX, 7].Value = ft.NbHeure.ToString();
+                                indexX++;
+                            }
                         }
                     }
                 }
@@ -237,9 +245,17 @@ namespace UrbanEco
             string directory = Server.MapPath("Excel/");
             string filepath = directory + filename;
 
+            if(File.Exists(filepath))
+            {
+                File.Delete(filepath);
+            }
+
+            var file = File.CreateText(filepath);
+            file.Close();
+
             RapportNode rapportNode = (RapportNode)Session["rapportNode"];
 
-            string fileContent = "Nom Projet;Nom Catégorie;Nom Employé;Nombre d'heure";
+            string fileContent = "Nom Projet;Nom Catégorie;Nom Employé;Total d'heure;Date;Note;Nombre d'Heures";
             fileContent += "\n";
 
             //Projet
@@ -269,19 +285,48 @@ namespace UrbanEco
                         fileContent += emp.Nom + ";";
                         fileContent += formatHeureFloat(emp.NbHeure);
                         fileContent += "\n";
+
+                        for (int a = 0; a < emp.Child.Count; a++)
+                        {
+                            var ft = emp.Child[a];
+
+                            fileContent += projet.Nom + ";";
+                            fileContent += s_cat.Nom + ";";
+                            fileContent += emp.Nom + ";";
+                            fileContent += formatHeureFloat(emp.NbHeure) + ";";
+                            fileContent += ft.Nom + ";";
+                            fileContent += ft.Description + ";";
+                            fileContent += ft.NbHeure;
+                            fileContent += "\n";
+
+                            if (fileContent.Length >= 400000)
+                            {
+                                SaveAppendText(directory, filepath, fileContent);
+                                fileContent = "";
+                            }
+                        }
                     }
                 }
             }
 
             if (fileContent.Length != 0)
             {
-                if (!Directory.Exists(directory))
-                    Directory.CreateDirectory(directory);
-
-                File.WriteAllText(filepath, fileContent, System.Text.Encoding.UTF8);
+                SaveAppendText(directory, filepath, fileContent);
             }
 
             DownloadFile(filepath, filename);
+        }
+
+        private void SaveAppendText(string directory, string filename, string fileContent)
+        {
+
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            File.AppendAllText(filename, fileContent, System.Text.Encoding.UTF8);
+
+            //File.WriteAllText(filename, fileContent, System.Text.Encoding.UTF8);
+
         }
     }
 }
