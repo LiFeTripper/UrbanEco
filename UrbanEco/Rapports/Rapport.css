@@ -20,6 +20,11 @@
     grid-template-columns: 50% 50%;
 }
 
+.sousTitresAvecCheckBox {
+    grid-template-columns: 19% 25% 50%;
+    grid-column-gap: 40px;
+}
+
 .ms-selectable, .ms-selection {
     float: unset !important;
 }
@@ -34,11 +39,18 @@
 }
 
 .noTopPadding {
+    margin-top: 20px;
     padding-top: unset !important;
 }
 
 .hidden {
     display: none;
+}
+
+.monCheckbox {
+    transform: translateY(-9px);
+    margin-bottom: 0px !important;
+    justify-self: end;
 }
 
 @media screen and (max-width: 1500px) {

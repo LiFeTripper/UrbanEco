@@ -31,29 +31,26 @@
 
         <%-- Projets --%>
         <div class="form-group spantwo noTopPadding">
-            <%--inactif--%>
-            <div class="form-group monCheckbox spantwo">
-                <table>
-                    <tr>
-                        <%--CHECKBOX INACTIF OU ACTIF--%>
-                        <td>
-                            <label class="switch">
-                                <asp:CheckBox ID="chkbox_projets" runat="server" AutoPostBack="true" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <h5>Inactif</h5>
-                        </td>
-                    </tr>
-                </table>
-            </div>
 
-
-
-
-            <div class="sousTitres">
+            <div class="sousTitres sousTitresAvecCheckBox">
                 <h5 runat="server" class="titre">Projets</h5>
+                <%--inactif--%>
+                <div class="form-group monCheckbox">
+                    <table>
+                        <tr>
+                            <%--CHECKBOX INACTIF OU ACTIF--%>
+                            <td>
+                                <label class="switch">
+                                    <asp:CheckBox ID="chkbox_projets" runat="server" AutoPostBack="true" />
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <h5>Inactif</h5>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 
                 <h5 runat="server" class="titre">Projets sélectionnés</h5>
             </div>
@@ -100,31 +97,26 @@
 
         <%-- Employés --%>
         <div class="form-group spantwo noTopPadding">
-            <%--inactif--%>
-            <div class="form-group monCheckbox spantwo">
-                <table>
-                    <tr>
-                        <%--CHECKBOX INACTIF OU ACTIF--%>
-                        <td>
-                            <label class="switch">
-                                <asp:CheckBox ID="chkbox_employes" runat="server" AutoPostBack="true" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <h5>Inactif</h5>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-
-
-
-
-
-            <div class="sousTitres">
+            
+            <div class="sousTitres sousTitresAvecCheckBox">
                 <h5>Employés</h5>
+                <%--inactif--%>
+                <div class="form-group monCheckbox">
+                    <table>
+                        <tr>
+                            <%--CHECKBOX INACTIF OU ACTIF--%>
+                            <td>
+                                <label class="switch">
+                                    <asp:CheckBox ID="chkbox_employes" runat="server" AutoPostBack="true" />
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <h5>Inactif</h5>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <h5>Employés sélectionnés</h5>
             </div>
 
