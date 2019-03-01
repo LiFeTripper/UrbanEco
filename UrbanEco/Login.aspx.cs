@@ -29,7 +29,9 @@ namespace UrbanEco
                     else
                     {
                         tbl_Employe empco = querry.First();
-                        Session["username"] = empco.username;
+                        string username = empco.username;
+
+                        Session["username"] = username.ToLower();
                         Session["fonction"] = empco.idTypeEmpl;
                         //Mise à jour de la value du cookie
                         Request.Cookies["userInfo"].Expires = DateTime.Now.AddDays(3);
@@ -43,6 +45,8 @@ namespace UrbanEco
         protected void Btn_Signin_Click(object sender, EventArgs e)
         {
             string current_Username = Tbx_InputUsername.Text;
+            current_Username = current_Username.ToLower();
+
             string current_Password = Tbx_InputPassword.Value;
 
             CoecoDataContext bd = new CoecoDataContext();
@@ -58,7 +62,7 @@ namespace UrbanEco
                 {
                     //Response.Cookies["userinfo"].Value = empToCheck.username;
                     Page.Title = "Connection";
-                    Session["username"] = current_Username;
+                    Session["username"] = empToCheck.username;
                     Session["fonction"] = empToCheck.idTypeEmpl;
 
                     //On crée le cookie de co si coché
