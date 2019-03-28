@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoEco_BDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Persist Security Info=True;User ID=WEB_USER" SettingsObjectName="Deplace_Sous_Cat.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=BD_Coeco;Integrated Security=True" SettingsObjectName="Deplace_Sous_Cat.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
     <Type Name="tbl_BanqueHeure">
       <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -18,11 +18,28 @@
       <Association Name="tbl_TypeHeure_tbl_BanqueHeure" Member="tbl_BanqueHeure" ThisKey="idTypeHeure" OtherKey="idTypeHeure" Type="tbl_BanqueHeure" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_ConfigAdmin" Member="tbl_ConfigAdmin">
+    <Type Name="tbl_ConfigAdmin">
+      <Column Name="idConfigAdmin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="jourRappel" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="heureRappel" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="emailRappel" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="pwdEmailRappel" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="statutRappelBureau" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="statutRappelTerrain" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="objetRappel" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="contenuRappel" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="smtpServer" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="smtpPort" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="smtpSSL" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.tbl_Depense" Member="tbl_Depense">
     <Type Name="tbl_Depense">
       <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="typeDepense" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="facturePath" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="idProjetCat" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="dateDepense" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />

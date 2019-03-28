@@ -78,7 +78,7 @@ namespace Deplace_Sous_Cat_2
     #endregion
 		
 		public CoEco_BDDataContext() : 
-				base(global::Deplace_Sous_Cat_2.Properties.Settings.Default.BD_CoecoConnectionString, mappingSource)
+				base(global::Deplace_Sous_Cat_2.Properties.Settings.Default.BD_CoecoConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -225,6 +225,13 @@ namespace Deplace_Sous_Cat_2
 			{
 				return this.GetTable<tbl_TypeEmploye>();
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_ChangeCatMaster")]
+		public int PS_ChangeCatMaster([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idCat)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCat);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

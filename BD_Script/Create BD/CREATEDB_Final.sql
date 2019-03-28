@@ -44,6 +44,7 @@ CREATE TABLE tbl_TypeEmploye
 INSERT INTO tbl_TypeEmploye (nomType) VALUES ('Bureau');
 INSERT INTO tbl_TypeEmploye (nomType) VALUES ('Terrain');
 
+
 CREATE TABLE tbl_Employe
 (
 	idEmploye INT IDENTITY (1,1) PRIMARY KEY,
@@ -55,7 +56,8 @@ CREATE TABLE tbl_Employe
 	password VARCHAR(250),
 	inactif BIT DEFAULT 0,
 	nbHeureSemaine FLOAT(24) DEFAULT 0,
-
+	dateDebut VARCHAR(250) NULL,
+	dateFin VARCHAR(250) NULL,
 	--FOREIGN KEY
 	CONSTRAINT FK_tbl_Employe_idTypeEmpl FOREIGN KEY (idTypeEmpl) REFERENCES tbl_TypeEmploye(idType)
 )

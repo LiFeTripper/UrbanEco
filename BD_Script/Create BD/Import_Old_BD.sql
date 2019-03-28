@@ -17,11 +17,11 @@ INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, use
 -- IMPORTER LES EMPLOY�S AVEC LEURS USER
  INSERT INTO tbl_Employe (idEmploye, prenom, nom, email, idTypeEmpl, inactif, username, password)
 	SELECT emp.id, emp.prenom, emp.nom, emp.email, 2 as idTypeEmpl, 
-	(CASE WHEN us.sttus = 0 THEN 1 else 0 END) as Inactif , us.usr AS username, ('') AS emptyPassword
+	(CASE WHEN us.status = 0 THEN 1 else 0 END) as Inactif , us.usr AS username, ('') AS emptyPassword
 	FROM coeco.dbo.tblemploye AS emp
 	JOIN coeco.dbo.tbluser AS us ON us.idperso = emp.id
 	WHERE 1=1
-	AND us.tpe = 'emp'
+	AND us.type = 'emp'
 	ORDER BY emp.id
 
 Set Identity_Insert tbl_Employe OFF

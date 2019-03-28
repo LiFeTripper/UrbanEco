@@ -78,7 +78,7 @@ namespace AddLinkVancances
     #endregion
 		
 		public CoEco_BDDataContext() : 
-				base(global::AddLinkVancances.Properties.Settings.Default.BD_CoecoConnectionString1, mappingSource)
+				base(global::AddLinkVancances.Properties.Settings.Default.BD_CoecoConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}

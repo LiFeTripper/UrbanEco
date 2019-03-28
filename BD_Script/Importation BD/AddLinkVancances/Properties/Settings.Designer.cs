@@ -54,5 +54,15 @@ namespace AddLinkVancances.Properties {
                 return ((string)(this["BD_CoecoConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=BD_Coeco;Integrated Security=True")]
+        public string BD_CoecoConnectionString2 {
+            get {
+                return ((string)(this["BD_CoecoConnectionString2"]));
+            }
+        }
     }
 }

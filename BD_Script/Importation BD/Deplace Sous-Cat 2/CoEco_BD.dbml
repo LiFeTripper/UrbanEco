@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Coeco" Class="CoEco_BDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.253;Initial Catalog=BD_Coeco;Persist Security Info=True;User ID=WEB_USER" SettingsObjectName="Deplace_Sous_Cat_2.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=BD_Coeco;Integrated Security=True" SettingsObjectName="Deplace_Sous_Cat_2.Properties.Settings" SettingsPropertyName="BD_CoecoConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tbl_BanqueHeure" Member="tbl_BanqueHeure">
     <Type Name="tbl_BanqueHeure">
       <Column Name="idBanqueHeure" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -176,4 +176,8 @@
       <Association Name="tbl_TypeEmploye_tbl_TypeDepense" Member="tbl_TypeDepense" ThisKey="idType" OtherKey="idTypeEmploye" Type="tbl_TypeDepense" />
     </Type>
   </Table>
+  <Function Name="dbo.PS_ChangeCatMaster" Method="PS_ChangeCatMaster">
+    <Parameter Name="idCat" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>
